@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ISPF下如何去掉程序的第72至80列 - MainframeR Everyday</title>
+  <meta name="author" content="妈我回来了">
+
+  
+  <meta name="description" content="个人不是很喜欢ISPF 3.13提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.flyuphigh.com/Mainframe/ISPF%E4%B8%8B%E5%A6%82%E4%BD%95%E5%8E%BB%E6%8E%89%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%AC%AC72%E8%87%B380%E5%88%97.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MainframeR Everyday" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34673316-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">MainframeR Everyday</a></h1>
+  
+    <h2>a big big iron, a big big world.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.flyuphigh.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/pictures">Pictures</a></li>
+  <li><a href="/download">Download</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ISPF下如何去掉程序的第72至80列</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-07T00:00:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。</p>
+
+<h4>方法一：直接在ISPF下面用命令去掉</h4>
+
+<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">NUM</span> <span class="n">ON</span><span class="p">;</span> <span class="n">UNNUMB</span>
+</span><span class='line'><span class="n">C</span> <span class="n">P</span><span class="s">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="n">ALL</span>    <span class="o">/*</span> <span class="n">Changes</span> <span class="nb">all</span> <span class="n">non</span><span class="o">-</span><span class="n">space</span> <span class="n">characters</span> <span class="n">to</span> <span class="n">spaces</span> <span class="ow">in</span> <span class="n">col</span> <span class="mi">73</span> <span class="n">to</span> <span class="mi">80</span><span class="o">*/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h4>方法二：用第三方脚本实现</h4>
+
+<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br/>
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod</code>文件夹下面的所有程序的第72列至80列内容置空，然后输出到文件夹<code>C:\prod72col</code>下面。可以看到，用第三方脚本实现批量的任务是很方便的。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mo">01</span> <span class="k">def</span> <span class="nf">cutto72col</span><span class="p">(</span><span class="n">file_in</span><span class="p">,</span><span class="n">file_out</span><span class="p">)</span>
+</span><span class='line'><span class="mo">02</span>    <span class="n">file_in</span><span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file_in</span><span class="p">,</span><span class="err">‘</span><span class="n">r</span><span class="err">’</span><span class="p">)</span>
+</span><span class='line'><span class="mo">03</span>    <span class="n">file_out</span><span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file_out</span><span class="p">,</span><span class="err">‘</span><span class="n">w</span><span class="err">’</span><span class="p">)</span>
+</span><span class='line'><span class="mo">04</span>    <span class="n">oneline</span><span class="o">=</span><span class="n">file_in</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'><span class="mo">05</span>    <span class="k">while</span><span class="p">(</span><span class="n">oneline</span> <span class="o">!=</span> <span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'><span class="mo">06</span>      <span class="n">oneline</span><span class="o">=</span><span class="n">oneline</span><span class="o">.</span><span class="n">chomp</span>
+</span><span class='line'><span class="mo">07</span>      <span class="n">oneline</span><span class="o">=</span><span class="n">oneline</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">71</span><span class="o">]</span>
+</span><span class='line'><span class="mi">08</span>      <span class="n">file_out</span><span class="o">.</span><span class="n">puts</span> <span class="n">oneline</span>
+</span><span class='line'><span class="mi">09</span>      <span class="n">oneline</span><span class="o">=</span><span class="n">file_in</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'><span class="mi">10</span>    <span class="k">end</span>
+</span><span class='line'><span class="mi">11</span> <span class="k">end</span>
+</span><span class='line'><span class="mi">12</span>
+</span><span class='line'><span class="mi">13</span> <span class="n">path_in</span><span class="o">=</span><span class="err">‘</span><span class="n">C</span><span class="p">:\</span><span class="n">prod</span><span class="p">\\</span><span class="err">’</span>
+</span><span class='line'><span class="mi">14</span> <span class="n">path_out</span><span class="o">=</span><span class="err">‘</span><span class="n">C</span><span class="ss">:prod72col</span><span class="p">\\</span><span class="err">’</span>
+</span><span class='line'><span class="mi">15</span>
+</span><span class='line'><span class="mi">16</span> <span class="no">Dir</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">path_in</span><span class="p">){</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span><span class='line'><span class="mi">17</span> <span class="k">if</span> <span class="n">file</span> <span class="o">!=</span> <span class="err">‘</span><span class="o">.</span><span class="err">’</span> <span class="o">&amp;&amp;</span> <span class="n">file</span> <span class="o">!=</span> <span class="err">‘</span><span class="o">.</span><span class="n">.</span><span class="err">’</span>
+</span><span class='line'><span class="mi">18</span> <span class="k">then</span>
+</span><span class='line'><span class="mi">19</span>    <span class="n">file_in</span> <span class="o">=</span> <span class="n">path_in</span> <span class="o">+</span> <span class="n">file</span>
+</span><span class='line'><span class="mi">20</span>    <span class="n">cutto72col</span><span class="p">(</span><span class="n">file_in</span><span class="p">,</span><span class="n">path_out</span> <span class="o">+</span> <span class="n">file</span><span class="p">)</span>
+</span><span class='line'><span class="mi">21</span> <span class="k">end</span>                <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然，你还可以直接在大机上面用REXX脚本直接对整个PDS操作，移去该PDS下所有member的第72列至80列内容。这里也附上我的REXX脚本,作用是将<strong><code>IBMUSER.TEST.PRGM</code></strong>这个PDS下面所有的member的第72列至第80列的行号都去掉：<br/>
+  <!--more--></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">/***********************</span><span class="n">REXX</span><span class="o">******************************************/</span>
+</span><span class='line'><span class="o">/*</span><span class="n">Loop</span> <span class="n">PDS</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">whatever</span> <span class="n">between</span> <span class="n">col72</span> <span class="n">to</span> <span class="n">col80</span> <span class="k">for</span> <span class="n">each</span> <span class="n">member</span> <span class="o">*/</span>
+</span><span class='line'><span class="o">/**********************************************************************/</span>
+</span><span class='line'><span class="o">/*</span> <span class="n">Trace</span> <span class="n">i</span>  <span class="o">*/</span>
+</span><span class='line'><span class="n">pdsname</span> <span class="o">=</span> <span class="s">&#39;TEST.PRGM&#39;</span>          <span class="o">/*</span><span class="n">Check</span> <span class="k">if</span> <span class="n">pds</span> <span class="ow">is</span> <span class="n">exsited</span> <span class="o">*/</span>
+</span><span class='line'><span class="k">if</span> <span class="n">sysdsn</span><span class="p">(</span><span class="n">pdsname</span><span class="p">)</span><span class="o">&lt;&gt;</span> <span class="s">&quot;OK&quot;</span> <span class="n">then</span>
+</span><span class='line'>    <span class="n">do</span>
+</span><span class='line'>       <span class="n">say</span> <span class="s">&quot;Error: Specified PDS not found:&quot;</span> <span class="n">pdsname</span>
+</span><span class='line'>       <span class="n">say</span> <span class="s">&quot;Error: &quot;</span> <span class="n">pdsname</span> <span class="s">&quot; &gt; &quot;</span> <span class="n">sysdsn</span><span class="p">(</span><span class="n">pdsname</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">say</span> <span class="s">&quot;Press Enter to continue&quot;</span>
+</span><span class='line'>       <span class="n">pull</span> <span class="n">uresp</span>
+</span><span class='line'>       <span class="nb">exit</span> <span class="mi">8</span>
+</span><span class='line'>    <span class="n">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">call</span> <span class="n">outtrap</span> <span class="s">&quot;mbrs.&quot;</span>       <span class="o">/*</span><span class="n">call</span> <span class="n">outtrap</span> <span class="n">to</span> <span class="n">capture</span> <span class="n">LISTD</span> <span class="n">output</span> <span class="o">*/</span>
+</span><span class='line'><span class="s">&quot;LISTD&quot;</span> <span class="n">pdsname</span> <span class="s">&quot;MEMBERS&quot;</span>  <span class="o">/*</span><span class="n">List</span> <span class="n">member</span> <span class="nb">list</span><span class="o">*/</span>
+</span><span class='line'><span class="n">call</span> <span class="n">outtrap</span> <span class="s">&quot;off&quot;</span>         <span class="o">/*</span><span class="n">Turn</span> <span class="n">off</span> <span class="n">outtrap</span><span class="o">*/</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="n">mbrs</span><span class="o">.</span><span class="mi">0</span>
+</span><span class='line'> <span class="o">/*</span><span class="n">SAY</span> <span class="s">&quot;mbrs.&quot;</span> <span class="err">!!</span> <span class="n">i</span> <span class="err">!!</span> <span class="s">&quot;: &quot;</span> <span class="err">!!</span>   <span class="n">mbrs</span><span class="o">.</span><span class="n">i</span> <span class="o">*/</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">mbrs</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="s">&quot;--MEMBERS--&quot;</span> <span class="n">then</span>
+</span><span class='line'>   <span class="n">do</span>
+</span><span class='line'>     <span class="n">leave</span>
+</span><span class='line'>   <span class="n">end</span>
+</span><span class='line'><span class="n">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">/*</span><span class="n">start</span> <span class="n">to</span> <span class="n">loop</span> <span class="n">on</span> <span class="n">each</span> <span class="n">member</span><span class="o">*/</span>
+</span><span class='line'><span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+</span><span class='line'><span class="n">do</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span> <span class="n">to</span> <span class="n">mbrs</span><span class="o">.</span><span class="mi">0</span>   <span class="o">/*</span><span class="n">mbrs</span><span class="o">.</span><span class="mi">0</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">total</span> <span class="n">line</span> <span class="n">num</span> <span class="n">of</span> <span class="n">LISTD</span> <span class="o">*/</span>
+</span><span class='line'> <span class="o">/*</span><span class="n">SAY</span> <span class="s">&quot;mbrs.&quot;</span> <span class="err">!!</span> <span class="n">j</span> <span class="err">!!</span> <span class="s">&quot;: &quot;</span> <span class="err">!!</span>   <span class="n">mbrs</span><span class="o">.</span><span class="n">j</span> <span class="o">*/</span>
+</span><span class='line'>   <span class="n">parse</span> <span class="n">value</span> <span class="n">mbrs</span><span class="o">.</span><span class="n">j</span> <span class="k">with</span> <span class="n">mem</span> <span class="o">/*</span><span class="n">split</span> <span class="n">mbrs</span><span class="o">.</span><span class="n">j</span><span class="o">*/</span>
+</span><span class='line'>   <span class="n">mem</span> <span class="o">=</span><span class="n">strip</span><span class="p">(</span><span class="n">mem</span><span class="p">)</span>            <span class="o">/*</span><span class="n">remove</span> <span class="n">leading</span> <span class="ow">and</span> <span class="n">trailing</span> <span class="n">character</span><span class="o">*/</span>
+</span><span class='line'>   <span class="n">pds</span> <span class="o">=</span> <span class="s">&#39;IBMUSER.TEST.PRGM&#39;</span>
+</span><span class='line'>   <span class="n">mpds</span> <span class="o">=</span> <span class="n">pds</span> <span class="err">!!</span><span class="s">&#39;(&#39;</span> <span class="err">!!</span> <span class="n">mem</span> <span class="err">!!</span> <span class="s">&#39;)&#39;</span>
+</span><span class='line'>   <span class="s">&quot;ISPEXEC EDIT DATASET(&#39;&quot;</span><span class="n">mpds</span><span class="s">&quot;&#39;) MACRO(MACRO01)&quot;</span>
+</span><span class='line'> <span class="n">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是上面主Rexx程序调用的<em>MACRO01</em>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">/*****************************</span><span class="n">REXX</span><span class="o">***********************************/</span>
+</span><span class='line'><span class="n">ADDRESS</span>  <span class="n">ISPEXEC</span>
+</span><span class='line'><span class="s">&quot;ISREDIT MACRO&quot;</span>
+</span><span class='line'><span class="s">&quot;ISREDIT RES&quot;</span>
+</span><span class='line'><span class="s">&quot;ISREDIT NUM ON&quot;</span>
+</span><span class='line'><span class="s">&quot;ISREDIT UNNUM&quot;</span>
+</span><span class='line'><span class="s">&quot;ISREDIT SAVE&quot;</span>
+</span><span class='line'><span class="s">&quot;ISREDIT END&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">妈我回来了</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-07T00:00:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mainframe/'>Mainframe</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Scripts/Automation/REXX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="Previous Post: REXX学习笔记">&laquo; REXX学习笔记</a>
+      
+      
+        <a class="basic-alignment right" href="/Scripts/Automation/Rexx%E9%A1%BA%E5%BA%8F%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E6%89%80%E6%9C%89%E8%A1%8C.html" title="Next Post: Rexx顺序处理文件所有行">Rexx顺序处理文件所有行 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+ <h1> About Me </h1>
+    <li> <img src="/images/Do_Not_Save_Me_Cos_I_Am_Looking_At_You.png" width="175" height="225"> </li>
+    <li> 介绍:  85后 爱动物 爱自由 电子通信科班出身 初级Mainframer 小米农 热衷Web安全 看好移动安全的未来 </li>
+    <li> 邮箱: 54xiaowoniu@sina.cn  </li> 
+    <li> 坐标: FZ=>NJ=>HZ=><font color="#ff00ff">BJ</font>=>? ... ? =>FZ ?</li>
+    <li> 自评: 活得随心所欲 放荡不羁 毫无计划(参考Location) 不可托付 </li>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Trivial/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E5%A7%90%28%E8%BD%AC%29.html">关于MAC下用SSH翻墙的小结(转)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Trivial/heroku+push+timeout%E9%94%99%E8%AF%AF.html">heroku push timeout错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E7%94%A8INTRDR%E5%9C%A8job%E5%BD%93%E4%B8%ADsubmit%E7%AC%AC%E4%BA%8C%E4%B8%AAjob.html">用INTRDR在job中submit第二个job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/Mainframer%E7%89%88%E6%9C%AC%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E5%90%90%E6%A7%BD.html">Mainframer版本的程序猿吐槽</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/ISPF%E4%B8%AD%E4%BD%BF%E7%94%A8Ctrl%2BZ%E6%9D%A5%E6%89%A7%E8%A1%8CUNDO%E5%91%BD%E4%BB%A4.html">ISPF中使用Ctrl+Z来执行UNDO命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E6%AF%8F%E5%A4%A9%E5%AE%9A%E6%97%B6%E4%BB%8EMainframe%E4%B8%8B%E8%BD%BDgdg%E6%96%87%E4%BB%B6%E5%86%8D%E4%B8%8A%E4%BC%A0%E5%88%B0ftp.html">每天定时从Mainframe下载gdg文件再上传到ftp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/BAT%E6%89%B9%E5%A4%84%E7%90%86%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">BAT批处理现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/VB+Script%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">VB Script现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/mainframe%E5%B9%B3%E5%8F%B0%E6%8A%A5%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0.html">mainframe平台报表自动化方案实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/IKJEFT01%E2%80%94JCL%E4%B8%AD%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5.html">JCL中执行如何SQL</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/backtrack/'>BackTrack (11)</a></li>
+<li class='category'><a href='/blog/categories/linux-unix/'>Linux/Unix (8)</a></li>
+<li class='category'><a href='/blog/categories/mainframe/'>Mainframe (84)</a></li>
+<li class='category'><a href='/blog/categories/scripts-automation/'>Scripts/Automation (16)</a></li>
+<li class='category'><a href='/blog/categories/trivial/'>Trivial (17)</a></li>
+
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/mainframer">@mainframer</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mainframer',
+            count: 1,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+ <h1> Linkedin Page </h1>
+ <a href="http://www.linkedin.com/in/mainframer">@mainframer</a> on Linkedin
+</section>
+<section>
+ <h1> License </h1>
+   <p><img src="/images/CC.png"></p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - 妈我回来了 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>JCL批量注释 - MainframeR Everyday</title>
+  <meta name="author" content="妈我回来了">
+
+  
+  <meta name="description" content="在JCL里面一次如何注释掉一整段连续的Statement? 下面这个替换思想的方法不错，不妨一试！
+命令：C '//' '//*' ALL .X .Y 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+File Edit &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.flyuphigh.com/Mainframe/JCL%E6%89%B9%E9%87%8F%E6%B3%A8%E9%87%8A.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MainframeR Everyday" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34673316-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">MainframeR Everyday</a></h1>
+  
+    <h2>a big big iron, a big big world.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.flyuphigh.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/pictures">Pictures</a></li>
+  <li><a href="/download">Download</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">JCL批量注释</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-21T00:00:00+08:00" pubdate data-updated="true">Oct 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>在JCL里面一次如何注释掉一整段连续的Statement? 下面这个替换思想的方法不错，不妨一试！<br/>
+命令：<code>C '//' '//*' ALL .X .Y</code></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">File</span> <span class="n">Edit</span> <span class="n">Edit_Settings</span> <span class="n">Menu</span> <span class="n">Utilities</span> <span class="n">Compilers</span> <span class="n">Test</span> <span class="n">Help</span>
+</span><span class='line'><span class="n">VIEW</span> <span class="n">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="n">SORT</span><span class="p">)</span> <span class="o">-</span> <span class="mf">01.99</span>                 <span class="n">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span>
+</span><span class='line'><span class="n">Command</span> <span class="o">===&gt;</span> <span class="n">C</span> <span class="s">&#39;//&#39;</span> <span class="s">&#39;//*&#39;</span> <span class="n">ALL</span> <span class="o">.</span><span class="n">X</span> <span class="o">.</span><span class="n">Y</span>                    <span class="n">Scroll</span> <span class="o">===&gt;</span> <span class="n">CSR</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">********</span> <span class="n">Top</span> <span class="n">of</span> <span class="n">Data</span> <span class="o">*********************************************************</span>
+</span><span class='line'><span class="mo">000001</span> <span class="o">//</span><span class="n">IBMUSERS</span> <span class="n">JOB</span> <span class="s">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="mo">000002</span> <span class="o">//</span> <span class="n">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">NOTIFY</span><span class="o">=&amp;</span><span class="n">SYSUID</span><span class="p">,</span><span class="n">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="n">TIME</span><span class="o">=</span><span class="n">NOLIMIT</span>
+</span><span class='line'><span class="mo">000003</span> <span class="o">//*********************************************************************</span>
+</span><span class='line'><span class="o">.</span><span class="n">X</span>     <span class="o">//</span><span class="n">STEP001</span> <span class="n">EXEC</span> <span class="n">PGM</span><span class="o">=</span><span class="n">ICETOOL</span><span class="p">,</span><span class="n">REGION</span><span class="o">=</span><span class="mi">0</span><span class="n">M</span>
+</span><span class='line'><span class="mo">000005</span> <span class="o">//</span><span class="n">INPUT1</span> <span class="n">DD</span> <span class="n">DSN</span><span class="o">=&amp;</span><span class="n">HLQ1</span><span class="o">..</span><span class="n">AEN</span><span class="o">.</span><span class="n">INPUT1</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span>
+</span><span class='line'><span class="mo">000006</span> <span class="o">//</span><span class="n">INPUT2</span> <span class="n">DD</span> <span class="n">DSN</span><span class="o">=&amp;</span><span class="n">HLQ1</span><span class="o">..</span><span class="n">AEN</span><span class="o">.</span><span class="n">INPUT2</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span>
+</span><span class='line'><span class="mo">000007</span> <span class="o">//</span><span class="n">INPUT3</span> <span class="n">DD</span> <span class="n">DSN</span><span class="o">=&amp;</span><span class="n">HLQ1</span><span class="o">..</span><span class="n">AEN</span><span class="o">.</span><span class="n">INPUT3</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span>
+</span><span class='line'><span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span><span class="n">OUTPUT</span> <span class="n">DD</span> <span class="n">DSN</span><span class="o">=</span><span class="n">IBMUSER</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span>
+</span><span class='line'><span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span> <span class="n">DISP</span><span class="o">=</span><span class="p">(</span><span class="n">MOD</span><span class="p">,</span><span class="n">CATLG</span><span class="p">,),</span><span class="n">UNIT</span><span class="o">=</span><span class="n">SYSDA</span><span class="p">,</span><span class="n">SPACE</span><span class="o">=</span><span class="p">(</span><span class="n">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">RLSE</span><span class="p">),</span>
+</span><span class='line'><span class="mo">000010</span> <span class="o">//</span> <span class="n">DCB</span><span class="o">=</span><span class="p">(</span><span class="n">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="n">RECFM</span><span class="o">=</span><span class="n">FB</span><span class="p">,</span><span class="n">LRECL</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">DSORG</span><span class="o">=</span><span class="n">PS</span><span class="p">)</span>
+</span><span class='line'><span class="mo">000011</span> <span class="o">//</span><span class="n">SORTWK01</span> <span class="n">DD</span> <span class="n">UNIT</span><span class="o">=</span><span class="n">SYSDA</span><span class="p">,</span><span class="n">SPACE</span><span class="o">=</span><span class="p">(</span><span class="n">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">RLSE</span><span class="p">)</span>
+</span><span class='line'><span class="mo">000012</span> <span class="o">//</span><span class="n">TOOLMSG</span> <span class="n">DD</span> <span class="n">SYSOUT</span><span class="o">=</span>
+</span><span class='line'><span class="mo">000013</span> <span class="o">//</span><span class="n">DFSMSG</span> <span class="n">DD</span> <span class="n">SYSOUT</span><span class="o">=*</span>
+</span><span class='line'><span class="mo">000014</span> <span class="o">//</span><span class="n">TOOLIN</span> <span class="n">DD</span> <span class="n">DSN</span><span class="o">=&amp;</span><span class="n">CONTROL</span><span class="p">(</span><span class="n">MYCNTL01</span><span class="p">),</span><span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span>
+</span><span class='line'><span class="o">.</span><span class="n">Y</span>     <span class="o">//</span><span class="n">CTL1CNTL</span> <span class="n">DD</span> <span class="n">DSN</span><span class="o">=&amp;</span><span class="n">CONTROL</span><span class="p">(</span><span class="n">MYCNTL02</span><span class="p">),</span><span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span>
+</span><span class='line'><span class="mo">000016</span> <span class="o">//*</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">F1</span><span class="o">=</span><span class="n">Help</span> <span class="n">F2</span><span class="o">=</span><span class="n">Split</span> <span class="n">F3</span><span class="o">=</span><span class="n">Exit</span> <span class="n">F5</span><span class="o">=</span><span class="n">Rfind</span> <span class="n">F6</span><span class="o">=</span><span class="n">Rchange</span> <span class="n">F7</span><span class="o">=</span><span class="n">Up</span>
+</span><span class='line'><span class="n">F8</span><span class="o">=</span><span class="n">Down</span> <span class="n">F9</span><span class="o">=</span><span class="n">Swap</span> <span class="n">F10</span><span class="o">=</span><span class="n">Left</span> <span class="n">F11</span><span class="o">=</span><span class="n">Right</span> <span class="n">F12</span><span class="o">=</span><span class="n">Cancel</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">妈我回来了</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-21T00:00:00+08:00" pubdate data-updated="true">Oct 21<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mainframe/'>Mainframe</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Mainframe/Local+FTP+Trigger+JES+job.html" title="Previous Post: Local FTP Trigger JES job">&laquo; Local FTP Trigger JES job</a>
+      
+      
+        <a class="basic-alignment right" href="/Mainframe/Mainframe%E4%B8%8A%E9%9A%8F%E6%97%B6%E6%9F%A5%E7%9C%8B%E4%BB%BB%E6%84%8F%E5%BA%93%E4%BB%A3%E7%A0%81%E7%9A%84Rexx%E5%AE%9E%E7%8E%B0.html" title="Next Post: Mainframe上随时查看任意库代码Rexx实现">Mainframe上随时查看任意库代码Rexx实现 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+ <h1> About Me </h1>
+    <li> <img src="/images/Do_Not_Save_Me_Cos_I_Am_Looking_At_You.png" width="175" height="225"> </li>
+    <li> 介绍:  85后 爱动物 爱自由 电子通信科班出身 初级Mainframer 小米农 热衷Web安全 看好移动安全的未来 </li>
+    <li> 邮箱: 54xiaowoniu@sina.cn  </li> 
+    <li> 坐标: FZ=>NJ=>HZ=><font color="#ff00ff">BJ</font>=>? ... ? =>FZ ?</li>
+    <li> 自评: 活得随心所欲 放荡不羁 毫无计划(参考Location) 不可托付 </li>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Trivial/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E5%A7%90%28%E8%BD%AC%29.html">关于MAC下用SSH翻墙的小结(转)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Trivial/heroku+push+timeout%E9%94%99%E8%AF%AF.html">heroku push timeout错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E7%94%A8INTRDR%E5%9C%A8job%E5%BD%93%E4%B8%ADsubmit%E7%AC%AC%E4%BA%8C%E4%B8%AAjob.html">用INTRDR在job中submit第二个job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/Mainframer%E7%89%88%E6%9C%AC%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E5%90%90%E6%A7%BD.html">Mainframer版本的程序猿吐槽</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/ISPF%E4%B8%AD%E4%BD%BF%E7%94%A8Ctrl%2BZ%E6%9D%A5%E6%89%A7%E8%A1%8CUNDO%E5%91%BD%E4%BB%A4.html">ISPF中使用Ctrl+Z来执行UNDO命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E6%AF%8F%E5%A4%A9%E5%AE%9A%E6%97%B6%E4%BB%8EMainframe%E4%B8%8B%E8%BD%BDgdg%E6%96%87%E4%BB%B6%E5%86%8D%E4%B8%8A%E4%BC%A0%E5%88%B0ftp.html">每天定时从Mainframe下载gdg文件再上传到ftp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/BAT%E6%89%B9%E5%A4%84%E7%90%86%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">BAT批处理现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/VB+Script%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">VB Script现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/mainframe%E5%B9%B3%E5%8F%B0%E6%8A%A5%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0.html">mainframe平台报表自动化方案实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/IKJEFT01%E2%80%94JCL%E4%B8%AD%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5.html">JCL中执行如何SQL</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/backtrack/'>BackTrack (11)</a></li>
+<li class='category'><a href='/blog/categories/linux-unix/'>Linux/Unix (8)</a></li>
+<li class='category'><a href='/blog/categories/mainframe/'>Mainframe (84)</a></li>
+<li class='category'><a href='/blog/categories/scripts-automation/'>Scripts/Automation (16)</a></li>
+<li class='category'><a href='/blog/categories/trivial/'>Trivial (17)</a></li>
+
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/mainframer">@mainframer</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mainframer',
+            count: 1,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+ <h1> Linkedin Page </h1>
+ <a href="http://www.linkedin.com/in/mainframer">@mainframer</a> on Linkedin
+</section>
+<section>
+ <h1> License </h1>
+   <p><img src="/images/CC.png"></p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - 妈我回来了 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

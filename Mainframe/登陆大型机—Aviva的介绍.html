@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>登陆大型机——Aviva的介绍 - MainframeR Everyday</title>
+  <meta name="author" content="妈我回来了">
+
+  
+  <meta name="description" content="一般我们日常用PC机工作拿什么软件来跟大型机(以下简称大机)交互呢? 理论上说几乎所有的终端登陆软件都可以的。而且一般每种终端登陆软件都支持多种协议连接到大机上，比如最常见的TCP/IP，FTP,TELNET,SSL等等。这些软件有很多，外面比较常用的是PCOMM，putty，SecCRT等等， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.flyuphigh.com/Mainframe/%E7%99%BB%E9%99%86%E5%A4%A7%E5%9E%8B%E6%9C%BA%E2%80%94Aviva%E7%9A%84%E4%BB%8B%E7%BB%8D.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MainframeR Everyday" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34673316-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">MainframeR Everyday</a></h1>
+  
+    <h2>a big big iron, a big big world.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.flyuphigh.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/pictures">Pictures</a></li>
+  <li><a href="/download">Download</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">登陆大型机——Aviva的介绍</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-28T00:00:00+08:00" pubdate data-updated="true">Oct 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>一般我们日常用PC机工作拿什么软件来跟大型机(以下简称大机)交互呢? 理论上说几乎所有的终端登陆软件都可以的。而且一般每种终端登陆软件都支持多种协议连接到大机上，比如最常见的<code>TCP/IP，FTP,TELNET,SSL</code>等等。这些软件有很多，外面比较常用的是<code>PCOMM，putty，SecCRT</code>等等，我只用过PCOMM，稍微配置下IP啥的就可以连大机了。这个百度下就出来一堆。
+我们公司比较另类，用的终端软件叫Aviva，一般我们读作&#8221;鹅vi哇&#8221;，希伯来词，意为“美丽的春天”, 产自美国美国(Eicon)公司。谷歌能下载到，不过只有试用版的貌似。
+下面我说下Aviva的一些基本概念和使用。</p>
+
+<h3>Destination和Session的配置:</h3>
+
+<p>所谓Destination 就是大型机的物理IP，你要连接到大型机上，就必须得配置下大型机的IP。装好aviva后，开始——>程序——>Eicon Aviva——>Create New Destination
+这里destination的名字就取：My Destination<br/>
+Connection type:TN3270   <br/>
+<img src="/images/aviva-1.jpg" alt="1" />    <br/>
+大型机的物理IP:</p>
+
+<!--more-->
+
+
+<p>
+<img src="/images/aviva-2.jpg" alt="1" />    <br/>
+<img src="/images/aviva-3.jpg" alt="1" />  <br/>
+<img src="/images/aviva-4.jpg" alt="1" />  <br/>
+这样，Destination就配置好了！
+下面是Sesstion的配置。Session就是用来连到Destination交互的，你可以建很多个不同名字的Session，都指向同一个Destination
+因为平常的工作当中，经常需要建好几个session，比如可以一个用来登陆ONLINE CICS的，一个用来BATCH操作的，这个随便你建几个。这里，我建一个session名字就叫:My First Session <br/>
+<img src="/images/aviva-5.jpg" alt="1" />   <br/>
+这里可以是默认的 <br/>
+<img src="/images/aviva-6.jpg" alt="1" />    <br/>
+有时候公司会有两台大型机(两个IP)，这时候可以选择一个Destination用做Primary,另一个用作backup的。因为我们前面只建了一个Destination,所以这里就选Single Destination only好了：<br/>
+<img src="/images/aviva-7.jpg" alt="1" />   <br/>
+选中我们上面建的Destination:My Destination <br/>
+<img src="/images/aviva-8.jpg" alt="1" />   <br/>
+<img src="/images/aviva-9.jpg" alt="1" />   <br/>
+这样，运行这个session，点击连接，你就能看到那大机那熟悉的黑屏画面了！
+(一般公司都会将大机的默认登陆画面改成包含公司logo的画面，所以不截图了)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">妈我回来了</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-28T00:00:00+08:00" pubdate data-updated="true">Oct 28<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mainframe/'>Mainframe</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Scripts/Automation/Watir%E6%94%B6%E9%9B%86%E6%9C%80%E5%BF%AB%E7%9A%84%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8ip%E5%88%97%E8%A1%A8.html" title="Previous Post: Watir收集最快的代理服务器ip列表">&laquo; Watir收集最快的代理服务器ip列表</a>
+      
+      
+        <a class="basic-alignment right" href="/Mainframe/%E5%A4%A7%E6%9C%BA%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7Changeman.html" title="Next Post: 大机平台的版本控制工具Changeman">大机平台的版本控制工具Changeman &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+ <h1> About Me </h1>
+    <li> <img src="/images/Do_Not_Save_Me_Cos_I_Am_Looking_At_You.png" width="175" height="225"> </li>
+    <li> 介绍:  85后 爱动物 爱自由 电子通信科班出身 初级Mainframer 小米农 热衷Web安全 看好移动安全的未来 </li>
+    <li> 邮箱: 54xiaowoniu@sina.cn  </li> 
+    <li> 坐标: FZ=>NJ=>HZ=><font color="#ff00ff">BJ</font>=>? ... ? =>FZ ?</li>
+    <li> 自评: 活得随心所欲 放荡不羁 毫无计划(参考Location) 不可托付 </li>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Trivial/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E5%A7%90%28%E8%BD%AC%29.html">关于MAC下用SSH翻墙的小结(转)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Trivial/heroku+push+timeout%E9%94%99%E8%AF%AF.html">heroku push timeout错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E7%94%A8INTRDR%E5%9C%A8job%E5%BD%93%E4%B8%ADsubmit%E7%AC%AC%E4%BA%8C%E4%B8%AAjob.html">用INTRDR在job中submit第二个job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/Mainframer%E7%89%88%E6%9C%AC%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E5%90%90%E6%A7%BD.html">Mainframer版本的程序猿吐槽</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/ISPF%E4%B8%AD%E4%BD%BF%E7%94%A8Ctrl%2BZ%E6%9D%A5%E6%89%A7%E8%A1%8CUNDO%E5%91%BD%E4%BB%A4.html">ISPF中使用Ctrl+Z来执行UNDO命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E6%AF%8F%E5%A4%A9%E5%AE%9A%E6%97%B6%E4%BB%8EMainframe%E4%B8%8B%E8%BD%BDgdg%E6%96%87%E4%BB%B6%E5%86%8D%E4%B8%8A%E4%BC%A0%E5%88%B0ftp.html">每天定时从Mainframe下载gdg文件再上传到ftp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/BAT%E6%89%B9%E5%A4%84%E7%90%86%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">BAT批处理现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/VB+Script%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">VB Script现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/mainframe%E5%B9%B3%E5%8F%B0%E6%8A%A5%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0.html">mainframe平台报表自动化方案实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/IKJEFT01%E2%80%94JCL%E4%B8%AD%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5.html">JCL中执行如何SQL</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/backtrack/'>BackTrack (11)</a></li>
+<li class='category'><a href='/blog/categories/linux-unix/'>Linux/Unix (8)</a></li>
+<li class='category'><a href='/blog/categories/mainframe/'>Mainframe (84)</a></li>
+<li class='category'><a href='/blog/categories/scripts-automation/'>Scripts/Automation (16)</a></li>
+<li class='category'><a href='/blog/categories/trivial/'>Trivial (17)</a></li>
+
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/mainframer">@mainframer</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mainframer',
+            count: 1,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+ <h1> Linkedin Page </h1>
+ <a href="http://www.linkedin.com/in/mainframer">@mainframer</a> on Linkedin
+</section>
+<section>
+ <h1> License </h1>
+   <p><img src="/images/CC.png"></p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - 妈我回来了 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

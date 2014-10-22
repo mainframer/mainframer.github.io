@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>OLTP和CICS - MainframeR Everyday</title>
+  <meta name="author" content="妈我回来了">
+
+  
+  <meta name="description" content="OLTP:联机事务处理 事务的ACID属性： 原子性(Atomicity)
+一致性(Consistency)
+孤立性(Isolation)
+持久性(Durability)
+关于OLTP的完整性和可恢复机制,这里举两种情况: a)、 某人从ATM取200块钱，ATM向银行的主机递交请求( &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.flyuphigh.com/Mainframe/OLTP%E5%92%8CCICS.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MainframeR Everyday" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34673316-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">MainframeR Everyday</a></h1>
+  
+    <h2>a big big iron, a big big world.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.flyuphigh.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/pictures">Pictures</a></li>
+  <li><a href="/download">Download</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">OLTP和CICS</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-07T00:00:00+08:00" pubdate data-updated="true">Aug 7<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>OLTP:联机事务处理</h3>
+
+<p>事务的ACID属性：</p>
+
+<ul>
+<li>原子性(Atomicity)</li>
+<li>一致性(Consistency)</li>
+<li>孤立性(Isolation)</li>
+<li>持久性(Durability)
+关于OLTP的完整性和可恢复机制,这里举两种情况:</li>
+</ul>
+
+
+<!--more-->
+
+
+<p><strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br/>
+<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br/>
+此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br/>
+<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
+通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
+各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能，解放应用开发人员以集中处理商务逻辑。我们可以认为事务管理器是对应用程序提供服务的，将应用程序于复杂系统软硬件分离开来的一层软件，亦称<code>中间件</code>。自下而上的顺序为：<code>硬件——操作系统——中间件——应用程序</code>。</p>
+
+<hr />
+
+<h3>CICS:客户信息管理系统</h3>
+
+<p>CICS是IBM最流行的事务管理系统，从1968年到现在，成为事务处理环境中的佼佼者。CICS现在有从桌面到主机环境各种不同平台和操作系统的产品。如CICS/VSE,CICS/MVS,CICS/400（for AS/400),CICS/6000(for Rs/6000),CICS for OS2,CICS for Windows/NT等等。各种CICS产品通过提供以下服务而提高了生产力：</p>
+
+<ul>
+<li>向上提供一致性的应用程序编程接口API;</li>
+<li>向下提供透明访问操作系统的功能；</li>
+<li>系统管理的辅助工具；<br/>
+<code>CICS/ESA</code>用来处理大型机OS/390上的巨量事务，近期版本增加了许多特性：建立了再OLTP下的标准，增加了子系统存储的保护，分布式程序连接，前端编程接口(FEPI)。</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">妈我回来了</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-07T00:00:00+08:00" pubdate data-updated="true">Aug 7<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mainframe/'>Mainframe</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/BackTrack/Backtrack5%E5%AE%89%E8%A3%85Adobe+reader%E7%9C%8BPDF.html" title="Previous Post: Backtrack5安装Adobe reader看PDF">&laquo; Backtrack5安装Adobe reader看PDF</a>
+      
+      
+        <a class="basic-alignment right" href="/Mainframe/ISPF%E4%B8%AD%E9%80%9A%E9%85%8D%E7%AC%A6%25%E5%92%8C_%E7%9A%84%E4%BD%BF%E7%94%A8.html" title="Next Post: ISPF中通配符%和*的使用">ISPF中通配符%和*的使用 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+ <h1> About Me </h1>
+    <li> <img src="/images/Do_Not_Save_Me_Cos_I_Am_Looking_At_You.png" width="175" height="225"> </li>
+    <li> 介绍:  85后 爱动物 爱自由 电子通信科班出身 初级Mainframer 小米农 热衷Web安全 看好移动安全的未来 </li>
+    <li> 邮箱: 54xiaowoniu@sina.cn  </li> 
+    <li> 坐标: FZ=>NJ=>HZ=><font color="#ff00ff">BJ</font>=>? ... ? =>FZ ?</li>
+    <li> 自评: 活得随心所欲 放荡不羁 毫无计划(参考Location) 不可托付 </li>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Trivial/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E5%A7%90%28%E8%BD%AC%29.html">关于MAC下用SSH翻墙的小结(转)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Trivial/heroku+push+timeout%E9%94%99%E8%AF%AF.html">heroku push timeout错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E7%94%A8INTRDR%E5%9C%A8job%E5%BD%93%E4%B8%ADsubmit%E7%AC%AC%E4%BA%8C%E4%B8%AAjob.html">用INTRDR在job中submit第二个job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/Mainframer%E7%89%88%E6%9C%AC%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E5%90%90%E6%A7%BD.html">Mainframer版本的程序猿吐槽</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/ISPF%E4%B8%AD%E4%BD%BF%E7%94%A8Ctrl%2BZ%E6%9D%A5%E6%89%A7%E8%A1%8CUNDO%E5%91%BD%E4%BB%A4.html">ISPF中使用Ctrl+Z来执行UNDO命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E6%AF%8F%E5%A4%A9%E5%AE%9A%E6%97%B6%E4%BB%8EMainframe%E4%B8%8B%E8%BD%BDgdg%E6%96%87%E4%BB%B6%E5%86%8D%E4%B8%8A%E4%BC%A0%E5%88%B0ftp.html">每天定时从Mainframe下载gdg文件再上传到ftp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/BAT%E6%89%B9%E5%A4%84%E7%90%86%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">BAT批处理现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/VB+Script%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">VB Script现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/mainframe%E5%B9%B3%E5%8F%B0%E6%8A%A5%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0.html">mainframe平台报表自动化方案实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/IKJEFT01%E2%80%94JCL%E4%B8%AD%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5.html">JCL中执行如何SQL</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/backtrack/'>BackTrack (11)</a></li>
+<li class='category'><a href='/blog/categories/linux-unix/'>Linux/Unix (8)</a></li>
+<li class='category'><a href='/blog/categories/mainframe/'>Mainframe (84)</a></li>
+<li class='category'><a href='/blog/categories/scripts-automation/'>Scripts/Automation (16)</a></li>
+<li class='category'><a href='/blog/categories/trivial/'>Trivial (17)</a></li>
+
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/mainframer">@mainframer</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mainframer',
+            count: 1,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+ <h1> Linkedin Page </h1>
+ <a href="http://www.linkedin.com/in/mainframer">@mainframer</a> on Linkedin
+</section>
+<section>
+ <h1> License </h1>
+   <p><img src="/images/CC.png"></p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - 妈我回来了 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

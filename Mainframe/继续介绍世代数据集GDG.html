@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>继续介绍世代数据集GDG - MainframeR Everyday</title>
+  <meta name="author" content="妈我回来了">
+
+  
+  <meta name="description" content="上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。 1、新建GDG base 一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.flyuphigh.com/Mainframe/%E7%BB%A7%E7%BB%AD%E4%BB%8B%E7%BB%8D%E4%B8%96%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9B%86GDG.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MainframeR Everyday" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34673316-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">MainframeR Everyday</a></h1>
+  
+    <h2>a big big iron, a big big world.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.flyuphigh.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/pictures">Pictures</a></li>
+  <li><a href="/download">Download</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">继续介绍世代数据集GDG</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-15T00:00:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。</p>
+
+<h4>1、新建GDG base</h4>
+
+<p>一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG.BASE并且可以有10个generation的GDG base。只要提交这个job马上就生成了GDG base了。</p>
+
+<!--more-->
+
+
+<p><img src="/images/GDG01.jpg" alt="1" /></p>
+
+<h4>2、新建GDG generation</h4>
+
+<p>那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">//</span><span class="n">EXTRACT</span> <span class="n">DD</span> <span class="n">DSN</span><span class="o">=</span><span class="n">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BASE</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+</span><span class='line'><span class="o">//</span> <span class="n">DISP</span><span class="o">=</span><span class="p">(</span><span class="n">NEW</span><span class="p">,</span><span class="n">CATLG</span><span class="p">,</span><span class="n">DELETE</span><span class="p">),</span>
+</span><span class='line'><span class="o">//</span> <span class="n">UNIT</span><span class="o">=</span><span class="n">SYSDA</span><span class="p">,</span>
+</span><span class='line'><span class="o">//</span> <span class="n">SPACE</span><span class="o">=</span><span class="p">(</span><span class="n">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)),</span>
+</span><span class='line'><span class="o">//</span> <span class="n">DCB</span><span class="o">=</span><span class="p">(</span><span class="n">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="n">RECFM</span><span class="o">=</span><span class="n">FB</span><span class="p">,</span><span class="n">LRECL</span><span class="o">=</span><span class="mi">125</span><span class="p">,</span><span class="n">DSORG</span><span class="o">=</span><span class="n">PS</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样，就生成了一个IBMUSER.MYGDG.BASE.G0001V001的generation了。</p>
+
+<h4>3、引用已存在的GDG generation</h4>
+
+<p>这个要怎么引用呢，首先你要明白，括号()里面的数字是有意义的，如下：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">//</span><span class="n">XXXXX</span> <span class="n">DSN</span><span class="o">=</span><span class="n">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BAS</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span>  <span class="o">//*</span><span class="err">使用当前最新的</span><span class="n">generation</span><span class="o">*//</span>
+</span><span class='line'><span class="o">//</span><span class="n">XXXXX</span> <span class="n">DSN</span><span class="o">=</span><span class="n">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BAS</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span> <span class="o">//*</span><span class="err">使用当前次新的</span><span class="n">generation</span><span class="o">*//</span>
+</span><span class='line'><span class="o">//</span><span class="n">XXXXX</span> <span class="n">DSN</span><span class="o">=</span><span class="n">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BAS</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="n">DISP</span><span class="o">=</span><span class="n">SHR</span> <span class="o">//*</span><span class="err">使用当前第三新</span><span class="n">generation</span><span class="o">*//</span>
+</span><span class='line'><span class="o">//...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以此类推</p>
+
+<h4>4、查看GDG的属性</h4>
+
+<p>要查看GDG的属性，可以在GDG base的左边用命令</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">LISTC</span> <span class="n">GDG</span> <span class="n">ENT</span><span class="p">(</span><span class="o">/</span><span class="p">)</span> <span class="n">ALL</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>回车，就会返回GDG的属性信息。比如什么时候建的，比如一共支持多少个generationden等。另一种方法是在ISPF；6 命令行里面输入:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">LISTC</span> <span class="n">GDG</span> <span class="n">ENT</span><span class="p">(</span><span class="s">&#39;IBMUSER.MYGDG.BASE&#39;</span><span class="p">)</span> <span class="n">ALL</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>来查询IBMUSER.MYGDG.BASE的属性信息。</p>
+
+<h4>5、删除GDG</h4>
+
+<p>对于一般的Dataset，我们在它前面打一个&#8221;D&#8221;就删掉了。但是GDG比较特殊，你必须至少输DEL才可以删掉。而且一定要记住顺序：先删除所有的generation，才可以允许你删除GDG base，否则会提示错误。</p>
+
+<h4>6、修改GDG属性</h4>
+
+<p>同样，要修改GDG的属性(如generation数目)，你仍然可以使用系统utiliti IDCAMS来修改，下图中，我用IDCAMS将IBMUSER.MYGDG.BASE的generation数量从原来的10个改到20个，只需提交job即可。
+<img src="/images/GDG02.jpg" alt="1" /></p>
+
+<h4>7、注意事项</h4>
+
+<p>这里，说一点特别需要注意的地方。GDG是在一个JOB执行完毕之后才被CATALOG的。假如你需要在一个JOB当中有两次需要生成新的GDG generation，那么你必须一次用(+1)，一次用(+2)，不能两次都用(+1)，因为在你Job执行完之前，系统不知道你前面已经生成了一个新的generation的。<br/>
+还有，比如在同一个job里面，你前面一个step用(+1)生成了一个新的generation，名字叫IBMUSER.TEST.GDG，后面某个step紧接着要使用这个新生成的generation，你觉得这时候你是使用<span style="color: #ff00ff;">DSN=IBMUSER.TEST.GDG(0),DISP=SHR</span>呢还是使用<span style="color: #ff00ff;">DSN=IBMUSER.TEST.GDG(+1),DISP=SHR</span>呢？ 告诉你，这种情况下你必须用后者，因为在这个Job执行完之前，系统并不知道你在前面的step已经生成了这个generation。也就是说，gdg的catalog是在job层面上的，不是在step层面上的。好了，关于GDG就介绍到这里。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">妈我回来了</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-15T00:00:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mainframe/'>Mainframe</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Mainframe/%E4%B8%96%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E2%80%94GDG.html" title="Previous Post: 世代数据集—GDG介绍">&laquo; 世代数据集—GDG介绍</a>
+      
+      
+        <a class="basic-alignment right" href="/Trivial/Linux%2Bssh%2Bchrome%28chromium%29%2Bproxy+switchy+%2B+gSTM%E7%BF%BB%E5%A2%99.html" title="Next Post: Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙">Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+ <h1> About Me </h1>
+    <li> <img src="/images/Do_Not_Save_Me_Cos_I_Am_Looking_At_You.png" width="175" height="225"> </li>
+    <li> 介绍:  85后 爱动物 爱自由 电子通信科班出身 初级Mainframer 小米农 热衷Web安全 看好移动安全的未来 </li>
+    <li> 邮箱: 54xiaowoniu@sina.cn  </li> 
+    <li> 坐标: FZ=>NJ=>HZ=><font color="#ff00ff">BJ</font>=>? ... ? =>FZ ?</li>
+    <li> 自评: 活得随心所欲 放荡不羁 毫无计划(参考Location) 不可托付 </li>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Trivial/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E5%A7%90%28%E8%BD%AC%29.html">关于MAC下用SSH翻墙的小结(转)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Trivial/heroku+push+timeout%E9%94%99%E8%AF%AF.html">heroku push timeout错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E7%94%A8INTRDR%E5%9C%A8job%E5%BD%93%E4%B8%ADsubmit%E7%AC%AC%E4%BA%8C%E4%B8%AAjob.html">用INTRDR在job中submit第二个job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/Mainframer%E7%89%88%E6%9C%AC%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E5%90%90%E6%A7%BD.html">Mainframer版本的程序猿吐槽</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/ISPF%E4%B8%AD%E4%BD%BF%E7%94%A8Ctrl%2BZ%E6%9D%A5%E6%89%A7%E8%A1%8CUNDO%E5%91%BD%E4%BB%A4.html">ISPF中使用Ctrl+Z来执行UNDO命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/%E6%AF%8F%E5%A4%A9%E5%AE%9A%E6%97%B6%E4%BB%8EMainframe%E4%B8%8B%E8%BD%BDgdg%E6%96%87%E4%BB%B6%E5%86%8D%E4%B8%8A%E4%BC%A0%E5%88%B0ftp.html">每天定时从Mainframe下载gdg文件再上传到ftp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/BAT%E6%89%B9%E5%A4%84%E7%90%86%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">BAT批处理现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Scripts/Automation/VB+Script%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html">VB Script现学现用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/mainframe%E5%B9%B3%E5%8F%B0%E6%8A%A5%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0.html">mainframe平台报表自动化方案实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Mainframe/IKJEFT01%E2%80%94JCL%E4%B8%AD%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5.html">JCL中执行如何SQL</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/backtrack/'>BackTrack (11)</a></li>
+<li class='category'><a href='/blog/categories/linux-unix/'>Linux/Unix (8)</a></li>
+<li class='category'><a href='/blog/categories/mainframe/'>Mainframe (84)</a></li>
+<li class='category'><a href='/blog/categories/scripts-automation/'>Scripts/Automation (16)</a></li>
+<li class='category'><a href='/blog/categories/trivial/'>Trivial (17)</a></li>
+
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/mainframer">@mainframer</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mainframer',
+            count: 1,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+ <h1> Linkedin Page </h1>
+ <a href="http://www.linkedin.com/in/mainframer">@mainframer</a> on Linkedin
+</section>
+<section>
+ <h1> License </h1>
+   <p><img src="/images/CC.png"></p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - 妈我回来了 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
