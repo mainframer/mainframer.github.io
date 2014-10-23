@@ -5,65 +5,65 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/index.html</loc>
-<lastmod>2014-10-23T21:46:48-00:00</lastmod>
+<lastmod>2014-10-23T22:07:17-00:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/archives.html</loc>
-<lastmod>2014-10-23T21:46:48-00:00</lastmod>
+<lastmod>2014-10-23T22:07:17-00:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tags.html</loc>
-<lastmod>2014-10-23T21:46:48-00:00</lastmod>
+<lastmod>2014-10-23T22:07:17-00:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/categories.html</loc>
-<lastmod>2014-10-23T21:46:48-00:00</lastmod>
+<lastmod>2014-10-23T22:07:17-00:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>http://mainframer.github.io/LOADPARM  Description(z/OS 1.6).html</loc>
+<loc>http://mainframer.github.io/articles/LOADPARM-Description-z-OS-1.6.html</loc>
 <lastmod>2010-06-04T20:06:00-00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
+<changefreq>daily</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/category/mainframe.html</loc>
 <lastmod>2010-06-04T20:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tag/loadparm.html</loc>
 <lastmod>2010-06-04T20:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tag/zos.html</loc>
 <lastmod>2010-06-04T20:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/author/mainframer.html</loc>
 <lastmod>2010-06-04T20:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
+<priority>0.8</priority>
 </url>
 
 </urlset>
