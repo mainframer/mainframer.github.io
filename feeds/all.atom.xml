@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/all.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2010-06-04T20:06:00+08:00</updated><entry><title>LOADPARM Description(z/OS 1.6)</title><link href="http://mainframer.github.io/LOADPARM%20%20Description(z/OS%201.6).html" rel="alternate"></link><updated>2010-06-04T20:06:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2010-06-04:LOADPARM  Description(z/OS 1.6).html</id><summary type="html">&lt;p&gt;&lt;code&gt;CS&lt;/code&gt;         CLPA and cold start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. &lt;br /&gt;
+&lt;code&gt;00&lt;/code&gt;         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. &lt;br /&gt;
+&lt;code&gt;WS&lt;/code&gt;         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. &lt;br /&gt;
+&lt;code&gt;DC&lt;/code&gt;         CLPA, brings in CICS LPA modules, cold start of JES2, starts up DB2 and CICS. &lt;br /&gt;
+&lt;code&gt;DB&lt;/code&gt;         Warmstart of JES2 and starts the DB2 and CICS. &lt;br /&gt;
+&lt;code&gt;DI&lt;/code&gt;         CLPA and cold start of JES2 and loads the IMS Libraries. IMS must be manually started. &lt;br /&gt;
+&lt;code&gt;CC&lt;/code&gt;         CLPA and cold start of JES2, loads the CICS Libraries, starts up CICS, no DB2. &lt;br /&gt;
+&lt;code&gt;CW&lt;/code&gt;         Warm start of JES2, and starts up CICS. &lt;br /&gt;
+&lt;code&gt;7C&lt;/code&gt;         CLPA, cold start of JES2, starts up DB2 V7, no CICS. &lt;br /&gt;
+&lt;code&gt;7W&lt;/code&gt;         Warm start of JES2, starts up DB2 V7, no CICS. &lt;br /&gt;
+&lt;code&gt;8C&lt;/code&gt;         CLPA, cold start of JES2, starts up DB2 v8, no CICS. &lt;br /&gt;
+&lt;code&gt;8W&lt;/code&gt;         Warm start of JES2, starts up DB2 v8, no CICS. &lt;br /&gt;
+&lt;code&gt;IC&lt;/code&gt;         CLPA and cold start of JES2 and load the IMS Libraries, start IMS, no DB2 or CICS. &lt;br /&gt;
+&lt;code&gt;IW&lt;/code&gt;         Warm start of JES2 start IMS, no DB2 or CICS. &lt;br /&gt;
+&lt;code&gt;AC&lt;/code&gt;         CLPA and cold start of JES2 load IMS and CICS libraries, start IMS, DB/2, and CICS. &lt;br /&gt;
+&lt;code&gt;AW&lt;/code&gt;         Warmstart of JES2. start IMS, DB/2, and CICS. &lt;br /&gt;
+&lt;code&gt;BC&lt;/code&gt;         CLPA and cold start of JES2, load WAS libraries, WAS is manually started &lt;br /&gt;
+&lt;code&gt;BW&lt;/code&gt;         Warmstart of JES2. WAS is manually started. &lt;br /&gt;
+&lt;code&gt;99&lt;/code&gt;         Points to IODF99 for IPL on MP3000. Reply 00,SYSP=xx were xx is any of the above options i.e. for cics only xx=cc or cw.   &lt;/p&gt;
+&lt;h4&gt;Device number: &lt;strong&gt;0A80&lt;/strong&gt; 　Load Parm: &lt;strong&gt;0A82CSM1&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/zosmoni_loadparm_1.png" /&gt;     &lt;/p&gt;
+&lt;h4&gt;Device number: &lt;strong&gt;0A80&lt;/strong&gt; 　Load Parm: &lt;strong&gt;0A82DBM1&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/zosmoni_loadparm_2.png" /&gt;     &lt;/p&gt;</summary><category term="z/OS"></category><category term="LoadParm"></category></entry></feed>

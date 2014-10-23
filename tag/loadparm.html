@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - LoadParm</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/LOADPARM  Description(z/OS 1.6).html"><h3 class="article-title">LOADPARM  Description(z/OS 1.6)</h3></a>
+<h6 class="subheader" title="2010-06-04T20:06:00">2010-06-04
+</h6>
+
+
+<p><code>CS</code>         CLPA and cold start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
+<code>00</code>         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
+<code>WS</code>         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
+<code>DC</code>         CLPA, brings in CICS LPA modules, cold start of JES2, starts up DB2 and CICS. <br />
+<code>DB</code>         Warmstart of JES2 and starts the DB2 and CICS. <br />
+<code>DI</code>         CLPA and cold start of JES2 and loads the IMS Libraries. IMS must be manually started. <br />
+<code>CC</code>         CLPA and cold start of JES2, loads the CICS Libraries, starts up CICS, no DB2. <br />
+<code>CW</code>         Warm start of JES2, and starts up CICS. <br />
+<code>7C</code>         CLPA, cold start of JES2, starts up DB2 V7, no CICS. <br />
+<code>7W</code>         Warm start of JES2, starts up DB2 V7, no CICS. <br />
+<code>8C</code>         CLPA, cold start of JES2, starts up DB2 v8, no CICS. <br />
+<code>8W</code>         Warm start of JES2, starts up DB2 v8, no CICS. <br />
+<code>IC</code>         CLPA and cold start of JES2 and load the IMS Libraries, start IMS, no DB2 or CICS. <br />
+<code>IW</code>         Warm start of JES2 start IMS, no DB2 or CICS. <br />
+<code>AC</code>         CLPA and cold start of JES2 load IMS and CICS libraries, start IMS, DB/2, and CICS. <br />
+<code>AW</code>         Warmstart of JES2. start IMS, DB/2, and CICS. <br />
+<code>BC</code>         CLPA and cold start of JES2, load WAS libraries, WAS is manually started <br />
+<code>BW</code>         Warmstart of JES2. WAS is manually started. <br />
+<code>99</code>         Points to IODF99 for IPL on MP3000. Reply 00,SYSP=xx were xx is any of the above options i.e. for cics only xx=cc or cw.   </p>
+<h4>Device number: <strong>0A80</strong> 　Load Parm: <strong>0A82CSM1</strong></h4>
+<p><img alt="1" src="/images/zosmoni_loadparm_1.png" />     </p>
+<h4>Device number: <strong>0A80</strong> 　Load Parm: <strong>0A82DBM1</strong></h4>
+<p><img alt="1" src="/images/zosmoni_loadparm_2.png" />     </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/loadparm.html">LoadParm </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
