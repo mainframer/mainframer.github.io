@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'ssh+myEntunnel+chrome+proxy switchy翻墙'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'ssh+myEntunnel+chrome+proxy switchy翻墙'.html" rel="bookmark"
+        title="Permalink to 'ssh+myEntunnel+chrome+proxy switchy翻墙'">'ssh+myEntunnel+chrome+proxy switchy翻墙'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
+</h6>
+
+
+    <p>在windows/win7下如何翻墙？告诉你答案：<code>ssh+myEntunnel+chrome+proxy switchy</code>插件翻墙。</p>
+<h4>1、注册SSH账号</h4>
+<p>SSH是建立在应用层和传输层基础上的提供可靠传输的安全协议。在这里您首先需要去注册一个SSH代理的账号，一般是几块钱一个月的就挺好的了，当然也有免费注册的，不过免费的可能速度不是很快或者连接不稳定。注册SSH的网址我就不发了，不然就有广告的嫌疑了。自己到网上一搜一堆的那种。要是实在找不到的可以通过邮箱<code>54xiaowoniu@sina.cn</code>跟我联系，我告诉你怎么注册。基本上15分钟搞定。 </p>
+<h4>2、下载MyEntunnel</h4>
+<p>MyEntunnel是用来登录SSH服务器并在本机自动架设一个socks5代理的软件，下载并安装Myentunnel运行。
+在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：<br />
+<img alt="1" src="/images/myentunnel.jpg" />    <br />
+这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。<br />
+另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的，说明已经连接上了。好，下面设置浏览器。 </p>
+<h4>3、下载谷歌浏览器Chrome</h4>
+<p>如果你不是使用谷歌浏览器的话。其他的浏览器像Firefox也可以的，只是要使用的插件不一样而已。IE估计不行，我没用过，因为我印象中IE只能全局设置代理的，没有像Chrome和FireFox一样丰富的插件资源。还有，如果你不想用Chrome或Firefox的话，可以试试Chromium，这是Chrome的开发版本，也很好用。也有proxy switchy插件的。 
+<!--more--> </p>
+<h4>4、安装proxy switch</h4>
+<p>打开Chrome浏览器，在谷歌网上应用商店搜索proxy switchy,点击安装即可。有中文版的proxy switchy。这里附上下载地址：
+<a href="https://chrome.google.com/webstore/detail/caehdcpeofiiigpdhbabniblemipncjj?hl=zh-CN">https://chrome.google.com/webstore/detail/caehdcpeofiiigpdhbabniblemipncjj?hl=zh-CN"</a><br />
+安装完成后重启Chrome，您会发现地址栏邮编多了个地球一样的插件，这个就是proxy switchy插件了。右击——&gt;选项，打开设置：
+在<strong>Proxy Profiles</strong>标签栏中，新建一个名为SSH的profile,设置如下：
+这里端口是<strong>7070</strong>，跟上面的一致。代理选<strong>SOCKS v5</strong>
+<img alt="1" src="/images/ssh_01.jpg" />        <br />
+可以按照下图中添加自己想要的URL规则，这里我只加了google和youtube的两个规则。
+在线的RUL规则栏填：
+{% blockquote %} 
+http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt
+{% endblockquote %} 
+频率选15min，Profile选刚才建的SSH。<br />
+<img alt="1" src="/images/ssh_02.jpg" />     <br />
+好了，保存一下先。左击地址栏右边的proxy switcyh插件，选择SSH。在地址栏上输入:<span style="color: #ff00ff;">www.youtube.com</span>，回车，你看到了什么？对的，你已经翻越了神奇的GFW了。
+<img alt="1" src="/images/youtube1.jpg" />     </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'ssh+myEntunnel+chrome+proxy switchy翻墙'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'ssh+myEntunnel+chrome+proxy switchy翻墙'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

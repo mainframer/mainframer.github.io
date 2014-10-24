@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'DATACOM数据库介绍'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'DATACOM数据库介绍'.html" rel="bookmark"
+        title="Permalink to 'DATACOM数据库介绍'">'DATACOM数据库介绍'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2010-11-29T00:00:00">2010-11-29
+</h6>
+
+
+    <p>CA Datacom听过么？它是CA(Computer Associates)公司的企业级数据库。以能承受高负荷和较强的容错性著称，在mainframe平台上有比较广泛地应用，不过最近几年Datacom公司貌似不怎么行了，大家都换上了IBM的DB2数据库了。<br />
+Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说是具备了基本的文件系统特征。通常KEY是某个或某几个字段的组合，一个table可以有多个KEY。在PL/I或COBOL程序中访问Datacom是通过调用接口DBNTRY来实现的(<span style="color: #ff00ff;">XXX</span>是table名字)。 在COBOL中是这样call的(<span style="color: #ff00ff;">XXX</span>是table名字)：
+{% codeblock lang:ruby %}
+CALL ‘DBNTRY’ USING USER-ID
+      XXX-REQ-AREA
+      XXXF0
+      XXX-ELEMENT-LIST
+{% endcodeblock %}<br />
+而在这之前，要先声明：
+<!--more-->
+{% codeblock lang:ruby%}
+01 USER-ID.
+05 PROGRAM-NAME PIC X(08) VALUE 'MYPGM00 '.
+05 FILLER PIC X(24) VALUE SPACES.</p>
+<p>01 XXX-REQ-AREA.
+05 XXX-REQ-COMMAND PIC X(05) VALUE SPACES.
+05 XXX-REQ-FILENAME PIC X(03) VALUE ‘XXX‘.
+05 XXX-REQ-KEYNAME PIC X(05) VALUE SPACES.
+05 XXX-REQ-RETURNCD PIC X(02) VALUE SPACES.
+05 XXX-REQ-DBID PIC X(02) VALUE SPACES.
+05 XXX-REQ-REC-ID PIC X(07).
+05 XXX-REQ-KEY-VALUE PIC X(180).</p>
+<p>01 XXX-WORK-AREA.
+05 XXX-WORK-AREA-0 PIC X(274).
+05 XXX-WORK-AREA-6 PIC X(300).</p>
+<p>01 XXX-ELEMENT-LIST.
+05 XXX-ELM-1 PIC X(05) VALUE ‘XXXA0′.
+05 FILLER PIC X(01).
+05 XXX-ELM-2 PIC X(05) VALUE ‘XXXA6′.
+05 FILLER PIC X(01).
+05 FILLER PIC X(05) VALUE SPACES.
+{% endcodeblock %}<br />
+接着在程序中要分别对进行必要的赋值：<br />
+{% codeblock lang:ruby %}
+XXX-REQ-AREA，XXX-WORK-AREA. XXX-ELEMENT-LIST
+{% endcodeblock %}
+赋完值后就能执行 
+{% codeblock lang:ruby %}
+CALL ‘DBNTRY‘
+{% endcodeblock %}
+来对Datacom数据库表进行操作了。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'DATACOM数据库介绍'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'DATACOM数据库介绍'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

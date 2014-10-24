@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - articles</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html"><h3 class="article-title">IBM主机技术一本通笔记续</h3></a>
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+<h5>1、JCL每行80列</h5>
+<p>原来这是因为在1960年那个年代，程序员使用的是穿孔卡片来将JCL作业控制语句一个一个的输入系统，构成了批量作业，而当时穿孔卡片只有80列。</p>
+<h5>2、JOB语句的关键字参数</h5>
+<p>ADDRSPC 
+<span style="color: #ff00ff;">REGION</span> <br />
+<span style="color: #ff00ff;">MSGCLASS</span> <br />
+SECLABEL <br />
+<span style="color: #ff00ff;">PASSWORD</span><br />
+BYTES   <br />
+<span style="color: #ff00ff;">CLASS</span> <br />
+RD MSGLEVEL <br />
+<span style="color: #ff00ff;">TIME</span> <br />
+PERFORM PAGES <br />
+<span style="color: #ff00ff;">COND</span> <br />
+LINES <br />
+CARDS <br />
+TYPRUN <br />
+PRTY <br />
+SCHENV <br />
+GROUP <br />
+<span style="color: #ff00ff;">RESTART</span> <br />
+<span style="color: #ff00ff;">NOTIFY</span> <br />
+<span style="color: #ff00ff;">USER</span> CCSID<br />
+标有颜色的几个是我自己比较常用到的。<br />
+上张包含了这9个常用JCL关键字参数的图(当然，平常工作当中一般不可能在单个JCL当中都包含了所有的这9个关键字，我这里只是为了更好的说明才把它们罗列在一个JCL里面的，这点要明白)
+<a href="/../images/JCL-keyword1.jpg">!</a>  <br />
+<strong><code>CLASS</code></strong> : 是作业运行队列的优先级，MSGCLASS是作业输出信息的级别，它规定了作业输出信息送往哪里显示。CLASS和MSGCLASS都是公司规定好了的，肯定有文档可以查看具体信息的。</p>
+<p><strong><code>NOTIFY</code></strong>:  是指最终作业运行的结果通知给谁，可以写详细的ID，比如IBMUSER，也可以写通用的参数，比如<code>&amp;SYSUID ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通.html"><h3 class="article-title">IBM主机技术一本通</h3></a>
+<h6 class="subheader" title="2011-08-20T00:00:00">2011-08-20
+</h6>
+
+
+<p>周末去市图书馆走了一圈，竟然让我看到有本《IBM主机技术一本通》。这本书前两个月同事买了，貌似100多，现在京东报价是96元，淘宝上也差不多。当时我就快速翻了一遍，第一感觉是：书很厚，看了目录，贴近当前我所做的内容，还有就是内容丰富，涵盖的主机技术比较全，但貌似感觉有点罗列的成分，比较适合主机新人，给他们一个整体框架的印象。当然，800多页的书也并不是都是罗列，有很多内容是很详细的，我认为是：每个主机人都可以有针对性的看，你会的，快速过，不会的，详细看，最好要在大机上实践验证，这样记得牢。<br />
+刚拿回来，这么重的书我都背回来了，看来不看是对不住了。更何况是不花钱的好书。只不过没花钱买感觉有些对不住作者了。作者吕新民应该算国内主机界的资深前辈了吧。看人家的工作经历可以追溯到我出生之前好几年呢。<br />
+这是作者的新浪博客：<a href="http://blog.sina.com.cn/newmanworkshop">http://blog.sina.com.cn/newmanworkshop</a>,可以多关注下，都是为了学习进步嘛，希望前辈多出书呐！<br />
+好了，我会有一个详细的学习计划，好好把这本书吃透，从中汲取自己目前还欠缺的知识。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Ruby分割文件.html"><h3 class="article-title">Ruby分割文件</h3></a>
+<h6 class="subheader" title="2011-08-20T00:00:00">2011-08-20
+</h6>
+
+
+<p>自己小试的ruby程序,用于将一个<code>dictionary.txt</code>分割成多个小一点的子文件，不然每次都操作<code>dictionary.txt</code>显得很笨重。想把<code>dictionary.txt</code>按照字母首a~z，每个首字母再按长度分为长度为1~3的比如a_1to3.txt，长度为4的a_4.txt，长度为5的a_5.txt，长度为6的a_6.txt，长度为7的a_7.txt，长度为8的a_8.txt，以及长度大于8的others。这样，dictionary.txt最后被分割成了6x26+1=157个子文件，就不会像处理dictionary.txt那样笨重了，毕竟CPU有限。<br />
+为啥wordpress里面粘贴代码都只有黑乎乎的一片呢，可爱的语法高亮在哪里？还是喜欢五颜六色的代码段啊，上图吧:<br />
+<img alt="1" src="/../images/ruby_spilt_file.jpg" /> <br />
+只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Ruby分割文件.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Ruby分割文件.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/常用的linux命令.html"><h3 class="article-title">常用的linux命令</h3></a>
+<h6 class="subheader" title="2011-08-17T00:00:00">2011-08-17
+</h6>
+
+
+<h4>Ubuntu启动3D特效:</h4>
+<p>root@bt:~# sudo apt-get install compizconfig-settings-manager emerald fusion-ico<br />
+<strong><em>注释</em></strong>:<code>compizconfig-settings-manager</code>是提供3D桌面特效的主程序，安装后出现在屏幕右上角，可以详细设置。emerald是提供窗口装饰的程序，fusion-icon是桌面栏中的图标</p>
+<h4>linux系统图标路径：</h4>
+<p>root@bt: <code>cd /usr/share/icons</code></p>
+<h4>查看最近使用的命令</h4>
+<p>root@bt:/# <code>history</code>  </p>
+<h4>备份更新源文件</h4>
+<p>root@bt:~# <code>sudo cp /etc/apt/sources.list /etc/atp.sources.list.backup</code>    <br />
+root@bt:~# <code>sudo gedit /etc/apt/sources.list</code>    </p>
+<h4>软件包管理命令 ...</h4><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/常用的linux命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常用的linux命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个在线的资源.html"><h3 class="article-title">介绍几个在线的资源</h3></a>
+<h6 class="subheader" title="2011-08-16T00:00:00">2011-08-16
+</h6>
+
+
+<p>在平常，如果嫌麻烦，不想安装软件的话，可以试试在线的。特别是云计算正在慢慢普及，以后估计可能一个网络账号行遍互联网了。拭目以待吧！这里介绍几个我还比较常用到的在线资源。先声明，是本人用过的发现比较好用的，虽然写在这有些广告的嫌疑。</p>
+<h4>在线听歌</h4>
+<p>亦歌：<a href="http://www.1g1g.com">http://www.1g1g.com</a><br />
+一听：<a href="http://www.1ting.com">http://www.1ting.com</a><br />
+就个人来说，我计较倾向于亦歌，因为它的干净，界面简单。  </p>
+<h4>在线改图</h4>
+<p><a href="http://pixlr.com/editor/">http://pixlr.com/editor/</a><br />
+这个可是号称在线版本的<code>Photoshop</code>啊。我觉得功能上来说，如果你不是影楼工作追究卓越的，而只是像我一样日常做些照片图片的修改，图片修改尺寸，再上点简单效果什么的，那么<code>pixlr</code>完全可以胜任你的要求。就我来说，本站所有的图片都是在<code>pixlr</code>修改的。如果你和我一样，嫌系统自带的画图工具太烂而又不想去安装个庞大的<code>photoshop</code>或者 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个在线的资源.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个在线的资源.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html"><h3 class="article-title">BT5安装openoffice和星际译王stardict</h3></a>
+<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
+</h6>
+
+
+<h3>BT5下安装openoffice</h3>
+<p>上次装了Adobe Reader在BT5下面能看PDF了，后来发现不能看word，ppt，excel也是一件很痛快的事情，虽然安装了vmware-tools之后在windows和BT5直接直接来回拖文件也挺方便，但是也不那么方便，所以今天还是老老实实地把openoffice在BT5下面给安装了。
+首先到openoffice官网上下载安装包，因为我选的是deb安装，而不是rpm安装，所以我下载deb包，放在~/software目录下。
+root@bt:~#  <code>cd ~/software</code> <br />
+root@bt:~/software#<br />
+root@bt:~/software#  <code>tar zxvf OOo_3.3.0_Linux_x86_install-deb_zh-CN.tar.gz</code> <br />
+root@bt:~/software#  <code>cd OOO330_m20_native_packed-1_zh-CN.9567/</code> <br />
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567#  <code>ls</code> <br />
+DEBS licenses readmes update  </p>
+<h5>进入DEBS目录，安装该目录下的所有deb包 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux目录结构.html"><h3 class="article-title">Linux目录结构</h3></a>
+<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
+</h6>
+
+
+<p>linux中以树形目录形式来管理的，并且所有的设备都是目录。linux只有一个根目录<code>‘/'</code>，其余的目录都是根目录的子目录。
+root@bt:/# ls /dev/sd*
+<code>/dev/sda /dev/sda1 /dev/sda2 /dev/sda5</code>
+<code>注释:</code>表示只有一块SATA硬盘，有两个主分区<code>(sda1,sda2)</code>，一个逻辑分区<code>(sda5)</code>。  </p>
+<h5>下面对根目录<code>'/'</code>下的子目录来个介绍：</h5>
+<p><code>/usr</code>:  包含所有命令，类库，系统帮助手册，即包含了系统运行不会修改的内容<br />
+<code>/var</code>:  包含系统运行中会修改的内容，如打印队列，邮件列表等，还有系统中软件的日志信息<br />
+<code>/home</code>: 用户的主目录，比如/home/user1,/home/user2，每个用户在这个目录下面都有一个自己的子目录<br />
+<code>/dev</code>:  设备文件，如硬盘，光驱，USB设备，内存 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux目录结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux目录结构.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux下硬件信息查看.html"><h3 class="article-title">Linux下硬件信息查看</h3></a>
+<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
+</h6>
+
+
+<p>以前linux对硬件的支持不怎么好这是大家普遍的印象，然而现在的linux发行版本对硬件的支持度已经算非常好了，普通的硬件像显卡，声卡等更笨不需要安装任何驱动就可以在linux下直接使用。只不过有时候为了更好地发挥硬件的性能，我们最好还是给硬件安装上驱动。安装驱动首先需要获得硬件的信息，特别是核心芯片的提供厂商。一般的我们都知道CPU的提供厂商有Intel和AMD两个，显卡的提供厂商有ATI,NVIDIA,SIS等。声卡呢，最常见的是创新提供的声卡。一般来说，像显卡，声卡，网卡这样的板卡的制造厂商都只是购买了核心芯片，然后在芯片周围做些外围的电路扩展以实现芯片的功能。这样就可以拿来卖给我们钱了。  </p>
+<p><code>Linux对硬件支持的原理</code>linux只是简单的读取硬件的芯片信息用来和自己库里的驱动程序比较，发现有匹配的程序就用该驱动程序来加载硬件，实现各种功能。
+当然，linux提供我们各种查询硬件信息的命令:</p>
+<h4>查看PCI设备</h4>
+<p>系统中大多数设置都是PCI设备(网卡，声卡，1394火线接口，集成显卡等)
+root@bt:/proc#   <code>lspci -v</code>        #详细pci状态信息 <br />
+root@bt:/proc#   <code>lspci -vv</code>       #比上面的更详细 <br />
+root@bt:/proc# l <code>lspci -vvv ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux下硬件信息查看.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux下硬件信息查看.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux分区挂载.html"><h3 class="article-title">Linux分区挂载</h3></a>
+<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
+</h6>
+
+
+<p>硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有<code>Windows</code>和<code>FressBSD</code>等操作系统才需要将自己安装在硬盘的主分区里面，而<code>Linux</code>呢，可以被安装在逻辑分区里面。</p>
+<h3>分区编号</h3>
+<p>Linux将所有的存储设备(包括硬盘)都挂载<code>/dev</code>目录下新建一个子目录来管理，比如下面:<br />
+<code>/dev/hda1</code> 第一块IDE硬盘的第一个主分区  <br />
+<code>/dev/hda2</code> 第一块IDE硬盘的第二个主分区  <br />
+<code>/dev/hda5</code> 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  <br />
+<code>/dev/sda1</code> 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   </p>
+<h3>挂载点</h3>
+<p>所谓挂载点，就是将分区挂到一个以<code>“/”</code>开头的目录中。  <br />
+<code>/</code>:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   <br />
+<code>swap</code>:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux分区挂载.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux分区挂载.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CICS应用编程接口.html"><h3 class="article-title">CICS应用编程接口</h3></a>
+<h6 class="subheader" title="2011-08-12T00:00:00">2011-08-12
+</h6>
+
+
+<h3>开发语言</h3>
+<p>可以用COBOL,C,C++,Assembler,PL/I等来编写CICS应用程序的主要的大部分逻辑处理功能，而只有少数的一部分功能需要用到CICS命令。</p>
+<h3>CICS命令格式</h3>
+<p><code>EXEC CICS SEND FROM (MSG-AREA) LENGTH(5) END-EXEC</code>                                         ——向终端发送长度为5的MSG-AREA信息       <br />
+<code>EXEC CICS READ FILE('FILEA') INTO (CUSTOMER-REC) RIDFLD(CUSTOMER-NUM)</code>                     ——读和修改VSAM文件       <br />
+<code>EXEC SQL SELECT colum_names INTO program_variables From Table_name WHERE ... END-EXEC</code>     ——读和修改关系型数据库<br />
+<code>EXEC CICS READ ... RESP(RESPONSE-FIELD)</code>  或  <code>EXEC CICS HANDLE CONDITION</code>                 ——处理异常条件 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CICS应用编程接口.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS应用编程接口.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 10 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/articles9.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/category/articles11.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - z/OS</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html"><h3 class="article-title">Mainframe上随时查看任意库代码Rexx实现</h3></a>
+<h6 class="subheader" title="2012-11-12T00:00:00">2012-11-12
+</h6>
+
+
+<p>Mainframe上面工作经常需要临时查看<em>Production</em>代码库当中的代码，又不希望输入长长的库名称。可以用REXX写一个<em>Retrieve</em>功能的脚本，放在
+<code>USERID.REXX.EXEC</code>这个pds下面。运行的时候<strong><code>TSO RET your_program_name</code></strong> 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：
+{% codeblock lang:python %} 
+EDIT       IBMUSER.REXX.EXEC(RET) - 01.02                  Columns 00001 00072 
+Command ===&gt;                                                  Scroll ===&gt; CSR<br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+000001 /<em> rexx </em>/                                                            <br />
+000002 /<strong><em>*</em></strong><strong><em>* ret - retrieve specific member from multiple ...</em></strong></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL批量注释.html"><h3 class="article-title">JCL批量注释</h3></a>
+<h6 class="subheader" title="2012-10-21T00:00:00">2012-10-21
+</h6>
+
+
+<p>在JCL里面一次如何注释掉一整段连续的Statement? 下面这个替换思想的方法不错，不妨一试！<br />
+命令：<code>C '//' '//*' ALL .X .Y</code>
+{% codeblock lang:python %}
+File Edit Edit_Settings Menu Utilities Compilers Test Help 
+VIEW IBMUSER.TEST.JCL(SORT) - 01.99                 Columns 00001 00072 
+Command ===&gt; C '//' '//*' ALL .X .Y                    Scroll ===&gt; CSR </p>
+<p><strong><em>*</em></strong><em> Top of Data <strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></em> 
+000001 //IBMUSERS JOB '000000000000000000CMP', 
+000002 // CLASS=0,NOTIFY=&amp;SYSUID,MSGCLASS=R ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL批量注释.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL批量注释.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html"><h3 class="article-title">Local FTP Trigger JES job</h3></a>
+<h6 class="subheader" title="2012-10-08T00:00:00">2012-10-08
+</h6>
+
+
+<p>随便写了一个搜索ABC字符串的JCL，保存到桌面:  <br />
+<code>C:\Documents and Settings\Foo\Desktop\IBMUSERJ.txt</code><br />
+{% codeblock lang:python %}
+//IBMUSERJ JOB '000000000000000000CMP',    <br />
+//     CLASS=0,NOTIFY=IBMUSER,TIME=NOLIMIT,MSGCLASS=R                                         <br />
+//ONLINE  EXEC PGM=ISRSUPC,                <br />
+//            PARM=(SRCHCMP,               <br />
+//            'ANYC') <br />
+//NEWDD  DD DSN=IBMUSER.PROCLIB,DISP=SHR<br />
+//OUTDD  DD SYSOUT=<em>  <br />
+//SYSIN  DD *         <br />
+SRCHFOR  'ABC'     <br />
+//</em> 
+{% endcodeblock  %}
+用ftp的方式将jcl送入JES系统执行。<code>win+R</code>打开cmd ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html"><h3 class="article-title">FTP from windows to Mainframe</h3></a>
+<h6 class="subheader" title="2012-10-03T00:00:00">2012-10-03
+</h6>
+
+
+<p><code>win+R</code>打开cmd:<br />
+{% codeblock lang:python %} 
+C:\Documents and Settings\Foo\Desktop&gt;ftp ftpserver<br />
+/<em>Here please input username/password</em>/<br />
+ftp&gt; ascii
+200 Representation type is Ascii NonPrint
+ftp&gt; quote site lrecl=80 blksize=16000 recfm=fb
+200 SITE command was accepted
+ftp&gt; put test.txt 'ibmuser.test.psfile(+1)'
+200 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html"><h3 class="article-title">CICS的TOR,AOR,FOR概念</h3></a>
+<h6 class="subheader" title="2012-09-26T00:00:00">2012-09-26
+</h6>
+
+
+<p>CICS当中<code>TOR，AOR,FOR</code>还有其它*OR什么意思？ </p>
+<ul>
+<li><strong><code>TOR</code></strong> 是TERMINAL OWNING REGION,TOR上只定义TERMINAL，在TOR上定义PCT,REMOTE到AOR。当交易进入TOR后会被路由到对应的AOR去执行。  </li>
+<li><strong><code>AOR</code></strong> 是APPLICATION OWNING REGION，AOR上跑交易和应用程序。  </li>
+<li><strong><code>FOR</code></strong> 是FILE OWNING REGION<br />
+网上搜到老外的解释:  <br />
+{% blockquote %} 
+Tor is where the terminals are defined, Aor is where the applications are defined and FOR where the files are defined.<br />
+Generally, TORs are the ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/DB2 SQLcode.html"><h3 class="article-title">DB2 SQLcode</h3></a>
+<h6 class="subheader" title="2012-09-19T00:00:00">2012-09-19
+</h6>
+
+
+<h3>DB2 SQLcode</h3>
+<h5>IBM官网:</h5>
+<p>这里是原帖：<a href="http://publib.boulder.ibm.com/infocenter/dzichelp/v2r2/index.jsp?topic=%2Fcom.ibm.db2z10.doc.codes%2Fsrc%2Ftpc%2Fdb2z_sqlcodes.htm">http://publib.boulder.ibm.com/infocenter/dzichelp/v2r2/index.jsp?topic=%2Fcom.ibm.db2z10.doc.codes%2Fsrc%2Ftpc%2Fdb2z_sqlcodes.htm</a>    </p>
+<h5>Wiki:</h5>
+<p><a href="http://en.wikipedia.org/wiki/DB2_SQL_return_codes">http://en.wikipedia.org/wiki/DB2_SQL_return_codes</a></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/DB2 SQLcode.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/DB2 SQLcode.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html"><h3 class="article-title">SuperC SRCHFOR高级选项</h3></a>
+<h6 class="subheader" title="2012-09-11T00:00:00">2012-09-11
+</h6>
+
+
+<p>在<code>ISPF 3.4</code> 选项下面使用<em>SRCHFOR</em>其实可以有高级选项功能的：比如能一次search多个string，比如能选择是否searchn那些已经被<em>MIGRATE</em>的那些dataset等等。
+这里，要在<code>IBMUSER.TEST.GDGRPT</code>的所有世代里面查找:<code>shehui</code>, <code>zhuyi</code>,<code>hao</code>这三个字符串，包括那些已经被migrate的。
+{% codeblock lang:python %}
+DSLIST - Data Sets Matching IBMUSER.TEST.GDGRPT                 Row 1 of 11 
+Command ===&gt;                                                  Scroll ===&gt; CSR  </p>
+<h2>Command - Enter "/" to select action                  Message           Volume</h2>
+<div class="highlight"><pre>     IBMUSER.TEST.GDGRPT                       Not ...</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html"><h3 class="article-title">ISPF-只显示含关键字的所有行</h3></a>
+<h6 class="subheader" title="2012-09-07T00:00:00">2012-09-07
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock">命令：
+{% blockquote %}
+X ALL; 
+FIND keyword ALL;
+{% endblockquote %}
+比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;
+{% codeblock %}
+ VIEW       IBMUSER.TESTJCL(TESTJOB) - 01.9         4 CHARS 'DT0907' 
+ Command ===&gt; find dt0907 all                                  Scroll ===&gt; CSR<br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+ - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   524 Line(s) not Displayed 
+ 000525 //SORTOUT  DD  DSN=IBMUSER.CREATERT ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html"><h3 class="article-title">ISPF-提高效率少用PF3和START</h3></a>
+<h6 class="subheader" title="2012-09-01T00:00:00">2012-09-01
+</h6>
+
+
+<p>同一个<em>PDS</em>下，记得多用<code>BROWSE</code>, <code>VIEW</code>,<code>EDIT</code>,<code>COMP</code>这些命令。比如<code>BROWSE TEST02</code> 或者<code>EDIT TEST03</code> 或者<code>VIEW TEST04</code> 或者<code>COMP 'IBMUSER.PROJ.TEST.JCL1((TEST01)'</code> 这样，不需要另外<em>PF3</em>或者<em>START</em>开一个窗口。
+比如需要在同一个<em>PDS</em>下的<em>TEST02</em>这个JCL中拷贝一些东西到当前的TEST01的时候，经常用到。
+{% codeblock lang:python %}
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help          <br />
+<code>``````````````````````````````````````````````````````````````````````````````
+ VIEW       IBMUSER ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/转战octopress.html"><h3 class="article-title">转战octopress</h3></a>
+<h6 class="subheader" title="2012-08-22T00:00:00">2012-08-22
+</h6>
+
+
+<p>博客从<code>wordpress</code>转到<code>octopress</code>了，将原来的博客导过来修复了下格式什么的。<br />
+没有了后台和数据库什么的，纯静态的，用<code>Sublime Text 2 + Git + MarkDown + Terminal</code>的方式写博客,更有兴致了。更重要的是看起来的确清爽了很多！博客部署在著名的Heroku上面，免费的~</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/转战octopress.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/转战octopress.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 3 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/tag/zos2.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/tag/zos4.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

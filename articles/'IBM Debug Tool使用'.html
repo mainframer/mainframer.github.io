@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'IBM Debug Tool使用'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'IBM Debug Tool使用'.html" rel="bookmark"
+        title="Permalink to 'IBM Debug Tool使用'">'IBM Debug Tool使用'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-09-05T00:00:00">2011-09-05
+</h6>
+
+
+    <p>关于<code>IBM DebugTool</code>的一些介绍，请参照我的另一篇博文：&lt;<Debug Tool for z/OS>&gt;，这里呢，我是想说说一般我们用<code>IBM Debug Tool</code>来调试<code>PL/I</code>或者<code>COBOL</code>程序的时候都有哪些命令或者说按键可以用，比如说设置断点，运行至断点处，监视变量值啊什么的这种一般不管什么程序的调试都会用到的知识。当然，这本身很简单，写在这里只是为了让新人更快的学会使用，基本上10分钟搞定的那种，这样就节省了大家的时间了。
+先上个<code>IBM DebugTool</code>的截图：
+<img alt="1" src="/images/Debug-tool-screenshot1.jpg" />  <br />
+可以看到，最上面一行显示了当前debug的程序名字PRGM002以及所用的语言<code>PL/I</code>,接着是命令行COMMAND,所有的调试命令都在这一行输入。然后是变量监视区域<code>(MONITOR)</code>，源程序区<code>(SOURCE)</code>以及调试日志<code>(LOG)</code>区域。<code>Debug Tool</code>遵循“七上八下”原则，也就是F7向上翻页，F8向下翻页。</p>
+<h4>执行下一条语句</h4>
+<p>按<code>F2</code>  </p>
+<h4>查找关键字</h4>
+<p>命令为：
+<code>F 关键字</code>  <br />
+按F5循环查找  </p>
+<h4>设置/取消断点</h4>
+<p>将光标置于你要设置的代码处，按<code>F6</code>设置断点，再按<code>F6</code>取消断点设置。  </p>
+<h4>运行到断点</h4>
+<p>按F9即可，中间若有程序段会引起Abend，那么会自动停留在abend处。
+<!--more--></p>
+<h4>监视变量</h4>
+<p>命令<code>L(List) 变量名</code> 为临时监视，只会在Log区域列出变量值。<br />
+命令<code>M List 变量名</code>为永久监视，会在Monitor区域监视变量值的变化情况。 <br />
+命令<code>SET AUTO ON</code>会自动列出当前执行到的代码中所有的变量的值。   </p>
+<h4>清除MONITOR区域不想监视的变量</h4>
+<p>在该变量前面的行区域输入命令<code>C</code> 回车即可。<br />
+在MONITOR区域以十六进制(HEX)/十进制(DECIMAL)形式显示变量。<br />
+在该变量前面的行号区域输入命令<code>H</code> 或者<code>D</code>可以在十六进制和十进制之间切换。  </p>
+<h4>放大/缩小 MONITOR或者SOURCE区域</h4>
+<p>将光标置于MONITOR或者SOURCE区域，按<code>F10</code>。 </p>
+<h4>放大/缩小 LOG区域</h4>
+<p>按<code>F11</code>  </p>
+<h4>左移 右移</h4>
+<p><code>LEFT</code> <br />
+<code>RIGHT</code>  </p>
+<h4>向上(下)50行</h4>
+<p><code>UP 50</code> 
+<code>DOWN 50</code></p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'IBM Debug Tool使用'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'IBM Debug Tool使用'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

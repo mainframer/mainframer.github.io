@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'每天定时从Mainframe下载gdg文件再上传到ftp'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'每天定时从Mainframe下载gdg文件再上传到ftp'.html" rel="bookmark"
+        title="Permalink to '每天定时从Mainframe下载gdg文件再上传到ftp'">'每天定时从Mainframe下载gdg文件再上传到ftp'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2013-04-01T00:00:00">2013-04-01
+</h6>
+
+
+    <p>今天要完成一个任务：  </p>
+<h4>任务描述</h4>
+<h6>Step1:从大机(mainframe)上下载指定的gdg最新的2个generation到本地C:\gdg目录下。</h6>
+<h6>Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的<code>/topath/users-4/</code>目录下面，每天新建一个目录<code>yyyymmdd</code>用来存放当天的gdg文件。</h6>
+<h6>Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。</h6>
+<p>这里是实现以上任务的批处理脚本<code>ftpscript.bat</code>。放在<code>C:\ftpscript</code>.bat，之后在windows计划任务里面添加每天定时运行即可。 <br />
+<!--more--> 
+{% codeblock lang:python %} 
+@echo off
+rem 指定mainframe的IP
+set mfIP=xxx.xxx.xxx.xxx
+rem 指定mainframe用户名
+set mfUser=IBMUSER
+rem 指定mainframe密码
+set mfPass=MFPASSWD
+rem 指定从FTP下载下来的gdg存放到本地目录C:\gdg
+set LocalFolder=C:\gdg
+rem 指定将下载下来的文件发送到哪一个目标ftp server上面去
+set toftpServer=xxx.xxx.xxx.xxx
+set toftpuser=FTPUSER
+set toftppass=TOFTPPASS
+rem 事先清空本地目录C:\gdg，然后从大机上面下载最新的gdg放到这里
+cd %LocalFolder%
+del /s /q /f <em>.</em> </p>
+<p>rem 拼装ftp命令到C:\TempFTP.txt里面，最后用ftp.exe -n -s:"%ftpFile%" 执行里面的命令
+set ftpFile=%temp%\TempFTP.txt</p>
+<blockquote>
+<p>"%ftpFile%" (
+rem 第一步：从大机上面下载文件放到C:\gdg目录 (前面已做清空) 
+    echo open %mfIP%
+    echo user %mfUser%
+    echo %mfPass%  <br />
+    echo lcd "%LocalFolder%"
+    echo ascii
+    echo disconnect
+rem echo site RECFM=VB LRECL=2548 BLKSIZE=27998
+    echo get "'IBMUSER.TESTGDG.ASPA.EXTRACT(0)'"  <br />
+    echo get "'IBMUSER.TESTGDG.ASPA.EXTRACT(-1)'" <br />
+rem 第二步：在目标ftp上新建一个yyyymmdd目录，将C:\gdg目录下所有的文件传到该目录下
+    echo open %toftpServer%
+    echo user %toftpuser%
+    echo %toftppass%
+    echo cd /topath/users-4/
+rem echo echo %date% %time%
+    echo mkdir %Date:~10,4%%Date:~4,2%%Date:~7,2%
+    echo cd %Date:~10,4%%Date:~4,2%%Date:~7,2%
+    echo put "'IBMUSER.TESTGDG.ASPA.EXTRACT(0)'" "IBMUSER.TESTGDG.ASPA.EXTRACT(0)"<br />
+    echo put "'IBMUSER.TESTGDG.ASPA.EXTRACT(-1)'" "IBMUSER.TESTGDG.ASPA.EXTRACT(-1)"                                             <br />
+    echo pwd
+    echo ls -all
+    echo bye
+  )
+cd ..<br />
+start c:\windows\system32\ftp.exe -n -s:"%ftpFile%" </p>
+</blockquote>
+<p>{% endcodeblock  %}</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'每天定时从Mainframe下载gdg文件再上传到ftp'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'每天定时从Mainframe下载gdg文件再上传到ftp'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>IBM主机技术一本通笔记续</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html" rel="bookmark"
+        title="Permalink to IBM主机技术一本通笔记续">IBM主机技术一本通笔记续</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+    <h5>1、JCL每行80列</h5>
+<p>原来这是因为在1960年那个年代，程序员使用的是穿孔卡片来将JCL作业控制语句一个一个的输入系统，构成了批量作业，而当时穿孔卡片只有80列。</p>
+<h5>2、JOB语句的关键字参数</h5>
+<p>ADDRSPC 
+<span style="color: #ff00ff;">REGION</span> <br />
+<span style="color: #ff00ff;">MSGCLASS</span> <br />
+SECLABEL <br />
+<span style="color: #ff00ff;">PASSWORD</span><br />
+BYTES   <br />
+<span style="color: #ff00ff;">CLASS</span> <br />
+RD MSGLEVEL <br />
+<span style="color: #ff00ff;">TIME</span> <br />
+PERFORM PAGES <br />
+<span style="color: #ff00ff;">COND</span> <br />
+LINES <br />
+CARDS <br />
+TYPRUN <br />
+PRTY <br />
+SCHENV <br />
+GROUP <br />
+<span style="color: #ff00ff;">RESTART</span> <br />
+<span style="color: #ff00ff;">NOTIFY</span> <br />
+<span style="color: #ff00ff;">USER</span> CCSID<br />
+标有颜色的几个是我自己比较常用到的。<br />
+上张包含了这9个常用JCL关键字参数的图(当然，平常工作当中一般不可能在单个JCL当中都包含了所有的这9个关键字，我这里只是为了更好的说明才把它们罗列在一个JCL里面的，这点要明白)
+<a href="/../images/JCL-keyword1.jpg">!</a>  <br />
+<strong><code>CLASS</code></strong> : 是作业运行队列的优先级，MSGCLASS是作业输出信息的级别，它规定了作业输出信息送往哪里显示。CLASS和MSGCLASS都是公司规定好了的，肯定有文档可以查看具体信息的。</p>
+<p><strong><code>NOTIFY</code></strong>:  是指最终作业运行的结果通知给谁，可以写详细的ID，比如IBMUSER，也可以写通用的参数，比如<code>&amp;SYSUID</code>，这样的话，谁运行它就显示给谁看。 </p>
+<p><strong><code>REGION</code></strong>:  规定作业所需的实存或虚存的大小，在JOB level定义的话就运用到整个JOB的所有STEP，当然，可以每个STEP单独定义REGION的大小。      </p>
+<p><strong><code>TIME</code></strong> :   用来限制作业占用CPU的最长时间，当TIME参数达到指定的时间时，作业就会异常终止，用来避免死循环等低级错误。图中我们规定CPU时间为1分30秒。TIME参数还可这么写： <br />
+<code>TIME=l440</code>               ----1440 mins    <br />
+<code>TIME=NOLIMIT</code>            ---- nolimit    <br />
+<code>TIME=MAXIMUM</code>            ----357912 mins          </p>
+<p><strong><code>USER</code>和<code>PASSWORD</code></strong> :一起用，比如你自己的权限比较低，你申请了一个临时的权限比较高地ID来submit作业的时候，你就可以这么指定，系统会认为这个JOB是那个有较高权限的人提交的，而不是你提交的。</p>
+<p><strong><code>RESTART</code></strong>: 用来指定JOB从哪一个STEP开始执行，不然默认就是从第一个STEP开始执行。      </p>
+<p><strong><code>COND</code></strong>:    指定了单个STEP执行的前提条件，用法很灵活，这里不展开。    </p>
+<h5>3、PARM参数有100个字符限制</h5>
+<p><code>PARM</code>参数用来在JCL的具体STEP中给程序传递变量参数，它用引号括起来，不能超过100个字符。 </p>
+<h5>4、Dummy 哑数据集</h5>
+<p>每个程序需要访问的数据集在作业流中都必须有一个ddname与其对应。如果你在程序里面定义了文件而在JCL中没有定义对应的DD语句，就会ABEND。当有时候输入数据集对程序来说是可选的或者程序要输出地数据集不是必需的时候，我们就用Dummy数据集来跳过它所有的I/O操作。   </p>
+<h5>5、DATASET串联(Concatenation)</h5>
+<p><img alt="1" src="/../images/dataset-concatenation.jpg" /><br />
+使用这个特性是很方便的，特别是在一些SORT的场合，把几个DATASET同置于一个SORTIN下面。只是要注意的是这些DATASET的属性要完全一致，就是它们所有的DCB子参数必须一致。包括<strong>RECFM，LRECL，BLKSIZE</strong>。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/IBM主机技术一本通笔记续.html";
+        var disqus_url = "http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

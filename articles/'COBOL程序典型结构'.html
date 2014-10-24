@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'COBOL程序典型结构'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'COBOL程序典型结构'.html" rel="bookmark"
+        title="Permalink to 'COBOL程序典型结构'">'COBOL程序典型结构'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-10-02T00:00:00">2011-10-02
+</h6>
+
+
+    <p>一个典型的COBOL程序结构是：程序由许多‘部’组成，每个‘部’可以包含多个‘节’  </p>
+<h4>COBOL PROGRAM (程序)</h4>
+<h4>DIVISION(部)</h4>
+<h4>SECTION(节)</h4>
+<h4>PARAGRAPH(段)</h4>
+<h4>SENTENCE(句子)</h4>
+<h4>STATEMENT(语句)</h4>
+<p>整个COBOL程序由4个'部'(DIVISION)组成：
+{% blockquote %} 
+Identification Division  标识部
+Environment Division 环境部 
+Data Division 数据部
+Procedure Division 过程部 
+{% endblockquote %} 
+用一句话介绍这四个部：标志部提供作者和编译器信息；环境部提供程序运行的环境；数据部描述程序处理的绝大部分数据；过程部描述对数据部描述的数据的操作算法:</p>
+<h4>Identification Division(标识部)--主要是程序和作者名</h4>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
+IDENTIFICATION DIVISION.
+PROGRAM-ID. xxxxxxx
+AUTHOR. xxxxxx</p>
+<h4>Environment Division(环境部)--主要是配置节和IO节</h4>
+<p>{% codeblock lang:ruby %}
+ENVIRONMENT DIVISION.</p>
+<p>CONFIGURATION SECTION.
+SOURCE-COMPUTER. IBM-390.
+OBJECT-COMPUTER. IBM-390.
+SPECIAL--NAMES.</p>
+<p _="%" endcodeblock="endcodeblock">INPUT-OUTPUT SECTION.
+FILE-CONTROL.
+I-O-CONTROL.</p>
+<h4>Data Division(数据部)--主要是文件节、工作存储节、连接节</h4>
+<p>{% codeblock lang:ruby %}
+FILE SECTION.
+WORKING-STORAGE SECTION.
+LINKAGE SECTION.</p>
+<h4>Procedure Division(过程部)--程序员描述程序算法的地方</h4>
+<p>XXXXX SECTION.
+XXXXX PARAGRAPH.
+{% endcodeblock  %}
+过程部自上而下节<code>(SECTION)</code>、段<code>(PARAGRAPH)</code>、句子<code>(SENTENCE)</code>和语句<code>(STATEMENT)</code>。只有节<code>(SECTION)</code>不是必须的，在过程部中至少要有一个段，一个句子和一个语句。段名和节名由程序员自定。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'COBOL程序典型结构'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'COBOL程序典型结构'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

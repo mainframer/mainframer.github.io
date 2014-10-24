@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>IBM File Manager for z/os 续(一)</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html" rel="bookmark"
+        title="Permalink to IBM File Manager for z/os 续(一)">IBM File Manager for z/os 续(一)</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-09-04T00:00:00">2011-09-04
+</h6>
+
+
+    <p>上一次我简单介绍了下大机平台上的一个强大的文件查看/编辑工具，这里我要介绍几个在用<code>FileManager</code>查看/编辑 QSAM顺序文件的时候的小技巧。
+<img alt="1" src="/../images/ibm-file-manager-qsam.jpg" />  上图显示的是employee的信息文件，比较小，只有几条记录。但是一般在生产环境上，数据都有好几百万条，如果你很傻的直接FIND 关键字来查找，那么抛开CPU耗费不说，你自己也将耗费很长的一段时间来等待搜索结果出来，所以，看看这篇文章，学会几个<code>*File Manager*</code>的使用技巧还是有必要的(如果你没功夫去看IBM红宝书的话)。</p>
+<h3>1、只查找指定字段(Field)</h3>
+<h5>例：只在ACCT字段查找关键字“IT”</h5>
+<p>命令： <code>F IT #6</code>     (可以把#6看成ACCT的别名)</p>
+<h5>例：只在ACCT字段和EP_NAME字段查找关键字"IT"</h5>
+<p>命令： <code>F IT #6 #8</code></p>
+<h3>2、只查找指定几列 (Column)</h3>
+<h5>例：只在第8至20列查找关键字"AN"</h5>
+<p>命令: <code>F AN 8 20</code></p>
+<h3>3、只查找指定字符串开头的关键字</h3>
+<h5>例：查找以LI开头的关键字</h5>
+<p>命令： <code>F LI Pre</code>    (注意跟F LI的区别)</p>
+<h3>4、只查找指定字符串结尾的关键字</h3>
+<p>例：查找以LI结尾的关键字
+命令： <code>F LI SUF</code>    (注意跟F LI的区别)</p>
+<h3>5、只查找单词</h3>
+<p>例:查找单词ANAN
+命令: <code>F ANAN WORD</code>  (限定了只查找是单词的，就是两边都是空格隔开的字符串)</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/IBM File Manager for zos 续(一).html";
+        var disqus_url = "http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>介绍几个比较有用的ISPF命令</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html" rel="bookmark"
+        title="Permalink to 介绍几个比较有用的ISPF命令">介绍几个比较有用的ISPF命令</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-03-02T00:00:00">2011-03-02
+</h6>
+
+
+    <p>上一篇讲的是常见的TSO/ISPF命令，这篇来讲讲我收集到的日常比较有用的ISPF命令。</p>
+<h4>HRECALL</h4>
+<p>大机上的Dataset比较久了没有被访问的话会自动被迁移(migrate)到tape中保存的，根据时间的长短，Dataset会被migrate到不同的level，比如MIGRAT1,MIGRAT2等等。这时，如果你想把这个Dataset 召(Recall)回来的话，平常我们都在这个Dataset前面打个<code>Call</code>命令。这样做有个不好的地方，就是如果这个Dataset需要很长时间才能被RECALL回来的话(比如30分钟)，那这30分钟之内你只能看着屏幕发呆而啥都干不了了。所以这种情况下你可以试试后台Call的命令<code>HRECALL</code>，它在后台操作，结束后会有提示，完全不影响你做其他事情</p>
+<h4>NUM OFF</h4>
+<p>有时你在编辑一个Dataset的行末尾的时候，每次保存都会提示:<code>Some input data</code>ignored。这时因为默认情况下末尾的行号显示是开着占了8位，这8位是不可修改的，这时你可以试试在命令行上打个<code>NUM OFF</code>把行号显示关了。</p>
+<h4>XDC</h4>
+<p>这是一个SDSF(<em>系统显示与查询工具</em> 的命令，如果你想把一个JOB的输出Log保存到某个地方，比如自己的PDS，那么你可以在SDSF里面在这个JOB的Log前面打上XDC，然后写上你要保存的地方即可。(在ISPF面板输入<code>Q;ST</code>查看JOBs运行信息，输<code>‘?’</code>具体查看)</p>
+<h4>JEM/JSCAN</h4>
+<p>这两个命令都是用来检查JCL语法的，具体两个什么区别？最大的区别就是JEM之后所有被它展开的信息都只能看，不能被<code>FIND</code>命令找到，<code>JSCAN</code>就可以的，但<code>JSCAN</code>的缺点是检查结果的提示信息不如JEM来的丰富和友好。只能说各有千秋，如果能合并到一起就好了。</p>
+<h4>MEM</h4>
+<p>是不是经常忘记自己的某个member在哪个PDS里面了？尝试下命令MEM吧，比如在命令行上打上MEM MYMEMBER 就能知道MYMEMBER在哪个PDS了。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/介绍几个比较有用的ISPF命令.html";
+        var disqus_url = "http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

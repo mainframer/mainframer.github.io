@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'JCL中执行如何SQL'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'JCL中执行如何SQL'.html" rel="bookmark"
+        title="Permalink to 'JCL中执行如何SQL'">'JCL中执行如何SQL'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2013-03-24T00:00:00">2013-03-24
+</h6>
+
+
+    <hr />
+<p>平常我们用第三方软件来对DB2操作，比如eclipse,比如DBedit,又或者是mainframe上面的软件，如<code>Filemanager</code>,<code>SPUFI</code>等。
+那怎么在JCL里面运行SQL呢？答案是利用<code>IKJEFT01</code>。
+{% codeblock lang:python %} 
+ //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>             <br />
+//<em>UNLOAD:   unload data using IKJEFT01 via dynamic SQL in JCL  *             <br />
+//<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>             <br />
+//UNLOAD  EXEC PGM=IKJEFT01,DYNAMNBR=20                                      <br />
+//             INCLUDE MEMBER=XXXXSRUN                                        <br />
+//             INCLUDE MEMBER=XXXXLOAD                                        <br />
+//SYSTSPRT DD SYSOUT=</em>                                                        <br />
+//SYSUDUMP DD SYSOUT=<em>                                                        <br />
+//SYSPRINT DD SYSOUT=</em>                                                        <br />
+//SYSREC00 DD DSN=IBMUSER.SQL.OUTPUT,                            <br />
+//            DISP=(NEW,PASS,DELETE),UNIT=SYSDA,                                                                                                       <br />
+//            SPACE=(CYL,(10,10),RLSE),                                       <br />
+//            DCB=(RECFM=FB,BLKSIZE=0,DSORG=PS)                                                  <br />
+//SYSIN    DD  *                                                              <br />
+SELECT * FROM ABCD.MYTABLE WHERE NAME='XIAOMING'                                                                   <br />
+/<em>                                                                            <br />
+//SYSTSIN  DD  *                                                              <br />
+ DSN SYSTEM(XXXX)                                                             <br />
+ RUN PROG(DSNTIAUL)  PLAN(DSNTIAUL) PARM('SQL')                               <br />
+/</em>                                                                            <br />
+//SYSPUNCH DD SYSOUT=<em>                                                           <br />
+//</em>       <br />
+{% endcodeblock  %}<br />
+PS: 这里<code>'XXXX'</code>是指代<code>DB2 subsystem</code> 
+插一句，利用这种JCL的方法的好处是可以在接下去的Step里接着对SQL结果处理，利于自动化。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'JCL中执行如何SQL'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'JCL中执行如何SQL'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

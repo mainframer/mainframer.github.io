@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'Linux目录结构'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'Linux目录结构'.html" rel="bookmark"
+        title="Permalink to 'Linux目录结构'">'Linux目录结构'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
+</h6>
+
+
+    <p>linux中以树形目录形式来管理的，并且所有的设备都是目录。linux只有一个根目录<code>‘/'</code>，其余的目录都是根目录的子目录。
+root@bt:/# ls /dev/sd*
+<code>/dev/sda /dev/sda1 /dev/sda2 /dev/sda5</code>
+<code>注释:</code>表示只有一块SATA硬盘，有两个主分区<code>(sda1,sda2)</code>，一个逻辑分区<code>(sda5)</code>。<br />
+<!--more--></p>
+<h5>下面对根目录<code>'/'</code>下的子目录来个介绍：</h5>
+<p><code>/usr</code>:  包含所有命令，类库，系统帮助手册，即包含了系统运行不会修改的内容<br />
+<code>/var</code>:  包含系统运行中会修改的内容，如打印队列，邮件列表等，还有系统中软件的日志信息<br />
+<code>/home</code>: 用户的主目录，比如/home/user1,/home/user2，每个用户在这个目录下面都有一个自己的子目录<br />
+<code>/dev</code>:  设备文件，如硬盘，光驱，USB设备，内存，总线，声卡等<br />
+<code>/tmp</code>:  系统临时文件，在每次系统启动的时候都会被删掉<br />
+<code>/boot</code>: 系统内核所在地，如果安装了启动管理器的话，也在这个目录下<br />
+<code>/mnt</code>:  临时挂载的文件<br />
+<code>/proc</code>: 硬件信息和配置文件的地方<br />
+<code>/etc</code>:  包含了大部分系统配置文件，比如网络配置文件<br />
+<code>/bin</code>:  引导启动所需的命令及用户在使用过程种可能会用到的程序<br />
+<code>/sbin</code>: 与/bin类似，但一般是提供给root用户用的<br />
+<code>/root</code>: root用户的主目录<br />
+<code>/lib</code>:  根文件系统中程序所需的共享库   </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'Linux目录结构'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'Linux目录结构'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

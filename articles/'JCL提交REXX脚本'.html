@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'JCL提交REXX脚本'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'JCL提交REXX脚本'.html" rel="bookmark"
+        title="Permalink to 'JCL提交REXX脚本'">'JCL提交REXX脚本'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2012-02-25T00:00:00">2012-02-25
+</h6>
+
+
+    <h3>来说说如何用JCL提交REXX脚本。</h3>
+<h4>1、写一个最简单的显示有一行提示的REXX脚本叫<code>SAYHELLO</code>：</h4>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
+1 EDIT       IBMUSER.REXX.EXEC(SAYHELLO) - 01.00           Member SAYHELLO saved 
+2 Command ===&gt;                                                  Scroll ===&gt; CSR<br />
+3 <strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+4 000001 /<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></strong>***/              <br />
+5 000002 SAY "I WILL PRINT 'HELLO' IN SYSTSPRT BY SUBMITTING JCL" </p>
+<h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
+EDIT       IBMUSER.TEST.JCL(SAYHELLO) - 01.10             Columns 00001 0007
+Command ===&gt;                                                  Scroll ===&gt; CSR
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong>
+//IBMUSERS JOB  00000000000392100A01011000010TEST,                  <br />
+//  CLASS=3,MSGCLASS=R,NOTIFY=&amp;SYSUID                               <br />
+//STEP01 EXEC PGM=IKJEFT01,REGION=4M                                <br />
+//SYSEXEC  DD DISP=SHR,DSN=IBMUSER.REXX.EXEC /<em>REXX LIB</em>/                       <br />
+//SYSTSIN  DD *                              /<em>REXX MEM</em>/                       <br />
+  SAYHELLO                                                          <br />
+/<em>                                                                  <br />
+//SYSTSPRT DD SYSOUT=</em>  <br /></p>
+<h4>3、Sub JCL,输入<code>Q;ST</code>到SDSF中的<em>SYSTSPRT</em>查看输出信息如下：</h4>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
+SDSF OUTPUT DISPLAY IBMUSERS J0300135  DSID   102 LINE 0       COLUMNS 02- 81 
+ COMMAND INPUT ===&gt;                                            SCROLL ===&gt; CSR 
+<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em> TOP OF DATA </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>
+READY                                                                        <br />
+  SAYHELLO                                                                   <br />
+I WILL PRINT 'HELLO' IN SYSTSPRT BY SUBMITTING JCL                           <br />
+READY                                                                        <br />
+END                                                                          <br />
+</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em> BOTTOM OF DATA <strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></em>**</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'JCL提交REXX脚本'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'JCL提交REXX脚本'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

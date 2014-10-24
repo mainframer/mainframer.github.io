@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - z/OS</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html"><h3 class="article-title">ICETOOL: 大小写转换</h3></a>
+<h6 class="subheader" title="2012-08-18T00:00:00">2012-08-18
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock"><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
+<code>TRAN=LTOU</code> ： lowercase to uppercase <br />
+例子：
+{% codeblock lang:python %}
+//CTL1CNTL DD *                                         <br />
+  INREC IFTHEN=(WHEN=INIT,OVERLAY=(1:1,3,TRAN=LTOU)),   ：对input的进来处理的每一条数据的前3位先转为大写再说
+              IFTHEN=(WHEN=(...),BUILD=(...)), 
+              IFTHEN=(WHEN=(...),BUILD=(...))</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html"><h3 class="article-title">ICETOOL：数据类型转换</h3></a>
+<h6 class="subheader" title="2012-08-12T00:00:00">2012-08-12
+</h6>
+
+
+<p>{% codeblock lang:python  %}
+//STEP001 EXEC PGM=ICETOOL,REGION=4096K,COND=(0,NE)         <br />
+//TOOLMSG  DD SYSOUT=<em>                                      <br />
+//DFSMSG   DD SYSOUT=</em>                                      <br />
+//SYSOUT   DD SYSOUT=<em>                                      <br />
+//SYSPRINT DD SYSOUT=</em>                                      <br />
+//IN                DD DSN=MYINPUT,DISP=SHR                         <br />
+//OUT           DD DSN=OUTFILE,DISP=SHR                           <br />
+//TOOLIN    DD *                                              <br />
+  COPY FROM(IN) TO(OUT)     USING(CTL1)                     <br />
+/<em>                                                          <br />
+//CTL1CNTL DD *                                             <br />
+  OUTFIL FNAMES=OUT ...</em></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html"><h3 class="article-title">ICEMAN：字符替换</h3></a>
+<h6 class="subheader" title="2012-08-10T00:00:00">2012-08-10
+</h6>
+
+
+<p>用于替换dataset中出现的字符串:
+{% codeblock lang:python %} <br />
+//STEP001  EXEC  PGM=ICEMAN,REGION=4000K                  <br />
+//SORTIN  DD  DSN=MYINPUT,DISP=SHR                        <br />
+//SORTOUT DD  DSN=MYOUTPUT,DISP=SHR                       <br />
+//SYSIN  DD *                                             <br />
+  OPTION COPY                                             <br />
+  INREC FINDREP=(INOUT=(C'0000',C'AAAA',C'1111',C'BBBB')) <br />
+//SYSOUT   DD  SYSOUT=<em>                                   <br />
+//SYSPRINT DD  SYSOUT=</em>                                   <br />
+//<em>                                                       <br />
+{% endcodeblock %}<br />
+将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成 ...</em></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICEMAN-字符替换.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html"><h3 class="article-title">ICETOOL: 多文件输出</h3></a>
+<h6 class="subheader" title="2012-08-02T00:00:00">2012-08-02
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock">取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！
+{% codeblock lang:python %}
+//STEP001 EXEC PGM=ICETOOL,REGION=4096K,COND=(0,NE)       <br />
+//TOOLMSG  DD SYSOUT=<em>                                    <br />
+//DFSMSG   DD SYSOUT=</em>                                    <br />
+//SYSOUT   DD SYSOUT=<em>                                    <br />
+//SYSPRINT DD SYSOUT=</em>                                    <br />
+//SORTWK01 DD UNIT=SYSDA,SPACE=(CYL,(30,3),RLSE)          <br />
+//IN      DD DSN=MYINPUT,DISP=SHR :LRECL=05               <br />
+//OUT1 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html"><h3 class="article-title">SORT: JOINKEY 文件连接</h3></a>
+<h6 class="subheader" title="2012-07-29T00:00:00">2012-07-29
+</h6>
+
+
+<p>{% codeblock lang:python %}
+//STEP002 EXEC  PGM=SYNCSORT,REGION=4096K,COND=(0,NE)      <br />
+//SYSOUT   DD SYSOUT=<em>                                     <br />
+//SYSPRINT DD  SYSOUT=</em>                                    <br />
+//SORTJNF1 DD  DSN=FILE1,DISP=SHR                          <br />
+//SORTJNF2 DD  DSN=FILE2,DISP=SHR                          <br />
+//SORTOUT  DD  DSN=JOINOUT,DISP=SHR                        <br />
+//SYSIN DD *                                               <br />
+  JOINKEYS FILE=F1,FIELDS=(1,5,A)                          <br />
+  JOINKEYS FILE=F2,FIELDS=(1 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html"><h3 class="article-title">SORT:VB变长转FB定长,输出对齐</h3></a>
+<h6 class="subheader" title="2012-07-25T00:00:00">2012-07-25
+</h6>
+
+
+<p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:
+{% codeblock lang:python %}
+//STEP001  EXEC PGM=SYNCSORT,REGION=4096K                    <br />
+//SYSOUT   DD  SYSOUT=<em>                                      <br />
+//SYSPRINT DD  SYSOUT=</em>                                      <br />
+//SORTIN   DD  DSN=SORTIN,DISP=SHR                         <br />
+//SORTOUT  DD DSN=&amp;&amp;SORTOUT,DISP=(NEW,PASS),                 <br />
+//            DCB=(DSORG=PS,RECFM=FB,LRECL=80,BLKSIZE=0),    <br />
+//            UNIT=SYSDA,SPACE=(CYL,(5,5),RLSE)              <br />
+//SYSIN DD *                                                 <br />
+  SORT ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html"><h3 class="article-title">PLI 动态数组的例子</h3></a>
+<h6 class="subheader" title="2012-06-14T00:00:00">2012-06-14
+</h6>
+
+
+<p>新写了一个<code>PL/I</code>程序，需要在程序里面用到动态数组来提高效率，所以总结了一下<code>PL/I</code>中动态数组<em>(Dynamic Array)</em>的用法：<br />
+<em>1</em>.申明一个Controlled的数组叫做<code>WT_TMPARRAY_INFO</code>,此时并不知道该数组的长度:
+{% codeblock lang:python  %}
+DCL  INPUTFIL FILE RECORD INPUT;
+DCL  TMPARRAY_CTR         FIXED BIN(31)   INIT(0);                           <br />
+DCL  TMPARRAY_SUB         FIXED BIN(31)   INIT(1);<br />
+DCL 01 TMPARRAY_RECORD,                                                      <br />
+        05 INPUT_CUR     CHAR(03)             INIT(' '),                        <br />
+        05 INPUT_ACCT    CHAR(05 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI 动态数组的例子.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html"><h3 class="article-title">IBM DebugTool: 主动终止调试</h3></a>
+<h6 class="subheader" title="2012-06-03T00:00:00">2012-06-03
+</h6>
+
+
+<p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：
+{% blockquote %}
+trigger overflow
+{% endblockquote %}
+这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html"><h3 class="article-title">CICS中查看TSQ的命令:CEBR</h3></a>
+<h6 class="subheader" title="2012-05-27T00:00:00">2012-05-27
+</h6>
+
+
+<p>可以用CEBR这个transaction来查看和删除TSQ信息。这里:   </p>
+<ul>
+<li><code>CEBR#0VJ</code>是<em>TSQ</em>的名字;  </li>
+<li>
+<p><code>Z300</code> 是当前<em>CICS region</em>的名字。<br />
+{% codeblock lang:python %}
+  CEBR  TSQ CEBR#0VJ         SYSID Z300 REC     1 OF     0    COL     1 OF     0
+  ENTER COMMAND ===&gt;                                                          <br />
+<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>  TOP OF QUEUE  </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>*</p>
+<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*  BOTTOM OF QUEUE  </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong></p>
+</li>
+</ul>
+<p>TS QUEUE CEBR#0VJ         DOES NOT EXIST                                     <br />
+ PF1 : HELP                PF2 : SWITCH HEX/CHAR ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html"><h3 class="article-title">ISPF中Shift+PageUp和UNDO的区别</h3></a>
+<h6 class="subheader" title="2012-05-15T00:00:00">2012-05-15
+</h6>
+
+
+<p>两者都是撤销，相当于windows下的<code>'Ctrl+z'</code>。但分工不同，<code>Shift+PageUp</code>只能撤销未按回车之前的修改动作，对于按了回车就无力回天了。<br />
+而UNDO负责的是撤销回车之后的修改动作，请注意务必要事先用命令<code>'Rec on'</code>打开<em>ISPF</em>的<em>recovery</em>开关。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 4 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/tag/zos3.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/tag/zos5.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

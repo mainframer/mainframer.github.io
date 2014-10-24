@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Rexx调用Skeleton JCL提交job的例子</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html" rel="bookmark"
+        title="Permalink to Rexx调用Skeleton JCL提交job的例子">Rexx调用Skeleton JCL提交job的例子</a></h3>
+    </header>
+
+<h6 class="subheader" title="2013-02-22T00:00:00">2013-02-22
+</h6>
+
+
+    <h4>这个例子一共包含3个部分</h4>
+<p><strong>Rexx主程序</strong>：<code>IBMUSER.REXX.EXEC(MYSKELE)</code> <br />
+<strong>带参数的sekleton JCL</strong>：<code>IBMUSER.REXX.SKELL(JCLSKEL)</code><br />
+<strong>最终生成的Dynamic JCL</strong>：<code>IBMUSER.DYNAM.JCL(SUBJCL)</code><br />
+{% codeblock lang:python %} 
+  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            </p>
+<p>VIEW       IBMUSER.REXX.SKELL(JCLSKEL) - 01.06             Columns 00001 00072 
+Command ===&gt;                                                  Scroll ===&gt; CSR<br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+000001 //&amp;JOBNAME JOB '000000000000000000CMP',                               <br />
+000002 // CLASS=3,NOTIFY=&amp;USER,MSGCLASS=R                                    <br />
+000003 //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em> 
+000004 )SEL &amp;IND = Y                                                         <br />
+000005 //STEP000  EXEC  PGM=SYNCSORT                                         <br />
+000006 //SORTIN   DD  DSN=&amp;FILE1,DISP=SHR                                    <br />
+000007 //SORTOUT  DD  DSN=&amp;FILE2,                                            <br />
+000008 //             DISP=(NEW,CATLG,DELETE),                               <br />
+000009 //             UNIT=SYSDA,                                            <br />
+000010 //             SPACE=(CYL,(3,3),RLSE),                                <br />
+000011 //             DCB=(SYS1.MODEL,RECFM=FB,LRECL=80,DSORG=PS)            <br />
+000012 //SYSIN  DD *                                                         <br />
+000013   SORT FIELDS=(1,4,CH,A)                                              <br />
+000014 /</em>                                                                    <br />
+000015 )ENDSEL                                                               <br />
+000016 //*                                                                   <br />
+<em>*</em></strong><strong><em>* </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>* Bottom of Data </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>****
+{% endcodeblock  %} 
+注意上面的<code>)SEL</code>和<code>)ENDSEL</code>表示skeleton的起始, 并且有一个选择判断条件<code>&amp;IND</code>，当且仅当Rexx中传过来的IND的值是Y时，才拼装<code>)SEL</code>和<code>)ENDSEL</code>之间的内容。在上面的例子中，如果IND=N，那么组装出来的JCL为如下所示，显然会报错。 
+{% codeblock lang:python %}
+  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            </p>
+<p>VIEW       IBMUSER.DYNAM.JCL(SUBJCL) - 01.00               Columns 00001 00072 
+Command ===&gt;                                                  Scroll ===&gt; CSR                                                 <br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+000001 //IBMUSERJ JOB '000000000000000000CMP',                               <br />
+000002 // CLASS=3,NOTIFY=IBMUSER,MSGCLASS=R                                  <br />
+000003 //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em><strong>*</strong> 
+000004 //</em>                                                                   <br />
+{% endcodeblock  %}  <br />
+当IND=Y的时候，组装出来的JCL如下：
+{% codeblock lang:python %}
+  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            </p>
+<p _="%" endblockquote="endblockquote">VIEW       IBMUSER.DYNAM.JCL(SUBJCL) - 01.00               Columns 00001 00072 
+Command ===&gt;                                                  Scroll ===&gt; CSR<br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+000001 //IBMUSERJ JOB '000000000000000000CMP',                               <br />
+000002 // CLASS=3,NOTIFY=IBMUSER,MSGCLASS=R                                  <br />
+000003 //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em> 
+000004 //STEP000  EXEC  PGM=SYNCSORT                                         <br />
+000005 //SORTIN   DD  DSN=IBMUSER.SORTIN.FILE,DISP=SHR                  <br />
+000006 //SORTOUT  DD  DSN=IBMUSER.SORTOUT.FILE,                      <br />
+000007 //             DISP=(NEW,CATLG,DELETE),                               <br />
+000008 //             UNIT=SYSDA,                                            <br />
+000009 //             SPACE=(CYL,(3,3),RLSE),                                <br />
+000010 //             DCB=(SYS1.MODEL,RECFM=FB,LRECL=80,DSORG=PS)            <br />
+000011 //SYSIN  DD *                                                         <br />
+000012   SORT FIELDS=(1,4,CH,A)                                              <br />
+000013 /</em>                                                                    <br />
+000014 //*                                                                   <br />
+<em>*</em></strong><strong><em>* </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>* Bottom of Data </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*
+{% endcodeblock  %} <br />
+最后，只需执行TSO命令: 
+{% blockquote %} 
+TSO MYSKELE
+{% endblockquote  %}
+就可以看到job成功submit,可以去SDSF里面查看job运行状况。
+{% blockquote %}
+ JOB IBMUSERJ(J0210531) SUBMITTED
+</em></strong>                           <br /></p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/Rexx调用Skeleton JCL提交job的例子.html";
+        var disqus_url = "http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

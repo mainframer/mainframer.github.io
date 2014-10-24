@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/TSO重新登录命令.html"><h3 class="article-title">TSO重新登录命令</h3></a>
+<h6 class="subheader" title="2012-05-04T00:00:00">2012-05-04
+</h6>
+
+
+<p>有时候TSO异常退出，而服务器端进程还没kill掉，于是在你尝试再次登录的时候，返回提示：
+{% blockquote %} 
+“already logged on to system IKJ56400A ENTER LOGON OR LOGOFF-”
+{% endblockquote %} 
+用命令告诉远程主控端你要reconnect。 </p>
+<h3>解决办法</h3>
+<p _="%" endblockquote="endblockquote">{% blockquote %} 
+logon yourUID recon</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/TSO重新登录命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/TSO重新登录命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html"><h3 class="article-title">SOME INPUT DATA IGNORE</h3></a>
+<h6 class="subheader" title="2012-05-03T00:00:00">2012-05-03
+</h6>
+
+
+<p>在编辑dataset的时候如果右上角提示<code>SOME INPUT DATA IGNORE</code>,请记得把每行末尾的行号关闭: 
+{% blockquote %}<br />
+NUM OFF
+{% endblockquote %}<br />
+否则，后面8位就是行号，将此文件作为程序的input的时候就危险了!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/S000 U0004 ABEND ERROR.html"><h3 class="article-title">S000 U0004 ABEND ERROR</h3></a>
+<h6 class="subheader" title="2012-04-30T00:00:00">2012-04-30
+</h6>
+
+
+<p>遇到了<code>'S000 U0004 ABEND ERROR'</code>错误。 <br />
+一如既往地分析dump，发现是由于我在JCL里面添加了<code>'PARM='TEST(ALL,,,VTAM%IBMUSER:)'</code>的debug参数，而我要debug的程序的<code>loadmodule</code>不在test环境里面，导致JCL试图去debug生产环境的<em>loadmodule</em>，抛出<code>'S000 U0004‘</code>错误，应该是<em>access vialation</em>之类的错误吧,修改完<em>loadmodule</em>的路径就好了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/S000 U0004 ABEND ERROR.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/S000 U0004 ABEND ERROR.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html"><h3 class="article-title">Watir登陆微博发布微博</h3></a>
+<h6 class="subheader" title="2012-04-30T00:00:00">2012-04-30
+</h6>
+
+
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s1">&#39;www.weibo.com&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">focus</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_email_account&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;inp password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:type</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_password&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/No space in directory.html"><h3 class="article-title">No space in directory</h3></a>
+<h6 class="subheader" title="2012-04-23T00:00:00">2012-04-23
+</h6>
+
+
+<p _="%" endblockquote="endblockquote">在一个pds下面<em>create member</em>的时候右上角出现错误：
+{% blockquote %}
+No space in directory
+{% endblockquote %}
+按PF1,提示：
+{% blockquote %}
+PDS directory is full, allocate more directory blocks.<br /></p>
+<h4>错误原因：当前PDS下面所容纳的member数量已经达到最大值了。用'I' 查看PDS的信息：</h4>
+<p>{% codeblock lang:python %}
+ Current Allocation           <br />
+  Allocated cylinders : 1     <br />
+  Allocated extents . : 1     <br />
+  Maximum dir. blocks : 10      </p>
+<p>Current Utilization          <br />
+  Used cylinders  . . : 1     <br />
+  Used extents  . . . : 1     <br />
+  Used ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/No space in directory.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/No space in directory.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CEE3250C S806  R=00000004.html"><h3 class="article-title">CEE3250C S806  R=00000004</h3></a>
+<h6 class="subheader" title="2012-04-11T00:00:00">2012-04-11
+</h6>
+
+
+<p>新写了个程序，JCL提交完出现错误:
+{% blockquote %} 
+CEE3250C The system or user abend S806  R=00000004 was issued.  <br />
+{% endblockquote %} 
+分析dump，发现原因是:程序不在loadlib里面 <code>"load module is not found in the library"</code>.忘记promote程序到相应环境了!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CEE3250C S806  R=00000004.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CEE3250C S806  R=00000004.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI打印出PIC类型输出.html"><h3 class="article-title">PLI打印出PIC类型输出</h3></a>
+<h6 class="subheader" title="2012-04-01T00:00:00">2012-04-01
+</h6>
+
+
+<p>使用PLI打印输出信息，最常见的是:
+{% codeblock lang:python %}
+PUT SKIP(1) EDIT ('CODE = ',ERR_CODE)(A,A);
+{% endcodeblock %}
+这里是打印PIC类型的输出，不怎么常用。今天用到了，所以记在这:<br />
+{% codeblock lang:python %}
+PUT EDIT('ACCOUNT PROCESSED : ',ACCOUNT_CTR)    <br />
+                  (SKIP(1),COL(1),A,P'999999999'); </p>
+<p _="%" endcodeblock="endcodeblock">PUT SKIP FILE(OUTFILE) EDIT('CHENGDU: ',SOURCE) 
+      (A,P'ZZ,ZZZV.ZZ');</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI打印出PIC类型输出.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI打印出PIC类型输出.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html"><h3 class="article-title">BLKSIZE=0,DSORG=PS</h3></a>
+<h6 class="subheader" title="2012-03-13T00:00:00">2012-03-13
+</h6>
+
+
+<p>{% codeblock lang:python %}
+//SORTOUT  DD  DSN=&amp;&amp;IBNRDAT0,DISP=(NEW,PASS),          <br />
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=53,BLKSIZE=0),
+//             UNIT=(SYSDA,20),SPACE=(CYL,(50,50),RLSE) <br />
+{% endcodeblock %}<br />
+如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL发送EMAIL.html"><h3 class="article-title">JCL发送EMAIL</h3></a>
+<h6 class="subheader" title="2012-03-13T00:00:00">2012-03-13
+</h6>
+
+
+<p>{% codeblock lang:python %}
+//IBMUSER JOB 0R                A1011000010TEST,CLASS=3,      <br />
+//        MSGCLASS=R,REGION=0M                                 <br />
+//<em>                                                            <br />
+//STEP01   EXEC PGM=IEBGENER<br />
+//SYSOUT DD SYSOUT= *                                                                        <br />
+//SYSUT1   DD  *                                               <br />
+HELO MVS                                                       <br />
+MAIL FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                             <br />
+RCPT TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                <br />
+DATA                                                           <br />
+FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                     <br />
+TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                       <br />
+SUBJECT: JOB IBMUSERJ HAS COMPLETED SUCCESSFULLY                    <br />
+START OF MESSAGE...                                            <br />
+<strong><em>    DO NOT REPLY TO THIS MESSAGE    </em></strong> <br />
+//SYSUT2   DD  SYSOUT=A ...</em></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL发送EMAIL.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL发送EMAIL.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html"><h3 class="article-title">使用UNIT=(SYSDA,20)</h3></a>
+<h6 class="subheader" title="2012-03-10T00:00:00">2012-03-10
+</h6>
+
+
+<p>好几次<em>production abend</em>都是因为JCL中分配的dataset太大，恰好一个volume上面的剩余空间都分配完了。<br />
+这里是DBA给的建议：<br />
+{% blockquote %} 
+"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
+{% endblockquote %} 
+{% codeblock lang:python %}
+000001 //STEP001  EXEC PGM=SYNCSORT,REGION=4096K,COND=(0,NE)                <br />
+000002 //SYSOUT   DD  SYSOUT=<em>                                              <br />
+000003 //SYSPRINT DD  SYSOUT=</em>                                              <br />
+000004 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 5 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/index4.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/index6.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

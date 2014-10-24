@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - mainframer</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SYNCSORT将PD格式转换成CSF(FS)格式.html"><h3 class="article-title">SYNCSORT将PD格式转换成CSF(FS)格式</h3></a>
+<h6 class="subheader" title="2013-03-20T00:00:00">2013-03-20
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock">客户要求看实时报表，可是从数据库导出来的数据却包含如下所示的显示不怎么友好的数据，这时可以用SORT来转换成客户想要的格式。<br />
+转换之前的文件用<code>HEX ON</code>命令显示如下。可以看出后面三个字段都是PD类型的，并且都占据8位长度。
+{% codeblock %} 
+VIEW       IBMUSER.DFSORT.PDTOCSF.SORTIN                   Columns 00001 00045 
+Command ===&gt; HEX ON                                            Scroll ===&gt; CSR<br />
+=COLS&gt; ----+----1----+----2----+----3----+----4----+                         <br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+000001 AAAA,20130102,1,MD,     à? ,  é     ,  ? &amp; i 
+       CCCC6FFFFFFFF6F6DC600001670600512110600705380
+       1111B20130102B1B44B0000440CB0013100CB0003049C
+----------------------------------------------------
+000002 BBBB,20130102,2,MD,        ,  è?íaà , ?-? d<br />
+       CCCC6FFFFFFFF6F6DC600000000600745440604670800 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SYNCSORT将PD格式转换成CSF(FS)格式.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SYNCSORT将PD格式转换成CSF(FS)格式.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir给Amazon.cn充礼品卡.html"><h3 class="article-title">Watir给Amazon.cn充礼品卡</h3></a>
+<h6 class="subheader" title="2013-03-19T00:00:00">2013-03-19
+</h6>
+
+
+<p>写个脚本去尝试不花钱给自己的Amazon.cn账号充礼品卡，碰碰运气。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="k">def</span> <span class="nf">randCharOfLength</span><span class="p">(</span><span class="n">len</span><span class="p">)</span>                                 <span class="c1">#产生随机任意长度的数</span>
+    <span class="n">chars</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="o">..</span><span class="s2">&quot;z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="o">..</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="o">..</span><span class="s2">&quot;9&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">len</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">chars</span><span class="o">[</span><span class="nb">rand</span><span class="p">(</span><span class="n">chars</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">]</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">str</span>
+<span class="k">end</span>
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir给Amazon.cn充礼品卡.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir给Amazon.cn充礼品卡.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir获得sedo网站上指定后缀域名列表.html"><h3 class="article-title">Watir获得sedo网站上指定后缀域名列表</h3></a>
+<h6 class="subheader" title="2013-03-12T00:00:00">2013-03-12
+</h6>
+
+
+<p>作为一个’米农‘，sedo.com网站上面的信息很有价值。sedo.com是全球最大的域名交易网站。下面我写的这个脚本是用来取得sedo上面指定后缀(_如.asia)的所有域名列表。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="c1">#b=Watir::Browser.new(:firefox, {:profile =&gt; &#39;default&#39;})</span>
+<span class="n">output</span> <span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;sedo_asia.txt&quot;</span><span class="p">,</span><span class="s1">&#39;w:UTF-8&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">pre_work</span><span class="p">()</span>
+  <span class="vg">$b</span><span class="o">=</span><span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span> <span class="ss">:ff</span>
+  <span class="vg">$b</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">manage</span><span class="o">.</span><span class="n">timeouts</span><span class="o">.</span><span class="n">implicit_wait ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir获得sedo网站上指定后缀域名列表.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir获得sedo网站上指定后缀域名列表.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html"><h3 class="article-title">Rexx调用Skeleton JCL提交job的例子</h3></a>
+<h6 class="subheader" title="2013-02-22T00:00:00">2013-02-22
+</h6>
+
+
+<h4>这个例子一共包含3个部分</h4>
+<p><strong>Rexx主程序</strong>：<code>IBMUSER.REXX.EXEC(MYSKELE)</code> <br />
+<strong>带参数的sekleton JCL</strong>：<code>IBMUSER.REXX.SKELL(JCLSKEL)</code><br />
+<strong>最终生成的Dynamic JCL</strong>：<code>IBMUSER.DYNAM.JCL(SUBJCL)</code><br />
+{% codeblock lang:python %} 
+  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            </p>
+<p>VIEW       IBMUSER.REXX.SKELL(JCLSKEL) - 01.06             Columns 00001 00072 
+Command ===&gt;                                                  Scroll ===&gt; CSR<br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+000001 //&amp;JOBNAME JOB '000000000000000000CMP',                               <br />
+000002 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF Dialog 开发知识点.html"><h3 class="article-title">ISPF Dialog 开发知识点</h3></a>
+<h6 class="subheader" title="2013-02-12T00:00:00">2013-02-12
+</h6>
+
+
+<p>需要用ISPF来开发带界面的自动化工具，从0开始。记下些很有用的知识点：   </p>
+<ul>
+<li>执行命令<code>Panelid</code>可以得到当前ISPF panel的名字    </li>
+<li>执行<code>7.2</code>这个命令输入panel名字，可以用来刷新你新写的panel，使改 动动态生效，这样就不需要重启TN3270 terminal达到测试panel改动的目的  </li>
+<li>ISPF中用<code>option 7.3</code>可以查看<code>Z</code>开头ISPF系统预留的变量     </li>
+<li>执行命令<code>3.9</code>查看ISPF所有可用的command    </li>
+<li>知道任意一个panel的名字，如何得到其定义的路径？这里是很好的方法</li>
+<li>To assign a null value or blank value to a dialog variable, use the system variable &amp;Z.<br />
+<code>)SET D = &amp;Z ...</code></li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF Dialog 开发知识点.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF Dialog 开发知识点.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Octopress写博客常用语法总结.html"><h3 class="article-title">Octopress写博客常用语法总结</h3></a>
+<h6 class="subheader" title="2013-01-18T00:00:00">2013-01-18
+</h6>
+
+
+<p>自从博客从<code>Wordpress</code>迁徙到<code>Octopress</code>来，也有一段时间了。该是时候总结一下常用的语法了。  </p>
+<h3>插入图片</h3>
+<div class="highlight"><pre>![图片描述](图片地址) 
+</pre></div>
+
+
+<h3>插入链接</h3>
+<div class="highlight"><pre><span class="cp">[</span><span class="err">链接描述</span><span class="cp">]</span><span class="x">(链接地址)  </span>
+</pre></div>
+
+
+<h3>插入代码</h3>
+<h5>方法一</h5>
+<p><img alt="1" src="/../images/octopress_syntax_2.png" />     </p>
+<h5>方法二</h5>
+<p>用3个反引号括起来</p>
+<p><img alt="1" src="/../images/octopress_syntax_3.png" />       </p>
+<h3>引用的用法</h3>
+<p>用<em>blockquote</em>关键字<br />
+<img alt="1" src="/../images/octopress_syntax_1.png" />   </p>
+<p _="%" endblockquote="endblockquote">引用的效果如下： 
+{% blockquote Kobe Bryant, Kobe 24h %}
+Heroes come and go,but legends are forever</p>
+<h3>特殊反白显示</h3>
+<p>用反单引号括起来即可，比如<code>Octopress</code></p>
+<div class="highlight"><pre>`Octopress`
+</pre></div>
+
+
+<h3>显示“点击阅读全文”</h3>
+<p>Step01: 在_config.yml里面设置如下：excerpt_link: "点击阅读全文 &rarr;"<br />
+效果如下：   </p>
+<p><img alt="1" src="/../images/octopress_syntax.png" />   </p>
+<p>就先说这些octopress语法，剩下的基本就是跟Markdown语法相关的了 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Octopress写博客常用语法总结.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Octopress写博客常用语法总结.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html"><h3 class="article-title">IBM DebugTool中巧用GOTO调试程序</h3></a>
+<h6 class="subheader" title="2013-01-04T00:00:00">2013-01-04
+</h6>
+
+
+<p>最近接触<code>IBM DebugTool</code>比较多，再说一个在mainframe上面调试COBOL或者PL/I程序的技巧吧。 <br />
+经常在用<code>IBM DebugTool</code>或者DTCN调试程序的时候，造测试数据很不容易。如果调试过程中发现这次数据没有造成功，我们没有必要每次都退出全部程序重新造数据，可以巧妙地利用“GOTO”语句，随心所欲地在程序里面跳转。     <br />
+比如下面这一个程序段，在调试过程中我们可以在Call黑盒子程序<code>BLACKBOX</code>的前后都设置一个断点，即9178行以及9202行都设置一个断点，如果我们发现程序跑到了9202行但是返回码不是我们想要的结果，那么运行<code>“GOTO 9178”</code> 即可重新回到Call黑盒子之前，无限反复尝试，重新造数据，直到成功！<br />
+{% codeblock lang:python %} 
+SOURCE: TESTPGM1 --1----+----2----+----3----+----4----+----5 LINE: 9178 OF 15895
+0020  01 WS-FIELDS.
+0021  05 WS-CALLED-PGM ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html"><h3 class="article-title">IBM DebugTool的Source Identification Panel</h3></a>
+<h6 class="subheader" title="2012-12-26T00:00:00">2012-12-26
+</h6>
+
+
+<p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:
+{% blockquote %} 
+SOURCE
+or 
+LIST
+{% endblockquote  %}
+这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。
+{% codeblock lang:python %} 
+                 Source Identification Panel                               <br />
+Command ===&gt;                                                                  </p>
+<p>Compile Unit              Listing/Source File                          Display</p>
+<hr />
+<p>TESTPGM1                   IBMUSER.TEST.LOAD.LIB1(TETPGM1)                Y<br />
+TESTPGM2                   IBMUSER.TEST.LOAD.LIB2(TETPGM2)                Y 
+TESTPGM3 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html"><h3 class="article-title">PL/I和COBOL如何取得当天的日期</h3></a>
+<h6 class="subheader" title="2012-12-10T00:00:00">2012-12-10
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock">在Mainframe上做开发会经常遇到用PL/I或者COBOL取得当天的日期，对于PL/I，一般的公司都采取如下的做法：<br />
+{% codeblock lang:python %} 
+DCL PIC_TODAY            PIC'999999' INIT(0);
+PIC_TODAY  = DATE;
+IF SUBSTR(DATE,1,2) &gt; '50'              <br />
+  THEN TODAYS_DATE = 19000000 + PIC_TODAY;
+  ELSE TODAYS_DATE = 20000000 + PIC_TODAY;
+{% endcodeblock  %}<br />
+我所在的公司也是这种写法来获得<code>YYYYMMDD</code>格式的当日日期，很明显这种写法代码的寿命只有几十年了，相比之下COBOL获得<code>YYYYMMDD</code>格式的当日日期就显得方便得多，一个<code>ACCEPT</code>语句即可:
+{% codeblock lang:python %} 
+WORKING-STORAGE SECTION.
+01 TODAYS-DATE                          PIC 9 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html"><h3 class="article-title">COBOL程序编译报错GYDS1145-S</h3></a>
+<h6 class="subheader" title="2012-11-24T00:00:00">2012-11-24
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock">今天编译一个COBOL老程序的时候报错：<code>IGYDS1145-S</code>
+{% blockquote %} 
+ IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.<br />
+ A "PICTURE" string of "S9(18)" was assumed.         <br />
+{% endblockquote  %}
+原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
+<a href="http://ibmmainframes.com/post-9087.html">http://ibmmainframes.com/post-9087.html</a> <br />
+{% blockquote %} 
+COBOL Compiler restricts me defining a PIC 9() variable not ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 2 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/author/mainframer.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/author/mainframer3.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

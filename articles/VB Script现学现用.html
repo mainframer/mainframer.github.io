@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>VB Script现学现用</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/VB Script现学现用.html" rel="bookmark"
+        title="Permalink to VB Script现学现用">VB Script现学现用</a></h3>
+    </header>
+
+<h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
+</h6>
+
+
+    <p>这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  <br />
+(<em>注意</em>：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  </p>
+<div class="highlight"><pre><span class="n">dim</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">yyyymm</span><span class="p">,</span> <span class="n">to_dte_</span>       <span class="err">&#39;定义变量</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">user_id</span> <span class="o">=</span> <span class="n">wscript</span><span class="p">.</span><span class="n">arguments</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="err">&#39;接收批处理传过来的第一个参数</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">CAP_user_id</span> <span class="o">=</span> <span class="n">Ucase</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>       <span class="err">&#39;转换成大写</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">Select</span> <span class="n">Case</span> <span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>        <span class="err">&#39;</span><span class="n">Select</span><span class="o">/</span><span class="n">Case</span><span class="err">的用法</span> <span class="err">和</span> <span class="err">字符串截取的方法</span>                                         
+<span class="n">Case</span> <span class="s">&quot;01&quot;</span>   
+    <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>  
+<span class="n">Case</span> <span class="s">&quot;02&quot;</span>                          <span class="err">&#39;</span><span class="n">If</span><span class="o">-</span><span class="n">Then</span><span class="err">的用法，闰年的判断方法，</span><span class="o">=</span><span class="p">,</span><span class="o">&lt;&gt;</span><span class="p">,</span><span class="n">Mod</span><span class="err">的用法</span>
+  <span class="n">If</span> <span class="p">(</span><span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="n">Mod</span> <span class="mi">4</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="n">And</span> <span class="p">(</span><span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="n">Mod</span> <span class="mi">100</span><span class="o">&lt;&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">Or</span> <span class="p">(</span><span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="n">Mod</span> <span class="mi">400</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="n">Then</span>
+   <span class="n">to_dte</span> <span class="o">=</span> <span class="n">yyyymm</span> <span class="o">&amp;</span><span class="s">&quot;29&quot;</span>           <span class="err">&#39;字符串拼接的用法</span>
+  <span class="k">else</span>
+   <span class="n">to_dte</span> <span class="o">=</span> <span class="n">yyyymm</span> <span class="o">&amp;</span><span class="s">&quot;28&quot;</span>                 
+  <span class="n">End</span> <span class="n">If</span>
+<span class="n">Case</span> <span class="s">&quot;03&quot;</span> 
+  <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>
+<span class="n">Case</span> <span class="s">&quot;04&quot;</span> 
+<span class="n">End</span> <span class="n">Select</span> 
+</pre></div>
+
+
+<div class="highlight"><pre><span class="k">if</span> <span class="n">Weekday</span><span class="p">(</span><span class="n">to_dte</span><span class="p">)</span><span class="o">=</span><span class="s">&quot;7&quot;</span> <span class="n">Then</span>        <span class="err">&#39;判断任意一天是星期几的用法</span>                             
+  <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>
+  <span class="n">End</span> <span class="k">if</span>
+</pre></div>
+
+
+<h5>VBS替换text.txt文本中所有"AAAA"字符串为“BBBB"的方法</h5>
+<div class="highlight"><pre><span class="n">Set</span> <span class="n">fso</span> <span class="o">=</span> <span class="n">Wscript</span><span class="p">.</span><span class="n">CreateObject</span><span class="p">(</span><span class="s">&quot;Scripting.FileSystemObject&quot;</span><span class="p">)</span>
+<span class="n">set</span> <span class="n">f</span><span class="o">=</span><span class="n">fso</span><span class="p">.</span><span class="n">opentextfile</span><span class="p">(</span><span class="s">&quot;text.txt&quot;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">=</span><span class="n">replace</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">readall</span><span class="p">,</span><span class="s">&quot;AAAA&quot;</span><span class="p">,</span><span class="s">&quot;BBBB&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="n">close</span>
+<span class="n">set</span> <span class="n">f</span><span class="o">=</span><span class="n">fso</span><span class="p">.</span><span class="n">opentextfile</span><span class="p">(</span><span class="s">&quot;newtext.txt&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nb">true</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="n">write</span> <span class="n">s</span>
+<span class="n">f</span><span class="p">.</span><span class="n">close</span>
+</pre></div>
+
+
+<h5>VBS中提示框的用法</h5>
+<div class="highlight"><pre><span class="n">MsgBox</span> <span class="s">&quot;Error&quot;</span>    <span class="err">或者</span>
+<span class="n">WScript</span><span class="p">.</span><span class="n">Echo</span>
+</pre></div>
+
+
+<h6>VBS下取得当前运行脚本所在的当前目录的办法</h6>
+<div class="highlight"><pre><span class="n">set</span> <span class="n">ws</span><span class="o">=</span><span class="n">createobject</span><span class="p">(</span><span class="s">&quot;wscript.shell&quot;</span><span class="p">)</span>
+<span class="n">WScript</span><span class="p">.</span><span class="n">Echo</span> <span class="n">ws</span><span class="p">.</span><span class="n">currentdirectory</span>
+</pre></div>
+
+
+<h5>VBS中判断文件是否存在以及VBS移动、删除文件的用法</h5>
+<div class="highlight"><pre><span class="n">Set</span> <span class="n">objFSO</span> <span class="o">=</span> <span class="n">Wscript</span><span class="p">.</span><span class="n">CreateObject</span><span class="p">(</span><span class="s">&quot;Scripting.FileSystemObject&quot;</span><span class="p">)</span>
+<span class="n">Const</span> <span class="n">OverwriteExisting</span><span class="o">=</span><span class="n">True</span>
+<span class="n">my_file</span><span class="o">=</span><span class="n">ws</span><span class="p">.</span><span class="n">currentdirectory</span> <span class="o">&amp;</span><span class="s">&quot;\my_file.txt&quot;</span>
+<span class="n">my_file_fullpath</span> <span class="o">=</span><span class="n">ws</span><span class="p">.</span><span class="n">currentdirectory</span> <span class="o">&amp;</span> <span class="s">&quot;\my_file.txt&quot;</span>
+<span class="n">If</span> <span class="n">objFSO</span><span class="p">.</span><span class="n">FileExists</span> <span class="p">(</span><span class="n">my_file</span><span class="p">)</span> <span class="n">Then</span>               <span class="err">&#39;判断文件存在</span> 
+  <span class="n">If</span> <span class="n">objFSO</span><span class="p">.</span><span class="n">FileExists</span> <span class="p">(</span><span class="n">my_file_fullpath</span><span class="p">)</span> <span class="n">Then</span>   
+    <span class="n">objFSO</span><span class="p">.</span><span class="n">DeleteFile</span><span class="p">(</span><span class="n">my_file_fullpath</span><span class="p">)</span>           <span class="err">&#39;删除文件</span>
+   <span class="n">End</span> <span class="n">If</span> 
+  <span class="n">objFSO</span><span class="p">.</span><span class="n">MoveFile</span> <span class="n">my_file</span><span class="p">,</span> <span class="n">my_file_fullpath</span>       <span class="err">&#39;移动文件</span>
+<span class="n">End</span> <span class="n">If</span>
+</pre></div>
+
+
+<hr />
+<h3>下面是VBS操作excel的笔记</h3>
+<div class="highlight"><pre><span class="n">Set</span> <span class="n">objExcel</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&quot;Excel.Application&quot;</span><span class="p">)</span>   <span class="err">&#39;创建</span> <span class="n">excel</span> <span class="err">对象</span>                               
+<span class="n">If</span> <span class="p">(</span><span class="n">Err</span><span class="p">.</span><span class="n">Number</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">Then</span>
+    <span class="n">Wscript</span><span class="p">.</span><span class="n">Echo</span> <span class="s">&quot;Excel application not found.&quot;</span>
+    <span class="n">Wscript</span><span class="p">.</span><span class="n">Quit</span>
+<span class="n">End</span> <span class="n">If</span> 
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Visible</span> <span class="o">=</span> <span class="n">True</span>                            <span class="err">&#39;设置</span><span class="n">excel</span><span class="err">可见</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">Set</span> <span class="n">objBook</span> <span class="o">=</span> <span class="n">objExcel</span><span class="p">.</span><span class="n">Workbooks</span><span class="p">.</span><span class="n">Add</span><span class="p">()</span>             <span class="err">&#39;添加</span><span class="n">excel</span> <span class="err">工作簿</span>
+<span class="n">Set</span> <span class="n">objSheet1</span><span class="o">=</span> <span class="n">objBook</span><span class="p">.</span><span class="n">Sheets</span><span class="p">(</span><span class="s">&quot;Sheet1&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objSheet1</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;NEW_SHEET1&quot;</span>                        <span class="err">&#39;重命名</span><span class="n">sheet</span><span class="p">(</span><span class="err">字符串拼接</span><span class="p">,</span><span class="err">用</span><span class="sc">&#39;&amp;&#39;</span><span class="p">)</span>
+<span class="n">objSheet2</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;NEW_SHEET2&quot;</span>
+<span class="n">objSheet3</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;NEW_SHEET3&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objSheet3</span><span class="p">.</span><span class="n">Activate</span>                                 <span class="err">&#39;设置</span><span class="n">Sheet3</span><span class="err">为当前编辑的活动</span><span class="n">sheet</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;A3:E20&quot;</span><span class="p">).</span><span class="n">Select</span>                    <span class="err">&#39;将</span><span class="nl">A3</span><span class="p">:</span><span class="n">E20</span><span class="err">之间的数字类型当成文本类型显示</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Selection</span><span class="p">.</span><span class="n">NumberFormat</span> <span class="o">=</span> <span class="s">&quot;@&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;A1:E2&quot;</span><span class="p">).</span><span class="n">Interior</span><span class="p">.</span><span class="n">Color</span> <span class="o">=</span> <span class="n">RGB</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">230</span><span class="p">,</span><span class="mi">241</span><span class="p">)</span>  <span class="err">&#39;设置区域内单元格底色</span><span class="p">(</span><span class="n">RGB</span><span class="err">值</span><span class="p">)</span> 
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">With</span> <span class="n">objExcel</span><span class="p">.</span><span class="n">ActiveWindow</span>                         <span class="err">&#39;</span><span class="p">(</span><span class="n">Freeze</span><span class="p">)</span><span class="err">固定首行和首列</span>            
+        <span class="p">.</span><span class="n">SplitColumn</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="p">.</span><span class="n">SplitRow</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">End</span> <span class="n">With</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;A3&quot;</span><span class="p">).</span><span class="n">Select</span>                        <span class="err">&#39;</span><span class="p">(</span><span class="n">Freeze</span><span class="p">)</span><span class="err">固定前面两行</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">ActiveWindow</span><span class="p">.</span><span class="n">FreezePanes</span> <span class="o">=</span> <span class="n">True</span>       
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;A1:B1&quot;</span><span class="p">).</span><span class="n">Select</span>                     <span class="err">&#39;单元格</span><span class="nl">A1</span><span class="p">:</span><span class="n">B1</span><span class="err">合并</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Selection</span><span class="p">.</span><span class="n">MergeCells</span> <span class="o">=</span> <span class="n">True</span>            
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;A1:B1&quot;</span><span class="p">).</span><span class="n">Select</span>                     <span class="err">&#39;字体加粗</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Selection</span><span class="p">.</span><span class="n">Font</span><span class="p">.</span><span class="n">Bold</span> <span class="o">=</span> <span class="n">True</span> 
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Cells</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span><span class="n">Value</span> <span class="o">=</span> <span class="s">&quot;NEW_VALUE&quot;</span>           <span class="err">&#39;单元格赋值</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Columns</span><span class="p">(</span><span class="s">&quot;A:A&quot;</span><span class="p">).</span><span class="n">ColumnWidth</span> <span class="o">=</span> <span class="mf">13.57</span>        <span class="err">&#39;设置整列宽</span>  
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Columns</span><span class="p">(</span><span class="s">&quot;B:B&quot;</span><span class="p">).</span><span class="n">ColumnWidth</span> <span class="o">=</span> <span class="mf">15.71</span>      
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Columns</span><span class="p">(</span><span class="s">&quot;G:G&quot;</span><span class="p">).</span><span class="n">Select</span>                     <span class="err">&#39;设置</span><span class="n">G</span><span class="err">列显示值的精度</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Selection</span><span class="p">.</span><span class="n">NumberFormat</span> <span class="o">=</span> <span class="s">&quot;0.000000000&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">Rows</span><span class="p">(</span><span class="s">&quot;1:1&quot;</span><span class="p">).</span><span class="n">Select</span>                        <span class="err">&#39;首行显示筛选条件</span>              
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Selection</span><span class="p">.</span><span class="n">AutoFilter</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">objExcel</span><span class="p">.</span><span class="n">ActiveWindow</span><span class="p">.</span><span class="n">ScrollColumn</span> <span class="o">=</span> <span class="mi">1</span>             <span class="err">&#39;让鼠标回到最左边</span>
+</pre></div>
+
+
+<h4>VBS实现对Excel的列自动填充</h4>
+<div class="highlight"><pre><span class="n">Const</span> <span class="n">xlFillDefault</span> <span class="o">=</span> <span class="mi">0</span>                        
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;H2&quot;</span><span class="p">).</span><span class="n">Select</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">ActiveCell</span><span class="p">.</span><span class="n">FormulaR1C1</span> <span class="o">=</span> <span class="n">_</span>
+<span class="s">&quot;=VLOOKUP(RC[-1],Dict!R3C4:R227C5,2,FALSE)&quot;</span>        <span class="err">&#39;这里以</span><span class="n">VLOOKUP</span><span class="err">公式举例，可以是任意公式</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;H2&quot;</span><span class="p">).</span><span class="n">AutoFill</span> <span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;H2:H&quot;</span> <span class="o">&amp;</span><span class="n">itotalline</span><span class="p">),</span> <span class="n">xlFillDefault</span>
+</pre></div>
+
+
+<h4>VBS实现从外部text文件导入数据到当前sheet</h4>
+<div class="highlight"><pre><span class="n">Dim</span> <span class="n">objFSO</span><span class="p">,</span> <span class="n">objFile</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">aline</span><span class="p">,</span> <span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">,</span> <span class="n">source_text</span>    
+<span class="n">Set</span> <span class="n">objFSO</span>  <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&quot;Scripting.FileSystemObject&quot;</span><span class="p">)</span>
+<span class="n">source_text</span> <span class="o">=</span><span class="s">&quot;Source_feed_file.txt&quot;</span>
+<span class="n">Set</span> <span class="n">objFile</span> <span class="o">=</span> <span class="n">objFSO</span><span class="p">.</span><span class="n">OpenTextFile</span><span class="p">(</span><span class="n">source_text</span><span class="p">,</span> <span class="n">ForReading</span><span class="p">)</span>
+<span class="n">irow</span><span class="o">=</span> <span class="mi">2</span>
+<span class="n">While</span> <span class="n">Not</span> <span class="n">objFile</span><span class="p">.</span><span class="n">AtEndOfStream</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">objFile</span><span class="p">.</span><span class="n">ReadLine</span> 
+        <span class="n">icol</span> <span class="o">=</span><span class="mi">1</span>     
+        <span class="n">aline</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="s">&quot;;&quot;</span><span class="p">)</span>                         <span class="err">&#39;</span><span class="n">source</span><span class="err">文件是以”</span><span class="p">;</span><span class="s">&quot;分隔的 </span>
+        <span class="n">Do</span> <span class="n">Until</span> <span class="n">icol</span> <span class="o">&gt;</span> <span class="n">Ubound</span><span class="p">(</span><span class="n">aline</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>     
+          <span class="n">objSheet</span><span class="p">.</span><span class="n">Cells</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">)</span> <span class="o">=</span> <span class="n">aline</span><span class="p">(</span><span class="n">icol</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>      
+          <span class="n">icol</span> <span class="o">=</span> <span class="n">icol</span> <span class="o">+</span> <span class="mi">1</span>         
+         <span class="n">Loop</span>  
+  <span class="n">irow</span> <span class="o">=</span> <span class="n">irow</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">Wend</span>
+</pre></div>
+
+
+<h4>保存excel到当前目录，关闭并退出excel</h4>
+<div class="highlight"><pre><span class="n">objBook</span><span class="p">.</span><span class="n">SaveAs</span><span class="p">(</span><span class="n">ws</span><span class="p">.</span><span class="n">currentdirectory</span> <span class="o">&amp;</span><span class="s">&quot;\NEW_EXCEL.xlsx&quot;</span><span class="p">)</span> 
+<span class="n">objBook</span><span class="p">.</span><span class="n">Close</span>
+<span class="n">objExcel</span><span class="p">.</span><span class="n">Quit</span>
+</pre></div>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/VB Script现学现用.html";
+        var disqus_url = "http://mainframer.github.io/articles/VB Script现学现用.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

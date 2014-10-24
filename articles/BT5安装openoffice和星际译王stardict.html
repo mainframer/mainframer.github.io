@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>BT5安装openoffice和星际译王stardict</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html" rel="bookmark"
+        title="Permalink to BT5安装openoffice和星际译王stardict">BT5安装openoffice和星际译王stardict</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
+</h6>
+
+
+    <h3>BT5下安装openoffice</h3>
+<p>上次装了Adobe Reader在BT5下面能看PDF了，后来发现不能看word，ppt，excel也是一件很痛快的事情，虽然安装了vmware-tools之后在windows和BT5直接直接来回拖文件也挺方便，但是也不那么方便，所以今天还是老老实实地把openoffice在BT5下面给安装了。
+首先到openoffice官网上下载安装包，因为我选的是deb安装，而不是rpm安装，所以我下载deb包，放在~/software目录下。
+root@bt:~#  <code>cd ~/software</code> <br />
+root@bt:~/software#<br />
+root@bt:~/software#  <code>tar zxvf OOo_3.3.0_Linux_x86_install-deb_zh-CN.tar.gz</code> <br />
+root@bt:~/software#  <code>cd OOO330_m20_native_packed-1_zh-CN.9567/</code> <br />
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567#  <code>ls</code> <br />
+DEBS licenses readmes update  </p>
+<h5>进入DEBS目录，安装该目录下的所有deb包</h5>
+<p>root@bt:~#  <code>cd ~/DEBS</code> <br />
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567/DEBS#  <code>sudo dpkg -i *.deb</code>   </p>
+<h5>完成后，进入desktop-integration目录，安装此目录下面的desktop integration包</h5>
+<p>root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567/DEBS#  <code>cd desktop-integration/</code> <br />
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567/DEBS/desktop-integration#  <code>sudo dpkg -i openoffice.org3.3-debian-menus_3.3-9556_all.deb</code> <br />
+OK，安装完成了，然后，你在左上角菜单：_Application——Office_里面会看到，除了上次我们装的Adobe Reader之外，多了一堆openoffice的东西，这样，我们就可以在BT5下面随便看常见的办公文档了。</p>
+<h3>BT5下安装星际译王stardict</h3>
+<p>在linux下面找到一款好用的词典可不像在windows下面那么简单，在BT5下面就更不用说了。估计除了stardict就不多了吧。在linux下面软件源里面直接有stardict，所以可以直接用<code>apt-get</code>命令来安装: <br />
+root@bt: <code>apt-get install stardict</code>   </p>
+<h5>安装完之后星际译王的图标就出现在_application-accessories_里面。</h5>
+<p>用法：只需将下载词典解压到_/usr/share/stardict/dic_，然后在星际译王软件里面配置添加词典即可。<br />
+记得以前词典下载地址是：<code>http://stardict.sourceforge.net/</code> 
+但是最近貌似都没得下了，好像是项目原因，移除了所有的词典。所以我就只能在网上搜些网友以前下载的"个人典藏’版咯！其实有本牛津，朗文，21世纪简明就够了,CSDN上面有得下载。  </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/BT5安装openoffice和星际译王stardict.html";
+        var disqus_url = "http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

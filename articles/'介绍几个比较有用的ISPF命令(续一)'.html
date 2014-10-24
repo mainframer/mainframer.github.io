@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'介绍几个比较有用的ISPF命令(续一)'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'介绍几个比较有用的ISPF命令(续一)'.html" rel="bookmark"
+        title="Permalink to '介绍几个比较有用的ISPF命令(续一)'">'介绍几个比较有用的ISPF命令(续一)'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-06-14T00:00:00">2011-06-14
+</h6>
+
+
+    <p>接上次讲的，这里继续介绍几个常用的有用的命令。</p>
+<h3>COMP</h3>
+<p>这是比较文件的命令，功能类似于<code>ISPF 3.13</code>选项。如果你正打开自己PDS下面的<code>DMSID01.TESTLIB.PRGM(MYPGM01)</code>编辑，你想跟你同事(DMSID02)PDS下面的一个MYPGM02比较看看有什么不同的话，你可以直接在Command栏上输入命令：
+<code>COMP 'DMSID02.TESTLIB.PRGM(MYPGM02)'</code>
+<!--more--></p>
+<h3>COMP EXC</h3>
+<p>这是<code>COMP</code>的高级选项，再后面加上EXC让比较结果中只显示不同的行。当然，为了不失关联性和便于理解，它还额外保留了不同处的前后各5行，显得特别人性化。可以简化成<code>'COMP X'</code>  </p>
+<h3>F1 twice</h3>
+<p>很经常会有你想编辑某个DATASET或者Member的时候提示<code>"Member in use"</code>,这时候你可以连续按两次F1，就能知道谁当前正在使用这个DATASET或者Member了。</p>
+<h3>HEX ON/OFF</h3>
+<p>文件中经常有些字符在普通的<code>View/Browse/Edit</code>下要么不显示要么显示"乱码"，通常是为了节约存储空间和方便计算，数据类型经常定义成Fixed类型的，比如日期啊数值啊什么的，这时候你可以用命令<code>HEX ON</code>来查看显示16进制内容，不用的时候用HEX OFF取消。当然，想更方便地查看的话用FileManager或File Aid吧。</p>
+<h3>RES</h3>
+<p>这个也经常用到，你新打开一个Dataset，经常默认的会显示些提示信息在文件的顶端，显得很烦，你可以打个<code>RES</code>去掉这些提示信息。还有就是，在用<code>JEM/JSCAN</code>检查完JCL语法的时候，也用RES消去所有的展开信息。在你用<code>XX</code>隐藏无关的代码之后如何恢复显示呢，也是用<code>RES</code>。  </p>
+<h3>REC ON——&gt;UNDO</h3>
+<p>大机上可没有<code>"Cntl+Z"</code>的，要想撤销最新一步的修改，你必须打上<code>UNDO</code>的命令，当然前提是<code>REC ON</code>的情况下才行，默认情况下是<code>REC OFF</code>的，所以你要先<code>REC ON</code>,然后才可以正常用<code>UNDO</code>。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'介绍几个比较有用的ISPF命令(续一)'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'介绍几个比较有用的ISPF命令(续一)'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

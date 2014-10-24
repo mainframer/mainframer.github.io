@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'登陆大型机——Aviva的介绍'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'登陆大型机——Aviva的介绍'.html" rel="bookmark"
+        title="Permalink to '登陆大型机——Aviva的介绍'">'登陆大型机——Aviva的介绍'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2010-10-28T00:00:00">2010-10-28
+</h6>
+
+
+    <p>一般我们日常用PC机工作拿什么软件来跟大型机(以下简称大机)交互呢? 理论上说几乎所有的终端登陆软件都可以的。而且一般每种终端登陆软件都支持多种协议连接到大机上，比如最常见的<code>TCP/IP，FTP,TELNET,SSL</code>等等。这些软件有很多，外面比较常用的是<code>PCOMM，putty，SecCRT</code>等等，我只用过PCOMM，稍微配置下IP啥的就可以连大机了。这个百度下就出来一堆。 
+我们公司比较另类，用的终端软件叫Aviva，一般我们读作"鹅vi哇"，希伯来词，意为“美丽的春天”, 产自美国美国(Eicon)公司。谷歌能下载到，不过只有试用版的貌似。 
+下面我说下Aviva的一些基本概念和使用。  </p>
+<h3>Destination和Session的配置:</h3>
+<p>所谓Destination 就是大型机的物理IP，你要连接到大型机上，就必须得配置下大型机的IP。装好aviva后，开始——&gt;程序——&gt;Eicon Aviva——&gt;Create New Destination
+这里destination的名字就取：My Destination<br />
+Connection type:TN3270   <br />
+<img alt="1" src="/images/aviva-1.jpg" />    <br />
+大型机的物理IP:<br />
+<!--more--> 
+<img alt="1" src="/images/aviva-2.jpg" />    <br />
+<img alt="1" src="/images/aviva-3.jpg" />  <br />
+<img alt="1" src="/images/aviva-4.jpg" />  <br />
+这样，Destination就配置好了！ 
+下面是Sesstion的配置。Session就是用来连到Destination交互的，你可以建很多个不同名字的Session，都指向同一个Destination 
+因为平常的工作当中，经常需要建好几个session，比如可以一个用来登陆ONLINE CICS的，一个用来BATCH操作的，这个随便你建几个。这里，我建一个session名字就叫:My First Session <br />
+<img alt="1" src="/images/aviva-5.jpg" />   <br />
+这里可以是默认的 <br />
+<img alt="1" src="/images/aviva-6.jpg" />    <br />
+有时候公司会有两台大型机(两个IP)，这时候可以选择一个Destination用做Primary,另一个用作backup的。因为我们前面只建了一个Destination,所以这里就选Single Destination only好了：<br />
+<img alt="1" src="/images/aviva-7.jpg" />   <br />
+选中我们上面建的Destination:My Destination <br />
+<img alt="1" src="/images/aviva-8.jpg" />   <br />
+<img alt="1" src="/images/aviva-9.jpg" />   <br />
+这样，运行这个session，点击连接，你就能看到那大机那熟悉的黑屏画面了！
+(一般公司都会将大机的默认登陆画面改成包含公司logo的画面，所以不截图了)</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'登陆大型机——Aviva的介绍'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'登陆大型机——Aviva的介绍'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

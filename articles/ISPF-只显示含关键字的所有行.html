@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>ISPF-只显示含关键字的所有行</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html" rel="bookmark"
+        title="Permalink to ISPF-只显示含关键字的所有行">ISPF-只显示含关键字的所有行</a></h3>
+    </header>
+
+<h6 class="subheader" title="2012-09-07T00:00:00">2012-09-07
+</h6>
+
+
+    <p _="%" endcodeblock="endcodeblock">命令：
+{% blockquote %}
+X ALL; 
+FIND keyword ALL;
+{% endblockquote %}
+比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;
+{% codeblock %}
+ VIEW       IBMUSER.TESTJCL(TESTJOB) - 01.9         4 CHARS 'DT0907' 
+ Command ===&gt; find dt0907 all                                  Scroll ===&gt; CSR<br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+ - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   524 Line(s) not Displayed 
+ 000525 //SORTOUT  DD  DSN=IBMUSER.CREATERT.FILEOUTS.DT0907,DISP=(NEW,CATLG), <br />
+ - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 31 Line(s) not Displayed 
+ 000557 //SORTOUT  DD  DSN=IBMUSER.CREATERT.NAMEACTS.DT0907,DISP=(NEW,CATLG), <br />
+ - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   176 Line(s) not Displayed 
+ 000734 //OUT     DD DSN=IBMUSER.CREATERT.USERACTS.DT0907,DISP=(NEW,CATLG),   <br />
+ - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 40 Line(s) not Displayed 
+ 000775 //NTIOUOUT DD  DSN=IBMUSER.CREATERT.NTIONOUT.DT0907,DISP=(NEW,CATLG), <br />
+ - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 75 Line(s) not Displayed </p>
+<h4>2013-05-12补充：</h4>
+<p>另外一种方法： <code>X DT0907 ALL; Flip;</code> </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/ISPF-只显示含关键字的所有行.html";
+        var disqus_url = "http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

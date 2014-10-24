@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'Watir收集最快的代理服务器ip列表'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'Watir收集最快的代理服务器ip列表'.html" rel="bookmark"
+        title="Permalink to 'Watir收集最快的代理服务器ip列表'">'Watir收集最快的代理服务器ip列表'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2010-09-10T00:00:00">2010-09-10
+</h6>
+
+
+    <p>这个脚本所做的事情是从www.cnproxy.com网站上取得最新的10页代理服务器的ip，将它们写到proxy_ip_list.txt文本文件中去。包括每一个代理服务器的响应时间。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">time1</span><span class="o">=</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<span class="n">proxy_ip_lists</span><span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;proxy_ip_lists.txt&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">char2int</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span> <span class="n">str</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span>
+      <span class="k">if</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;z&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;3&#39;</span>
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;c&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;1&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;r&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;8&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;d&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;0&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;k&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;2&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;m&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;4&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;l&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;9&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;b&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;5&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;i&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;7&#39;</span> 
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;w&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;6&#39;</span> 
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">return</span> <span class="n">str</span>
+ <span class="k">end</span>
+
+<span class="k">for</span> <span class="n">page_no</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">10</span> <span class="k">do</span>                  <span class="c1">#一共有10页</span>
+   <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://www.cnproxy.com/proxy</span><span class="si">#{</span><span class="n">page_no</span><span class="si">}</span><span class="s2">.html&quot;</span>
+   <span class="n">content</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+   <span class="n">regex</span><span class="o">=</span><span class="sr">/&lt;td&gt;(.*?)&lt;SCRIPT type=text\/javascript&gt;document.write\(&quot;:&quot;(.*?)\)&lt;\/SCRIPT&gt;&lt;\/td&gt;/</span>   <span class="c1">#http://www.rubular.com</span>
+   <span class="k">for</span> <span class="n">array</span> <span class="k">in</span> <span class="n">content</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>    
+     <span class="c1">#puts &quot;proxy ip is : &quot; + array[0] + &#39;port is : &#39; + char2int(array[1].delete(&#39;+&#39;))</span>
+     <span class="n">proxy_ip_lists</span><span class="o">.</span><span class="n">puts</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="o">]+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span><span class="n">char2int</span><span class="p">(</span><span class="n">array</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">))</span>
+    <span class="k">end</span>
+ <span class="k">end</span>
+
+ <span class="n">pf</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;proxy_ip_lists.txt&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+ <span class="n">url</span><span class="o">=</span><span class="s1">&#39;www.google.com&#39;</span><span class="p">;</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;I have value&#39;</span>
+ <span class="k">while</span> <span class="n">line</span> <span class="o">!=</span><span class="s1">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="k">do</span>
+  <span class="k">begin</span>
+  <span class="no">Timeout</span><span class="o">::</span><span class="n">timeout</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="k">do</span> <span class="o">|</span><span class="n">timeout_length</span><span class="o">|</span>
+    <span class="c1">#until (line ==&#39;\n&#39; || line == nil) do line=pf.gets; end;</span>
+    <span class="n">line</span><span class="o">=</span><span class="n">pf</span><span class="o">.</span><span class="n">gets</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">line</span> <span class="o">==</span><span class="s1">&#39;\n&#39;</span> <span class="o">||</span> <span class="n">line</span> <span class="o">==</span> <span class="kp">nil</span><span class="p">)</span> <span class="k">then</span> <span class="n">line</span><span class="o">=</span><span class="n">pf</span><span class="o">.</span><span class="n">gets</span><span class="p">;</span> <span class="k">end</span>
+    <span class="n">proxy_addr</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span> <span class="n">proxy_port</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">to_i</span>
+    <span class="n">proxy</span> <span class="o">=</span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Proxy</span><span class="p">(</span><span class="n">proxy_addr</span><span class="p">,</span> <span class="n">proxy_port</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">http</span><span class="o">|</span>
+    <span class="n">start_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/index.html&#39;</span><span class="p">)</span>
+    <span class="n">end_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span> 
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">end_at</span> <span class="o">-</span> <span class="n">start_at</span>                                            <span class="c1"># 响应时间</span>
+    <span class="c1">#puts response.body</span>
+    <span class="nb">puts</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span> <span class="o">+</span> <span class="s2">&quot; accessing &quot;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot; using &quot;</span> <span class="o">+</span> <span class="n">diff</span><span class="o">.</span><span class="n">to_s</span>      <span class="c1">#观察各个代理服务器的响应时间各是多少</span>
+   <span class="p">}</span>
+ <span class="k">end</span>
+  <span class="k">rescue</span> <span class="no">Errno</span><span class="o">::</span><span class="no">EADDRNOTAVAIL</span><span class="p">,</span> <span class="no">Errno</span><span class="o">::</span><span class="no">ECONNREFUSED</span><span class="p">,</span><span class="no">Errno</span><span class="o">::</span><span class="no">ECONNRESET</span><span class="p">,</span><span class="no">Errno</span><span class="o">::</span><span class="no">EOPNOTSUPP</span><span class="p">,</span><span class="no">Timeout</span><span class="o">::</span><span class="no">Error</span><span class="p">,</span> <span class="no">EOFError</span><span class="p">,</span> <span class="no">SocketError</span> 
+      <span class="nb">puts</span> <span class="s2">&quot;exception raised !&quot;</span>
+     <span class="k">retry</span>   
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">time2</span><span class="o">=</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<span class="nb">puts</span> <span class="s2">&quot;这个程序运行了一共 &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">time2</span><span class="o">-</span><span class="n">time1</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot; 秒&quot;</span>
+</pre></div>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'Watir收集最快的代理服务器ip列表'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'Watir收集最快的代理服务器ip列表'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

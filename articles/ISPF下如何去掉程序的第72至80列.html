@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>ISPF下如何去掉程序的第72至80列</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html" rel="bookmark"
+        title="Permalink to ISPF下如何去掉程序的第72至80列">ISPF下如何去掉程序的第72至80列</a></h3>
+    </header>
+
+<h6 class="subheader" title="2012-02-07T00:00:00">2012-02-07
+</h6>
+
+
+    <p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
+<h4>方法一：直接在ISPF下面用命令去掉</h4>
+<p _="%" endcodeblock="endcodeblock">这是最直接最快的办法。去掉第72列至80列的命令有下面两个：
+{% codeblock lang:python %}
+NUM ON; UNNUMB
+C P'^' ’ ’ 73 80 ALL    /<em> Changes all non-space characters to spaces in col 73 to 80</em>/</p>
+<hr />
+<h4>方法二：用第三方脚本实现</h4>
+<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod</code>文件夹下面的所有程序的第72列至80列内容置空，然后输出到文件夹<code>C:\prod72col</code>下面。可以看到，用第三方脚本实现批量的任务是很方便的。<br />
+{% codeblock lang:ruby %}
+01 def cutto72col(file_in,file_out)
+02    file_in=File.new(file_in,‘r’)
+03    file_out=File.new(file_out,‘w’)
+04    oneline=file_in.gets
+05    while(oneline != nil)
+06      oneline=oneline.chomp
+07      oneline=oneline[0..71]
+08      file_out.puts oneline
+09      oneline=file_in.gets
+10    end
+11 end
+12
+13 path_in=‘C:\prod\’
+14 path_out=‘C:prod72col\’
+15
+16 Dir.foreach(path_in){ |file|
+17 if file != ‘.’ &amp;&amp; file != ‘..’
+18 then
+19    file_in = path_in + file
+20    cutto72col(file_in,path_out + file)
+21 end                }
+{% endcodeblock %}<br />
+当然，你还可以直接在大机上面用REXX脚本直接对整个PDS操作，移去该PDS下所有member的第72列至80列内容。这里也附上我的REXX脚本,作用是将<strong><code>IBMUSER.TEST.PRGM</code></strong>这个PDS下面所有的member的第72列至第80列的行号都去掉：<br />
+{% codeblock lang:python %}
+/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em><em>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
+/</em>Loop PDS to remove whatever between col72 to col80 for each member </em>/
+/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
+/<em> Trace i  </em>/                                                        <br />
+pdsname = 'TEST.PRGM'          /<em>Check if pds is exsited </em>/     <br />
+if sysdsn(pdsname)&lt;&gt; "OK" then                                        <br />
+    do                                                                <br />
+       say "Error: Specified PDS not found:" pdsname                  <br />
+       say "Error: " pdsname " &gt; " sysdsn(pdsname)                    <br />
+       say "Press Enter to continue"                                  <br />
+       pull uresp                                                     <br />
+       exit 8                                                         <br />
+    end                                                                 </p>
+<p>call outtrap "mbrs."       /<em>call outtrap to capture LISTD output </em>/
+"LISTD" pdsname "MEMBERS"  /<em>List member list</em>/                   <br />
+call outtrap "off"         /<em>Turn off outtrap</em>/                     </p>
+<p>do i=1 to mbrs.0                                                  <br />
+ /<em>SAY "mbrs." !! i !! ": " !!   mbrs.i </em>/                        <br />
+  if mbrs.i = "--MEMBERS--" then                                  <br />
+   do                                                             <br />
+     leave                                                        <br />
+   end                                                            <br />
+end                                                                 </p>
+<p _="%" endcodeblock="endcodeblock">/<em>start to loop on each member</em>/                                  <br />
+i = i+1                                                           <br />
+do j=i to mbrs.0   /<em>mbrs.0 is the total line num of LISTD </em>/     <br />
+ /<em>SAY "mbrs." !! j !! ": " !!   mbrs.j </em>/                           <br />
+   parse value mbrs.j with mem /<em>split mbrs.j</em>/                      <br />
+   mem =strip(mem)            /<em>remove leading and trailing character</em>/
+   pds = 'IBMUSER.TEST.PRGM'                                   <br />
+   mpds = pds !!'(' !! mem !! ')'                                    <br />
+   "ISPEXEC EDIT DATASET('"mpds"') MACRO(MACRO01)"                   <br />
+ end                                     <br />
+{% endcodeblock %}<br />
+这是上面主Rexx程序调用的<em>MACRO01</em>:<br />
+{% codeblock lang:python %}
+/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>*REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
+ADDRESS  ISPEXEC 
+"ISREDIT MACRO"<br />
+"ISREDIT RES"  <br />
+"ISREDIT NUM ON" 
+"ISREDIT UNNUM"<br />
+"ISREDIT SAVE" <br />
+"ISREDIT END" </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/ISPF下如何去掉程序的第72至80列.html";
+        var disqus_url = "http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

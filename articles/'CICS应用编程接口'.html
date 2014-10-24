@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'CICS应用编程接口'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'CICS应用编程接口'.html" rel="bookmark"
+        title="Permalink to 'CICS应用编程接口'">'CICS应用编程接口'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-08-12T00:00:00">2011-08-12
+</h6>
+
+
+    <h3>开发语言</h3>
+<p>可以用COBOL,C,C++,Assembler,PL/I等来编写CICS应用程序的主要的大部分逻辑处理功能，而只有少数的一部分功能需要用到CICS命令。</p>
+<h3>CICS命令格式</h3>
+<p><!--more-->
+<code>EXEC CICS SEND FROM (MSG-AREA) LENGTH(5) END-EXEC</code>                                         ——向终端发送长度为5的MSG-AREA信息       <br />
+<code>EXEC CICS READ FILE('FILEA') INTO (CUSTOMER-REC) RIDFLD(CUSTOMER-NUM)</code>                     ——读和修改VSAM文件       <br />
+<code>EXEC SQL SELECT colum_names INTO program_variables From Table_name WHERE ... END-EXEC</code>     ——读和修改关系型数据库<br />
+<code>EXEC CICS READ ... RESP(RESPONSE-FIELD)</code>  或  <code>EXEC CICS HANDLE CONDITION</code>                 ——处理异常条件   </p>
+<h3>CICS API主要服务</h3>
+<p>CICS API主要服务：访问和修改文件；访问和修改关系、层次性数据库；终端的输入和输出；用户定义的数据队列；在一个事务中的多程序间的控制操纵；启动另一个事务;</p>
+<h3>CICS程序控制的3种方式</h3>
+<p><strong>RETURN</strong>:  释放控制于上一高层程序。    <br />
+<strong>LINK</strong>:    链接出去执行后返回，就像执行一个子程序。  <br />
+<strong>XCTL</strong>:    传递控制于制定程序，但不再返回程序，而返回本层。  </p>
+<h3>CICS程序的安装</h3>
+<p><strong>1、</strong> 预编译，即翻译，将<code>EXEC CICS</code>语句翻译成编程语言的源语句。当然，如果源程序中还是用了<code>EXEC SQL</code>嵌套数据库功能，那么在此之前必须先进行关系数据库的预编译。
+<strong>2、</strong> 编译源程序，生成二进制代码。
+<strong>3、</strong> 链接，将链接生成的结果放到装载库(load lib)当中。
+我用word简单画了个图，丑了点。<br />
+<img alt="1" src="/images/CICS-Compile.jpg" />    </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'CICS应用编程接口'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'CICS应用编程接口'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'CICS的TOR,AOR,FOR概念'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'CICS的TOR,AOR,FOR概念'.html" rel="bookmark"
+        title="Permalink to 'CICS的TOR,AOR,FOR概念'">'CICS的TOR,AOR,FOR概念'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2012-09-26T00:00:00">2012-09-26
+</h6>
+
+
+    <p>CICS当中<code>TOR，AOR,FOR</code>还有其它*OR什么意思？ </p>
+<ul>
+<li><strong><code>TOR</code></strong> 是TERMINAL OWNING REGION,TOR上只定义TERMINAL，在TOR上定义PCT,REMOTE到AOR。当交易进入TOR后会被路由到对应的AOR去执行。  </li>
+<li><strong><code>AOR</code></strong> 是APPLICATION OWNING REGION，AOR上跑交易和应用程序。  </li>
+<li><strong><code>FOR</code></strong> 是FILE OWNING REGION<br />
+网上搜到老外的解释:  <br />
+{% blockquote %} 
+Tor is where the terminals are defined, Aor is where the applications are defined and FOR where the files are defined.<br />
+Generally, TORs are the regions that have connection to the terminals (or other connections)<br />
+All the termianal related programs (Translator, co-ordinator) will be coded in TOR and API (Application program interface) will be coded in AOR.<br />
+To put in simple words - screen handling , function keys logic, function keys validations will be in programs coded in TOR and all business logic (valid processing, updating the database) in AOR. <br />
+They are just CICS sytems that are used to split out certain functions and applications into discrete CICS system for easier maintance\administration.Note there is no technical difference between the different region types. 
+Any CICS region could act in any/all of the roles. Customers find it simplifies administration and improves reliability to categorize regions and isolate user applications into separate regions from service regions.<br />
+{% endblockquote %} 
+<strong>总结起来：</strong><br />
+它们都属于CICS的一部分，本质上并没有不同。只是为了功能划分，负载均衡以及便于维护等方面考虑而人为区分开来的。分工不同而已！</li>
+</ul>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'CICS的TOR,AOR,FOR概念'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'CICS的TOR,AOR,FOR概念'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

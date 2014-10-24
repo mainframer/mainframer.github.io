@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Job(JCL)返回码</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/Job(JCL)返回码.html" rel="bookmark"
+        title="Permalink to Job(JCL)返回码">Job(JCL)返回码</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-11-28T00:00:00">2011-11-28
+</h6>
+
+
+    <h4>提交JCL最常见的返回码就是<code>0、4、8、12、16</code>，当然还有<code>ABEND</code>。</h4>
+<p><em><code>CC=0</code></em>  作业正确执行(Executed Successfully) <br />
+<em><code>CC=4</code></em>  警告 一般不影响作业执行 (Executed Successfully but with warnings) <br />
+<em><code>CC=8</code></em>  作业可以执行，但执行的不完整 (Error)<br />
+<em><code>CC=12</code></em> 作业不能执行 (Serious Error)<br />
+<em><code>CC=16</code></em> 严重错误，中断后续命令的执行(Fatal Error)  <br />
+<em><code>ABEND</code></em> 作业异常终止 </p>
+<h4>下面是一些常见的JCL ABEND CODES</h4>
+<p><code>S0C4</code> Protection Abend.Caused by the subscript being out of range<br />
+<code>S0C5</code> Addressing Abend.Caused by invalid address specification. i.e. The address points<br />
+to an instruction, control word or data outside the available real storage<br />
+<code>S0C7</code> Caused by a bad data. i.e. Data exception. When we are moving an alphanumeric field to a numeric computational field this Abend occurs. The result is an Abend failure  <br />
+<code>S222</code> Caused by a job being cancelled by the operator, due to a request by the program for an unavailable resource.<br />
+<code>S237</code> Caused by end of volume being encountered.<br />
+<code>S322</code> Caused when CPU time assigned to the job, job step, or procedure has been exceeded. i.e. Time out error.<br />
+<code>S413</code> This abend occurs if the DD statement referenced by UNIT=AFF statement is not closed before the DD statement that comes before it.<br />
+<code>S522</code> Caused when a wait state exceeds an installation-defined time limit.  <br />
+<code>SB37</code> Caused by lack of sufficient Secondary space<br />
+<code>SD37</code> Caused by lack of sufficient Primary space<br />
+<code>SE37</code> Caused by lack of space for PDS (Partitioned data set)<br />
+<code>S722</code> Too many lines of print.<br />
+<code>S804</code> Region too small for the program.<br />
+<code>S806</code> Program not on the library. May need a JOBLIB or STEPLIB.<br />
+<code>S80A</code> Region too small for the program.<br />
+<code>S913</code> Security violation.<br />
+<code>SB14</code> No space in a library directory for this member's name.<br />
+<code>SB37</code> Insufficient disk space.<br />
+<code>S0C1</code> Executing a program with an unresolved external reference.<br />
+<code>S042</code> Privileged Operation Abend.Read/write to unopened file<br />
+<code>S0C6</code> Specification Abend<br />
+<code>S0CB</code> Attempting to divide by 0 and not using ON SIZE ERROR<br />
+<code>U1002</code> Conflicting file attributes. See S013.<br />
+<code>U1005</code> Executing with modules compiled both with RES and NORES<br />
+<code>U1006</code> Subscript out of range<br />
+<code>U1017</code> Missing DD statement in JCL for DISPLAY or ACCEPT verb<br />
+<code>U1020</code> Problem opening or processing a file.Check the file status.<br />
+<code>U1035</code> Conflicting DCB parameters. Same as S013.<br />
+<code>U1056</code> Program didn't close a file before ending<br />
+<code>U4038</code> COBOL LE intercepted the Abend. Messages in CEEDUMP.  </p>
+<p>Job异常终止(Abend)的原因很多，返回码也是列不完的。上述仅仅是列举了稍微比较常见的abend返回码而已。在遇到具体返回码的时候，还是需要查manual,看job log。当然，如果你所在的公司恰好也安装了类似于MVS/QuickRef的帮助文档，那就再好不过了，只需一个命令：<code>QW xxx</code>即可随时查看返回码。具体可以参看我之前写的一篇文章：<br />
+<a href="http://flyuphigh.com/mvs-zos-mainframe/batch-jcl-ispf-tso/qw-mvsquickref.html">QW命令——MVS/QuickRef帮助文档</a>  。当然，如果没有安装这类的帮助文档，那也没关系，因为任何时候，Google和baidu都是你最好的帮手。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/Job(JCL)返回码.html";
+        var disqus_url = "http://mainframer.github.io/articles/Job(JCL)返回码.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

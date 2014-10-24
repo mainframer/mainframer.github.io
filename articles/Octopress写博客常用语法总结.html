@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Octopress写博客常用语法总结</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/Octopress写博客常用语法总结.html" rel="bookmark"
+        title="Permalink to Octopress写博客常用语法总结">Octopress写博客常用语法总结</a></h3>
+    </header>
+
+<h6 class="subheader" title="2013-01-18T00:00:00">2013-01-18
+</h6>
+
+
+    <p>自从博客从<code>Wordpress</code>迁徙到<code>Octopress</code>来，也有一段时间了。该是时候总结一下常用的语法了。  </p>
+<h3>插入图片</h3>
+<div class="highlight"><pre>![图片描述](图片地址) 
+</pre></div>
+
+
+<h3>插入链接</h3>
+<div class="highlight"><pre><span class="cp">[</span><span class="err">链接描述</span><span class="cp">]</span><span class="x">(链接地址)  </span>
+</pre></div>
+
+
+<h3>插入代码</h3>
+<h5>方法一</h5>
+<p><img alt="1" src="/../images/octopress_syntax_2.png" />     </p>
+<h5>方法二</h5>
+<p>用3个反引号括起来</p>
+<p><img alt="1" src="/../images/octopress_syntax_3.png" />       </p>
+<h3>引用的用法</h3>
+<p>用<em>blockquote</em>关键字<br />
+<img alt="1" src="/../images/octopress_syntax_1.png" />   </p>
+<p _="%" endblockquote="endblockquote">引用的效果如下： 
+{% blockquote Kobe Bryant, Kobe 24h %}
+Heroes come and go,but legends are forever</p>
+<h3>特殊反白显示</h3>
+<p>用反单引号括起来即可，比如<code>Octopress</code></p>
+<div class="highlight"><pre>`Octopress`
+</pre></div>
+
+
+<h3>显示“点击阅读全文”</h3>
+<p>Step01: 在_config.yml里面设置如下：excerpt_link: "点击阅读全文 &rarr;"<br />
+效果如下：   </p>
+<p><img alt="1" src="/../images/octopress_syntax.png" />   </p>
+<p>就先说这些octopress语法，剩下的基本就是跟Markdown语法相关的了，不写在这里。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/Octopress写博客常用语法总结.html";
+        var disqus_url = "http://mainframer.github.io/articles/Octopress写博客常用语法总结.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

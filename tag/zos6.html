@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - z/OS</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html"><h3 class="article-title">ABENDED S000 U4088 REASON CODE=000003EC</h3></a>
+<h6 class="subheader" title="2012-03-05T00:00:00">2012-03-05
+</h6>
+
+
+<p _="%" endblockquote="endblockquote">Sub一个job遇到错误:
+{% blockquote %} 
+ABENDED S000 U4088 REASON CODE=000003EC</p>
+<h3>Abend原因:</h3>
+<p _="%" endblockquote="endblockquote">{% blockquote %} 
+The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage</p>
+<h3>解决办法:</h3>
+<p _="%" endcodeblock="endcodeblock">Change region to <strong>REGION=0M</strong> 
+{% codeblock lang:python %}
+000001 //IBMUSER JOB  0RQ00XXXXX                                00010TEST,  <br />
+000002 // 'IBMUSER',CLASS=3,MSGCLASS ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/常用的CICS命令.html"><h3 class="article-title">常用的CICS命令</h3></a>
+<h6 class="subheader" title="2012-03-01T00:00:00">2012-03-01
+</h6>
+
+
+<p>我们可以在<code>COBOL</code>，<code>PL/I</code>，<code>Assembler</code>等应用程序中写<code>CICS</code>命令，在<code>COBOL</code>和<code>PL/I</code>中，格式分别如下所示：</p>
+<h3>COBOL</h3>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
+EXEC CICS function[option[(arg)]]... END-EXEC</p>
+<h3>PL/I</h3>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
+EXEC CICS function[option[(arg)]]... ; (末尾有分号)
+{% endcodeblock %}<br />
+CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
+<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。
+{% codeblock lang ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/常用的CICS命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常用的CICS命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL提交REXX脚本.html"><h3 class="article-title">JCL提交REXX脚本</h3></a>
+<h6 class="subheader" title="2012-02-25T00:00:00">2012-02-25
+</h6>
+
+
+<h3>来说说如何用JCL提交REXX脚本。</h3>
+<h4>1、写一个最简单的显示有一行提示的REXX脚本叫<code>SAYHELLO</code>：</h4>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
+1 EDIT       IBMUSER.REXX.EXEC(SAYHELLO) - 01.00           Member SAYHELLO saved 
+2 Command ===&gt;                                                  Scroll ===&gt; CSR<br />
+3 <strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+4 000001 /<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></strong>***/              <br />
+5 000002 SAY "I WILL PRINT 'HELLO' IN SYSTSPRT BY SUBMITTING JCL" </p>
+<h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL提交REXX脚本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL提交REXX脚本.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
+<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
+</h6>
+
+
+<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。
+{% blockquote %} 
+FIND ',' ALL
+{% endblockquote %} 
+这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
+既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
+编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：<br />
+{% codeblock lang:python %}
+1  ADDRESS  ISPEXEC                     <br />
+2  "ISREDIT SEEK ALL ','"               <br />
+3  "ISREDIT (COUNT) = SEEK_COUNTS"      <br />
+4  SAY "Comma number: "!! COUNT ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html"><h3 class="article-title">Rexx顺序处理文件所有行</h3></a>
+<h6 class="subheader" title="2012-02-17T00:00:00">2012-02-17
+</h6>
+
+
+<p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：
+{% codeblock lang:python %}
+ADDRESS TSO                                                           <br />
+  indataset = 'IBMUSER.REXX.EXEC(INFILE)'  /<em>read in input file </em>/    <br />
+  "alloc f(fin) ds('"indataset"') shr reuse" <br />
+  "execio * diskr fin (finis stem in."                                <br />
+  "free f(fin)"                                                       <br />
+ do i=1 to in.0        /<em>loop in file until the last line reached </em>/         <br />
+    one_line = strip ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html"><h3 class="article-title">ISPF下如何去掉程序的第72至80列</h3></a>
+<h6 class="subheader" title="2012-02-07T00:00:00">2012-02-07
+</h6>
+
+
+<p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
+<h4>方法一：直接在ISPF下面用命令去掉</h4>
+<p _="%" endcodeblock="endcodeblock">这是最直接最快的办法。去掉第72列至80列的命令有下面两个：
+{% codeblock lang:python %}
+NUM ON; UNNUMB
+C P'^' ’ ’ 73 80 ALL    /<em> Changes all non-space characters to spaces in col 73 to 80</em>/</p>
+<hr />
+<h4>方法二：用第三方脚本实现</h4>
+<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
+这里是一段自己的Ruby脚本 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX学习笔记.html"><h3 class="article-title">REXX学习笔记</h3></a>
+<h6 class="subheader" title="2012-02-05T00:00:00">2012-02-05
+</h6>
+
+
+<p>最近在学习Rexx脚本，打算做一些自动化。归纳了些点总结下放在这里以备查询。  </p>
+<h3>一些基本概念</h3>
+<ul>
+<li>REXX: <code>REstructured eXtended eXecutor (REXX) language</code> 扩充结构化执行语言  </li>
+<li>REXX中变量无需事前定义  </li>
+<li>Debug REXX:用REXX TRACE或者用interactive debug facility来定位error  </li>
+<li>SAA Procedures Language：REXX的子集，在TSO/E,CICS,IMS等多种环境中应用 </li>
+<li>要运行REXX exec，必须至少有一种可用的<code>Host command environments</code>。默认的是<code>TSO</code>。还有<code>MVS</code>,<code>LINK</code>,<code>LINKMVS</code>,<code>LINKPGM</code>,<code>ATTACH</code>,<code>ATTCHMVS</code>,<code>ATTCHPGM</code>,<code>ISPEXEC</code>,<code>ISREDIT</code>,<code>CONSOLE</code>,<code>CPICOMM</code>,<code>LU62</code>,<code>APPCMVS</code>等等，常用的有 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX学习笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX学习笔记.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI编译器版本.html"><h3 class="article-title">PL/I编译器版本</h3></a>
+<h6 class="subheader" title="2012-02-02T00:00:00">2012-02-02
+</h6>
+
+
+<p>PL/I编译器的版本，如下所示：
+{% codeblock  %}
+Product        Product name                          Compiler "signature"   Module prefix 
+360S-NL-511    S/360 OS PL/1 (F)                     '   '                  IEM,IHE,IHL
+5734-PL1       OS PL/I OPTIMIZING COMPILER V1         5734-PL1              IEL,IBM
+5734-PL2       OS PL/I CHECKOUT COMPILER
+5734-PL3       OS PL/I Opt Comp Lib Kanji Name Support
+5668-909       OS PL ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI编译器版本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI编译器版本.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html"><h3 class="article-title">用PIC型中间变量解决Fixed赋值溢出abend</h3></a>
+<h6 class="subheader" title="2012-01-11T00:00:00">2012-01-11
+</h6>
+
+
+<p _="%" endblockquote="endblockquote">我在Debug一个PLI程序<code>PRGM000</code>的时候遇到了一个<code>CEE34A abend</code>，报的错误信息如下：<br />
+{% blockquote %} 
+You were prompted because the CEE34A condition was raised in your
+program.
+CEE34A is a severity or class 3 condition.
+The operating system has generated the following message:
+CEE3210S The system detected a decimal-overflow exception (System
+Completion Code=0CA).
+The current location is ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/利用SRCHFOR在PDS中搜索字符串.html"><h3 class="article-title">利用SRCHFOR在PDS中搜索字符串</h3></a>
+<h6 class="subheader" title="2011-12-24T00:00:00">2011-12-24
+</h6>
+
+
+<p>之前的文章说到了一个叫<code>Mem xxx</code>  的命令可以用来在一系列PDS中搜索一个名字叫做xxx的member，今天我来说下如何在一个PDS里面所有的member内容当中搜索特定字符串。其实就是利用<code>search-for</code> 的应用程序，比较常规的方法是道<em>ISPF</em>的<em>3.14</em>菜单里面搜索，如下图所示，就是在 <code>"IBMUSER.PROJ.TEST.JCL"</code>这个PDS里面所有的member内容中，搜索一个叫<strong>"STRING"</strong>的字符串：
+<img alt="1" src="/../images/PDS-SRCHFOR_001.jpg" />    <br />
+当然，如果你想直接在当前PDS下调用<code>search-for utility</code>来搜索特定字符串，可以在<code>command line</code>上输入命令：
+{% codeblock lang:ruby %}
+SRCHFOR "STRING"
+{% endcodeblock %}
+来在当前PDS下面搜索字符串<strong>”STRING“</strong>,具体如下面2张截图所示：
+<img alt="1" src="/../images/PDS-SRCHFOR_002.jpg" />      <br />
+<img alt="1" src="/../images/PDS-SRCHFOR_003.jpg" />      <br />
+如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用<strong><code>ISRSUPC</code></strong>这个utility了。这个<strong><code>ISRSUPC</code></strong>的功能可强大多了 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/利用SRCHFOR在PDS中搜索字符串.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/利用SRCHFOR在PDS中搜索字符串.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 6 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/tag/zos5.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/tag/zos7.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

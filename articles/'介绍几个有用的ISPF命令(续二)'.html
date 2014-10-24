@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'介绍几个有用的ISPF命令(续二)'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'介绍几个有用的ISPF命令(续二)'.html" rel="bookmark"
+        title="Permalink to '介绍几个有用的ISPF命令(续二)'">'介绍几个有用的ISPF命令(续二)'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-04-24T00:00:00">2011-04-24
+</h6>
+
+
+    <h4>M+F7 和 M+F8</h4>
+<p>命令行上输<code>M</code>,接着按<code>F7</code>, 表示回到文件最顶端<br />
+命令行上输<code>M</code>,接着按<code>F8</code>, 表示回到文件最低端<br />
+<!--more--></p>
+<h4>COL</h4>
+<p>显示列号，这个命令特别是在对齐的时候很有用。因为在JCl语法中，很多关键字必须规定从第几列开始写，不然会出错的，比如JCLLIB ORDER一定要从第四列开始写，所以用<code>COL</code>命令显示行号是很有必要的。</p>
+<h4>HI</h4>
+<p>语法高亮用HI，比如可以用<code>HI PLI</code>来高亮PL/I代码，用<code>HI COBOl</code>高亮COBOl代码，用<code>HI JCL</code>来高亮JCL语法，用<code>HI REXX</code>来高亮REXX语法，用HI ASM来高亮汇编代码，一共支持18种语言。可以<code>HI</code>直接回车来查看和选择支持高亮的语言种类。当然，很多时候，我们直接用<code>HI ON</code>或者<code>HI AUTO</code>来让系统自动选择语法高亮的语言。</p>
+<h4>RETP</h4>
+<p>在3.4里输入命令<code>RETP</code>就能查询得到你最近使用的十多个命令。</p>
+<h4>REFLIST</h4>
+<p>在3.4的菜单栏上有个<code>REFLIST</code>的选项，里面可以列出你最近访问的30个DATASET</p>
+<h4>SORT</h4>
+<p>在PDS里面，可以用<code>SORT</code>来对所有的MEMBER排序。可以配合参数来满足你的要求，比如：<br />
+<code>SORT CHANGED A</code>: 按修改时间升序排列<br />
+<code>SORT ID A</code>:      按ID升序排列 <br />
+<code>SORT SIZE D</code>:    按SIZE降序排列 <br />
+<code>SORT CREATE A</code>:  按创建时间升序排列   </p>
+<h4>PROFILE</h4>
+<p>在你编辑某个DATASET的时候用命令<code>PROFILE</code>可以显示出所有当前的设置参数，然后你可以自行根据需要针对性的修改。如下图所示：
+<img alt="1" src="/images/profile.jpg" />     </p>
+<h4>CO和S *</h4>
+<p>用来一次性拷贝PDS下面所有的member。在你要拷贝的PDS面前输入<code>CO</code>，回车。这里，我们要拷贝<code>IBMUSER.TEST.LIB.COPY</code>下面所有的member
+<img alt="1" src="/images/PDS-COPY-ALL.jpg" />      <br />
+接着输入<code>S *</code>回车即可让你拷贝该PDS下面所有的member，当然，你也可以不拷贝所有的，而是有选择的拷贝。 <br />
+<img alt="1" src="/images/PDS-COPY-ALL02.jpg" />            <br />
+好了，命令就介绍到这里，以后再补充。  </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'介绍几个有用的ISPF命令(续二)'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'介绍几个有用的ISPF命令(续二)'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>用PIC型中间变量解决Fixed赋值溢出abend</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html" rel="bookmark"
+        title="Permalink to 用PIC型中间变量解决Fixed赋值溢出abend">用PIC型中间变量解决Fixed赋值溢出abend</a></h3>
+    </header>
+
+<h6 class="subheader" title="2012-01-11T00:00:00">2012-01-11
+</h6>
+
+
+    <p _="%" endblockquote="endblockquote">我在Debug一个PLI程序<code>PRGM000</code>的时候遇到了一个<code>CEE34A abend</code>，报的错误信息如下：<br />
+{% blockquote %} 
+You were prompted because the CEE34A condition was raised in your
+program.
+CEE34A is a severity or class 3 condition.
+The operating system has generated the following message:
+CEE3210S The system detected a decimal-overflow exception (System
+Completion Code=0CA).
+The current location is PRGM000 ::&gt; PRGM000 :&gt; 2688.
+{% endblockquote %} 
+不废话，直接上截图：
+<img alt="1" src="/../images/CEE3201S-0CA-abend.jpg" />  <br />
+从图上可以看出，出错的语句是：
+{% blockquote %} 
+TBL_KEY1.TRADE_DATE = COMM_AREA.TRADE_DATE</p>
+<h4>我们来看二者的定义</h4>
+<p><code>COMM_AREA.TRADE_DATE</code>的定义
+{% codeblock lang:c %}
+1 COMM_AREA
+2 USER_AREA,
+...
+5 TRADE_DATE FIXED(9), /<em> 20110901 </em>/
+...;
+{% endcodeblock %}<br />
+<code>TBL_KEY1.TRADE_DATE</code>的定义
+{% codeblock lang:c %}
+DCL 1 TBL_KEY1
+3 SPARE_CLIENT CHAR(4),
+3 IDENT_ID CHAR(9),
+3 TRADE_DATE FIXED(7),
+3 NUM FIXED(3);
+{% endcodeblock %}<br />
+所以很明显，发生abend的原因是把一个<code>FIXED(9)</code>的值赋给了一个<code>FIXED(7)</code>的变量，从而产生了溢出。</p>
+<h3>下面是解决办法:</h3>
+<p>定义一个<strong>PIC类型</strong>的中间变量 <strong><code>PIC_TRADE_DATE_9</code></strong> 做转换桥梁：<br />
+{% codeblock lang:c%}
+DCL PIC_TRADE_DATE_9 PIC '(9)9' INIT(0);
+PIC_TRADE_DATE_9 = COMM_AREA.TRADE_DATE;
+(值:020110901)        (值：20110901)
+TBL_KEY1.TRADE_DATE = SUBSTR (PIC_TRADE_DATE_9,4,6);
+(值：110901)          (值：110901)
+{% endcodeblock %}<br />
+到这里，问题已经得到解决。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/用PIC型中间变量解决Fixed赋值溢出abend.html";
+        var disqus_url = "http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

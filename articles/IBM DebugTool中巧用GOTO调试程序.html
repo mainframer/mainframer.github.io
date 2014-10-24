@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>IBM DebugTool中巧用GOTO调试程序</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html" rel="bookmark"
+        title="Permalink to IBM DebugTool中巧用GOTO调试程序">IBM DebugTool中巧用GOTO调试程序</a></h3>
+    </header>
+
+<h6 class="subheader" title="2013-01-04T00:00:00">2013-01-04
+</h6>
+
+
+    <p>最近接触<code>IBM DebugTool</code>比较多，再说一个在mainframe上面调试COBOL或者PL/I程序的技巧吧。 <br />
+经常在用<code>IBM DebugTool</code>或者DTCN调试程序的时候，造测试数据很不容易。如果调试过程中发现这次数据没有造成功，我们没有必要每次都退出全部程序重新造数据，可以巧妙地利用“GOTO”语句，随心所欲地在程序里面跳转。     <br />
+比如下面这一个程序段，在调试过程中我们可以在Call黑盒子程序<code>BLACKBOX</code>的前后都设置一个断点，即9178行以及9202行都设置一个断点，如果我们发现程序跑到了9202行但是返回码不是我们想要的结果，那么运行<code>“GOTO 9178”</code> 即可重新回到Call黑盒子之前，无限反复尝试，重新造数据，直到成功！<br />
+{% codeblock lang:python %} 
+SOURCE: TESTPGM1 --1----+----2----+----3----+----4----+----5 LINE: 9178 OF 15895
+0020  01 WS-FIELDS.
+0021  05 WS-CALLED-PGM            PIC X(08) VALUE 'BLACKBOX'.
+0022  05 WS-RETURN-CD             PIC X(04) VALUE SPACES.
+0023  05 WS-RETURN-MSG            PIC X(20) VALUE SPACES.
+  ...
+9178 INITIALIZE COMMAREA1                      <br />
+9179 MOVE 4500.00     TO WAGE OF COMMAREA1
+9180 MOVE TODAYS-DATE TO ENROLL-DATE OF COMMAREA1
+9181 SET  WS-CALLED-PGM-PTR    TO ADDRESS  OF COMMAREA1
+9182 CALL WS-CALLED-PGM        USING WS-CALLED-PGM-PTR<br />
+9183 ON EXCEPTION                                       <br />
+9184   SET  CALLED-UNSUCCESSFUL   TO TRUE          <br />
+9185   MOVE 'ERR1'                TO RETURN-CD 
+9186   MOVE 'CALL FAILED - EXCEPTION OCCURED' <br />
+9187                              TO WS-RETURN-MSG
+9188 PERFORM A9999-TERMINATION                         <br />
+9189         THRU A9999-EXIT <br />
+9200 END-CALL                 <br />
+9201 
+9202 IF RTN-CODE OF COMMAREA1 = '    '
+  .
+  .
+  .
+{% endcodeblock  %}
+用这种<code>“GOTO”</code>的方法，同样也可以用来解决F2单步执行不小心按多了错过了代码但是还想退回去的情况，可以试试~</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/IBM DebugTool中巧用GOTO调试程序.html";
+        var disqus_url = "http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>大机平台的版本控制工具Changeman</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html" rel="bookmark"
+        title="Permalink to 大机平台的版本控制工具Changeman">大机平台的版本控制工具Changeman</a></h3>
+    </header>
+
+<h6 class="subheader" title="2010-10-30T00:00:00">2010-10-30
+</h6>
+
+
+    <p>在主机上面有好几个比较常见的版本控制工具，比如changeman和Endevor。我介绍下changeman。 </p>
+<h4>ISPF面板上输入C;1</h4>
+<p><img alt="1" src="/../images/changeman-1.jpg" />    </p>
+<h4>changeman的界面，这里装的版本是5.6.2c，</h4>
+<p><img alt="1" src="/../images/changeman-21.jpg" />    </p>
+<h4>我介绍下各个常用选项</h4>
+<h5>1.</h5>
+<p>用来新建，更新一个package的，你需要新建一个package来放置你的PL/I，COBOL程序和JCL等等</p>
+<h5>2.</h5>
+<p>将package freeze或unfreeze，在你觉得package里面的所有东西都测试得差不多了，可以准备上线安装之前，你要先freeze冻结掉这个package，然后等待相关项目管理人的approve，这样这个package才能被合法地安装。当然，如果你冻结了package之后，发现还有程序需要被修改什么的，这时候你可以反冻结(unfreeze)它，最好在package还没被approve之前。</p>
+<h5>3.</h5>
+<p>promote 或 demote。promote就是把你修改的程序版本提升到更高的level去。举个例子，一般PL/I或COBOL等写的程序在进入生产环境之前都会经过开发(Dev)——&gt;系统集成测试(Sys)——&gt;用户接收测试(UAT)——&gt;生产环境(Prod)，promote就是可以把你的程序从较低的level提升到较高的level，慢慢接近prod，而demote反之就可以了。</p>
+<h5>4.</h5>
+<p>给项目管理人员用的，用来批准或拒绝你已经冻结(freeze)掉的package</p>
+<h5>5.</h5>
+<p>列出package，这个比较常用。比如你建了个package,在这个package里面改程序，下次登录的时候你只要把你的package ID在list里面输入就可以了。</p>
+<h5>Q.</h5>
+<p>很实用的一个功能。可以查到package,components，最重要的是它可以查到所有的components之间的依赖关系。比如你要查某个component的编译信息，你要查程序A都被那些Proc调用到，你要查Proc A都被哪些JCL调用到。</p>
+<h6>Query的菜单</h6>
+<p><img alt="1" src="/../images/changeman-31.jpg" /> <br />
+先介绍到这里好了，给个印象.</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/大机平台的版本控制工具Changeman.html";
+        var disqus_url = "http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

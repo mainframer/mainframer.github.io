@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - z/OS</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/外企email常见英语缩写.html"><h3 class="article-title">外企email常见英语缩写</h3></a>
+<h6 class="subheader" title="2011-08-11T00:00:00">2011-08-11
+</h6>
+
+
+<p>说几个在外企工作跟老外email或者聊天工具中常用的英语缩写： 
+<code>AFAIK</code>：as far as I know<br />
+<code>APP</code>： application    <br />
+<code>ASAP</code>： As soon as possible    <br />
+<code>ATB</code>：all the best <br />
+<code>BTW</code>： by the way    <br />
+<code>Biz</code>： business    <br />
+<code>B4</code>：before  <br />
+<code>CC</code>：carbon copy(抄送)    <br />
+<code>CUZ</code>： because    <br />
+<code>FAQ</code>：frequently asked questions    <br />
+<code>FE</code>： for example  <br />
+<code>FTF</code>： face to face    <br />
+<code>FYI</code>： for your information     <br />
+<code>F2T</code>：free to ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/外企email常见英语缩写.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/外企email常见英语缩写.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack一些基本配置.html"><h3 class="article-title">Backtrack一些基本配置</h3></a>
+<h6 class="subheader" title="2011-08-09T00:00:00">2011-08-09
+</h6>
+
+
+<h5>查看网络配置信息</h5>
+<p>root@bt:/#  <code>ifconfig -a</code>     </p>
+<h5>手动激活未使用的网卡eth0</h5>
+<p>root@bt:/#  <code>ifconfig eth0 up</code>     </p>
+<h5>通过DHCP自动为eth0网卡分配ip地址</h5>
+<p>root@bt:/#  <code>dhclient eth0</code>    </p>
+<h5>也可手动为eth0网卡分配ip</h5>
+<p>root@bt:/#  <code>ifconfig eth0 192.168.1.105 netmask 255.255.255.0</code>     </p>
+<h5>添加网关</h5>
+<p>root@bt:/#  <code>route add default gw 192.168.1.1</code>     </p>
+<h5>查看dns配置信息:</h5>
+<p>root@bt:/#  <code>cat /etc/resolv.conf</code>    </p>
+<h5>编辑dns配置信息:</h5>
+<p>root ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack一些基本配置.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack一些基本配置.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html"><h3 class="article-title">ISPF中通配符%和*的使用</h3></a>
+<h6 class="subheader" title="2011-08-08T00:00:00">2011-08-08
+</h6>
+
+
+<p>在日常的操作过程中，发现通配符__%<strong>和_<strong><em>_使用的场合还是很多的，而且重要的是，如果使用好的话，真的是会很大程度上提高工作效率的。
+和其他系统的通配符没什么区别，在大机上也是这么定义的：  <br />
+</em>_%</strong>：任意一位字符  <br />
+</strong>*__：任意一至多位字符  <br />
+下面举两个例子： <br />
+输入：<code>IBMUSER.TEST.LIB%</code><br />
+<img alt="1" src="/../images/wild_character01.jpg" />   <br />
+输入：<code>IBMUSER.*.LIB</code>  <br />
+<img alt="1" src="/../images/wild_character02.jpg" />     <br />
+当然，两者可以根据你的需要任意组合使用，这个是没问题的。就像：<code>IBMUSER.*.LIB%</code>这样。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/OLTP和CICS.html"><h3 class="article-title">OLTP和CICS</h3></a>
+<h6 class="subheader" title="2011-08-07T00:00:00">2011-08-07
+</h6>
+
+
+<h3>OLTP:联机事务处理</h3>
+<p>事务的ACID属性：</p>
+<ul>
+<li>原子性(Atomicity) </li>
+<li>一致性(Consistency) </li>
+<li>孤立性(Isolation) </li>
+<li>持久性(Durability)
+关于OLTP的完整性和可恢复机制,这里举两种情况: 
+<strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br />
+<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br />
+此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br />
+<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
+通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
+各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/OLTP和CICS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/OLTP和CICS.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html"><h3 class="article-title">Backtrack5安装Adobe reader看PDF</h3></a>
+<h6 class="subheader" title="2011-08-06T00:00:00">2011-08-06
+</h6>
+
+
+<p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
+<h3>1、下载压缩包到/tmp</h3>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:python %}
+root@bt:~#  cd /tmp <br />
+root@bt:/tmp#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </p>
+<h3>2、下载好之后解压:</h3>
+<p>{% codeblock lang:python %}
+root@bt:/tmp#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2<br />
+tar ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html"><h3 class="article-title">QW命令——MVS/QuickRef帮助文档</h3></a>
+<h6 class="subheader" title="2011-08-05T00:00:00">2011-08-05
+</h6>
+
+
+<p>大机平台上有一个很了不起的帮助文档系统，名字叫做MVS/QuickRef，是一款强大的在线查询系统。用过微软的MSDN的童鞋都知道MSDN的强大。大机上面的MVS/QuickRef几乎可以查到所有你想查的资料，因为这款查询工具号称超过5k万行，以简单易懂著称。最主要的是查询特别方便，使用ISPF直接调用命令QW即可查询内容。<br />
+MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，我们公司还在用的是7.0的版本。这款强大的查询工具是由一家名叫Chicago-Soft的公司生产的，主页在:<a href="http://quickref.com">MVS/QuickRef主页</a>，可以去看看。<br />
+在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：
+{% blockquote %} 
+"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/如何用键盘按出人民币符号.html"><h3 class="article-title">如何用键盘按出人民币符号</h3></a>
+<h6 class="subheader" title="2011-08-04T00:00:00">2011-08-04
+</h6>
+
+
+<p>偶然发现的，写在这记一下：<br />
+如果你现在按下键盘 Shift+数字键4出来的是美元"$"符号的话，<br />
+你可以先按一次Shift,再接着按Shift+数字键4,出来的就是人民币"￥"的符号了。<br />
+要变回美元"$"的符号的话同理，先按一次Shift，再接着按Shift+数字键4,出来的就是人民币"$"的符号了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/如何用键盘按出人民币符号.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/如何用键盘按出人民币符号.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/如何提交网站到Alexa.html"><h3 class="article-title">如何提交网站到Alexa</h3></a>
+<h6 class="subheader" title="2011-08-03T00:00:00">2011-08-03
+</h6>
+
+
+<p>大家都知道网站的Alexa全球排名是一项权威的数据，那么如何将自己的网站信息提交到Alexa呢？<br />
+<strong>1、</strong>登陆Alexa主页<a href="http://www.alexa.com/">http://www.alexa.com/</a>点击右上角的<code>Register</code>注册一个自己的账号。<br />
+<strong>2、</strong>注册好之后登陆，点击<code>Your Site</code>(你的站点)，提示你没有申明过任何站点。这时点击<code>“Add a site now”</code>来添加你的站点。<br />
+<img alt="1" src="/../images/alexa_01.jpg" /><br />
+<strong>3、</strong>在输入框中输入你的站点名称，比如我的就输入：<a href="http://flyuphigh.com">http://flyuphigh.com</a>然后点击<code>"Claim your site"</code>来声明你的站点。<br />
+<img alt="1" src="/../images/alexa_02.jpg" /><br />
+<strong>4、</strong>Alexa需要验证你对输入的站点确实有所有权，不然你随便瞎输网址了都可以了。右击<code>“this file”</code>,把此验证文件下载到本地，然后通过FTP传到你网站的根目录下。比如我的话上传完之后就是<code>flyuphigh.com/BTcj7U4QWU9rex4HiGWNv5rF7IY.html</code>S,上传完点击看看有没有 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/如何提交网站到Alexa.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/如何提交网站到Alexa.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/非常好的学英语的网站.html"><h3 class="article-title">非常好的学英语的网站</h3></a>
+<h6 class="subheader" title="2011-08-03T00:00:00">2011-08-03
+</h6>
+
+
+<p>在国内，我认为最好的学英语的方式就是看英语视频，今天来推荐几个我觉得很不错的网站！ </p>
+<h3>1、爱布谷CCTV-NEWS</h3>
+<p>这个是中国网络电视CNTV，上面有丰富的节目资源，网址是<a href="http://bugu.cntv.cn">爱布谷CNTV</a>。需要学英语的话可以看<a href="http://bugu.cntv.cn/live_channelcctv_news/index.shtml">CCTV-NEWS</a>。不得不说这里面有很多不错的节目，比如海客谈(crossover)，China24和Asia Today，Culture Express，Biz Talk,还有很多不错的主持人，比如邹悦,季小军,杨锐,田薇，爱华，James Chau，芮成钢等等。从我去年底开始看到现在，我是感觉到这个网站在不断的提升档次的，感觉得到大家都很用心在做节目，是不错的学习英语的途径之一。</p>
+<h3>2、网易公开课</h3>
+<p>不得不说，网易公开课是我今年发现的少数好网站之一，网址是<a href="http://v.163.com/open">网易公开课</a>。这个网站几乎手机了现在世界名校的主流课程，有哈佛，牛津，斯坦福，耶鲁等等，课程涵盖范围也是非常的广，包括计算机领域，伦理心理学领域，医学建筑学领域，法律领域，经济金融等等 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/非常好的学英语的网站.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/非常好的学英语的网站.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html"><h3 class="article-title">Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙</h3></a>
+<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
+</h6>
+
+
+<p>上一篇讲到的是windows下的利用<code>ssh+chrome(chromium)+proxy switchy + Myentunnel</code>翻墙，其实在linux下和windows下没什么区别，都是用ssh代理，只是利用的客户端软件不一样而已。windows下用Myentunnel，linux下我们一般用<code>gSTM</code>。 </p>
+<p>gSTM (Gnome SSH Tunnel Manager) 是一款图形化的 SSH 隧道端口重定向管理工具 点击<a href="http://sourceforge.net/projects/gstm/files">这里</a>下载后安装，设置和之前讲得Myentunnel差不多.也是必填的几个：<code>SSH服务器地址</code>,<code>SSH用户名</code>，<code>SSH密码</code>，<code>SSH端口3022</code>，<code>本地端口7070</code>。
+Proxy switchy的设置请参照我的另一篇文章 &lt;<ssh+myEntunnel+chrome+proxy switchy翻墙>&gt;</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 11 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/tag/zos10.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/tag/zos12.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

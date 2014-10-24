@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'SYNCSORT将PD格式转换成CSF(FS)格式'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'SYNCSORT将PD格式转换成CSF(FS)格式'.html" rel="bookmark"
+        title="Permalink to 'SYNCSORT将PD格式转换成CSF(FS)格式'">'SYNCSORT将PD格式转换成CSF(FS)格式'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2013-03-20T00:00:00">2013-03-20
+</h6>
+
+
+    <p _="%" endcodeblock="endcodeblock">客户要求看实时报表，可是从数据库导出来的数据却包含如下所示的显示不怎么友好的数据，这时可以用SORT来转换成客户想要的格式。<br />
+转换之前的文件用<code>HEX ON</code>命令显示如下。可以看出后面三个字段都是PD类型的，并且都占据8位长度。
+{% codeblock %} 
+VIEW       IBMUSER.DFSORT.PDTOCSF.SORTIN                   Columns 00001 00045 
+Command ===&gt; HEX ON                                            Scroll ===&gt; CSR<br />
+=COLS&gt; ----+----1----+----2----+----3----+----4----+                         <br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+000001 AAAA,20130102,1,MD,     à? ,  é     ,  ? &amp; i 
+       CCCC6FFFFFFFF6F6DC600001670600512110600705380
+       1111B20130102B1B44B0000440CB0013100CB0003049C
+----------------------------------------------------
+000002 BBBB,20130102,2,MD,        ,  è?íaà , ?-? d<br />
+       CCCC6FFFFFFFF6F6DC600000000600745440604670800
+       2222B20130102B2B44B0000000CB0147524CB0303743C
+----------------------------------------------------
+000003 CCCC,20130102,3,MD,      &amp; ,  &amp; -b? ,  &amp; -b? 
+       CCCC6FFFFFFFF6F6DC600031150600516860600516860
+       3333B20130102B3B44B0011270CB0008026CB0008026C
+----------------------------------------------------
+000004 DDDD,20130102,4,MD,  é?ae? ,    de  ,      &amp; 
+       CCCC6FFFFFFFF6F6DC600544870600008840600000250
+       4444B20130102B4B44B0016250DB0000450CB0000700D</p>
+<h3>转换要求：</h3>
+<ul>
+<li>每条record的前面19位格式不变。后面三个PD字段中第一个PD字段保留6位小数，第二、三个PD字段保留3位小数；     </li>
+<li>如果是负数，则保留符号'-'，若是正数，省略'+'；     </li>
+<li>如果值是0，也要准确显示；         </li>
+</ul>
+<p>转换之后的文件如下，可以看出，转换结果完全满足客户对报表的需求。
+{% codeblock %} 
+ VIEW       IBMUSER.DFSORT.PDTOCSF.SORTOUT                  Columns 00001 00072 
+ Command ===&gt;                                                  Scroll ===&gt; CSR<br />
+<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
+ 000001 AAAA,20130102,1,MD,           1.464700,       51132110.100,       70035034.890
+ 000002 BBBB,20130102,2,MD,           0.000000,      174475542.440,     4360730784.030
+ 000003 CCCC,20130102,3,MD,        1311.217500,       50186082.660,       50186082.660
+ 000004 DDDD,20130102,4,MD,      -51464.285700,           8485.400,           -720.500 
+{% endcodeblock  %}
+<!--more-->
+ 要实现上面的数据转换，下面是我用到的<em>SORT</em>:
+{% codeblock lang:python %} 
+ //IBMUSERS JOB '00000000',CLASS=0,NOTIFY=&amp;SYSUID,     <br />
+//     MSGCLASS=R,TIME=NOLIMIT                                     <br />
+//SORT  EXEC  PGM=SYNCSORT                                           <br />
+//SORTIN   DD  DSN=IBMUSER.DFSORT.PDTOCSF.SORTIN,DISP=SHR              <br />
+//SORTOUT  DD  DSN=IBMUSER.DFSORT.PDTOCSF.SORTOUT,                 <br />
+//             DISP=(NEW,CATLG,DELETE),                            <br />
+//             UNIT=SYSDA,                                         <br />
+//             SPACE=(CYL,(1,2),RLSE),                             <br />
+//             DCB=(RECFM=FB,BLKSIZE=0)                            <br />
+//SYSOUT DD SYSOUT=*                                                            <br />
+//SYSIN  DD *                                                      <br />
+  SORT FIELDS=COPY                                                 <br />
+  INREC BUILD=(1,19,20,8,PD,EDIT=(SIIIIIIIIIIT.IIIIII),SIGNS=(,-,,), 
+   C',',29,8,PD,EDIT=(SIIIIIIIIIIIIIT.III),SIGNS=(,-,,),           <br />
+   C',',38,8,PD,EDIT=(SIIIIIIIIIIIIIT.III),SIGNS=(,-,,)) 
+{% endcodeblock  %} 
+这里面有3点要说明：   <br />
+<strong>第1</strong>，在SORTOUT里面，<code>DCB=(RECFM=FB,BLKSIZE=0)</code>不必加LRECL参数，SORT会自动帮你算出来。 <br />
+<strong>第2</strong>，SIGNS=(,-,,)的解释:  <code>blank for lp, '-' for ln, blank for tp, blank for tn</code>. <br />
+{% codeblock %} 
+leading positive  sign (lp)
+leading negative  sign (ln)
+trailing positive sign (tp) 
+trailing negative sign (tn)
+{% endcodeblock  %}
+<strong>第3</strong>，原则上EDIT语句可以实现任意格式的输出要求。这里小数点前面的那个"T"是用来保证数据为0.000这种值的时候能正常输出，而不会输出blank。</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'SYNCSORT将PD格式转换成CSF(FS)格式'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'SYNCSORT将PD格式转换成CSF(FS)格式'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - mainframer</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack初探.html"><h3 class="article-title">Backtrack初探</h3></a>
+<h6 class="subheader" title="2011-01-29T00:00:00">2011-01-29
+</h6>
+
+
+<p>一般你去网上一搜Backtrack，出来一堆都是说用backtrack来破解无线网络密码的，似乎强大的backtrack俨然给我们的第一印像就是一个蹭网的工具而已，扫扫Wifi，破解破解<code>WEP/WPA/WPA2</code>加密什么的,实属不该~
+Backtrack,中文不知道该翻译成啥，回溯？Backtrack是基于Slackware和SLAX的自启动运行的操作系统，它的初衷是给计算机安全领域用的。包含安全审计和渗透测试。Backtrack(简称BT)，现在最新的是今年5月份发布的Backtrack5,我现在用的就是BT5,Ubuntu gnome桌面的，你可以选KDE桌面，因为之前我用惯了ubuntu，所以选了gnome的。 在BT5之前还有BT2,BT3,BT4,BT4R2什么的，我接触的比较晚，只接触过BT4R2和BT5。就这两个来说，BT5界面上面确实比BT4R2眩多了。上靓图:
+<img alt="1" src="/../images/BackTrack51.jpg" />  <br />
+其实呢，Backtrack之所以吸引我的原因是因为它上面集成了无数无比强大的黑客工具（渗透工具），其中包含大家非常熟悉的强大的扫描工具nmap，Nessus等等，强大的Sniff工具Wireshark等，可以说是当前渗透测试人员和网络安全专家必备的测试平台。可不仅仅是蹭网的哦。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack初探.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack初探.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html"><h3 class="article-title">Dataset View和Browse的区别</h3></a>
+<h6 class="subheader" title="2011-01-13T00:00:00">2011-01-13
+</h6>
+
+
+<p>在大机上，View和Browse都能查看dataset/member，它们有什么区别呢？下面是我在平常的工作当中找到的三点区别，欢迎补充！ </p>
+<h4>1、Browse默认显示80列，而View默认显示72列，当然两者都可以用PF11向右翻页。</h4>
+<h4>2、Browse不允许修改，尝试修改会马上锁屏，而View可以修改，但不能保存成当前同名的，就是说有"另存为"的功能。</h4>
+<h4>3、Browse下许多命令不能用，比如语法高亮HI ON,比如JCL语法检查JEM，而View下都可以用。</h4>
+<p>你在view一个Member，若尝试做任何更改，会跳出这样的一段提示的话:
+<img alt="1" src="/../images/browse_view_01.jpg" />  <br />
+当你在View一个member的时候，可以在左边列用两个<code>CC</code>选择你要另存为的范围，然后在command栏上输入<code>CREATE</code>，回车即可另存为了:
+<img alt="1" src="/../images/browse_view_02.jpg" /> </p>
+<p>个人认为View最有用的就是可以提交别人的JCL。下图中，假设你的ID是<code>USERID02</code>,而<code>USERID01</code>是你同事的ID，你自然是没有权限去sub他/他的JCL，这时，你要么可以把这个JCL拷到你自己的LIB下面改成你的ID再sub，要么直接View进去，改成你的ID，sub完之后无需保存即可。对于这种别人的JCL又不想麻烦地copy到自己lib时，是不是方便多了呢？
+<img alt="1" src="/../images/browse_view_03.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux桌面系统KDE和GNOME.html"><h3 class="article-title">Linux桌面系统KDE和GNOME</h3></a>
+<h6 class="subheader" title="2010-12-18T00:00:00">2010-12-18
+</h6>
+
+
+<p>Windows的成功告诉我们，用户体验很重要。因为并不是所有人都希望能只能对着一个黑乎乎的shell来进行所有的操作。至少大多数人是不喜欢这样的操作方式的。当前linux上得桌面系统主要可以分为<code>KDE</code>和<code>GNOME</code>。</p>
+<h4>KDE</h4>
+<p>特点是界面美观，设置和使用相对复杂。KDE在UNIX，许多Linux发行版，FreeBSD上都得到应用。使用KDE作为默认桌面管理系统的linux发行版本大概有：Debian GNU/Linux，Fedora Core，Gentoo Linux，Kubuntu,SUSE Linux，FreeBSD以及纯正的UNIX等。</p>
+<h4>GNOME</h4>
+<p>以前说GNOME没有KDE漂亮还可以接受，但现在Ubuntu的强势发展，使得GNOME也不断完善。特别是GNOME的3D桌面动态效果是很吸引新人使用的。可以说，GNOME现在已经是一种非常成熟的桌面系统，具有易用性，稳定性等特点。现在，越来越多的linux发行版本都开始支持GNOME桌面系统了，连BACKTRACK这样的非主流linux系统，在BT5发行里面就有GNOME的桌面，这一点足以证明GNOME的市场成功了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux桌面系统KDE和GNOME.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux桌面系统KDE和GNOME.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html"><h3 class="article-title">Linux包管理系统RPM和Deb</h3></a>
+<h6 class="subheader" title="2010-12-12T00:00:00">2010-12-12
+</h6>
+
+
+<p>本质上来说，包也是linux应用软件的一种。用过一段时间linux的人都知道，一般linux中安装软件都是通过包的形式安装的。目前最流行的两种包的管理系统是Red Hat的RPM包和基于Debian发行版本的Deb包。</p>
+<h3>RPM包管理系统</h3>
+<p>Linux家族中有五十多种发行版本是基于Red Hat的RPM包管理系统的。有欧洲最流行的发行版SUSE/OpenSUSE，有著名的Red Hat企业版，我国发行的红旗linux等等。由于Red Hat在linux业界的领导地位，使得RPM包管理方式俨然成了linux业界的工业标准。   </p>
+<ul>
+<li><em>rpm -vih file.rpm</em>            #安装RPM包   </li>
+<li><em>rpm -e file.rpm</em>              #卸载RPM包    </li>
+<li><em>rpm -qpR file.rpm</em>            #查看RPM包依赖关系    </li>
+<li><em>rpm -q file.rpm</em>              #查看系统已经安装的rpm包  </li>
+</ul>
+<h3>Deb包管理系统</h3>
+<p>RPM包管理系统应用虽然广泛，但本身具有很难解决包依赖关系的问题，这点上，基于Deb的包管理系统俨然是一种更好地选择。使用Deb包管理系统的linux发行版本有Debian和近几年很火的Ubuntu。现在，Ubuntu可以说在linux个人桌面市场上是一枝独秀，这也是的基于Deb包的管理方式被更多人所熟悉。跟RPM包不同的的是，Deb包里面包含的是二进制文件和一些config文件，也可以直接打开来看。但是Deb包管理系统提供了丰富的安装 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir重新连接路由器.html"><h3 class="article-title">Watir重新连接路由器</h3></a>
+<h6 class="subheader" title="2010-12-12T00:00:00">2010-12-12
+</h6>
+
+
+<p>有些网站对IP有所限制，如果你不想用代理IP的话，那么有一个看起来有点傻但却很简单的办法可以起到更换IP的效果——将路由器断线重连。因为家用宽带路由器的IP基本上是由运营商动态分配的，所以你只要登陆路由器，点击断线，等内网发送数据包请求至外网的时候，路由器重新连接上，IP也随之改变了。这方法虽然笨，但也实用。下面是用Watir脚本实现的，仅供参考。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span><span class="o">=</span><span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">start</span> <span class="s1">&#39;http://admin:admin@192.168.1.1&#39;</span>   <span class="c1">#用此方法可以避开用户密码登陆框 用户名密码这里都是admin</span>
+<span class="n">b</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span><span class="s2">&quot;bottomLeftFrame&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s1">&#39;a0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>     <span class="c1">#点击 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir重新连接路由器.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir重新连接路由器.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html"><h3 class="article-title">DATACOM数据库介绍</h3></a>
+<h6 class="subheader" title="2010-11-29T00:00:00">2010-11-29
+</h6>
+
+
+<p>CA Datacom听过么？它是CA(Computer Associates)公司的企业级数据库。以能承受高负荷和较强的容错性著称，在mainframe平台上有比较广泛地应用，不过最近几年Datacom公司貌似不怎么行了，大家都换上了IBM的DB2数据库了。<br />
+Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说是具备了基本的文件系统特征。通常KEY是某个或某几个字段的组合，一个table可以有多个KEY。在PL/I或COBOL程序中访问Datacom是通过调用接口DBNTRY来实现的(<span style="color: #ff00ff;">XXX</span>是table名字)。 在COBOL中是这样call的(<span style="color: #ff00ff;">XXX</span>是table名字)：
+{% codeblock lang:ruby %}
+CALL ‘DBNTRY’ USING USER-ID
+      XXX-REQ-AREA
+      XXXF0
+      XXX-ELEMENT-LIST
+{% endcodeblock %}<br />
+而在这之前，要先声明：
+{% codeblock lang:ruby%}
+01 USER-ID.
+05 PROGRAM-NAME PIC X(08) VALUE 'MYPGM00 '.
+05 FILLER PIC ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/DATACOM数据库介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux压缩命令.html"><h3 class="article-title">Linux压缩命令</h3></a>
+<h6 class="subheader" title="2010-11-26T00:00:00">2010-11-26
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock">在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
+压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  <br />
+<code>tar格式</code>
+{% codeblock %}
+tar xvf A.tar
+tar cv A.tar directory<br />
+{% endcodeblock %}
+<code>gz格式</code>
+{% codeblock %}
+gunzip -d A.gz
+也可用 gzip——gzip A.gz
+{% endcodeblock %}
+<code>tar.gz/tgz格式</code>
+{% codeblock %}
+tar zxvf A ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux压缩命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux压缩命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html"><h3 class="article-title">大机平台的版本控制工具Changeman</h3></a>
+<h6 class="subheader" title="2010-10-30T00:00:00">2010-10-30
+</h6>
+
+
+<p>在主机上面有好几个比较常见的版本控制工具，比如changeman和Endevor。我介绍下changeman。 </p>
+<h4>ISPF面板上输入C;1</h4>
+<p><img alt="1" src="/../images/changeman-1.jpg" />    </p>
+<h4>changeman的界面，这里装的版本是5.6.2c，</h4>
+<p><img alt="1" src="/../images/changeman-21.jpg" />    </p>
+<h4>我介绍下各个常用选项</h4>
+<h5>1.</h5>
+<p>用来新建，更新一个package的，你需要新建一个package来放置你的PL/I，COBOL程序和JCL等等</p>
+<h5>2.</h5>
+<p>将package freeze或unfreeze，在你觉得package里面的所有东西都测试得差不多了，可以准备上线安装之前，你要先freeze冻结掉这个package，然后等待相关项目管理人的approve，这样这个package才能被合法地安装。当然，如果你冻结了package之后，发现还有程序需要被修改什么的，这时候你可以反冻结(unfreeze)它，最好在package还没被approve之前。</p>
+<h5>3.</h5>
+<p>promote 或 demote。promote就是把你修改的程序版本提升到更高的level去。举个例子，一般PL/I或COBOL等写的程序在进入生产环境之前都会经过开发(Dev)——&gt;系统集成测试(Sys)——&gt;用户接收测试(UAT)——&gt;生产环境(Prod)，promote就是可以把你的程序从较低的level提升到较高的level，慢慢接近prod，而demote反之就可以了。</p>
+<h5>4 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html"><h3 class="article-title">登陆大型机——Aviva的介绍</h3></a>
+<h6 class="subheader" title="2010-10-28T00:00:00">2010-10-28
+</h6>
+
+
+<p>一般我们日常用PC机工作拿什么软件来跟大型机(以下简称大机)交互呢? 理论上说几乎所有的终端登陆软件都可以的。而且一般每种终端登陆软件都支持多种协议连接到大机上，比如最常见的<code>TCP/IP，FTP,TELNET,SSL</code>等等。这些软件有很多，外面比较常用的是<code>PCOMM，putty，SecCRT</code>等等，我只用过PCOMM，稍微配置下IP啥的就可以连大机了。这个百度下就出来一堆。 
+我们公司比较另类，用的终端软件叫Aviva，一般我们读作"鹅vi哇"，希伯来词，意为“美丽的春天”, 产自美国美国(Eicon)公司。谷歌能下载到，不过只有试用版的貌似。 
+下面我说下Aviva的一些基本概念和使用。  </p>
+<h3>Destination和Session的配置:</h3>
+<p>所谓Destination 就是大型机的物理IP，你要连接到大型机上，就必须得配置下大型机的IP。装好aviva后，开始——&gt;程序——&gt;Eicon Aviva——&gt;Create New Destination
+这里destination的名字就取：My Destination ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html"><h3 class="article-title">Watir收集最快的代理服务器ip列表</h3></a>
+<h6 class="subheader" title="2010-09-10T00:00:00">2010-09-10
+</h6>
+
+
+<p>这个脚本所做的事情是从www.cnproxy.com网站上取得最新的10页代理服务器的ip，将它们写到proxy_ip_list.txt文本文件中去。包括每一个代理服务器的响应时间。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">time1</span><span class="o">=</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<span class="n">proxy_ip_lists</span><span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;proxy_ip_lists.txt&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">char2int</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span> <span class="n">str</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span>
+      <span class="k">if</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;z&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;3&#39;</span>
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 13 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/author/mainframer12.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/author/mainframer14.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

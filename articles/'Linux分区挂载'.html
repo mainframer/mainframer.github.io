@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'Linux分区挂载'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'Linux分区挂载'.html" rel="bookmark"
+        title="Permalink to 'Linux分区挂载'">'Linux分区挂载'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
+</h6>
+
+
+    <p>硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有<code>Windows</code>和<code>FressBSD</code>等操作系统才需要将自己安装在硬盘的主分区里面，而<code>Linux</code>呢，可以被安装在逻辑分区里面。
+<!--more--></p>
+<h3>分区编号</h3>
+<p>Linux将所有的存储设备(包括硬盘)都挂载<code>/dev</code>目录下新建一个子目录来管理，比如下面:<br />
+<code>/dev/hda1</code> 第一块IDE硬盘的第一个主分区  <br />
+<code>/dev/hda2</code> 第一块IDE硬盘的第二个主分区  <br />
+<code>/dev/hda5</code> 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  <br />
+<code>/dev/sda1</code> 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   </p>
+<h3>挂载点</h3>
+<p>所谓挂载点，就是将分区挂到一个以<code>“/”</code>开头的目录中。  <br />
+<code>/</code>:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   <br />
+<code>swap</code>:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来，直接放在独立的分区上。这个分区一般大小为内存大小的2倍即可。  <br />
+<code>/home</code>:  用户的主目录 ，是我们存放文件的地方。应当为其独立分配一个分区，这样的话重装系统就不会破坏这个分区里面的文件，并且很多软件的配置信息都存在这里面，重装系统之后就不用再花费精力去重新配置。  <br />
+<code>/usr</code>:   应用程序目录 ，大部分软件都安装在这里，普通用户可不再划分这个分区。  <br />
+<code>/var</code>:   安装的是服务器方面的应用，作为桌面个人用户的话，大可不必划分这个分区。  <br />
+<code>/boot</code>:  存放系统启动所需要的内核文件，包括启动管理器，建议用户划分这个分区。当然，由于内核不大，所以划分500M到1个G给这个分区足够了。  </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'Linux分区挂载'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'Linux分区挂载'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

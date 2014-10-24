@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'IBM DebugTool的Source Identification Panel'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'IBM DebugTool的Source Identification Panel'.html" rel="bookmark"
+        title="Permalink to 'IBM DebugTool的Source Identification Panel'">'IBM DebugTool的Source Identification Panel'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2012-12-26T00:00:00">2012-12-26
+</h6>
+
+
+    <p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:
+{% blockquote %} 
+SOURCE
+or 
+LIST
+{% endblockquote  %}
+这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。
+{% codeblock lang:python %} 
+                 Source Identification Panel                               <br />
+Command ===&gt;                                                                  </p>
+<p>Compile Unit              Listing/Source File                          Display</p>
+<hr />
+<p>TESTPGM1                   IBMUSER.TEST.LOAD.LIB1(TETPGM1)                Y<br />
+TESTPGM2                   IBMUSER.TEST.LOAD.LIB2(TETPGM2)                Y 
+TESTPGM3                   IBMUSER.TEST.LOAD.LIB3(TETPGM3)                Y     </p>
+<p>Enter  END/QUIT    to return with current settings saved.                   <br />
+       CANCEL      to return without current settings saved.   <br />
+{% endcodeblock  %}
+就像上面这样，你一眼就可以知道你当前调试的<em>TESTPGM1</em>这个程序是从<code>IBMUSER.TEST.LOAD.LIB1</code>这个<em>loadlib</em>里面取到的，还有<em>TESTPGM2</em>，<em>TESTPGM3</em>也都可以知道它们是从哪里取到的，免得调试了半天发现版本不对那可就不好了！</p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'IBM DebugTool的Source Identification Panel'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'IBM DebugTool的Source Identification Panel'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

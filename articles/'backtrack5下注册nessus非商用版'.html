@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>'backtrack5下注册nessus非商用版'</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="http://mainframer.github.io/articles/'backtrack5下注册nessus非商用版'.html" rel="bookmark"
+        title="Permalink to 'backtrack5下注册nessus非商用版'">'backtrack5下注册nessus非商用版'</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-09-08T00:00:00">2011-09-08
+</h6>
+
+
+    <p>打开BT5下菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus start</code> 会提示插件缺失需要注册。
+{% codeblock lang:python %}
+root@bt:~# Missing plugins. Attempting a plugin update...
+Your installation is missing plugins. Please register and try again.
+To register, please visit http://www.nessus.org/register/
+{% endcodeblock %}
+<!--more-->
+到官网<a href="http://www.nessus.org/register/">http://www.nessus.org/register</a>注册，好工具只给注册家用版，填好邮箱注册即可，登陆邮箱会收到一封确认邮件。告诉你在不同系统<code>(windows/linux/bsd/mac os/)</code>下该如何做。我在<code>BT5</code>下，按照提示运行命令即可：
+{% blockquote %} 
+Linux and Solaris Users :</p>
+<hr />
+<p>To activate your account, simply execute the following command :
+/opt/nessus/bin/nessus-fetch --register 04BB-41FD-A885-94B5-9B50
+{% endblockquote %} 
+(这串序列号是每次官网注册随即生成的，这个是我注册的时候提供给我的)
+<img alt="1" src="/images/backtrack5-nessus-register.jpg" />          <br />
+之后就是正常更新插件，更新完毕你就可以正常使用强大的nessus漏洞扫描工具了，可以看到版本号是最新的4.4.1。只不过这是非商用版的，商用版的一般给企业用的。
+<img alt="1" src="/images/backtrack5-nessus-register-ok.jpg" />          <br />
+进入菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus user add</code>
+添加<code>username:root</code>、 <code>password:toor</code> (可以随便添加用户名密码) 
+更改默认设置: 
+{% codeblock lang:python %}
+root@bt:gedit /opt/nessus/etc/nessus/nessusd.conf
+listen_address = 127.0.0.1 (默认为0.0.0.0)
+enable_listen_ipv4 = yes （默认没有开启ipv4侦听）
+{% endcodeblock %}
+登陆浏览器，输入地址：<code>https://127.0.0.1:8834/</code>, 其中8834为nessus默认的web端口。一段时间的初始化之后，输入刚才添加的用户名root和密码toor即可使用nessus homefeed版本了。可以看到homefeed版本给了5年的试用时间。
+<img alt="1" src="/images/backtrack5-nessus-register-web-about.jpg" />           </p>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+
+	<h4>Comments</h4>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mainframer'
+        var disqus_identifier = "articles/'backtrack5下注册nessus非商用版'.html";
+        var disqus_url = "http://mainframer.github.io/articles/'backtrack5下注册nessus非商用版'.html";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

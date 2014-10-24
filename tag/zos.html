@@ -46,55 +46,392 @@
         
 
             <article>
-                <a href="http://mainframer.github.io/articles/LOADPARM-Description-z-OS-1.6.html"><h3 class="article-title">LOADPARM  Description(z/OS 1.6)</h3></a>
-<h6 class="subheader" title="2010-06-04T20:06:00">2010-06-04
+                <a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html"><h3 class="article-title">关于MAC下用SSH翻墙的小结(转)</h3></a>
+<h6 class="subheader" title="2013-06-12T00:00:00">2013-06-12
 </h6>
 
 
-<p><code>CS</code>         CLPA and cold start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
-<code>00</code>         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
-<code>WS</code>         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
-<code>DC</code>         CLPA, brings in CICS LPA modules, cold start of JES2, starts up DB2 and CICS. <br />
-<code>DB</code>         Warmstart of JES2 and starts the DB2 and CICS. <br />
-<code>DI</code>         CLPA and cold start of JES2 and loads the IMS Libraries. IMS must be manually started. <br />
-<code>CC</code>         CLPA and cold start of JES2, loads the CICS Libraries, starts up CICS, no DB2. <br />
-<code>CW</code>         Warm start of JES2, and starts up CICS. <br />
-<code>7C</code>         CLPA, cold start of JES2, starts up DB2 V7, no CICS. <br />
-<code>7W</code>         Warm start of JES2, starts up DB2 V7, no CICS. <br />
-<code>8C</code>         CLPA, cold start of JES2, starts up DB2 v8, no CICS. <br />
-<code>8W</code>         Warm start of JES2, starts up DB2 v8, no CICS. <br />
-<code>IC</code>         CLPA and cold start of JES2 and load the IMS Libraries, start IMS, no DB2 or CICS. <br />
-<code>IW</code>         Warm start of JES2 start IMS, no DB2 or CICS. <br />
-<code>AC</code>         CLPA and cold start of JES2 load IMS and CICS libraries, start IMS, DB/2, and CICS. <br />
-<code>AW</code>         Warmstart of JES2. start IMS, DB/2, and CICS. <br />
-<code>BC</code>         CLPA and cold start of JES2, load WAS libraries, WAS is manually started <br />
-<code>BW</code>         Warmstart of JES2. WAS is manually started. <br />
-<code>99</code>         Points to IODF99 for IPL on MP3000. Reply 00,SYSP=xx were xx is any of the above options i.e. for cics only xx=cc or cw.   </p>
-<h4>Device number: <strong>0A80</strong> 　Load Parm: <strong>0A82CSM1</strong></h4>
-<p><img alt="1" src="/images/zosmoni_loadparm_1.png" />     </p>
-<h4>Device number: <strong>0A80</strong> 　Load Parm: <strong>0A82DBM1</strong></h4>
-<p><img alt="1" src="/images/zosmoni_loadparm_2.png" />     </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  </p>
+<h3>以下内容转自：</h3>
+<p><a href="http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/">http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/</a><br />
+回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  </p>
+<h4>方法一，终端加网络配置</h4>
+<p>这个真的是又简单又粗暴。。。分两步：<br />
+首先，打开你的终端，输入：<br />
+{% blockquote %} 
+ssh -D port user@hostname
+{% endblockquote %} 
+其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
+然后，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选”SOCKS 代理”-&gt;旁边的”SOCKS 代理服务器”里填127.0.0.1，端口填你刚才写的那个，点个好点个应用，搞定。  </p>
+<h5>注意，</h5>
+<p>终端的ssh连接不能关闭。<br />
+注意你的ssh的服务器的访问限制，尤其是像我这样的用学校的ssh服务器的，如果去访问了一些不该访问的，就该有学校的警告mail来了<br />
+这个方法简单粗暴但是也太粗糙，所有的访问都会通过ssh服务器来进行，所以即使我看个sina新闻也要绕到遥远的nagoya去，而且pipe还可能崩坏。<br />
+推荐人群：如果只是为了时不时地上个推上个fb的话，只要你的ssh也允许，可以尝试。   </p>
+<h4>方法二，iSSH加.pac文件</h4>
+<p>这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&gt;&lt;。。。 <br />
+首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。<a href="/download/iSSH.zip">点我下载</a> <br />
+app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
+其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： 
+{% codeblock lang:python %}
+function FindProxyForURL( url, host )
+{
+ if ( shExpMatch(url, "<em>ip38</em>")
+     || shExpMatch(url, "<em>1-apple.com.tw</em>")
+     …
+     …
+     || shExpMatch(url, "<em>facebook.com</em>")
+     || shExpMatch(url, "<em>facebook cdn</em>")
+     …
+              || shExpMatch(url, "<em>twitter.com</em>")
+     || shExpMatch(url, "<em>twitter.com/amoiist</em>")
+     || shExpMatch(url, "<em>twitter.com/BeiJing1989</em>")
+     || shExpMatch(url, "<em>twitter.com/billzhong</em>")
+     || shExpMatch(url, "<em>twitter.com/nowhere1975</em>")
+     || shExpMatch(url, "<em>twitter.com/shizhao</em>")
+     || shExpMatch(url, "<em>twitter.com/VOTChinese</em>")
+     || shExpMatch(url, "<em>twitter.com/wenyunchao</em>")
+     || shExpMatch(url, "<em>twitter.com/wumao</em>")
+     || shExpMatch(url, "<em>twitter.com/zengjinyan</em>")
+     || shExpMatch(url, "<em>twitter.com/zuola</em>")
+     || shExpMatch(url, "<em>https://twitter.com/</em>")
+     || shExpMatch(url, "<em>https://www.twitter.com/</em>")
+     || shExpMatch(url, "http://apiwiki.twitter.com/<em>")
+     || shExpMatch(url, "http://dev.twitter.com/</em>")
+     || shExpMatch(url, "http://status.twitter.com/<em>")
+     …
+     || shExpMatch(url, "</em>youtube.com<em>")
+     || shExpMatch(url, "</em>hk.youtube.com<em>")
+     || shExpMatch(url, "</em>tw.youtube.com<em>")
+     || shExpMatch(url, "</em>youtube.com/get_video<em>")
+     || shExpMatch(url, "</em>Youtube CDN*")
+     …
+     )
+    return "SOCKS 127.0.0.1:7070";
+ else 
+    return "DIRECT";
+}
+{% endcodeblock %}
+这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。其余的网址请自行添加，我稍后会放出下载。右键点我然后 <a href="/download/gfwlist.pac">另存为</a><br />
+接着，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选“自动代理配置”-&gt;“选取文件”-&gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
+最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  </p>
+<h5>注意，</h5>
+<p>上面的iSSH的SOCKS Proxy -D的端口和.  pac的文件末尾所写的那个端口必须一致，而之所以选择7070,是因为我最开始拿到这个文件的时候它写的就是7070＝＝<br />
+这个方法相对上一个方法更稳定，因为它只有在访问那些需要翻墙的url的时候才会通过ssh服务器，所以限制更少，pipe也不容易崩坏，<br />
+推荐人群：如果你的ssh服务器对国内的网址很不友好的话，用这个会好点。<br />
+以上，<br />
+2012－3－28<br />
+于爵仕官邸某7楼床上  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/loadparm.html">LoadParm </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/LOADPARM-Description-z-OS-1.6.html#disqus_thread">comments</a></p>            </article>
+<p><a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html#disqus_thread">comments</a></p>            </article>
 
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/heroku push timeout错误.html"><h3 class="article-title">heroku push timeout错误</h3></a>
+<h6 class="subheader" title="2013-05-08T00:00:00">2013-05-08
+</h6>
+
+
+<p>博客托管在<code>heroku</code>云平台上，这两天突然没法更新了。在执行<code>git push heroku</code>命令的时候总是提示time out 错误：
+{% codeblock lang:python %}
+$ git push heroku</p>
+<h1>ssh: connect to host heroku.com port 22: Operation timed out</h1>
+<h1>fatal: The remote end hung up unexpectedly</h1>
+<p>{% endcodeblock %}
+折腾了我两天没搞定，<code>stackoverflow</code>上面给的解决方法也不怎么靠谱，让我反反复复重新设置了好几遍<code>ssh key</code>，浪费了不少时间。刚刚在<code>ruby-china.org</code>上找到了解决办法。原来又是因为神奇的GFW，难怪stackoverflow上面的答案没搞定我的问题，那些外国人根本就不明白咱们这的特殊国情 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/heroku push timeout错误.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/heroku push timeout错误.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html"><h3 class="article-title">用INTRDR在job中submit第二个job</h3></a>
+<h6 class="subheader" title="2013-04-22T00:00:00">2013-04-22
+</h6>
+
+
+<p>今天学到的，如何在当前<code>job</code>当中<code>trigger</code>另外一个<code>job</code>？答案就是利用<code>Internal Reader</code> 
+例如：<br />
+{% codeblock lang:python %} 
+//<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><br />
+//<em>*  <br />
+//</em> Submit an DUMMY job MYJOB2 from current job card 
+//* Submit to the Internal Reader                                  </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em><em>
+//STEP04    EXEC PGM=IEBGENER                <br />
+//SYSUT1   DD  DISP=SHR,DSN=IBMUSER.TEST.CNTL(MYJOB2)         <br />
+//SYSUT2   DD  SYSOUT=(</em>,INTRDR)                          <br />
+//SYSPRINT DD  SYSOUT=</em>                                   <br />
+//SYSIN    DD ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html"><h3 class="article-title">Mainframer版本的程序猿吐槽</h3></a>
+<h6 class="subheader" title="2013-04-15T00:00:00">2013-04-15
+</h6>
+
+
+<p _="%" endcodeblock="endcodeblock">下面这段JCL挺有意思的，之前见过其它版本的，今天在一个国外网站看到的<code>mainframe</code>版本的，记下，纯属娱乐。
+{% codeblock lang:python %} 
+//MYWALLET EXEC PGM=SPOUSE
+//SYSIN DD DSN=MYWALLET.ALL,DISP=SHR
+//SYSOUT DD DUMMY </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html"><h3 class="article-title">ISPF中使用Ctrl+Z来执行UNDO命令</h3></a>
+<h6 class="subheader" title="2013-04-08T00:00:00">2013-04-08
+</h6>
+
+
+<p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
+首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
+<h4>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h4>
+<p _="%" endcodeblock="endcodeblock">{% codeblock lang:python %} 
+/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
+/</em> This macro load automaticly when you open a dataset for edit.    */    <br />
+ Address  ispexec                                                   <br />
+ "ISREDIT MACRO"                                                    <br />
+ "ISREDIT RECOVERY ON"                                                                                                <br />
+exit ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html"><h3 class="article-title">每天定时从Mainframe下载gdg文件再上传到ftp</h3></a>
+<h6 class="subheader" title="2013-04-01T00:00:00">2013-04-01
+</h6>
+
+
+<p>今天要完成一个任务：  </p>
+<h4>任务描述</h4>
+<h6>Step1:从大机(mainframe)上下载指定的gdg最新的2个generation到本地C:\gdg目录下。</h6>
+<h6>Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的<code>/topath/users-4/</code>目录下面，每天新建一个目录<code>yyyymmdd</code>用来存放当天的gdg文件。</h6>
+<h6>Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。</h6>
+<p>这里是实现以上任务的批处理脚本<code>ftpscript.bat</code>。放在<code>C:\ftpscript</code>.bat，之后在windows计划任务里面添加每天定时运行即可。   </p>
+<p>{% codeblock lang:python %} 
+@echo off
+rem 指定mainframe的IP
+set mfIP=xxx.xxx.xxx.xxx
+rem 指定mainframe用户名
+set mfUser=IBMUSER
+rem 指定mainframe密码
+set mfPass ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BAT批处理现学现用.html"><h3 class="article-title">BAT批处理现学现用</h3></a>
+<h6 class="subheader" title="2013-03-29T00:00:00">2013-03-29
+</h6>
+
+
+<p>上篇说的是本人在实现报表自动化过程中用到的VBS知识，这篇我打算用来总结在此过程中用到的批处理知识。</p>
+<h4>批处理里面如何实现延时？</h4>
+<div class="highlight"><pre><span class="n">rem</span> <span class="err">巧妙地利用</span><span class="n">windows</span><span class="err">自带的</span><span class="n">ping</span><span class="err">命令来达到延时的目的</span>
+<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
+</pre></div>
+
+
+<h4>批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]</h4>
+<div class="highlight"><pre><span class="err">@</span><span class="n">echo</span> <span class="nl">off</span>
+<span class="p">:</span><span class="n">input_module</span>
+<span class="n">echo</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">date</span> <span class="nl">here</span><span class="p">:</span>
+<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">yyyymm</span><span class="o">=^&lt;</span><span class="nl">format</span><span class="p">:</span><span class="n">yyyymm</span><span class="o">^&gt;</span> <span class="p">(</span><span class="nl">example</span><span class="p">:</span><span class="mi">201301</span><span class="p">)</span><span class="o">:</span>
+<span class="n">echo</span> <span class="o">%</span><span class="n">yyyymm</span><span class="o">%|</span><span class="n">findstr</span> <span class="o">^</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BAT批处理现学现用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/VB Script现学现用.html"><h3 class="article-title">VB Script现学现用</h3></a>
+<h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
+</h6>
+
+
+<p>这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  <br />
+(<em>注意</em>：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  </p>
+<div class="highlight"><pre><span class="n">dim</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">yyyymm</span><span class="p">,</span> <span class="n">to_dte_</span>       <span class="err">&#39;定义变量</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">user_id</span> <span class="o">=</span> <span class="n">wscript</span><span class="p">.</span><span class="n">arguments</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="err">&#39;接收批处理传过来的第一个参数</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">CAP_user_id</span> <span class="o">=</span> <span class="n">Ucase</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>       <span class="err">&#39;转换成大写</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">Select</span> <span class="n">Case</span> <span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>        <span class="err">&#39;</span><span class="n">Select</span><span class="o">/</span><span class="n">Case</span><span class="err">的用法</span> <span class="err">和</span> <span class="err">字符串截取的方法</span>                                         
+<span class="n">Case</span> <span class="s">&quot;01&quot;</span>   
+    <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>  
+<span class="n">Case</span> <span class="s">&quot;02&quot;</span>                          <span class="err">&#39;</span><span class="n">If</span><span class="o">-</span><span class="n">Then</span><span class="err">的用法，闰年的判断方法，</span><span class="o">=</span><span class="p">,</span><span class="o">&lt;&gt;</span><span class="p">,</span><span class="n">Mod</span><span class="err">的用法 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/VB Script现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/VB Script现学现用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html"><h3 class="article-title">mainframe平台报表自动化方案实现</h3></a>
+<h6 class="subheader" title="2013-03-25T00:00:00">2013-03-25
+</h6>
+
+
+<h4>客户提了一个需求如下：</h4>
+<p><em>&lt;1&gt;</em>每个月初需要在本地(Windows XP)看上一个月的一个报表。<br />
+<em>&lt;2&gt;</em>如果可以随时查看之前任意月份的报表，那更好。<br />
+<em>&lt;3&gt;</em>报表数据来源于Mainframe上的表A和表B,需要join操作。 <br />
+<em>&lt;4&gt;</em>报表结果以excel呈现，有必要的一些格式化和公式以及美化等excel常规操作。    </p>
+<h4>经研究，实现方案如下：</h4>
+<p><em>&lt;1&gt;</em>用bat批处理与mainframe交互，交互方式为ftp。包括将本地job送到JES2运行，包括将表A和表B的数据从mainframe上下载到本地。<br />
+<em>&lt;2&gt;</em>用vbs处理后期的excel，包括数据导入，单元格格式，公式操作，excel美化，用户提示等等常规的office操作。 <br />
+<em>&lt;3&gt;</em>用bat批处理来调用vbs，这样bat批处理就把mainframe和vbs串在了一起。  </p>
+<h4>方案优势：</h4>
+<p>选择这个方案是从用户易用性考虑，客户不需要安装任何软件。批处理和vbs以及excel在xp下面都是自带的。用户只需双击，然后输入查看的报表月份即可。</p>
+<h4>方案设计图</h4>
+<p>我用word简单地画了一个方案图：
+<img alt="report automation on mainframe" src="/../images/mainframe" title="report automation.png" />  <br />
+代码就不放上来了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html"><h3 class="article-title">JCL中执行如何SQL</h3></a>
+<h6 class="subheader" title="2013-03-24T00:00:00">2013-03-24
+</h6>
+
+
+<hr />
+<p>平常我们用第三方软件来对DB2操作，比如eclipse,比如DBedit,又或者是mainframe上面的软件，如<code>Filemanager</code>,<code>SPUFI</code>等。
+那怎么在JCL里面运行SQL呢？答案是利用<code>IKJEFT01</code>。
+{% codeblock lang:python %} 
+ //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>             <br />
+//<em>UNLOAD:   unload data using IKJEFT01 via dynamic SQL in JCL  *             <br />
+//<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>             <br />
+//UNLOAD  EXEC PGM=IKJEFT01,DYNAMNBR=20                                      <br />
+//             INCLUDE MEMBER=XXXXSRUN                                        <br />
+//             INCLUDE MEMBER=XXXXLOAD                                        <br />
+//SYSTSPRT DD SYSOUT=</em>                                                        <br />
+//SYSUDUMP DD SYSOUT=<em>                                                        <br />
+//SYSPRINT DD SYSOUT=</em>                                                        <br />
+//SYSREC00 DD DSN=IBMUSER.SQL ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL中执行如何SQL.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 1 of 1</h6>
+<h6 class="subheader">Page 1 of 14</h6>
 
 <p>
 
+        <a href="http://mainframer.github.io/tag/zos2.html">Next &raquo;</a>
 </p>
 </div>
-
-
-
-            <!-- /#posts-list -->
 
     </div>
     <!-- End Main Content -->
@@ -110,7 +447,7 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
    
         </ul>
 

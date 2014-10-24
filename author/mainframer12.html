@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - mainframer</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html"><h3 class="article-title">ssh+myEntunnel+chrome+proxy switchy翻墙</h3></a>
+<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
+</h6>
+
+
+<p>在windows/win7下如何翻墙？告诉你答案：<code>ssh+myEntunnel+chrome+proxy switchy</code>插件翻墙。</p>
+<h4>1、注册SSH账号</h4>
+<p>SSH是建立在应用层和传输层基础上的提供可靠传输的安全协议。在这里您首先需要去注册一个SSH代理的账号，一般是几块钱一个月的就挺好的了，当然也有免费注册的，不过免费的可能速度不是很快或者连接不稳定。注册SSH的网址我就不发了，不然就有广告的嫌疑了。自己到网上一搜一堆的那种。要是实在找不到的可以通过邮箱<code>54xiaowoniu@sina.cn</code>跟我联系，我告诉你怎么注册。基本上15分钟搞定。 </p>
+<h4>2、下载MyEntunnel</h4>
+<p>MyEntunnel是用来登录SSH服务器并在本机自动架设一个socks5代理的软件，下载并安装Myentunnel运行。
+在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：<br />
+<img alt="1" src="/../images/myentunnel.jpg" />    <br />
+这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。<br />
+另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html"><h3 class="article-title">继续介绍世代数据集GDG</h3></a>
+<h6 class="subheader" title="2011-07-15T00:00:00">2011-07-15
+</h6>
+
+
+<p>上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。</p>
+<h4>1、新建GDG base</h4>
+<p>一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG.BASE并且可以有10个generation的GDG base。只要提交这个job马上就生成了GDG base了。 <br />
+<img alt="1" src="/../images/GDG01.jpg" />        </p>
+<h4>2、新建GDG generation</h4>
+<p>那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：<br />
+{% codeblock lang:python %}
+//EXTRACT DD DSN=IBMUSER.MYGDG.BASE(+1),
+// DISP=(NEW,CATLG,DELETE),
+// UNIT=SYSDA,
+// SPACE=(CYL,(10,8)),
+// DCB=(SYS1.MODEL ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html"><h3 class="article-title">世代数据集—GDG介绍</h3></a>
+<h6 class="subheader" title="2011-06-25T00:00:00">2011-06-25
+</h6>
+
+
+<p>跟大机打交道，一定对大机上面的一种特殊文件gdg不会陌生。gdg又称世代数据集，在大机上面是用来组织彼此相关联的文件。比如你需要一年12个月每个月的报表数据，则可以定义一个有12个generation（世代）的GDG，每个generation存一个月的数据，这样就保证了彼此关联的信息能被更方便地管理和维护。它会保证任何时候都只保留最新的12个月的数据。<br />
+要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:
+{% blockquote %} 
+PROD.CLIENT.ACCOUNT.NUMBER
+{% endblockquote %} 
+则一般你以此产生的第一个generation的名字就叫做:
+{% blockquote %} 
+PROD.CLIENT.ACCOUNT.NUMBER.G0001V00
+{% endblockquote %} 
+以此类推，第二个就叫做：
+{% blockquote %} 
+PROD.CLIENT.ACCOUNT.NUMBER.G0002V00
+{% endblockquote %} 
+直到<span style="color: #ff00ff;">G9992V00</span>为止。G000,G001等等叫做世代编号 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html"><h3 class="article-title">介绍几个比较有用的ISPF命令(续一)</h3></a>
+<h6 class="subheader" title="2011-06-14T00:00:00">2011-06-14
+</h6>
+
+
+<p>接上次讲的，这里继续介绍几个常用的有用的命令。</p>
+<h3>COMP</h3>
+<p>这是比较文件的命令，功能类似于<code>ISPF 3.13</code>选项。如果你正打开自己PDS下面的<code>DMSID01.TESTLIB.PRGM(MYPGM01)</code>编辑，你想跟你同事(DMSID02)PDS下面的一个MYPGM02比较看看有什么不同的话，你可以直接在Command栏上输入命令：
+<code>COMP 'DMSID02.TESTLIB.PRGM(MYPGM02)'</code></p>
+<h3>COMP EXC</h3>
+<p>这是<code>COMP</code>的高级选项，再后面加上EXC让比较结果中只显示不同的行。当然，为了不失关联性和便于理解，它还额外保留了不同处的前后各5行，显得特别人性化。可以简化成<code>'COMP X'</code>  </p>
+<h3>F1 twice</h3>
+<p>很经常会有你想编辑某个DATASET或者Member的时候提示<code>"Member in use"</code>,这时候你可以连续按两次F1，就能知道谁当前正在使用这个DATASET或者Member了。</p>
+<h3>HEX ON/OFF</h3>
+<p>文件中经常有些字符在普通的<code>View ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/3390 volume,cylinder,track.html"><h3 class="article-title">3390 volume,cylinder,track</h3></a>
+<h6 class="subheader" title="2011-05-03T00:00:00">2011-05-03
+</h6>
+
+
+<p>通常我们用的是3390盘卷(Volume)，一个Volume有多大呢？可以这么计算：<br />
+一个3390盘卷有3339+1=3340个柱面(Cylinder);<br />
+一个柱面(Cylinder)有15个磁道(track);<br />
+一个磁道(track)大概可以保存56KB数据;<br />
+一个G=1024M;<br />
+综上可以得到：一个3390判卷(Volume)=3340x15x56=2805600KB，约等于<strong>2.6756G</strong><br />
+因为在大机上处理的数据基本都是文本，所以这样的量还是够用的，以至于我到现在也很少遇到需要跨卷的情况。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/3390 volume,cylinder,track.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/3390 volume,cylinder,track.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html"><h3 class="article-title">介绍几个有用的ISPF命令(续二)</h3></a>
+<h6 class="subheader" title="2011-04-24T00:00:00">2011-04-24
+</h6>
+
+
+<h4>M+F7 和 M+F8</h4>
+<p>命令行上输<code>M</code>,接着按<code>F7</code>, 表示回到文件最顶端<br />
+命令行上输<code>M</code>,接着按<code>F8</code>, 表示回到文件最低端  </p>
+<h4>COL</h4>
+<p>显示列号，这个命令特别是在对齐的时候很有用。因为在JCl语法中，很多关键字必须规定从第几列开始写，不然会出错的，比如JCLLIB ORDER一定要从第四列开始写，所以用<code>COL</code>命令显示行号是很有必要的。</p>
+<h4>HI</h4>
+<p>语法高亮用HI，比如可以用<code>HI PLI</code>来高亮PL/I代码，用<code>HI COBOl</code>高亮COBOl代码，用<code>HI JCL</code>来高亮JCL语法，用<code>HI REXX</code>来高亮REXX语法，用HI ASM来高亮汇编代码，一共支持18种语言。可以<code>HI ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html"><h3 class="article-title">常见的TSO ISPF命令</h3></a>
+<h6 class="subheader" title="2011-04-21T00:00:00">2011-04-21
+</h6>
+
+
+<h3>几个概念</h3>
+<h4><code>TSO</code></h4>
+<p>TSO(Time Sharing Option)，时分操作，可以同时让多个用户登录到大机上。一般我们认为的TSO是命令行模式，像一些LOGON，LOGOFF，之类的命令与大机交互。</p>
+<h4><code>ISPF</code></h4>
+<p>ISPF(Interactive System Programming Facility)，它提供了一个menu菜单系统来与大机交互，可以说就是一个简单的menu system。<br />
+好了，言归正传。下面是必须知道的ISPF命令:  </p>
+<h5>ISPF功能键</h5>
+<p>PF1： HELP帮助键<br />
+PF2： SPLIT键，改变分屏位置<br />
+PF3： END键，结束并退回上级菜单<br />
+PF4： RETURN键，结束并退回主菜单<br />
+PF5： REFIND键，重复最近一次FIND命令<br />
+PF6： RECHANGE键，重复最近一次CHANGE命令<br />
+PF7： UP键，向上滚屏<br />
+PF8： DOWN键，向下滚屏<br />
+PF9： SWAP键 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html"><h3 class="article-title">BT5开机自动启动ibus</h3></a>
+<h6 class="subheader" title="2011-03-06T00:00:00">2011-03-06
+</h6>
+
+
+<p>BT5下安装中文输入法：
+{% codeblock %} 
+apt-get install scim
+{% endcodeblock %} 
+BT5下安装ibus输入法管理器:
+{% codeblock %}
+sudo apt-get install ibus
+{% endcodeblock %}
+在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
+怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:<br />
+开机自动启动ibus输入法管理器:
+{% codeblock %} 
+  System &gt;&gt; Preferences &gt;&gt; Startup Applications
+     Click the button: Add
+     Name: ibus daemon
+     Command: /usr/bin/ibus-daemon -d
+{% endcodeblock %}
+好了，重启就可以了。<br />
+按Ctrl+空格调出输入法。按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html"><h3 class="article-title">介绍几个比较有用的ISPF命令</h3></a>
+<h6 class="subheader" title="2011-03-02T00:00:00">2011-03-02
+</h6>
+
+
+<p>上一篇讲的是常见的TSO/ISPF命令，这篇来讲讲我收集到的日常比较有用的ISPF命令。</p>
+<h4>HRECALL</h4>
+<p>大机上的Dataset比较久了没有被访问的话会自动被迁移(migrate)到tape中保存的，根据时间的长短，Dataset会被migrate到不同的level，比如MIGRAT1,MIGRAT2等等。这时，如果你想把这个Dataset 召(Recall)回来的话，平常我们都在这个Dataset前面打个<code>Call</code>命令。这样做有个不好的地方，就是如果这个Dataset需要很长时间才能被RECALL回来的话(比如30分钟)，那这30分钟之内你只能看着屏幕发呆而啥都干不了了。所以这种情况下你可以试试后台Call的命令<code>HRECALL</code>，它在后台操作，结束后会有提示，完全不影响你做其他事情</p>
+<h4>NUM OFF</h4>
+<p>有时你在编辑一个Dataset的行末尾的时候，每次保存都会提示:<code>Some input data</code>ignored。这时因为默认情况下末尾的行号显示是开着占了8位，这8位是不可修改的，这时你可以试试在命令行上打个<code>NUM OFF</code>把行号显示关了。</p>
+<h4>XDC</h4>
+<p>这是一个SDSF(<em>系统显示与查询工具</em> 的命令，如果你想把一个JOB的输出Log保存到某个地方，比如自己的PDS，那么你可以在SDSF里面在这个JOB的Log前面打上XDC，然后写上你要保存的地方即可 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html"><h3 class="article-title">BT5如何安装VMware Tools</h3></a>
+<h6 class="subheader" title="2011-02-25T00:00:00">2011-02-25
+</h6>
+
+
+<p>虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  <br />
+首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是<code>D:\DOCUMENT\linux</code>.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
+<img alt="1" src="/../images/bt5-vmtools-1.jpg" /> <br />
+还是老规矩：输入用户名<em>root</em>；密码<em>toor</em>；启动图形界面:<em>startx</em>; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:
+<img alt="1" src="/../images/bt5-vmtools-2.jpg" /> <br />
+先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。<br />
+记得一定要先改变先<code>sudo chmod 755 vmware-install.pl</code>不然可能会出现 <code>no such file or directory</code>。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！
+<img alt="1" src="/../images/bt5-vmtools-3.jpg" /><br />
+接着按照提示做就可以了。遇到没有权限访问xxx ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 12 of 14</h6>
+
+<p>
+            <a href="http://mainframer.github.io/author/mainframer11.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/author/mainframer13.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://getpelican.com/">Pelican</a></li>
+            <li><a href="http://python.org/">Python.org</a></li>
+            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            <li><a href="#">You can modify those links in your config file</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
