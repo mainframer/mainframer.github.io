@@ -55,71 +55,77 @@
     <h4>这个例子一共包含3个部分</h4>
 <p><strong>Rexx主程序</strong>：<code>IBMUSER.REXX.EXEC(MYSKELE)</code> <br />
 <strong>带参数的sekleton JCL</strong>：<code>IBMUSER.REXX.SKELL(JCLSKEL)</code><br />
-<strong>最终生成的Dynamic JCL</strong>：<code>IBMUSER.DYNAM.JCL(SUBJCL)</code><br />
-{% codeblock lang:python %} 
-  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            </p>
-<p>VIEW       IBMUSER.REXX.SKELL(JCLSKEL) - 01.06             Columns 00001 00072 
-Command ===&gt;                                                  Scroll ===&gt; CSR<br />
-<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
-000001 //&amp;JOBNAME JOB '000000000000000000CMP',                               <br />
-000002 // CLASS=3,NOTIFY=&amp;USER,MSGCLASS=R                                    <br />
-000003 //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em> 
-000004 )SEL &amp;IND = Y                                                         <br />
-000005 //STEP000  EXEC  PGM=SYNCSORT                                         <br />
-000006 //SORTIN   DD  DSN=&amp;FILE1,DISP=SHR                                    <br />
-000007 //SORTOUT  DD  DSN=&amp;FILE2,                                            <br />
-000008 //             DISP=(NEW,CATLG,DELETE),                               <br />
-000009 //             UNIT=SYSDA,                                            <br />
-000010 //             SPACE=(CYL,(3,3),RLSE),                                <br />
-000011 //             DCB=(SYS1.MODEL,RECFM=FB,LRECL=80,DSORG=PS)            <br />
-000012 //SYSIN  DD *                                                         <br />
-000013   SORT FIELDS=(1,4,CH,A)                                              <br />
-000014 /</em>                                                                    <br />
-000015 )ENDSEL                                                               <br />
-000016 //*                                                                   <br />
-<em>*</em></strong><strong><em>* </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>* Bottom of Data </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>****
-{% endcodeblock  %} 
-注意上面的<code>)SEL</code>和<code>)ENDSEL</code>表示skeleton的起始, 并且有一个选择判断条件<code>&amp;IND</code>，当且仅当Rexx中传过来的IND的值是Y时，才拼装<code>)SEL</code>和<code>)ENDSEL</code>之间的内容。在上面的例子中，如果IND=N，那么组装出来的JCL为如下所示，显然会报错。 
-{% codeblock lang:python %}
-  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            </p>
-<p>VIEW       IBMUSER.DYNAM.JCL(SUBJCL) - 01.00               Columns 00001 00072 
-Command ===&gt;                                                  Scroll ===&gt; CSR                                                 <br />
-<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
-000001 //IBMUSERJ JOB '000000000000000000CMP',                               <br />
-000002 // CLASS=3,NOTIFY=IBMUSER,MSGCLASS=R                                  <br />
-000003 //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em><strong>*</strong> 
-000004 //</em>                                                                   <br />
-{% endcodeblock  %}  <br />
-当IND=Y的时候，组装出来的JCL如下：
-{% codeblock lang:python %}
-  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            </p>
-<p _="%" endblockquote="endblockquote">VIEW       IBMUSER.DYNAM.JCL(SUBJCL) - 01.00               Columns 00001 00072 
-Command ===&gt;                                                  Scroll ===&gt; CSR<br />
-<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
-000001 //IBMUSERJ JOB '000000000000000000CMP',                               <br />
-000002 // CLASS=3,NOTIFY=IBMUSER,MSGCLASS=R                                  <br />
-000003 //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em> 
-000004 //STEP000  EXEC  PGM=SYNCSORT                                         <br />
-000005 //SORTIN   DD  DSN=IBMUSER.SORTIN.FILE,DISP=SHR                  <br />
-000006 //SORTOUT  DD  DSN=IBMUSER.SORTOUT.FILE,                      <br />
-000007 //             DISP=(NEW,CATLG,DELETE),                               <br />
-000008 //             UNIT=SYSDA,                                            <br />
-000009 //             SPACE=(CYL,(3,3),RLSE),                                <br />
-000010 //             DCB=(SYS1.MODEL,RECFM=FB,LRECL=80,DSORG=PS)            <br />
-000011 //SYSIN  DD *                                                         <br />
-000012   SORT FIELDS=(1,4,CH,A)                                              <br />
-000013 /</em>                                                                    <br />
-000014 //*                                                                   <br />
-<em>*</em></strong><strong><em>* </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>* Bottom of Data </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*
-{% endcodeblock  %} <br />
-最后，只需执行TSO命令: 
-{% blockquote %} 
-TSO MYSKELE
-{% endblockquote  %}
-就可以看到job成功submit,可以去SDSF里面查看job运行状况。
-{% blockquote %}
- JOB IBMUSERJ(J0210531) SUBMITTED
-</em></strong>                           <br /></p>
+<strong>最终生成的Dynamic JCL</strong>：<code>IBMUSER.DYNAM.JCL(SUBJCL)</code>  </p>
+<div class="highlight"><pre> <span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+
+<span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">SKELL</span><span class="p">(</span><span class="no">JCLSKEL</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">06</span>             <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">//&amp;</span><span class="no">JOBNAME</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>                                 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">USER</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                      
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span> 
+<span class="mo">000004</span> <span class="p">)</span><span class="no">SEL</span> <span class="o">&amp;</span><span class="no">IND</span> <span class="o">=</span> <span class="n">Y</span>                                                           
+<span class="mo">000005</span> <span class="o">//</span><span class="no">STEP000</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span>                                           
+<span class="mo">000006</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">FILE1</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                                      
+<span class="mo">000007</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">FILE2</span><span class="p">,</span>                                              
+<span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span>             <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>                                 
+<span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>                                              
+<span class="mo">000010</span> <span class="o">//</span>             <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span>                                  
+<span class="mo">000011</span> <span class="o">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span>              
+<span class="mo">000012</span> <span class="o">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                                           
+<span class="mo">000013</span>   <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="no">CH</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                                                
+<span class="mo">000014</span> <span class="o">/*</span>                                                                      
+<span class="mo">000015</span> <span class="p">)</span><span class="no">ENDSEL</span>                                                                 
+<span class="mo">000016</span> <span class="o">//*</span>                                                                     
+<span class="o">******</span> <span class="o">****************************</span> <span class="no">Bottom</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">****************************</span>
+</pre></div>
+
+
+<p>注意上面的<code>)SEL</code>和<code>)ENDSEL</code>表示skeleton的起始, 并且有一个选择判断条件<code>&amp;IND</code>，当且仅当Rexx中传过来的IND的值是Y时，才拼装<code>)SEL</code>和<code>)ENDSEL</code>之间的内容。在上面的例子中，如果IND=N，那么组装出来的JCL为如下所示，显然会报错。 </p>
+<div class="highlight"><pre> <span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+
+<span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">DYNAM</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SUBJCL</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>               <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>                                                   
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSERJ</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>                                 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=</span><span class="no">IBMUSER</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                    
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span> 
+<span class="mo">000004</span> <span class="o">//*</span>                                                                     
+</pre></div>
+
+
+<p>当IND=Y的时候，组装出来的JCL如下：</p>
+<div class="highlight"><pre>  <span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+
+<span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">DYNAM</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SUBJCL</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>               <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSERJ</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>                                 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=</span><span class="no">IBMUSER</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                    
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span> 
+<span class="mo">000004</span> <span class="o">//</span><span class="no">STEP000</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span>                                           
+<span class="mo">000005</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SORTIN</span><span class="o">.</span><span class="n">FILE</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                    
+<span class="mo">000006</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SORTOUT</span><span class="o">.</span><span class="n">FILE</span><span class="p">,</span>                        
+<span class="mo">000007</span> <span class="o">//</span>             <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>                                 
+<span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>                                              
+<span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span>             <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span>                                  
+<span class="mo">000010</span> <span class="o">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span>              
+<span class="mo">000011</span> <span class="o">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                                           
+<span class="mo">000012</span>   <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="no">CH</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                                                
+<span class="mo">000013</span> <span class="o">/*</span>                                                                      
+<span class="mo">000014</span> <span class="o">//*</span>                                                                     
+<span class="o">******</span> <span class="o">****************************</span> <span class="no">Bottom</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">****************************</span>
+</pre></div>
+
+
+<p>最后，只需执行TSO命令: </p>
+<blockquote>
+<p>TSO MYSKELE</p>
+<p>就可以看到job成功submit,可以去SDSF里面查看job运行状况。</p>
+<p>JOB IBMUSERJ(J0210531) SUBMITTED</p>
+</blockquote>
+<hr />
+<blockquote></blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

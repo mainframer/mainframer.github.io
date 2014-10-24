@@ -52,17 +52,20 @@
 </h6>
 
 
-<p _="%" endblockquote="endblockquote">Sub一个job遇到错误:
-{% blockquote %} 
-ABENDED S000 U4088 REASON CODE=000003EC</p>
+<p>Sub一个job遇到错误:</p>
+<blockquote>
+<p>ABENDED S000 U4088 REASON CODE=000003EC
+</p>
+</blockquote>
 <h3>Abend原因:</h3>
-<p _="%" endblockquote="endblockquote">{% blockquote %} 
-The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage</p>
+<blockquote>
+<p>The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage
+</p>
+</blockquote>
 <h3>解决办法:</h3>
-<p _="%" endcodeblock="endcodeblock">Change region to <strong>REGION=0M</strong> 
-{% codeblock lang:python %}
-000001 //IBMUSER JOB  0RQ00XXXXX                                00010TEST,  <br />
-000002 // 'IBMUSER',CLASS=3,MSGCLASS ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>Change region to <strong>REGION=0M</strong> </p>
+<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span>  <span class="mi">0</span><span class="no">RQ00XXXXX</span>                                <span class="mo">00010</span><span class="no">TEST</span><span class="p">,</span>    
+<span class="mo">000002</span> <span class="o">//</span> <span class="s1">&#39;IBMUSER&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -85,15 +88,19 @@ The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below 
 
 <p>我们可以在<code>COBOL</code>，<code>PL/I</code>，<code>Assembler</code>等应用程序中写<code>CICS</code>命令，在<code>COBOL</code>和<code>PL/I</code>中，格式分别如下所示：</p>
 <h3>COBOL</h3>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-EXEC CICS function[option[(arg)]]... END-EXEC</p>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="k">END</span><span class="o">-</span><span class="no">EXEC</span>
+</pre></div>
+
+
 <h3>PL/I</h3>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-EXEC CICS function[option[(arg)]]... ; (末尾有分号)
-{% endcodeblock %}<br />
-CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
-<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。
-{% codeblock lang ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="p">;</span> <span class="p">(</span><span class="err">末尾有分号</span><span class="p">)</span>
+</pre></div>
+
+
+<p>CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
+<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。</p>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ABEND</span> <span class="o">[</span><span class="no">ABCODE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ASKTIME ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -116,14 +123,16 @@ CICS的命令很多，不过最常用的也就是如下几个。所以，只要�
 
 <h3>来说说如何用JCL提交REXX脚本。</h3>
 <h4>1、写一个最简单的显示有一行提示的REXX脚本叫<code>SAYHELLO</code>：</h4>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-1 EDIT       IBMUSER.REXX.EXEC(SAYHELLO) - 01.00           Member SAYHELLO saved 
-2 Command ===&gt;                                                  Scroll ===&gt; CSR<br />
-3 <strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
-4 000001 /<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></strong>***/              <br />
-5 000002 SAY "I WILL PRINT 'HELLO' IN SYSTSPRT BY SUBMITTING JCL" </p>
+<div class="highlight"><pre><span class="mi">1</span> <span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>           <span class="no">Member</span> <span class="no">SAYHELLO</span> <span class="n">saved</span> 
+<span class="mi">2</span> <span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="mi">3</span> <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mi">4</span> <span class="mo">000001</span> <span class="o">/******************************</span><span class="no">REXX</span><span class="o">*********************************/</span>                
+<span class="mi">5</span> <span class="mo">000002</span> <span class="no">SAY</span> <span class="s2">&quot;I WILL PRINT &#39;HELLO&#39; IN SYSTSPRT BY SUBMITTING JCL&quot;</span> 
+</pre></div>
+
+
 <h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -144,18 +153,22 @@ CICS的命令很多，不过最常用的也就是如下几个。所以，只要�
 </h6>
 
 
-<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。
-{% blockquote %} 
-FIND ',' ALL
-{% endblockquote %} 
-这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
+<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
+<blockquote>
+<p>FIND ',' ALL</p>
+<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
 既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
-编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：<br />
-{% codeblock lang:python %}
-1  ADDRESS  ISPEXEC                     <br />
-2  "ISREDIT SEEK ALL ','"               <br />
-3  "ISREDIT (COUNT) = SEEK_COUNTS"      <br />
-4  SAY "Comma number: "!! COUNT ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
+</blockquote>
+<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
+<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
+<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
+<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
+<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
+</pre></div>
+
+
+<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -176,15 +189,15 @@ FIND ',' ALL
 </h6>
 
 
-<p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：
-{% codeblock lang:python %}
-ADDRESS TSO                                                           <br />
-  indataset = 'IBMUSER.REXX.EXEC(INFILE)'  /<em>read in input file </em>/    <br />
-  "alloc f(fin) ds('"indataset"') shr reuse" <br />
-  "execio * diskr fin (finis stem in."                                <br />
-  "free f(fin)"                                                       <br />
- do i=1 to in.0        /<em>loop in file until the last line reached </em>/         <br />
-    one_line = strip ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：</p>
+<div class="highlight"><pre><span class="no">ADDRESS</span> <span class="no">TSO</span>                                                             
+  <span class="n">indataset</span> <span class="o">=</span> <span class="s1">&#39;IBMUSER.REXX.EXEC(INFILE)&#39;</span>  <span class="sr">/*read in input file */</span>      
+  <span class="s2">&quot;alloc f(fin) ds(&#39;&quot;</span><span class="n">indataset</span><span class="s2">&quot;&#39;) shr reuse&quot;</span>   
+  <span class="s2">&quot;execio * diskr fin (finis stem in.&quot;</span>                                  
+  <span class="s2">&quot;free f(fin)&quot;</span>                                                         
+ <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="k">in</span><span class="o">.</span><span class="mi">0</span>        <span class="o">/*</span><span class="kp">loop</span> <span class="k">in</span> <span class="n">file</span> <span class="k">until</span> <span class="n">the</span> <span class="n">last</span> <span class="n">line</span> <span class="n">reached</span> <span class="o">*/</span>           
+    <span class="n">one_line</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="k">in</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>                                                    
+    <span class="n">call ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -207,14 +220,16 @@ ADDRESS TSO                                                           <br />
 
 <p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
 <h4>方法一：直接在ISPF下面用命令去掉</h4>
-<p _="%" endcodeblock="endcodeblock">这是最直接最快的办法。去掉第72列至80列的命令有下面两个：
-{% codeblock lang:python %}
-NUM ON; UNNUMB
-C P'^' ’ ’ 73 80 ALL    /<em> Changes all non-space characters to spaces in col 73 to 80</em>/</p>
+<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
+<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
+<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
+</pre></div>
+
+
 <hr />
 <h4>方法二：用第三方脚本实现</h4>
 <p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
-这里是一段自己的Ruby脚本 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -263,14 +278,12 @@ C P'^' ’ ’ 73 80 ALL    /<em> Changes all non-space characters to spaces in 
 </h6>
 
 
-<p>PL/I编译器的版本，如下所示：
-{% codeblock  %}
-Product        Product name                          Compiler "signature"   Module prefix 
-360S-NL-511    S/360 OS PL/1 (F)                     '   '                  IEM,IHE,IHL
-5734-PL1       OS PL/I OPTIMIZING COMPILER V1         5734-PL1              IEL,IBM
-5734-PL2       OS PL/I CHECKOUT COMPILER
-5734-PL3       OS PL/I Opt Comp Lib Kanji Name Support
-5668-909       OS PL ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>PL/I编译器的版本，如下所示：</p>
+<div class="highlight"><pre><span class="no">Product</span>        <span class="no">Product</span> <span class="nb">name</span> <span class="err"> </span>                        <span class="no">Compiler</span> <span class="s2">&quot;signature&quot;</span>   <span class="no">Module</span> <span class="n">prefix</span> 
+<span class="mi">360</span><span class="n">S</span><span class="o">-</span><span class="no">NL</span><span class="o">-</span><span class="mi">511</span> <span class="err"> </span> <span class="err"> </span><span class="n">S</span><span class="o">/</span><span class="mi">360</span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="mi">1</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>         <span class="s1">&#39;   &#39;</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="no">IEM</span><span class="p">,</span><span class="no">IHE</span><span class="p">,</span><span class="no">IHL</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">OPTIMIZING</span> <span class="no">COMPILER</span> <span class="no">V1</span> <span class="err"> </span>       <span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>   <span class="err"> </span>  <span class="no">IEL</span><span class="p">,</span><span class="no">IBM</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL2</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">CHECKOUT</span> <span class="no">COMPILER</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL3</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">Opt</span> <span class="no">Comp</span> <span class="no">Lib ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -291,15 +304,15 @@ Product        Product name                          Compiler "signature"   Mod
 </h6>
 
 
-<p _="%" endblockquote="endblockquote">我在Debug一个PLI程序<code>PRGM000</code>的时候遇到了一个<code>CEE34A abend</code>，报的错误信息如下：<br />
-{% blockquote %} 
-You were prompted because the CEE34A condition was raised in your
+<p>我在Debug一个PLI程序<code>PRGM000</code>的时候遇到了一个<code>CEE34A abend</code>，报的错误信息如下：  </p>
+<blockquote>
+<p>You were prompted because the CEE34A condition was raised in your
 program.
 CEE34A is a severity or class 3 condition.
 The operating system has generated the following message:
 CEE3210S The system detected a decimal-overflow exception (System
 Completion Code=0CA).
-The current location is ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+The current location is PRGM000 ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -321,15 +334,16 @@ The current location is ...</p><p class="subheader">Category: <a href="http://ma
 
 
 <p>之前的文章说到了一个叫<code>Mem xxx</code>  的命令可以用来在一系列PDS中搜索一个名字叫做xxx的member，今天我来说下如何在一个PDS里面所有的member内容当中搜索特定字符串。其实就是利用<code>search-for</code> 的应用程序，比较常规的方法是道<em>ISPF</em>的<em>3.14</em>菜单里面搜索，如下图所示，就是在 <code>"IBMUSER.PROJ.TEST.JCL"</code>这个PDS里面所有的member内容中，搜索一个叫<strong>"STRING"</strong>的字符串：
-<img alt="1" src="/../images/PDS-SRCHFOR_001.jpg" />    <br />
-当然，如果你想直接在当前PDS下调用<code>search-for utility</code>来搜索特定字符串，可以在<code>command line</code>上输入命令：
-{% codeblock lang:ruby %}
-SRCHFOR "STRING"
-{% endcodeblock %}
-来在当前PDS下面搜索字符串<strong>”STRING“</strong>,具体如下面2张截图所示：
-<img alt="1" src="/../images/PDS-SRCHFOR_002.jpg" />      <br />
-<img alt="1" src="/../images/PDS-SRCHFOR_003.jpg" />      <br />
-如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用<strong><code>ISRSUPC</code></strong>这个utility了。这个<strong><code>ISRSUPC</code></strong>的功能可强大多了 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<img alt="1" src="./../images/PDS-SRCHFOR_001.jpg" />    <br />
+当然，如果你想直接在当前PDS下调用<code>search-for utility</code>来搜索特定字符串，可以在<code>command line</code>上输入命令：</p>
+<div class="highlight"><pre><span class="no">SRCHFOR</span> <span class="s2">&quot;STRING&quot;</span>
+</pre></div>
+
+
+<p>来在当前PDS下面搜索字符串<strong>”STRING“</strong>,具体如下面2张截图所示：
+<img alt="1" src="./../images/PDS-SRCHFOR_002.jpg" />      <br />
+<img alt="1" src="./../images/PDS-SRCHFOR_003.jpg" />      <br />
+如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用<strong><code>ISRSUPC</code></strong>这个utility了。这个<strong><code>ISRSUPC</code></strong>的功能可强大多了，具体可以参照下我之前的文章: &lt;&lt;用ISRSUPC在PDS所有member中搜索指定字符串&gt;&gt;，这里不重复了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>

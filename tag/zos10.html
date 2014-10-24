@@ -77,7 +77,7 @@ GROUP <br />
 <span style="color: #ff00ff;">USER</span> CCSID<br />
 标有颜色的几个是我自己比较常用到的。<br />
 上张包含了这9个常用JCL关键字参数的图(当然，平常工作当中一般不可能在单个JCL当中都包含了所有的这9个关键字，我这里只是为了更好的说明才把它们罗列在一个JCL里面的，这点要明白)
-<a href="/../images/JCL-keyword1.jpg">!</a>  <br />
+<a href="./../images/JCL-keyword1.jpg">!</a>  <br />
 <strong><code>CLASS</code></strong> : 是作业运行队列的优先级，MSGCLASS是作业输出信息的级别，它规定了作业输出信息送往哪里显示。CLASS和MSGCLASS都是公司规定好了的，肯定有文档可以查看具体信息的。</p>
 <p><strong><code>NOTIFY</code></strong>:  是指最终作业运行的结果通知给谁，可以写详细的ID，比如IBMUSER，也可以写通用的参数，比如<code>&amp;SYSUID ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
@@ -126,7 +126,7 @@ GROUP <br />
 
 <p>自己小试的ruby程序,用于将一个<code>dictionary.txt</code>分割成多个小一点的子文件，不然每次都操作<code>dictionary.txt</code>显得很笨重。想把<code>dictionary.txt</code>按照字母首a~z，每个首字母再按长度分为长度为1~3的比如a_1to3.txt，长度为4的a_4.txt，长度为5的a_5.txt，长度为6的a_6.txt，长度为7的a_7.txt，长度为8的a_8.txt，以及长度大于8的others。这样，dictionary.txt最后被分割成了6x26+1=157个子文件，就不会像处理dictionary.txt那样笨重了，毕竟CPU有限。<br />
 为啥wordpress里面粘贴代码都只有黑乎乎的一片呢，可爱的语法高亮在哪里？还是喜欢五颜六色的代码段啊，上图吧:<br />
-<img alt="1" src="/../images/ruby_spilt_file.jpg" /> <br />
+<img alt="1" src="./../images/ruby_spilt_file.jpg" /> <br />
 只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

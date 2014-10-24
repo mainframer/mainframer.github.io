@@ -58,7 +58,7 @@
 <h4>2、下载MyEntunnel</h4>
 <p>MyEntunnel是用来登录SSH服务器并在本机自动架设一个socks5代理的软件，下载并安装Myentunnel运行。
 在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：<br />
-<img alt="1" src="/../images/myentunnel.jpg" />    <br />
+<img alt="1" src="./../images/myentunnel.jpg" />    <br />
 这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。<br />
 另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
@@ -84,15 +84,14 @@
 <p>上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。</p>
 <h4>1、新建GDG base</h4>
 <p>一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG.BASE并且可以有10个generation的GDG base。只要提交这个job马上就生成了GDG base了。 <br />
-<img alt="1" src="/../images/GDG01.jpg" />        </p>
+<img alt="1" src="./../images/GDG01.jpg" />        </p>
 <h4>2、新建GDG generation</h4>
-<p>那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：<br />
-{% codeblock lang:python %}
-//EXTRACT DD DSN=IBMUSER.MYGDG.BASE(+1),
-// DISP=(NEW,CATLG,DELETE),
-// UNIT=SYSDA,
-// SPACE=(CYL,(10,8)),
-// DCB=(SYS1.MODEL ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">EXTRACT</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BASE</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>
+<span class="sr">//</span> <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)),</span>
+<span class="sr">//</span> <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -114,19 +113,14 @@
 
 
 <p>跟大机打交道，一定对大机上面的一种特殊文件gdg不会陌生。gdg又称世代数据集，在大机上面是用来组织彼此相关联的文件。比如你需要一年12个月每个月的报表数据，则可以定义一个有12个generation（世代）的GDG，每个generation存一个月的数据，这样就保证了彼此关联的信息能被更方便地管理和维护。它会保证任何时候都只保留最新的12个月的数据。<br />
-要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:
-{% blockquote %} 
-PROD.CLIENT.ACCOUNT.NUMBER
-{% endblockquote %} 
-则一般你以此产生的第一个generation的名字就叫做:
-{% blockquote %} 
-PROD.CLIENT.ACCOUNT.NUMBER.G0001V00
-{% endblockquote %} 
-以此类推，第二个就叫做：
-{% blockquote %} 
-PROD.CLIENT.ACCOUNT.NUMBER.G0002V00
-{% endblockquote %} 
-直到<span style="color: #ff00ff;">G9992V00</span>为止。G000,G001等等叫做世代编号 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER</p>
+<p>则一般你以此产生的第一个generation的名字就叫做:</p>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0001V00</p>
+<p>以此类推，第二个就叫做：</p>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0002V00</p>
+<p>直到<span style="color: #ff00ff;">G9992V00</span>为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01 ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -267,25 +261,28 @@ PF9： SWAP键 ...</p><p class="subheader">Category: <a href="http://mainframer.
 </h6>
 
 
-<p>BT5下安装中文输入法：
-{% codeblock %} 
-apt-get install scim
-{% endcodeblock %} 
-BT5下安装ibus输入法管理器:
-{% codeblock %}
-sudo apt-get install ibus
-{% endcodeblock %}
-在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
+<p>BT5下安装中文输入法：</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">scim</span>
+</pre></div>
+
+
+<p>BT5下安装ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ibus</span>
+</pre></div>
+
+
+<p>在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
 怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:<br />
-开机自动启动ibus输入法管理器:
-{% codeblock %} 
-  System &gt;&gt; Preferences &gt;&gt; Startup Applications
-     Click the button: Add
-     Name: ibus daemon
-     Command: /usr/bin/ibus-daemon -d
-{% endcodeblock %}
-好了，重启就可以了。<br />
-按Ctrl+空格调出输入法。按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+开机自动启动ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="no">System</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Preferences</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Startup</span> <span class="no">Applications</span>
+     <span class="no">Click</span> <span class="n">the</span> <span class="ss">button</span><span class="p">:</span> <span class="no">Add</span>
+     <span class="ss">Name</span><span class="p">:</span> <span class="n">ibus</span> <span class="n">daemon</span>
+     <span class="ss">Command</span><span class="p">:</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">ibus</span><span class="o">-</span><span class="n">daemon</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+
+
+<p>好了，重启就可以了。<br />
+按Ctrl+空格调出输入法 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -335,12 +332,12 @@ sudo apt-get install ibus
 
 <p>虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  <br />
 首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是<code>D:\DOCUMENT\linux</code>.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
-<img alt="1" src="/../images/bt5-vmtools-1.jpg" /> <br />
+<img alt="1" src="./../images/bt5-vmtools-1.jpg" /> <br />
 还是老规矩：输入用户名<em>root</em>；密码<em>toor</em>；启动图形界面:<em>startx</em>; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:
-<img alt="1" src="/../images/bt5-vmtools-2.jpg" /> <br />
+<img alt="1" src="./../images/bt5-vmtools-2.jpg" /> <br />
 先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。<br />
 记得一定要先改变先<code>sudo chmod 755 vmware-install.pl</code>不然可能会出现 <code>no such file or directory</code>。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！
-<img alt="1" src="/../images/bt5-vmtools-3.jpg" /><br />
+<img alt="1" src="./../images/bt5-vmtools-3.jpg" /><br />
 接着按照提示做就可以了。遇到没有权限访问xxx ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

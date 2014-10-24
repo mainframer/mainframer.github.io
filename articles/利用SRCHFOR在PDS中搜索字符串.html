@@ -53,14 +53,15 @@
 
 
     <p>之前的文章说到了一个叫<code>Mem xxx</code>  的命令可以用来在一系列PDS中搜索一个名字叫做xxx的member，今天我来说下如何在一个PDS里面所有的member内容当中搜索特定字符串。其实就是利用<code>search-for</code> 的应用程序，比较常规的方法是道<em>ISPF</em>的<em>3.14</em>菜单里面搜索，如下图所示，就是在 <code>"IBMUSER.PROJ.TEST.JCL"</code>这个PDS里面所有的member内容中，搜索一个叫<strong>"STRING"</strong>的字符串：
-<img alt="1" src="/../images/PDS-SRCHFOR_001.jpg" />    <br />
-当然，如果你想直接在当前PDS下调用<code>search-for utility</code>来搜索特定字符串，可以在<code>command line</code>上输入命令：
-{% codeblock lang:ruby %}
-SRCHFOR "STRING"
-{% endcodeblock %}
-来在当前PDS下面搜索字符串<strong>”STRING“</strong>,具体如下面2张截图所示：
-<img alt="1" src="/../images/PDS-SRCHFOR_002.jpg" />      <br />
-<img alt="1" src="/../images/PDS-SRCHFOR_003.jpg" />      <br />
+<img alt="1" src="./../images/PDS-SRCHFOR_001.jpg" />    <br />
+当然，如果你想直接在当前PDS下调用<code>search-for utility</code>来搜索特定字符串，可以在<code>command line</code>上输入命令：</p>
+<div class="highlight"><pre><span class="no">SRCHFOR</span> <span class="s2">&quot;STRING&quot;</span>
+</pre></div>
+
+
+<p>来在当前PDS下面搜索字符串<strong>”STRING“</strong>,具体如下面2张截图所示：
+<img alt="1" src="./../images/PDS-SRCHFOR_002.jpg" />      <br />
+<img alt="1" src="./../images/PDS-SRCHFOR_003.jpg" />      <br />
 如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用<strong><code>ISRSUPC</code></strong>这个utility了。这个<strong><code>ISRSUPC</code></strong>的功能可强大多了，具体可以参照下我之前的文章: &lt;&lt;用ISRSUPC在PDS所有member中搜索指定字符串&gt;&gt;，这里不重复了。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 

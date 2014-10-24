@@ -52,25 +52,26 @@
 </h6>
 
 
-    <p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。
-{% blockquote %} 
-FIND ',' ALL
-{% endblockquote %} 
-这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
+    <p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
+<blockquote>
+<p>FIND ',' ALL</p>
+<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
 既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
-编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：<br />
-{% codeblock lang:python %}
-1  ADDRESS  ISPEXEC                     <br />
-2  "ISREDIT SEEK ALL ','"               <br />
-3  "ISREDIT (COUNT) = SEEK_COUNTS"      <br />
-4  SAY "Comma number: "!! COUNT !! "'!'"<br />
-5 EXIT 0 
-{% endcodeblock %}
-打开MQ的DATASET，比如：
-{% blockquote %} 
-IBMUSER.PROJ.MQ.INPUT.SAMPLE
-{% endblockquote %} 
-在command栏上面输入CHECK即可运行，不过也就比输入<code>“FIND ',' ALL"</code>来得方便一点点。</p>
+编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
+</blockquote>
+<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
+<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
+<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
+<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
+<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
+</pre></div>
+
+
+<p>打开MQ的DATASET，比如：</p>
+<blockquote>
+<p>IBMUSER.PROJ.MQ.INPUT.SAMPLE</p>
+<p>在command栏上面输入CHECK即可运行，不过也就比输入<code>“FIND ',' ALL"</code>来得方便一点点。</p>
+</blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

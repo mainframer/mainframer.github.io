@@ -54,16 +54,17 @@
 
     <p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
 <h4>方法一：直接在ISPF下面用命令去掉</h4>
-<p _="%" endcodeblock="endcodeblock">这是最直接最快的办法。去掉第72列至80列的命令有下面两个：
-{% codeblock lang:python %}
-NUM ON; UNNUMB
-C P'^' ’ ’ 73 80 ALL    /<em> Changes all non-space characters to spaces in col 73 to 80</em>/</p>
+<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
+<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
+<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
+</pre></div>
+
+
 <hr />
 <h4>方法二：用第三方脚本实现</h4>
 <p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
 这里是一段自己的Ruby脚本，作用是将<code>C:\prod</code>文件夹下面的所有程序的第72列至80列内容置空，然后输出到文件夹<code>C:\prod72col</code>下面。可以看到，用第三方脚本实现批量的任务是很方便的。<br />
-{% codeblock lang:ruby %}
-01 def cutto72col(file_in,file_out)
+```ruby01 def cutto72col(file_in,file_out)
 02    file_in=File.new(file_in,‘r’)
 03    file_out=File.new(file_out,‘w’)
 04    oneline=file_in.gets
@@ -83,54 +84,58 @@ C P'^' ’ ’ 73 80 ALL    /<em> Changes all non-space characters to spaces in 
 18 then
 19    file_in = path_in + file
 20    cutto72col(file_in,path_out + file)
-21 end                }
-{% endcodeblock %}<br />
-当然，你还可以直接在大机上面用REXX脚本直接对整个PDS操作，移去该PDS下所有member的第72列至80列内容。这里也附上我的REXX脚本,作用是将<strong><code>IBMUSER.TEST.PRGM</code></strong>这个PDS下面所有的member的第72列至第80列的行号都去掉：<br />
-{% codeblock lang:python %}
-/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em><em>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
-/</em>Loop PDS to remove whatever between col72 to col80 for each member </em>/
-/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
-/<em> Trace i  </em>/                                                        <br />
-pdsname = 'TEST.PRGM'          /<em>Check if pds is exsited </em>/     <br />
-if sysdsn(pdsname)&lt;&gt; "OK" then                                        <br />
-    do                                                                <br />
-       say "Error: Specified PDS not found:" pdsname                  <br />
-       say "Error: " pdsname " &gt; " sysdsn(pdsname)                    <br />
-       say "Press Enter to continue"                                  <br />
-       pull uresp                                                     <br />
-       exit 8                                                         <br />
-    end                                                                 </p>
-<p>call outtrap "mbrs."       /<em>call outtrap to capture LISTD output </em>/
-"LISTD" pdsname "MEMBERS"  /<em>List member list</em>/                   <br />
-call outtrap "off"         /<em>Turn off outtrap</em>/                     </p>
-<p>do i=1 to mbrs.0                                                  <br />
- /<em>SAY "mbrs." !! i !! ": " !!   mbrs.i </em>/                        <br />
-  if mbrs.i = "--MEMBERS--" then                                  <br />
-   do                                                             <br />
-     leave                                                        <br />
-   end                                                            <br />
-end                                                                 </p>
-<p _="%" endcodeblock="endcodeblock">/<em>start to loop on each member</em>/                                  <br />
-i = i+1                                                           <br />
-do j=i to mbrs.0   /<em>mbrs.0 is the total line num of LISTD </em>/     <br />
- /<em>SAY "mbrs." !! j !! ": " !!   mbrs.j </em>/                           <br />
-   parse value mbrs.j with mem /<em>split mbrs.j</em>/                      <br />
-   mem =strip(mem)            /<em>remove leading and trailing character</em>/
-   pds = 'IBMUSER.TEST.PRGM'                                   <br />
-   mpds = pds !!'(' !! mem !! ')'                                    <br />
-   "ISPEXEC EDIT DATASET('"mpds"') MACRO(MACRO01)"                   <br />
- end                                     <br />
-{% endcodeblock %}<br />
-这是上面主Rexx程序调用的<em>MACRO01</em>:<br />
-{% codeblock lang:python %}
-/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>*REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
-ADDRESS  ISPEXEC 
-"ISREDIT MACRO"<br />
-"ISREDIT RES"  <br />
-"ISREDIT NUM ON" 
-"ISREDIT UNNUM"<br />
-"ISREDIT SAVE" <br />
-"ISREDIT END" </p>
+21 end                }</p>
+<div class="highlight"><pre><span class="err">当然，你还可以直接在大机上面用</span>REXX<span class="err">脚本直接对整个</span>PDS<span class="err">操作，移去该</span>PDS<span class="err">下所有</span>member<span class="err">的第</span><span class="m">72</span><span class="err">列至</span><span class="m">80</span><span class="err">列内容。这里也附上我的</span>REXX<span class="err">脚本</span><span class="o">,</span><span class="err">作用是将</span><span class="o">**</span><span class="err">`</span>IBMUSER<span class="o">.</span>TEST<span class="o">.</span>PRGM<span class="err">`</span><span class="o">**</span><span class="err">这个</span>PDS<span class="err">下面所有的</span>member<span class="err">的第</span><span class="m">72</span><span class="err">列至第</span><span class="m">80</span><span class="err">列的行号都去掉：</span><span class="w">  </span>
+<span class="err">```</span>ruby<span class="w"></span>
+<span class="cm">/***********************REXX******************************************/</span><span class="w"></span>
+<span class="cm">/*Loop PDS to remove whatever between col72 to col80 for each member */</span><span class="w"></span>
+<span class="cm">/**********************************************************************/</span><span class="w"></span>
+<span class="cm">/* Trace i  */</span><span class="w">                                                          </span>
+pdsname<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;TEST.PRGM&#39;</span><span class="w">          </span><span class="cm">/*Check if pds is exsited */</span><span class="w">       </span>
+<span class="kr">if</span><span class="w"> </span>sysdsn<span class="o">(</span>pdsname<span class="o">)&lt;&gt;</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="w"> </span><span class="kr">then</span><span class="w">                                          </span>
+<span class="w">    </span><span class="kr">do</span><span class="w">                                                                  </span>
+<span class="w">       </span><span class="kr">say</span><span class="w"> </span><span class="s">&quot;Error: Specified PDS not found:&quot;</span><span class="w"> </span>pdsname<span class="w">                    </span>
+<span class="w">       </span><span class="kr">say</span><span class="w"> </span><span class="s">&quot;Error: &quot;</span><span class="w"> </span>pdsname<span class="w"> </span><span class="s">&quot; &gt; &quot;</span><span class="w"> </span>sysdsn<span class="o">(</span>pdsname<span class="o">)</span><span class="w">                      </span>
+<span class="w">       </span><span class="kr">say</span><span class="w"> </span><span class="s">&quot;Press Enter to continue&quot;</span><span class="w">                                    </span>
+<span class="w">       </span><span class="kr">pull</span><span class="w"> </span>uresp<span class="w">                                                       </span>
+<span class="w">       </span><span class="kr">exit</span><span class="w"> </span><span class="m">8</span><span class="w">                                                           </span>
+<span class="w">    </span><span class="kr">end</span><span class="w">                                                                 </span>
+
+<span class="kr">call</span><span class="w"> </span>outtrap<span class="w"> </span><span class="s">&quot;mbrs.&quot;</span><span class="w">       </span><span class="cm">/*call outtrap to capture LISTD output */</span><span class="w"></span>
+<span class="s">&quot;LISTD&quot;</span><span class="w"> </span>pdsname<span class="w"> </span><span class="s">&quot;MEMBERS&quot;</span><span class="w">  </span><span class="cm">/*List member list*/</span><span class="w">                     </span>
+<span class="kr">call</span><span class="w"> </span>outtrap<span class="w"> </span><span class="s">&quot;off&quot;</span><span class="w">         </span><span class="cm">/*Turn off outtrap*/</span><span class="w">                     </span>
+
+<span class="kr">do</span><span class="w"> </span>i<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>mbrs<span class="o">.</span><span class="m">0</span><span class="w">                                                    </span>
+<span class="w"> </span><span class="cm">/*SAY &quot;mbrs.&quot; !! i !! &quot;: &quot; !!   mbrs.i */</span><span class="w">                          </span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span>mbrs<span class="o">.</span>i<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;--MEMBERS--&quot;</span><span class="w"> </span><span class="kr">then</span><span class="w">                                    </span>
+<span class="w">   </span><span class="kr">do</span><span class="w">                                                               </span>
+<span class="w">     </span><span class="kr">leave</span><span class="w">                                                          </span>
+<span class="w">   </span><span class="kr">end</span><span class="w">                                                              </span>
+<span class="kr">end</span><span class="w">                                                                 </span>
+
+<span class="cm">/*start to loop on each member*/</span><span class="w">                                    </span>
+i<span class="w"> </span><span class="o">=</span><span class="w"> </span>i<span class="o">+</span><span class="m">1</span><span class="w">                                                             </span>
+<span class="kr">do</span><span class="w"> </span>j<span class="o">=</span>i<span class="w"> </span><span class="kr">to</span><span class="w"> </span>mbrs<span class="o">.</span><span class="m">0</span><span class="w">   </span><span class="cm">/*mbrs.0 is the total line num of LISTD */</span><span class="w">       </span>
+<span class="w"> </span><span class="cm">/*SAY &quot;mbrs.&quot; !! j !! &quot;: &quot; !!   mbrs.j */</span><span class="w">                             </span>
+<span class="w">   </span><span class="kr">parse</span><span class="w"> </span>value<span class="w"> </span>mbrs<span class="o">.</span>j<span class="w"> </span>with<span class="w"> </span>mem<span class="w"> </span><span class="cm">/*split mbrs.j*/</span><span class="w">                        </span>
+<span class="w">   </span>mem<span class="w"> </span><span class="o">=</span><span class="nb">strip</span><span class="o">(</span>mem<span class="o">)</span><span class="w">            </span><span class="cm">/*remove leading and trailing character*/</span><span class="w"></span>
+<span class="w">   </span>pds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;IBMUSER.TEST.PRGM&#39;</span><span class="w">                                     </span>
+<span class="w">   </span>mpds<span class="w"> </span><span class="o">=</span><span class="w"> </span>pds<span class="w"> </span><span class="err">!!</span><span class="s">&#39;(&#39;</span><span class="w"> </span><span class="err">!!</span><span class="w"> </span>mem<span class="w"> </span><span class="err">!!</span><span class="w"> </span><span class="s">&#39;)&#39;</span><span class="w">                                      </span>
+<span class="w">   </span><span class="s">&quot;ISPEXEC EDIT DATASET(&#39;&quot;</span>mpds<span class="s">&quot;&#39;) MACRO(MACRO01)&quot;</span><span class="w">                     </span>
+<span class="w"> </span><span class="kr">end</span><span class="w">                                       </span>
+</pre></div>
+
+
+<p>这是上面主Rexx程序调用的<em>MACRO01</em>:  </p>
+<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
+<span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span> 
+<span class="s2">&quot;ISREDIT MACRO&quot;</span>  
+<span class="s2">&quot;ISREDIT RES&quot;</span>    
+<span class="s2">&quot;ISREDIT NUM ON&quot;</span> 
+<span class="s2">&quot;ISREDIT UNNUM&quot;</span>  
+<span class="s2">&quot;ISREDIT SAVE&quot;</span>   
+<span class="s2">&quot;ISREDIT END&quot;</span> 
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

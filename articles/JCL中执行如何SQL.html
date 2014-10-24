@@ -54,32 +54,33 @@
 
     <hr />
 <p>平常我们用第三方软件来对DB2操作，比如eclipse,比如DBedit,又或者是mainframe上面的软件，如<code>Filemanager</code>,<code>SPUFI</code>等。
-那怎么在JCL里面运行SQL呢？答案是利用<code>IKJEFT01</code>。
-{% codeblock lang:python %} 
- //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>             <br />
-//<em>UNLOAD:   unload data using IKJEFT01 via dynamic SQL in JCL  *             <br />
-//<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>             <br />
-//UNLOAD  EXEC PGM=IKJEFT01,DYNAMNBR=20                                      <br />
-//             INCLUDE MEMBER=XXXXSRUN                                        <br />
-//             INCLUDE MEMBER=XXXXLOAD                                        <br />
-//SYSTSPRT DD SYSOUT=</em>                                                        <br />
-//SYSUDUMP DD SYSOUT=<em>                                                        <br />
-//SYSPRINT DD SYSOUT=</em>                                                        <br />
-//SYSREC00 DD DSN=IBMUSER.SQL.OUTPUT,                            <br />
-//            DISP=(NEW,PASS,DELETE),UNIT=SYSDA,                                                                                                       <br />
-//            SPACE=(CYL,(10,10),RLSE),                                       <br />
-//            DCB=(RECFM=FB,BLKSIZE=0,DSORG=PS)                                                  <br />
-//SYSIN    DD  *                                                              <br />
-SELECT * FROM ABCD.MYTABLE WHERE NAME='XIAOMING'                                                                   <br />
-/<em>                                                                            <br />
-//SYSTSIN  DD  *                                                              <br />
- DSN SYSTEM(XXXX)                                                             <br />
- RUN PROG(DSNTIAUL)  PLAN(DSNTIAUL) PARM('SQL')                               <br />
-/</em>                                                                            <br />
-//SYSPUNCH DD SYSOUT=<em>                                                           <br />
-//</em>       <br />
-{% endcodeblock  %}<br />
-PS: 这里<code>'XXXX'</code>是指代<code>DB2 subsystem</code> 
+那怎么在JCL里面运行SQL呢？答案是利用<code>IKJEFT01</code>。</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="o">***************************************************************</span>               
+<span class="sr">//</span><span class="o">*</span><span class="ss">UNLOAD</span><span class="p">:</span>   <span class="n">unload</span> <span class="n">data</span> <span class="n">using</span> <span class="no">IKJEFT01</span> <span class="n">via</span> <span class="n">dynamic</span> <span class="no">SQL</span> <span class="k">in</span> <span class="no">JCL</span>  <span class="o">*</span>               
+<span class="sr">//</span><span class="o">***************************************************************</span>               
+<span class="sr">//</span><span class="no">UNLOAD</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IKJEFT01</span><span class="p">,</span><span class="no">DYNAMNBR</span><span class="o">=</span><span class="mi">20</span>                                        
+<span class="o">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXSRUN</span>                                          
+<span class="sr">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXLOAD</span>                                          
+<span class="sr">//</span><span class="no">SYSTSPRT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
+<span class="sr">//</span><span class="no">SYSUDUMP</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
+<span class="sr">//</span><span class="no">SYSREC00</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SQL</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span>                              
+<span class="sr">//</span>            <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span><span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>                                                                                                         
+<span class="sr">//</span>            <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span>                                         
+<span class="sr">//</span>            <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span>                                                    
+<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="o">*</span>                                                                
+<span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="no">ABCD</span><span class="o">.</span><span class="n">MYTABLE</span> <span class="no">WHERE</span> <span class="no">NAME</span><span class="o">=</span><span class="s1">&#39;XIAOMING&#39;</span>                                                                     
+<span class="sr">/*                                                                              </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">SYSTSIN</span>  <span class="no">DD</span>  <span class="o">*</span>                                                                
+ <span class="no">DSN</span> <span class="no">SYSTEM</span><span class="p">(</span><span class="no">XXXX</span><span class="p">)</span>                                                               
+ <span class="no">RUN</span> <span class="no">PROG</span><span class="p">(</span><span class="no">DSNTIAUL</span><span class="p">)</span>  <span class="no">PLAN</span><span class="p">(</span><span class="no">DSNTIAUL</span><span class="p">)</span> <span class="no">PARM</span><span class="p">(</span><span class="s1">&#39;SQL&#39;</span><span class="p">)</span>                                 
+<span class="sr">/*                                                                              </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">SYSPUNCH</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                             
+<span class="sr">//</span><span class="o">*</span>         
+</pre></div>
+
+
+<p>PS: 这里<code>'XXXX'</code>是指代<code>DB2 subsystem</code> 
 插一句，利用这种JCL的方法的好处是可以在接下去的Step里接着对SQL结果处理，利于自动化。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 

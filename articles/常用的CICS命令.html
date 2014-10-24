@@ -54,28 +54,31 @@
 
     <p>我们可以在<code>COBOL</code>，<code>PL/I</code>，<code>Assembler</code>等应用程序中写<code>CICS</code>命令，在<code>COBOL</code>和<code>PL/I</code>中，格式分别如下所示：</p>
 <h3>COBOL</h3>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-EXEC CICS function[option[(arg)]]... END-EXEC</p>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="k">END</span><span class="o">-</span><span class="no">EXEC</span>
+</pre></div>
+
+
 <h3>PL/I</h3>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-EXEC CICS function[option[(arg)]]... ; (末尾有分号)
-{% endcodeblock %}<br />
-CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
-<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。
-{% codeblock lang:ruby %}
-EXEC CICS ABEND [ABCODE(arg)]
-EXEC CICS ASKTIME [ABSTIME(arg)]
-EXEC CICS ASSIGN [OPID(arg)]
-EXEC CICS RETURN [TRANSID(arg)]
-EXEC CICS HANDLE CONDITION
-EXEC CICS IGNORE CONDITION
-EXEC CICS READQ TS [QUEUE(arg)]
-EXEC CICS WRITEQ TS [QUEUE(arg)]
-EXEC CICS DELETEQ TS [QUEUE(arg)]
-EXEC CICS RECEIVE MAP
-EXEC CICS SEND MAP
-EXEC CICS XCTL PROGRAM
-EXEC CICS LINK PROGRAM</p>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="p">;</span> <span class="p">(</span><span class="err">末尾有分号</span><span class="p">)</span>
+</pre></div>
+
+
+<p>CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
+<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。</p>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ABEND</span> <span class="o">[</span><span class="no">ABCODE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ASKTIME</span> <span class="o">[</span><span class="no">ABSTIME</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ASSIGN</span> <span class="o">[</span><span class="no">OPID</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">RETURN</span> <span class="o">[</span><span class="no">TRANSID</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">HANDLE</span> <span class="no">CONDITION</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">IGNORE</span> <span class="no">CONDITION</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">READQ</span> <span class="no">TS</span> <span class="o">[</span><span class="no">QUEUE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">WRITEQ</span> <span class="no">TS</span> <span class="o">[</span><span class="no">QUEUE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">DELETEQ</span> <span class="no">TS</span> <span class="o">[</span><span class="no">QUEUE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">RECEIVE</span> <span class="no">MAP</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">SEND</span> <span class="no">MAP</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">XCTL</span> <span class="no">PROGRAM</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">LINK</span> <span class="no">PROGRAM</span>
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

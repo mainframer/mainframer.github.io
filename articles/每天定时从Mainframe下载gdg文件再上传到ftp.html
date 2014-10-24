@@ -58,55 +58,53 @@
 <h6>Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的<code>/topath/users-4/</code>目录下面，每天新建一个目录<code>yyyymmdd</code>用来存放当天的gdg文件。</h6>
 <h6>Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。</h6>
 <p>这里是实现以上任务的批处理脚本<code>ftpscript.bat</code>。放在<code>C:\ftpscript</code>.bat，之后在windows计划任务里面添加每天定时运行即可。   </p>
-<p>{% codeblock lang:python %} 
-@echo off
-rem 指定mainframe的IP
-set mfIP=xxx.xxx.xxx.xxx
-rem 指定mainframe用户名
-set mfUser=IBMUSER
-rem 指定mainframe密码
-set mfPass=MFPASSWD
-rem 指定从FTP下载下来的gdg存放到本地目录C:\gdg
-set LocalFolder=C:\gdg
-rem 指定将下载下来的文件发送到哪一个目标ftp server上面去
-set toftpServer=xxx.xxx.xxx.xxx
-set toftpuser=FTPUSER
-set toftppass=TOFTPPASS
-rem 事先清空本地目录C:\gdg，然后从大机上面下载最新的gdg放到这里
-cd %LocalFolder%
-del /s /q /f <em>.</em> </p>
-<p>rem 拼装ftp命令到C:\TempFTP.txt里面，最后用ftp.exe -n -s:"%ftpFile%" 执行里面的命令
-set ftpFile=%temp%\TempFTP.txt</p>
-<blockquote>
-<p>"%ftpFile%" (
-rem 第一步：从大机上面下载文件放到C:\gdg目录 (前面已做清空) 
-    echo open %mfIP%
-    echo user %mfUser%
-    echo %mfPass%  <br />
-    echo lcd "%LocalFolder%"
-    echo ascii
-    echo disconnect
-rem echo site RECFM=VB LRECL=2548 BLKSIZE=27998
-    echo get "'IBMUSER.TESTGDG.ASPA.EXTRACT(0)'"  <br />
-    echo get "'IBMUSER.TESTGDG.ASPA.EXTRACT(-1)'" <br />
-rem 第二步：在目标ftp上新建一个yyyymmdd目录，将C:\gdg目录下所有的文件传到该目录下
-    echo open %toftpServer%
-    echo user %toftpuser%
-    echo %toftppass%
-    echo cd /topath/users-4/
-rem echo echo %date% %time%
-    echo mkdir %Date:~10,4%%Date:~4,2%%Date:~7,2%
-    echo cd %Date:~10,4%%Date:~4,2%%Date:~7,2%
-    echo put "'IBMUSER.TESTGDG.ASPA.EXTRACT(0)'" "IBMUSER.TESTGDG.ASPA.EXTRACT(0)"<br />
-    echo put "'IBMUSER.TESTGDG.ASPA.EXTRACT(-1)'" "IBMUSER.TESTGDG.ASPA.EXTRACT(-1)"                                             <br />
-    echo pwd
-    echo ls -all
-    echo bye
-  )
-cd ..<br />
-start c:\windows\system32\ftp.exe -n -s:"%ftpFile%" </p>
-</blockquote>
-<p>{% endcodeblock  %}</p>
+<div class="highlight"><pre><span class="vi">@echo</span> <span class="n">off</span>
+<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">的</span><span class="no">IP</span>
+<span class="n">set</span> <span class="n">mfIP</span><span class="o">=</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span>
+<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">用户名</span>
+<span class="n">set</span> <span class="n">mfUser</span><span class="o">=</span><span class="no">IBMUSER</span>
+<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">密码</span>
+<span class="n">set</span> <span class="n">mfPass</span><span class="o">=</span><span class="no">MFPASSWD</span>
+<span class="n">rem</span> <span class="err">指定从</span><span class="no">FTP</span><span class="err">下载下来的</span><span class="n">gdg</span><span class="err">存放到本地目录</span><span class="ss">C</span><span class="p">:\</span><span class="n">gdg</span>
+<span class="n">set</span> <span class="no">LocalFolder</span><span class="o">=</span><span class="ss">C</span><span class="p">:\</span><span class="n">gdg</span>
+<span class="n">rem</span> <span class="err">指定将下载下来的文件发送到哪一个目标</span><span class="n">ftp</span> <span class="n">server</span><span class="err">上面去</span>
+<span class="n">set</span> <span class="n">toftpServer</span><span class="o">=</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span>
+<span class="n">set</span> <span class="n">toftpuser</span><span class="o">=</span><span class="no">FTPUSER</span>
+<span class="n">set</span> <span class="n">toftppass</span><span class="o">=</span><span class="no">TOFTPPASS</span>
+<span class="n">rem</span> <span class="err">事先清空本地目录</span><span class="ss">C</span><span class="p">:\</span><span class="n">gdg</span><span class="err">，然后从大机上面下载最新的</span><span class="n">gdg</span><span class="err">放到这里</span>
+<span class="n">cd</span> <span class="o">%</span><span class="no">LocalFolder</span><span class="o">%</span>
+<span class="n">del</span> <span class="sr">/s /</span><span class="n">q</span> <span class="sr">/f *.* </span>
+
+<span class="sr">rem 拼装ftp命令到C:\TempFTP.txt里面，最后用ftp.exe -n -s:&quot;%ftpFile%&quot; 执行里面的命令</span>
+<span class="sr">set ftpFile=%temp%\TempFTP.txt</span>
+<span class="sr">  &gt;&quot;%ftpFile%&quot; (</span>
+<span class="sr">rem 第一步：从大机上面下载文件放到C:\gdg目录 (前面已做清空) </span>
+<span class="sr">    echo open %mfIP%</span>
+<span class="sr">    echo user %mfUser%</span>
+<span class="sr">    echo %mfPass%    </span>
+<span class="sr">    echo lcd &quot;%LocalFolder%&quot;</span>
+<span class="sr">    echo ascii</span>
+<span class="sr">    echo disconnect</span>
+<span class="sr">rem echo site RECFM=VB LRECL=2548 BLKSIZE=27998</span>
+<span class="sr">    echo get &quot;&#39;IBMUSER.TESTGDG.ASPA.EXTRACT(0)&#39;&quot;    </span>
+<span class="sr">    echo get &quot;&#39;IBMUSER.TESTGDG.ASPA.EXTRACT(-1)&#39;&quot;   </span>
+<span class="sr">rem 第二步：在目标ftp上新建一个yyyymmdd目录，将C:\gdg目录下所有的文件传到该目录下</span>
+<span class="sr">    echo open %toftpServer%</span>
+<span class="sr">    echo user %toftpuser%</span>
+<span class="sr">    echo %toftppass%</span>
+<span class="sr">    echo cd /</span><span class="n">topath</span><span class="o">/</span><span class="n">users</span><span class="o">-</span><span class="mi">4</span><span class="o">/</span>
+<span class="n">rem</span> <span class="n">echo</span> <span class="n">echo</span> <span class="o">%</span><span class="n">date</span><span class="o">%</span> <span class="o">%</span><span class="n">time</span><span class="o">%</span>
+    <span class="n">echo</span> <span class="n">mkdir</span> <span class="o">%</span><span class="ss">Date</span><span class="p">:</span><span class="o">~</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="sx">%%Date:~4,2%</span><span class="o">%</span><span class="ss">Date</span><span class="p">:</span><span class="o">~</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="o">%</span>
+    <span class="n">echo</span> <span class="n">cd</span> <span class="o">%</span><span class="ss">Date</span><span class="p">:</span><span class="o">~</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="sx">%%Date:~4,2%</span><span class="o">%</span><span class="ss">Date</span><span class="p">:</span><span class="o">~</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="o">%</span>
+    <span class="n">echo</span> <span class="n">put</span> <span class="s2">&quot;&#39;IBMUSER.TESTGDG.ASPA.EXTRACT(0)&#39;&quot;</span> <span class="s2">&quot;IBMUSER.TESTGDG.ASPA.EXTRACT(0)&quot;</span>  
+    <span class="n">echo</span> <span class="n">put</span> <span class="s2">&quot;&#39;IBMUSER.TESTGDG.ASPA.EXTRACT(-1)&#39;&quot;</span> <span class="s2">&quot;IBMUSER.TESTGDG.ASPA.EXTRACT(-1)&quot;</span>                                               
+    <span class="n">echo</span> <span class="n">pwd</span>
+    <span class="n">echo</span> <span class="n">ls</span> <span class="o">-</span><span class="n">all</span>
+    <span class="n">echo</span> <span class="n">bye</span>
+  <span class="p">)</span>
+<span class="n">cd</span> <span class="o">..</span>  
+<span class="n">start</span> <span class="ss">c</span><span class="p">:\</span><span class="n">windows</span><span class="p">\</span><span class="n">system32</span><span class="p">\</span><span class="n">ftp</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="ss">s</span><span class="p">:</span><span class="s2">&quot;%ftpFile%&quot;</span> 
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

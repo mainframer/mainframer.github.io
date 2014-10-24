@@ -52,27 +52,27 @@
 </h6>
 
 
-    <p _="%" endcodeblock="endcodeblock">取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！
-{% codeblock lang:python %}
-//STEP001 EXEC PGM=ICETOOL,REGION=4096K,COND=(0,NE)       <br />
-//TOOLMSG  DD SYSOUT=<em>                                    <br />
-//DFSMSG   DD SYSOUT=</em>                                    <br />
-//SYSOUT   DD SYSOUT=<em>                                    <br />
-//SYSPRINT DD SYSOUT=</em>                                    <br />
-//SORTWK01 DD UNIT=SYSDA,SPACE=(CYL,(30,3),RLSE)          <br />
-//IN      DD DSN=MYINPUT,DISP=SHR :LRECL=05               <br />
-//OUT1    DD DSN=MYOUT1,DISP=SHR  :LRECL=10               <br />
-//OUT2    DD DSN=MYOUT2,DISP=SHR  :LRECL=20               <br />
-//TOOLIN  DD *                                            <br />
-  COPY FROM(IN) TO(OUT1)    USING(CTL1)                   <br />
-  COPY FROM(IN) TO(OUT2)    USING(CTL2)                   <br />
-/<em>                                                        <br />
-//CTL1CNTL DD *                   :BUILD OUTPUT1(LRECL=10)<br />
-  OUTFIL FNAMES=OUT1,BUILD=(1,5,5C' ')                    <br />
-/</em>                                                        <br />
-//CTL2CNTL DD *                   :BUILD OUTPUT2(LRECL=20)<br />
-  OUTFIL FNAMES=OUT2,BUILD=(1,5,15C' ')   <br />
-/*    <br /></p>
+    <p>取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>         
+<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SORTWK01</span> <span class="no">DD</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>            
+<span class="sr">//</span><span class="no">IN</span>      <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> <span class="ss">:LRECL</span><span class="o">=</span><span class="mo">05</span>                 
+<span class="o">//</span><span class="no">OUT1</span>    <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUT1</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>  <span class="ss">:LRECL</span><span class="o">=</span><span class="mi">10</span>                 
+<span class="o">//</span><span class="no">OUT2</span>    <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUT2</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>  <span class="ss">:LRECL</span><span class="o">=</span><span class="mi">20</span>                 
+<span class="o">//</span><span class="no">TOOLIN</span>  <span class="no">DD</span> <span class="o">*</span>                                              
+  <span class="no">COPY</span> <span class="no">FROM</span><span class="p">(</span><span class="no">IN</span><span class="p">)</span> <span class="no">TO</span><span class="p">(</span><span class="no">OUT1</span><span class="p">)</span>    <span class="no">USING</span><span class="p">(</span><span class="no">CTL1</span><span class="p">)</span>                     
+  <span class="no">COPY</span> <span class="no">FROM</span><span class="p">(</span><span class="no">IN</span><span class="p">)</span> <span class="no">TO</span><span class="p">(</span><span class="no">OUT2</span><span class="p">)</span>    <span class="no">USING</span><span class="p">(</span><span class="no">CTL2</span><span class="p">)</span>                     
+<span class="sr">/*                                                          </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                   <span class="ss">:BUILD</span> <span class="no">OUTPUT1</span><span class="p">(</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  
+  <span class="no">OUTFIL</span> <span class="no">FNAMES</span><span class="o">=</span><span class="no">OUT1</span><span class="p">,</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="n">C</span><span class="s1">&#39; &#39;</span><span class="p">)</span>                      
+<span class="sr">/*                                                          </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">CTL2CNTL</span> <span class="no">DD</span> <span class="o">*</span>                   <span class="ss">:BUILD</span> <span class="no">OUTPUT2</span><span class="p">(</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>  
+  <span class="no">OUTFIL</span> <span class="no">FNAMES</span><span class="o">=</span><span class="no">OUT2</span><span class="p">,</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="n">C</span><span class="s1">&#39; &#39;</span><span class="p">)</span>     
+<span class="sr">/*      </span>
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

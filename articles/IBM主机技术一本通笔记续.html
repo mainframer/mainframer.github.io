@@ -77,7 +77,7 @@ GROUP <br />
 <span style="color: #ff00ff;">USER</span> CCSID<br />
 标有颜色的几个是我自己比较常用到的。<br />
 上张包含了这9个常用JCL关键字参数的图(当然，平常工作当中一般不可能在单个JCL当中都包含了所有的这9个关键字，我这里只是为了更好的说明才把它们罗列在一个JCL里面的，这点要明白)
-<a href="/../images/JCL-keyword1.jpg">!</a>  <br />
+<a href="./../images/JCL-keyword1.jpg">!</a>  <br />
 <strong><code>CLASS</code></strong> : 是作业运行队列的优先级，MSGCLASS是作业输出信息的级别，它规定了作业输出信息送往哪里显示。CLASS和MSGCLASS都是公司规定好了的，肯定有文档可以查看具体信息的。</p>
 <p><strong><code>NOTIFY</code></strong>:  是指最终作业运行的结果通知给谁，可以写详细的ID，比如IBMUSER，也可以写通用的参数，比如<code>&amp;SYSUID</code>，这样的话，谁运行它就显示给谁看。 </p>
 <p><strong><code>REGION</code></strong>:  规定作业所需的实存或虚存的大小，在JOB level定义的话就运用到整个JOB的所有STEP，当然，可以每个STEP单独定义REGION的大小。      </p>
@@ -93,7 +93,7 @@ GROUP <br />
 <h5>4、Dummy 哑数据集</h5>
 <p>每个程序需要访问的数据集在作业流中都必须有一个ddname与其对应。如果你在程序里面定义了文件而在JCL中没有定义对应的DD语句，就会ABEND。当有时候输入数据集对程序来说是可选的或者程序要输出地数据集不是必需的时候，我们就用Dummy数据集来跳过它所有的I/O操作。   </p>
 <h5>5、DATASET串联(Concatenation)</h5>
-<p><img alt="1" src="/../images/dataset-concatenation.jpg" /><br />
+<p><img alt="1" src="./../images/dataset-concatenation.jpg" /><br />
 使用这个特性是很方便的，特别是在一些SORT的场合，把几个DATASET同置于一个SORTIN下面。只是要注意的是这些DATASET的属性要完全一致，就是它们所有的DCB子参数必须一致。包括<strong>RECFM，LRECL，BLKSIZE</strong>。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 

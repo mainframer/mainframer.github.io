@@ -84,13 +84,12 @@
 <p>这两天微软发布了windows8的开发者预览版本(dev preview edition)提供下载,首日的下载量就突破50万。虽然这是一个被阉割过的windows8版本，我还是想下载下来安装在虚拟机上试试。
 首先应该去微软官方网站下载win8的镜像ISO文件，这里是官方下载地址，我下载的是WindowsDeveloperPreview-32bit-English.iso。
 <a href="http://msdn.microsoft.com/en-us/windows/apps/br229516">WindowsDeveloperPreview下载地址</a><br />
-原先我的vmware版本是7.1.4，但是在安装win8的时候一开始就碰到了·
-{% blockquote %} 
-"your pc ran into a problem that it couldn't handle,and now it needs to restart"·
-{% endblockquote %} 
-正所谓出师不利:<br />
-<img alt="1" src="/../images/win8-dev-pre-blue-screen.jpg" />            <br />
-解决办法是到vmware官方网站<a href="http://www.vmware.com">http://www.vmware.com</a>去下载最新的<code>Vmware Workstation 8 .0 build 471780</code>。也是这两天才最新发布的 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+原先我的vmware版本是7.1.4，但是在安装win8的时候一开始就碰到了·</p>
+<blockquote>
+<p>"your pc ran into a problem that it couldn't handle,and now it needs to restart"·</p>
+<p>正所谓出师不利:<br />
+<img alt="1" src="./../images/win8-dev-pre-blue-screen.jpg" />            <br />
+解决办法是到vmware官方网站<a href="http://www.vmware.com">http://www.vmware.com</a>去下载最新的<code>Vmware Workstation 8 .0 build 471780</code>。也是这两天才最新发布的，估计是为了迎接<code>win8-dev-pre ...</code></p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -111,15 +110,14 @@
 </h6>
 
 
-<p>在windows下用惯了chrome，受不了chrome的诱惑，还是忍不住想把bt5下的firefox给换了。chrome官网下载安装包放置于<code>/root/software/</code>路径下，然后安装。
-{% codeblock lang:python %}
-root@bt:~# cd software/
-root@bt:~/software# dpkg -i google-chrome-stable_current_i386.deb
-Selecting previously deselected package google-chrome-stable.
-(Reading database ... 220905 files and directories currently installed.)
-Unpacking google-chrome-stable (from google-chrome-stable_current_i386.deb) ...
-Setting up google-chrome-stable (13.0.782.220-r99552) ...
-update-alternatives: using /usr ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>在windows下用惯了chrome，受不了chrome的诱惑，还是忍不住想把bt5下的firefox给换了。chrome官网下载安装包放置于<code>/root/software/</code>路径下，然后安装。</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># cd software/</span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="sr">/software# dpkg -i google-chrome-stable_current_i386.deb</span>
+<span class="sr">Selecting previously deselected package google-chrome-stable.</span>
+<span class="sr">(Reading database ... 220905 files and directories currently installed.)</span>
+<span class="sr">Unpacking google-chrome-stable (from google-chrome-stable_current_i386.deb) ...</span>
+<span class="sr">Setting up google-chrome-stable (13.0.782.220-r99552) ...</span>
+<span class="sr">update-alternatives: using /us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">google ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -140,13 +138,14 @@ update-alternatives: using /usr ...</p><p class="subheader">Category: <a href="h
 </h6>
 
 
-<p>打开BT5下菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus start</code> 会提示插件缺失需要注册。
-{% codeblock lang:python %}
-root@bt:~# Missing plugins. Attempting a plugin update...
-Your installation is missing plugins. Please register and try again.
-To register, please visit http://www.nessus.org/register/
-{% endcodeblock %}
-到官网<a href="http://www.nessus.org/register/">http://www.nessus.org/register</a>注册，好工具只给注册家用版 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>打开BT5下菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus start</code> 会提示插件缺失需要注册。</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># Missing plugins. Attempting a plugin update...</span>
+<span class="no">Your</span> <span class="n">installation</span> <span class="n">is</span> <span class="n">missing</span> <span class="n">plugins</span><span class="o">.</span> <span class="no">Please</span> <span class="n">register</span> <span class="ow">and</span> <span class="n">try</span> <span class="n">again</span><span class="o">.</span>
+<span class="no">To</span> <span class="n">register</span><span class="p">,</span> <span class="n">please</span> <span class="n">visit</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">nessus</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">register</span><span class="o">/</span>
+</pre></div>
+
+
+<p>到官网<a href="http://www.nessus.org/register/">http://www.nessus.org/register</a>注册，好工具只给注册家用版，填好邮箱注册即可，登陆邮箱会收到一封确认邮件。告诉你在不同系统<code>(windows ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -167,21 +166,29 @@ To register, please visit http://www.nessus.org/register/
 </h6>
 
 
-<p>{% blockquote %} 
-Usage: genlist [Input Type] [General Options]
-{% endblockquote %} 
-{% codeblock lang:ruby %} 
-Input Type:
--s --scan Ping Target Range ex: 10.0.0.*
-{% endcodeblock %} 
-{% codeblock lang:c %}
-Scan Options:
--n --nmap Path to Nmap executable
---inter Perform Nmap Scan using non default interface
-{% endcodeblock %}
-{% codeblock lang:c %}
-General Options:
--v --version ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<blockquote>
+<p>Usage: genlist [Input Type] [General Options]
+</p>
+</blockquote>
+<div class="highlight"><pre><span class="no">Input</span> <span class="ss">Type</span><span class="p">:</span>
+<span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="nb">scan</span> <span class="no">Ping</span> <span class="no">Target</span> <span class="no">Range</span> <span class="ss">ex</span><span class="p">:</span> <span class="mi">10</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="p">\</span><span class="o">*</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="no">Scan</span> <span class="ss">Options</span><span class="p">:</span>
+<span class="o">-</span><span class="n">n</span> <span class="o">--</span><span class="n">nmap</span> <span class="no">Path</span> <span class="n">to</span> <span class="no">Nmap</span> <span class="n">executable</span>
+<span class="o">--</span><span class="n">inter</span> <span class="no">Perform</span> <span class="no">Nmap</span> <span class="no">Scan</span> <span class="n">using</span> <span class="n">non</span> <span class="n">default</span> <span class="n">interface</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="no">General</span> <span class="ss">Options</span><span class="p">:</span>
+<span class="o">-</span><span class="n">v</span> <span class="o">--</span><span class="n">version</span> <span class="no">Display</span> <span class="n">version</span>
+<span class="o">-</span><span class="n">h</span> <span class="o">--</span><span class="n">help</span> <span class="no">Display</span> <span class="n">this</span> <span class="n">information</span>
+</pre></div>
+
+
+<blockquote>
+<p>Send Comments to Joshua D. Abraham ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -204,7 +211,7 @@ General Options:
 
 <p>关于<code>IBM DebugTool</code>的一些介绍，请参照我的另一篇博文：&lt;<Debug Tool for z/OS>&gt;，这里呢，我是想说说一般我们用<code>IBM Debug Tool</code>来调试<code>PL/I</code>或者<code>COBOL</code>程序的时候都有哪些命令或者说按键可以用，比如说设置断点，运行至断点处，监视变量值啊什么的这种一般不管什么程序的调试都会用到的知识。当然，这本身很简单，写在这里只是为了让新人更快的学会使用，基本上10分钟搞定的那种，这样就节省了大家的时间了。
 先上个<code>IBM DebugTool</code>的截图：
-<img alt="1" src="/../images/Debug-tool-screenshot1.jpg" />  <br />
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />  <br />
 可以看到，最上面一行显示了当前debug的程序名字PRGM002以及所用的语言<code>PL/I</code>,接着是命令行COMMAND,所有的调试命令都在这一行输入。然后是变量监视区域<code>(MONITOR)</code>，源程序区<code>(SOURCE)</code>以及调试日志<code>(LOG)</code>区域。<code>Debug Tool</code>遵循“七上八下”原则，也就是F7向上翻页，F8向下翻页。</p>
 <h4>执行下一条语句</h4>
 <p>按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
@@ -253,7 +260,7 @@ General Options:
 
 
 <p>上一次我简单介绍了下大机平台上的一个强大的文件查看/编辑工具，这里我要介绍几个在用<code>FileManager</code>查看/编辑 QSAM顺序文件的时候的小技巧。
-<img alt="1" src="/../images/ibm-file-manager-qsam.jpg" />  上图显示的是employee的信息文件，比较小，只有几条记录。但是一般在生产环境上，数据都有好几百万条，如果你很傻的直接FIND 关键字来查找，那么抛开CPU耗费不说，你自己也将耗费很长的一段时间来等待搜索结果出来，所以，看看这篇文章，学会几个<code>*File Manager*</code>的使用技巧还是有必要的(如果你没功夫去看IBM红宝书的话)。</p>
+<img alt="1" src="./../images/ibm-file-manager-qsam.jpg" />  上图显示的是employee的信息文件，比较小，只有几条记录。但是一般在生产环境上，数据都有好几百万条，如果你很傻的直接FIND 关键字来查找，那么抛开CPU耗费不说，你自己也将耗费很长的一段时间来等待搜索结果出来，所以，看看这篇文章，学会几个<code>*File Manager*</code>的使用技巧还是有必要的(如果你没功夫去看IBM红宝书的话)。</p>
 <h3>1、只查找指定字段(Field)</h3>
 <h5>例：只在ACCT字段查找关键字“IT”</h5>
 <p>命令： <code>F IT #6</code>     (可以把#6看成ACCT的别名)</p>
@@ -286,10 +293,10 @@ General Options:
 <h4>这篇我来说说如何设置让程序可以被Debug</h4>
 <p>首先，你必须在编译程序的时候需要选择以Debug模式编译，这个在changeman里面直接在编译的时候选个<code>IBM Debug Tool="Y"</code>就可以了。<br />
 接着，如果是BATCH的，就需要在JCL的PARM中指定TEST运行时的参数，通过VTAM接口来初始化debug模式，VTAM%后面跟着的是userid，就像这样：
-<img alt="1" src="/../images/debugtool.jpg" />  <br />
+<img alt="1" src="./../images/debugtool.jpg" />  <br />
 是BATCH的话，你还要有一个Debug的session，这个可以参照我的另外一篇博文：&lt;&lt;登陆大型机——Aviva的介绍&gt;&gt;，只需注意在建debug session的时候destination的IP一般和普通大机的物理ip是不一样。填上正确的ip,然后用你的id登陆,这里我的id是IBMUSER，须跟上面设置的一样。<br />
 回到JCL这边，submit，那恭喜你，你就可以看到Debugtool的画面了:
-<img alt="1" src="/../images/Debug-tool-screenshot1.jpg" />   <br />
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />   <br />
 但是，如果程序是ONLINE的话，一般我们用CICS上面的DTCN这个工具来debug的。这里我假设你已经在上面“首先”里面正确编译了一个ONLINE的程序PRGM002 (带debug编译选项的)。然后，你登陆CICS ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
@@ -311,15 +318,14 @@ General Options:
 </h6>
 
 
-<p _="%" endblockquote="endblockquote"><strong>[dnsdict6 v1.4 (c) 2010 by van Hauser /   THC www.thc.org]</strong> <br />
-<code>dnsdict6</code>用来查询网站的ipv6地址，如果存在的话就显示，不存在的话就没有显示。可自定义线程数和字典。用法为： 
-{% blockquote %} 
-Syntax: dnsdict6 [-t THREADS] domain [dictionary-file]<br />
-{% endblockquote %} 
-root@bt:~# <code>dnsdict6 google.com</code>
-{% blockquote %} 
-Starting enumerating google.com. - creating 8 threads for 3001 words...<br />
-Estimated time to completion: 2 to 5 minutes ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p><strong>[dnsdict6 v1.4 (c) 2010 by van Hauser /   THC www.thc.org]</strong> <br />
+<code>dnsdict6</code>用来查询网站的ipv6地址，如果存在的话就显示，不存在的话就没有显示。可自定义线程数和字典。用法为： </p>
+<blockquote>
+<p>Syntax: dnsdict6 [-t THREADS] domain [dictionary-file]  </p>
+<p>root@bt:~# <code>dnsdict6 google.com</code></p>
+<p>Starting enumerating google.com. - creating 8 threads for 3001 words...<br />
+Estimated time to completion: 2 to 5 minutes  <br />
+ipv6.google.com ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>

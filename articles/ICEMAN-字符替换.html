@@ -52,32 +52,34 @@
 </h6>
 
 
-    <p>用于替换dataset中出现的字符串:
-{% codeblock lang:python %} <br />
-//STEP001  EXEC  PGM=ICEMAN,REGION=4000K                  <br />
-//SORTIN  DD  DSN=MYINPUT,DISP=SHR                        <br />
-//SORTOUT DD  DSN=MYOUTPUT,DISP=SHR                       <br />
-//SYSIN  DD *                                             <br />
-  OPTION COPY                                             <br />
-  INREC FINDREP=(INOUT=(C'0000',C'AAAA',C'1111',C'BBBB')) <br />
-//SYSOUT   DD  SYSOUT=<em>                                   <br />
-//SYSPRINT DD  SYSOUT=</em>                                   <br />
-//<em>                                                       <br />
-{% endcodeblock %}<br />
-将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成<code>‘BBBB‘</code> 
-当然，可以限定在特定几列替换：<br />
-{% codeblock lang:python %} <br />
-//STEP001  EXEC  PGM=ICEMAN,REGION=4000K                  <br />
-//SORTIN  DD  DSN=MYINPUT,DISP=SHR                        <br />
-//SORTOUT DD  DSN=MYOUTPUT,DISP=SHR                       <br />
-//SYSIN  DD *                                             <br />
-  OPTION COPY                                             <br />
-  INREC FINDREP=(INOUT=(C'0000',C'AAAA',C'1111',C'BBBB'),STARTPOS=1,ENDPOS=10) <br />
-//SYSOUT   DD  SYSOUT=</em>                                   <br />
-//SYSPRINT DD  SYSOUT=<em>                                   <br />
-//</em>   <br />
-{% endcodeblock %} <br />
-限定只在前10位出现的<code>'0000'</code>和<code>'1111'</code>才做替换。</p>
+    <p>用于替换dataset中出现的字符串:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
+<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
+  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">))</span>   
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="o">*</span>                                                         
+</pre></div>
+
+
+<p>将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成<code>‘BBBB‘</code> 
+当然，可以限定在特定几列替换：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
+<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
+  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">),</span><span class="no">STARTPOS</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="no">ENDPOS</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>   
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="o">*</span>     
+</pre></div>
+
+
+<p>限定只在前10位出现的<code>'0000'</code>和<code>'1111'</code>才做替换。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

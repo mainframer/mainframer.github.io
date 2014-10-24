@@ -52,32 +52,36 @@
 </h6>
 
 
-    <p _="%" endblockquote="endblockquote">在一个pds下面<em>create member</em>的时候右上角出现错误：
-{% blockquote %}
-No space in directory
-{% endblockquote %}
-按PF1,提示：
-{% blockquote %}
-PDS directory is full, allocate more directory blocks.<br /></p>
+    <p>在一个pds下面<em>create member</em>的时候右上角出现错误：</p>
+<blockquote>
+<p>No space in directory</p>
+<p>按PF1,提示：</p>
+<p>PDS directory is full, allocate more directory blocks.<br />
+</p>
+</blockquote>
 <h4>错误原因：当前PDS下面所容纳的member数量已经达到最大值了。用'I' 查看PDS的信息：</h4>
-<p>{% codeblock lang:python %}
- Current Allocation           <br />
-  Allocated cylinders : 1     <br />
-  Allocated extents . : 1     <br />
-  Maximum dir. blocks : 10      </p>
-<p>Current Utilization          <br />
-  Used cylinders  . . : 1     <br />
-  Used extents  . . . : 1     <br />
-  Used dir. blocks  . : 10    <br />
-  Number of members . : 59    <br />
-{% endcodeblock %}
-原来，每个blocks可以有6个dir,于是PDS里面最多容纳的member数量= <code>(6 x no.of directory blocks)-1</code> </p>
+<div class="highlight"><pre><span class="no">Current</span> <span class="no">Allocation</span>             
+  <span class="no">Allocated</span> <span class="n">cylinders</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Allocated</span> <span class="n">extents</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Maximum</span> <span class="n">dir</span><span class="o">.</span> <span class="n">blocks</span> <span class="p">:</span> <span class="mi">10</span>      
+
+
+ <span class="no">Current</span> <span class="no">Utilization</span>            
+  <span class="no">Used</span> <span class="n">cylinders</span>  <span class="o">.</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Used</span> <span class="n">extents</span>  <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Used</span> <span class="n">dir</span><span class="o">.</span> <span class="n">blocks</span>  <span class="o">.</span> <span class="p">:</span> <span class="mi">10</span>      
+  <span class="no">Number</span> <span class="n">of</span> <span class="n">members</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">59</span>      
+</pre></div>
+
+
+<p>原来，每个blocks可以有6个dir,于是PDS里面最多容纳的member数量= <code>(6 x no.of directory blocks)-1</code> </p>
 <h3>上网搜索了下更详细的：</h3>
-<p _="%" endblockquote="endblockquote">{% blockquote %}<br />
-The number of member entries that fit in a directory block is as follows: <br />
+<blockquote>
+<p>The number of member entries that fit in a directory block is as follows: <br />
 (1) For a data set with ISPF statistics: 6 entries per block.<br />
 (2) For a data set without ISPF statistics: 21 entries per block.<br />
-(3) For a load module data set: 4 to 7 entries depending upon. <br /></p>
+(3) For a load module data set: 4 to 7 entries depending upon.   </p>
+</blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

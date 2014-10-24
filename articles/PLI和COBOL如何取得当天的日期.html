@@ -52,23 +52,24 @@
 </h6>
 
 
-    <p _="%" endcodeblock="endcodeblock">在Mainframe上做开发会经常遇到用PL/I或者COBOL取得当天的日期，对于PL/I，一般的公司都采取如下的做法：<br />
-{% codeblock lang:python %} 
-DCL PIC_TODAY            PIC'999999' INIT(0);
-PIC_TODAY  = DATE;
-IF SUBSTR(DATE,1,2) &gt; '50'              <br />
-  THEN TODAYS_DATE = 19000000 + PIC_TODAY;
-  ELSE TODAYS_DATE = 20000000 + PIC_TODAY;
-{% endcodeblock  %}<br />
-我所在的公司也是这种写法来获得<code>YYYYMMDD</code>格式的当日日期，很明显这种写法代码的寿命只有几十年了，相比之下COBOL获得<code>YYYYMMDD</code>格式的当日日期就显得方便得多，一个<code>ACCEPT</code>语句即可:
-{% codeblock lang:python %} 
-WORKING-STORAGE SECTION.
-01 TODAYS-DATE                          PIC 9(08).
-.
-.
-.
-PROCEDURE DIVISION.
-ACCEPT TODAYS-DATE FROM DATE YYYYMMDD</p>
+    <p>在Mainframe上做开发会经常遇到用PL/I或者COBOL取得当天的日期，对于PL/I，一般的公司都采取如下的做法：  </p>
+<div class="highlight"><pre><span class="no">DCL</span> <span class="no">PIC_TODAY</span>            <span class="no">PIC</span><span class="s1">&#39;999999&#39;</span> <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="no">PIC_TODAY</span>  <span class="o">=</span> <span class="no">DATE</span><span class="p">;</span>
+<span class="no">IF</span> <span class="no">SUBSTR</span><span class="p">(</span><span class="no">DATE</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="s1">&#39;50&#39;</span>                
+  <span class="no">THEN</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">19000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
+  <span class="no">ELSE</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">20000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
+</pre></div>
+
+
+<p>我所在的公司也是这种写法来获得<code>YYYYMMDD</code>格式的当日日期，很明显这种写法代码的寿命只有几十年了，相比之下COBOL获得<code>YYYYMMDD</code>格式的当日日期就显得方便得多，一个<code>ACCEPT</code>语句即可:</p>
+<div class="highlight"><pre><span class="no">WORKING</span><span class="o">-</span><span class="no">STORAGE</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="mo">01</span> <span class="no">TODAYS</span><span class="o">-</span><span class="no">DATE</span>                          <span class="no">PIC</span> <span class="mi">9</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span><span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="no">PROCEDURE</span> <span class="no">DIVISION</span><span class="o">.</span>
+<span class="no">ACCEPT</span> <span class="no">TODAYS</span><span class="o">-</span><span class="no">DATE</span> <span class="no">FROM</span> <span class="no">DATE</span> <span class="no">YYYYMMDD</span>
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

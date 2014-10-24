@@ -52,25 +52,24 @@
 </h6>
 
 
-    <p _="%" endcodeblock="endcodeblock">今天编译一个COBOL老程序的时候报错：<code>IGYDS1145-S</code>
-{% blockquote %} 
- IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.<br />
- A "PICTURE" string of "S9(18)" was assumed.         <br />
-{% endblockquote  %}
-原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
-<a href="http://ibmmainframes.com/post-9087.html">http://ibmmainframes.com/post-9087.html</a> <br />
-{% blockquote %} 
-COBOL Compiler restricts me defining a PIC 9() variable not more than of size 18 (Including the decimal positions)<br />
-The new Enterprise COBOL for z/OS supports upto 31 digits. If you have this, add ARITH(EXTEND) compiler option. <br />
-{% endblockquote  %}
-解决办法是添加编译参数扩展长度: 
-{% codeblock lang:python %}
- COMPILE PARMS:     ARITH(EXTEND)                                                         <br />
-{% endcodeblock  %}
-或者也可以在代码里面体现:<br />
-{% codeblock lang:python %}
-CBL ARITH(EXTEND)                                    <br />
-IDENTIFICATION DIVISION. </p>
+    <p>今天编译一个COBOL老程序的时候报错：<code>IGYDS1145-S</code></p>
+<blockquote>
+<p>IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.<br />
+ A "PICTURE" string of "S9(18)" was assumed.           </p>
+<p>原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
+<a href="http://ibmmainframes.com/post-9087.html">http://ibmmainframes.com/post-9087.html</a>   </p>
+<p>COBOL Compiler restricts me defining a PIC 9() variable not more than of size 18 (Including the decimal positions)<br />
+The new Enterprise COBOL for z/OS supports upto 31 digits. If you have this, add ARITH(EXTEND) compiler option.   </p>
+<p>解决办法是添加编译参数扩展长度: </p>
+</blockquote>
+<div class="highlight"><pre><span class="no">COMPILE</span> <span class="ss">PARMS</span><span class="p">:</span>     <span class="no">ARITH</span><span class="p">(</span><span class="no">EXTEND</span><span class="p">)</span>                                                           
+</pre></div>
+
+
+<p>或者也可以在代码里面体现:  </p>
+<div class="highlight"><pre><span class="no">CBL</span> <span class="no">ARITH</span><span class="p">(</span><span class="no">EXTEND</span><span class="p">)</span>                                      
+<span class="no">IDENTIFICATION</span> <span class="no">DIVISION</span><span class="o">.</span> 
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

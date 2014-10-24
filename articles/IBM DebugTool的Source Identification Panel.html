@@ -52,25 +52,28 @@
 </h6>
 
 
-    <p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:
-{% blockquote %} 
-SOURCE
+    <p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:</p>
+<blockquote>
+<p>SOURCE
 or 
-LIST
-{% endblockquote  %}
-这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。
-{% codeblock lang:python %} 
-                 Source Identification Panel                               <br />
-Command ===&gt;                                                                  </p>
-<p>Compile Unit              Listing/Source File                          Display</p>
-<hr />
-<p>TESTPGM1                   IBMUSER.TEST.LOAD.LIB1(TETPGM1)                Y<br />
-TESTPGM2                   IBMUSER.TEST.LOAD.LIB2(TETPGM2)                Y 
-TESTPGM3                   IBMUSER.TEST.LOAD.LIB3(TETPGM3)                Y     </p>
-<p>Enter  END/QUIT    to return with current settings saved.                   <br />
-       CANCEL      to return without current settings saved.   <br />
-{% endcodeblock  %}
-就像上面这样，你一眼就可以知道你当前调试的<em>TESTPGM1</em>这个程序是从<code>IBMUSER.TEST.LOAD.LIB1</code>这个<em>loadlib</em>里面取到的，还有<em>TESTPGM2</em>，<em>TESTPGM3</em>也都可以知道它们是从哪里取到的，免得调试了半天发现版本不对那可就不好了！</p>
+LIST</p>
+<p>这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。</p>
+</blockquote>
+<div class="highlight"><pre>                 <span class="no">Source</span> <span class="no">Identification</span> <span class="no">Panel</span>                                 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                                  
+
+<span class="no">Compile</span> <span class="no">Unit</span>              <span class="no">Listing</span><span class="o">/</span><span class="no">Source</span> <span class="no">File</span>                          <span class="no">Display</span>
+<span class="o">-------------------------</span> <span class="o">--------------------------------------------</span> <span class="o">-------</span>
+<span class="no">TESTPGM1</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB1</span><span class="p">(</span><span class="no">TETPGM1</span><span class="p">)</span>                <span class="n">Y</span>  
+<span class="no">TESTPGM2</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB2</span><span class="p">(</span><span class="no">TETPGM2</span><span class="p">)</span>                <span class="n">Y</span> 
+<span class="no">TESTPGM3</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB3</span><span class="p">(</span><span class="no">TETPGM3</span><span class="p">)</span>                <span class="n">Y</span>     
+
+<span class="no">Enter</span>  <span class="k">END</span><span class="o">/</span><span class="no">QUIT</span>    <span class="n">to</span> <span class="k">return</span> <span class="n">with</span> <span class="n">current</span> <span class="n">settings</span> <span class="n">saved</span><span class="o">.</span>                     
+       <span class="no">CANCEL</span>      <span class="n">to</span> <span class="k">return</span> <span class="n">without</span> <span class="n">current</span> <span class="n">settings</span> <span class="n">saved</span><span class="o">.</span>     
+</pre></div>
+
+
+<p>就像上面这样，你一眼就可以知道你当前调试的<em>TESTPGM1</em>这个程序是从<code>IBMUSER.TEST.LOAD.LIB1</code>这个<em>loadlib</em>里面取到的，还有<em>TESTPGM2</em>，<em>TESTPGM3</em>也都可以知道它们是从哪里取到的，免得调试了半天发现版本不对那可就不好了！</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

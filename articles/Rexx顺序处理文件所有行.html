@@ -52,20 +52,21 @@
 </h6>
 
 
-    <p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：
-{% codeblock lang:python %}
-ADDRESS TSO                                                           <br />
-  indataset = 'IBMUSER.REXX.EXEC(INFILE)'  /<em>read in input file </em>/    <br />
-  "alloc f(fin) ds('"indataset"') shr reuse" <br />
-  "execio * diskr fin (finis stem in."                                <br />
-  "free f(fin)"                                                       <br />
- do i=1 to in.0        /<em>loop in file until the last line reached </em>/         <br />
-    one_line = strip(in.i)                                                  <br />
-    call Do_Something                                        <br />
- end                                                                  <br />
-EXIT 0   </p>
-<p _="%" endcodeblock="endcodeblock">Do_Something：        <br />
-...</p>
+    <p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：</p>
+<div class="highlight"><pre><span class="no">ADDRESS</span> <span class="no">TSO</span>                                                             
+  <span class="n">indataset</span> <span class="o">=</span> <span class="s1">&#39;IBMUSER.REXX.EXEC(INFILE)&#39;</span>  <span class="sr">/*read in input file */</span>      
+  <span class="s2">&quot;alloc f(fin) ds(&#39;&quot;</span><span class="n">indataset</span><span class="s2">&quot;&#39;) shr reuse&quot;</span>   
+  <span class="s2">&quot;execio * diskr fin (finis stem in.&quot;</span>                                  
+  <span class="s2">&quot;free f(fin)&quot;</span>                                                         
+ <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="k">in</span><span class="o">.</span><span class="mi">0</span>        <span class="o">/*</span><span class="kp">loop</span> <span class="k">in</span> <span class="n">file</span> <span class="k">until</span> <span class="n">the</span> <span class="n">last</span> <span class="n">line</span> <span class="n">reached</span> <span class="o">*/</span>           
+    <span class="n">one_line</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="k">in</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>                                                    
+    <span class="n">call</span> <span class="no">Do_Something</span>                                          
+ <span class="k">end</span>                                                                    
+<span class="no">EXIT</span> <span class="mi">0</span>   
+
+<span class="no">Do_Something</span><span class="err">：</span>          
+<span class="o">...</span>
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

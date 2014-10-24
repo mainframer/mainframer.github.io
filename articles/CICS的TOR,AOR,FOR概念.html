@@ -57,17 +57,17 @@
 <li><strong><code>TOR</code></strong> 是TERMINAL OWNING REGION,TOR上只定义TERMINAL，在TOR上定义PCT,REMOTE到AOR。当交易进入TOR后会被路由到对应的AOR去执行。  </li>
 <li><strong><code>AOR</code></strong> 是APPLICATION OWNING REGION，AOR上跑交易和应用程序。  </li>
 <li><strong><code>FOR</code></strong> 是FILE OWNING REGION<br />
-网上搜到老外的解释:  <br />
-{% blockquote %} 
-Tor is where the terminals are defined, Aor is where the applications are defined and FOR where the files are defined.<br />
+网上搜到老外的解释:    <blockquote>
+<p>Tor is where the terminals are defined, Aor is where the applications are defined and FOR where the files are defined.<br />
 Generally, TORs are the regions that have connection to the terminals (or other connections)<br />
 All the termianal related programs (Translator, co-ordinator) will be coded in TOR and API (Application program interface) will be coded in AOR.<br />
 To put in simple words - screen handling , function keys logic, function keys validations will be in programs coded in TOR and all business logic (valid processing, updating the database) in AOR. <br />
 They are just CICS sytems that are used to split out certain functions and applications into discrete CICS system for easier maintance\administration.Note there is no technical difference between the different region types. 
-Any CICS region could act in any/all of the roles. Customers find it simplifies administration and improves reliability to categorize regions and isolate user applications into separate regions from service regions.<br />
-{% endblockquote %} 
-<strong>总结起来：</strong><br />
-它们都属于CICS的一部分，本质上并没有不同。只是为了功能划分，负载均衡以及便于维护等方面考虑而人为区分开来的。分工不同而已！</li>
+Any CICS region could act in any/all of the roles. Customers find it simplifies administration and improves reliability to categorize regions and isolate user applications into separate regions from service regions.  </p>
+<p><strong>总结起来：</strong><br />
+它们都属于CICS的一部分，本质上并没有不同。只是为了功能划分，负载均衡以及便于维护等方面考虑而人为区分开来的。分工不同而已！</p>
+</blockquote>
+</li>
 </ul>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 

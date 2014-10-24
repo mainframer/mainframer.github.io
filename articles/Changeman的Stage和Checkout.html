@@ -54,31 +54,27 @@
 
     <p>把一个component(比如程序PRGM001)弄到package里面去有两种方法：一是<code>stage</code>，二是<code>checkout</code>。</p>
 <h3>Stage</h3>
-<p>所谓的stage就是当生产环境上面没有的，而你要将一个新的component弄到生产上面去的时候用stage。比如生产环境上面没有PRGM001这个程序，如果你最终想把这个程序通过Changeman安装到生产环境，那你就得现在自己的PDS下面建一个名为PRGM001的程序： 
-{% blockquote %} 
-TESTUID.PRGMLIB(PRGM001)
-{% endblockquote %} 
-然后stage到changeman里面去，具体做法是在ISPF输入:
-{% blockquote %} 
-C;1;5;
-{% endblockquote %} 
-输入你的Package ID,回车 
-在Package前面输入命令：
-{% blockquote %} 
- S1
-{% endblockquote %} 
-<img alt="1" src="/../images/changeman-01.jpg" />    </p>
+<p>所谓的stage就是当生产环境上面没有的，而你要将一个新的component弄到生产上面去的时候用stage。比如生产环境上面没有PRGM001这个程序，如果你最终想把这个程序通过Changeman安装到生产环境，那你就得现在自己的PDS下面建一个名为PRGM001的程序： </p>
+<blockquote>
+<p>TESTUID.PRGMLIB(PRGM001)</p>
+<p>然后stage到changeman里面去，具体做法是在ISPF输入:</p>
+<p>C;1;5;</p>
+<p>输入你的Package ID,回车 
+在Package前面输入命令：</p>
+<p>S1</p>
+<p><img alt="1" src="./../images/changeman-01.jpg" />    </p>
+</blockquote>
 <h3>Checkout</h3>
-<p>和stage不同，checkout是针对那些已经存在于生产环境里面的components。它们是有版本之分的，比如你要Checkout一个现在已经存在于生产环境的PRGM002,在Package前面输入命令
-{% blockquote %} 
- C1
-{% endblockquote %} 
-<img alt="1" src="/../images/changeman-02.jpg" /> <br />
+<p>和stage不同，checkout是针对那些已经存在于生产环境里面的components。它们是有版本之分的，比如你要Checkout一个现在已经存在于生产环境的PRGM002,在Package前面输入命令</p>
+<blockquote>
+<p>C1</p>
+<p><img alt="1" src="./../images/changeman-02.jpg" /> <br />
 这里注意一下<strong>SOURCE LIBRARY. </strong> 
 <code>SOURCE LIBRARY=0</code> 说明checkout的是当前生产环境baseline里面的最新版本。
 <code>SOURCE LIBRARY=-1</code>说明checkout的是比当前生产环境baseline旧的一个版本。
 以此类推...<br />
 最后，在Package ID前面输入命令<code>S2</code>，查看package里面所有的components(PRGM001和PRGM002)</p>
+</blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

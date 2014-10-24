@@ -53,68 +53,72 @@
 
 
     <p>Mainframe上面工作经常需要临时查看<em>Production</em>代码库当中的代码，又不希望输入长长的库名称。可以用REXX写一个<em>Retrieve</em>功能的脚本，放在
-<code>USERID.REXX.EXEC</code>这个pds下面。运行的时候<strong><code>TSO RET your_program_name</code></strong> 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：
-{% codeblock lang:python %} 
-EDIT       IBMUSER.REXX.EXEC(RET) - 01.02                  Columns 00001 00072 
-Command ===&gt;                                                  Scroll ===&gt; CSR<br />
-<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
-000001 /<em> rexx </em>/                                                            <br />
-000002 /<strong><em>*</em></strong><strong><em>* ret - retrieve specific member from multiple libs</em></strong><em><br />
-000004   dummy = outtrap("dummy2",0)      /<strong>*</strong>/
-000003 arg member                                                            </em>suppress tso messages from screen <em>
-000005   holdrc = 1;found_num=0;mem_arr.="";  /</em> init vars*/                 <br />
-000006   call readlibs                                                       <br />
-000007   if found_num &gt; 0 then                                               <br />
-000008    do i=1 to found_num                                                <br />
-000009       address ispexec "VIEW DATASET('"mem_arr.i"')"                   <br />
-000010    end                                                                <br />
-000011   else say "Can't find requested module --&gt;  "member                  <br />
-000012 exit    </p>
-<p>000013 /<em><em>readlibs: Here you can add any libs you want to search<strong><em>*</em></strong><strong><em>*</em></strong>/ <br />
-000014 readlibs:                                                             <br />
-000015   call search_one_lib "IBMUSER.SOURCE.LIB1"<br />
-       /</em>if holdrc = 1 then call your_added_lib1  add your extra lib here</em>/
-       /<em>if holdrc = 1 then call your_added_lib2  want to add another one?</em>/ 
-         ...       <br />
-000016 return  </p>
-<p>000017 /<strong>search_one_lib: Browse and Find member from a designated lib<strong><em>*</em></strong></strong><em>/ <br />
-000018 search_one_lib:                                                         <br />
-000019  parse upper arg dsname                                               <br />
-000020   dspds ="'"!!dsname!!"'"                                             <br />
-000021   "ispexec lminit  dataid(handle)",                                   <br />
-000022                  " dataset(" dspds ")"                                <br />
-000023   "ispexec lmopen  dataid(" handle ") option(input)"                  <br />
-000024   "ispexec lmmfind dataid(" handle ") member(" !! member !! ")",      <br />
-000025                   "stats(yes)";                                       <br />
-000026   if rc = 0 then do                                                   <br />
-000027      dspds = dsname !! "(" !! member !! ")"                           <br />
-000028      found_num = found_num + 1                                        <br />
-000029      mem_arr.found_num = dspds                                        <br />
-000030   end                                                                 <br />
-000031    "ispexec  lmclose dataid(" handle ")"                              <br />
-000032    "ispexec  lmfree  dataid(" handle ")"                              <br />
-000033 return                                                                <br />
-{% endcodeblock  %}
-例如，你突然想看程序</em>PRODPGM1<em>,只需执行： 
-{% blockquote %} 
-TSO RET PRODPGM1 
-{% endblockquote  %}
-REXX程序就会去函数readlibs里面您事先指定好的libs里面查找</em>PRODPGM1<em>,然后以VIEW的方式逐个打开</em>PRODPGM1*供您查看。
-{% codeblock lang:python %} 
-  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help          <br />
-<code>``````````````````````````````````````````````````````````````````````````````
-VIEW       IBMUSER.SOURCE.LIB1(PRODPGM1) - 03. Columns 00001 00072 
-Command ===&gt;                                                  Scroll ===&gt; CSR  
-****** ***************************** Top of Data ******************************
-000001   PRODPGM1: PROC(PARMS) OPTIONS(MAIN);                          
-000002  /*********************************************************************/
-000003  /* PROGRAM-ID:  PRODPGM1                                             */
-000004  /* DESCRIPTION: PRODUCE DAILY SUMMARY RPT                            */
-000005  /* AUTHOR:      IBMUSER JOHN                                         */
-000006  /* DATE:        JUNE 2009                                            */
-000007  /*********************************************************************/
-{% endcodeblock  %}
-如果*PRODPGM1*还存在于除了</code>IBMUSER.SOURCE.LIB1`之外的lib中，那么按PF3即可接着查看下一个结果。</p>
+<code>USERID.REXX.EXEC</code>这个pds下面。运行的时候<strong><code>TSO RET your_program_name</code></strong> 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：</p>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">RET</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">02</span>                  <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">/*</span> <span class="n">rexx</span> <span class="o">*/</span>                                                              
+<span class="mo">000002</span> <span class="o">/***********</span> <span class="n">ret</span> <span class="o">-</span> <span class="n">retrieve</span> <span class="n">specific</span> <span class="n">member</span> <span class="n">from</span> <span class="n">multiple</span> <span class="n">libs</span><span class="o">*********/</span>
+<span class="mo">000003</span> <span class="n">arg</span> <span class="n">member</span>                                                              
+<span class="mo">000004</span>   <span class="n">dummy</span> <span class="o">=</span> <span class="n">outtrap</span><span class="p">(</span><span class="s2">&quot;dummy2&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>      <span class="sr">/*suppress tso messages from screen *</span>
+<span class="sr">000005   holdrc = 1;found_num=0;mem_arr.=&quot;&quot;;  /</span><span class="o">*</span> <span class="n">init</span> <span class="n">vars</span><span class="o">*/</span>                   
+<span class="mo">000006</span>   <span class="n">call</span> <span class="n">readlibs</span>                                                         
+<span class="mo">000007</span>   <span class="k">if</span> <span class="n">found_num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">then</span>                                                 
+<span class="mo">00000</span><span class="mi">8</span>    <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="n">found_num</span>                                                  
+<span class="mo">00000</span><span class="mi">9</span>       <span class="n">address</span> <span class="n">ispexec</span> <span class="s2">&quot;VIEW DATASET(&#39;&quot;</span><span class="n">mem_arr</span><span class="o">.</span><span class="n">i</span><span class="s2">&quot;&#39;)&quot;</span>                     
+<span class="mo">000010</span>    <span class="k">end</span>                                                                  
+<span class="mo">000011</span>   <span class="k">else</span> <span class="n">say</span> <span class="s2">&quot;Can&#39;t find requested module --&gt;  &quot;</span><span class="n">member</span>                    
+<span class="mo">000012</span> <span class="nb">exit</span>    
+
+<span class="mo">000013</span> <span class="o">/**</span><span class="ss">readlibs</span><span class="p">:</span> <span class="no">Here</span> <span class="n">you</span> <span class="n">can</span> <span class="n">add</span> <span class="n">any</span> <span class="n">libs</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">search</span><span class="o">**************/</span>   
+<span class="mo">000014</span> <span class="ss">readlibs</span><span class="p">:</span>                                                               
+<span class="mo">000015</span>   <span class="n">call</span> <span class="n">search_one_lib</span> <span class="s2">&quot;IBMUSER.SOURCE.LIB1&quot;</span>  
+       <span class="sr">/*if holdrc = 1 then call your_added_lib1  add your extra lib here*/</span>
+       <span class="sr">/*if holdrc = 1 then call your_added_lib2  want to add another one?*/</span> 
+         <span class="o">...</span>         
+<span class="mo">000016</span> <span class="k">return</span>  
+
+<span class="mo">000017</span> <span class="o">/**</span><span class="ss">search_one_lib</span><span class="p">:</span> <span class="no">Browse</span> <span class="ow">and</span> <span class="no">Find</span> <span class="n">member</span> <span class="n">from</span> <span class="n">a</span> <span class="n">designated</span> <span class="n">lib</span><span class="o">**********/</span>   
+<span class="mo">00001</span><span class="mi">8</span> <span class="ss">search_one_lib</span><span class="p">:</span>                                                           
+<span class="mo">00001</span><span class="mi">9</span>  <span class="n">parse</span> <span class="n">upper</span> <span class="n">arg</span> <span class="n">dsname</span>                                                 
+<span class="mo">000020</span>   <span class="n">dspds</span> <span class="o">=</span><span class="s2">&quot;&#39;&quot;</span><span class="o">!!</span><span class="n">dsname!</span><span class="o">!</span><span class="s2">&quot;&#39;&quot;</span>                                               
+<span class="mo">000021</span>   <span class="s2">&quot;ispexec lminit  dataid(handle)&quot;</span><span class="p">,</span>                                     
+<span class="mo">000022</span>                  <span class="s2">&quot; dataset(&quot;</span> <span class="n">dspds</span> <span class="s2">&quot;)&quot;</span>                                  
+<span class="mo">000023</span>   <span class="s2">&quot;ispexec lmopen  dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;) option(input)&quot;</span>                    
+<span class="mo">000024</span>   <span class="s2">&quot;ispexec lmmfind dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;) member(&quot;</span> <span class="o">!!</span> <span class="n">member</span> <span class="o">!!</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span>        
+<span class="mo">000025</span>                   <span class="s2">&quot;stats(yes)&quot;</span><span class="p">;</span>                                         
+<span class="mo">000026</span>   <span class="k">if</span> <span class="n">rc</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">then</span> <span class="k">do</span>                                                     
+<span class="mo">000027</span>      <span class="n">dspds</span> <span class="o">=</span> <span class="n">dsname</span> <span class="o">!!</span> <span class="s2">&quot;(&quot;</span> <span class="o">!!</span> <span class="n">member</span> <span class="o">!!</span> <span class="s2">&quot;)&quot;</span>                             
+<span class="mo">00002</span><span class="mi">8</span>      <span class="n">found_num</span> <span class="o">=</span> <span class="n">found_num</span> <span class="o">+</span> <span class="mi">1</span>                                          
+<span class="mo">00002</span><span class="mi">9</span>      <span class="n">mem_arr</span><span class="o">.</span><span class="n">found_num</span> <span class="o">=</span> <span class="n">dspds</span>                                          
+<span class="mo">000030</span>   <span class="k">end</span>                                                                   
+<span class="mo">000031</span>    <span class="s2">&quot;ispexec  lmclose dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;)&quot;</span>                                
+<span class="mo">000032</span>    <span class="s2">&quot;ispexec  lmfree  dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;)&quot;</span>                                
+<span class="mo">000033</span> <span class="k">return</span>                                                                  
+</pre></div>
+
+
+<p>例如，你突然想看程序<em>PRODPGM1</em>,只需执行： </p>
+<blockquote>
+<p>TSO RET PRODPGM1 </p>
+<p>REXX程序就会去函数readlibs里面您事先指定好的libs里面查找<em>PRODPGM1</em>,然后以VIEW的方式逐个打开<em>PRODPGM1</em>供您查看。</p>
+</blockquote>
+<div class="highlight"><pre><span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+<span class="sb">```````````````````````````````````````````````````````````````````````````````</span>
+<span class="sb">VIEW       IBMUSER.SOURCE.LIB1(PRODPGM1) - 03. Columns 00001 00072 </span>
+<span class="sb">Command ===&gt;                                                  Scroll ===&gt; CSR  </span>
+<span class="sb">****** ***************************** Top of Data ******************************</span>
+<span class="sb">000001   PRODPGM1: PROC(PARMS) OPTIONS(MAIN);                          </span>
+<span class="sb">000002  /*********************************************************************/</span>
+<span class="sb">000003  /* PROGRAM-ID:  PRODPGM1                                             */</span>
+<span class="sb">000004  /* DESCRIPTION: PRODUCE DAILY SUMMARY RPT                            */</span>
+<span class="sb">000005  /* AUTHOR:      IBMUSER JOHN                                         */</span>
+<span class="sb">000006  /* DATE:        JUNE 2009                                            */</span>
+<span class="sb">000007  /*********************************************************************/</span>
+</pre></div>
+
+
+<p>如果<em>PRODPGM1</em>还存在于除了<code>IBMUSER.SOURCE.LIB1</code>之外的lib中，那么按PF3即可接着查看下一个结果。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

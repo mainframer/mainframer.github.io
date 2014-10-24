@@ -53,9 +53,9 @@
 
 
     <p>大机上磁带(tape)一般用来存储大容量的数据的，可以降低成本。我们要访问tape中的数据的时候，一般的做法是用JCL将tape中的记录转存到直接存储访问设备(DASD)中再查看。 下图中，我们通过utility <code>ICEMAN</code>将<code>IBMUSER.DNS.TAPE</code>这个tape中的所有记录都转存到<code>IBMUSER.TAPE.TO.DASD</code>中，这样就能查看了。
-<img alt="1" src="/../images/ICEMAN-access-tape.jpg" />  <br />
+<img alt="1" src="./../images/ICEMAN-access-tape.jpg" />  <br />
 不过，需要注意的是，tape里面的数据量一般都很大，所以更多时候我们再用的时候会指定读取的record的数目，比如这里我们指定读取100条：
-<img alt="1" src="/../images/ICEMAN-access-tape-stopaft1.jpg" /><br />
+<img alt="1" src="./../images/ICEMAN-access-tape-stopaft1.jpg" /><br />
 甚至，你还可以用SORT中的语法筛选出你想要的条件。比如<code>(1，4，EQ,'AAAA')</code>这样子。 </p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 

@@ -58,12 +58,12 @@
 回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  </p>
 <h4>方法一，终端加网络配置</h4>
 <p>这个真的是又简单又粗暴。。。分两步：<br />
-首先，打开你的终端，输入：<br />
-{% blockquote %} 
-ssh -D port user@hostname
-{% endblockquote %} 
-其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
+首先，打开你的终端，输入：  </p>
+<blockquote>
+<p>ssh -D port user@hostname</p>
+<p>其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
 然后，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选”SOCKS 代理”-&gt;旁边的”SOCKS 代理服务器”里填127.0.0.1，端口填你刚才写的那个，点个好点个应用，搞定。  </p>
+</blockquote>
 <h5>注意，</h5>
 <p>终端的ssh连接不能关闭。<br />
 注意你的ssh的服务器的访问限制，尤其是像我这样的用学校的ssh服务器的，如果去访问了一些不该访问的，就该有学校的警告mail来了<br />
@@ -73,47 +73,48 @@ ssh -D port user@hostname
 <p>这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&gt;&lt;。。。 <br />
 首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。<a href="/download/iSSH.zip">点我下载</a> <br />
 app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
-其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： 
-{% codeblock lang:python %}
-function FindProxyForURL( url, host )
-{
- if ( shExpMatch(url, "<em>ip38</em>")
-     || shExpMatch(url, "<em>1-apple.com.tw</em>")
-     …
-     …
-     || shExpMatch(url, "<em>facebook.com</em>")
-     || shExpMatch(url, "<em>facebook cdn</em>")
-     …
-              || shExpMatch(url, "<em>twitter.com</em>")
-     || shExpMatch(url, "<em>twitter.com/amoiist</em>")
-     || shExpMatch(url, "<em>twitter.com/BeiJing1989</em>")
-     || shExpMatch(url, "<em>twitter.com/billzhong</em>")
-     || shExpMatch(url, "<em>twitter.com/nowhere1975</em>")
-     || shExpMatch(url, "<em>twitter.com/shizhao</em>")
-     || shExpMatch(url, "<em>twitter.com/VOTChinese</em>")
-     || shExpMatch(url, "<em>twitter.com/wenyunchao</em>")
-     || shExpMatch(url, "<em>twitter.com/wumao</em>")
-     || shExpMatch(url, "<em>twitter.com/zengjinyan</em>")
-     || shExpMatch(url, "<em>twitter.com/zuola</em>")
-     || shExpMatch(url, "<em>https://twitter.com/</em>")
-     || shExpMatch(url, "<em>https://www.twitter.com/</em>")
-     || shExpMatch(url, "http://apiwiki.twitter.com/<em>")
-     || shExpMatch(url, "http://dev.twitter.com/</em>")
-     || shExpMatch(url, "http://status.twitter.com/<em>")
-     …
-     || shExpMatch(url, "</em>youtube.com<em>")
-     || shExpMatch(url, "</em>hk.youtube.com<em>")
-     || shExpMatch(url, "</em>tw.youtube.com<em>")
-     || shExpMatch(url, "</em>youtube.com/get_video<em>")
-     || shExpMatch(url, "</em>Youtube CDN*")
-     …
-     )
-    return "SOCKS 127.0.0.1:7070";
- else 
-    return "DIRECT";
-}
-{% endcodeblock %}
-这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。其余的网址请自行添加，我稍后会放出下载。右键点我然后 <a href="/download/gfwlist.pac">另存为</a><br />
+其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： </p>
+<div class="highlight"><pre><span class="n">function</span> <span class="no">FindProxyForURL</span><span class="p">(</span> <span class="n">url</span><span class="p">,</span> <span class="n">host</span> <span class="p">)</span>
+<span class="p">{</span>
+ <span class="k">if</span> <span class="p">(</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*ip38*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*1-apple.com.tw*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+     <span class="err">…</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook cdn*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+              <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/amoiist*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/BeiJing1989*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/billzhong*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/nowhere1975*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/shizhao*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/VOTChinese*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wenyunchao*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wumao*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zengjinyan*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zuola*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://www.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://apiwiki.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://dev.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://status.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*hk.youtube.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*tw.youtube.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com/get_video*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*Youtube CDN*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+     <span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;SOCKS 127.0.0.1:7070&quot;</span><span class="p">;</span>
+ <span class="k">else</span> 
+    <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。其余的网址请自行添加，我稍后会放出下载。右键点我然后 <a href="/download/gfwlist.pac">另存为</a><br />
 接着，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选“自动代理配置”-&gt;“选取文件”-&gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
 最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  </p>
 <h5>注意，</h5>

@@ -52,11 +52,11 @@
 </h6>
 
 
-    <p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：
-{% blockquote %}
-trigger overflow
-{% endblockquote %}
-这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p>
+    <p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：</p>
+<blockquote>
+<p>trigger overflow</p>
+<p>这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p>
+</blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

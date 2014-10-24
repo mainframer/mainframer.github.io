@@ -52,12 +52,13 @@
 </h6>
 
 
-    <p>{% codeblock lang:python %}
-//SORTOUT  DD  DSN=&amp;&amp;IBNRDAT0,DISP=(NEW,PASS),          <br />
-//             DCB=(DSORG=PS,RECFM=FB,LRECL=53,BLKSIZE=0),
-//             UNIT=(SYSDA,20),SPACE=(CYL,(50,50),RLSE) <br />
-{% endcodeblock %}<br />
-如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p>
+    <div class="highlight"><pre><span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">IBNRDAT0</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>            
+<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="sr">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="p">(</span><span class="no">SYSDA</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>   
+</pre></div>
+
+
+<p>如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

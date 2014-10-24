@@ -52,14 +52,14 @@
 </h6>
 
 
-<p _="%" endcodeblock="endcodeblock"><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
+<p><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
 <code>TRAN=LTOU</code> ： lowercase to uppercase <br />
-例子：
-{% codeblock lang:python %}
-//CTL1CNTL DD *                                         <br />
-  INREC IFTHEN=(WHEN=INIT,OVERLAY=(1:1,3,TRAN=LTOU)),   ：对input的进来处理的每一条数据的前3位先转为大写再说
-              IFTHEN=(WHEN=(...),BUILD=(...)), 
-              IFTHEN=(WHEN=(...),BUILD=(...))</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+例子：</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                           
+  <span class="no">INREC</span> <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="no">INIT</span><span class="p">,</span><span class="no">OVERLAY</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="no">TRAN</span><span class="o">=</span><span class="no">LTOU</span><span class="p">)),</span>   <span class="err">：对</span><span class="n">input</span><span class="err">的进来处理的每一条数据的前</span><span class="mi">3</span><span class="err">位先转为大写再说</span>
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">)),</span> 
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -80,19 +80,18 @@
 </h6>
 
 
-<p>{% codeblock lang:python  %}
-//STEP001 EXEC PGM=ICETOOL,REGION=4096K,COND=(0,NE)         <br />
-//TOOLMSG  DD SYSOUT=<em>                                      <br />
-//DFSMSG   DD SYSOUT=</em>                                      <br />
-//SYSOUT   DD SYSOUT=<em>                                      <br />
-//SYSPRINT DD SYSOUT=</em>                                      <br />
-//IN                DD DSN=MYINPUT,DISP=SHR                         <br />
-//OUT           DD DSN=OUTFILE,DISP=SHR                           <br />
-//TOOLIN    DD *                                              <br />
-  COPY FROM(IN) TO(OUT)     USING(CTL1)                     <br />
-/<em>                                                          <br />
-//CTL1CNTL DD *                                             <br />
-  OUTFIL FNAMES=OUT ...</em></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>           
+<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">IN</span>                <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
+<span class="sr">//</span><span class="no">OUT</span>           <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">OUTFILE</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                             
+<span class="sr">//</span><span class="no">TOOLIN</span>    <span class="no">DD</span> <span class="o">*</span>                                                
+  <span class="no">COPY</span> <span class="no">FROM</span><span class="p">(</span><span class="no">IN</span><span class="p">)</span> <span class="no">TO</span><span class="p">(</span><span class="no">OUT</span><span class="p">)</span>     <span class="no">USING</span><span class="p">(</span><span class="no">CTL1</span><span class="p">)</span>                       
+<span class="sr">/*                                                            </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OUTFIL</span> <span class="no">FNAMES</span><span class="o">=</span><span class="no">OUT</span><span class="p">,</span>    <span class="err">：</span><span class="no">MYINPUT</span><span class="err">的第 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -113,19 +112,21 @@
 </h6>
 
 
-<p>用于替换dataset中出现的字符串:
-{% codeblock lang:python %} <br />
-//STEP001  EXEC  PGM=ICEMAN,REGION=4000K                  <br />
-//SORTIN  DD  DSN=MYINPUT,DISP=SHR                        <br />
-//SORTOUT DD  DSN=MYOUTPUT,DISP=SHR                       <br />
-//SYSIN  DD *                                             <br />
-  OPTION COPY                                             <br />
-  INREC FINDREP=(INOUT=(C'0000',C'AAAA',C'1111',C'BBBB')) <br />
-//SYSOUT   DD  SYSOUT=<em>                                   <br />
-//SYSPRINT DD  SYSOUT=</em>                                   <br />
-//<em>                                                       <br />
-{% endcodeblock %}<br />
-将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成 ...</em></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>用于替换dataset中出现的字符串:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
+<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
+  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">))</span>   
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="o">*</span>                                                         
+</pre></div>
+
+
+<p>将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成<code>‘BBBB‘</code> 
+当然，可以限定在特定几列替换 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -146,16 +147,15 @@
 </h6>
 
 
-<p _="%" endcodeblock="endcodeblock">取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！
-{% codeblock lang:python %}
-//STEP001 EXEC PGM=ICETOOL,REGION=4096K,COND=(0,NE)       <br />
-//TOOLMSG  DD SYSOUT=<em>                                    <br />
-//DFSMSG   DD SYSOUT=</em>                                    <br />
-//SYSOUT   DD SYSOUT=<em>                                    <br />
-//SYSPRINT DD SYSOUT=</em>                                    <br />
-//SORTWK01 DD UNIT=SYSDA,SPACE=(CYL,(30,3),RLSE)          <br />
-//IN      DD DSN=MYINPUT,DISP=SHR :LRECL=05               <br />
-//OUT1 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>         
+<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SORTWK01</span> <span class="no">DD</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>            
+<span class="sr">//</span><span class="no">IN</span>      <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> <span class="ss">:LRECL</span><span class="o">=</span><span class="mo">05</span>                 
+<span class="o">//</span><span class="no">OUT1</span>    <span class="no">DD</span> <span class="no">DSN ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -176,16 +176,15 @@
 </h6>
 
 
-<p>{% codeblock lang:python %}
-//STEP002 EXEC  PGM=SYNCSORT,REGION=4096K,COND=(0,NE)      <br />
-//SYSOUT   DD SYSOUT=<em>                                     <br />
-//SYSPRINT DD  SYSOUT=</em>                                    <br />
-//SORTJNF1 DD  DSN=FILE1,DISP=SHR                          <br />
-//SORTJNF2 DD  DSN=FILE2,DISP=SHR                          <br />
-//SORTOUT  DD  DSN=JOINOUT,DISP=SHR                        <br />
-//SYSIN DD *                                               <br />
-  JOINKEYS FILE=F1,FIELDS=(1,5,A)                          <br />
-  JOINKEYS FILE=F2,FIELDS=(1 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP002</span> <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>        
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                       
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SORTJNF1</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE1</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
+<span class="sr">//</span><span class="no">SORTJNF2</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE2</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">JOINOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                 
+  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F1</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                            
+  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F2</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -206,17 +205,16 @@
 </h6>
 
 
-<p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:
-{% codeblock lang:python %}
-//STEP001  EXEC PGM=SYNCSORT,REGION=4096K                    <br />
-//SYSOUT   DD  SYSOUT=<em>                                      <br />
-//SYSPRINT DD  SYSOUT=</em>                                      <br />
-//SORTIN   DD  DSN=SORTIN,DISP=SHR                         <br />
-//SORTOUT  DD DSN=&amp;&amp;SORTOUT,DISP=(NEW,PASS),                 <br />
-//            DCB=(DSORG=PS,RECFM=FB,LRECL=80,BLKSIZE=0),    <br />
-//            UNIT=SYSDA,SPACE=(CYL,(5,5),RLSE)              <br />
-//SYSIN DD *                                                 <br />
-  SORT ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span>                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">SORTIN</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">SORTOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>                   
+<span class="sr">//</span>            <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>      
+<span class="sr">//</span>            <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                   
+  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">COPY ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -238,14 +236,16 @@
 
 
 <p>新写了一个<code>PL/I</code>程序，需要在程序里面用到动态数组来提高效率，所以总结了一下<code>PL/I</code>中动态数组<em>(Dynamic Array)</em>的用法：<br />
-<em>1</em>.申明一个Controlled的数组叫做<code>WT_TMPARRAY_INFO</code>,此时并不知道该数组的长度:
-{% codeblock lang:python  %}
-DCL  INPUTFIL FILE RECORD INPUT;
-DCL  TMPARRAY_CTR         FIXED BIN(31)   INIT(0);                           <br />
-DCL  TMPARRAY_SUB         FIXED BIN(31)   INIT(1);<br />
-DCL 01 TMPARRAY_RECORD,                                                      <br />
-        05 INPUT_CUR     CHAR(03)             INIT(' '),                        <br />
-        05 INPUT_ACCT    CHAR(05 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<em>1</em>.申明一个Controlled的数组叫做<code>WT_TMPARRAY_INFO</code>,此时并不知道该数组的长度:</p>
+<div class="highlight"><pre><span class="no">DCL</span>  <span class="no">INPUTFIL</span> <span class="no">FILE</span> <span class="no">RECORD</span> <span class="no">INPUT</span><span class="p">;</span>
+<span class="no">DCL</span>  <span class="no">TMPARRAY_CTR</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                             
+<span class="no">DCL</span>  <span class="no">TMPARRAY_SUB</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  
+<span class="no">DCL</span> <span class="mo">01</span> <span class="no">TMPARRAY_RECORD</span><span class="p">,</span>                                                        
+        <span class="mo">05</span> <span class="no">INPUT_CUR</span>     <span class="no">CHAR</span><span class="p">(</span><span class="mo">03</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span>                          
+        <span class="mo">05</span> <span class="no">INPUT_ACCT</span>    <span class="no">CHAR</span><span class="p">(</span><span class="mo">05</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span> 
+
+<span class="sr">/*******定义未知长度的动态数组WT_TMPARRAY_INFO*************************/</span>
+<span class="no">DCL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -266,11 +266,11 @@ DCL 01 TMPARRAY_RECORD,                                                      <br
 </h6>
 
 
-<p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：
-{% blockquote %}
-trigger overflow
-{% endblockquote %}
-这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：</p>
+<blockquote>
+<p>trigger overflow</p>
+<p>这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -296,15 +296,14 @@ trigger overflow
 <li><code>CEBR#0VJ</code>是<em>TSQ</em>的名字;  </li>
 <li>
 <p><code>Z300</code> 是当前<em>CICS region</em>的名字。<br />
-{% codeblock lang:python %}
-  CEBR  TSQ CEBR#0VJ         SYSID Z300 REC     1 OF     0    COL     1 OF     0
+```ruby  CEBR  TSQ CEBR#0VJ         SYSID Z300 REC     1 OF     0    COL     1 OF     0
   ENTER COMMAND ===&gt;                                                          <br />
 <strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>  TOP OF QUEUE  </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>*</p>
 <p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*  BOTTOM OF QUEUE  </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong></p>
 </li>
 </ul>
 <p>TS QUEUE CEBR#0VJ         DOES NOT EXIST                                     <br />
- PF1 : HELP                PF2 : SWITCH HEX/CHAR ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+ PF1 : HELP                PF2 : SWITCH HEX/CHAR     PF3 : TERMINATE ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>

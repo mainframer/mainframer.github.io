@@ -52,14 +52,16 @@
 </h6>
 
 
-    <p>有时候TSO异常退出，而服务器端进程还没kill掉，于是在你尝试再次登录的时候，返回提示：
-{% blockquote %} 
-“already logged on to system IKJ56400A ENTER LOGON OR LOGOFF-”
-{% endblockquote %} 
-用命令告诉远程主控端你要reconnect。 </p>
+    <p>有时候TSO异常退出，而服务器端进程还没kill掉，于是在你尝试再次登录的时候，返回提示：</p>
+<blockquote>
+<p>“already logged on to system IKJ56400A ENTER LOGON OR LOGOFF-”</p>
+<p>用命令告诉远程主控端你要reconnect。 </p>
+</blockquote>
 <h3>解决办法</h3>
-<p _="%" endblockquote="endblockquote">{% blockquote %} 
-logon yourUID recon</p>
+<blockquote>
+<p>logon yourUID recon
+</p>
+</blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

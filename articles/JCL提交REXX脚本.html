@@ -54,36 +54,40 @@
 
     <h3>来说说如何用JCL提交REXX脚本。</h3>
 <h4>1、写一个最简单的显示有一行提示的REXX脚本叫<code>SAYHELLO</code>：</h4>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-1 EDIT       IBMUSER.REXX.EXEC(SAYHELLO) - 01.00           Member SAYHELLO saved 
-2 Command ===&gt;                                                  Scroll ===&gt; CSR<br />
-3 <strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
-4 000001 /<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></strong>***/              <br />
-5 000002 SAY "I WILL PRINT 'HELLO' IN SYSTSPRT BY SUBMITTING JCL" </p>
+<div class="highlight"><pre><span class="mi">1</span> <span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>           <span class="no">Member</span> <span class="no">SAYHELLO</span> <span class="n">saved</span> 
+<span class="mi">2</span> <span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="mi">3</span> <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mi">4</span> <span class="mo">000001</span> <span class="o">/******************************</span><span class="no">REXX</span><span class="o">*********************************/</span>                
+<span class="mi">5</span> <span class="mo">000002</span> <span class="no">SAY</span> <span class="s2">&quot;I WILL PRINT &#39;HELLO&#39; IN SYSTSPRT BY SUBMITTING JCL&quot;</span> 
+</pre></div>
+
+
 <h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-EDIT       IBMUSER.TEST.JCL(SAYHELLO) - 01.10             Columns 00001 0007
-Command ===&gt;                                                  Scroll ===&gt; CSR
-<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong>
-//IBMUSERS JOB  00000000000392100A01011000010TEST,                  <br />
-//  CLASS=3,MSGCLASS=R,NOTIFY=&amp;SYSUID                               <br />
-//STEP01 EXEC PGM=IKJEFT01,REGION=4M                                <br />
-//SYSEXEC  DD DISP=SHR,DSN=IBMUSER.REXX.EXEC /<em>REXX LIB</em>/                       <br />
-//SYSTSIN  DD *                              /<em>REXX MEM</em>/                       <br />
-  SAYHELLO                                                          <br />
-/<em>                                                                  <br />
-//SYSTSPRT DD SYSOUT=</em>  <br /></p>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">10</span>             <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">0007</span>
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">****************************</span>
+<span class="sr">//</span><span class="no">IBMUSERS</span> <span class="no">JOB</span>  <span class="mo">000000000003</span><span class="mi">92100</span><span class="no">A01011000010TEST</span><span class="p">,</span>                    
+<span class="sr">//</span>  <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">SYSUID</span>                                 
+<span class="sr">//</span><span class="no">STEP01</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IKJEFT01</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4</span><span class="n">M</span>                                  
+<span class="sr">//</span><span class="no">SYSEXEC</span>  <span class="no">DD</span> <span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span><span class="p">,</span><span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span> <span class="sr">/*REXX LIB*/</span>                         
+<span class="sr">//</span><span class="no">SYSTSIN</span>  <span class="no">DD</span> <span class="o">*</span>                              <span class="sr">/*REXX MEM*/</span>                         
+  <span class="no">SAYHELLO</span>                                                            
+<span class="sr">/*                                                                    </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">SYSTSPRT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>    
+</pre></div>
+
+
 <h4>3、Sub JCL,输入<code>Q;ST</code>到SDSF中的<em>SYSTSPRT</em>查看输出信息如下：</h4>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:ruby %}
-SDSF OUTPUT DISPLAY IBMUSERS J0300135  DSID   102 LINE 0       COLUMNS 02- 81 
- COMMAND INPUT ===&gt;                                            SCROLL ===&gt; CSR 
-<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em> TOP OF DATA </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>
-READY                                                                        <br />
-  SAYHELLO                                                                   <br />
-I WILL PRINT 'HELLO' IN SYSTSPRT BY SUBMITTING JCL                           <br />
-READY                                                                        <br />
-END                                                                          <br />
-</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em> BOTTOM OF DATA <strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></em>**</p>
+<div class="highlight"><pre><span class="no">SDSF</span> <span class="no">OUTPUT</span> <span class="no">DISPLAY</span> <span class="no">IBMUSERS</span> <span class="no">J0300135</span>  <span class="no">DSID</span>   <span class="mi">102</span> <span class="no">LINE</span> <span class="mi">0</span>       <span class="no">COLUMNS</span> <span class="mo">02</span><span class="o">-</span> <span class="mi">81</span> 
+ <span class="no">COMMAND</span> <span class="no">INPUT</span> <span class="o">===&gt;</span>                                            <span class="no">SCROLL</span> <span class="o">===&gt;</span> <span class="no">CSR</span> 
+<span class="o">*********************************</span> <span class="no">TOP</span> <span class="no">OF</span> <span class="no">DATA</span> <span class="o">*********************************</span>
+<span class="no">READY</span>                                                                          
+  <span class="no">SAYHELLO</span>                                                                     
+<span class="n">I</span> <span class="no">WILL</span> <span class="no">PRINT</span> <span class="s1">&#39;HELLO&#39;</span> <span class="no">IN</span> <span class="no">SYSTSPRT</span> <span class="no">BY</span> <span class="no">SUBMITTING</span> <span class="no">JCL</span>                             
+<span class="no">READY</span>                                                                          
+<span class="k">END</span>                                                                            
+<span class="o">********************************</span> <span class="no">BOTTOM</span> <span class="no">OF</span> <span class="no">DATA</span> <span class="o">*******************************</span>
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

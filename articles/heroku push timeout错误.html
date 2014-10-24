@@ -52,43 +52,50 @@
 </h6>
 
 
-    <p>博客托管在<code>heroku</code>云平台上，这两天突然没法更新了。在执行<code>git push heroku</code>命令的时候总是提示time out 错误：
-{% codeblock lang:python %}
-$ git push heroku</p>
-<h1>ssh: connect to host heroku.com port 22: Operation timed out</h1>
-<h1>fatal: The remote end hung up unexpectedly</h1>
-<p>{% endcodeblock %}
-折腾了我两天没搞定，<code>stackoverflow</code>上面给的解决方法也不怎么靠谱，让我反反复复重新设置了好几遍<code>ssh key</code>，浪费了不少时间。刚刚在<code>ruby-china.org</code>上找到了解决办法。原来又是因为神奇的GFW，难怪stackoverflow上面的答案没搞定我的问题，那些外国人根本就不明白咱们这的特殊国情，但也怪不得他们。   <br />
-这里是ruby-china上的原帖：<a href="http://ruby-china.org/topics/10813">http://ruby-china.org/topics/10813</a> <br />
-{% codeblock %}
-部署 • freemem • 于10小时前发布 • 最后由 zj0713001 于9小时前回复 • 138次阅读
-git push heroku master出现Operation/Connecting timed out错误。</p>
-<p>用“ssh -v git@heroku.com”检查后发现原因在于fuck GFW!!!以下节点全部不可用:
-174.129.23.118
-174.129.22.35
-50.16.233.102
-50.19.85.154
-50.19.85.132
-50.16.215.67
-50.19.85.156
-184.73.165.65
-50.16.215.104
-107.21.106.77
-107.21.105.64
-107.22.234.17</p>
-<p>仅有以下节点可用：
-107.21.95.3</p>
-<p>故手动配置vi ~/.ssh/config：
-Host heroku.com
-User freemember007
-Hostname 107.21.95.3 #关键设置，替代proxy.heroku.com，直接走IP。
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa
-port 22</p>
-<p>这下好了。而且速度飞快！fuck GFW!!!</p>
-<p>网络：浙江电信
-{% endcodeblock %}<br />
-感谢这位叫做“freemem”的网友。</p>
+    <p>博客托管在<code>heroku</code>云平台上，这两天突然没法更新了。在执行<code>git push heroku</code>命令的时候总是提示time out 错误：</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span>
+<span class="c1">#ssh: connect to host heroku.com port 22: Operation timed out</span>
+<span class="c1">#fatal: The remote end hung up unexpectedly</span>
+</pre></div>
+
+
+<p>折腾了我两天没搞定，<code>stackoverflow</code>上面给的解决方法也不怎么靠谱，让我反反复复重新设置了好几遍<code>ssh key</code>，浪费了不少时间。刚刚在<code>ruby-china.org</code>上找到了解决办法。原来又是因为神奇的GFW，难怪stackoverflow上面的答案没搞定我的问题，那些外国人根本就不明白咱们这的特殊国情，但也怪不得他们。   <br />
+这里是ruby-china上的原帖：<a href="http://ruby-china.org/topics/10813">http://ruby-china.org/topics/10813</a>   </p>
+<div class="highlight"><pre><span class="err">部署</span> <span class="err">•</span> <span class="n">freemem</span> <span class="err">•</span> <span class="err">于</span><span class="mi">10</span><span class="err">小时前发布</span> <span class="err">•</span> <span class="err">最后由</span> <span class="n">zj0713001</span> <span class="err">于</span><span class="mi">9</span><span class="err">小时前回复</span> <span class="err">•</span> <span class="mi">138</span><span class="err">次阅读</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">master</span><span class="err">出现</span><span class="no">Operation</span><span class="o">/</span><span class="no">Connecting</span> <span class="n">timed</span> <span class="n">out</span><span class="err">错误。</span>
+
+<span class="err">用“</span><span class="n">ssh</span> <span class="o">-</span><span class="n">v</span> <span class="n">git</span><span class="vi">@heroku</span><span class="o">.</span><span class="n">com</span><span class="err">”检查后发现原因在于</span><span class="n">fuck</span> <span class="no">GFW</span><span class="o">!!!</span><span class="err">以下节点全部不可用</span><span class="p">:</span>
+<span class="mi">174</span><span class="o">.</span><span class="mi">129</span><span class="o">.</span><span class="mi">23</span><span class="o">.</span><span class="mi">118</span>
+<span class="mi">174</span><span class="o">.</span><span class="mi">129</span><span class="o">.</span><span class="mi">22</span><span class="o">.</span><span class="mi">35</span>
+<span class="mi">50</span><span class="o">.</span><span class="mi">16</span><span class="o">.</span><span class="mi">233</span><span class="o">.</span><span class="mi">102</span>
+<span class="mi">50</span><span class="o">.</span><span class="mi">19</span><span class="o">.</span><span class="mi">85</span><span class="o">.</span><span class="mi">154</span>
+<span class="mi">50</span><span class="o">.</span><span class="mi">19</span><span class="o">.</span><span class="mi">85</span><span class="o">.</span><span class="mi">132</span>
+<span class="mi">50</span><span class="o">.</span><span class="mi">16</span><span class="o">.</span><span class="mi">215</span><span class="o">.</span><span class="mi">67</span>
+<span class="mi">50</span><span class="o">.</span><span class="mi">19</span><span class="o">.</span><span class="mi">85</span><span class="o">.</span><span class="mi">156</span>
+<span class="mi">184</span><span class="o">.</span><span class="mi">73</span><span class="o">.</span><span class="mi">165</span><span class="o">.</span><span class="mi">65</span>
+<span class="mi">50</span><span class="o">.</span><span class="mi">16</span><span class="o">.</span><span class="mi">215</span><span class="o">.</span><span class="mi">104</span>
+<span class="mi">107</span><span class="o">.</span><span class="mi">21</span><span class="o">.</span><span class="mi">106</span><span class="o">.</span><span class="mi">77</span>
+<span class="mi">107</span><span class="o">.</span><span class="mi">21</span><span class="o">.</span><span class="mi">105</span><span class="o">.</span><span class="mi">64</span>
+<span class="mi">107</span><span class="o">.</span><span class="mi">22</span><span class="o">.</span><span class="mi">234</span><span class="o">.</span><span class="mi">17</span>
+
+<span class="err">仅有以下节点可用：</span>
+<span class="mi">107</span><span class="o">.</span><span class="mi">21</span><span class="o">.</span><span class="mi">95</span><span class="o">.</span><span class="mi">3</span>
+
+<span class="err">故手动配置</span><span class="n">vi</span> <span class="o">~</span><span class="sr">/.ssh/</span><span class="n">config</span><span class="err">：</span>
+<span class="no">Host</span> <span class="n">heroku</span><span class="o">.</span><span class="n">com</span>
+<span class="no">User</span> <span class="n">freemember007</span>
+<span class="no">Hostname</span> <span class="mi">107</span><span class="o">.</span><span class="mi">21</span><span class="o">.</span><span class="mi">95</span><span class="o">.</span><span class="mi">3</span> <span class="c1">#关键设置，替代proxy.heroku.com，直接走IP。</span>
+<span class="no">PreferredAuthentications</span> <span class="n">publickey</span>
+<span class="no">IdentityFile</span> <span class="o">~</span><span class="sr">/.ssh/i</span><span class="n">d_rsa</span>
+<span class="n">port</span> <span class="mi">22</span>
+
+<span class="err">这下好了。而且速度飞快！</span><span class="n">fuck</span> <span class="no">GFW</span><span class="o">!!!</span>
+
+<span class="err">网络：浙江电信</span>
+</pre></div>
+
+
+<p>感谢这位叫做“freemem”的网友。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

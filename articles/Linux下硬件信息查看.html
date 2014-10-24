@@ -70,32 +70,36 @@ root@bt:/proc#   <code>lspci -vvx</code>      #可以组合着查看 <br />
 root@bt:/proc# l <code>lspci -vvxxx</code>    #组合着查看   </p>
 <p><strong><em>注释</em></strong>:lspci是从pciids数据库读取硬件信息的，如果出现硬件无法识别，可以使用<code>sudo update-pciide</code>更新pci数据库。上面的命令查询结果在你的pci硬件出现问题的时候将其在网上公布，有热心网友或厂商会帮你解决的。</p>
 <h4>查看内核信息</h4>
-<p _="%" endcodeblock="endcodeblock">root@bt:/proc#    <code>uname -a</code>
+<p>root@bt:/proc#    <code>uname -a</code>
 Linux bt 2.6.38 #1 SMP Thu Mar 17 20:52:18 EDT 2011 i686 GNU/Linux<br />
-root@bt:/proc#     <code>uname --help</code>
-{% codeblock  %} 
-Usage: uname [OPTION]...<br />
-Print certain system information. With no OPTION, same as -s.
--a, --all print all information, in the following order,
-except omit -p and -i if unknown:
--s, --kernel-name print the kernel name
--n, --nodename print the network node hostname
--r, --kernel-release print the kernel release
--v, --kernel-version print the kernel version
--m, --machine print the machine hardware name
--p, --processor print the processor type or "unknown"
--i, --hardware-platform print the hardware platform or "unknown"
--o, --operating-system print the operating system
---help display this help and exit
---version output version information and exit</p>
+root@bt:/proc#     <code>uname --help</code></p>
+<div class="highlight"><pre><span class="ss">Usage</span><span class="p">:</span> <span class="n">uname</span> <span class="o">[</span><span class="no">OPTION</span><span class="o">]...</span>  
+<span class="no">Print</span> <span class="n">certain</span> <span class="nb">system</span> <span class="n">information</span><span class="o">.</span> <span class="no">With</span> <span class="n">no</span> <span class="no">OPTION</span><span class="p">,</span> <span class="n">same</span> <span class="n">as</span> <span class="o">-</span><span class="n">s</span><span class="o">.</span>
+<span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="o">--</span><span class="n">all</span> <span class="nb">print</span> <span class="n">all</span> <span class="n">information</span><span class="p">,</span> <span class="k">in</span> <span class="n">the</span> <span class="n">following</span> <span class="n">order</span><span class="p">,</span>
+<span class="n">except</span> <span class="n">omit</span> <span class="o">-</span><span class="nb">p</span> <span class="ow">and</span> <span class="o">-</span><span class="n">i</span> <span class="k">if</span> <span class="ss">unknown</span><span class="p">:</span>
+<span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="o">--</span><span class="n">kernel</span><span class="o">-</span><span class="nb">name</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">kernel</span> <span class="nb">name</span>
+<span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="o">--</span><span class="n">nodename</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">network</span> <span class="n">node</span> <span class="n">hostname</span>
+<span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="o">--</span><span class="n">kernel</span><span class="o">-</span><span class="n">release</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">release</span>
+<span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">kernel</span><span class="o">-</span><span class="n">version</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">version</span>
+<span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="o">--</span><span class="n">machine</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">machine</span> <span class="n">hardware</span> <span class="nb">name</span>
+<span class="o">-</span><span class="nb">p</span><span class="p">,</span> <span class="o">--</span><span class="n">processor</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">processor</span> <span class="n">type</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="o">-</span><span class="n">i</span><span class="p">,</span> <span class="o">--</span><span class="n">hardware</span><span class="o">-</span><span class="n">platform</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">hardware</span> <span class="n">platform</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="o">-</span><span class="n">o</span><span class="p">,</span> <span class="o">--</span><span class="n">operating</span><span class="o">-</span><span class="nb">system</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">operating</span> <span class="nb">system</span>
+<span class="o">--</span><span class="n">help</span> <span class="nb">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="nb">exit</span>
+<span class="o">--</span><span class="n">version</span> <span class="n">output</span> <span class="n">version</span> <span class="n">information</span> <span class="ow">and</span> <span class="nb">exit</span>
+</pre></div>
+
+
 <h4>查看Ubuntu发行版本</h4>
-<p _="%" endcodeblock="endcodeblock">root@bt:/proc#   <code>lsb_release -a</code>
-{% codeblock  %} 
-No LSB modules are available.
-Distributor ID: Ubuntu
-Description: Ubuntu 10.04.2 LTS
-Release: 10.04
-Codename: lucid           #发行版本代号</p>
+<p>root@bt:/proc#   <code>lsb_release -a</code></p>
+<div class="highlight"><pre><span class="no">No</span> <span class="no">LSB</span> <span class="n">modules</span> <span class="n">are</span> <span class="n">available</span><span class="o">.</span>
+<span class="no">Distributor</span> <span class="ss">ID</span><span class="p">:</span> <span class="no">Ubuntu</span>
+<span class="ss">Description</span><span class="p">:</span> <span class="no">Ubuntu</span> <span class="mi">10</span><span class="o">.</span><span class="mo">04</span><span class="o">.</span><span class="mi">2</span> <span class="no">LTS</span>
+<span class="ss">Release</span><span class="p">:</span> <span class="mi">10</span><span class="o">.</span><span class="mo">04</span>
+<span class="ss">Codename</span><span class="p">:</span> <span class="n">lucid</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">#发行版本代号</span>
+</pre></div>
+
+
 <h4>查看内核加载模块</h4>
 <p>root@bt:/proc#  <code>lsmod</code></p>
 <h4>查看usb设备使用情况</h4>

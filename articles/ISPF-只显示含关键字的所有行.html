@@ -52,25 +52,27 @@
 </h6>
 
 
-    <p _="%" endcodeblock="endcodeblock">命令：
-{% blockquote %}
-X ALL; 
-FIND keyword ALL;
-{% endblockquote %}
-比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;
-{% codeblock %}
- VIEW       IBMUSER.TESTJCL(TESTJOB) - 01.9         4 CHARS 'DT0907' 
- Command ===&gt; find dt0907 all                                  Scroll ===&gt; CSR<br />
-<strong><em>*</em>* </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>* Top of Data </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>
- - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   524 Line(s) not Displayed 
- 000525 //SORTOUT  DD  DSN=IBMUSER.CREATERT.FILEOUTS.DT0907,DISP=(NEW,CATLG), <br />
- - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 31 Line(s) not Displayed 
- 000557 //SORTOUT  DD  DSN=IBMUSER.CREATERT.NAMEACTS.DT0907,DISP=(NEW,CATLG), <br />
- - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   176 Line(s) not Displayed 
- 000734 //OUT     DD DSN=IBMUSER.CREATERT.USERACTS.DT0907,DISP=(NEW,CATLG),   <br />
- - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 40 Line(s) not Displayed 
- 000775 //NTIOUOUT DD  DSN=IBMUSER.CREATERT.NTIONOUT.DT0907,DISP=(NEW,CATLG), <br />
- - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 75 Line(s) not Displayed </p>
+    <p>命令：</p>
+<blockquote>
+<p>X ALL; 
+FIND keyword ALL;</p>
+<p>比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;</p>
+</blockquote>
+<div class="highlight"><pre><span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TESTJCL</span><span class="p">(</span><span class="no">TESTJOB</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">9</span>         <span class="mi">4</span> <span class="no">CHARS</span> <span class="s1">&#39;DT0907&#39;</span> 
+ <span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">find</span> <span class="n">dt0907</span> <span class="n">all</span>                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+ <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">524</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000525</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">FILEOUTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>   
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span> <span class="mi">31</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000557</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">NAMEACTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>   
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">176</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000734</span> <span class="o">//</span><span class="no">OUT</span>     <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">USERACTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>     
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span> <span class="mi">40</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000775</span> <span class="o">//</span><span class="no">NTIOUOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">NTIONOUT</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>   
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span> <span class="mi">75</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+</pre></div>
+
+
 <h4>2013-05-12补充：</h4>
 <p>另外一种方法： <code>X DT0907 ALL; Flip;</code> </p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>

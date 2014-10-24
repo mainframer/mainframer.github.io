@@ -54,36 +54,40 @@
 
     <p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
 <h3>1、下载压缩包到/tmp</h3>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:python %}
-root@bt:~#  cd /tmp <br />
-root@bt:/tmp#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
+</pre></div>
+
+
 <h3>2、下载好之后解压:</h3>
-<p>{% codeblock lang:python %}
-root@bt:/tmp#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2<br />
-tar: Record size = 8 blocks<br />
-AdobeReader/ <br />
-AdobeReader/INSTALL <br />
-AdobeReader/ReadMe.htm<br />
-AdobeReader/COMMON.TAR<br />
-AdobeReader/ILINXR.TAR<br />
-{% endcodeblock %}
-解压后在/tmp路径下生成了AdobeReader的文件夹  </p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
+<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
+<span class="no">AdobeReader</span><span class="o">/</span>   
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">INSTALL</span>   
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span>  
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span>  
+</pre></div>
+
+
+<p>解压后在/tmp路径下生成了AdobeReader的文件夹  </p>
 <h3>3、安装</h3>
-<p>{% codeblock lang:python %}
-root@bt:/tmp#  cd AdobeReader  <br />
-root@bt:/tmp/AdobeReader#  ls<br />
-COMMON.TAR ILINXR.TAR INSTALL ReadMe.htm<br />
-root@bt:/tmp/AdobeReader#  ./INSTALL <br />
-This installation requires 145 MB of free disk space.<br />
-Enter installation directory for Adobe Reader 9.4.2 [/opt]  #直接回车<br />
-/opt<br />
-Installing platform independent files ... Done<br />
-Installing platform dependent files ... Done<br />
-Setting up libraries ... Done<br />
-Setting up desktop and menu icons ... Done<br />
-Setting up the browser plugin ... Done<br />
-{% endcodeblock %}
-好了，安装到/opt了，这时桌面右上角Applications——Office里面就多了Adobe Reade 9，就可以看pdf了。  </p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  cd AdobeReader    </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ls  </span>
+<span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span> <span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span> <span class="no">INSTALL</span> <span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ./INSTALL   </span>
+<span class="no">This</span> <span class="n">installation</span> <span class="n">requires</span> <span class="mi">145</span> <span class="no">MB</span> <span class="n">of</span> <span class="n">free</span> <span class="n">disk</span> <span class="n">space</span><span class="o">.</span>  
+<span class="no">Enter</span> <span class="n">installation</span> <span class="n">directory</span> <span class="k">for</span> <span class="no">Adobe</span> <span class="no">Reader</span> <span class="mi">9</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">2</span> <span class="o">[</span><span class="sr">/opt]  #直接回车  </span>
+<span class="sr">/o</span><span class="n">pt</span>  
+<span class="no">Installing</span> <span class="n">platform</span> <span class="n">independent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Installing</span> <span class="n">platform</span> <span class="n">dependent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">libraries</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">desktop</span> <span class="ow">and</span> <span class="n">menu</span> <span class="n">icons</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">the</span> <span class="n">browser</span> <span class="n">plugin</span> <span class="o">...</span> <span class="no">Done</span>  
+</pre></div>
+
+
+<p>好了，安装到/opt了，这时桌面右上角Applications——Office里面就多了Adobe Reade 9，就可以看pdf了。  </p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

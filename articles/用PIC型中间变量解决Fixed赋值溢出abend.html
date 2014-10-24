@@ -52,49 +52,50 @@
 </h6>
 
 
-    <p _="%" endblockquote="endblockquote">我在Debug一个PLI程序<code>PRGM000</code>的时候遇到了一个<code>CEE34A abend</code>，报的错误信息如下：<br />
-{% blockquote %} 
-You were prompted because the CEE34A condition was raised in your
+    <p>我在Debug一个PLI程序<code>PRGM000</code>的时候遇到了一个<code>CEE34A abend</code>，报的错误信息如下：  </p>
+<blockquote>
+<p>You were prompted because the CEE34A condition was raised in your
 program.
 CEE34A is a severity or class 3 condition.
 The operating system has generated the following message:
 CEE3210S The system detected a decimal-overflow exception (System
 Completion Code=0CA).
-The current location is PRGM000 ::&gt; PRGM000 :&gt; 2688.
-{% endblockquote %} 
-不废话，直接上截图：
-<img alt="1" src="/../images/CEE3201S-0CA-abend.jpg" />  <br />
-从图上可以看出，出错的语句是：
-{% blockquote %} 
-TBL_KEY1.TRADE_DATE = COMM_AREA.TRADE_DATE</p>
+The current location is PRGM000 ::&gt; PRGM000 :&gt; 2688.</p>
+<p>不废话，直接上截图：
+<img alt="1" src="./../images/CEE3201S-0CA-abend.jpg" />  <br />
+从图上可以看出，出错的语句是：</p>
+<p>TBL_KEY1.TRADE_DATE = COMM_AREA.TRADE_DATE
+</p>
+</blockquote>
 <h4>我们来看二者的定义</h4>
-<p><code>COMM_AREA.TRADE_DATE</code>的定义
-{% codeblock lang:c %}
-1 COMM_AREA
-2 USER_AREA,
-...
-5 TRADE_DATE FIXED(9), /<em> 20110901 </em>/
-...;
-{% endcodeblock %}<br />
-<code>TBL_KEY1.TRADE_DATE</code>的定义
-{% codeblock lang:c %}
-DCL 1 TBL_KEY1
+<p><code>COMM_AREA.TRADE_DATE</code>的定义</p>
+<div class="highlight"><pre><span class="mi">1</span> <span class="no">COMM_AREA</span>
+<span class="mi">2</span> <span class="no">USER_AREA</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="mi">5</span> <span class="no">TRADE_DATE</span> <span class="no">FIXED</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span> <span class="sr">/* 20110901 */</span>
+<span class="o">...</span><span class="p">;</span>
+</pre></div>
+
+
+<p><code>TBL_KEY1.TRADE_DATE</code>的定义
+```rubyDCL 1 TBL_KEY1
 3 SPARE_CLIENT CHAR(4),
 3 IDENT_ID CHAR(9),
 3 TRADE_DATE FIXED(7),
-3 NUM FIXED(3);
-{% endcodeblock %}<br />
-所以很明显，发生abend的原因是把一个<code>FIXED(9)</code>的值赋给了一个<code>FIXED(7)</code>的变量，从而产生了溢出。</p>
-<h3>下面是解决办法:</h3>
-<p>定义一个<strong>PIC类型</strong>的中间变量 <strong><code>PIC_TRADE_DATE_9</code></strong> 做转换桥梁：<br />
-{% codeblock lang:c%}
-DCL PIC_TRADE_DATE_9 PIC '(9)9' INIT(0);
+3 NUM FIXED(3);</p>
+<div class="highlight"><pre>所以很明显，发生abend的原因是把一个`FIXED(9)`的值赋给了一个`FIXED(7)`的变量，从而产生了溢出。
+###下面是解决办法:
+定义一个**PIC类型**的中间变量 **`PIC_TRADE_DATE_9`** 做转换桥梁：  
+```ruby
+DCL PIC_TRADE_DATE_9 PIC &#39;(9)9&#39; INIT(0);
 PIC_TRADE_DATE_9 = COMM_AREA.TRADE_DATE;
 (值:020110901)        (值：20110901)
 TBL_KEY1.TRADE_DATE = SUBSTR (PIC_TRADE_DATE_9,4,6);
 (值：110901)          (值：110901)
-{% endcodeblock %}<br />
-到这里，问题已经得到解决。</p>
+</pre></div>
+
+
+<p>到这里，问题已经得到解决。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

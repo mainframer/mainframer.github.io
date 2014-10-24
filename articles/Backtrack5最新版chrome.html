@@ -52,31 +52,34 @@
 </h6>
 
 
-    <p>在windows下用惯了chrome，受不了chrome的诱惑，还是忍不住想把bt5下的firefox给换了。chrome官网下载安装包放置于<code>/root/software/</code>路径下，然后安装。
-{% codeblock lang:python %}
-root@bt:~# cd software/
-root@bt:~/software# dpkg -i google-chrome-stable_current_i386.deb
-Selecting previously deselected package google-chrome-stable.
-(Reading database ... 220905 files and directories currently installed.)
-Unpacking google-chrome-stable (from google-chrome-stable_current_i386.deb) ...
-Setting up google-chrome-stable (13.0.782.220-r99552) ...
-update-alternatives: using /usr/bin/google-chrome to provide /usr/bin/x-www-browser (x-www-browser) in auto mode.
-update-alternatives: using /usr/bin/google-chrome to provide /usr/bin/gnome-www-browser (gnome-www-browser) in auto mode.
-{% endcodeblock %}
-{% codeblock lang:python %}
-Processing triggers for desktop-file-utils ...
-Processing triggers for python-gmenu ...
-Rebuilding /usr/share/applications/desktop.en_US.utf8.cache...
-Processing triggers for menu ...
-Processing triggers for man-db ...
-Processing triggers for python-support ...
-{% endcodeblock %}
-运行会出现<code>Google Chrome can not be run as root.</code>错误，解决办法是每次运行的时候手动指定<code>user-data-dir</code>参数即可，这个是我在网上搜的方法。<br />
-<img alt="1" src="/../images/backtrack5-google-chrome.jpg" />          <br />
-{% codeblock lang:python %}
-root@bt:/opt/google/chrome# /opt/google/chrome/google-chrome %U - -user-data-dir=/root/.config/chromium
-{% endcodeblock %}
-看看是不是可以用了？chrome比firefox清爽多了感觉。</p>
+    <p>在windows下用惯了chrome，受不了chrome的诱惑，还是忍不住想把bt5下的firefox给换了。chrome官网下载安装包放置于<code>/root/software/</code>路径下，然后安装。</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># cd software/</span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="sr">/software# dpkg -i google-chrome-stable_current_i386.deb</span>
+<span class="sr">Selecting previously deselected package google-chrome-stable.</span>
+<span class="sr">(Reading database ... 220905 files and directories currently installed.)</span>
+<span class="sr">Unpacking google-chrome-stable (from google-chrome-stable_current_i386.deb) ...</span>
+<span class="sr">Setting up google-chrome-stable (13.0.782.220-r99552) ...</span>
+<span class="sr">update-alternatives: using /us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">google</span><span class="o">-</span><span class="n">chrome</span> <span class="n">to</span> <span class="n">provide</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span><span class="p">)</span> <span class="k">in</span> <span class="n">auto</span> <span class="n">mode</span><span class="o">.</span>
+<span class="n">update</span><span class="o">-</span><span class="ss">alternatives</span><span class="p">:</span> <span class="n">using</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">google</span><span class="o">-</span><span class="n">chrome</span> <span class="n">to</span> <span class="n">provide</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">gnome</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span> <span class="p">(</span><span class="n">gnome</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span><span class="p">)</span> <span class="k">in</span> <span class="n">auto</span> <span class="n">mode</span><span class="o">.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">desktop</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="n">utils</span> <span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">python</span><span class="o">-</span><span class="n">gmenu</span> <span class="o">...</span>
+<span class="no">Rebuilding</span> <span class="sr">/usr/s</span><span class="n">hare</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">desktop</span><span class="o">.</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf8</span><span class="o">.</span><span class="n">cache</span><span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">menu</span> <span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">man</span><span class="o">-</span><span class="n">db</span> <span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">python</span><span class="o">-</span><span class="n">support</span> <span class="o">...</span>
+</pre></div>
+
+
+<p>运行会出现<code>Google Chrome can not be run as root.</code>错误，解决办法是每次运行的时候手动指定<code>user-data-dir</code>参数即可，这个是我在网上搜的方法。<br />
+<img alt="1" src="./../images/backtrack5-google-chrome.jpg" />            </p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">google</span><span class="o">/</span><span class="n">chrome</span><span class="c1"># /opt/google/chrome/google-chrome %U - -user-data-dir=/root/.config/chromium</span>
+</pre></div>
+
+
+<p>看看是不是可以用了？chrome比firefox清爽多了感觉。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

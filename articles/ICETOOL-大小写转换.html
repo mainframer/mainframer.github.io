@@ -52,14 +52,14 @@
 </h6>
 
 
-    <p _="%" endcodeblock="endcodeblock"><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
+    <p><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
 <code>TRAN=LTOU</code> ： lowercase to uppercase <br />
-例子：
-{% codeblock lang:python %}
-//CTL1CNTL DD *                                         <br />
-  INREC IFTHEN=(WHEN=INIT,OVERLAY=(1:1,3,TRAN=LTOU)),   ：对input的进来处理的每一条数据的前3位先转为大写再说
-              IFTHEN=(WHEN=(...),BUILD=(...)), 
-              IFTHEN=(WHEN=(...),BUILD=(...))</p>
+例子：</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                           
+  <span class="no">INREC</span> <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="no">INIT</span><span class="p">,</span><span class="no">OVERLAY</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="no">TRAN</span><span class="o">=</span><span class="no">LTOU</span><span class="p">)),</span>   <span class="err">：对</span><span class="n">input</span><span class="err">的进来处理的每一条数据的前</span><span class="mi">3</span><span class="err">位先转为大写再说</span>
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">)),</span> 
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

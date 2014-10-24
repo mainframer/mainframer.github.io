@@ -53,25 +53,27 @@
 
 
     <p>好几次<em>production abend</em>都是因为JCL中分配的dataset太大，恰好一个volume上面的剩余空间都分配完了。<br />
-这里是DBA给的建议：<br />
-{% blockquote %} 
-"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
-{% endblockquote %} 
-{% codeblock lang:python %}
-000001 //STEP001  EXEC PGM=SYNCSORT,REGION=4096K,COND=(0,NE)                <br />
-000002 //SYSOUT   DD  SYSOUT=<em>                                              <br />
-000003 //SYSPRINT DD  SYSOUT=</em>                                              <br />
-000004 //SORTIN   DD  DSN=IBMUSER.SYSDA20.TEST1(0),DISP=SHR                 <br />
-000005 //         DD  DSN=IBMUSER.SYSDA20.TEST2(0),DISP=SHR                 <br />
-000006 //SORTWK01 DD  UNIT=(SYSDA,20),SPACE=(CYL,(30,10),RLSE)              <br />
-000007 //SORTWK02 DD  UNIT=(SYSDA,20),SPACE=(CYL,(30,10),RLSE)              <br />
-000008 //SORTOUT  DD  DSN=&amp;&amp;SORTOUT,DISP=(NEW,PASS),                        <br />
-000009 //             DCB=(DSORG=PS,RECFM=FB,LRECL=80,BLKSIZE=0),           <br />
-000000 //             UNIT=(SYSDA,20),SPACE=(CYL,(50,50),RLSE)              <br />
-000011 //SYSIN    DD  DSN=IBMUSER.CNTL(CNTLCD1),DISP=SHR                    <br />
-000012 //*                                                                  <br />
-{% endcodeblock %}
-所以，就当成标准吧，把<code>UNIT=SYSDA</code>都改成<code>UNIT=(SYSDA,20)</code>。</p>
+这里是DBA给的建议：  </p>
+<blockquote>
+<p>"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
+</p>
+</blockquote>
+<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>                  
+<span class="mo">000002</span> <span class="o">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000003</span> <span class="o">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000004</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SYSDA20</span><span class="o">.</span><span class="n">TEST1</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                   
+<span class="mo">000005</span> <span class="o">//</span>         <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SYSDA20</span><span class="o">.</span><span class="n">TEST2</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                   
+<span class="mo">000006</span> <span class="o">//</span><span class="no">SORTWK01</span> <span class="no">DD</span>  <span class="no">UNIT</span><span class="o">=</span><span class="p">(</span><span class="no">SYSDA</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
+<span class="mo">000007</span> <span class="o">//</span><span class="no">SORTWK02</span> <span class="no">DD</span>  <span class="no">UNIT</span><span class="o">=</span><span class="p">(</span><span class="no">SYSDA</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
+<span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">SORTOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>                          
+<span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>             
+<span class="mo">000000</span> <span class="o">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="p">(</span><span class="no">SYSDA</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
+<span class="mo">000011</span> <span class="o">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CNTL</span><span class="p">(</span><span class="no">CNTLCD1</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                      
+<span class="mo">000012</span> <span class="o">//*</span>                                                                    
+</pre></div>
+
+
+<p>所以，就当成标准吧，把<code>UNIT=SYSDA</code>都改成<code>UNIT=(SYSDA,20)</code>。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

@@ -53,10 +53,10 @@
 
 
     <p>IBM的<code>File Manger</code> 在大机平台上是非常强大的文件查看/编辑器，是一个强大的ISPF应用程序。这里先贴上一张IBM2011年最新的关于File Manger的结构图，我认为这张图很好地诠释了File Manager 的强大之处：
-<img alt="1" src="/../images/IBM_File_Manager-for-zOS.jpg" /><br />
+<img alt="1" src="./../images/IBM_File_Manager-for-zOS.jpg" /><br />
 <em>[图片来源于IBM官方网站，仅供学习交流之用]</em>   </p>
 <p>参照上图，我这里要讲的是当中的第二块内容——<code>File Manager for Z/OS</code>，关于其它部分如<code>File Manager for DB2</code>,<code>File Manager for IMS</code>和<code>File Manager for CICS</code>，以后再说。(其实更主要是因为平常工作做我用for z/os用的多，db2和cics的用得少，不敢在这瞎说。)。基本的操作原理就不说了，我就说说我在平常工作当中的几个有用的小技巧好了。 以查看/编辑<code>QSAM</code> (sequential)的dataset为例，选项1是查看(View),选项2是编辑(Edit),我们View进去看到如下图：
-<img alt="1" src="/../images/File_Manager_For_zos_01.jpg" />  <br />
+<img alt="1" src="./../images/File_Manager_For_zos_01.jpg" />  <br />
 这里<code>DBAID01.TEST.FILE</code>是你的ID(DBAID01)开头的一个你要查看的File，不过它只是一个纯的无格式的数据文件，你所做的就是要给它指定一个模板(COPYBOOK)，COPYBOOK规定它该按照什么样的方式显示。<code>DBAID01.TEST.COPY(COPY01)</code>就是<code>DBAID01.TEST.FILE</code>的COPYBOOK,它当中规定了<code>DBAID01.TEST.FILE</code>该如何显示。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 

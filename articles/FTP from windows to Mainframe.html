@@ -52,22 +52,23 @@
 </h6>
 
 
-    <p><code>win+R</code>打开cmd:<br />
-{% codeblock lang:python %} 
-C:\Documents and Settings\Foo\Desktop&gt;ftp ftpserver<br />
-/<em>Here please input username/password</em>/<br />
-ftp&gt; ascii
-200 Representation type is Ascii NonPrint
-ftp&gt; quote site lrecl=80 blksize=16000 recfm=fb
-200 SITE command was accepted
-ftp&gt; put test.txt 'ibmuser.test.psfile(+1)'
-200 Port request OK.
-125 Storing data set IBMUSER.TEST.PSFILE(+1)
-250 Transfer completed successfully.
-71 bytes sent in 0 seconds (71 bytes/s)
-ftp&gt; quit
-{% endcodeblock  %}
-<strong><code>Lrecl</code></strong> specifies the record length of 80.<br />
+    <p><code>win+R</code>打开cmd:  </p>
+<div class="highlight"><pre><span class="ss">C</span><span class="p">:\</span><span class="no">Documents</span> <span class="ow">and</span> <span class="no">Settings</span><span class="p">\</span><span class="no">Foo</span><span class="p">\</span><span class="no">Desktop</span><span class="o">&gt;</span><span class="n">ftp</span> <span class="n">ftpserver</span>  
+<span class="sr">/*Here please input username/</span><span class="n">password</span><span class="o">*/</span>  
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">ascii</span>
+<span class="mi">200</span> <span class="no">Representation</span> <span class="n">type</span> <span class="n">is</span> <span class="no">Ascii</span> <span class="no">NonPrint</span>
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">quote</span> <span class="n">site</span> <span class="n">lrecl</span><span class="o">=</span><span class="mi">80</span> <span class="n">blksize</span><span class="o">=</span><span class="mi">16000</span> <span class="n">recfm</span><span class="o">=</span><span class="n">fb</span>
+<span class="mi">200</span> <span class="no">SITE</span> <span class="n">command</span> <span class="n">was</span> <span class="n">accepted</span>
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">put</span> <span class="nb">test</span><span class="o">.</span><span class="n">txt</span> <span class="s1">&#39;ibmuser.test.psfile(+1)&#39;</span>
+<span class="mi">200</span> <span class="no">Port</span> <span class="n">request</span> <span class="no">OK</span><span class="o">.</span>
+<span class="mi">125</span> <span class="no">Storing</span> <span class="n">data</span> <span class="n">set</span> <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">PSFILE</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">250</span> <span class="no">Transfer</span> <span class="n">completed</span> <span class="n">successfully</span><span class="o">.</span>
+<span class="mi">71</span> <span class="n">bytes</span> <span class="n">sent</span> <span class="k">in</span> <span class="mi">0</span> <span class="n">seconds</span> <span class="p">(</span><span class="mi">71</span> <span class="n">bytes</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">quit</span>
+</pre></div>
+
+
+<p><strong><code>Lrecl</code></strong> specifies the record length of 80.<br />
 <strong><code>Blksize</code></strong> specifies the block size of 16000. <br />
 <strong><code>Recfm</code></strong> specifies the record format of fixed block.<br />
 <strong><code>Filename.txt</code></strong> is the windows file name you are going to send from.<br />

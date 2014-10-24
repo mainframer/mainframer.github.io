@@ -54,18 +54,16 @@
 
     <p>虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  <br />
 首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是<code>D:\DOCUMENT\linux</code>.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
-<img alt="1" src="/../images/bt5-vmtools-1.jpg" /> <br />
+<img alt="1" src="./../images/bt5-vmtools-1.jpg" /> <br />
 还是老规矩：输入用户名<em>root</em>；密码<em>toor</em>；启动图形界面:<em>startx</em>; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:
-<img alt="1" src="/../images/bt5-vmtools-2.jpg" /> <br />
+<img alt="1" src="./../images/bt5-vmtools-2.jpg" /> <br />
 先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。<br />
 记得一定要先改变先<code>sudo chmod 755 vmware-install.pl</code>不然可能会出现 <code>no such file or directory</code>。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！
-<img alt="1" src="/../images/bt5-vmtools-3.jpg" /><br />
+<img alt="1" src="./../images/bt5-vmtools-3.jpg" /><br />
 接着按照提示做就可以了。遇到没有权限访问xxx.pl文件，提示permission denied的,就用sudo chmod 755 xxx.pl修改下权限，然后继续。<br />
 安装完之后输入 sudo /etc/init.d/vmware-tools 会提示vmware-tools的开关重启命令:<br />
-{% codeblock %} 
-usage:vmware-tools {start|stop|status|restart|}<br />
-{% endcodeblock %} 
-执行：<code>/usr/bin/vmware-toolbox</code> 调出vmware-toolbox可以设置的。<br />
+<code>rubyusage:vmware-tools {start|stop|status|restart|}</code></p>
+<p>执行：<code>/usr/bin/vmware-toolbox</code> 调出vmware-toolbox可以设置的。<br />
 重新启动系统，记得在CD/DVD(IDE)设置里面将vmware-tools的Iso启动文件去掉哦！<br />
 后记:安装VMWare-tools的本意是想能够自由地在windows和BT5之间拷数据拷数据，不过装完发现还是没办法拷数据或文件，不过鼠标倒是可以自由出入了，再也不用按Ctrl+Alt这么麻烦了。好吧，这也不错，关于拷数据的那个问题，有空再研究了~ </p>
 <h3>今天终于完美了</h3>

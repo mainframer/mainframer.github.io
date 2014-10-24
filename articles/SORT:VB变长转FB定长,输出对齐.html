@@ -52,23 +52,24 @@
 </h6>
 
 
-    <p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:
-{% codeblock lang:python %}
-//STEP001  EXEC PGM=SYNCSORT,REGION=4096K                    <br />
-//SYSOUT   DD  SYSOUT=<em>                                      <br />
-//SYSPRINT DD  SYSOUT=</em>                                      <br />
-//SORTIN   DD  DSN=SORTIN,DISP=SHR                         <br />
-//SORTOUT  DD DSN=&amp;&amp;SORTOUT,DISP=(NEW,PASS),                 <br />
-//            DCB=(DSORG=PS,RECFM=FB,LRECL=80,BLKSIZE=0),    <br />
-//            UNIT=SYSDA,SPACE=(CYL,(5,5),RLSE)              <br />
-//SYSIN DD *                                                 <br />
-  SORT FIELDS=COPY                                           <br />
-  INCLUDE COND=(5,1,CH,EQ,C'B')                              <br />
-  OUTFIL VTOF,                                               <br />
-  BUILD=(6,15,JFY=(SHIFT=LEFT),12,4,41,3,100,20,120,2,36C' ')<br />
-/*                                                           <br />
-{% endcodeblock %}
-<code>SORTIN</code>是<code>LRECL=4000</code>的VB格式，<code>SORTOUT</code>是<code>LRECL=80</code>的FB格式。Sort条件是第1位为'B'。输出格式：对于SORTIN中所有符合第1位为'B'的那些record，分别取其第2位开始的15位(左对齐),8开始的4位，37开始的3位，96开始的20位，118开始的2位。再加上36个末尾空格，组装成80长度的输出。</p>
+    <p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span>                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">SORTIN</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">SORTOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>                   
+<span class="sr">//</span>            <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>      
+<span class="sr">//</span>            <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                   
+  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">COPY</span>                                             
+  <span class="no">INCLUDE</span> <span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="no">CH</span><span class="p">,</span><span class="no">EQ</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>                                
+  <span class="no">OUTFIL</span> <span class="no">VTOF</span><span class="p">,</span>                                                 
+  <span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="no">JFY</span><span class="o">=</span><span class="p">(</span><span class="no">SHIFT</span><span class="o">=</span><span class="no">LEFT</span><span class="p">),</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">36</span><span class="n">C</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  
+<span class="sr">/*                                                             </span>
+</pre></div>
+
+
+<p><code>SORTIN</code>是<code>LRECL=4000</code>的VB格式，<code>SORTOUT</code>是<code>LRECL=80</code>的FB格式。Sort条件是第1位为'B'。输出格式：对于SORTIN中所有符合第1位为'B'的那些record，分别取其第2位开始的15位(左对齐),8开始的4位，37开始的3位，96开始的20位，118开始的2位。再加上36个末尾空格，组装成80长度的输出。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

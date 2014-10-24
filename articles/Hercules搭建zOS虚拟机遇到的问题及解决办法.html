@@ -69,7 +69,7 @@
 <p>比如：<code>sf+0A80</code>:  为设备号为0A80的设备建立shadow (设备号只是个临时的概念)</p>
 <hr />
 <h4>IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM</h4>
-<p><img alt="1" src="/../images/zosmoni_1.png" />      </p>
+<p><img alt="1" src="./../images/zosmoni_1.png" />      </p>
 <h4>解决办法：</h4>
 <p>在zOS1.9.cnf配置文件中删掉下面一行即可：</p>
 <div class="highlight"><pre>            XPNDSIZE  6
@@ -79,12 +79,12 @@
 <hr />
 <h3><code>HHCLC042E Port 00: Read error: Bad file descriptor</code></h3>
 <p>HerculesGUI界面一直提示 <code>HHCLC042E Port 00: Read error: Bad file descriptor</code> 并且MVS主控台端有几行大红字：<br />
-<img alt="1" src="/../images/zosmoni_2.png" />      </p>
+<img alt="1" src="./../images/zosmoni_2.png" />      </p>
 <h3>解决办法：</h3>
 <p>一直提示是老版本CTCI的bug，不用管。或者下载最新版的CTCI。</p>
 <hr />
 <h3>MVS主控台端出现大红字</h3>
-<p><img alt="1" src="/../images/zosmoni_3.png" />      </p>
+<p><img alt="1" src="./../images/zosmoni_3.png" />      </p>
 <h3>解决办法：</h3>
 <p>等待，取决你机器速度。
  + 绿色信息代表正常
@@ -92,7 +92,7 @@
  + 白色的信息如果有一个编号</p>
 <hr />
 <h3>错误<code>IRA200E AUXILIARY STORAGE SHORTAGE</code></h3>
-<p><img alt="1" src="/../images/zosmoni_4.png" />      </p>
+<p><img alt="1" src="./../images/zosmoni_4.png" />      </p>
 <h3>解决办法：</h3>
 <p><code>OS/390</code>自动记录硬件 (和某些软件) 的错误数据和一些统计数据于PDS <code>SYS1.LOGREC</code>中，最终此数据集会被装满数据，系统会在 <em>CONSOLE</em> 上发一条信息。
 使用下述作业会打印 LOGREC 中的简要信息，同时会清空 <code>SYS1.LOGREC</code> 数据集：</p>
@@ -164,7 +164,7 @@
 <li>ADCDA ~ ADCDZ -    TEST</li>
 <li>WEBADM        -   WEBADM</li>
 <li>OPEN1 - OPEN3 -    SYS1<br />
-<img alt="1" src="/../images/zosmoni_5.png" />   </li>
+<img alt="1" src="./../images/zosmoni_5.png" />   </li>
 </ul>
 <h3><code>Master console</code> 不显示</h3>
 <h3>解决办法：</h3>

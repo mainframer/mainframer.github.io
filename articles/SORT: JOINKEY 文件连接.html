@@ -52,27 +52,28 @@
 </h6>
 
 
-    <p>{% codeblock lang:python %}
-//STEP002 EXEC  PGM=SYNCSORT,REGION=4096K,COND=(0,NE)      <br />
-//SYSOUT   DD SYSOUT=<em>                                     <br />
-//SYSPRINT DD  SYSOUT=</em>                                    <br />
-//SORTJNF1 DD  DSN=FILE1,DISP=SHR                          <br />
-//SORTJNF2 DD  DSN=FILE2,DISP=SHR                          <br />
-//SORTOUT  DD  DSN=JOINOUT,DISP=SHR                        <br />
-//SYSIN DD *                                               <br />
-  JOINKEYS FILE=F1,FIELDS=(1,5,A)                          <br />
-  JOINKEYS FILE=F2,FIELDS=(1,5,A)                          <br />
-  REFORMAT FIELDS=(F1:1,5,F2:6,35)                         <br />
-  SORT FIELDS=(1,5,CH,A)                                   <br />
-  SUM FIELDS=NONE                                          <br />
-/<em>                                                         <br />
-//</em>                                                        <br />
-{% endcodeblock %}
-<em>FILE1</em>和<em>FILE2</em>必须按key值sort好，这里Join的key为前5个字符，结果只保留所有FILE1的KEY值。输出的格式为File1的前5位+File2第6开始的35位。
-{% blockquote %}
-SUM FIELDS=NONE
-{% endblockquote %}
-用于去掉KEY值重复的那些记录。</p>
+    <div class="highlight"><pre><span class="sr">//</span><span class="no">STEP002</span> <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>        
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                       
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SORTJNF1</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE1</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
+<span class="sr">//</span><span class="no">SORTJNF2</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE2</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">JOINOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                 
+  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F1</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                            
+  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F2</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                            
+  <span class="no">REFORMAT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="ss">F1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="ss">F2</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span>                           
+  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="no">CH</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                                     
+  <span class="no">SUM</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">NONE</span>                                            
+<span class="sr">/*                                                           </span>
+<span class="sr">/</span><span class="o">/*</span>                                                          
+</pre></div>
+
+
+<p><em>FILE1</em>和<em>FILE2</em>必须按key值sort好，这里Join的key为前5个字符，结果只保留所有FILE1的KEY值。输出的格式为File1的前5位+File2第6开始的35位。</p>
+<blockquote>
+<p>SUM FIELDS=NONE</p>
+<p>用于去掉KEY值重复的那些记录。</p>
+</blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

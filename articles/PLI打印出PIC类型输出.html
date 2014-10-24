@@ -52,16 +52,18 @@
 </h6>
 
 
-    <p>使用PLI打印输出信息，最常见的是:
-{% codeblock lang:python %}
-PUT SKIP(1) EDIT ('CODE = ',ERR_CODE)(A,A);
-{% endcodeblock %}
-这里是打印PIC类型的输出，不怎么常用。今天用到了，所以记在这:<br />
-{% codeblock lang:python %}
-PUT EDIT('ACCOUNT PROCESSED : ',ACCOUNT_CTR)    <br />
-                  (SKIP(1),COL(1),A,P'999999999'); </p>
-<p _="%" endcodeblock="endcodeblock">PUT SKIP FILE(OUTFILE) EDIT('CHENGDU: ',SOURCE) 
-      (A,P'ZZ,ZZZV.ZZ');</p>
+    <p>使用PLI打印输出信息，最常见的是:</p>
+<div class="highlight"><pre><span class="no">PUT</span> <span class="no">SKIP</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="no">EDIT</span> <span class="p">(</span><span class="s1">&#39;CODE = &#39;</span><span class="p">,</span><span class="no">ERR_CODE</span><span class="p">)(</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+</pre></div>
+
+
+<p>这里是打印PIC类型的输出，不怎么常用。今天用到了，所以记在这:  </p>
+<div class="highlight"><pre><span class="no">PUT</span> <span class="no">EDIT</span><span class="p">(</span><span class="s1">&#39;ACCOUNT PROCESSED : &#39;</span><span class="p">,</span><span class="no">ACCOUNT_CTR</span><span class="p">)</span>      
+                  <span class="p">(</span><span class="no">SKIP</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="no">COL</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="s1">&#39;999999999&#39;</span><span class="p">);</span> 
+
+<span class="no">PUT</span> <span class="no">SKIP</span> <span class="no">FILE</span><span class="p">(</span><span class="no">OUTFILE</span><span class="p">)</span> <span class="no">EDIT</span><span class="p">(</span><span class="s1">&#39;CHENGDU: &#39;</span><span class="p">,</span><span class="no">SOURCE</span><span class="p">)</span> 
+      <span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="s1">&#39;ZZ,ZZZV.ZZ&#39;</span><span class="p">);</span>
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

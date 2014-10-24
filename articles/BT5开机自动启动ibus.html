@@ -52,24 +52,27 @@
 </h6>
 
 
-    <p>BT5下安装中文输入法：
-{% codeblock %} 
-apt-get install scim
-{% endcodeblock %} 
-BT5下安装ibus输入法管理器:
-{% codeblock %}
-sudo apt-get install ibus
-{% endcodeblock %}
-在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
+    <p>BT5下安装中文输入法：</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">scim</span>
+</pre></div>
+
+
+<p>BT5下安装ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ibus</span>
+</pre></div>
+
+
+<p>在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
 怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:<br />
-开机自动启动ibus输入法管理器:
-{% codeblock %} 
-  System &gt;&gt; Preferences &gt;&gt; Startup Applications
-     Click the button: Add
-     Name: ibus daemon
-     Command: /usr/bin/ibus-daemon -d
-{% endcodeblock %}
-好了，重启就可以了。<br />
+开机自动启动ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="no">System</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Preferences</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Startup</span> <span class="no">Applications</span>
+     <span class="no">Click</span> <span class="n">the</span> <span class="ss">button</span><span class="p">:</span> <span class="no">Add</span>
+     <span class="ss">Name</span><span class="p">:</span> <span class="n">ibus</span> <span class="n">daemon</span>
+     <span class="ss">Command</span><span class="p">:</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">ibus</span><span class="o">-</span><span class="n">daemon</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+
+
+<p>好了，重启就可以了。<br />
 按Ctrl+空格调出输入法。按<code>Shift+Ctrl</code>切换输入法。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 

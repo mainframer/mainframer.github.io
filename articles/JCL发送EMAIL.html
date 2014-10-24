@@ -52,27 +52,28 @@
 </h6>
 
 
-    <p>{% codeblock lang:python %}
-//IBMUSER JOB 0R                A1011000010TEST,CLASS=3,      <br />
-//        MSGCLASS=R,REGION=0M                                 <br />
-//<em>                                                            <br />
-//STEP01   EXEC PGM=IEBGENER<br />
-//SYSOUT DD SYSOUT= *                                                                        <br />
-//SYSUT1   DD  *                                               <br />
-HELO MVS                                                       <br />
-MAIL FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                             <br />
-RCPT TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                <br />
-DATA                                                           <br />
-FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                     <br />
-TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                       <br />
-SUBJECT: JOB IBMUSERJ HAS COMPLETED SUCCESSFULLY                    <br />
-START OF MESSAGE...                                            <br />
-<strong><em>    DO NOT REPLY TO THIS MESSAGE    </em></strong> <br />
-//SYSUT2   DD  SYSOUT=A,DEST=(YOURDEST,IPSMTP)                 <br />
-//SYSPRINT DD SYSOUT=</em>                                         <br />
-//SYSIN    DD DUMMY     <br />
-{% endcodeblock %}<br />
-这是一个JCL通过SMTP协议发送Email的例子，如果需要发送附件，可以再深入研究下!</p>
+    <div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span> <span class="mi">0</span><span class="n">R</span>                <span class="no">A1011000010TEST</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>        
+<span class="sr">//</span>        <span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0</span><span class="n">M</span>                                   
+<span class="sr">//</span><span class="o">*</span>                                                              
+<span class="sr">//</span><span class="no">STEP01</span>   <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span>  
+<span class="sr">//</span><span class="no">SYSOUT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=</span> <span class="o">*</span>                                                                          
+<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="o">*</span>                                                 
+<span class="no">HELO</span> <span class="no">MVS</span>                                                         
+<span class="no">MAIL</span> <span class="ss">FROM</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                               
+<span class="no">RCPT</span> <span class="ss">TO</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                  
+<span class="no">DATA</span>                                                             
+<span class="ss">FROM</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                       
+<span class="ss">TO</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                         
+<span class="ss">SUBJECT</span><span class="p">:</span> <span class="no">JOB</span> <span class="no">IBMUSERJ</span> <span class="no">HAS</span> <span class="no">COMPLETED</span> <span class="no">SUCCESSFULLY</span>                      
+<span class="no">START</span> <span class="no">OF</span> <span class="no">MESSAGE</span><span class="o">...</span>                                              
+   <span class="o">***</span>    <span class="no">DO</span> <span class="no">NOT</span> <span class="no">REPLY</span> <span class="no">TO</span> <span class="no">THIS</span> <span class="no">MESSAGE</span>    <span class="o">***</span>   
+<span class="sr">//</span><span class="no">SYSUT2</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=</span><span class="n">A</span><span class="p">,</span><span class="no">DEST</span><span class="o">=</span><span class="p">(</span><span class="no">YOURDEST</span><span class="p">,</span><span class="no">IPSMTP</span><span class="p">)</span>                   
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                           
+<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span> <span class="no">DUMMY</span>       
+</pre></div>
+
+
+<p>这是一个JCL通过SMTP协议发送Email的例子，如果需要发送附件，可以再深入研究下!</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

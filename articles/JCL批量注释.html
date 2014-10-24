@@ -53,30 +53,32 @@
 
 
     <p>在JCL里面一次如何注释掉一整段连续的Statement? 下面这个替换思想的方法不错，不妨一试！<br />
-命令：<code>C '//' '//*' ALL .X .Y</code>
-{% codeblock lang:python %}
-File Edit Edit_Settings Menu Utilities Compilers Test Help 
-VIEW IBMUSER.TEST.JCL(SORT) - 01.99                 Columns 00001 00072 
-Command ===&gt; C '//' '//*' ALL .X .Y                    Scroll ===&gt; CSR </p>
-<p><strong><em>*</em></strong><em> Top of Data <strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong></em> 
-000001 //IBMUSERS JOB '000000000000000000CMP', 
-000002 // CLASS=0,NOTIFY=&amp;SYSUID,MSGCLASS=R,TIME=NOLIMIT 
-000003 //<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em><strong>*</strong>
-.X     //STEP001 EXEC PGM=ICETOOL,REGION=0M 
-000005 //INPUT1 DD DSN=&amp;HLQ1..AEN.INPUT1.EXT(0),DISP=SHR 
-000006 //INPUT2 DD DSN=&amp;HLQ1..AEN.INPUT2.EXT(0),DISP=SHR 
-000007 //INPUT3 DD DSN=&amp;HLQ1..AEN.INPUT3.EXT(0),DISP=SHR
-000008 //OUTPUT DD DSN=IBMUSER.OUTPUT, 
-000009 // DISP=(MOD,CATLG,),UNIT=SYSDA,SPACE=(CYL,(10,8),RLSE), 
-000010 // DCB=(SYS1.MODEL,RECFM=FB,LRECL=600,DSORG=PS) 
-000011 //SORTWK01 DD UNIT=SYSDA,SPACE=(CYL,(10,8),RLSE) 
-000012 //TOOLMSG DD SYSOUT= 
-000013 //DFSMSG DD SYSOUT=</em> 
-000014 //TOOLIN DD DSN=&amp;CONTROL(MYCNTL01),DISP=SHR 
-.Y     //CTL1CNTL DD DSN=&amp;CONTROL(MYCNTL02),DISP=SHR 
-000016 //* </p>
-<p _="%" endcodeblock="endcodeblock">F1=Help F2=Split F3=Exit F5=Rfind F6=Rchange F7=Up 
-F8=Down F9=Swap F10=Left F11=Right F12=Cancel </p>
+命令：<code>C '//' '//*' ALL .X .Y</code></p>
+<div class="highlight"><pre><span class="no">File</span> <span class="no">Edit</span> <span class="no">Edit_Settings</span> <span class="no">Menu</span> <span class="no">Utilities</span> <span class="no">Compilers</span> <span class="no">Test</span> <span class="no">Help</span> 
+<span class="no">VIEW</span> <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SORT</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">99</span>                 <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">C</span> <span class="s1">&#39;//&#39;</span> <span class="s1">&#39;//*&#39;</span> <span class="no">ALL</span> <span class="o">.</span><span class="n">X</span> <span class="o">.</span><span class="n">Y</span>                    <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span> 
+
+<span class="o">********</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">*********************************************************</span> 
+<span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSERS</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span> 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">SYSUID</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span> 
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span>
+<span class="o">.</span><span class="n">X</span>     <span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0</span><span class="n">M</span> 
+<span class="mo">000005</span> <span class="o">//</span><span class="no">INPUT1</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">HLQ1</span><span class="o">..</span><span class="no">AEN</span><span class="o">.</span><span class="n">INPUT1</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="mo">000006</span> <span class="o">//</span><span class="no">INPUT2</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">HLQ1</span><span class="o">..</span><span class="no">AEN</span><span class="o">.</span><span class="n">INPUT2</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="mo">000007</span> <span class="o">//</span><span class="no">INPUT3</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">HLQ1</span><span class="o">..</span><span class="no">AEN</span><span class="o">.</span><span class="n">INPUT3</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>
+<span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span><span class="no">OUTPUT</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span> 
+<span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span> <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">MOD</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,),</span><span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span> 
+<span class="mo">000010</span> <span class="o">//</span> <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span> 
+<span class="mo">000011</span> <span class="o">//</span><span class="no">SORTWK01</span> <span class="no">DD</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span> 
+<span class="mo">000012</span> <span class="o">//</span><span class="no">TOOLMSG</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=</span> 
+<span class="mo">000013</span> <span class="o">//</span><span class="no">DFSMSG</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span> 
+<span class="mo">000014</span> <span class="o">//</span><span class="no">TOOLIN</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">CONTROL</span><span class="p">(</span><span class="no">MYCNTL01</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="o">.</span><span class="n">Y</span>     <span class="sr">//</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">CONTROL</span><span class="p">(</span><span class="no">MYCNTL02</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="mo">000016</span> <span class="o">//*</span> 
+
+<span class="no">F1</span><span class="o">=</span><span class="no">Help</span> <span class="no">F2</span><span class="o">=</span><span class="no">Split</span> <span class="no">F3</span><span class="o">=</span><span class="no">Exit</span> <span class="no">F5</span><span class="o">=</span><span class="no">Rfind</span> <span class="no">F6</span><span class="o">=</span><span class="no">Rchange</span> <span class="no">F7</span><span class="o">=</span><span class="no">Up</span> 
+<span class="no">F8</span><span class="o">=</span><span class="no">Down</span> <span class="no">F9</span><span class="o">=</span><span class="no">Swap</span> <span class="no">F10</span><span class="o">=</span><span class="no">Left</span> <span class="no">F11</span><span class="o">=</span><span class="no">Right</span> <span class="no">F12</span><span class="o">=</span><span class="no">Cancel</span> 
+</pre></div>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

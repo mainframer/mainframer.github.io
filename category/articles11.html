@@ -127,9 +127,9 @@
 </strong>*__：任意一至多位字符  <br />
 下面举两个例子： <br />
 输入：<code>IBMUSER.TEST.LIB%</code><br />
-<img alt="1" src="/../images/wild_character01.jpg" />   <br />
+<img alt="1" src="./../images/wild_character01.jpg" />   <br />
 输入：<code>IBMUSER.*.LIB</code>  <br />
-<img alt="1" src="/../images/wild_character02.jpg" />     <br />
+<img alt="1" src="./../images/wild_character02.jpg" />     <br />
 当然，两者可以根据你的需要任意组合使用，这个是没问题的。就像：<code>IBMUSER.*.LIB%</code>这样。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
@@ -187,13 +187,16 @@
 
 <p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
 <h3>1、下载压缩包到/tmp</h3>
-<p _="%" endcodeblock="endcodeblock">{% codeblock lang:python %}
-root@bt:~#  cd /tmp <br />
-root@bt:/tmp#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
+</pre></div>
+
+
 <h3>2、下载好之后解压:</h3>
-<p>{% codeblock lang:python %}
-root@bt:/tmp#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2<br />
-tar ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
+<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
+<span class="no">AdobeReader</span><span class="o">/</span>   
+<span class="no">AdobeReader ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -216,9 +219,9 @@ tar ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/c
 
 <p>大机平台上有一个很了不起的帮助文档系统，名字叫做MVS/QuickRef，是一款强大的在线查询系统。用过微软的MSDN的童鞋都知道MSDN的强大。大机上面的MVS/QuickRef几乎可以查到所有你想查的资料，因为这款查询工具号称超过5k万行，以简单易懂著称。最主要的是查询特别方便，使用ISPF直接调用命令QW即可查询内容。<br />
 MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，我们公司还在用的是7.0的版本。这款强大的查询工具是由一家名叫Chicago-Soft的公司生产的，主页在:<a href="http://quickref.com">MVS/QuickRef主页</a>，可以去看看。<br />
-在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：
-{% blockquote %} 
-"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：</p>
+<blockquote>
+<p>"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2, IDMS ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -266,9 +269,9 @@ MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，�
 <p>大家都知道网站的Alexa全球排名是一项权威的数据，那么如何将自己的网站信息提交到Alexa呢？<br />
 <strong>1、</strong>登陆Alexa主页<a href="http://www.alexa.com/">http://www.alexa.com/</a>点击右上角的<code>Register</code>注册一个自己的账号。<br />
 <strong>2、</strong>注册好之后登陆，点击<code>Your Site</code>(你的站点)，提示你没有申明过任何站点。这时点击<code>“Add a site now”</code>来添加你的站点。<br />
-<img alt="1" src="/../images/alexa_01.jpg" /><br />
+<img alt="1" src="./../images/alexa_01.jpg" /><br />
 <strong>3、</strong>在输入框中输入你的站点名称，比如我的就输入：<a href="http://flyuphigh.com">http://flyuphigh.com</a>然后点击<code>"Claim your site"</code>来声明你的站点。<br />
-<img alt="1" src="/../images/alexa_02.jpg" /><br />
+<img alt="1" src="./../images/alexa_02.jpg" /><br />
 <strong>4、</strong>Alexa需要验证你对输入的站点确实有所有权，不然你随便瞎输网址了都可以了。右击<code>“this file”</code>,把此验证文件下载到本地，然后通过FTP传到你网站的根目录下。比如我的话上传完之后就是<code>flyuphigh.com/BTcj7U4QWU9rex4HiGWNv5rF7IY.html</code>S,上传完点击看看有没有 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 

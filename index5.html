@@ -52,14 +52,16 @@
 </h6>
 
 
-<p>有时候TSO异常退出，而服务器端进程还没kill掉，于是在你尝试再次登录的时候，返回提示：
-{% blockquote %} 
-“already logged on to system IKJ56400A ENTER LOGON OR LOGOFF-”
-{% endblockquote %} 
-用命令告诉远程主控端你要reconnect。 </p>
+<p>有时候TSO异常退出，而服务器端进程还没kill掉，于是在你尝试再次登录的时候，返回提示：</p>
+<blockquote>
+<p>“already logged on to system IKJ56400A ENTER LOGON OR LOGOFF-”</p>
+<p>用命令告诉远程主控端你要reconnect。 </p>
+</blockquote>
 <h3>解决办法</h3>
-<p _="%" endblockquote="endblockquote">{% blockquote %} 
-logon yourUID recon</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<blockquote>
+<p>logon yourUID recon
+</p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -80,11 +82,11 @@ logon yourUID recon</p><p class="subheader">Category: <a href="http://mainframer
 </h6>
 
 
-<p>在编辑dataset的时候如果右上角提示<code>SOME INPUT DATA IGNORE</code>,请记得把每行末尾的行号关闭: 
-{% blockquote %}<br />
-NUM OFF
-{% endblockquote %}<br />
-否则，后面8位就是行号，将此文件作为程序的input的时候就危险了!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>在编辑dataset的时候如果右上角提示<code>SOME INPUT DATA IGNORE</code>,请记得把每行末尾的行号关闭: </p>
+<blockquote>
+<p>NUM OFF</p>
+<p>否则，后面8位就是行号，将此文件作为程序的input的时候就危险了!</p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -158,23 +160,25 @@ NUM OFF
 </h6>
 
 
-<p _="%" endblockquote="endblockquote">在一个pds下面<em>create member</em>的时候右上角出现错误：
-{% blockquote %}
-No space in directory
-{% endblockquote %}
-按PF1,提示：
-{% blockquote %}
-PDS directory is full, allocate more directory blocks.<br /></p>
+<p>在一个pds下面<em>create member</em>的时候右上角出现错误：</p>
+<blockquote>
+<p>No space in directory</p>
+<p>按PF1,提示：</p>
+<p>PDS directory is full, allocate more directory blocks.<br />
+</p>
+</blockquote>
 <h4>错误原因：当前PDS下面所容纳的member数量已经达到最大值了。用'I' 查看PDS的信息：</h4>
-<p>{% codeblock lang:python %}
- Current Allocation           <br />
-  Allocated cylinders : 1     <br />
-  Allocated extents . : 1     <br />
-  Maximum dir. blocks : 10      </p>
-<p>Current Utilization          <br />
-  Used cylinders  . . : 1     <br />
-  Used extents  . . . : 1     <br />
-  Used ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="no">Current</span> <span class="no">Allocation</span>             
+  <span class="no">Allocated</span> <span class="n">cylinders</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Allocated</span> <span class="n">extents</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Maximum</span> <span class="n">dir</span><span class="o">.</span> <span class="n">blocks</span> <span class="p">:</span> <span class="mi">10</span>      
+
+
+ <span class="no">Current</span> <span class="no">Utilization</span>            
+  <span class="no">Used</span> <span class="n">cylinders</span>  <span class="o">.</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Used</span> <span class="n">extents</span>  <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
+  <span class="no">Used</span> <span class="n">dir</span><span class="o">.</span> <span class="n">blocks</span>  <span class="o">.</span> <span class="p">:</span> <span class="mi">10</span>      
+  <span class="no">Number</span> <span class="n">of</span> <span class="n">members ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -195,11 +199,11 @@ PDS directory is full, allocate more directory blocks.<br /></p>
 </h6>
 
 
-<p>新写了个程序，JCL提交完出现错误:
-{% blockquote %} 
-CEE3250C The system or user abend S806  R=00000004 was issued.  <br />
-{% endblockquote %} 
-分析dump，发现原因是:程序不在loadlib里面 <code>"load module is not found in the library"</code>.忘记promote程序到相应环境了!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>新写了个程序，JCL提交完出现错误:</p>
+<blockquote>
+<p>CEE3250C The system or user abend S806  R=00000004 was issued.    </p>
+<p>分析dump，发现原因是:程序不在loadlib里面 <code>"load module is not found in the library"</code>.忘记promote程序到相应环境了!</p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -220,16 +224,18 @@ CEE3250C The system or user abend S806  R=00000004 was issued.  <br />
 </h6>
 
 
-<p>使用PLI打印输出信息，最常见的是:
-{% codeblock lang:python %}
-PUT SKIP(1) EDIT ('CODE = ',ERR_CODE)(A,A);
-{% endcodeblock %}
-这里是打印PIC类型的输出，不怎么常用。今天用到了，所以记在这:<br />
-{% codeblock lang:python %}
-PUT EDIT('ACCOUNT PROCESSED : ',ACCOUNT_CTR)    <br />
-                  (SKIP(1),COL(1),A,P'999999999'); </p>
-<p _="%" endcodeblock="endcodeblock">PUT SKIP FILE(OUTFILE) EDIT('CHENGDU: ',SOURCE) 
-      (A,P'ZZ,ZZZV.ZZ');</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>使用PLI打印输出信息，最常见的是:</p>
+<div class="highlight"><pre><span class="no">PUT</span> <span class="no">SKIP</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="no">EDIT</span> <span class="p">(</span><span class="s1">&#39;CODE = &#39;</span><span class="p">,</span><span class="no">ERR_CODE</span><span class="p">)(</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+</pre></div>
+
+
+<p>这里是打印PIC类型的输出，不怎么常用。今天用到了，所以记在这:  </p>
+<div class="highlight"><pre><span class="no">PUT</span> <span class="no">EDIT</span><span class="p">(</span><span class="s1">&#39;ACCOUNT PROCESSED : &#39;</span><span class="p">,</span><span class="no">ACCOUNT_CTR</span><span class="p">)</span>      
+                  <span class="p">(</span><span class="no">SKIP</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="no">COL</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="s1">&#39;999999999&#39;</span><span class="p">);</span> 
+
+<span class="no">PUT</span> <span class="no">SKIP</span> <span class="no">FILE</span><span class="p">(</span><span class="no">OUTFILE</span><span class="p">)</span> <span class="no">EDIT</span><span class="p">(</span><span class="s1">&#39;CHENGDU: &#39;</span><span class="p">,</span><span class="no">SOURCE</span><span class="p">)</span> 
+      <span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="s1">&#39;ZZ,ZZZV.ZZ&#39;</span><span class="p">);</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -250,12 +256,13 @@ PUT EDIT('ACCOUNT PROCESSED : ',ACCOUNT_CTR)    <br />
 </h6>
 
 
-<p>{% codeblock lang:python %}
-//SORTOUT  DD  DSN=&amp;&amp;IBNRDAT0,DISP=(NEW,PASS),          <br />
-//             DCB=(DSORG=PS,RECFM=FB,LRECL=53,BLKSIZE=0),
-//             UNIT=(SYSDA,20),SPACE=(CYL,(50,50),RLSE) <br />
-{% endcodeblock %}<br />
-如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">IBNRDAT0</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>            
+<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="sr">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="p">(</span><span class="no">SYSDA</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>   
+</pre></div>
+
+
+<p>如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -276,23 +283,19 @@ PUT EDIT('ACCOUNT PROCESSED : ',ACCOUNT_CTR)    <br />
 </h6>
 
 
-<p>{% codeblock lang:python %}
-//IBMUSER JOB 0R                A1011000010TEST,CLASS=3,      <br />
-//        MSGCLASS=R,REGION=0M                                 <br />
-//<em>                                                            <br />
-//STEP01   EXEC PGM=IEBGENER<br />
-//SYSOUT DD SYSOUT= *                                                                        <br />
-//SYSUT1   DD  *                                               <br />
-HELO MVS                                                       <br />
-MAIL FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                             <br />
-RCPT TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                <br />
-DATA                                                           <br />
-FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                     <br />
-TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;">&#53;&#52;&#88;&#73;&#65;&#79;&#87;&#79;&#78;&#73;&#85;&#64;&#83;&#73;&#78;&#65;&#46;&#67;&#78;</a>                                       <br />
-SUBJECT: JOB IBMUSERJ HAS COMPLETED SUCCESSFULLY                    <br />
-START OF MESSAGE...                                            <br />
-<strong><em>    DO NOT REPLY TO THIS MESSAGE    </em></strong> <br />
-//SYSUT2   DD  SYSOUT=A ...</em></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span> <span class="mi">0</span><span class="n">R</span>                <span class="no">A1011000010TEST</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>        
+<span class="sr">//</span>        <span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0</span><span class="n">M</span>                                   
+<span class="sr">//</span><span class="o">*</span>                                                              
+<span class="sr">//</span><span class="no">STEP01</span>   <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span>  
+<span class="sr">//</span><span class="no">SYSOUT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=</span> <span class="o">*</span>                                                                          
+<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="o">*</span>                                                 
+<span class="no">HELO</span> <span class="no">MVS</span>                                                         
+<span class="no">MAIL</span> <span class="ss">FROM</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                               
+<span class="no">RCPT</span> <span class="ss">TO</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                  
+<span class="no">DATA</span>                                                             
+<span class="ss">FROM</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                       
+<span class="ss">TO</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                         
+<span class="ss">SUBJECT</span><span class="p">:</span> <span class="no">JOB</span> <span class="no">IBMUSERJ</span> <span class="no">HAS ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -314,15 +317,15 @@ START OF MESSAGE...                                            <br />
 
 
 <p>好几次<em>production abend</em>都是因为JCL中分配的dataset太大，恰好一个volume上面的剩余空间都分配完了。<br />
-这里是DBA给的建议：<br />
-{% blockquote %} 
-"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
-{% endblockquote %} 
-{% codeblock lang:python %}
-000001 //STEP001  EXEC PGM=SYNCSORT,REGION=4096K,COND=(0,NE)                <br />
-000002 //SYSOUT   DD  SYSOUT=<em>                                              <br />
-000003 //SYSPRINT DD  SYSOUT=</em>                                              <br />
-000004 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+这里是DBA给的建议：  </p>
+<blockquote>
+<p>"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
+</p>
+</blockquote>
+<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>                  
+<span class="mo">000002</span> <span class="o">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000003</span> <span class="o">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000004</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>

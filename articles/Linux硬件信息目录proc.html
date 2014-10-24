@@ -52,18 +52,20 @@
 </h6>
 
 
-    <p><code>linux</code>下面<code>/proc</code>是一个貌似普通但是功能却非常强大的目录硬件信息目录，包含核心的硬件信息，内存信息，系统运行进程信息，虽然对于用户来说里面的绝大部分内容都是只读的，但是内容还是会随着系统状态的不同而变化的。
-{% codeblock lang:python  %} 
-root@bt:/# cd /proc
-root@bt:/proc# ls
-{% endcodeblock  %}
-<img alt="1" src="/../images/linux-proc.jpg" /><br />
-图中每一个数字目录都代表着当前运行的一个相应的进程，每个数字都是一个进程号:
-{% codeblock  lang:python %} 
-root@bt:/proc#  ps -ax #查看当前进程
-root@bt:/proc# cd 2778 #进入进程2778的目录
-{% endcodeblock  %}
-<img alt="1" src="/../images/linux-proc-021.jpg" /><br />
+    <p><code>linux</code>下面<code>/proc</code>是一个貌似普通但是功能却非常强大的目录硬件信息目录，包含核心的硬件信息，内存信息，系统运行进程信息，虽然对于用户来说里面的绝大部分内容都是只读的，但是内容还是会随着系统状态的不同而变化的。</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="c1"># cd /proc</span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="nb">proc</span><span class="c1"># ls</span>
+</pre></div>
+
+
+<p><img alt="1" src="./../images/linux-proc.jpg" /><br />
+图中每一个数字目录都代表着当前运行的一个相应的进程，每个数字都是一个进程号:</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="nb">proc</span><span class="c1">#  ps -ax #查看当前进程</span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="nb">proc</span><span class="c1"># cd 2778 #进入进程2778的目录</span>
+</pre></div>
+
+
+<p><img alt="1" src="./../images/linux-proc-021.jpg" /><br />
 /proc中另外那些非数字的系统信息文件每个都是有意义的，这里列出一些最重要的： <br />
 <em>1</em>、/proc/cpuinfo: CPU信息<br />
 <em>2</em>、/proc/memiinfo: 物理内存，交换空间等信息<br />
