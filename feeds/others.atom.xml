@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/others.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2013-06-12T00:00:00+08:00</updated><entry><title>关于MAC下用SSH翻墙的小结(转)</title><link href="http://mainframer.github.io/articles/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E7%BB%93(%E8%BD%AC).html" rel="alternate"></link><updated>2013-06-12T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-06-12:articles/关于MAC下用SSH翻墙的小结(转).html</id><summary type="html">&lt;p&gt;近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  &lt;/p&gt;
+&lt;h3&gt;以下内容转自：&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/"&gt;http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/&lt;/a&gt;&lt;br /&gt;
+回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  &lt;/p&gt;
+&lt;h4&gt;方法一，终端加网络配置&lt;/h4&gt;
+&lt;p&gt;这个真的是又简单又粗暴。。。分两步：&lt;br /&gt;
+首先，打开你的终端，输入：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ssh -D port user@hostname&lt;/p&gt;
+&lt;p&gt;其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。&lt;br /&gt;
+然后，打开“系统偏好设置”－&amp;gt;“网络”-&amp;gt;”高级”-&amp;gt;”代理”－&amp;gt;点选”SOCKS 代理”-&amp;gt;旁边的”SOCKS 代理服务器”里填127.0.0.1，端口填你刚才写的那个，点个好点个应用，搞定。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;注意，&lt;/h5&gt;
+&lt;p&gt;终端的ssh连接不能关闭。&lt;br /&gt;
+注意你的ssh的服务器的访问限制，尤其是像我这样的用学校的ssh服务器的，如果去访问了一些不该访问的，就该有学校的警告mail来了&lt;br /&gt;
+这个方法简单粗暴但是也太粗糙，所有的访问都会通过ssh服务器来进行，所以即使我看个sina新闻也要绕到遥远的nagoya去，而且pipe还可能崩坏。&lt;br /&gt;
+推荐人群：如果只是为了时不时地上个推上个fb的话，只要你的ssh也允许，可以尝试。   &lt;/p&gt;
+&lt;h4&gt;方法二，iSSH加.pac文件&lt;/h4&gt;
+&lt;p&gt;这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&amp;gt;&amp;lt;。。。 &lt;br /&gt;
+首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。&lt;a href="./../files/iSSH.zip"&gt;--&amp;gt;__--&amp;gt;点击下载iSSH.zip&lt;/a&gt; &lt;br /&gt;
+app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
+其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="no"&gt;FindProxyForURL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*ip38*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*1-apple.com.tw*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="err"&gt;…&lt;/span&gt;
+     &lt;span class="err"&gt;…&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*facebook.com*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*facebook cdn*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="err"&gt;…&lt;/span&gt;
+              &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/amoiist*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/BeiJing1989*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/billzhong*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/nowhere1975*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/shizhao*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/VOTChinese*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/wenyunchao*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/wumao*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/zengjinyan*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*twitter.com/zuola*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*https://twitter.com/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*https://www.twitter.com/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://apiwiki.twitter.com/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://dev.twitter.com/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://status.twitter.com/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="err"&gt;…&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*youtube.com*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*hk.youtube.com*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*tw.youtube.com*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*youtube.com/get_video*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;shExpMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*Youtube CDN*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="err"&gt;…&lt;/span&gt;
+     &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;SOCKS 127.0.0.1:7070&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;else&lt;/span&gt; 
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;DIRECT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 &lt;a href="./../files/gfwlist.pac"&gt;--&amp;gt;__--&amp;gt;点击下载gfwlist.pac&lt;/a&gt;&lt;br /&gt;
+接着，打开“系统偏好设置”－&amp;gt;“网络”-&amp;gt;”高级”-&amp;gt;”代理”－&amp;gt;点选“自动代理配置”-&amp;gt;“选取文件”-&amp;gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
+最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  &lt;/p&gt;
+&lt;h5&gt;注意，&lt;/h5&gt;
+&lt;p&gt;上面的iSSH的SOCKS Proxy -D的端口和.  pac的文件末尾所写的那个端口必须一致，而之所以选择7070,是因为我最开始拿到这个文件的时候它写的就是7070＝＝&lt;br /&gt;
+这个方法相对上一个方法更稳定，因为它只有在访问那些需要翻墙的url的时候才会通过ssh服务器，所以限制更少，pipe也不容易崩坏，&lt;br /&gt;
+推荐人群：如果你的ssh服务器对国内的网址很不友好的话，用这个会好点。&lt;br /&gt;
+以上，&lt;br /&gt;
+2012－3－28&lt;br /&gt;
+于爵仕官邸某7楼床上  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>heroku push timeout错误</title><link href="http://mainframer.github.io/articles/heroku%20push%20timeout%E9%94%99%E8%AF%AF.html" rel="alternate"></link><updated>2013-05-08T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-05-08:articles/heroku push timeout错误.html</id><summary type="html">&lt;p&gt;博客托管在&lt;code&gt;heroku&lt;/code&gt;云平台上，这两天突然没法更新了。在执行&lt;code&gt;git push heroku&lt;/code&gt;命令的时候总是提示time out 错误：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;heroku&lt;/span&gt;
+&lt;span class="c1"&gt;#ssh: connect to host heroku.com port 22: Operation timed out&lt;/span&gt;
+&lt;span class="c1"&gt;#fatal: The remote end hung up unexpectedly&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;折腾了我两天没搞定，&lt;code&gt;stackoverflow&lt;/code&gt;上面给的解决方法也不怎么靠谱，让我反反复复重新设置了好几遍&lt;code&gt;ssh key&lt;/code&gt;，浪费了不少时间。刚刚在&lt;code&gt;ruby-china.org&lt;/code&gt;上找到了解决办法。原来又是因为神奇的GFW，难怪stackoverflow上面的答案没搞定我的问题，那些外国人根本就不明白咱们这的特殊国情，但也怪不得他们。   &lt;br /&gt;
+这里是ruby-china上的原帖：&lt;a href="http://ruby-china.org/topics/10813"&gt;http://ruby-china.org/topics/10813&lt;/a&gt;   &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;部署&lt;/span&gt; &lt;span class="err"&gt;•&lt;/span&gt; &lt;span class="n"&gt;freemem&lt;/span&gt; &lt;span class="err"&gt;•&lt;/span&gt; &lt;span class="err"&gt;于&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="err"&gt;小时前发布&lt;/span&gt; &lt;span class="err"&gt;•&lt;/span&gt; &lt;span class="err"&gt;最后由&lt;/span&gt; &lt;span class="n"&gt;zj0713001&lt;/span&gt; &lt;span class="err"&gt;于&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="err"&gt;小时前回复&lt;/span&gt; &lt;span class="err"&gt;•&lt;/span&gt; &lt;span class="mi"&gt;138&lt;/span&gt;&lt;span class="err"&gt;次阅读&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;heroku&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;&lt;span class="err"&gt;出现&lt;/span&gt;&lt;span class="no"&gt;Operation&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;Connecting&lt;/span&gt; &lt;span class="n"&gt;timed&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="err"&gt;错误。&lt;/span&gt;
+
+&lt;span class="err"&gt;用“&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="vi"&gt;@heroku&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="err"&gt;”检查后发现原因在于&lt;/span&gt;&lt;span class="n"&gt;fuck&lt;/span&gt; &lt;span class="no"&gt;GFW&lt;/span&gt;&lt;span class="o"&gt;!!!&lt;/span&gt;&lt;span class="err"&gt;以下节点全部不可用&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="mi"&gt;174&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;129&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;118&lt;/span&gt;
+&lt;span class="mi"&gt;174&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;129&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;35&lt;/span&gt;
+&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;233&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;102&lt;/span&gt;
+&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;154&lt;/span&gt;
+&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;132&lt;/span&gt;
+&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;215&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;
+&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;156&lt;/span&gt;
+&lt;span class="mi"&gt;184&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;165&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;
+&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;215&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;104&lt;/span&gt;
+&lt;span class="mi"&gt;107&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;106&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;77&lt;/span&gt;
+&lt;span class="mi"&gt;107&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;105&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="mi"&gt;107&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;234&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;
+
+&lt;span class="err"&gt;仅有以下节点可用：&lt;/span&gt;
+&lt;span class="mi"&gt;107&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;95&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+
+&lt;span class="err"&gt;故手动配置&lt;/span&gt;&lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="sr"&gt;/.ssh/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt;
+&lt;span class="no"&gt;Host&lt;/span&gt; &lt;span class="n"&gt;heroku&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="no"&gt;User&lt;/span&gt; &lt;span class="n"&gt;freemember007&lt;/span&gt;
+&lt;span class="no"&gt;Hostname&lt;/span&gt; &lt;span class="mi"&gt;107&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;95&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c1"&gt;#关键设置，替代proxy.heroku.com，直接走IP。&lt;/span&gt;
+&lt;span class="no"&gt;PreferredAuthentications&lt;/span&gt; &lt;span class="n"&gt;publickey&lt;/span&gt;
+&lt;span class="no"&gt;IdentityFile&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="sr"&gt;/.ssh/i&lt;/span&gt;&lt;span class="n"&gt;d_rsa&lt;/span&gt;
+&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;22&lt;/span&gt;
+
+&lt;span class="err"&gt;这下好了。而且速度飞快！&lt;/span&gt;&lt;span class="n"&gt;fuck&lt;/span&gt; &lt;span class="no"&gt;GFW&lt;/span&gt;&lt;span class="o"&gt;!!!&lt;/span&gt;
+
+&lt;span class="err"&gt;网络：浙江电信&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;感谢这位叫做“freemem”的网友。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Octopress写博客常用语法总结</title><link href="http://mainframer.github.io/articles/Octopress%E5%86%99%E5%8D%9A%E5%AE%A2%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93.html" rel="alternate"></link><updated>2013-01-18T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-01-18:articles/Octopress写博客常用语法总结.html</id><summary type="html">&lt;p&gt;自从博客从&lt;code&gt;Wordpress&lt;/code&gt;迁徙到&lt;code&gt;Octopress&lt;/code&gt;来，也有一段时间了。该是时候总结一下常用的语法了。  &lt;/p&gt;
+&lt;h4&gt;插入图片&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;![图片描述](图片地址) 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;插入链接&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="err"&gt;链接描述&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="x"&gt;(链接地址)  &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;插入代码&lt;/h4&gt;
+&lt;h5&gt;方法一&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/octopress_syntax_2.png" /&gt;     &lt;/p&gt;
+&lt;h5&gt;方法二&lt;/h5&gt;
+&lt;p&gt;用3个反引号括起来&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/octopress_syntax_3.png" /&gt;       &lt;/p&gt;
+&lt;h4&gt;引用的用法&lt;/h4&gt;
+&lt;p&gt;用&lt;em&gt;blockquote&lt;/em&gt;关键字&lt;br /&gt;
+&lt;img alt="1" src="./../images/octopress_syntax_1.png" /&gt;   &lt;/p&gt;
+&lt;p&gt;引用的效果如下： &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Heroes come and go,but legends are forever
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;特殊反白显示&lt;/h4&gt;
+&lt;p&gt;用反单引号括起来即可，比如&lt;code&gt;Octopress&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;`Octopress`
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;显示“点击阅读全文”&lt;/h4&gt;
+&lt;p&gt;Step01: 在_config.yml里面设置如下：excerpt_link: "点击阅读全文 &amp;rarr;"&lt;br /&gt;
+效果如下：   &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/octopress_syntax.png" /&gt;   &lt;/p&gt;
+&lt;p&gt;就先说这些octopress语法，剩下的基本就是跟Markdown语法相关的了，不写在这里。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>转战octopress</title><link href="http://mainframer.github.io/articles/%E8%BD%AC%E6%88%98octopress.html" rel="alternate"></link><updated>2012-08-22T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-08-22:articles/转战octopress.html</id><summary type="html">&lt;p&gt;博客从&lt;code&gt;wordpress&lt;/code&gt;转到&lt;code&gt;octopress&lt;/code&gt;了，将原来的博客导过来修复了下格式什么的。&lt;br /&gt;
+没有了后台和数据库什么的，纯静态的，用&lt;code&gt;Sublime Text 2 + Git + MarkDown + Terminal&lt;/code&gt;的方式写博客,更有兴致了。更重要的是看起来的确清爽了很多！博客部署在著名的Heroku上面，免费的~&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>美国50个州中英文[带音标]</title><link href="http://mainframer.github.io/articles/%E7%BE%8E%E5%9B%BD50%E4%B8%AA%E5%B7%9E%E4%B8%AD%E8%8B%B1%E6%96%87[%E5%B8%A6%E9%9F%B3%E6%A0%87].html" rel="alternate"></link><updated>2011-12-12T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-12-12:articles/美国50个州中英文[带音标].html</id><summary type="html">&lt;p&gt;序号   州名                                    简称　                 首府名
+01. Alabama &lt;a href="亚拉巴马"&gt;,ælə’bæmə&lt;/a&gt;             – AL–       Montgomery &lt;a href="蒙哥马利"&gt;mənt’gʌməri&lt;/a&gt;
+02. Alaska  &lt;a href="阿拉斯加"&gt;ə’læskə&lt;/a&gt;               – AK–       Juneau  &lt;a href="朱诺"&gt;‘dʒu:nəu&lt;/a&gt;
+03. Arizona  [æri’zəunə]  (亚利桑那)          – AZ–       Phoenix &lt;a href="菲尼克斯"&gt;‘fi:niks&lt;/a&gt;
+04. Arkansas &lt;a href="阿肯色"&gt;‘ɑ:kənsɔ:&lt;/a&gt;              – AR–       Little rock(小石城)
+05. California  &lt;a href="加利福尼亚"&gt;,kæli’fɔ:njə&lt;/a&gt;    – CA–       Sacramento &lt;a href="萨克拉门托"&gt;,sækrə’mentəu&lt;/a&gt;
+06. Colorado  &lt;a href="科罗拉多"&gt;,kʌlə’rɑ:dəu&lt;/a&gt;        – CO–       Denver  &lt;a href="丹佛"&gt;‘denvə&lt;/a&gt;
+07. Connecticut &lt;a href="康涅狄格"&gt;kə’netikət&lt;/a&gt;        – CT–       Hartford  &lt;a href="哈特福德"&gt;‘hɑ:tfəd&lt;/a&gt;
+08. Delaware  &lt;a href="特拉华"&gt;‘deləwɛə&lt;/a&gt;              – DE–       Dover &lt;a href="多佛"&gt;‘dəuvə&lt;/a&gt;
+09. Florida   &lt;a href="佛罗里达"&gt;‘flɔridə&lt;/a&gt;            – FL–       Tallahassee  &lt;a href="塔拉哈西"&gt;,tælə’hæsi&lt;/a&gt;
+10. Georgia  &lt;a href="佐治亚"&gt;‘dʒɔ:dʒjə&lt;/a&gt;              – GA–       Atlanta  &lt;a href="亚特兰大"&gt;ət’læntə&lt;/a&gt;
+11. Hawaii &lt;a href="夏威夷"&gt;hə’waii:&lt;/a&gt;                 – HI–       Honolulu  &lt;a href="檀香山"&gt;,hɔnə’lu:lu:&lt;/a&gt;
+12. Idaho &lt;a href="爱达荷"&gt;‘aidəhəu&lt;/a&gt;                  – ID–       Boise  &lt;a href="博伊西"&gt;‘bɔisi&lt;/a&gt;
+13. Illinois [,ili’nɔi(z) (伊利诺伊)          – IL–       Springfield   &lt;a href="斯普林菲尔德"&gt;‘spriŋfi:ld&lt;/a&gt;
+14. Indiana  &lt;a href="印第安纳"&gt;,indi’ænə&lt;/a&gt; 　         – IN–       Indianapolis  &lt;a href="印第安纳波利斯"&gt;,indiə’næpəlis&lt;/a&gt;
+15. Iowa  &lt;a href="艾奥瓦"&gt;‘aiəwə&lt;/a&gt;                    – IA–       Des Moines (得梅因)
+16. Kansas  &lt;a href="堪萨斯"&gt;‘kænzəs&lt;/a&gt;                 – KS–       Topeka   &lt;a href="托皮卡"&gt;tə’pi:kə&lt;/a&gt;
+17. Kentucky  &lt;a href="肯塔基"&gt;ken’tʌki; kən-&lt;/a&gt;        – KY–       Frankfort  &lt;a href="法兰克福"&gt;‘fræŋkfət&lt;/a&gt;
+18. Louisiana &lt;a href="路易斯安那"&gt;lu:,i:zi’ænə&lt;/a&gt;      – LA–        Baton Rouge &lt;a href="巴吞鲁日"&gt;ru:ʒ, ru:dʒ&lt;/a&gt;
+19. Maine  &lt;a href="缅因"&gt;mein&lt;/a&gt;                       – ME–        Augusta  &lt;a href="奥古斯塔"&gt;ɔ:’gʌstə&lt;/a&gt;
+20. Maryland &lt;a href="马里兰"&gt;‘mεərilænd&lt;/a&gt;             – MD–       Annapolis  &lt;a href="安纳波利斯"&gt;ə’næpəlis&lt;/a&gt;
+21. Massachusetts&lt;a href="马萨诸塞"&gt;,mæsə’tʃu:sits&lt;/a&gt;   – MA         Boston  &lt;a href="波士顿"&gt;‘bɔstən&lt;/a&gt;
+22. Michigan  &lt;a href="密歇根"&gt;‘miʃiɡən&lt;/a&gt;              – MI–       Lansing &lt;a href="兰辛"&gt;‘lænsiŋ&lt;/a&gt;&lt;br /&gt;
+23. Minnesota  &lt;a href="明尼苏达"&gt;,mini’səutə&lt;/a&gt;         – MN        St. Paul(圣保罗)&lt;br /&gt;
+24. Mississippi &lt;a href="密西西比"&gt;ˌmisiˈsipi&lt;/a&gt;        – MS–       Jackson(杰克逊)&lt;br /&gt;
+25. Missouri  &lt;a href="密苏里"&gt;mi’zuəri&lt;/a&gt;               – MO–       Jefferson City(杰斐逊城)&lt;br /&gt;
+26. Montana &lt;a href="蒙大拿"&gt;mɔn’tænə&lt;/a&gt;                 – MT–       Helena  &lt;a href="海伦娜"&gt;he’li:nə&lt;/a&gt;&lt;br /&gt;
+27. Nebraska  &lt;a href="内布拉斯加"&gt;ni’bræskə&lt;/a&gt;           – NE–      Lincoln &lt;a href="林肯"&gt;‘liŋkən&lt;/a&gt;&lt;br /&gt;
+28. Nevada  &lt;a href="内华达"&gt;ni’vædə&lt;/a&gt;                  – NV–      Carson City(卡森城)&lt;br /&gt;
+29. New hampshire  &lt;a href="新罕布什尔"&gt;‘hæmpʃə&lt;/a&gt;       – NH-      Concord &lt;a href="康科德"&gt;‘kɔŋkɔ:d&lt;/a&gt;&lt;br /&gt;
+30. New jersey  &lt;a href="新泽西"&gt;‘dʒə:zi&lt;/a&gt;              – NJ–      Trenton  &lt;a href="特伦顿"&gt;‘trentən&lt;/a&gt;&lt;br /&gt;
+31. New mexico &lt;a href="新墨西哥"&gt;‘meksikəu&lt;/a&gt;            – NM–     Santa Fe  &lt;a href="圣菲"&gt;‘sæntə&lt;/a&gt;&lt;br /&gt;
+32. New york(纽约)                             – NY–      Albany  &lt;a href="奥尔巴尼"&gt;‘ɔ:bəni&lt;/a&gt;&lt;br /&gt;
+33. North carolina &lt;a href="北卡罗来纳"&gt;,kærə’lainə&lt;/a&gt;    – NC-      Raleigh &lt;a href="纳罗利"&gt;‘rɔ:li&lt;/a&gt;&lt;br /&gt;
+34. North dakota  &lt;a href="北达科他"&gt;də’kəutə&lt;/a&gt;         – ND–      Bismarck  &lt;a href="俾斯麦"&gt;‘bizma:k&lt;/a&gt;&lt;br /&gt;
+35. Ohio  &lt;a href="俄亥俄"&gt;əu’haiəu&lt;/a&gt;                    –OH–       Columbus &lt;a href="哥伦布"&gt;kə’lʌmbəs&lt;/a&gt;&lt;br /&gt;
+36. Oklahoma &lt;a href="俄克拉何马"&gt;,əuklə’həumə&lt;/a&gt;         –OK–     Oklahoma City(俄克拉何马城)&lt;br /&gt;
+37. Oregon  &lt;a href="俄勒冈"&gt;‘ɔriɡən&lt;/a&gt;                  –OR–      Salem &lt;a href="塞勒姆"&gt;‘seiləm&lt;/a&gt;&lt;br /&gt;
+38. Pennsylvania &lt;a href="宾夕法尼亚"&gt;,pensil’veinjə&lt;/a&gt;   –PA-      Harrisburg  &lt;a href="哈里斯堡"&gt;‘hærisbə:ɡ&lt;/a&gt;&lt;br /&gt;
+39. Rhode island  &lt;a href="罗得岛"&gt;rəud&lt;/a&gt;                –RL–      Providence &lt;a href="普罗维登斯"&gt;‘prɔvidəns&lt;/a&gt;&lt;br /&gt;
+40. South carolina(南卡罗来纳)                  –SC–      Columbia  &lt;a href="哥伦比亚"&gt;kə’lʌmbiə&lt;/a&gt;&lt;br /&gt;
+41. South dakota  &lt;a href="南达科他"&gt;də’kəutə&lt;/a&gt;         –SD–      Pierre &lt;a href="皮尔"&gt;pi(:)’ɛə&lt;/a&gt;&lt;br /&gt;
+42. Tennessee  &lt;a href="田纳西"&gt;,teni’si:&lt;/a&gt;             –TN– 　   Nashville  &lt;a href="纳什维尔"&gt;‘næʃvil&lt;/a&gt; 
+43. Texas &lt;a href="德克萨斯"&gt;‘teksəs&lt;/a&gt;                  –TX–      Austin  &lt;a href="奥斯汀"&gt;‘ɔ:stin&lt;/a&gt;&lt;br /&gt;
+44. Utah  &lt;a href="犹他"&gt;‘ju:tɑ:&lt;/a&gt;                     –UT–      Salt Lake City(盐湖城)&lt;br /&gt;
+45. Vermont &lt;a href="佛蒙特"&gt;və:’mɔnt&lt;/a&gt;                 –VT–     Montpelier &lt;a href="蒙彼利埃"&gt;mɔnt’pi:ljə&lt;/a&gt;&lt;br /&gt;
+46. Virginia  &lt;a href="弗吉尼亚"&gt;və(:)’dʒinjə&lt;/a&gt;         –VA–      Richmond  &lt;a href="里士满"&gt;‘ritʃmənd&lt;/a&gt;&lt;br /&gt;
+47. Washington  &lt;a href="华盛顿"&gt;‘wɔʃiŋtən&lt;/a&gt;            –WA–     Olympia  &lt;a href="奥林匹亚"&gt;əu’limpiə&lt;/a&gt;&lt;br /&gt;
+48. West virginia(西弗吉尼亚)                   –WV–     Charleston  &lt;a href="查尔斯顿"&gt;‘tʃa:lstən&lt;/a&gt;&lt;br /&gt;
+49. Wisconsin  &lt;a href="威斯康星"&gt;wis’kɔnsin&lt;/a&gt;           –WI–      Madison  &lt;a href="麦迪逊"&gt;‘mædisən&lt;/a&gt;&lt;br /&gt;
+50. Wyoming  &lt;a href="怀俄明"&gt;wai’əumiŋ&lt;/a&gt;                –WY–      Cheyenne  &lt;a href="夏延"&gt;ʃai’en&lt;/a&gt;  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>vmware8下给windows8安装vmware tools</title><link href="http://mainframer.github.io/articles/vmware8%E4%B8%8B%E7%BB%99windows8%E5%AE%89%E8%A3%85vmware%20tools.html" rel="alternate"></link><updated>2011-09-17T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-09-17:articles/vmware8下给windows8安装vmware tools.html</id><summary type="html">&lt;p&gt;昨晚在Vmware8下安装了windows8，今天打开发现没有声音。晕，竟然忘了安装&lt;code&gt;Vmware tool&lt;/code&gt;了！这里先说一下安装&lt;code&gt;VMware tool&lt;/code&gt;有什么好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;解决windows8在vmware8下没有声音的问题；&lt;/li&gt;
+&lt;li&gt;解决不能在自身系统和虚拟机vmware8之间拷贝，粘贴，移动数据和文件的问题；&lt;/li&gt;
+&lt;li&gt;解决共享文件夹在vmware8的windows8下不能使用的问题；&lt;/li&gt;
+&lt;li&gt;其他好处；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;下面简单的说说如何在Vmware8下为&lt;code&gt;window8-dev-preview(开发者预览版)&lt;/code&gt;安装&lt;code&gt;vmware tool&lt;/code&gt;。&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;1、&lt;/strong&gt; 安装完&lt;code&gt;VMware Workstation 8.0.0.471780&lt;/code&gt;之后，在安装目录下自带了适合各个系统的&lt;code&gt;vmware tools&lt;/code&gt;，这里我们当然选用&lt;code&gt;windows.iso&lt;/code&gt;啦！在&lt;em&gt;windows8&lt;/em&gt;虚拟机设置的光盘(CD/DVD)设置里面输入&lt;code&gt;windows.iso&lt;/code&gt;的路径，比如我的是：&lt;code&gt;D:\SOFTWARE\VMWARE\windows.iso&lt;/code&gt;，勾选：&lt;code&gt;Connected at Power on&lt;/code&gt;，启动windows8系统；
+&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8.jpg" /&gt;          &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2、&lt;/strong&gt; 进入windows8--&amp;gt;Desktop--&amp;gt;Computer，发现虚拟光驱以正确加载，你要做的就是双击光盘里面的setup，安装vmware tool就可以了。
+&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-preview.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、&lt;/strong&gt; 重启系统，发现windows8声音有了，可以自由在虚拟机和电脑之间移动传输数据了，可以自由设置共享文件夹了(&lt;em&gt;如下图所示&lt;/em&gt;)，虚拟机和电脑之间的共享文件夹可以点击图上面的"Map Network Drive"来实现。
+&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-share-folder.jpg" /&gt;        &lt;/p&gt;
+&lt;p&gt;自此，windows8在vmware虚拟机下面没有声音等系列问题得到解决。&lt;br /&gt;
+(如果本文对你有帮助，欢迎收藏转载，谢谢)&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>虚拟机vmware8下安装体验win8开发者预览版</title><link href="http://mainframer.github.io/articles/%E8%99%9A%E6%8B%9F%E6%9C%BAvmware8%E4%B8%8B%E5%AE%89%E8%A3%85%E4%BD%93%E9%AA%8Cwin8%E5%BC%80%E5%8F%91%E8%80%85%E9%A2%84%E8%A7%88%E7%89%88.html" rel="alternate"></link><updated>2011-09-17T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-09-17:articles/虚拟机vmware8下安装体验win8开发者预览版.html</id><summary type="html">&lt;p&gt;这两天微软发布了windows8的开发者预览版本(dev preview edition)提供下载,首日的下载量就突破50万。虽然这是一个被阉割过的windows8版本，我还是想下载下来安装在虚拟机上试试。
+首先应该去微软官方网站下载win8的镜像ISO文件，这里是官方下载地址，我下载的是WindowsDeveloperPreview-32bit-English.iso。
+&lt;a href="http://msdn.microsoft.com/en-us/windows/apps/br229516"&gt;WindowsDeveloperPreview下载地址&lt;/a&gt;&lt;br /&gt;
+原先我的vmware版本是7.1.4，但是在安装win8的时候一开始就碰到了·&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"your pc ran into a problem that it couldn't handle,and now it needs to restart"·
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;正所谓出师不利:&lt;br /&gt;
+&lt;img alt="1" src="./../images/win8-dev-pre-blue-screen.jpg" /&gt;       &lt;/p&gt;
+&lt;p&gt;解决办法是到vmware官方网站&lt;a href="http://www.vmware.com"&gt;http://www.vmware.com&lt;/a&gt;去下载最新的&lt;code&gt;Vmware Workstation 8 .0 build 471780&lt;/code&gt;。也是这两天才最新发布的，估计是为了迎接&lt;code&gt;win8-dev-pre&lt;/code&gt;的发布。先卸载掉原先的&lt;code&gt;vmware 7.1.4&lt;/code&gt;,下载并安装好&lt;code&gt;Vmware Workstation 8 .0 build 471780&lt;/code&gt;好后，安装&lt;code&gt;win8-dev-pre&lt;/code&gt;就没有出现上面“卡哇伊”的蓝屏画面了，接下来如果不幸运的话你可能还会遇到&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vmware Workstation 8 Windows Cannot Read the settings from the unattend answer file` 
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;问题，并且不断重启还是老样子，这里，我是通过在虚拟机设置里面把软驱(floppy)移除来解决问题的，因为在floppy的&lt;code&gt;autoinst.flp&lt;/code&gt;文件中包含了product key的信息，所以必须移除。然后，然后当然是出现如下所示的正常系统安装画面了：&lt;br /&gt;
+&lt;img alt="1" src="./../images/win8-dev-pre-install.jpg" /&gt;           &lt;/p&gt;
+&lt;p&gt;记得系统的版本选择windows7，因为没有windows8的选项可以选。关于接下去如何安装系统，我就不说了。该分区的分区，该下一步的下一步，安装完后该重启的重启，重启之后照例会有一些初始化和&lt;code&gt;Windows Live ID&lt;/code&gt;的设置，只是界面比以前的系统好看了些。重启后使用刚才设置的windows Live账号密码登陆系统。一些在win8发布会上展示的功能如App store在这个开发者预览版本里面还不能用，所以说是被阉割的版本，不过界面体验确实比win7炫多了，可以上几张图为证。点击最左下角的开始按钮可以在不同的应用直接切换。&lt;br /&gt;
+(注：以下均为1366x768的全屏截图，只是上传到博客这里才变小的)&lt;br /&gt;
+&lt;img alt="1" src="./../images/win8-dev-pre-sample01.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/win8-dev-pre-sample02.jpg" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/win8-dev-pre-sample03.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/win8-dev-pre-sample04.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;是不是很赞？    &lt;/p&gt;
+&lt;h3&gt;补充&lt;/h3&gt;
+&lt;p&gt;微软与9月20号发布了windows8开发者预览版的密钥。估计是他们前几天发布的时候忘记了这件事所以现在补上。当你需要重装win8开发者预览版的时候就会提示你输入密钥。微软响应中心日前就提供了两个产品密钥，供测试人员使用。  &lt;br /&gt;
+第一个产品密钥适用于客户端版本，也就是Windows 8开发者预览版，产品密钥为：&lt;code&gt;6RH4V-HNTWC-JQKG8-RFR3R-36498&lt;/code&gt;。&lt;br /&gt;
+第二个产品密钥适用于服务器版本，也就是Windows Server 8开发者预览版，产品密钥为：&lt;code&gt;4Y8N3-H7MMW-C76VJ-YD3XV-MBDKV&lt;/code&gt;。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>百度统计少于32个页面报错</title><link href="http://mainframer.github.io/articles/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1%E5%B0%91%E4%BA%8E32%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%8A%A5%E9%94%99.html" rel="alternate"></link><updated>2011-08-29T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-29:articles/百度统计少于32个页面报错.html</id><summary type="html">&lt;p&gt;今天试了下百度统计里面的"SEO建议"功能，居然神奇般的可以使用了。
+&lt;img alt="1" src="./../images/baidu-statistics.jpg" /&gt;    &lt;br /&gt;
+还记得前些日子安装了百度统计代码，正想试试最新的“SEO建议”功能的时候，总是出现错误：“可供检查的页面数量过少，建议您至少在检查范围内的32个页面安装百度统计代码”错误.&lt;/p&gt;
+&lt;h4&gt;现在分析来可能有几种原因：&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;&amp;lt;1&amp;gt;&lt;/em&gt;. 网站刚安装百度统计代码，比如安装不到一两天时间。我基本在上个月刚开博的时候就安装了，到前几天还是不能使用“SEO建议”功能，所以个人觉得不是这个原因。&lt;br /&gt;
+&lt;em&gt;&amp;lt;2&amp;gt;&lt;/em&gt;. 网站本身页面不足。单说静态页面的话，一篇文章就一个页面了，那我的起码也有60个左右了吧。要是不说静态页面的话，那wordpress本身就只有一个页面了，更不可能。所以应该也不是页面不足的原因。&lt;br /&gt;
+&lt;em&gt;&amp;lt;3&amp;gt;&lt;/em&gt;. 网站访问量低，PV低。 我估计这个有些可能，因为上个月到前几天为止，基本没什么人访问的。&lt;br /&gt;
+&lt;em&gt;&amp;lt;4&amp;gt;&lt;/em&gt;. 百度收录页面少于32个。这个我是最认为有可能的，因为我的博文这几天才被百度正常收录的，所以这个可能性大一点。  &lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;总结：结合第3、4点，用一句话归纳就是——“内容为王”。百度不是傻子，你网站不是垃圾站，有内容了，百度自然就收录了，PV也就自然上去了。不过话说回来，百度"SEO建议"其实跟谷歌的网站管理员工具webmasters差不多类似的，是没什么必要瞎折腾那么多。  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Google Adsense申请</title><link href="http://mainframer.github.io/articles/Google%20Adsense%E7%94%B3%E8%AF%B7.html" rel="alternate"></link><updated>2011-08-24T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-24:articles/Google Adsense申请.html</id><summary type="html">&lt;p&gt;今天打开gmail竟然看到有一封来自adsense-support的信而且开头是“恭喜您！”，着实有点吃惊呐！前段时间百度了一番，都说网站要满6个月才可以申请成功，我这一个月不到就让我通过了，估计看到我博客更新地挺频繁并且大部分都原创的份儿上了。嗯，不错，看来凡事还是得 “尽人事知天命” 啊。
+附上邮件内容，都不知道怎么弄，有空在研究了，最近工作也忙啊！  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;恭喜您！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;您的 Google AdSense 申请已获得批准。要启动帐户并开始使用 AdSense，请按以下步骤操作。或者，如果您希望了解新的 AdSense 发布商需要注意的各项相关事宜，请访问“新手中心”：http://www.google.com/adsense/support/as/bin/static.py?page=guide.cs&amp;amp;guide=1045789&amp;amp;sct=app-fe。&lt;/p&gt;
+&lt;p&gt;第 1 步：访问您的帐户。&lt;/p&gt;
+&lt;p&gt;访问 http://www.google.com/adsense?hl=zh_CN&amp;amp;sct=app-fe，使用您随申请提交的电子邮件地址和密码登录。如果忘记了密码，请访问 http://www.google.com/adsense/support/as/bin/static.py?page=ts.cs&amp;amp;ts=1054302。&lt;/p&gt;
+&lt;p&gt;第 2 步：创建 AdSense 广告单元。&lt;/p&gt;
+&lt;p&gt;访问“我的广告”标签，确认选择的产品为“内容广告”，然后点击“新广告单元”。&lt;/p&gt;
+&lt;p&gt;第 3 步：在您的网页上展示 AdSense 广告。&lt;/p&gt;
+&lt;p&gt;在创建好广告单元后，我们会为您提供广告代码，供您粘贴到网站的 HTML 源代码中，这样您才可以展示广告。如在向网页添加代码方面需要帮助，请访问我们的“代码实施指南”：http://www.google.com/adsense/support/as/bin/static.py?page=guide.cs&amp;amp;guide=28893&amp;amp;sct=app-fe。如果您没有修改网页 HTML 源代码的权限，请与您的网站站长或托管公司联系。&lt;/p&gt;
+&lt;p&gt;重要注意事项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;请勿点击自己的广告，即便是为了测试也不要这样做。对自己的广告进行点击的行为违反了 AdSense 合作规范：https://www.google.com/adsense/policies。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们会密切监控您的新帐户，确保其符合我们的合作规范。如果发现有违反合作规范的情况，我们可能会停止向您的网页投放广告或停用您的帐户。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;您可以随时向新网页或网站添加 AdSense 代码，只要其符合我们的合作规范即可。在添加代码时，您无需通知我们或申请新的帐户。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;还有更多问题？请访问我们的帮助中心 (http://www.google.com/adsense/support/as/?sct=app-fe) 或 AdSense 博客 (http://adsense.blogspot.com?sct=app-fe) 寻找答案。此外，您还可以将自己的问题发布到 AdSense 帮助论坛，网址为：http://www.google.com/support/forum/p/AdSense?hl=zh_CN&amp;amp;sct=app-fe。再有，您可以访问以下网址，选择接收相应的电子邮件：https://www.google.com/adsense/lang-change?sct=app-fe。&lt;/p&gt;
+&lt;p&gt;此致&lt;/p&gt;
+&lt;p&gt;Google AdSense 小组敬上&lt;/p&gt;
+&lt;p&gt;本电子邮件地址只作通知用途，不接收回信，因此请勿回复本邮件。&lt;/p&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;</summary><category term="z/OS"></category></entry><entry><title>IBM主机技术一本通</title><link href="http://mainframer.github.io/articles/IBM%E4%B8%BB%E6%9C%BA%E6%8A%80%E6%9C%AF%E4%B8%80%E6%9C%AC%E9%80%9A.html" rel="alternate"></link><updated>2011-08-20T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-20:articles/IBM主机技术一本通.html</id><summary type="html">&lt;p&gt;周末去市图书馆走了一圈，竟然让我看到有本《IBM主机技术一本通》。这本书前两个月同事买了，貌似100多，现在京东报价是96元，淘宝上也差不多。当时我就快速翻了一遍，第一感觉是：书很厚，看了目录，贴近当前我所做的内容，还有就是内容丰富，涵盖的主机技术比较全，但貌似感觉有点罗列的成分，比较适合主机新人，给他们一个整体框架的印象。当然，800多页的书也并不是都是罗列，有很多内容是很详细的，我认为是：每个主机人都可以有针对性的看，你会的，快速过，不会的，详细看，最好要在大机上实践验证，这样记得牢。&lt;br /&gt;
+刚拿回来，这么重的书我都背回来了，看来不看是对不住了。更何况是不花钱的好书。只不过没花钱买感觉有些对不住作者了。作者吕新民应该算国内主机界的资深前辈了吧。看人家的工作经历可以追溯到我出生之前好几年呢。&lt;br /&gt;
+这是作者的新浪博客：&lt;a href="http://blog.sina.com.cn/newmanworkshop"&gt;http://blog.sina.com.cn/newmanworkshop&lt;/a&gt;,可以多关注下，都是为了学习进步嘛，希望前辈多出书呐！&lt;br /&gt;
+好了，我会有一个详细的学习计划，好好把这本书吃透，从中汲取自己目前还欠缺的知识。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>介绍几个在线的资源</title><link href="http://mainframer.github.io/articles/%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E5%9C%A8%E7%BA%BF%E7%9A%84%E8%B5%84%E6%BA%90.html" rel="alternate"></link><updated>2011-08-16T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-16:articles/介绍几个在线的资源.html</id><summary type="html">&lt;p&gt;在平常，如果嫌麻烦，不想安装软件的话，可以试试在线的。特别是云计算正在慢慢普及，以后估计可能一个网络账号行遍互联网了。拭目以待吧！这里介绍几个我还比较常用到的在线资源。先声明，是本人用过的发现比较好用的，虽然写在这有些广告的嫌疑。&lt;/p&gt;
+&lt;h5&gt;在线听歌&lt;/h5&gt;
+&lt;p&gt;亦歌：&lt;a href="http://www.1g1g.com"&gt;http://www.1g1g.com&lt;/a&gt;&lt;br /&gt;
+一听：&lt;a href="http://www.1ting.com"&gt;http://www.1ting.com&lt;/a&gt;&lt;br /&gt;
+就个人来说，我计较倾向于亦歌，因为它的干净，界面简单。  &lt;/p&gt;
+&lt;h5&gt;在线改图&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://pixlr.com/editor/"&gt;http://pixlr.com/editor/&lt;/a&gt;&lt;br /&gt;
+这个可是号称在线版本的&lt;code&gt;Photoshop&lt;/code&gt;啊。我觉得功能上来说，如果你不是影楼工作追究卓越的，而只是像我一样日常做些照片图片的修改，图片修改尺寸，再上点简单效果什么的，那么&lt;code&gt;pixlr&lt;/code&gt;完全可以胜任你的要求。就我来说，本站所有的图片都是在&lt;code&gt;pixlr&lt;/code&gt;修改的。如果你和我一样，嫌系统自带的画图工具太烂而又不想去安装个庞大的&lt;code&gt;photoshop&lt;/code&gt;或者&lt;code&gt;google picasa&lt;/code&gt;什么的，那么这个在线的&lt;code&gt;pixlr&lt;/code&gt;会是你不错的选择。&lt;/p&gt;
+&lt;h5&gt;在线输入法&lt;/h5&gt;
+&lt;p&gt;百度在线输入法： &lt;a href="http://www.baidu.com"&gt;http://www.baidu.com&lt;/a&gt;&lt;br /&gt;
+搜狗云输入法:   &lt;a href="http://pinyin.sogou.com/cloud/"&gt;http://pinyin.sogou.com/cloud/&lt;/a&gt; &lt;br /&gt;
+在线输入法呢，一般我们不会去用它，除非有一天它完善到跟桌面输入法有的媲美的时候。可是，有时候当你系统出毛病了输入法突然不能用了，又或者你新安装了一个linux系统还没来得及学习如何安装中文输入法的时候，你估计就用得上在线输入法了。百度的使用比较简答，虽然它貌似只能在百度首页用。用的时候点击百度搜索框右边的下拉框选择输入法就可以了。  &lt;/p&gt;
+&lt;h5&gt;在线QQ&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://web.qq.com"&gt;http://web.qq.com&lt;/a&gt;&lt;br /&gt;
+这个不用说了，自从腾讯推出webQQ以来，这个Web平台上面的应用是越来越丰富了。可以看出腾讯在这块花了不少心思。因为是人都会明白未来的机遇在Web，桌面应用软件总会有寿终正寝的一天的。用过webqq的人都会有种感觉就是越来越像一个操作系统了，基本上你能想到的，人家麻花藤都帮你想好了。一句话，用户体验还是不错的。&lt;/p&gt;
+&lt;h5&gt;在线翻译&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://translate.google.cn/"&gt;http://translate.google.cn&lt;/a&gt;&lt;br /&gt;
+谷歌翻译，这个也不用介绍了。用的也比较经常。 &lt;/p&gt;
+&lt;h5&gt;在线杀毒&lt;/h5&gt;
+&lt;p&gt;呵呵，几乎所有的在线杀毒厂家都鼓吹自己采用了最先进的云查杀技术，但是道高一尺魔高一丈，稍微有点免杀技术的人都知道，免费的查杀终究是免费的，能不能杀得到自己可以去试一下，金山啊瑞星啊都提供在线的杀毒或者查毒什么的。百度一下就可以了。&lt;/p&gt;
+&lt;h5&gt;在线文档&lt;/h5&gt;
+&lt;p&gt;&lt;a href="https://docs.google.com"&gt;https://docs.google.com&lt;/a&gt;&lt;br /&gt;
+多么强大的东西，可惜被墙了。专门为它翻墙貌似不值得。 &lt;/p&gt;
+&lt;h5&gt;在线记事本&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://notepad.cc"&gt;http://notepad.cc&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;notepad.cc&lt;/code&gt;的界面简洁 支持密码保护 讲事情记录在云端 取个你容易记住的名字 加上密码 随时随地都能记录事情。 &lt;br /&gt;
+&lt;a href="http://www.google.com/notebook"&gt;http://www.google.com/notebook&lt;/a&gt;&lt;br /&gt;
+还好这个没有被墙掉，google的在线记事本挺方便的，每次你新建一个记事本都会在网址后面生成一串字符以唯一标示。你可以用它随时随地的记录一些临时的信息。比如你在公司突然想到有什么需要记录的，你就记在上面，等回家一登陆就查看到了。&lt;/p&gt;
+&lt;h5&gt;在线编译器&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://codepad.org"&gt;http://codepad.org/&lt;/a&gt;  &lt;br /&gt;
+&lt;a href="http://ideone.com/"&gt;http://ideone.com/&lt;/a&gt; &lt;br /&gt;
+网页界面简洁，支持&lt;code&gt;C,C++,D,PHP,JAVA,PYTHON,Perl,Ruby&lt;/code&gt;等你能想到的编程语言。&lt;br /&gt;
+嗯，就说这些。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>外企email常见英语缩写</title><link href="http://mainframer.github.io/articles/%E5%A4%96%E4%BC%81email%E5%B8%B8%E8%A7%81%E8%8B%B1%E8%AF%AD%E7%BC%A9%E5%86%99.html" rel="alternate"></link><updated>2011-08-11T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-11:articles/外企email常见英语缩写.html</id><summary type="html">&lt;p&gt;说几个在外企工作跟老外email或者聊天工具中常用的英语缩写： 
+&lt;code&gt;AFAIK&lt;/code&gt;：as far as I know&lt;br /&gt;
+&lt;code&gt;APP&lt;/code&gt;： application    &lt;br /&gt;
+&lt;code&gt;ASAP&lt;/code&gt;： As soon as possible    &lt;br /&gt;
+&lt;code&gt;ATB&lt;/code&gt;：all the best &lt;br /&gt;
+&lt;code&gt;BTW&lt;/code&gt;： by the way    &lt;br /&gt;
+&lt;code&gt;Biz&lt;/code&gt;： business    &lt;br /&gt;
+&lt;code&gt;B4&lt;/code&gt;：before  &lt;br /&gt;
+&lt;code&gt;CC&lt;/code&gt;：carbon copy(抄送)    &lt;br /&gt;
+&lt;code&gt;CUZ&lt;/code&gt;： because    &lt;br /&gt;
+&lt;code&gt;FAQ&lt;/code&gt;：frequently asked questions    &lt;br /&gt;
+&lt;code&gt;FE&lt;/code&gt;： for example  &lt;br /&gt;
+&lt;code&gt;FTF&lt;/code&gt;： face to face    &lt;br /&gt;
+&lt;code&gt;FYI&lt;/code&gt;： for your information     &lt;br /&gt;
+&lt;code&gt;F2T&lt;/code&gt;：free to talk  &lt;br /&gt;
+&lt;code&gt;GR8&lt;/code&gt;：great  &lt;br /&gt;
+&lt;code&gt;IDK&lt;/code&gt;：I don't know  &lt;br /&gt;
+&lt;code&gt;JK&lt;/code&gt;：just kidding  &lt;br /&gt;
+&lt;code&gt;KIT&lt;/code&gt;：keep in touch  &lt;br /&gt;
+&lt;code&gt;MSG&lt;/code&gt;：message    &lt;br /&gt;
+&lt;code&gt;NP&lt;/code&gt;： no problem    &lt;br /&gt;
+&lt;code&gt;NRN&lt;/code&gt;： no reply necessary  &lt;br /&gt;
+&lt;code&gt;OFCZ&lt;/code&gt;：of course    &lt;br /&gt;
+&lt;code&gt;OIC&lt;/code&gt;：oh I see  &lt;br /&gt;
+&lt;code&gt;OMG&lt;/code&gt;： oh my god  &lt;br /&gt;
+&lt;code&gt;Pic&lt;/code&gt;： picture  &lt;br /&gt;
+&lt;code&gt;PLS&lt;/code&gt;：please    &lt;br /&gt;
+&lt;code&gt;THX&lt;/code&gt;: thanks    &lt;br /&gt;
+&lt;code&gt;TMR&lt;/code&gt;: tomorrow    &lt;br /&gt;
+&lt;code&gt;TTYL&lt;/code&gt;：talk to you later  &lt;br /&gt;
+&lt;code&gt;TY&lt;/code&gt;： Thank you  &lt;br /&gt;
+今天就记起这么多，以后遇到了再补上！&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>如何用键盘按出人民币符号</title><link href="http://mainframer.github.io/articles/%E5%A6%82%E4%BD%95%E7%94%A8%E9%94%AE%E7%9B%98%E6%8C%89%E5%87%BA%E4%BA%BA%E6%B0%91%E5%B8%81%E7%AC%A6%E5%8F%B7.html" rel="alternate"></link><updated>2011-08-04T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-04:articles/如何用键盘按出人民币符号.html</id><summary type="html">&lt;p&gt;偶然发现的，写在这记一下：&lt;br /&gt;
+如果你现在按下键盘 Shift+数字键4出来的是美元"$"符号的话，&lt;br /&gt;
+你可以先按一次Shift,再接着按Shift+数字键4,出来的就是人民币"￥"的符号了。&lt;br /&gt;
+要变回美元"$"的符号的话同理，先按一次Shift，再接着按Shift+数字键4,出来的就是人民币"$"的符号了。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>如何提交网站到Alexa</title><link href="http://mainframer.github.io/articles/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E7%BD%91%E7%AB%99%E5%88%B0Alexa.html" rel="alternate"></link><updated>2011-08-03T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-03:articles/如何提交网站到Alexa.html</id><summary type="html">&lt;p&gt;大家都知道网站的Alexa全球排名是一项权威的数据，那么如何将自己的网站信息提交到Alexa呢？&lt;br /&gt;
+&lt;strong&gt;1、&lt;/strong&gt;登陆Alexa主页&lt;a href="http://www.alexa.com/"&gt;http://www.alexa.com/&lt;/a&gt;点击右上角的&lt;code&gt;Register&lt;/code&gt;注册一个自己的账号。&lt;br /&gt;
+&lt;strong&gt;2、&lt;/strong&gt;注册好之后登陆，点击&lt;code&gt;Your Site&lt;/code&gt;(你的站点)，提示你没有申明过任何站点。这时点击&lt;code&gt;“Add a site now”&lt;/code&gt;来添加你的站点。&lt;br /&gt;
+&lt;img alt="1" src="./../images/alexa_01.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、&lt;/strong&gt;在输入框中输入你的站点名称，比如我的就输入：&lt;a href="http://flyuphigh.com"&gt;http://flyuphigh.com&lt;/a&gt;然后点击&lt;code&gt;"Claim your site"&lt;/code&gt;来声明你的站点。&lt;br /&gt;
+&lt;img alt="1" src="./../images/alexa_02.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4、&lt;/strong&gt;Alexa需要验证你对输入的站点确实有所有权，不然你随便瞎输网址了都可以了。右击&lt;code&gt;“this file”&lt;/code&gt;,把此验证文件下载到本地，然后通过FTP传到你网站的根目录下。比如我的话上传完之后就是&lt;code&gt;flyuphigh.com/BTcj7U4QWU9rex4HiGWNv5rF7IY.html&lt;/code&gt;S,上传完点击看看有没有，有的话会提示的：
+&lt;img alt="1" src="./../images/alexa_03.jpg" /&gt;      &lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;“Verify my file”&lt;/code&gt;来验证，一般只要你争取将此文件上传到根目录就能验证成功的，没有成功的话请检查是不是传对了。验证完之后出现如下页面：
+&lt;img alt="1" src="./../images/alexa_04.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/alexa_05.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;回到&lt;code&gt;your site&lt;/code&gt;,是不是发现你的站点已经被加进去了?
+&lt;img alt="1" src="./../images/alexa_06.jpg" /&gt;        &lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;“Edit info”&lt;/code&gt;来编辑你的站点的信息：对应着把你网站的信息录上去就可以了，提交信息，告诉你你的信息将在2个工作日内更新到Alexa数据库。咋就耐心等吧！可以到&lt;a href="http://alexa.chinaz.com"&gt;站长工具&lt;/a&gt;输入你的网站来查询你的网站信息是否被录入Alexa数据库了。
+&lt;img alt="1" src="./../images/alexa_07.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;提示提交成功！
+&lt;img alt="1" src="./../images/alexa_08.jpg" /&gt;  &lt;/p&gt;
+&lt;p&gt;好了，希望有帮助！  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>非常好的学英语的网站</title><link href="http://mainframer.github.io/articles/%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%9A%84%E5%AD%A6%E8%8B%B1%E8%AF%AD%E7%9A%84%E7%BD%91%E7%AB%99.html" rel="alternate"></link><updated>2011-08-03T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-03:articles/非常好的学英语的网站.html</id><summary type="html">&lt;p&gt;在国内，我认为最好的学英语的方式就是看英语视频，今天来推荐几个我觉得很不错的网站！ &lt;/p&gt;
+&lt;h5&gt;1、爱布谷CCTV-NEWS&lt;/h5&gt;
+&lt;p&gt;这个是中国网络电视CNTV，上面有丰富的节目资源，网址是&lt;a href="http://bugu.cntv.cn"&gt;爱布谷CNTV&lt;/a&gt;。需要学英语的话可以看&lt;a href="http://bugu.cntv.cn/live_channelcctv_news/index.shtml"&gt;CCTV-NEWS&lt;/a&gt;。不得不说这里面有很多不错的节目，比如海客谈(crossover)，China24和Asia Today，Culture Express，Biz Talk,还有很多不错的主持人，比如邹悦,季小军,杨锐,田薇，爱华，James Chau，芮成钢等等。从我去年底开始看到现在，我是感觉到这个网站在不断的提升档次的，感觉得到大家都很用心在做节目，是不错的学习英语的途径之一。&lt;/p&gt;
+&lt;h5&gt;2、网易公开课&lt;/h5&gt;
+&lt;p&gt;不得不说，网易公开课是我今年发现的少数好网站之一，网址是&lt;a href="http://v.163.com/open"&gt;网易公开课&lt;/a&gt;。这个网站几乎手机了现在世界名校的主流课程，有哈佛，牛津，斯坦福，耶鲁等等，课程涵盖范围也是非常的广，包括计算机领域，伦理心理学领域，医学建筑学领域，法律领域，经济金融等等，让你在家就能感受到世界顶级大学教授的授课风采，听原汁原味的英语学习。网易为此专门有一个翻译团队来翻译这些课程，我看了不少，翻译质量确实很不错。网上多数对此评价较高，更有甚者说是开创了全民上大学全民上名校的先锋。不可否认网易确实干了一件值得赞扬的事儿。&lt;/p&gt;
+&lt;h5&gt;3、国外的视频网站&lt;/h5&gt;
+&lt;p&gt;到了这个阶段，你可以去看国外的纯正的网站视频了，那才是真正的原汁原味的。不过，有两个尴尬的问题就是国外的视频网站要么是被屏蔽了(如youtube)，要么就是在你兴高采烈地看完广告后提示:  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"You appear to be outside the United States or its territories offer this video to viewers located within the United States and its territories."
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不过这些都可以通过翻墙来解决，去注册一个服务器在美国的SSH账号就可以了。具体怎么翻墙，请参照我的另外两篇博文，一片是讲windows下的翻墙《ssh+myEntunnel+chrome+proxy switchy翻墙》，另一篇是讲linux下的翻墙《Linux+ssh+chrome(chromium)+proxy switchy+gSTM翻墙》，都很简单的。 
+国外几个比较著名的视频网站有：&lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;www.hulu.com&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;www.abc.com&lt;/em&gt;&lt;/strong&gt;  &lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;www.cnn.com&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;www.fox.com&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;www.youtube.com&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;www.yahoo.com&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;tv.msn.com&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;www.nbc.com&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
+每个都很不错，我个人最经常在&lt;strong&gt;&lt;em&gt;hulu.com&lt;/em&gt;&lt;/strong&gt;上面看美剧，感觉这上面的资源丰富，高清，速度快，而且有英文字幕，看截图：
+&lt;img alt="1" src="./../images/hulu.jpg" /&gt;        &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙</title><link href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy%20switchy%20+%20gSTM%E7%BF%BB%E5%A2%99.html" rel="alternate"></link><updated>2011-08-01T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-01:articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html</id><summary type="html">&lt;p&gt;上一篇讲到的是windows下的利用&lt;code&gt;ssh+chrome(chromium)+proxy switchy + Myentunnel&lt;/code&gt;翻墙，其实在linux下和windows下没什么区别，都是用ssh代理，只是利用的客户端软件不一样而已。windows下用Myentunnel，linux下我们一般用&lt;code&gt;gSTM&lt;/code&gt;。 &lt;/p&gt;
+&lt;p&gt;gSTM (Gnome SSH Tunnel Manager) 是一款图形化的 SSH 隧道端口重定向管理工具 点击&lt;a href="http://sourceforge.net/projects/gstm/files"&gt;这里&lt;/a&gt;下载后安装，设置和之前讲得Myentunnel差不多.也是必填的几个：&lt;code&gt;SSH服务器地址&lt;/code&gt;,&lt;code&gt;SSH用户名&lt;/code&gt;，&lt;code&gt;SSH密码&lt;/code&gt;，&lt;code&gt;SSH端口3022&lt;/code&gt;，&lt;code&gt;本地端口7070&lt;/code&gt;。
+Proxy switchy的设置请参照我的另一篇文章 &amp;lt;&lt;ssh+myEntunnel+chrome+proxy switchy翻墙&gt;&amp;gt;&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>ssh+myEntunnel+chrome+proxy switchy翻墙</title><link href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy%20switchy%E7%BF%BB%E5%A2%99.html" rel="alternate"></link><updated>2011-08-01T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-01:articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html</id><summary type="html">&lt;p&gt;在windows/win7下如何翻墙？告诉你答案：&lt;code&gt;ssh+myEntunnel+chrome+proxy switchy&lt;/code&gt;插件翻墙。&lt;/p&gt;
+&lt;h4&gt;1、注册SSH账号&lt;/h4&gt;
+&lt;p&gt;SSH是建立在应用层和传输层基础上的提供可靠传输的安全协议。在这里您首先需要去注册一个SSH代理的账号，一般是几块钱一个月的就挺好的了，当然也有免费注册的，不过免费的可能速度不是很快或者连接不稳定。注册SSH的网址我就不发了，不然就有广告的嫌疑了。自己到网上一搜一堆的那种。要是实在找不到的可以通过邮箱&lt;code&gt;54xiaowoniu@sina.cn&lt;/code&gt;跟我联系，我告诉你怎么注册。基本上15分钟搞定。 &lt;/p&gt;
+&lt;h4&gt;2、下载MyEntunnel&lt;/h4&gt;
+&lt;p&gt;MyEntunnel是用来登录SSH服务器并在本机自动架设一个socks5代理的软件，下载并安装Myentunnel运行。
+在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：&lt;br /&gt;
+&lt;img alt="1" src="./../images/myentunnel.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。&lt;br /&gt;
+另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的，说明已经连接上了。好，下面设置浏览器。 &lt;/p&gt;
+&lt;h4&gt;3、下载谷歌浏览器Chrome&lt;/h4&gt;
+&lt;p&gt;如果你不是使用谷歌浏览器的话。其他的浏览器像Firefox也可以的，只是要使用的插件不一样而已。IE估计不行，我没用过，因为我印象中IE只能全局设置代理的，没有像Chrome和FireFox一样丰富的插件资源。还有，如果你不想用Chrome或Firefox的话，可以试试Chromium，这是Chrome的开发版本，也很好用。也有proxy switchy插件的。 &lt;/p&gt;
+&lt;h4&gt;4、安装proxy switch&lt;/h4&gt;
+&lt;p&gt;打开Chrome浏览器，在谷歌网上应用商店搜索proxy switchy,点击安装即可。有中文版的proxy switchy。这里附上下载地址：
+&lt;a href="https://chrome.google.com/webstore/detail/caehdcpeofiiigpdhbabniblemipncjj?hl=zh-CN"&gt;https://chrome.google.com/webstore/detail/caehdcpeofiiigpdhbabniblemipncjj?hl=zh-CN"&lt;/a&gt;&lt;br /&gt;
+安装完成后重启Chrome，您会发现地址栏邮编多了个地球一样的插件，这个就是proxy switchy插件了。右击——&amp;gt;选项，打开设置：
+在&lt;strong&gt;Proxy Profiles&lt;/strong&gt;标签栏中，新建一个名为SSH的profile,设置如下：
+这里端口是&lt;strong&gt;7070&lt;/strong&gt;，跟上面的一致。代理选&lt;strong&gt;SOCKS v5&lt;/strong&gt;
+&lt;img alt="1" src="./../images/ssh_01.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;可以按照下图中添加自己想要的URL规则，这里我只加了google和youtube的两个规则。
+在线的RUL规则栏填：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;频率选15min，Profile选刚才建的SSH。&lt;br /&gt;
+&lt;img alt="1" src="./../images/ssh_02.jpg" /&gt;         &lt;/p&gt;
+&lt;p&gt;好了，保存一下先。左击地址栏右边的proxy switcyh插件，选择SSH。在地址栏上输入:&lt;span style="color: #ff00ff;"&gt;www.youtube.com&lt;/span&gt;，回车，你看到了什么？对的，你已经翻越了神奇的GFW了。
+&lt;img alt="1" src="./../images/youtube1.jpg" /&gt;   &lt;/p&gt;</summary><category term="z/OS"></category></entry></feed>

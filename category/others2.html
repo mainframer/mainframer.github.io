@@ -4,7 +4,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>Modern Mainframer</title>
+    <title>Modern Mainframer - Others</title>
 
     <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
     <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
@@ -47,6 +47,34 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/介绍几个在线的资源.html"><h3 class="article-title">介绍几个在线的资源</h3></a>
+<h6 class="subheader" title="2011-08-16T00:00:00">2011-08-16
+</h6>
+
+
+<p>在平常，如果嫌麻烦，不想安装软件的话，可以试试在线的。特别是云计算正在慢慢普及，以后估计可能一个网络账号行遍互联网了。拭目以待吧！这里介绍几个我还比较常用到的在线资源。先声明，是本人用过的发现比较好用的，虽然写在这有些广告的嫌疑。</p>
+<h5>在线听歌</h5>
+<p>亦歌：<a href="http://www.1g1g.com">http://www.1g1g.com</a><br />
+一听：<a href="http://www.1ting.com">http://www.1ting.com</a><br />
+就个人来说，我计较倾向于亦歌，因为它的干净，界面简单。  </p>
+<h5>在线改图</h5>
+<p><a href="http://pixlr.com/editor/">http://pixlr.com/editor/</a><br />
+这个可是号称在线版本的<code>Photoshop</code>啊。我觉得功能上来说，如果你不是影楼工作追究卓越的，而只是像我一样日常做些照片图片的修改，图片修改尺寸，再上点简单效果什么的，那么<code>pixlr</code>完全可以胜任你的要求。就我来说，本站所有的图片都是在<code>pixlr</code>修改的。如果你和我一样，嫌系统自带的画图工具太烂而又不想去安装个庞大的<code>photoshop</code>或者 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个在线的资源.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个在线的资源.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/外企email常见英语缩写.html"><h3 class="article-title">外企email常见英语缩写</h3></a>
 <h6 class="subheader" title="2011-08-11T00:00:00">2011-08-11
 </h6>
@@ -75,161 +103,6 @@
 
 
 <p><a href="http://mainframer.github.io/articles/外企email常见英语缩写.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/外企email常见英语缩写.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Backtrack一些基本配置.html"><h3 class="article-title">Backtrack一些基本配置</h3></a>
-<h6 class="subheader" title="2011-08-09T00:00:00">2011-08-09
-</h6>
-
-
-<h5>查看网络配置信息</h5>
-<p>root@bt:/#  <code>ifconfig -a</code>     </p>
-<h5>手动激活未使用的网卡eth0</h5>
-<p>root@bt:/#  <code>ifconfig eth0 up</code>     </p>
-<h5>通过DHCP自动为eth0网卡分配ip地址</h5>
-<p>root@bt:/#  <code>dhclient eth0</code>    </p>
-<h5>也可手动为eth0网卡分配ip</h5>
-<p>root@bt:/#  <code>ifconfig eth0 192.168.1.105 netmask 255.255.255.0</code>     </p>
-<h5>添加网关</h5>
-<p>root@bt:/#  <code>route add default gw 192.168.1.1</code>     </p>
-<h5>查看dns配置信息:</h5>
-<p>root@bt:/#  <code>cat /etc/resolv.conf</code>    </p>
-<h5>编辑dns配置信息:</h5>
-<p>root ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Backtrack一些基本配置.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack一些基本配置.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html"><h3 class="article-title">ISPF中通配符%和*的使用</h3></a>
-<h6 class="subheader" title="2011-08-08T00:00:00">2011-08-08
-</h6>
-
-
-<p>在日常的操作过程中，发现通配符__%<strong>和_<strong><em>_使用的场合还是很多的，而且重要的是，如果使用好的话，真的是会很大程度上提高工作效率的。
-和其他系统的通配符没什么区别，在大机上也是这么定义的：  <br />
-</em>_%</strong>：任意一位字符  <br />
-</strong>*__：任意一至多位字符  <br />
-下面举两个例子： <br />
-输入：<code>IBMUSER.TEST.LIB%</code><br />
-<img alt="1" src="./../images/wild_character01.jpg" />    </p>
-<p>输入：<code>IBMUSER.*.LIB</code>  <br />
-<img alt="1" src="./../images/wild_character02.jpg" />       </p>
-<p>当然，两者可以根据你的需要任意组合使用，这个是没问题的。就像：<code>IBMUSER.*.LIB%</code>这样。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/OLTP和CICS.html"><h3 class="article-title">OLTP和CICS</h3></a>
-<h6 class="subheader" title="2011-08-07T00:00:00">2011-08-07
-</h6>
-
-
-<h3>OLTP:联机事务处理</h3>
-<p>事务的ACID属性：</p>
-<ul>
-<li>原子性(Atomicity) </li>
-<li>一致性(Consistency) </li>
-<li>孤立性(Isolation) </li>
-<li>持久性(Durability)
-关于OLTP的完整性和可恢复机制,这里举两种情况: 
-<strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br />
-<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br />
-此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br />
-<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
-通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
-各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/OLTP和CICS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/OLTP和CICS.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html"><h3 class="article-title">Backtrack5安装Adobe reader看PDF</h3></a>
-<h6 class="subheader" title="2011-08-06T00:00:00">2011-08-06
-</h6>
-
-
-<p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
-<h3>1、下载压缩包到/tmp</h3>
-<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
-<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
-</pre></div>
-
-
-<h3>2、下载好之后解压:</h3>
-<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
-<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
-<span class="no">AdobeReader</span><span class="o">/</span>   
-<span class="no">AdobeReader ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html"><h3 class="article-title">QW命令——MVS/QuickRef帮助文档</h3></a>
-<h6 class="subheader" title="2011-08-05T00:00:00">2011-08-05
-</h6>
-
-
-<p>大机平台上有一个很了不起的帮助文档系统，名字叫做MVS/QuickRef，是一款强大的在线查询系统。用过微软的MSDN的童鞋都知道MSDN的强大。大机上面的MVS/QuickRef几乎可以查到所有你想查的资料，因为这款查询工具号称超过5k万行，以简单易懂著称。最主要的是查询特别方便，使用ISPF直接调用命令QW即可查询内容。<br />
-MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，我们公司还在用的是7.0的版本。这款强大的查询工具是由一家名叫Chicago-Soft的公司生产的，主页在:<a href="http://quickref.com">MVS/QuickRef主页</a>，可以去看看。<br />
-在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：</p>
-<blockquote>
-<p>"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2, IDMS ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -332,14 +205,42 @@ Proxy switchy的设置请参照我的另一篇文章 &lt;<ssh+myEntunnel+chrome+
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html"><h3 class="article-title">ssh+myEntunnel+chrome+proxy switchy翻墙</h3></a>
+<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
+</h6>
+
+
+<p>在windows/win7下如何翻墙？告诉你答案：<code>ssh+myEntunnel+chrome+proxy switchy</code>插件翻墙。</p>
+<h4>1、注册SSH账号</h4>
+<p>SSH是建立在应用层和传输层基础上的提供可靠传输的安全协议。在这里您首先需要去注册一个SSH代理的账号，一般是几块钱一个月的就挺好的了，当然也有免费注册的，不过免费的可能速度不是很快或者连接不稳定。注册SSH的网址我就不发了，不然就有广告的嫌疑了。自己到网上一搜一堆的那种。要是实在找不到的可以通过邮箱<code>54xiaowoniu@sina.cn</code>跟我联系，我告诉你怎么注册。基本上15分钟搞定。 </p>
+<h4>2、下载MyEntunnel</h4>
+<p>MyEntunnel是用来登录SSH服务器并在本机自动架设一个socks5代理的软件，下载并安装Myentunnel运行。
+在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：<br />
+<img alt="1" src="./../images/myentunnel.jpg" />     </p>
+<p>这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。<br />
+另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 11 of 14</h6>
+<h6 class="subheader">Page 2 of 2</h6>
 
 <p>
-            <a href="http://mainframer.github.io/index10.html">&laquo; Prev</a>
+            <a href="http://mainframer.github.io/category/others.html">&laquo; Prev</a>
 
-        <a href="http://mainframer.github.io/index12.html">Next &raquo;</a>
 </p>
 </div>
 
