@@ -126,7 +126,7 @@
 
 
 <hr />
-<h3>下面是VBS操作excel的笔记</h3>
+<h4>下面是VBS操作excel的笔记</h4>
 <div class="highlight"><pre><span class="n">Set</span> <span class="n">objExcel</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&quot;Excel.Application&quot;</span><span class="p">)</span>   <span class="err">&#39;创建</span> <span class="n">excel</span> <span class="err">对象</span>                               
 <span class="n">If</span> <span class="p">(</span><span class="n">Err</span><span class="p">.</span><span class="n">Number</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">Then</span>
     <span class="n">Wscript</span><span class="p">.</span><span class="n">Echo</span> <span class="s">&quot;Excel application not found.&quot;</span>
@@ -208,7 +208,7 @@
 </pre></div>
 
 
-<h4>VBS实现对Excel的列自动填充</h4>
+<h5>VBS实现对Excel的列自动填充</h5>
 <div class="highlight"><pre><span class="n">Const</span> <span class="n">xlFillDefault</span> <span class="o">=</span> <span class="mi">0</span>                        
 <span class="n">objExcel</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&quot;H2&quot;</span><span class="p">).</span><span class="n">Select</span>
 <span class="n">objExcel</span><span class="p">.</span><span class="n">ActiveCell</span><span class="p">.</span><span class="n">FormulaR1C1</span> <span class="o">=</span> <span class="n">_</span>
@@ -217,7 +217,7 @@
 </pre></div>
 
 
-<h4>VBS实现从外部text文件导入数据到当前sheet</h4>
+<h5>VBS实现从外部text文件导入数据到当前sheet</h5>
 <div class="highlight"><pre><span class="n">Dim</span> <span class="n">objFSO</span><span class="p">,</span> <span class="n">objFile</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">aline</span><span class="p">,</span> <span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">,</span> <span class="n">source_text</span>    
 <span class="n">Set</span> <span class="n">objFSO</span>  <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&quot;Scripting.FileSystemObject&quot;</span><span class="p">)</span>
 <span class="n">source_text</span> <span class="o">=</span><span class="s">&quot;Source_feed_file.txt&quot;</span>
@@ -236,7 +236,7 @@
 </pre></div>
 
 
-<h4>保存excel到当前目录，关闭并退出excel</h4>
+<h5>保存excel到当前目录，关闭并退出excel</h5>
 <div class="highlight"><pre><span class="n">objBook</span><span class="p">.</span><span class="n">SaveAs</span><span class="p">(</span><span class="n">ws</span><span class="p">.</span><span class="n">currentdirectory</span> <span class="o">&amp;</span><span class="s">&quot;\NEW_EXCEL.xlsx&quot;</span><span class="p">)</span> 
 <span class="n">objBook</span><span class="p">.</span><span class="n">Close</span>
 <span class="n">objExcel</span><span class="p">.</span><span class="n">Quit</span>

@@ -56,12 +56,14 @@
 <blockquote>
 <p>IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.<br />
  A "PICTURE" string of "S9(18)" was assumed.           </p>
+</blockquote>
 <p>原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
 <a href="http://ibmmainframes.com/post-9087.html">http://ibmmainframes.com/post-9087.html</a>   </p>
+<blockquote>
 <p>COBOL Compiler restricts me defining a PIC 9() variable not more than of size 18 (Including the decimal positions)<br />
 The new Enterprise COBOL for z/OS supports upto 31 digits. If you have this, add ARITH(EXTEND) compiler option.   </p>
-<p>解决办法是添加编译参数扩展长度: </p>
 </blockquote>
+<p>解决办法是添加编译参数扩展长度: </p>
 <div class="highlight"><pre><span class="no">COMPILE</span> <span class="ss">PARMS</span><span class="p">:</span>     <span class="no">ARITH</span><span class="p">(</span><span class="no">EXTEND</span><span class="p">)</span>                                                           
 </pre></div>
 

@@ -59,7 +59,7 @@
 </pre></div>
 
 
-<h4>批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]</h4>
+<h5>批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]</h5>
 <div class="highlight"><pre><span class="err">@</span><span class="n">echo</span> <span class="nl">off</span>
 <span class="p">:</span><span class="n">input_module</span>
 <span class="n">echo</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">date</span> <span class="nl">here</span><span class="p">:</span>
@@ -71,13 +71,13 @@
 </pre></div>
 
 
-<h6>对以上用户输入做操作:字符串截取、字符串拼接的用法：</h6>
+<h5>对以上用户输入做操作:字符串截取、字符串拼接的用法：</h5>
 <div class="highlight"><pre><span class="n">set</span> <span class="n">yyyymm</span> <span class="o">=</span> <span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="o">%</span>
 <span class="k">if</span> <span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="o">%</span> <span class="o">==</span> <span class="mo">01</span> <span class="n">set</span> <span class="n">month_display</span><span class="o">=</span><span class="n">JAN</span><span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="o">%</span>
 </pre></div>
 
 
-<h4>批处理中用户名、密码输入模块</h4>
+<h5>批处理中用户名、密码输入模块</h5>
 <div class="highlight"><pre><span class="n">rem</span>  <span class="err">用户输入</span><span class="n">ftpUserID</span><span class="err">及</span><span class="n">ftpPass</span><span class="err">模块</span>
 <span class="n">echo</span> <span class="o">^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">ID</span> <span class="o">&amp;</span> <span class="n">Password</span>
 <span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
@@ -85,7 +85,7 @@
 </pre></div>
 
 
-<h4>批处理中著名的实现隐藏用户输入密码的方法</h4>
+<h5>批处理中著名的实现隐藏用户输入密码的方法</h5>
 <div class="highlight"><pre><span class="n">rem</span>  <span class="err">批处理里面很著名的隐藏输入不显示的方法</span><span class="p">(</span><span class="n">By</span><span class="err">德国人</span><span class="n">HerbertKleebauer</span><span class="p">)</span>
 <span class="n">echo</span> <span class="n">hP1X500P</span><span class="p">[</span><span class="n">PZBBBfh</span><span class="err">#</span><span class="n">b</span><span class="err">##</span><span class="n">fXf</span><span class="o">-</span><span class="n">V</span><span class="err">@`$</span><span class="n">fPf</span><span class="p">]</span><span class="n">f3</span><span class="o">/</span><span class="n">f1</span><span class="o">/</span><span class="mi">5</span><span class="o">++</span><span class="n">u5x</span><span class="o">&gt;</span><span class="n">in</span><span class="p">.</span><span class="n">com</span>
 <span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">ftpPass</span><span class="o">=^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Enter</span> <span class="n">your</span> <span class="nl">password</span><span class="p">:</span><span class="o">&lt;</span><span class="n">nul</span>
@@ -94,7 +94,7 @@
 </pre></div>
 
 
-<h4>批处理中实现执行批量ftp命令的方法</h4>
+<h5>批处理中实现执行批量ftp命令的方法</h5>
 <div class="highlight"><pre><span class="n">rem</span> <span class="err">设置远程</span><span class="n">ftp</span><span class="err">的</span><span class="n">ip</span>
 <span class="n">set</span> <span class="n">ftpIP</span><span class="o">=</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span> 
 <span class="n">rem</span> <span class="err">设置本地目录为当前脚本所在目录，用</span><span class="o">%~</span><span class="n">dp0</span><span class="err">表示</span>
@@ -117,7 +117,7 @@
 </pre></div>
 
 
-<h4>批处理中判断文件是否为空的方法，以及goto分支的用法</h4>
+<h5>批处理中判断文件是否为空的方法，以及goto分支的用法</h5>
 <div class="highlight"><pre><span class="k">for</span> <span class="o">/</span><span class="n">f</span> <span class="s">&quot;delims=&quot;</span> <span class="o">%%</span><span class="n">i</span> <span class="n">in</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">dir</span> <span class="o">/</span><span class="n">b</span> <span class="n">my_test_source</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
 <span class="k">if</span> <span class="o">%%~</span><span class="n">zi</span> <span class="n">equ</span> <span class="mi">0</span>  <span class="p">(</span>   
   <span class="k">goto</span> <span class="n">empty_source</span>      <span class="n">rem</span> <span class="k">goto</span> <span class="n">process</span> <span class="n">empty</span>
@@ -132,18 +132,18 @@
 </pre></div>
 
 
-<h4>批处理中调用msgbox显示消息框的方法</h4>
+<h5>批处理中调用msgbox显示消息框的方法</h5>
 <div class="highlight"><pre><span class="n">rem</span> <span class="err">利用</span><span class="n">mshta</span><span class="err">，消息框里面换行用</span><span class="o">^&amp;</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^</span>
 <span class="n">mshta</span> <span class="nl">vbscript</span><span class="p">:</span><span class="n">msgbox</span><span class="p">(</span><span class="s">&quot;Empty !&quot;</span><span class="o">^&amp;</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^&amp;^</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^&amp;</span><span class="s">&quot;Please Check!&quot;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="s">&quot;Error&quot;</span><span class="p">)(</span><span class="n">window</span><span class="p">.</span><span class="n">close</span><span class="p">)</span>
 </pre></div>
 
 
-<h4>批处理中拷贝文件的方法</h4>
+<h5>批处理中拷贝文件的方法</h5>
 <div class="highlight"><pre><span class="n">copy</span> <span class="n">A</span><span class="p">.</span><span class="n">txt</span> <span class="n">B</span><span class="p">.</span><span class="n">txt</span><span class="o">&gt;</span><span class="n">nul</span>
 </pre></div>
 
 
-<h4>批处理中执行vbs脚本的方法</h4>
+<h5>批处理中执行vbs脚本的方法</h5>
 <div class="highlight"><pre><span class="n">rem</span> <span class="n">ftpUser</span><span class="err">和</span><span class="n">yyyymm</span><span class="err">是传递给</span><span class="n">vbs</span><span class="err">的参数</span>
 <span class="n">start</span> <span class="n">wscript</span> <span class="n">process_not_empty</span><span class="p">.</span><span class="n">vbs</span>  <span class="o">%</span><span class="n">ftpUser</span><span class="o">%</span>  <span class="o">%</span><span class="n">yyyymm</span><span class="o">%</span>
 </pre></div>

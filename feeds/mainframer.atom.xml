@@ -18,7 +18,7 @@
 推荐人群：如果只是为了时不时地上个推上个fb的话，只要你的ssh也允许，可以尝试。   &lt;/p&gt;
 &lt;h4&gt;方法二，iSSH加.pac文件&lt;/h4&gt;
 &lt;p&gt;这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&amp;gt;&amp;lt;。。。 &lt;br /&gt;
-首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。&lt;a href="/download/iSSH.zip"&gt;点我下载&lt;/a&gt; &lt;br /&gt;
+首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。&lt;a href="./../files/iSSH.zip"&gt;--&amp;gt;__--&amp;gt;点击下载iSSH.zip&lt;/a&gt; &lt;br /&gt;
 app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
 其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="no"&gt;FindProxyForURL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
@@ -61,7 +61,7 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 &lt;a href="/gfwlist.pac"&gt;下载gfwlist.pac&lt;/a&gt;&lt;br /&gt;
+&lt;p&gt;这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 &lt;a href="./../files/gfwlist.pac"&gt;--&amp;gt;__--&amp;gt;点击下载gfwlist.pac&lt;/a&gt;&lt;br /&gt;
 接着，打开“系统偏好设置”－&amp;gt;“网络”-&amp;gt;”高级”-&amp;gt;”代理”－&amp;gt;点选“自动代理配置”-&amp;gt;“选取文件”-&amp;gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
 最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  &lt;/p&gt;
 &lt;h5&gt;注意，&lt;/h5&gt;
@@ -167,7 +167,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSOUT&lt;/span&gt; &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="no"&gt;DUMMY&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="z/OS"></category></entry><entry><title>ISPF中使用Ctrl+Z来执行UNDO命令</title><link href="http://mainframer.github.io/articles/ISPF%E4%B8%AD%E4%BD%BF%E7%94%A8Ctrl+Z%E6%9D%A5%E6%89%A7%E8%A1%8CUNDO%E5%91%BD%E4%BB%A4.html" rel="alternate"></link><updated>2013-04-08T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-04-08:articles/ISPF中使用Ctrl+Z来执行UNDO命令.html</id><summary type="html">&lt;p&gt;今天研究的成果，教你们如何在大机上用Windows下用惯了的&lt;em&gt;Ctrl+Z&lt;/em&gt;来执行&lt;code&gt;UNDO&lt;/code&gt;命令。&lt;br /&gt;
 首先，&lt;em&gt;ISPF&lt;/em&gt;里面&lt;code&gt;UNDO&lt;/code&gt;命令默认是没有开启的。我们需要自己写一个&lt;code&gt;Edit Initial Macro&lt;/code&gt;来默认开启。方法如下：&lt;/p&gt;
-&lt;h4&gt;step1:在&lt;code&gt;usrid.REXX.EXEC&lt;/code&gt;下面新建一个宏&lt;code&gt;EDITMAC&lt;/code&gt;，内容如下,保存退出。&lt;/h4&gt;
+&lt;h5&gt;step1:在&lt;code&gt;usrid.REXX.EXEC&lt;/code&gt;下面新建一个宏&lt;code&gt;EDITMAC&lt;/code&gt;，内容如下,保存退出。&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/*****************************REXX***********************************/&lt;/span&gt;
 &lt;span class="sr"&gt;/* This macro load automaticly when you open a dataset for edit.    */&lt;/span&gt;      
  &lt;span class="no"&gt;Address&lt;/span&gt;  &lt;span class="n"&gt;ispexec&lt;/span&gt;                                                     
@@ -177,7 +177,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;step2: 随便&lt;em&gt;Edit&lt;/em&gt;一个&lt;em&gt;dataset&lt;/em&gt;,在&lt;em&gt;command&lt;/em&gt;栏上面执行命令&lt;code&gt;EDITSET&lt;/code&gt;打开&lt;code&gt;Edit and View Settings&lt;/code&gt;面板，&lt;/h4&gt;
+&lt;h5&gt;step2: 随便&lt;em&gt;Edit&lt;/em&gt;一个&lt;em&gt;dataset&lt;/em&gt;,在&lt;em&gt;command&lt;/em&gt;栏上面执行命令&lt;code&gt;EDITSET&lt;/code&gt;打开&lt;code&gt;Edit and View Settings&lt;/code&gt;面板，&lt;/h5&gt;
 &lt;p&gt;在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;                         &lt;span class="no"&gt;Edit&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="no"&gt;View&lt;/span&gt; &lt;span class="no"&gt;Settings&lt;/span&gt;                          
 &lt;span class="no"&gt;Command&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt;                                                              
@@ -188,14 +188,14 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;step3:在&lt;em&gt;command&lt;/em&gt;栏上执行&lt;code&gt;KEYS&lt;/code&gt;命令调出&lt;em&gt;ISPF&lt;/em&gt;键位设置面板，随便找一个&lt;em&gt;PF13&lt;/em&gt;至&lt;em&gt;PF24&lt;/em&gt;当中你认为最不常用的键，将它和&lt;code&gt;UNDO&lt;/code&gt;命令绑定。这里我选择&lt;code&gt;PF18&lt;/code&gt;.&lt;/h4&gt;
+&lt;h5&gt;step3:在&lt;em&gt;command&lt;/em&gt;栏上执行&lt;code&gt;KEYS&lt;/code&gt;命令调出&lt;em&gt;ISPF&lt;/em&gt;键位设置面板，随便找一个&lt;em&gt;PF13&lt;/em&gt;至&lt;em&gt;PF24&lt;/em&gt;当中你认为最不常用的键，将它和&lt;code&gt;UNDO&lt;/code&gt;命令绑定。这里我选择&lt;code&gt;PF18&lt;/code&gt;.&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="no"&gt;Key&lt;/span&gt;       &lt;span class="no"&gt;Definition&lt;/span&gt;                                 &lt;span class="no"&gt;Format&lt;/span&gt;  &lt;span class="no"&gt;Label&lt;/span&gt;
  &lt;span class="no"&gt;F16&lt;/span&gt;  &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;  &lt;span class="no"&gt;RETURN&lt;/span&gt;                                     &lt;span class="no"&gt;SHORT&lt;/span&gt;   &lt;span class="no"&gt;Return&lt;/span&gt;  
  &lt;span class="no"&gt;F17&lt;/span&gt;  &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;  &lt;span class="no"&gt;RFIND&lt;/span&gt;                                      &lt;span class="no"&gt;SHORT&lt;/span&gt;   &lt;span class="no"&gt;Rfind&lt;/span&gt;   
  &lt;span class="no"&gt;F18&lt;/span&gt;  &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;  &lt;span class="no"&gt;UNDO&lt;/span&gt;                                       &lt;span class="no"&gt;SHORT&lt;/span&gt;   &lt;span class="no"&gt;Undo&lt;/span&gt;      
  &lt;span class="sb"&gt;```&lt;/span&gt;
 
-&lt;span class="sb"&gt;####step4: 在你使用的`&lt;/span&gt;&lt;span class="no"&gt;TN3270&lt;/span&gt;&lt;span class="sb"&gt;`终端的键盘设置里面，将`&lt;/span&gt;&lt;span class="no"&gt;PF18&lt;/span&gt;&lt;span class="sb"&gt;`映射成*Cntl+Z*。最常见的*TN3270*终端是*PCOMM*。&lt;/span&gt;
+&lt;span class="sb"&gt;#####step4: 在你使用的`&lt;/span&gt;&lt;span class="no"&gt;TN3270&lt;/span&gt;&lt;span class="sb"&gt;`终端的键盘设置里面，将`&lt;/span&gt;&lt;span class="no"&gt;PF18&lt;/span&gt;&lt;span class="sb"&gt;`映射成*Cntl+Z*。最常见的*TN3270*终端是*PCOMM*。&lt;/span&gt;
 &lt;span class="sb"&gt;这样一来，`&lt;/span&gt;&lt;span class="no"&gt;UNDO&lt;/span&gt;&lt;span class="sb"&gt;`就被默认打开，并且你可以用*Cntl+Z*来做最近一步的撤销动作，就像在windows下面一样。这里要注意，对于还没按下确定键的情况，如果要撤销的快捷键是`&lt;/span&gt;&lt;span class="no"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="no"&gt;PageUp&lt;/span&gt;&lt;span class="sb"&gt;`.关于`&lt;/span&gt;&lt;span class="no"&gt;UNDO&lt;/span&gt;&lt;span class="sb"&gt;`和`&lt;/span&gt;&lt;span class="no"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="no"&gt;PageUp&lt;/span&gt;&lt;span class="sb"&gt;`的区别，看我早些时候的文章:《ISPF中Shift+PageUp和UNDO的区别》  &lt;/span&gt;
 &lt;span class="sb"&gt;最后，还有一点，除了`&lt;/span&gt;&lt;span class="no"&gt;RECOVERY&lt;/span&gt; &lt;span class="no"&gt;ON&lt;/span&gt;&lt;span class="sb"&gt;`之外，显然其它的*Edit*命令也可以一并添加到`&lt;/span&gt;&lt;span class="no"&gt;EDITMAC&lt;/span&gt;&lt;span class="sb"&gt;`这个宏里面去，只要你希望它执行。比如：&lt;/span&gt;
 &lt;span class="sb"&gt;```&lt;/span&gt;&lt;span class="n"&gt;ruby&lt;/span&gt;
@@ -266,7 +266,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]&lt;/h4&gt;
+&lt;h5&gt;批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="nl"&gt;off&lt;/span&gt;
 &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;input_module&lt;/span&gt;
 &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;enter&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="nl"&gt;here&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -278,13 +278,13 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h6&gt;对以上用户输入做操作:字符串截取、字符串拼接的用法：&lt;/h6&gt;
+&lt;h5&gt;对以上用户输入做操作:字符串截取、字符串拼接的用法：&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;yyyymm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nl"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nl"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mo"&gt;01&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;month_display&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;JAN&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nl"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理中用户名、密码输入模块&lt;/h4&gt;
+&lt;h5&gt;批处理中用户名、密码输入模块&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt;  &lt;span class="err"&gt;用户输入&lt;/span&gt;&lt;span class="n"&gt;ftpUserID&lt;/span&gt;&lt;span class="err"&gt;及&lt;/span&gt;&lt;span class="n"&gt;ftpPass&lt;/span&gt;&lt;span class="err"&gt;模块&lt;/span&gt;
 &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;*^&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;enter&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Password&lt;/span&gt;
 &lt;span class="n"&gt;ping&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mf"&gt;127.1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
@@ -292,7 +292,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理中著名的实现隐藏用户输入密码的方法&lt;/h4&gt;
+&lt;h5&gt;批处理中著名的实现隐藏用户输入密码的方法&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt;  &lt;span class="err"&gt;批处理里面很著名的隐藏输入不显示的方法&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;By&lt;/span&gt;&lt;span class="err"&gt;德国人&lt;/span&gt;&lt;span class="n"&gt;HerbertKleebauer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;hP1X500P&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;PZBBBfh&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="err"&gt;##&lt;/span&gt;&lt;span class="n"&gt;fXf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="err"&gt;@`$&lt;/span&gt;&lt;span class="n"&gt;fPf&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;f3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;f1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;u5x&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
 &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;ftpPass&lt;/span&gt;&lt;span class="o"&gt;=^&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;*^&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Enter&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="nl"&gt;password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
@@ -301,7 +301,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理中实现执行批量ftp命令的方法&lt;/h4&gt;
+&lt;h5&gt;批处理中实现执行批量ftp命令的方法&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;设置远程&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;
 &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;ftpIP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt; 
 &lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;设置本地目录为当前脚本所在目录，用&lt;/span&gt;&lt;span class="o"&gt;%~&lt;/span&gt;&lt;span class="n"&gt;dp0&lt;/span&gt;&lt;span class="err"&gt;表示&lt;/span&gt;
@@ -324,7 +324,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理中判断文件是否为空的方法，以及goto分支的用法&lt;/h4&gt;
+&lt;h5&gt;批处理中判断文件是否为空的方法，以及goto分支的用法&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;delims=&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="n"&gt;my_test_source&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;%%~&lt;/span&gt;&lt;span class="n"&gt;zi&lt;/span&gt; &lt;span class="n"&gt;equ&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;   
   &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;empty_source&lt;/span&gt;      &lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;
@@ -339,18 +339,18 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理中调用msgbox显示消息框的方法&lt;/h4&gt;
+&lt;h5&gt;批处理中调用msgbox显示消息框的方法&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;利用&lt;/span&gt;&lt;span class="n"&gt;mshta&lt;/span&gt;&lt;span class="err"&gt;，消息框里面换行用&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;
 &lt;span class="n"&gt;mshta&lt;/span&gt; &lt;span class="nl"&gt;vbscript&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;msgbox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Empty !&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;^&lt;/span&gt;&lt;span class="n"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Please Check!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理中拷贝文件的方法&lt;/h4&gt;
+&lt;h5&gt;批处理中拷贝文件的方法&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;copy&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;批处理中执行vbs脚本的方法&lt;/h4&gt;
+&lt;h5&gt;批处理中执行vbs脚本的方法&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="n"&gt;ftpUser&lt;/span&gt;&lt;span class="err"&gt;和&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="err"&gt;是传递给&lt;/span&gt;&lt;span class="n"&gt;vbs&lt;/span&gt;&lt;span class="err"&gt;的参数&lt;/span&gt;
 &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;wscript&lt;/span&gt; &lt;span class="n"&gt;process_not_empty&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vbs&lt;/span&gt;  &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ftpUser&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;  &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="z/OS"></category></entry><entry><title>VB Script现学现用</title><link href="http://mainframer.github.io/articles/VB%20Script%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html" rel="alternate"></link><updated>2013-03-27T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-03-27:articles/VB Script现学现用.html</id><summary type="html">&lt;p&gt;这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  &lt;br /&gt;
@@ -427,7 +427,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 
 
 &lt;hr /&gt;
-&lt;h3&gt;下面是VBS操作excel的笔记&lt;/h3&gt;
+&lt;h4&gt;下面是VBS操作excel的笔记&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objExcel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Excel.Application&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="err"&gt;&amp;#39;创建&lt;/span&gt; &lt;span class="n"&gt;excel&lt;/span&gt; &lt;span class="err"&gt;对象&lt;/span&gt;                               
 &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Number&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Then&lt;/span&gt;
     &lt;span class="n"&gt;Wscript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Excel application not found.&amp;quot;&lt;/span&gt;
@@ -509,7 +509,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;VBS实现对Excel的列自动填充&lt;/h4&gt;
+&lt;h5&gt;VBS实现对Excel的列自动填充&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Const&lt;/span&gt; &lt;span class="n"&gt;xlFillDefault&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;                        
 &lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;H2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;
 &lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ActiveCell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FormulaR1C1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;
@@ -518,7 +518,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;VBS实现从外部text文件导入数据到当前sheet&lt;/h4&gt;
+&lt;h5&gt;VBS实现从外部text文件导入数据到当前sheet&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Dim&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;objFile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;irow&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;icol&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;source_text&lt;/span&gt;    
 &lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Scripting.FileSystemObject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;source_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Source_feed_file.txt&amp;quot;&lt;/span&gt;
@@ -537,7 +537,7 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;保存excel到当前目录，关闭并退出excel&lt;/h4&gt;
+&lt;h5&gt;保存excel到当前目录，关闭并退出excel&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objBook&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SaveAs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ws&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;currentdirectory&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\NEW_EXCEL.xlsx&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
 &lt;span class="n"&gt;objBook&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt;
 &lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Quit&lt;/span&gt;
@@ -848,23 +848,23 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;em&gt;4).&lt;/em&gt;  In the &lt;code&gt;ISRDDN&lt;/code&gt; panel, type &lt;code&gt;MEMBER&lt;/code&gt; my_target where my_target is the name of the panel you are looking for. Press Enter. &lt;br /&gt;
 &lt;em&gt;5).&lt;/em&gt;  It will display the datasets that include that member.   &lt;br /&gt;
 &lt;em&gt;6).&lt;/em&gt;  Browse to see what each panel does.   &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Octopress写博客常用语法总结</title><link href="http://mainframer.github.io/articles/Octopress%E5%86%99%E5%8D%9A%E5%AE%A2%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93.html" rel="alternate"></link><updated>2013-01-18T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-01-18:articles/Octopress写博客常用语法总结.html</id><summary type="html">&lt;p&gt;自从博客从&lt;code&gt;Wordpress&lt;/code&gt;迁徙到&lt;code&gt;Octopress&lt;/code&gt;来，也有一段时间了。该是时候总结一下常用的语法了。  &lt;/p&gt;
-&lt;h3&gt;插入图片&lt;/h3&gt;
+&lt;h4&gt;插入图片&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;![图片描述](图片地址) 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;插入链接&lt;/h3&gt;
+&lt;h4&gt;插入链接&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="err"&gt;链接描述&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="x"&gt;(链接地址)  &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;插入代码&lt;/h3&gt;
+&lt;h4&gt;插入代码&lt;/h4&gt;
 &lt;h5&gt;方法一&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/octopress_syntax_2.png" /&gt;     &lt;/p&gt;
 &lt;h5&gt;方法二&lt;/h5&gt;
 &lt;p&gt;用3个反引号括起来&lt;/p&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/octopress_syntax_3.png" /&gt;       &lt;/p&gt;
-&lt;h3&gt;引用的用法&lt;/h3&gt;
+&lt;h4&gt;引用的用法&lt;/h4&gt;
 &lt;p&gt;用&lt;em&gt;blockquote&lt;/em&gt;关键字&lt;br /&gt;
 &lt;img alt="1" src="./../images/octopress_syntax_1.png" /&gt;   &lt;/p&gt;
 &lt;p&gt;引用的效果如下： &lt;/p&gt;
@@ -872,13 +872,13 @@ SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
 &lt;p&gt;Heroes come and go,but legends are forever
 &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3&gt;特殊反白显示&lt;/h3&gt;
+&lt;h4&gt;特殊反白显示&lt;/h4&gt;
 &lt;p&gt;用反单引号括起来即可，比如&lt;code&gt;Octopress&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;`Octopress`
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;显示“点击阅读全文”&lt;/h3&gt;
+&lt;h4&gt;显示“点击阅读全文”&lt;/h4&gt;
 &lt;p&gt;Step01: 在_config.yml里面设置如下：excerpt_link: "点击阅读全文 &amp;rarr;"&lt;br /&gt;
 效果如下：   &lt;/p&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/octopress_syntax.png" /&gt;   &lt;/p&gt;
@@ -955,12 +955,14 @@ LIST
 &lt;blockquote&gt;
 &lt;p&gt;IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.&lt;br /&gt;
  A "PICTURE" string of "S9(18)" was assumed.           &lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
 &lt;a href="http://ibmmainframes.com/post-9087.html"&gt;http://ibmmainframes.com/post-9087.html&lt;/a&gt;   &lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;COBOL Compiler restricts me defining a PIC 9() variable not more than of size 18 (Including the decimal positions)&lt;br /&gt;
 The new Enterprise COBOL for z/OS supports upto 31 digits. If you have this, add ARITH(EXTEND) compiler option.   &lt;/p&gt;
-&lt;p&gt;解决办法是添加编译参数扩展长度: &lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;解决办法是添加编译参数扩展长度: &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;COMPILE&lt;/span&gt; &lt;span class="ss"&gt;PARMS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;     &lt;span class="no"&gt;ARITH&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;EXTEND&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                           
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1016,9 +1018,10 @@ The new Enterprise COBOL for z/OS supports upto 31 digits. If you have this, add
 
 &lt;p&gt;例如，你突然想看程序&lt;em&gt;PRODPGM1&lt;/em&gt;,只需执行： &lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;TSO RET PRODPGM1 &lt;/p&gt;
-&lt;p&gt;REXX程序就会去函数readlibs里面您事先指定好的libs里面查找&lt;em&gt;PRODPGM1&lt;/em&gt;,然后以VIEW的方式逐个打开&lt;em&gt;PRODPGM1&lt;/em&gt;供您查看。&lt;/p&gt;
+&lt;p&gt;TSO RET PRODPGM1 
+&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;REXX程序就会去函数readlibs里面您事先指定好的libs里面查找&lt;em&gt;PRODPGM1&lt;/em&gt;,然后以VIEW的方式逐个打开&lt;em&gt;PRODPGM1&lt;/em&gt;供您查看。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;File&lt;/span&gt;  &lt;span class="no"&gt;Edit&lt;/span&gt;  &lt;span class="no"&gt;Edit_Settings&lt;/span&gt;  &lt;span class="no"&gt;Menu&lt;/span&gt;  &lt;span class="no"&gt;Utilities&lt;/span&gt;  &lt;span class="no"&gt;Compilers&lt;/span&gt;  &lt;span class="no"&gt;Test&lt;/span&gt;  &lt;span class="no"&gt;Help&lt;/span&gt;            
 &lt;span class="sb"&gt;```````````````````````````````````````````````````````````````````````````````&lt;/span&gt;
 &lt;span class="sb"&gt;VIEW       IBMUSER.SOURCE.LIB1(PRODPGM1) - 03. Columns 00001 00072 &lt;/span&gt;
@@ -1193,9 +1196,10 @@ Any CICS region could act in any/all of the roles. Customers find it simplifies 
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="z/OS"></category></entry><entry><title>ISPF-只显示含关键字的所有行</title><link href="http://mainframer.github.io/articles/ISPF-%E5%8F%AA%E6%98%BE%E7%A4%BA%E5%90%AB%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E6%89%80%E6%9C%89%E8%A1%8C.html" rel="alternate"></link><updated>2012-09-07T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-09-07:articles/ISPF-只显示含关键字的所有行.html</id><summary type="html">&lt;p&gt;命令：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;X ALL; 
-FIND keyword ALL;&lt;/p&gt;
-&lt;p&gt;比如，只显示所有含&lt;code&gt;DT0907&lt;/code&gt;的行，可以这么做，先&lt;code&gt;X ALL&lt;/code&gt;;再&lt;code&gt;FIND DT0907 ALL&lt;/code&gt;;&lt;/p&gt;
+FIND keyword ALL;
+&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;比如，只显示所有含&lt;code&gt;DT0907&lt;/code&gt;的行，可以这么做，先&lt;code&gt;X ALL&lt;/code&gt;;再&lt;code&gt;FIND DT0907 ALL&lt;/code&gt;;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;VIEW&lt;/span&gt;       &lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TESTJCL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;TESTJOB&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mo"&gt;01&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;         &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="no"&gt;CHARS&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;DT0907&amp;#39;&lt;/span&gt; 
  &lt;span class="no"&gt;Command&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="n"&gt;dt0907&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;                                  &lt;span class="no"&gt;Scroll&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt; &lt;span class="no"&gt;CSR&lt;/span&gt;  
  &lt;span class="o"&gt;******&lt;/span&gt; &lt;span class="o"&gt;*****************************&lt;/span&gt; &lt;span class="no"&gt;Top&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="no"&gt;Data&lt;/span&gt; &lt;span class="o"&gt;******************************&lt;/span&gt;
@@ -1211,7 +1215,7 @@ FIND keyword ALL;&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;2013-05-12补充：&lt;/h4&gt;
+&lt;h5&gt;2013-05-12补充：&lt;/h5&gt;
 &lt;p&gt;另外一种方法： &lt;code&gt;X DT0907 ALL; Flip;&lt;/code&gt; &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>ISPF-提高效率少用PF3和START</title><link href="http://mainframer.github.io/articles/ISPF-%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%91%E7%94%A8PF3%E5%92%8CSTART.html" rel="alternate"></link><updated>2012-09-01T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-09-01:articles/ISPF-提高效率少用PF3和START.html</id><summary type="html">&lt;p&gt;同一个&lt;em&gt;PDS&lt;/em&gt;下，记得多用&lt;code&gt;BROWSE&lt;/code&gt;, &lt;code&gt;VIEW&lt;/code&gt;,&lt;code&gt;EDIT&lt;/code&gt;,&lt;code&gt;COMP&lt;/code&gt;这些命令。比如&lt;code&gt;BROWSE TEST02&lt;/code&gt; 或者&lt;code&gt;EDIT TEST03&lt;/code&gt; 或者&lt;code&gt;VIEW TEST04&lt;/code&gt; 或者&lt;code&gt;COMP 'IBMUSER.PROJ.TEST.JCL1((TEST01)'&lt;/code&gt; 这样，不需要另外&lt;em&gt;PF3&lt;/em&gt;或者&lt;em&gt;START&lt;/em&gt;开一个窗口。
 比如需要在同一个&lt;em&gt;PDS&lt;/em&gt;下的&lt;em&gt;TEST02&lt;/em&gt;这个JCL中拷贝一些东西到当前的TEST01的时候，经常用到。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;File&lt;/span&gt;  &lt;span class="no"&gt;Edit&lt;/span&gt;  &lt;span class="no"&gt;Edit_Settings&lt;/span&gt;  &lt;span class="no"&gt;Menu&lt;/span&gt;  &lt;span class="no"&gt;Utilities&lt;/span&gt;  &lt;span class="no"&gt;Compilers&lt;/span&gt;  &lt;span class="no"&gt;Test&lt;/span&gt;  &lt;span class="no"&gt;Help&lt;/span&gt;            
@@ -1431,11 +1435,11 @@ END;&lt;/code&gt;&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="z/OS"></category></entry><entry><title>No space in directory</title><link href="http://mainframer.github.io/articles/No%20space%20in%20directory.html" rel="alternate"></link><updated>2012-04-23T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-04-23:articles/No space in directory.html</id><summary type="html">&lt;p&gt;在一个pds下面&lt;em&gt;create member&lt;/em&gt;的时候右上角出现错误：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;No space in directory&lt;/p&gt;
-&lt;p&gt;按PF1,提示：&lt;/p&gt;
+&lt;p&gt;按PF1,提示：  &lt;/p&gt;
 &lt;p&gt;PDS directory is full, allocate more directory blocks.&lt;br /&gt;
 &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4&gt;错误原因：当前PDS下面所容纳的member数量已经达到最大值了。用'I' 查看PDS的信息：&lt;/h4&gt;
+&lt;h5&gt;错误原因：当前PDS下面所容纳的member数量已经达到最大值了。用'I' 查看PDS的信息：&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;Current&lt;/span&gt; &lt;span class="no"&gt;Allocation&lt;/span&gt;             
   &lt;span class="no"&gt;Allocated&lt;/span&gt; &lt;span class="n"&gt;cylinders&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;       
   &lt;span class="no"&gt;Allocated&lt;/span&gt; &lt;span class="n"&gt;extents&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;       
@@ -1451,7 +1455,7 @@ END;&lt;/code&gt;&lt;/p&gt;
 
 
 &lt;p&gt;原来，每个blocks可以有6个dir,于是PDS里面最多容纳的member数量= &lt;code&gt;(6 x no.of directory blocks)-1&lt;/code&gt; &lt;/p&gt;
-&lt;h3&gt;上网搜索了下更详细的：&lt;/h3&gt;
+&lt;h5&gt;上网搜索了下更详细的：&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The number of member entries that fit in a directory block is as follows: &lt;br /&gt;
 (1) For a data set with ISPF statistics: 6 entries per block.&lt;br /&gt;
@@ -1525,22 +1529,22 @@ END;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;ABENDED S000 U4088 REASON CODE=000003EC
 &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3&gt;Abend原因:&lt;/h3&gt;
+&lt;h5&gt;Abend原因:&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage
 &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3&gt;解决办法:&lt;/h3&gt;
+&lt;h5&gt;解决办法:&lt;/h5&gt;
 &lt;p&gt;Change region to &lt;strong&gt;REGION=0M&lt;/strong&gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mo"&gt;000001&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="no"&gt;IBMUSER&lt;/span&gt; &lt;span class="no"&gt;JOB&lt;/span&gt;  &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="no"&gt;RQ00XXXXX&lt;/span&gt;                                &lt;span class="mo"&gt;00010&lt;/span&gt;&lt;span class="no"&gt;TEST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;    
 &lt;span class="mo"&gt;000002&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;IBMUSER&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;CLASS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;MSGCLASS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;REGION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;             
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="z/OS"></category></entry><entry><title>常用的CICS命令</title><link href="http://mainframer.github.io/articles/%E5%B8%B8%E7%94%A8%E7%9A%84CICS%E5%91%BD%E4%BB%A4.html" rel="alternate"></link><updated>2012-03-01T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-03-01:articles/常用的CICS命令.html</id><summary type="html">&lt;p&gt;我们可以在&lt;code&gt;COBOL&lt;/code&gt;，&lt;code&gt;PL/I&lt;/code&gt;，&lt;code&gt;Assembler&lt;/code&gt;等应用程序中写&lt;code&gt;CICS&lt;/code&gt;命令，在&lt;code&gt;COBOL&lt;/code&gt;和&lt;code&gt;PL/I&lt;/code&gt;中，格式分别如下所示：&lt;/p&gt;
-&lt;h3&gt;COBOL&lt;/h3&gt;
+&lt;h5&gt;COBOL&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;EXEC&lt;/span&gt; &lt;span class="no"&gt;CICS&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;]]...&lt;/span&gt; &lt;span class="k"&gt;END&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="no"&gt;EXEC&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;PL/I&lt;/h3&gt;
+&lt;h5&gt;PL/I&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;EXEC&lt;/span&gt; &lt;span class="no"&gt;CICS&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;]]...&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;末尾有分号&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 

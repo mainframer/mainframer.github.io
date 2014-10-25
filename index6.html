@@ -57,12 +57,12 @@
 <p>ABENDED S000 U4088 REASON CODE=000003EC
 </p>
 </blockquote>
-<h3>Abend原因:</h3>
+<h5>Abend原因:</h5>
 <blockquote>
 <p>The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage
 </p>
 </blockquote>
-<h3>解决办法:</h3>
+<h5>解决办法:</h5>
 <p>Change region to <strong>REGION=0M</strong> </p>
 <div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span>  <span class="mi">0</span><span class="no">RQ00XXXXX</span>                                <span class="mo">00010</span><span class="no">TEST</span><span class="p">,</span>    
 <span class="mo">000002</span> <span class="o">//</span> <span class="s1">&#39;IBMUSER&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
@@ -87,12 +87,12 @@
 
 
 <p>我们可以在<code>COBOL</code>，<code>PL/I</code>，<code>Assembler</code>等应用程序中写<code>CICS</code>命令，在<code>COBOL</code>和<code>PL/I</code>中，格式分别如下所示：</p>
-<h3>COBOL</h3>
+<h5>COBOL</h5>
 <div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="k">END</span><span class="o">-</span><span class="no">EXEC</span>
 </pre></div>
 
 
-<h3>PL/I</h3>
+<h5>PL/I</h5>
 <div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="p">;</span> <span class="p">(</span><span class="err">末尾有分号</span><span class="p">)</span>
 </pre></div>
 

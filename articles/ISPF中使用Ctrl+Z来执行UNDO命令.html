@@ -54,7 +54,7 @@
 
     <p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
 首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
-<h4>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h4>
+<h5>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h5>
 <div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
 <span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
  <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
@@ -64,7 +64,7 @@
 </pre></div>
 
 
-<h4>step2: 随便<em>Edit</em>一个<em>dataset</em>,在<em>command</em>栏上面执行命令<code>EDITSET</code>打开<code>Edit and View Settings</code>面板，</h4>
+<h5>step2: 随便<em>Edit</em>一个<em>dataset</em>,在<em>command</em>栏上面执行命令<code>EDITSET</code>打开<code>Edit and View Settings</code>面板，</h5>
 <p>在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。</p>
 <div class="highlight"><pre>                         <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="no">Settings</span>                          
 <span class="no">Command</span> <span class="o">===&gt;</span>                                                              
@@ -75,14 +75,14 @@
 </pre></div>
 
 
-<h4>step3:在<em>command</em>栏上执行<code>KEYS</code>命令调出<em>ISPF</em>键位设置面板，随便找一个<em>PF13</em>至<em>PF24</em>当中你认为最不常用的键，将它和<code>UNDO</code>命令绑定。这里我选择<code>PF18</code>.</h4>
+<h5>step3:在<em>command</em>栏上执行<code>KEYS</code>命令调出<em>ISPF</em>键位设置面板，随便找一个<em>PF13</em>至<em>PF24</em>当中你认为最不常用的键，将它和<code>UNDO</code>命令绑定。这里我选择<code>PF18</code>.</h5>
 <div class="highlight"><pre> <span class="no">Key</span>       <span class="no">Definition</span>                                 <span class="no">Format</span>  <span class="no">Label</span>
  <span class="no">F16</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RETURN</span>                                     <span class="no">SHORT</span>   <span class="no">Return</span>  
  <span class="no">F17</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RFIND</span>                                      <span class="no">SHORT</span>   <span class="no">Rfind</span>   
  <span class="no">F18</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">UNDO</span>                                       <span class="no">SHORT</span>   <span class="no">Undo</span>      
  <span class="sb">```</span>
 
-<span class="sb">####step4: 在你使用的`</span><span class="no">TN3270</span><span class="sb">`终端的键盘设置里面，将`</span><span class="no">PF18</span><span class="sb">`映射成*Cntl+Z*。最常见的*TN3270*终端是*PCOMM*。</span>
+<span class="sb">#####step4: 在你使用的`</span><span class="no">TN3270</span><span class="sb">`终端的键盘设置里面，将`</span><span class="no">PF18</span><span class="sb">`映射成*Cntl+Z*。最常见的*TN3270*终端是*PCOMM*。</span>
 <span class="sb">这样一来，`</span><span class="no">UNDO</span><span class="sb">`就被默认打开，并且你可以用*Cntl+Z*来做最近一步的撤销动作，就像在windows下面一样。这里要注意，对于还没按下确定键的情况，如果要撤销的快捷键是`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`.关于`</span><span class="no">UNDO</span><span class="sb">`和`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`的区别，看我早些时候的文章:《ISPF中Shift+PageUp和UNDO的区别》  </span>
 <span class="sb">最后，还有一点，除了`</span><span class="no">RECOVERY</span> <span class="no">ON</span><span class="sb">`之外，显然其它的*Edit*命令也可以一并添加到`</span><span class="no">EDITMAC</span><span class="sb">`这个宏里面去，只要你希望它执行。比如：</span>
 <span class="sb">```</span><span class="n">ruby</span>
