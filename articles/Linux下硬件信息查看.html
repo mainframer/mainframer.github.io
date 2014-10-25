@@ -69,7 +69,7 @@ root@bt:/proc#   <code>lspci -xxxx</code>     #比上面的更详细 <br />
 root@bt:/proc#   <code>lspci -vvx</code>      #可以组合着查看 <br />
 root@bt:/proc# l <code>lspci -vvxxx</code>    #组合着查看   </p>
 <p><strong><em>注释</em></strong>:lspci是从pciids数据库读取硬件信息的，如果出现硬件无法识别，可以使用<code>sudo update-pciide</code>更新pci数据库。上面的命令查询结果在你的pci硬件出现问题的时候将其在网上公布，有热心网友或厂商会帮你解决的。</p>
-<h4>查看内核信息</h4>
+<h5>查看内核信息</h5>
 <p>root@bt:/proc#    <code>uname -a</code>
 Linux bt 2.6.38 #1 SMP Thu Mar 17 20:52:18 EDT 2011 i686 GNU/Linux<br />
 root@bt:/proc#     <code>uname --help</code></p>
@@ -90,7 +90,7 @@ root@bt:/proc#     <code>uname --help</code></p>
 </pre></div>
 
 
-<h4>查看Ubuntu发行版本</h4>
+<h5>查看Ubuntu发行版本</h5>
 <p>root@bt:/proc#   <code>lsb_release -a</code></p>
 <div class="highlight"><pre><span class="no">No</span> <span class="no">LSB</span> <span class="n">modules</span> <span class="n">are</span> <span class="n">available</span><span class="o">.</span>
 <span class="no">Distributor</span> <span class="ss">ID</span><span class="p">:</span> <span class="no">Ubuntu</span>
@@ -100,9 +100,9 @@ root@bt:/proc#     <code>uname --help</code></p>
 </pre></div>
 
 
-<h4>查看内核加载模块</h4>
+<h5>查看内核加载模块</h5>
 <p>root@bt:/proc#  <code>lsmod</code></p>
-<h4>查看usb设备使用情况</h4>
+<h5>查看usb设备使用情况</h5>
 <p>root@bt:/proc#    <code>lsusb</code></p>
 <div class="highlight"><pre>Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
@@ -111,7 +111,7 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
 <p><strong><em>注释</em></strong>:如果usb设备未被占用，ID号会显示:0000:0000
 root@bt:/proc#  <code>lsusb -v</code>            #输出详细的USB信息</p>
-<h4>查看网卡状态</h4>
+<h5>查看网卡状态</h5>
 <p>root@bt:/proc#  <code>ethtool eth0</code>        #查看第一个网卡(eth0)的状态信息</p>
 <div class="highlight"><pre>Settings for eth0:
 Supported ports: [ TP ]
@@ -134,7 +134,7 @@ Link detected: yes
 </pre></div>
 
 
-<h4>查看CPU信息</h4>
+<h5>查看CPU信息</h5>
 <p>root@bt:/proc#   <code>cat cpuinfo</code></p>
 <div class="highlight"><pre><span class="n">processor</span> <span class="o">:</span> <span class="mi">0</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err">  #编号</span>
 <span class="n">vendor_id</span> <span class="o">:</span> <span class="n">GenuineIntel</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> #</span><span class="n">intel</span><span class="err">架构</span>
@@ -161,12 +161,12 @@ Link detected: yes
 </pre></div>
 
 
-<h4>查看当前硬件信息</h4>
+<h5>查看当前硬件信息</h5>
 <p>root@bt:/proc#    <code>lshw</code>                 #显示完整的系统硬件信息，包括内存，cpu版本...
 root@bt:/proc#    <code>lshw -short</code>          #短格式显示
 root@bt:/proc#    <code>lshw -class disk</code>     #显示磁盘信息
 root@bt:/proc#    <code>lshw -class storage</code>  #显示存储控制设备信息</p>
-<h4>查看当前内存使用情况</h4>
+<h5>查看当前内存使用情况</h5>
 <p>root@bt:/proc#    <code>free</code></p>
 <div class="highlight"><pre>total used free shared buffers cached
 Mem: 1025720 373120 652600 0 35052 207464
@@ -221,16 +221,13 @@ Swap: 916476 0 916476
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

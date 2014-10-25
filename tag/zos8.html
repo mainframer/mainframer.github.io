@@ -59,7 +59,7 @@
 <li>解决共享文件夹在vmware8的windows8下不能使用的问题；</li>
 <li>其他好处；</li>
 </ul>
-<h4>下面简单的说说如何在Vmware8下为<code>window8-dev-preview(开发者预览版)</code>安装<code>vmware tool</code>。</h4>
+<h5>下面简单的说说如何在Vmware8下为<code>window8-dev-preview(开发者预览版)</code>安装<code>vmware tool</code>。</h5>
 <p><strong>1、</strong> 安装完<code>VMware Workstation 8.0.0.471780</code>之后，在安装目录下自带了适合各个系统的<code>vmware tools</code>，这里我们当然选用<code>windows.iso</code>啦！在<em>windows8</em>虚拟机设置的光盘(CD/DVD)设置里面输入<code>windows.iso</code>的路径，比如我的是：<code>D ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
@@ -86,10 +86,12 @@
 <a href="http://msdn.microsoft.com/en-us/windows/apps/br229516">WindowsDeveloperPreview下载地址</a><br />
 原先我的vmware版本是7.1.4，但是在安装win8的时候一开始就碰到了·</p>
 <blockquote>
-<p>"your pc ran into a problem that it couldn't handle,and now it needs to restart"·</p>
+<p>"your pc ran into a problem that it couldn't handle,and now it needs to restart"·
+</p>
+</blockquote>
 <p>正所谓出师不利:<br />
-<img alt="1" src="./../images/win8-dev-pre-blue-screen.jpg" />            <br />
-解决办法是到vmware官方网站<a href="http://www.vmware.com">http://www.vmware.com</a>去下载最新的<code>Vmware Workstation 8 .0 build 471780</code>。也是这两天才最新发布的，估计是为了迎接<code>win8-dev-pre ...</code></p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<img alt="1" src="./../images/win8-dev-pre-blue-screen.jpg" />       </p>
+<p>解决办法是到vmware官方网站<a href="http://www.vmware.com">http://www.vmware.com</a>去下载最新的<code>Vmware Workstation 8 .0 build 471780</code>。也是这两天才最新发布的，估计是为了迎接<code>win8-dev-pre ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -291,13 +293,13 @@
 
 <p>作为一个PL/I、COBOL程序猿，调试程序是必须的一项技能。这里我来说说大机上面的调试工具IBM的DebugTool，它支持的环境包括BATCH, TSO, CICS, DB2, DB2存储过程以及UNIX等等。</p>
 <h4>这篇我来说说如何设置让程序可以被Debug</h4>
-<p>首先，你必须在编译程序的时候需要选择以Debug模式编译，这个在changeman里面直接在编译的时候选个<code>IBM Debug Tool="Y"</code>就可以了。<br />
-接着，如果是BATCH的，就需要在JCL的PARM中指定TEST运行时的参数，通过VTAM接口来初始化debug模式，VTAM%后面跟着的是userid，就像这样：
-<img alt="1" src="./../images/debugtool.jpg" />  <br />
-是BATCH的话，你还要有一个Debug的session，这个可以参照我的另外一篇博文：&lt;&lt;登陆大型机——Aviva的介绍&gt;&gt;，只需注意在建debug session的时候destination的IP一般和普通大机的物理ip是不一样。填上正确的ip,然后用你的id登陆,这里我的id是IBMUSER，须跟上面设置的一样。<br />
+<p>首先，你必须在编译程序的时候需要选择以Debug模式编译，这个在changeman里面直接在编译的时候选个<code>IBM Debug Tool="Y"</code>就可以了。   </p>
+<p>接着，如果是BATCH的，就需要在JCL的PARM中指定TEST运行时的参数，通过VTAM接口来初始化debug模式，VTAM%后面跟着的是userid，就像这样：
+<img alt="1" src="./../images/debugtool.jpg" />    </p>
+<p>是BATCH的话，你还要有一个Debug的session，这个可以参照我的另外一篇博文：&lt;&lt;登陆大型机——Aviva的介绍&gt;&gt;，只需注意在建debug session的时候destination的IP一般和普通大机的物理ip是不一样。填上正确的ip,然后用你的id登陆,这里我的id是IBMUSER，须跟上面设置的一样。<br />
 回到JCL这边，submit，那恭喜你，你就可以看到Debugtool的画面了:
-<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />   <br />
-但是，如果程序是ONLINE的话，一般我们用CICS上面的DTCN这个工具来debug的。这里我假设你已经在上面“首先”里面正确编译了一个ONLINE的程序PRGM002 (带debug编译选项的)。然后，你登陆CICS ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />     </p>
+<p>但是，如果程序是ONLINE的话，一般我们用CICS上面的DTCN这个工具来debug的。这里我假设你已经在上面“首先”里面正确编译了一个ONLINE的程序PRGM002 (带debug编译选项的)。然后，你登陆CICS ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -368,16 +370,13 @@ ipv6.google.com ...</p></blockquote><p class="subheader">Category: <a href="http
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

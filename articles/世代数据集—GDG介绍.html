@@ -55,14 +55,21 @@
     <p>跟大机打交道，一定对大机上面的一种特殊文件gdg不会陌生。gdg又称世代数据集，在大机上面是用来组织彼此相关联的文件。比如你需要一年12个月每个月的报表数据，则可以定义一个有12个generation（世代）的GDG，每个generation存一个月的数据，这样就保证了彼此关联的信息能被更方便地管理和维护。它会保证任何时候都只保留最新的12个月的数据。<br />
 要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:</p>
 <blockquote>
-<p>PROD.CLIENT.ACCOUNT.NUMBER</p>
-<p>则一般你以此产生的第一个generation的名字就叫做:</p>
-<p>PROD.CLIENT.ACCOUNT.NUMBER.G0001V00</p>
-<p>以此类推，第二个就叫做：</p>
-<p>PROD.CLIENT.ACCOUNT.NUMBER.G0002V00</p>
-<p>直到<span style="color: #ff00ff;">G9992V00</span>为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01，所以，记住V00就可以了。 <br />
-关于要怎么建立GDG，如何查看GDG属性，如何更改GDG属性，在使用GDG过程中需要注意什么，我在以后的文章中会慢慢讲到，今天先说到这里。</p>
+<p>PROD.CLIENT.ACCOUNT.NUMBER
+</p>
 </blockquote>
+<p>则一般你以此产生的第一个generation的名字就叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0001V00
+</p>
+</blockquote>
+<p>以此类推，第二个就叫做：</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0002V00
+</p>
+</blockquote>
+<p>直到<code>G9992V00</code>为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01，所以，记住V00就可以了。 <br />
+关于要怎么建立GDG，如何查看GDG属性，如何更改GDG属性，在使用GDG过程中需要注意什么，我在以后的文章中会慢慢讲到，今天先说到这里。</p>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
@@ -107,16 +114,13 @@
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

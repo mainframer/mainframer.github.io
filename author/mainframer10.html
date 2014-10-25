@@ -126,8 +126,8 @@ GROUP <br />
 
 <p>自己小试的ruby程序,用于将一个<code>dictionary.txt</code>分割成多个小一点的子文件，不然每次都操作<code>dictionary.txt</code>显得很笨重。想把<code>dictionary.txt</code>按照字母首a~z，每个首字母再按长度分为长度为1~3的比如a_1to3.txt，长度为4的a_4.txt，长度为5的a_5.txt，长度为6的a_6.txt，长度为7的a_7.txt，长度为8的a_8.txt，以及长度大于8的others。这样，dictionary.txt最后被分割成了6x26+1=157个子文件，就不会像处理dictionary.txt那样笨重了，毕竟CPU有限。<br />
 为啥wordpress里面粘贴代码都只有黑乎乎的一片呢，可爱的语法高亮在哪里？还是喜欢五颜六色的代码段啊，上图吧:<br />
-<img alt="1" src="./../images/ruby_spilt_file.jpg" /> <br />
-只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<img alt="1" src="./../images/ruby_spilt_file.jpg" />     </p>
+<p>只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -151,14 +151,14 @@ GROUP <br />
 <h4>Ubuntu启动3D特效:</h4>
 <p>root@bt:~# sudo apt-get install compizconfig-settings-manager emerald fusion-ico<br />
 <strong><em>注释</em></strong>:<code>compizconfig-settings-manager</code>是提供3D桌面特效的主程序，安装后出现在屏幕右上角，可以详细设置。emerald是提供窗口装饰的程序，fusion-icon是桌面栏中的图标</p>
-<h4>linux系统图标路径：</h4>
+<h5>linux系统图标路径：</h5>
 <p>root@bt: <code>cd /usr/share/icons</code></p>
-<h4>查看最近使用的命令</h4>
+<h5>查看最近使用的命令</h5>
 <p>root@bt:/# <code>history</code>  </p>
-<h4>备份更新源文件</h4>
+<h5>备份更新源文件</h5>
 <p>root@bt:~# <code>sudo cp /etc/apt/sources.list /etc/atp.sources.list.backup</code>    <br />
 root@bt:~# <code>sudo gedit /etc/apt/sources.list</code>    </p>
-<h4>软件包管理命令 ...</h4><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<h5>软件包管理命令 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -180,11 +180,11 @@ root@bt:~# <code>sudo gedit /etc/apt/sources.list</code>    </p>
 
 
 <p>在平常，如果嫌麻烦，不想安装软件的话，可以试试在线的。特别是云计算正在慢慢普及，以后估计可能一个网络账号行遍互联网了。拭目以待吧！这里介绍几个我还比较常用到的在线资源。先声明，是本人用过的发现比较好用的，虽然写在这有些广告的嫌疑。</p>
-<h4>在线听歌</h4>
+<h5>在线听歌</h5>
 <p>亦歌：<a href="http://www.1g1g.com">http://www.1g1g.com</a><br />
 一听：<a href="http://www.1ting.com">http://www.1ting.com</a><br />
 就个人来说，我计较倾向于亦歌，因为它的干净，界面简单。  </p>
-<h4>在线改图</h4>
+<h5>在线改图</h5>
 <p><a href="http://pixlr.com/editor/">http://pixlr.com/editor/</a><br />
 这个可是号称在线版本的<code>Photoshop</code>啊。我觉得功能上来说，如果你不是影楼工作追究卓越的，而只是像我一样日常做些照片图片的修改，图片修改尺寸，再上点简单效果什么的，那么<code>pixlr</code>完全可以胜任你的要求。就我来说，本站所有的图片都是在<code>pixlr</code>修改的。如果你和我一样，嫌系统自带的画图工具太烂而又不想去安装个庞大的<code>photoshop</code>或者 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
@@ -295,13 +295,13 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p><p class="subheader">Category: <
 
 
 <p>硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有<code>Windows</code>和<code>FressBSD</code>等操作系统才需要将自己安装在硬盘的主分区里面，而<code>Linux</code>呢，可以被安装在逻辑分区里面。</p>
-<h3>分区编号</h3>
+<h5>分区编号</h5>
 <p>Linux将所有的存储设备(包括硬盘)都挂载<code>/dev</code>目录下新建一个子目录来管理，比如下面:<br />
 <code>/dev/hda1</code> 第一块IDE硬盘的第一个主分区  <br />
 <code>/dev/hda2</code> 第一块IDE硬盘的第二个主分区  <br />
 <code>/dev/hda5</code> 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  <br />
 <code>/dev/sda1</code> 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   </p>
-<h3>挂载点</h3>
+<h5>挂载点</h5>
 <p>所谓挂载点，就是将分区挂到一个以<code>“/”</code>开头的目录中。  <br />
 <code>/</code>:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   <br />
 <code>swap</code>:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
@@ -327,7 +327,7 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p><p class="subheader">Category: <
 
 <h3>开发语言</h3>
 <p>可以用COBOL,C,C++,Assembler,PL/I等来编写CICS应用程序的主要的大部分逻辑处理功能，而只有少数的一部分功能需要用到CICS命令。</p>
-<h3>CICS命令格式</h3>
+<h5>CICS命令格式</h5>
 <p><code>EXEC CICS SEND FROM (MSG-AREA) LENGTH(5) END-EXEC</code>                                         ——向终端发送长度为5的MSG-AREA信息       <br />
 <code>EXEC CICS READ FILE('FILEA') INTO (CUSTOMER-REC) RIDFLD(CUSTOMER-NUM)</code>                     ——读和修改VSAM文件       <br />
 <code>EXEC SQL SELECT colum_names INTO program_variables From Table_name WHERE ... END-EXEC</code>     ——读和修改关系型数据库<br />
@@ -374,16 +374,13 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p><p class="subheader">Category: <
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

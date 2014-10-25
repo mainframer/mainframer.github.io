@@ -74,11 +74,12 @@
 
 
 <blockquote>
-<p>Send Comments to Joshua D. Abraham ( jabra@ccs.neu.edu )</p>
+<p>Send Comments to Joshua D. Abraham ( jabra@ccs.neu.edu )
+</p>
+</blockquote>
 <p>genlist可以用来生成一个列表，该列表包含一个ip段内所有相应ping的ICMP报文响应的主机ip。生成的ip列表可以给后续的PBNJ或Nmap用。<br />
 下图中,首先先用<code>genlist ping</code>探测ip段<code>192.168.1.*</code>查找存活主机，存到列表iplist中备用，接着用nmap来扫描列表中的主机们。
 <img alt="1" src="./../images/genlist-nmap.jpg" /></p>
-</blockquote>
 <div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># `genlist -s 192.168.1.* &gt; iplist`</span>
 <span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># `cat iplist`           #显示iplist</span>
 <span class="mi">192</span><span class="o">.</span><span class="mi">168</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">1</span>   
@@ -133,16 +134,13 @@
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

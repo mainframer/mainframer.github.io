@@ -55,20 +55,23 @@
     <p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
 首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
 <h4>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h4>
-<p>```ruby/<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><em>REXX<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>/
-/</em> This macro load automaticly when you open a dataset for edit.    */    <br />
- Address  ispexec                                                   <br />
- "ISREDIT MACRO"                                                    <br />
- "ISREDIT RECOVERY ON"                                                                                                <br />
-exit                                                                  </p>
-<div class="highlight"><pre>####step2: 随便*Edit*一个*dataset*,在*command*栏上面执行命令`EDITSET`打开`Edit and View Settings`面板，
-在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。
-```ruby                          Edit and View Settings                          
-Command ===&gt;                                                              
-                                                               More:     +
-Settings for current and future Edit and View sessions:                   
+<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+<span class="nb">exit</span>                                                                  
+</pre></div>
 
-  User session initial macro . . . . . . . . . . . . . . EDITMAC 
+
+<h4>step2: 随便<em>Edit</em>一个<em>dataset</em>,在<em>command</em>栏上面执行命令<code>EDITSET</code>打开<code>Edit and View Settings</code>面板，</h4>
+<p>在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。</p>
+<div class="highlight"><pre>                         <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="no">Settings</span>                          
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                              
+                                                               <span class="ss">More</span><span class="p">:</span>     <span class="o">+</span>
+<span class="no">Settings</span> <span class="k">for</span> <span class="n">current</span> <span class="ow">and</span> <span class="n">future</span> <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="ss">sessions</span><span class="p">:</span>                   
+
+  <span class="no">User</span> <span class="n">session</span> <span class="n">initial</span> <span class="n">macro</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="no">EDITMAC</span> 
 </pre></div>
 
 
@@ -136,16 +139,13 @@ Settings for current and future Edit and View sessions:
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

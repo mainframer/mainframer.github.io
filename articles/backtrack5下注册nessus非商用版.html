@@ -63,18 +63,16 @@
 <blockquote>
 <p>Linux and Solaris Users :</p>
 </blockquote>
-<hr />
 <p>To activate your account, simply execute the following command :
 /opt/nessus/bin/nessus-fetch --register 04BB-41FD-A885-94B5-9B50</p>
-<blockquote>
+<blockquote></blockquote>
 <p>(这串序列号是每次官网注册随即生成的，这个是我注册的时候提供给我的)
-<img alt="1" src="./../images/backtrack5-nessus-register.jpg" />          <br />
-之后就是正常更新插件，更新完毕你就可以正常使用强大的nessus漏洞扫描工具了，可以看到版本号是最新的4.4.1。只不过这是非商用版的，商用版的一般给企业用的。
-<img alt="1" src="./../images/backtrack5-nessus-register-ok.jpg" />          <br />
-进入菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus user add</code>
+<img alt="1" src="./../images/backtrack5-nessus-register.jpg" />        </p>
+<p>之后就是正常更新插件，更新完毕你就可以正常使用强大的nessus漏洞扫描工具了，可以看到版本号是最新的4.4.1。只不过这是非商用版的，商用版的一般给企业用的。
+<img alt="1" src="./../images/backtrack5-nessus-register-ok.jpg" />   </p>
+<p>进入菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus user add</code>
 添加<code>username:root</code>、 <code>password:toor</code> (可以随便添加用户名密码) 
 更改默认设置: </p>
-</blockquote>
 <div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:gedit</span> <span class="sr">/opt/nessus</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nessus</span><span class="o">/</span><span class="n">nessusd</span><span class="o">.</span><span class="n">conf</span>
 <span class="n">listen_address</span> <span class="o">=</span> <span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span> <span class="p">(</span><span class="err">默认为</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">enable_listen_ipv4</span> <span class="o">=</span> <span class="n">yes</span> <span class="err">（默认没有开启</span><span class="n">ipv4</span><span class="err">侦听）</span>
@@ -127,16 +125,13 @@
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

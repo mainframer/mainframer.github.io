@@ -146,10 +146,10 @@
 
 
 <p>大机上磁带(tape)一般用来存储大容量的数据的，可以降低成本。我们要访问tape中的数据的时候，一般的做法是用JCL将tape中的记录转存到直接存储访问设备(DASD)中再查看。 下图中，我们通过utility <code>ICEMAN</code>将<code>IBMUSER.DNS.TAPE</code>这个tape中的所有记录都转存到<code>IBMUSER.TAPE.TO.DASD</code>中，这样就能查看了。
-<img alt="1" src="./../images/ICEMAN-access-tape.jpg" />  <br />
-不过，需要注意的是，tape里面的数据量一般都很大，所以更多时候我们再用的时候会指定读取的record的数目，比如这里我们指定读取100条：
-<img alt="1" src="./../images/ICEMAN-access-tape-stopaft1.jpg" /><br />
-甚至，你还可以用SORT中的语法筛选出你想要的条件。比如<code>(1，4，EQ,'AAAA')</code>这样子。 </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<img alt="1" src="./../images/ICEMAN-access-tape.jpg" />      </p>
+<p>不过，需要注意的是，tape里面的数据量一般都很大，所以更多时候我们再用的时候会指定读取的record的数目，比如这里我们指定读取100条：
+<img alt="1" src="./../images/ICEMAN-access-tape-stopaft1.jpg" />    </p>
+<p>甚至，你还可以用SORT中的语法筛选出你想要的条件。比如<code>(1，4，EQ,'AAAA')</code>这样子。 </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -171,8 +171,8 @@
 
 
 <p>在一个PDS中搜索名字叫做“snailgo”的member，可以在command line上输入命令<code>mem snailgo</code>即可。但是，如果想搜索整个PDS下所有的成员(Member)中指定字符串，有没有办法呢？答案是肯定的，我们可以用一个比较的utility <code>ISRSUPC</code>来实现，同样的，只需submit一个JCL。
-<img alt="1" src="./../images/isrsupc-compare.jpg" />  <br />
-这里，我们在PDS <strong><code>“IBMUSER.TEST.LIB.JCL”</code></strong>和<strong><code>“IBMUSER.TEST.LIB.PROC”</code></strong>下的所有member中搜索字符串”SNAILGO”。参数为：<code>PARM=(SRCHCMP,ANYC)</code>，其中<code>SRCHCMP</code>指定要搜索的字符串，<code>ANYC</code>表示ANY Case，即搜索任何符合的情况，要了解更详细的PARM的用法，可以参考IBM红宝书<strong>IBM manual ISPF/PDF Guide ...</strong></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<img alt="1" src="./../images/isrsupc-compare.jpg" />      </p>
+<p>这里，我们在PDS <strong><code>“IBMUSER.TEST.LIB.JCL”</code></strong>和<strong><code>“IBMUSER.TEST.LIB.PROC”</code></strong>下的所有member中搜索字符串”SNAILGO”。参数为：<code>PARM=(SRCHCMP,ANYC)</code>，其中<code>SRCHCMP</code>指定要搜索的字符串，<code>ANYC</code>表示ANY Case，即搜索任何符合的情况，要了解更详细的PARM的用法，可以参考IBM红宝书<strong>IBM manual ISPF/PDF Guide ...</strong></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -193,10 +193,10 @@
 </h6>
 
 
-<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。
-<img alt="1" src="./../images/gdg-new-empty-generation.jpg" />  <br />
-submit，查看，空的generation G0001V00 就生成了:
-<img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  </p>
+<p><img alt="1" src="./../images/gdg-new-empty-generation.jpg" />    <br />
+submit，查看，空的generation G0001V00 就生成了:  </p>
+<p><img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -217,9 +217,9 @@ submit，查看，空的generation G0001V00 就生成了:
 </h6>
 
 
-<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:
-<img alt="1" src="./../images/gdg-update.jpg" />  <br />
-submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:<br />
+<img alt="1" src="./../images/gdg-update.jpg" />      </p>
+<p>submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -240,9 +240,9 @@ submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG E
 </h6>
 
 
-<p>如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：
-<img alt="1" src="./../images/create-gdg-base.jpg" />    <br />
-其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p>如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：<br />
+<img alt="1" src="./../images/create-gdg-base.jpg" />       </p>
+<p>其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -291,18 +291,18 @@ submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG E
 
 
 <p>这一系列文章将会是从《IBM主机技术一本通》里面选取我个人认为对我有用的部分来记录和阐述。</p>
-<h4>1、LRECL和BLKSIZE</h4>
-<p><img alt="1" src="./../images/LRECL-BLKSIZE.jpg" />         <br />
+<h5>1、LRECL和BLKSIZE</h5>
+<p><img alt="1" src="./../images/LRECL-BLKSIZE.jpg" />           <br />
 <strong>LRECL</strong>:逻辑记录是程序想要处理的一个数据单元，通常由许多连接在一起的区域构成。  </p>
 <blockquote>
 <p>BLKSIZE：物理单元(又称块)   描述了在一次输入输出操作中需要传送的数据量，如上图所示，你一定发现了BLKSIZE必须是LRECL的整数倍，显然这是因为BLKSIZE是多个LRECL嘛！ 
 任何时候发生输入输出时传送的是整个块而不是单个逻辑记录，这样做的好处显而易见，有效地使用空间，提高传送率。<br />
 </p>
 </blockquote>
-<h4>2、I——PDS(分区数据集)信息分析</h4>
+<h5>2、I——PDS(分区数据集)信息分析</h5>
 <p>一直对这个知识点一知半解的，今天看了一本通之后，算是明白了。照着图说： <br />
-<img alt="1" src="./../images/PDS-Infor1.jpg" />         <br />
-呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<img alt="1" src="./../images/PDS-Infor1.jpg" />   </p>
+<p>呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -345,16 +345,13 @@ submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG E
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

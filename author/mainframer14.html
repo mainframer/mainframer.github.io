@@ -81,9 +81,9 @@
 </h6>
 
 
-<p>初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。</p>
-<h4>PCOMM每次都提示打印，怎么去掉这个烦人的窗口？</h4>
-<h4>解决办法：</h4>
+<p>初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。  </p>
+<h5>PCOMM每次都提示打印，怎么去掉这个烦人的窗口？</h5>
+<h5>解决办法：</h5>
 <p>PCOMM去掉每次连接提示打印的烦人窗口的方法：在<code>D:\SOFTWARE\IBMPCOMM\private\*.ws</code>文件里面添加：</p>
 <div class="highlight"><pre><span class="o">[</span><span class="no">LT</span><span class="o">]</span>
 <span class="no">IgnoreWCCStartPrint</span><span class="o">=</span><span class="n">Y</span>
@@ -92,21 +92,18 @@
 </pre></div>
 
 
-<hr />
-<h3>如何为每一个磁盘建立shadow？</h3>
-<h3>解决办法：</h3>
+<h5>如何为每一个磁盘建立shadow？</h5>
+<h5>解决办法：</h5>
 <p>比如：<code>sf+0A80</code>:  为设备号为0A80的设备建立shadow (设备号只是个临时的概念)</p>
-<hr />
-<h4>IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM</h4>
+<h5>IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM</h5>
 <p><img alt="1" src="./../images/zosmoni_1.png" />      </p>
-<h4>解决办法：</h4>
+<h5>解决办法：</h5>
 <p>在zOS1.9.cnf配置文件中删掉下面一行即可：</p>
-<div class="highlight"><pre>            XPNDSIZE  6
+<div class="highlight"><pre>XPNDSIZE  6
 </pre></div>
 
 
-<hr />
-<h3><code>HHCLC042E Port 00: Read error ...</code></h3><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<h5><code>HHCLC042E Port 00: Read error ...</code></h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -263,16 +260,13 @@
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

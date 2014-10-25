@@ -55,26 +55,34 @@
     <p>把一个component(比如程序PRGM001)弄到package里面去有两种方法：一是<code>stage</code>，二是<code>checkout</code>。</p>
 <h3>Stage</h3>
 <p>所谓的stage就是当生产环境上面没有的，而你要将一个新的component弄到生产上面去的时候用stage。比如生产环境上面没有PRGM001这个程序，如果你最终想把这个程序通过Changeman安装到生产环境，那你就得现在自己的PDS下面建一个名为PRGM001的程序： </p>
-<blockquote>
-<p>TESTUID.PRGMLIB(PRGM001)</p>
+<div class="highlight"><pre><span class="no">TESTUID</span><span class="o">.</span><span class="n">PRGMLIB</span><span class="p">(</span><span class="no">PRGM001</span><span class="p">)</span>
+</pre></div>
+
+
 <p>然后stage到changeman里面去，具体做法是在ISPF输入:</p>
-<p>C;1;5;</p>
+<div class="highlight"><pre><span class="n">C</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span>
+</pre></div>
+
+
 <p>输入你的Package ID,回车 
 在Package前面输入命令：</p>
-<p>S1</p>
+<div class="highlight"><pre> <span class="no">S1</span>
+</pre></div>
+
+
 <p><img alt="1" src="./../images/changeman-01.jpg" />    </p>
-</blockquote>
 <h3>Checkout</h3>
 <p>和stage不同，checkout是针对那些已经存在于生产环境里面的components。它们是有版本之分的，比如你要Checkout一个现在已经存在于生产环境的PRGM002,在Package前面输入命令</p>
-<blockquote>
-<p>C1</p>
+<div class="highlight"><pre> <span class="no">C1</span>
+</pre></div>
+
+
 <p><img alt="1" src="./../images/changeman-02.jpg" /> <br />
-这里注意一下<strong>SOURCE LIBRARY. </strong> 
+这里注意一下<strong>SOURCE LIBRARY. </strong>
 <code>SOURCE LIBRARY=0</code> 说明checkout的是当前生产环境baseline里面的最新版本。
 <code>SOURCE LIBRARY=-1</code>说明checkout的是比当前生产环境baseline旧的一个版本。
 以此类推...<br />
 最后，在Package ID前面输入命令<code>S2</code>，查看package里面所有的components(PRGM001和PRGM002)</p>
-</blockquote>
 <p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
 
     Tagged: 
@@ -119,16 +127,13 @@
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

@@ -52,9 +52,9 @@
 </h6>
 
 
-    <p>初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。</p>
-<h4>PCOMM每次都提示打印，怎么去掉这个烦人的窗口？</h4>
-<h4>解决办法：</h4>
+    <p>初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。  </p>
+<h5>PCOMM每次都提示打印，怎么去掉这个烦人的窗口？</h5>
+<h5>解决办法：</h5>
 <p>PCOMM去掉每次连接提示打印的烦人窗口的方法：在<code>D:\SOFTWARE\IBMPCOMM\private\*.ws</code>文件里面添加：</p>
 <div class="highlight"><pre><span class="o">[</span><span class="no">LT</span><span class="o">]</span>
 <span class="no">IgnoreWCCStartPrint</span><span class="o">=</span><span class="n">Y</span>
@@ -63,37 +63,32 @@
 </pre></div>
 
 
-<hr />
-<h3>如何为每一个磁盘建立shadow？</h3>
-<h3>解决办法：</h3>
+<h5>如何为每一个磁盘建立shadow？</h5>
+<h5>解决办法：</h5>
 <p>比如：<code>sf+0A80</code>:  为设备号为0A80的设备建立shadow (设备号只是个临时的概念)</p>
-<hr />
-<h4>IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM</h4>
+<h5>IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM</h5>
 <p><img alt="1" src="./../images/zosmoni_1.png" />      </p>
-<h4>解决办法：</h4>
+<h5>解决办法：</h5>
 <p>在zOS1.9.cnf配置文件中删掉下面一行即可：</p>
-<div class="highlight"><pre>            XPNDSIZE  6
+<div class="highlight"><pre>XPNDSIZE  6
 </pre></div>
 
 
-<hr />
-<h3><code>HHCLC042E Port 00: Read error: Bad file descriptor</code></h3>
+<h5><code>HHCLC042E Port 00: Read error: Bad file descriptor</code></h5>
 <p>HerculesGUI界面一直提示 <code>HHCLC042E Port 00: Read error: Bad file descriptor</code> 并且MVS主控台端有几行大红字：<br />
 <img alt="1" src="./../images/zosmoni_2.png" />      </p>
-<h3>解决办法：</h3>
+<h5>解决办法：</h5>
 <p>一直提示是老版本CTCI的bug，不用管。或者下载最新版的CTCI。</p>
-<hr />
-<h3>MVS主控台端出现大红字</h3>
+<h5>MVS主控台端出现大红字</h5>
 <p><img alt="1" src="./../images/zosmoni_3.png" />      </p>
-<h3>解决办法：</h3>
+<h5>解决办法：</h5>
 <p>等待，取决你机器速度。
  + 绿色信息代表正常
  + 红色的表示有错误或者警告
  + 白色的信息如果有一个编号</p>
-<hr />
-<h3>错误<code>IRA200E AUXILIARY STORAGE SHORTAGE</code></h3>
+<h5>错误<code>IRA200E AUXILIARY STORAGE SHORTAGE</code></h5>
 <p><img alt="1" src="./../images/zosmoni_4.png" />      </p>
-<h3>解决办法：</h3>
+<h5>解决办法：</h5>
 <p><code>OS/390</code>自动记录硬件 (和某些软件) 的错误数据和一些统计数据于PDS <code>SYS1.LOGREC</code>中，最终此数据集会被装满数据，系统会在 <em>CONSOLE</em> 上发一条信息。
 使用下述作业会打印 LOGREC 中的简要信息，同时会清空 <code>SYS1.LOGREC</code> 数据集：</p>
 <div class="highlight"><pre><span class="o">...</span>
@@ -111,9 +106,8 @@
 
 
 <p>参照原链接：<a href="http://blog.sina.com.cn/s/blog_6c45bc400100x1uf.html">http://blog.sina.com.cn/s/blog_6c45bc400100x1uf.html</a>  </p>
-<hr />
-<h3>如何规范地正常关闭大机虚拟机？</h3>
-<h3>解决办法：</h3>
+<h5>如何规范地正常关闭大机虚拟机？</h5>
+<h5>解决办法：</h5>
 <p>完整的停机，在停止VTAM之前, 要先停掉DB2，CICS等作业：</p>
 <div class="highlight"><pre><span class="n">C</span> <span class="n">CICSA</span> 
 <span class="o">-</span><span class="n">DB8G</span> <span class="n">STOP</span> <span class="n">DB2</span> 
@@ -148,12 +142,10 @@
 
 <p><em>3、</em> 使用命令<code>IPL A80</code>来重新启动系统。  <br />
 你的3270仿真软件(MVS Console)应该不需要重新连接。 </p>
-<hr />
-<h3>输入命令<code>L CICS</code>欲登陆CICS出现错误:<code>LCL701 UNABLE TO ESTABLISH SESSION - INIT SELF FAILED WITH SENSE 08570002</code></h3>
-<h3>解决办法：</h3>
+<h5>输入命令<code>L CICS</code>欲登陆CICS出现错误:<code>LCL701 UNABLE TO ESTABLISH SESSION - INIT SELF FAILED WITH SENSE 08570002</code></h5>
+<h5>解决办法：</h5>
 <p>要正常登录，三个软件必须正常运行：<code>JES2</code>,<code>VTAM</code>和<code>TSO</code>,多半原因是因为<code>VTAM</code>还没正常启动好。只需等待一会儿问题解决。(<code>LCL701</code>为<code>VTAM</code>终端编号)</p>
-<hr />
-<h3>TSO默认USER/PASS</h3>
+<h5>TSO默认USER/PASS</h5>
 <p>（0A82CSM1登陆TSO可以，CICS不行；0A82ACM1反之)</p>
 <h5>默认用户　　　   密码　　　        权限</h5>
 <ul>
@@ -166,12 +158,11 @@
 <li>OPEN1 - OPEN3 -    SYS1<br />
 <img alt="1" src="./../images/zosmoni_5.png" />   </li>
 </ul>
-<h3><code>Master console</code> 不显示</h3>
-<h3>解决办法：</h3>
+<h5><code>Master console</code> 不显示</h5>
+<h5>解决办法：</h5>
 <p>Master console 的窗口要在IPL 之前就打开 否则无法显示内容</p>
-<hr />
-<h3><code>Master console</code>显示：<code>*IRA200E AUXILIARY STORAGE SHORTAGE</code>, 并且登陆‘L TSO’显示：<code>IKT00203I ADDRESS SPACE CREATION FAILED</code></h3>
-<h3>解决办法：</h3>
+<h5><code>Master console</code>显示：<code>*IRA200E AUXILIARY STORAGE SHORTAGE</code>, 并且登陆‘L TSO’显示：<code>IKT00203I ADDRESS SPACE CREATION FAILED</code></h5>
+<h5>解决办法：</h5>
 <p>原因是Page Dataset空间不够，可试试增大hercules.cnf中的MAINSIZE</p>
 <div class="highlight"><pre>D ASM                
 </pre></div>
@@ -226,16 +217,13 @@ http://fandezhi.efglobe.com/modules.php?name=Forums&amp;file=viewtopic&amp;t=148
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

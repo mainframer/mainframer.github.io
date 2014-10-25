@@ -93,30 +93,32 @@
 </pre></div>
 
 
-<p>要实现上面的数据转换，下面是我用到的<em>SORT</em>:
-```ruby //IBMUSERS JOB '00000000',CLASS=0,NOTIFY=&amp;SYSUID,     <br />
-//     MSGCLASS=R,TIME=NOLIMIT                                     <br />
-//SORT  EXEC  PGM=SYNCSORT                                           <br />
-//SORTIN   DD  DSN=IBMUSER.DFSORT.PDTOCSF.SORTIN,DISP=SHR              <br />
-//SORTOUT  DD  DSN=IBMUSER.DFSORT.PDTOCSF.SORTOUT,                 <br />
-//             DISP=(NEW,CATLG,DELETE),                            <br />
-//             UNIT=SYSDA,                                         <br />
-//             SPACE=(CYL,(1,2),RLSE),                             <br />
-//             DCB=(RECFM=FB,BLKSIZE=0)                            <br />
-//SYSOUT DD SYSOUT=*                                                            <br />
-//SYSIN  DD *                                                      <br />
-  SORT FIELDS=COPY                                                 <br />
-  INREC BUILD=(1,19,20,8,PD,EDIT=(SIIIIIIIIIIT.IIIIII),SIGNS=(,-,,), 
-   C',',29,8,PD,EDIT=(SIIIIIIIIIIIIIT.III),SIGNS=(,-,,),           <br />
-   C',',38,8,PD,EDIT=(SIIIIIIIIIIIIIT.III),SIGNS=(,-,,)) </p>
-<div class="highlight"><pre>这里面有3点要说明：     
-__第1__，在SORTOUT里面，`DCB=(RECFM=FB,BLKSIZE=0)`不必加LRECL参数，SORT会自动帮你算出来。   
-__第2__，SIGNS=(,-,,)的解释:  `blank for lp, &#39;-&#39; for ln, blank for tp, blank for tn`.   
-```ruby
-leading positive  sign (lp)
-leading negative  sign (ln)
-trailing positive sign (tp) 
-trailing negative sign (tn)
+<p>要实现上面的数据转换，下面是我用到的<em>SORT</em>:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSERS</span> <span class="no">JOB</span> <span class="s1">&#39;00000000&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">SYSUID</span><span class="p">,</span>       
+<span class="sr">//</span>     <span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span>                                       
+<span class="sr">//</span><span class="no">SORT</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span>                                             
+<span class="sr">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">DFSORT</span><span class="o">.</span><span class="n">PDTOCSF</span><span class="o">.</span><span class="n">SORTIN</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">DFSORT</span><span class="o">.</span><span class="n">PDTOCSF</span><span class="o">.</span><span class="n">SORTOUT</span><span class="p">,</span>                   
+<span class="sr">//</span>             <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>                              
+<span class="sr">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>                                           
+<span class="sr">//</span>             <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span>                               
+<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>                              
+<span class="sr">//</span><span class="no">SYSOUT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                              
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                                        
+  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">COPY</span>                                                   
+  <span class="no">INREC</span> <span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="no">PD</span><span class="p">,</span><span class="no">EDIT</span><span class="o">=</span><span class="p">(</span><span class="no">SIIIIIIIIIIT</span><span class="o">.</span><span class="n">IIIIII</span><span class="p">),</span><span class="no">SIGNS</span><span class="o">=</span><span class="p">(,</span><span class="o">-</span><span class="p">,,),</span> 
+   <span class="n">C</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="no">PD</span><span class="p">,</span><span class="no">EDIT</span><span class="o">=</span><span class="p">(</span><span class="no">SIIIIIIIIIIIIIT</span><span class="o">.</span><span class="n">III</span><span class="p">),</span><span class="no">SIGNS</span><span class="o">=</span><span class="p">(,</span><span class="o">-</span><span class="p">,,),</span>             
+   <span class="n">C</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="no">PD</span><span class="p">,</span><span class="no">EDIT</span><span class="o">=</span><span class="p">(</span><span class="no">SIIIIIIIIIIIIIT</span><span class="o">.</span><span class="n">III</span><span class="p">),</span><span class="no">SIGNS</span><span class="o">=</span><span class="p">(,</span><span class="o">-</span><span class="p">,,))</span> 
+</pre></div>
+
+
+<p>这里面有3点要说明：   <br />
+<strong>第1</strong>，在SORTOUT里面，<code>DCB=(RECFM=FB,BLKSIZE=0)</code>不必加LRECL参数，SORT会自动帮你算出来。 <br />
+<strong>第2</strong>，SIGNS=(,-,,)的解释:  <code>blank for lp, '-' for ln, blank for tp, blank for tn</code>.   </p>
+<div class="highlight"><pre><span class="n">leading</span> <span class="n">positive</span>  <span class="n">sign</span> <span class="p">(</span><span class="n">lp</span><span class="p">)</span>
+<span class="n">leading</span> <span class="n">negative</span>  <span class="n">sign</span> <span class="p">(</span><span class="n">ln</span><span class="p">)</span>
+<span class="n">trailing</span> <span class="n">positive</span> <span class="n">sign</span> <span class="p">(</span><span class="n">tp</span><span class="p">)</span> 
+<span class="n">trailing</span> <span class="n">negative</span> <span class="n">sign</span> <span class="p">(</span><span class="n">tn</span><span class="p">)</span>
 </pre></div>
 
 
@@ -165,16 +167,13 @@ trailing negative sign (tn)
 
         <h5 class="sidebar-title">Links</h5>
         <ul class="side-nav">
-            <li><a href="http://getpelican.com/">Pelican</a></li>
-            <li><a href="http://python.org/">Python.org</a></li>
-            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-            <li><a href="#">You can modify those links in your config file</a></li>
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
         </ul>
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">Linkedin</a></li>
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->

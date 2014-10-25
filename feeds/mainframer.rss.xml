@@ -61,7 +61,7 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。其余的网址请自行添加，我稍后会放出下载。右键点我然后 &lt;a href="/download/gfwlist.pac"&gt;另存为&lt;/a&gt;&lt;br /&gt;
+&lt;p&gt;这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 &lt;a href="/gfwlist.pac"&gt;下载gfwlist.pac&lt;/a&gt;&lt;br /&gt;
 接着，打开“系统偏好设置”－&amp;gt;“网络”-&amp;gt;”高级”-&amp;gt;”代理”－&amp;gt;点选“自动代理配置”-&amp;gt;“选取文件”-&amp;gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
 最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  &lt;/p&gt;
 &lt;h5&gt;注意，&lt;/h5&gt;
@@ -127,60 +127,64 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;这种技术经常被用来发送&lt;code&gt;notification email&lt;/code&gt;，比如： 
-```ruby//&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;    &lt;br /&gt;
-//&lt;/em&gt;   THIS STEP WILL SEND AN EMAIL TO THE CLIENT GROUP                  &lt;br /&gt;
-//&lt;em&gt;   INDICATING THAT THE DESIRED FILE WAS NOT RECEIVED                   &lt;br /&gt;
-//&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;/em&gt;    &lt;br /&gt;
-//STEP08   EXEC PGM=IEBGENER,COND=(2,NE,STEP02)                                                                                   &lt;br /&gt;
-//SYSIN    DD  DUMMY                                                  &lt;br /&gt;
-//SYSPRINT DD  SYSOUT=*                                               &lt;br /&gt;
-//SYSUT1   DD  DSN=IBMUSER.TEST.CNTL(STEMAIL),DISP=SHR                     &lt;br /&gt;
-//SYSUT2   DD  SYSOUT=(A,INTRDR),                                     &lt;br /&gt;
-//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=0,DSORG=PS)  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;上面例子中邮件的内容如下：`IBMUSER.TEST.CNTL(STEMAIL)`
-```ruby//IBMUSERT JOB 0000000TEST,    
-//   CLASS=3,MSGCLASS=I,REGION=4096K,                                 
-//*
-//STEP04   EXEC PGM=IEBGENER                        
-//SYSUT2   DD  SYSOUT=A,DEST=(&amp;lt;some name&amp;gt;,SMTP)       
-//SYSPRINT DD SYSOUT=*                              
-//SYSIN    DD DUMMY                                 
-//SYSUT1   DD  *                                    
-HELO &amp;lt;some name&amp;gt;                              
-MAIL FROM:&amp;lt;IBMUSER1@xxx.com&amp;gt;               
-RCPT TO:&amp;lt;IBMUSER2@xxx.com&amp;gt;                  
-DATA                                                
-FROM:&amp;lt;IBMUSER1@xxx.com&amp;gt;                   
-TO:&amp;lt;IBMUSER2@xxx.com&amp;gt;                       
-SUBJECT: FILE WAS NOT RECEIVED                          
+&lt;p&gt;这种技术经常被用来发送&lt;code&gt;notification email&lt;/code&gt;，比如： &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="o"&gt;****************************************************************&lt;/span&gt;      
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;   &lt;span class="no"&gt;THIS&lt;/span&gt; &lt;span class="no"&gt;STEP&lt;/span&gt; &lt;span class="no"&gt;WILL&lt;/span&gt; &lt;span class="no"&gt;SEND&lt;/span&gt; &lt;span class="no"&gt;AN&lt;/span&gt; &lt;span class="no"&gt;EMAIL&lt;/span&gt; &lt;span class="no"&gt;TO&lt;/span&gt; &lt;span class="no"&gt;THE&lt;/span&gt; &lt;span class="no"&gt;CLIENT&lt;/span&gt; &lt;span class="no"&gt;GROUP&lt;/span&gt;                    
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;   &lt;span class="no"&gt;INDICATING&lt;/span&gt; &lt;span class="no"&gt;THAT&lt;/span&gt; &lt;span class="no"&gt;THE&lt;/span&gt; &lt;span class="no"&gt;DESIRED&lt;/span&gt; &lt;span class="no"&gt;FILE&lt;/span&gt; &lt;span class="no"&gt;WAS&lt;/span&gt; &lt;span class="no"&gt;NOT&lt;/span&gt; &lt;span class="no"&gt;RECEIVED&lt;/span&gt;                     
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="o"&gt;****************************************************************&lt;/span&gt;      
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;STEP08&lt;/span&gt;   &lt;span class="no"&gt;EXEC&lt;/span&gt; &lt;span class="no"&gt;PGM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IEBGENER&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;COND&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;NE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;STEP02&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                                                     
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSIN&lt;/span&gt;    &lt;span class="no"&gt;DD&lt;/span&gt;  &lt;span class="no"&gt;DUMMY&lt;/span&gt;                                                    
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSPRINT&lt;/span&gt; &lt;span class="no"&gt;DD&lt;/span&gt;  &lt;span class="no"&gt;SYSOUT&lt;/span&gt;&lt;span class="o"&gt;=*&lt;/span&gt;                                                 
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSUT1&lt;/span&gt;   &lt;span class="no"&gt;DD&lt;/span&gt;  &lt;span class="no"&gt;DSN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CNTL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;STEMAIL&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="no"&gt;DISP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;SHR&lt;/span&gt;                       
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSUT2&lt;/span&gt;   &lt;span class="no"&gt;DD&lt;/span&gt;  &lt;span class="no"&gt;SYSOUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;INTRDR&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;                                       
+&lt;span class="sr"&gt;//&lt;/span&gt;             &lt;span class="no"&gt;DCB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;RECFM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;FB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;LRECL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;BLKSIZE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;DSORG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;PS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
 
-START OF MESSAGE...                                 
 
-  *** DO NOT  RESPOND TO THIS MESSAGE ***                            
+&lt;p&gt;上面例子中邮件的内容如下：&lt;code&gt;IBMUSER.TEST.CNTL(STEMAIL)&lt;/code&gt;
+```ruby//IBMUSERT JOB 0000000TEST,  &lt;br /&gt;
+//   CLASS=3,MSGCLASS=I,REGION=4096K,                               &lt;br /&gt;
+//&lt;em&gt;
+//STEP04   EXEC PGM=IEBGENER                      &lt;br /&gt;
+//SYSUT2   DD  SYSOUT=A,DEST=(&lt;some name&gt;,SMTP)     &lt;br /&gt;
+//SYSPRINT DD SYSOUT=&lt;/em&gt;                            &lt;br /&gt;
+//SYSIN    DD DUMMY                               &lt;br /&gt;
+//SYSUT1   DD  *                                  &lt;br /&gt;
+HELO &lt;some name&gt;                            &lt;br /&gt;
+MAIL FROM:&lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#49;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#49;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;             &lt;br /&gt;
+RCPT TO:&lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#50;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#50;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;                &lt;br /&gt;
+DATA                                              &lt;br /&gt;
+FROM:&lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#49;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#49;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;                 &lt;br /&gt;
+TO:&lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#50;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;&amp;#73;&amp;#66;&amp;#77;&amp;#85;&amp;#83;&amp;#69;&amp;#82;&amp;#50;&amp;#64;&amp;#120;&amp;#120;&amp;#120;&amp;#46;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;                     &lt;br /&gt;
+SUBJECT: FILE WAS NOT RECEIVED                          &lt;/p&gt;
+&lt;p&gt;START OF MESSAGE...                                 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; DO NOT  RESPOND TO THIS MESSAGE &lt;/em&gt;&lt;/strong&gt;                          &lt;br /&gt;
      File was not recieved. Please send again.
-//*   
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 22 Apr 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-04-22:articles/用INTRDR在job中submit第二个job.html</guid><category>z/OS</category></item><item><title>Mainframer版本的程序猿吐槽</title><link>http://mainframer.github.io/articles/Mainframer%E7%89%88%E6%9C%AC%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E5%90%90%E6%A7%BD.html</link><description>&lt;p&gt;下面这段JCL挺有意思的，之前见过其它版本的，今天在一个国外网站看到的&lt;code&gt;mainframe&lt;/code&gt;版本的，记下，纯属娱乐。&lt;/p&gt;
+//* &lt;br /&gt;
+```&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 22 Apr 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-04-22:articles/用INTRDR在job中submit第二个job.html</guid><category>z/OS</category></item><item><title>Mainframer版本的程序猿吐槽</title><link>http://mainframer.github.io/articles/Mainframer%E7%89%88%E6%9C%AC%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF%E5%90%90%E6%A7%BD.html</link><description>&lt;p&gt;下面这段JCL挺有意思的，之前见过其它版本的，今天在一个国外网站看到的&lt;code&gt;mainframe&lt;/code&gt;版本的，记下，纯属娱乐。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;MYWALLET&lt;/span&gt; &lt;span class="no"&gt;EXEC&lt;/span&gt; &lt;span class="no"&gt;PGM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;SPOUSE&lt;/span&gt;
 &lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSIN&lt;/span&gt; &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="no"&gt;DSN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;MYWALLET&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ALL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;DISP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;SHR&lt;/span&gt;
 &lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSOUT&lt;/span&gt; &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="no"&gt;DUMMY&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 15 Apr 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-04-15:articles/Mainframer版本的程序猿吐槽.html</guid><category>z/OS</category></item><item><title>ISPF中使用Ctrl+Z来执行UNDO命令</title><link>http://mainframer.github.io/articles/ISPF%E4%B8%AD%E4%BD%BF%E7%94%A8Ctrl+Z%E6%9D%A5%E6%89%A7%E8%A1%8CUNDO%E5%91%BD%E4%BB%A4.html</link><description>&lt;p&gt;今天研究的成果，教你们如何在大机上用Windows下用惯了的&lt;em&gt;Ctrl+Z&lt;/em&gt;来执行&lt;code&gt;UNDO&lt;/code&gt;命令。&lt;br /&gt;
 首先，&lt;em&gt;ISPF&lt;/em&gt;里面&lt;code&gt;UNDO&lt;/code&gt;命令默认是没有开启的。我们需要自己写一个&lt;code&gt;Edit Initial Macro&lt;/code&gt;来默认开启。方法如下：&lt;/p&gt;
 &lt;h4&gt;step1:在&lt;code&gt;usrid.REXX.EXEC&lt;/code&gt;下面新建一个宏&lt;code&gt;EDITMAC&lt;/code&gt;，内容如下,保存退出。&lt;/h4&gt;
-&lt;p&gt;```ruby/&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;REXX&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;*&lt;/em&gt;&lt;/strong&gt;/
-/&lt;/em&gt; This macro load automaticly when you open a dataset for edit.    */    &lt;br /&gt;
- Address  ispexec                                                   &lt;br /&gt;
- "ISREDIT MACRO"                                                    &lt;br /&gt;
- "ISREDIT RECOVERY ON"                                                                                                &lt;br /&gt;
-exit                                                                  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;####step2: 随便*Edit*一个*dataset*,在*command*栏上面执行命令`EDITSET`打开`Edit and View Settings`面板，
-在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。
-```ruby                          Edit and View Settings                          
-Command ===&amp;gt;                                                              
-                                                               More:     +
-Settings for current and future Edit and View sessions:                   
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/*****************************REXX***********************************/&lt;/span&gt;
+&lt;span class="sr"&gt;/* This macro load automaticly when you open a dataset for edit.    */&lt;/span&gt;      
+ &lt;span class="no"&gt;Address&lt;/span&gt;  &lt;span class="n"&gt;ispexec&lt;/span&gt;                                                     
+ &lt;span class="s2"&gt;&amp;quot;ISREDIT MACRO&amp;quot;&lt;/span&gt;                                                      
+ &lt;span class="s2"&gt;&amp;quot;ISREDIT RECOVERY ON&amp;quot;&lt;/span&gt;                                                                                                  
+&lt;span class="nb"&gt;exit&lt;/span&gt;                                                                  
+&lt;/pre&gt;&lt;/div&gt;
 
-  User session initial macro . . . . . . . . . . . . . . EDITMAC 
+
+&lt;h4&gt;step2: 随便&lt;em&gt;Edit&lt;/em&gt;一个&lt;em&gt;dataset&lt;/em&gt;,在&lt;em&gt;command&lt;/em&gt;栏上面执行命令&lt;code&gt;EDITSET&lt;/code&gt;打开&lt;code&gt;Edit and View Settings&lt;/code&gt;面板，&lt;/h4&gt;
+&lt;p&gt;在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;                         &lt;span class="no"&gt;Edit&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="no"&gt;View&lt;/span&gt; &lt;span class="no"&gt;Settings&lt;/span&gt;                          
+&lt;span class="no"&gt;Command&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt;                                                              
+                                                               &lt;span class="ss"&gt;More&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;     &lt;span class="o"&gt;+&lt;/span&gt;
+&lt;span class="no"&gt;Settings&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;current&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;future&lt;/span&gt; &lt;span class="no"&gt;Edit&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="no"&gt;View&lt;/span&gt; &lt;span class="ss"&gt;sessions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                   
+
+  &lt;span class="no"&gt;User&lt;/span&gt; &lt;span class="n"&gt;session&lt;/span&gt; &lt;span class="n"&gt;initial&lt;/span&gt; &lt;span class="n"&gt;macro&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="no"&gt;EDITMAC&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -550,7 +554,7 @@ Settings for current and future Edit and View sessions:
 &lt;p&gt;选择这个方案是从用户易用性考虑，客户不需要安装任何软件。批处理和vbs以及excel在xp下面都是自带的。用户只需双击，然后输入查看的报表月份即可。&lt;/p&gt;
 &lt;h4&gt;方案设计图&lt;/h4&gt;
 &lt;p&gt;我用word简单地画了一个方案图：
-&lt;img alt="report automation on mainframe" src="./../images/mainframe" title="report automation.png" /&gt;  &lt;br /&gt;
+&lt;img alt="report automation on mainframe" src="./../images/mainframe-report-automation.png" /&gt;  &lt;br /&gt;
 代码就不放上来了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 25 Mar 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-03-25:articles/mainframe平台报表自动化方案实现.html</guid><category>z/OS</category></item><item><title>JCL中执行如何SQL</title><link>http://mainframer.github.io/articles/JCL%E4%B8%AD%E6%89%A7%E8%A1%8C%E5%A6%82%E4%BD%95SQL.html</link><description>&lt;hr /&gt;
 &lt;p&gt;平常我们用第三方软件来对DB2操作，比如eclipse,比如DBedit,又或者是mainframe上面的软件，如&lt;code&gt;Filemanager&lt;/code&gt;,&lt;code&gt;SPUFI&lt;/code&gt;等。
 那怎么在JCL里面运行SQL呢？答案是利用&lt;code&gt;IKJEFT01&lt;/code&gt;。&lt;/p&gt;
@@ -621,30 +625,32 @@ Settings for current and future Edit and View sessions:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;要实现上面的数据转换，下面是我用到的&lt;em&gt;SORT&lt;/em&gt;:
-```ruby //IBMUSERS JOB '00000000',CLASS=0,NOTIFY=&amp;amp;SYSUID,     &lt;br /&gt;
-//     MSGCLASS=R,TIME=NOLIMIT                                     &lt;br /&gt;
-//SORT  EXEC  PGM=SYNCSORT                                           &lt;br /&gt;
-//SORTIN   DD  DSN=IBMUSER.DFSORT.PDTOCSF.SORTIN,DISP=SHR              &lt;br /&gt;
-//SORTOUT  DD  DSN=IBMUSER.DFSORT.PDTOCSF.SORTOUT,                 &lt;br /&gt;
-//             DISP=(NEW,CATLG,DELETE),                            &lt;br /&gt;
-//             UNIT=SYSDA,                                         &lt;br /&gt;
-//             SPACE=(CYL,(1,2),RLSE),                             &lt;br /&gt;
-//             DCB=(RECFM=FB,BLKSIZE=0)                            &lt;br /&gt;
-//SYSOUT DD SYSOUT=*                                                            &lt;br /&gt;
-//SYSIN  DD *                                                      &lt;br /&gt;
-  SORT FIELDS=COPY                                                 &lt;br /&gt;
-  INREC BUILD=(1,19,20,8,PD,EDIT=(SIIIIIIIIIIT.IIIIII),SIGNS=(,-,,), 
-   C',',29,8,PD,EDIT=(SIIIIIIIIIIIIIT.III),SIGNS=(,-,,),           &lt;br /&gt;
-   C',',38,8,PD,EDIT=(SIIIIIIIIIIIIIT.III),SIGNS=(,-,,)) &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;这里面有3点要说明：     
-__第1__，在SORTOUT里面，`DCB=(RECFM=FB,BLKSIZE=0)`不必加LRECL参数，SORT会自动帮你算出来。   
-__第2__，SIGNS=(,-,,)的解释:  `blank for lp, &amp;#39;-&amp;#39; for ln, blank for tp, blank for tn`.   
-```ruby
-leading positive  sign (lp)
-leading negative  sign (ln)
-trailing positive sign (tp) 
-trailing negative sign (tn)
+&lt;p&gt;要实现上面的数据转换，下面是我用到的&lt;em&gt;SORT&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;IBMUSERS&lt;/span&gt; &lt;span class="no"&gt;JOB&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;00000000&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;CLASS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;NOTIFY&lt;/span&gt;&lt;span class="o"&gt;=&amp;amp;&lt;/span&gt;&lt;span class="no"&gt;SYSUID&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;       
+&lt;span class="sr"&gt;//&lt;/span&gt;     &lt;span class="no"&gt;MSGCLASS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;TIME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;NOLIMIT&lt;/span&gt;                                       
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SORT&lt;/span&gt;  &lt;span class="no"&gt;EXEC&lt;/span&gt;  &lt;span class="no"&gt;PGM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;SYNCSORT&lt;/span&gt;                                             
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SORTIN&lt;/span&gt;   &lt;span class="no"&gt;DD&lt;/span&gt;  &lt;span class="no"&gt;DSN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DFSORT&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PDTOCSF&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SORTIN&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;DISP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;SHR&lt;/span&gt;                
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SORTOUT&lt;/span&gt;  &lt;span class="no"&gt;DD&lt;/span&gt;  &lt;span class="no"&gt;DSN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DFSORT&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PDTOCSF&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SORTOUT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                   
+&lt;span class="sr"&gt;//&lt;/span&gt;             &lt;span class="no"&gt;DISP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;NEW&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;CATLG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;DELETE&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;                              
+&lt;span class="sr"&gt;//&lt;/span&gt;             &lt;span class="no"&gt;UNIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;SYSDA&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                                           
+&lt;span class="sr"&gt;//&lt;/span&gt;             &lt;span class="no"&gt;SPACE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;CYL&lt;/span&gt;&lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="no"&gt;RLSE&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;                               
+&lt;span class="sr"&gt;//&lt;/span&gt;             &lt;span class="no"&gt;DCB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;RECFM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;FB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;BLKSIZE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                              
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSOUT&lt;/span&gt; &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="no"&gt;SYSOUT&lt;/span&gt;&lt;span class="o"&gt;=*&lt;/span&gt;                                                              
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSIN&lt;/span&gt;  &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;                                                        
+  &lt;span class="no"&gt;SORT&lt;/span&gt; &lt;span class="no"&gt;FIELDS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;COPY&lt;/span&gt;                                                   
+  &lt;span class="no"&gt;INREC&lt;/span&gt; &lt;span class="no"&gt;BUILD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;PD&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;EDIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;SIIIIIIIIIIT&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;IIIIII&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="no"&gt;SIGNS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;,,),&lt;/span&gt; 
+   &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;PD&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;EDIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;SIIIIIIIIIIIIIT&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;III&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="no"&gt;SIGNS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;,,),&lt;/span&gt;             
+   &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;38&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;PD&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;EDIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;SIIIIIIIIIIIIIT&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;III&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="no"&gt;SIGNS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;,,))&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这里面有3点要说明：   &lt;br /&gt;
+&lt;strong&gt;第1&lt;/strong&gt;，在SORTOUT里面，&lt;code&gt;DCB=(RECFM=FB,BLKSIZE=0)&lt;/code&gt;不必加LRECL参数，SORT会自动帮你算出来。 &lt;br /&gt;
+&lt;strong&gt;第2&lt;/strong&gt;，SIGNS=(,-,,)的解释:  &lt;code&gt;blank for lp, '-' for ln, blank for tp, blank for tn&lt;/code&gt;.   &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;leading&lt;/span&gt; &lt;span class="n"&gt;positive&lt;/span&gt;  &lt;span class="n"&gt;sign&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;leading&lt;/span&gt; &lt;span class="n"&gt;negative&lt;/span&gt;  &lt;span class="n"&gt;sign&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;trailing&lt;/span&gt; &lt;span class="n"&gt;positive&lt;/span&gt; &lt;span class="n"&gt;sign&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;trailing&lt;/span&gt; &lt;span class="n"&gt;negative&lt;/span&gt; &lt;span class="n"&gt;sign&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -822,10 +828,9 @@ trailing negative sign (tn)
 &lt;blockquote&gt;
 &lt;p&gt;TSO MYSKELE&lt;/p&gt;
 &lt;p&gt;就可以看到job成功submit,可以去SDSF里面查看job运行状况。&lt;/p&gt;
-&lt;p&gt;JOB IBMUSERJ(J0210531) SUBMITTED&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr /&gt;
-&lt;blockquote&gt;&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 22 Feb 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-02-22:articles/Rexx调用Skeleton JCL提交job的例子.html</guid><category>z/OS</category></item><item><title>ISPF Dialog 开发知识点</title><link>http://mainframer.github.io/articles/ISPF%20Dialog%20%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9.html</link><description>&lt;p&gt;需要用ISPF来开发带界面的自动化工具，从0开始。记下些很有用的知识点：   &lt;/p&gt;
+&lt;p&gt;JOB IBMUSERJ(J0210531) SUBMITTED                 &lt;br /&gt;
+&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 22 Feb 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-02-22:articles/Rexx调用Skeleton JCL提交job的例子.html</guid><category>z/OS</category></item><item><title>ISPF Dialog 开发知识点</title><link>http://mainframer.github.io/articles/ISPF%20Dialog%20%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9.html</link><description>&lt;p&gt;需要用ISPF来开发带界面的自动化工具，从0开始。记下些很有用的知识点：   &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;执行命令&lt;code&gt;Panelid&lt;/code&gt;可以得到当前ISPF panel的名字    &lt;/li&gt;
 &lt;li&gt;执行&lt;code&gt;7.2&lt;/code&gt;这个命令输入panel名字，可以用来刷新你新写的panel，使改 动动态生效，这样就不需要重启TN3270 terminal达到测试panel改动的目的  &lt;/li&gt;
@@ -911,9 +916,10 @@ trailing negative sign (tn)
 &lt;blockquote&gt;
 &lt;p&gt;SOURCE
 or 
-LIST&lt;/p&gt;
-&lt;p&gt;这时就会显示&lt;code&gt;Source Identification Panel&lt;/code&gt;面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个&lt;code&gt;loadlib&lt;/code&gt;取到的,这确实对调试很有帮助。&lt;/p&gt;
+LIST
+&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;这时就会显示&lt;code&gt;Source Identification Panel&lt;/code&gt;面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个&lt;code&gt;loadlib&lt;/code&gt;取到的,这确实对调试很有帮助。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;                 &lt;span class="no"&gt;Source&lt;/span&gt; &lt;span class="no"&gt;Identification&lt;/span&gt; &lt;span class="no"&gt;Panel&lt;/span&gt;                                 
 &lt;span class="no"&gt;Command&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt;                                                                  
 
@@ -1899,8 +1905,7 @@ TBL_KEY1.TRADE_DATE = SUBSTR (PIC_TRADE_DATE_9,4,6);
 &lt;p&gt;来在当前PDS下面搜索字符串&lt;strong&gt;”STRING“&lt;/strong&gt;,具体如下面2张截图所示：
 &lt;img alt="1" src="./../images/PDS-SRCHFOR_002.jpg" /&gt;      &lt;br /&gt;
 &lt;img alt="1" src="./../images/PDS-SRCHFOR_003.jpg" /&gt;      &lt;br /&gt;
-如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用&lt;strong&gt;&lt;code&gt;ISRSUPC&lt;/code&gt;&lt;/strong&gt;这个utility了。这个&lt;strong&gt;&lt;code&gt;ISRSUPC&lt;/code&gt;&lt;/strong&gt;的功能可强大多了，具体可以参照下我之前的文章: &amp;lt;&amp;lt;用ISRSUPC在PDS所有member中搜索指定字符串&amp;gt;&amp;gt;，这里不重复了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 24 Dec 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-12-24:articles/利用SRCHFOR在PDS中搜索字符串.html</guid><category>z/OS</category></item><item><title>美国50个州中英文[带音标]</title><link>http://mainframer.github.io/articles/%E7%BE%8E%E5%9B%BD50%E4%B8%AA%E5%B7%9E%E4%B8%AD%E8%8B%B1%E6%96%87[%E5%B8%A6%E9%9F%B3%E6%A0%87].html</link><description>&lt;blockquote&gt;
-&lt;p&gt;序号   州名                                    简称　                 首府名
+如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用&lt;strong&gt;&lt;code&gt;ISRSUPC&lt;/code&gt;&lt;/strong&gt;这个utility了。这个&lt;strong&gt;&lt;code&gt;ISRSUPC&lt;/code&gt;&lt;/strong&gt;的功能可强大多了，具体可以参照下我之前的文章: &amp;lt;&amp;lt;用ISRSUPC在PDS所有member中搜索指定字符串&amp;gt;&amp;gt;，这里不重复了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 24 Dec 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-12-24:articles/利用SRCHFOR在PDS中搜索字符串.html</guid><category>z/OS</category></item><item><title>美国50个州中英文[带音标]</title><link>http://mainframer.github.io/articles/%E7%BE%8E%E5%9B%BD50%E4%B8%AA%E5%B7%9E%E4%B8%AD%E8%8B%B1%E6%96%87[%E5%B8%A6%E9%9F%B3%E6%A0%87].html</link><description>&lt;p&gt;序号   州名                                    简称　                 首府名
 01. Alabama &lt;a href="亚拉巴马"&gt;,ælə’bæmə&lt;/a&gt;             – AL–       Montgomery &lt;a href="蒙哥马利"&gt;mənt’gʌməri&lt;/a&gt;
 02. Alaska  &lt;a href="阿拉斯加"&gt;ə’læskə&lt;/a&gt;               – AK–       Juneau  &lt;a href="朱诺"&gt;‘dʒu:nəu&lt;/a&gt;
 03. Arizona  [æri’zəunə]  (亚利桑那)          – AZ–       Phoenix &lt;a href="菲尼克斯"&gt;‘fi:niks&lt;/a&gt;
@@ -1922,36 +1927,35 @@ TBL_KEY1.TRADE_DATE = SUBSTR (PIC_TRADE_DATE_9,4,6);
 19. Maine  &lt;a href="缅因"&gt;mein&lt;/a&gt;                       – ME–        Augusta  &lt;a href="奥古斯塔"&gt;ɔ:’gʌstə&lt;/a&gt;
 20. Maryland &lt;a href="马里兰"&gt;‘mεərilænd&lt;/a&gt;             – MD–       Annapolis  &lt;a href="安纳波利斯"&gt;ə’næpəlis&lt;/a&gt;
 21. Massachusetts&lt;a href="马萨诸塞"&gt;,mæsə’tʃu:sits&lt;/a&gt;   – MA         Boston  &lt;a href="波士顿"&gt;‘bɔstən&lt;/a&gt;
-22. Michigan  &lt;a href="密歇根"&gt;‘miʃiɡən&lt;/a&gt;              – MI–       Lansing &lt;a href="兰辛"&gt;‘lænsiŋ&lt;/a&gt;
-23. Minnesota  &lt;a href="明尼苏达"&gt;,mini’səutə&lt;/a&gt;         – MN        St. Paul(圣保罗)
-24. Mississippi &lt;a href="密西西比"&gt;ˌmisiˈsipi&lt;/a&gt;        – MS–       Jackson(杰克逊)
-25. Missouri  &lt;a href="密苏里"&gt;mi’zuəri&lt;/a&gt;               – MO–       Jefferson City(杰斐逊城)
-26. Montana &lt;a href="蒙大拿"&gt;mɔn’tænə&lt;/a&gt;                 – MT–       Helena  &lt;a href="海伦娜"&gt;he’li:nə&lt;/a&gt;
-27. Nebraska  &lt;a href="内布拉斯加"&gt;ni’bræskə&lt;/a&gt;           – NE–      Lincoln &lt;a href="林肯"&gt;‘liŋkən&lt;/a&gt;
-28. Nevada  &lt;a href="内华达"&gt;ni’vædə&lt;/a&gt;                  – NV–      Carson City(卡森城)
-29. New hampshire  &lt;a href="新罕布什尔"&gt;‘hæmpʃə&lt;/a&gt;       – NH-      Concord &lt;a href="康科德"&gt;‘kɔŋkɔ:d&lt;/a&gt;
-30. New jersey  &lt;a href="新泽西"&gt;‘dʒə:zi&lt;/a&gt;              – NJ–      Trenton  &lt;a href="特伦顿"&gt;‘trentən&lt;/a&gt;
-31. New mexico &lt;a href="新墨西哥"&gt;‘meksikəu&lt;/a&gt;            – NM–     Santa Fe  &lt;a href="圣菲"&gt;‘sæntə&lt;/a&gt;
-32. New york(纽约)                             – NY–      Albany  &lt;a href="奥尔巴尼"&gt;‘ɔ:bəni&lt;/a&gt;
-33. North carolina &lt;a href="北卡罗来纳"&gt;,kærə’lainə&lt;/a&gt;    – NC-      Raleigh &lt;a href="纳罗利"&gt;‘rɔ:li&lt;/a&gt;
-34. North dakota  &lt;a href="北达科他"&gt;də’kəutə&lt;/a&gt;         – ND–      Bismarck  &lt;a href="俾斯麦"&gt;‘bizma:k&lt;/a&gt;
-35. Ohio  &lt;a href="俄亥俄"&gt;əu’haiəu&lt;/a&gt;                    –OH–       Columbus &lt;a href="哥伦布"&gt;kə’lʌmbəs&lt;/a&gt;
-36. Oklahoma &lt;a href="俄克拉何马"&gt;,əuklə’həumə&lt;/a&gt;         –OK–     Oklahoma City(俄克拉何马城)
-37. Oregon  &lt;a href="俄勒冈"&gt;‘ɔriɡən&lt;/a&gt;                  –OR–      Salem &lt;a href="塞勒姆"&gt;‘seiləm&lt;/a&gt;
-38. Pennsylvania &lt;a href="宾夕法尼亚"&gt;,pensil’veinjə&lt;/a&gt;   –PA-      Harrisburg  &lt;a href="哈里斯堡"&gt;‘hærisbə:ɡ&lt;/a&gt;
-39. Rhode island  &lt;a href="罗得岛"&gt;rəud&lt;/a&gt;                –RL–      Providence &lt;a href="普罗维登斯"&gt;‘prɔvidəns&lt;/a&gt;
-40. South carolina(南卡罗来纳)                  –SC–      Columbia  &lt;a href="哥伦比亚"&gt;kə’lʌmbiə&lt;/a&gt;
-41. South dakota  &lt;a href="南达科他"&gt;də’kəutə&lt;/a&gt;         –SD–      Pierre &lt;a href="皮尔"&gt;pi(:)’ɛə&lt;/a&gt;
-42. Tennessee  &lt;a href="田纳西"&gt;,teni’si:&lt;/a&gt;             –TN– 　   Nashville  &lt;a href="纳什维尔"&gt;‘næʃvil&lt;/a&gt;
-43. Texas &lt;a href="德克萨斯"&gt;‘teksəs&lt;/a&gt;                  –TX–      Austin  &lt;a href="奥斯汀"&gt;‘ɔ:stin&lt;/a&gt;
-44. Utah  &lt;a href="犹他"&gt;‘ju:tɑ:&lt;/a&gt;                     –UT–      Salt Lake City(盐湖城)
-45. Vermont &lt;a href="佛蒙特"&gt;və:’mɔnt&lt;/a&gt;                 –VT–     Montpelier &lt;a href="蒙彼利埃"&gt;mɔnt’pi:ljə&lt;/a&gt;
-46. Virginia  &lt;a href="弗吉尼亚"&gt;və(:)’dʒinjə&lt;/a&gt;         –VA–      Richmond  &lt;a href="里士满"&gt;‘ritʃmənd&lt;/a&gt;
-47. Washington  &lt;a href="华盛顿"&gt;‘wɔʃiŋtən&lt;/a&gt;            –WA–     Olympia  &lt;a href="奥林匹亚"&gt;əu’limpiə&lt;/a&gt;
-48. West virginia(西弗吉尼亚)                   –WV–     Charleston  &lt;a href="查尔斯顿"&gt;‘tʃa:lstən&lt;/a&gt;
-49. Wisconsin  &lt;a href="威斯康星"&gt;wis’kɔnsin&lt;/a&gt;           –WI–      Madison  &lt;a href="麦迪逊"&gt;‘mædisən&lt;/a&gt;
-50. Wyoming  &lt;a href="怀俄明"&gt;wai’əumiŋ&lt;/a&gt;                –WY–      Cheyenne  &lt;a href="夏延"&gt;ʃai’en&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 12 Dec 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-12-12:articles/美国50个州中英文[带音标].html</guid><category>z/OS</category></item><item><title>Watir自动为优酷视频刷顶</title><link>http://mainframer.github.io/articles/Watir%E8%87%AA%E5%8A%A8%E4%B8%BA%E4%BC%98%E9%85%B7%E8%A7%86%E9%A2%91%E5%88%B7%E9%A1%B6.html</link><description>&lt;p&gt;很喜欢优酷上面的一个节目，想帮帮它早日升到排行榜怎么办？写个脚本好了。&lt;/p&gt;
+22. Michigan  &lt;a href="密歇根"&gt;‘miʃiɡən&lt;/a&gt;              – MI–       Lansing &lt;a href="兰辛"&gt;‘lænsiŋ&lt;/a&gt;&lt;br /&gt;
+23. Minnesota  &lt;a href="明尼苏达"&gt;,mini’səutə&lt;/a&gt;         – MN        St. Paul(圣保罗)&lt;br /&gt;
+24. Mississippi &lt;a href="密西西比"&gt;ˌmisiˈsipi&lt;/a&gt;        – MS–       Jackson(杰克逊)&lt;br /&gt;
+25. Missouri  &lt;a href="密苏里"&gt;mi’zuəri&lt;/a&gt;               – MO–       Jefferson City(杰斐逊城)&lt;br /&gt;
+26. Montana &lt;a href="蒙大拿"&gt;mɔn’tænə&lt;/a&gt;                 – MT–       Helena  &lt;a href="海伦娜"&gt;he’li:nə&lt;/a&gt;&lt;br /&gt;
+27. Nebraska  &lt;a href="内布拉斯加"&gt;ni’bræskə&lt;/a&gt;           – NE–      Lincoln &lt;a href="林肯"&gt;‘liŋkən&lt;/a&gt;&lt;br /&gt;
+28. Nevada  &lt;a href="内华达"&gt;ni’vædə&lt;/a&gt;                  – NV–      Carson City(卡森城)&lt;br /&gt;
+29. New hampshire  &lt;a href="新罕布什尔"&gt;‘hæmpʃə&lt;/a&gt;       – NH-      Concord &lt;a href="康科德"&gt;‘kɔŋkɔ:d&lt;/a&gt;&lt;br /&gt;
+30. New jersey  &lt;a href="新泽西"&gt;‘dʒə:zi&lt;/a&gt;              – NJ–      Trenton  &lt;a href="特伦顿"&gt;‘trentən&lt;/a&gt;&lt;br /&gt;
+31. New mexico &lt;a href="新墨西哥"&gt;‘meksikəu&lt;/a&gt;            – NM–     Santa Fe  &lt;a href="圣菲"&gt;‘sæntə&lt;/a&gt;&lt;br /&gt;
+32. New york(纽约)                             – NY–      Albany  &lt;a href="奥尔巴尼"&gt;‘ɔ:bəni&lt;/a&gt;&lt;br /&gt;
+33. North carolina &lt;a href="北卡罗来纳"&gt;,kærə’lainə&lt;/a&gt;    – NC-      Raleigh &lt;a href="纳罗利"&gt;‘rɔ:li&lt;/a&gt;&lt;br /&gt;
+34. North dakota  &lt;a href="北达科他"&gt;də’kəutə&lt;/a&gt;         – ND–      Bismarck  &lt;a href="俾斯麦"&gt;‘bizma:k&lt;/a&gt;&lt;br /&gt;
+35. Ohio  &lt;a href="俄亥俄"&gt;əu’haiəu&lt;/a&gt;                    –OH–       Columbus &lt;a href="哥伦布"&gt;kə’lʌmbəs&lt;/a&gt;&lt;br /&gt;
+36. Oklahoma &lt;a href="俄克拉何马"&gt;,əuklə’həumə&lt;/a&gt;         –OK–     Oklahoma City(俄克拉何马城)&lt;br /&gt;
+37. Oregon  &lt;a href="俄勒冈"&gt;‘ɔriɡən&lt;/a&gt;                  –OR–      Salem &lt;a href="塞勒姆"&gt;‘seiləm&lt;/a&gt;&lt;br /&gt;
+38. Pennsylvania &lt;a href="宾夕法尼亚"&gt;,pensil’veinjə&lt;/a&gt;   –PA-      Harrisburg  &lt;a href="哈里斯堡"&gt;‘hærisbə:ɡ&lt;/a&gt;&lt;br /&gt;
+39. Rhode island  &lt;a href="罗得岛"&gt;rəud&lt;/a&gt;                –RL–      Providence &lt;a href="普罗维登斯"&gt;‘prɔvidəns&lt;/a&gt;&lt;br /&gt;
+40. South carolina(南卡罗来纳)                  –SC–      Columbia  &lt;a href="哥伦比亚"&gt;kə’lʌmbiə&lt;/a&gt;&lt;br /&gt;
+41. South dakota  &lt;a href="南达科他"&gt;də’kəutə&lt;/a&gt;         –SD–      Pierre &lt;a href="皮尔"&gt;pi(:)’ɛə&lt;/a&gt;&lt;br /&gt;
+42. Tennessee  &lt;a href="田纳西"&gt;,teni’si:&lt;/a&gt;             –TN– 　   Nashville  &lt;a href="纳什维尔"&gt;‘næʃvil&lt;/a&gt; 
+43. Texas &lt;a href="德克萨斯"&gt;‘teksəs&lt;/a&gt;                  –TX–      Austin  &lt;a href="奥斯汀"&gt;‘ɔ:stin&lt;/a&gt;&lt;br /&gt;
+44. Utah  &lt;a href="犹他"&gt;‘ju:tɑ:&lt;/a&gt;                     –UT–      Salt Lake City(盐湖城)&lt;br /&gt;
+45. Vermont &lt;a href="佛蒙特"&gt;və:’mɔnt&lt;/a&gt;                 –VT–     Montpelier &lt;a href="蒙彼利埃"&gt;mɔnt’pi:ljə&lt;/a&gt;&lt;br /&gt;
+46. Virginia  &lt;a href="弗吉尼亚"&gt;və(:)’dʒinjə&lt;/a&gt;         –VA–      Richmond  &lt;a href="里士满"&gt;‘ritʃmənd&lt;/a&gt;&lt;br /&gt;
+47. Washington  &lt;a href="华盛顿"&gt;‘wɔʃiŋtən&lt;/a&gt;            –WA–     Olympia  &lt;a href="奥林匹亚"&gt;əu’limpiə&lt;/a&gt;&lt;br /&gt;
+48. West virginia(西弗吉尼亚)                   –WV–     Charleston  &lt;a href="查尔斯顿"&gt;‘tʃa:lstən&lt;/a&gt;&lt;br /&gt;
+49. Wisconsin  &lt;a href="威斯康星"&gt;wis’kɔnsin&lt;/a&gt;           –WI–      Madison  &lt;a href="麦迪逊"&gt;‘mædisən&lt;/a&gt;&lt;br /&gt;
+50. Wyoming  &lt;a href="怀俄明"&gt;wai’əumiŋ&lt;/a&gt;                –WY–      Cheyenne  &lt;a href="夏延"&gt;ʃai’en&lt;/a&gt;  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 12 Dec 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-12-12:articles/美国50个州中英文[带音标].html</guid><category>z/OS</category></item><item><title>Watir自动为优酷视频刷顶</title><link>http://mainframer.github.io/articles/Watir%E8%87%AA%E5%8A%A8%E4%B8%BA%E4%BC%98%E9%85%B7%E8%A7%86%E9%A2%91%E5%88%B7%E9%A1%B6.html</link><description>&lt;p&gt;很喜欢优酷上面的一个节目，想帮帮它早日升到排行榜怎么办？写个脚本好了。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;#encoding: UTF-8                       #添加这一行才可以处理中文&lt;/span&gt;
 &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rubygems&amp;#39;&lt;/span&gt;                     &lt;span class="c1"&gt;#gem install xxx --no-ri --no-rdoc&lt;/span&gt;
 &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;timeout&amp;#39;&lt;/span&gt;
@@ -2022,26 +2026,34 @@ to an instruction, control word or data outside the available real storage&lt;br
 &lt;h6&gt;上面的&lt;code&gt;MYPLICPY&lt;/code&gt;是PLI的copybook，COBOL的这里就不上图了，上图很累的。&lt;/h6&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Thu, 17 Nov 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-11-17:articles/利用IBM File Manager查看COPYBOOK.html</guid><category>z/OS</category></item><item><title>Changeman的Stage和Checkout</title><link>http://mainframer.github.io/articles/Changeman%E7%9A%84Stage%E5%92%8CCheckout.html</link><description>&lt;p&gt;把一个component(比如程序PRGM001)弄到package里面去有两种方法：一是&lt;code&gt;stage&lt;/code&gt;，二是&lt;code&gt;checkout&lt;/code&gt;。&lt;/p&gt;
 &lt;h3&gt;Stage&lt;/h3&gt;
 &lt;p&gt;所谓的stage就是当生产环境上面没有的，而你要将一个新的component弄到生产上面去的时候用stage。比如生产环境上面没有PRGM001这个程序，如果你最终想把这个程序通过Changeman安装到生产环境，那你就得现在自己的PDS下面建一个名为PRGM001的程序： &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;TESTUID.PRGMLIB(PRGM001)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;TESTUID&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PRGMLIB&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;PRGM001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;然后stage到changeman里面去，具体做法是在ISPF输入:&lt;/p&gt;
-&lt;p&gt;C;1;5;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;输入你的Package ID,回车 
 在Package前面输入命令：&lt;/p&gt;
-&lt;p&gt;S1&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="no"&gt;S1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;&lt;img alt="1" src="./../images/changeman-01.jpg" /&gt;    &lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;h3&gt;Checkout&lt;/h3&gt;
 &lt;p&gt;和stage不同，checkout是针对那些已经存在于生产环境里面的components。它们是有版本之分的，比如你要Checkout一个现在已经存在于生产环境的PRGM002,在Package前面输入命令&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;C1&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="no"&gt;C1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;&lt;img alt="1" src="./../images/changeman-02.jpg" /&gt; &lt;br /&gt;
-这里注意一下&lt;strong&gt;SOURCE LIBRARY. &lt;/strong&gt; 
+这里注意一下&lt;strong&gt;SOURCE LIBRARY. &lt;/strong&gt;
 &lt;code&gt;SOURCE LIBRARY=0&lt;/code&gt; 说明checkout的是当前生产环境baseline里面的最新版本。
 &lt;code&gt;SOURCE LIBRARY=-1&lt;/code&gt;说明checkout的是比当前生产环境baseline旧的一个版本。
 以此类推...&lt;br /&gt;
-最后，在Package ID前面输入命令&lt;code&gt;S2&lt;/code&gt;，查看package里面所有的components(PRGM001和PRGM002)&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 13 Nov 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-11-13:articles/Changeman的Stage和Checkout.html</guid><category>z/OS</category></item><item><title>IBM大型机12月16日起支持Windows系统[转载]</title><link>http://mainframer.github.io/articles/IBM%E5%A4%A7%E5%9E%8B%E6%9C%BA12%E6%9C%8816%E6%97%A5%E8%B5%B7%E6%94%AF%E6%8C%81Windows%E7%B3%BB%E7%BB%9F[%E8%BD%AC%E8%BD%BD].html</link><description>&lt;p&gt;本文来源——http://www.sina.com.cn 2011年11月07日 15:58 新浪科技微博
+最后，在Package ID前面输入命令&lt;code&gt;S2&lt;/code&gt;，查看package里面所有的components(PRGM001和PRGM002)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 13 Nov 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-11-13:articles/Changeman的Stage和Checkout.html</guid><category>z/OS</category></item><item><title>IBM大型机12月16日起支持Windows系统[转载]</title><link>http://mainframer.github.io/articles/IBM%E5%A4%A7%E5%9E%8B%E6%9C%BA12%E6%9C%8816%E6%97%A5%E8%B5%B7%E6%94%AF%E6%8C%81Windows%E7%B3%BB%E7%BB%9F[%E8%BD%AC%E8%BD%BD].html</link><description>&lt;p&gt;本文来源——http://www.sina.com.cn 2011年11月07日 15:58 新浪科技微博
 新浪科技讯 北京时间11月7日下午消息，据美国IT网站ComputerWorld报道，IBM大型机将从今年12月中旬开始支持Windows系统。&lt;/p&gt;
 &lt;p&gt;IBM此前就有意在zEnterprise 196大型机中采用Windows系统。根据IBM发布的最新消息，该公司大型机将从今年12月16日起支持Windows管理功能。用户一直希望数据中心有新的功能。当前，有许多基于Windows的应用可支持大型机获取数据，其中就包括IBM制造的许多应用。但此类应用现在必须单独管理。
 IBM表示，支持Windows系统将有助于提高大型机企业环境的安全性和速度，同时让用户可以在私人网络上连接系统，避免其他网络问题，实现一体化管理。IBM System z部门业务主管格雷格·洛特科(Greg Lotko)说：“之所以增加对Windows系统的支持，是因为IBM真正认识到这个世界的复杂性。”&lt;/p&gt;
@@ -2131,34 +2143,38 @@ Procedure Division 过程部 &lt;/p&gt;
 &lt;li&gt;解决共享文件夹在vmware8的windows8下不能使用的问题；&lt;/li&gt;
 &lt;li&gt;其他好处；&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4&gt;下面简单的说说如何在Vmware8下为&lt;code&gt;window8-dev-preview(开发者预览版)&lt;/code&gt;安装&lt;code&gt;vmware tool&lt;/code&gt;。&lt;/h4&gt;
+&lt;h5&gt;下面简单的说说如何在Vmware8下为&lt;code&gt;window8-dev-preview(开发者预览版)&lt;/code&gt;安装&lt;code&gt;vmware tool&lt;/code&gt;。&lt;/h5&gt;
 &lt;p&gt;&lt;strong&gt;1、&lt;/strong&gt; 安装完&lt;code&gt;VMware Workstation 8.0.0.471780&lt;/code&gt;之后，在安装目录下自带了适合各个系统的&lt;code&gt;vmware tools&lt;/code&gt;，这里我们当然选用&lt;code&gt;windows.iso&lt;/code&gt;啦！在&lt;em&gt;windows8&lt;/em&gt;虚拟机设置的光盘(CD/DVD)设置里面输入&lt;code&gt;windows.iso&lt;/code&gt;的路径，比如我的是：&lt;code&gt;D:\SOFTWARE\VMWARE\windows.iso&lt;/code&gt;，勾选：&lt;code&gt;Connected at Power on&lt;/code&gt;，启动windows8系统；
-&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8.jpg" /&gt;          &lt;br /&gt;
-&lt;strong&gt;2、&lt;/strong&gt; 进入windows8--&amp;gt;Desktop--&amp;gt;Computer，发现虚拟光驱以正确加载，你要做的就是双击光盘里面的setup，安装vmware tool就可以了。
-&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-preview.jpg" /&gt;            &lt;br /&gt;
-&lt;strong&gt;3、&lt;/strong&gt; 重启系统，发现windows8声音有了，可以自由在虚拟机和电脑之间移动传输数据了，可以自由设置共享文件夹了(&lt;em&gt;如下图所示&lt;/em&gt;)，虚拟机和电脑之间的共享文件夹可以点击图上面的"Map Network Drive"来实现。
-&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-share-folder.jpg" /&gt;            &lt;br /&gt;
-自此，windows8在vmware虚拟机下面没有声音等系列问题得到解决。&lt;br /&gt;
+&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8.jpg" /&gt;          &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2、&lt;/strong&gt; 进入windows8--&amp;gt;Desktop--&amp;gt;Computer，发现虚拟光驱以正确加载，你要做的就是双击光盘里面的setup，安装vmware tool就可以了。
+&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-preview.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、&lt;/strong&gt; 重启系统，发现windows8声音有了，可以自由在虚拟机和电脑之间移动传输数据了，可以自由设置共享文件夹了(&lt;em&gt;如下图所示&lt;/em&gt;)，虚拟机和电脑之间的共享文件夹可以点击图上面的"Map Network Drive"来实现。
+&lt;img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-share-folder.jpg" /&gt;        &lt;/p&gt;
+&lt;p&gt;自此，windows8在vmware虚拟机下面没有声音等系列问题得到解决。&lt;br /&gt;
 (如果本文对你有帮助，欢迎收藏转载，谢谢)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 17 Sep 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-09-17:articles/vmware8下给windows8安装vmware tools.html</guid><category>z/OS</category></item><item><title>虚拟机vmware8下安装体验win8开发者预览版</title><link>http://mainframer.github.io/articles/%E8%99%9A%E6%8B%9F%E6%9C%BAvmware8%E4%B8%8B%E5%AE%89%E8%A3%85%E4%BD%93%E9%AA%8Cwin8%E5%BC%80%E5%8F%91%E8%80%85%E9%A2%84%E8%A7%88%E7%89%88.html</link><description>&lt;p&gt;这两天微软发布了windows8的开发者预览版本(dev preview edition)提供下载,首日的下载量就突破50万。虽然这是一个被阉割过的windows8版本，我还是想下载下来安装在虚拟机上试试。
 首先应该去微软官方网站下载win8的镜像ISO文件，这里是官方下载地址，我下载的是WindowsDeveloperPreview-32bit-English.iso。
 &lt;a href="http://msdn.microsoft.com/en-us/windows/apps/br229516"&gt;WindowsDeveloperPreview下载地址&lt;/a&gt;&lt;br /&gt;
 原先我的vmware版本是7.1.4，但是在安装win8的时候一开始就碰到了·&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;"your pc ran into a problem that it couldn't handle,and now it needs to restart"·&lt;/p&gt;
-&lt;p&gt;正所谓出师不利:&lt;br /&gt;
-&lt;img alt="1" src="./../images/win8-dev-pre-blue-screen.jpg" /&gt;            &lt;br /&gt;
-解决办法是到vmware官方网站&lt;a href="http://www.vmware.com"&gt;http://www.vmware.com&lt;/a&gt;去下载最新的&lt;code&gt;Vmware Workstation 8 .0 build 471780&lt;/code&gt;。也是这两天才最新发布的，估计是为了迎接&lt;code&gt;win8-dev-pre&lt;/code&gt;的发布。先卸载掉原先的&lt;code&gt;vmware 7.1.4&lt;/code&gt;,下载并安装好&lt;code&gt;Vmware Workstation 8 .0 build 471780&lt;/code&gt;好后，安装&lt;code&gt;win8-dev-pre&lt;/code&gt;就没有出现上面“卡哇伊”的蓝屏画面了，接下来如果不幸运的话你可能还会遇到&lt;/p&gt;
-&lt;p&gt;Vmware Workstation 8 Windows Cannot Read the settings from the unattend answer file` &lt;/p&gt;
-&lt;p&gt;问题，并且不断重启还是老样子，这里，我是通过在虚拟机设置里面把软驱(floppy)移除来解决问题的，因为在floppy的&lt;code&gt;autoinst.flp&lt;/code&gt;文件中包含了product key的信息，所以必须移除。然后，然后当然是出现如下所示的正常系统安装画面了：&lt;br /&gt;
-&lt;img alt="1" src="./../images/win8-dev-pre-install.jpg" /&gt;              &lt;br /&gt;
-记得系统的版本选择windows7，因为没有windows8的选项可以选。关于接下去如何安装系统，我就不说了。该分区的分区，该下一步的下一步，安装完后该重启的重启，重启之后照例会有一些初始化和&lt;code&gt;Windows Live ID&lt;/code&gt;的设置，只是界面比以前的系统好看了些。重启后使用刚才设置的windows Live账号密码登陆系统。一些在win8发布会上展示的功能如App store在这个开发者预览版本里面还不能用，所以说是被阉割的版本，不过界面体验确实比win7炫多了，可以上几张图为证。点击最左下角的开始按钮可以在不同的应用直接切换。&lt;br /&gt;
-(注：以下均为1366x768的全屏截图，只是上传到博客这里才变小的)&lt;br /&gt;
-&lt;img alt="1" src="./../images/win8-dev-pre-sample01.jpg" /&gt;              &lt;br /&gt;
-&lt;img alt="1" src="./../images/win8-dev-pre-sample02.jpg" /&gt;                &lt;br /&gt;
-&lt;img alt="1" src="./../images/win8-dev-pre-sample03.jpg" /&gt;                &lt;br /&gt;
-&lt;img alt="1" src="./../images/win8-dev-pre-sample04.jpg" /&gt;                &lt;br /&gt;
-是不是很赞？    &lt;/p&gt;
+&lt;p&gt;"your pc ran into a problem that it couldn't handle,and now it needs to restart"·
+&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;正所谓出师不利:&lt;br /&gt;
+&lt;img alt="1" src="./../images/win8-dev-pre-blue-screen.jpg" /&gt;       &lt;/p&gt;
+&lt;p&gt;解决办法是到vmware官方网站&lt;a href="http://www.vmware.com"&gt;http://www.vmware.com&lt;/a&gt;去下载最新的&lt;code&gt;Vmware Workstation 8 .0 build 471780&lt;/code&gt;。也是这两天才最新发布的，估计是为了迎接&lt;code&gt;win8-dev-pre&lt;/code&gt;的发布。先卸载掉原先的&lt;code&gt;vmware 7.1.4&lt;/code&gt;,下载并安装好&lt;code&gt;Vmware Workstation 8 .0 build 471780&lt;/code&gt;好后，安装&lt;code&gt;win8-dev-pre&lt;/code&gt;就没有出现上面“卡哇伊”的蓝屏画面了，接下来如果不幸运的话你可能还会遇到&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vmware Workstation 8 Windows Cannot Read the settings from the unattend answer file` 
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;问题，并且不断重启还是老样子，这里，我是通过在虚拟机设置里面把软驱(floppy)移除来解决问题的，因为在floppy的&lt;code&gt;autoinst.flp&lt;/code&gt;文件中包含了product key的信息，所以必须移除。然后，然后当然是出现如下所示的正常系统安装画面了：&lt;br /&gt;
+&lt;img alt="1" src="./../images/win8-dev-pre-install.jpg" /&gt;           &lt;/p&gt;
+&lt;p&gt;记得系统的版本选择windows7，因为没有windows8的选项可以选。关于接下去如何安装系统，我就不说了。该分区的分区，该下一步的下一步，安装完后该重启的重启，重启之后照例会有一些初始化和&lt;code&gt;Windows Live ID&lt;/code&gt;的设置，只是界面比以前的系统好看了些。重启后使用刚才设置的windows Live账号密码登陆系统。一些在win8发布会上展示的功能如App store在这个开发者预览版本里面还不能用，所以说是被阉割的版本，不过界面体验确实比win7炫多了，可以上几张图为证。点击最左下角的开始按钮可以在不同的应用直接切换。&lt;br /&gt;
+(注：以下均为1366x768的全屏截图，只是上传到博客这里才变小的)&lt;br /&gt;
+&lt;img alt="1" src="./../images/win8-dev-pre-sample01.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/win8-dev-pre-sample02.jpg" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/win8-dev-pre-sample03.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/win8-dev-pre-sample04.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;是不是很赞？    &lt;/p&gt;
 &lt;h3&gt;补充&lt;/h3&gt;
 &lt;p&gt;微软与9月20号发布了windows8开发者预览版的密钥。估计是他们前几天发布的时候忘记了这件事所以现在补上。当你需要重装win8开发者预览版的时候就会提示你输入密钥。微软响应中心日前就提供了两个产品密钥，供测试人员使用。  &lt;br /&gt;
 第一个产品密钥适用于客户端版本，也就是Windows 8开发者预览版，产品密钥为：&lt;code&gt;6RH4V-HNTWC-JQKG8-RFR3R-36498&lt;/code&gt;。&lt;br /&gt;
@@ -2184,7 +2200,7 @@ Procedure Division 过程部 &lt;/p&gt;
 
 
 &lt;p&gt;运行会出现&lt;code&gt;Google Chrome can not be run as root.&lt;/code&gt;错误，解决办法是每次运行的时候手动指定&lt;code&gt;user-data-dir&lt;/code&gt;参数即可，这个是我在网上搜的方法。&lt;br /&gt;
-&lt;img alt="1" src="./../images/backtrack5-google-chrome.jpg" /&gt;            &lt;/p&gt;
+&lt;img alt="1" src="./../images/backtrack5-google-chrome.jpg" /&gt;  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt;&lt;span class="c1"&gt;# /opt/google/chrome/google-chrome %U - -user-data-dir=/root/.config/chromium&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -2200,18 +2216,16 @@ Procedure Division 过程部 &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Linux and Solaris Users :&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;hr /&gt;
 &lt;p&gt;To activate your account, simply execute the following command :
 /opt/nessus/bin/nessus-fetch --register 04BB-41FD-A885-94B5-9B50&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;(这串序列号是每次官网注册随即生成的，这个是我注册的时候提供给我的)
-&lt;img alt="1" src="./../images/backtrack5-nessus-register.jpg" /&gt;          &lt;br /&gt;
-之后就是正常更新插件，更新完毕你就可以正常使用强大的nessus漏洞扫描工具了，可以看到版本号是最新的4.4.1。只不过这是非商用版的，商用版的一般给企业用的。
-&lt;img alt="1" src="./../images/backtrack5-nessus-register-ok.jpg" /&gt;          &lt;br /&gt;
-进入菜单&lt;code&gt;Backtrack --&amp;gt; Vulnerability Assessment --&amp;gt; Network Assessment --&amp;gt; Vulnerability Scanner --&amp;gt; Nessus user add&lt;/code&gt;
+&lt;img alt="1" src="./../images/backtrack5-nessus-register.jpg" /&gt;        &lt;/p&gt;
+&lt;p&gt;之后就是正常更新插件，更新完毕你就可以正常使用强大的nessus漏洞扫描工具了，可以看到版本号是最新的4.4.1。只不过这是非商用版的，商用版的一般给企业用的。
+&lt;img alt="1" src="./../images/backtrack5-nessus-register-ok.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;进入菜单&lt;code&gt;Backtrack --&amp;gt; Vulnerability Assessment --&amp;gt; Network Assessment --&amp;gt; Vulnerability Scanner --&amp;gt; Nessus user add&lt;/code&gt;
 添加&lt;code&gt;username:root&lt;/code&gt;、 &lt;code&gt;password:toor&lt;/code&gt; (可以随便添加用户名密码) 
 更改默认设置: &lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:gedit&lt;/span&gt; &lt;span class="sr"&gt;/opt/nessus&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nessus&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nessusd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
 &lt;span class="n"&gt;listen_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;默认为&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;enable_listen_ipv4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt; &lt;span class="err"&gt;（默认没有开启&lt;/span&gt;&lt;span class="n"&gt;ipv4&lt;/span&gt;&lt;span class="err"&gt;侦听）&lt;/span&gt;
@@ -2241,11 +2255,12 @@ Procedure Division 过程部 &lt;/p&gt;
 
 
 &lt;blockquote&gt;
-&lt;p&gt;Send Comments to Joshua D. Abraham ( jabra@ccs.neu.edu )&lt;/p&gt;
+&lt;p&gt;Send Comments to Joshua D. Abraham ( jabra@ccs.neu.edu )
+&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;genlist可以用来生成一个列表，该列表包含一个ip段内所有相应ping的ICMP报文响应的主机ip。生成的ip列表可以给后续的PBNJ或Nmap用。&lt;br /&gt;
 下图中,首先先用&lt;code&gt;genlist ping&lt;/code&gt;探测ip段&lt;code&gt;192.168.1.*&lt;/code&gt;查找存活主机，存到列表iplist中备用，接着用nmap来扫描列表中的主机们。
 &lt;img alt="1" src="./../images/genlist-nmap.jpg" /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;# `genlist -s 192.168.1.* &amp;gt; iplist`&lt;/span&gt;
 &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;# `cat iplist`           #显示iplist&lt;/span&gt;
 &lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;168&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;   
@@ -2309,15 +2324,15 @@ Procedure Division 过程部 &lt;/p&gt;
 &lt;p&gt;例:查找单词ANAN
 命令: &lt;code&gt;F ANAN WORD&lt;/code&gt;  (限定了只查找是单词的，就是两边都是空格隔开的字符串)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 04 Sep 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-09-04:articles/IBM File Manager for zos 续(一).html</guid><category>z/OS</category></item><item><title>Debug Tool for z/OS</title><link>http://mainframer.github.io/articles/Debug%20Tool%20for%20zOS.html</link><description>&lt;p&gt;作为一个PL/I、COBOL程序猿，调试程序是必须的一项技能。这里我来说说大机上面的调试工具IBM的DebugTool，它支持的环境包括BATCH, TSO, CICS, DB2, DB2存储过程以及UNIX等等。&lt;/p&gt;
 &lt;h4&gt;这篇我来说说如何设置让程序可以被Debug&lt;/h4&gt;
-&lt;p&gt;首先，你必须在编译程序的时候需要选择以Debug模式编译，这个在changeman里面直接在编译的时候选个&lt;code&gt;IBM Debug Tool="Y"&lt;/code&gt;就可以了。&lt;br /&gt;
-接着，如果是BATCH的，就需要在JCL的PARM中指定TEST运行时的参数，通过VTAM接口来初始化debug模式，VTAM%后面跟着的是userid，就像这样：
-&lt;img alt="1" src="./../images/debugtool.jpg" /&gt;  &lt;br /&gt;
-是BATCH的话，你还要有一个Debug的session，这个可以参照我的另外一篇博文：&amp;lt;&amp;lt;登陆大型机——Aviva的介绍&amp;gt;&amp;gt;，只需注意在建debug session的时候destination的IP一般和普通大机的物理ip是不一样。填上正确的ip,然后用你的id登陆,这里我的id是IBMUSER，须跟上面设置的一样。&lt;br /&gt;
+&lt;p&gt;首先，你必须在编译程序的时候需要选择以Debug模式编译，这个在changeman里面直接在编译的时候选个&lt;code&gt;IBM Debug Tool="Y"&lt;/code&gt;就可以了。   &lt;/p&gt;
+&lt;p&gt;接着，如果是BATCH的，就需要在JCL的PARM中指定TEST运行时的参数，通过VTAM接口来初始化debug模式，VTAM%后面跟着的是userid，就像这样：
+&lt;img alt="1" src="./../images/debugtool.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;是BATCH的话，你还要有一个Debug的session，这个可以参照我的另外一篇博文：&amp;lt;&amp;lt;登陆大型机——Aviva的介绍&amp;gt;&amp;gt;，只需注意在建debug session的时候destination的IP一般和普通大机的物理ip是不一样。填上正确的ip,然后用你的id登陆,这里我的id是IBMUSER，须跟上面设置的一样。&lt;br /&gt;
 回到JCL这边，submit，那恭喜你，你就可以看到Debugtool的画面了:
-&lt;img alt="1" src="./../images/Debug-tool-screenshot1.jpg" /&gt;   &lt;br /&gt;
-但是，如果程序是ONLINE的话，一般我们用CICS上面的DTCN这个工具来debug的。这里我假设你已经在上面“首先”里面正确编译了一个ONLINE的程序PRGM002 (带debug编译选项的)。然后，你登陆CICS，输入DTCN进入DTCN的设置界面:
-&lt;img alt="1" src="./../images/Debug-tool-CICS-Control.jpg" /&gt;  &lt;br /&gt;
-参照上面，假如一个transaction叫&lt;em&gt;BTAX&lt;/em&gt;  ，调用了你要debug的程序PRGM002，你就按照上图那样正确设置好，然后F4保存，F5激活设置，F3退出回到CICS界面，输入&lt;span style="color: #ff00ff;"&gt;&lt;strong&gt;BTAX&lt;/strong&gt;&lt;/span&gt;，那也恭喜你，你就进入了debugtool的画面了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 03 Sep 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-09-03:articles/Debug Tool for zOS.html</guid><category>z/OS</category></item><item><title>dnsdict6获取ipv6地址</title><link>http://mainframer.github.io/articles/dnsdict6%E8%8E%B7%E5%8F%96ipv6%E5%9C%B0%E5%9D%80.html</link><description>&lt;p&gt;&lt;strong&gt;[dnsdict6 v1.4 (c) 2010 by van Hauser /   THC www.thc.org]&lt;/strong&gt; &lt;br /&gt;
+&lt;img alt="1" src="./../images/Debug-tool-screenshot1.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;但是，如果程序是ONLINE的话，一般我们用CICS上面的DTCN这个工具来debug的。这里我假设你已经在上面“首先”里面正确编译了一个ONLINE的程序PRGM002 (带debug编译选项的)。然后，你登陆CICS，输入DTCN进入DTCN的设置界面:
+&lt;img alt="1" src="./../images/Debug-tool-CICS-Control.jpg" /&gt;  &lt;/p&gt;
+&lt;p&gt;参照上面，假如一个transaction叫&lt;em&gt;BTAX&lt;/em&gt;  ，调用了你要debug的程序PRGM002，你就按照上图那样正确设置好，然后F4保存，F5激活设置，F3退出回到CICS界面，输入&lt;span style="color: #ff00ff;"&gt;&lt;strong&gt;BTAX&lt;/strong&gt;&lt;/span&gt;，那也恭喜你，你就进入了debugtool的画面了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 03 Sep 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-09-03:articles/Debug Tool for zOS.html</guid><category>z/OS</category></item><item><title>dnsdict6获取ipv6地址</title><link>http://mainframer.github.io/articles/dnsdict6%E8%8E%B7%E5%8F%96ipv6%E5%9C%B0%E5%9D%80.html</link><description>&lt;p&gt;&lt;strong&gt;[dnsdict6 v1.4 (c) 2010 by van Hauser /   THC www.thc.org]&lt;/strong&gt; &lt;br /&gt;
 &lt;code&gt;dnsdict6&lt;/code&gt;用来查询网站的ipv6地址，如果存在的话就显示，不存在的话就没有显示。可自定义线程数和字典。用法为： &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Syntax: dnsdict6 [-t THREADS] domain [dictionary-file]  &lt;/p&gt;
@@ -2373,21 +2388,21 @@ Found 0 domain names and 0 unique ipv6 addresses for baidu.com.&lt;/p&gt;
 &lt;em&gt;12&lt;/em&gt;、/proc/kmsg: 核心输出的消息&lt;br /&gt;
 &lt;em&gt;13&lt;/em&gt;、/proc/version: 内核版本信息&lt;br /&gt;
 &lt;em&gt;14&lt;/em&gt;、/proc/net: 网络协议状态信息  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 28 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-28:articles/Linux硬件信息目录proc.html</guid><category>z/OS</category></item><item><title>mainframe访问磁带(Tape)</title><link>http://mainframer.github.io/articles/mainframe%E8%AE%BF%E9%97%AE%E7%A3%81%E5%B8%A6(Tape).html</link><description>&lt;p&gt;大机上磁带(tape)一般用来存储大容量的数据的，可以降低成本。我们要访问tape中的数据的时候，一般的做法是用JCL将tape中的记录转存到直接存储访问设备(DASD)中再查看。 下图中，我们通过utility &lt;code&gt;ICEMAN&lt;/code&gt;将&lt;code&gt;IBMUSER.DNS.TAPE&lt;/code&gt;这个tape中的所有记录都转存到&lt;code&gt;IBMUSER.TAPE.TO.DASD&lt;/code&gt;中，这样就能查看了。
-&lt;img alt="1" src="./../images/ICEMAN-access-tape.jpg" /&gt;  &lt;br /&gt;
-不过，需要注意的是，tape里面的数据量一般都很大，所以更多时候我们再用的时候会指定读取的record的数目，比如这里我们指定读取100条：
-&lt;img alt="1" src="./../images/ICEMAN-access-tape-stopaft1.jpg" /&gt;&lt;br /&gt;
-甚至，你还可以用SORT中的语法筛选出你想要的条件。比如&lt;code&gt;(1，4，EQ,'AAAA')&lt;/code&gt;这样子。 &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 27 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-27:articles/mainframe访问磁带(Tape).html</guid><category>z/OS</category></item><item><title>用ISRSUPC在PDS所有member中搜索指定字符串</title><link>http://mainframer.github.io/articles/%E7%94%A8ISRSUPC%E5%9C%A8PDS%E6%89%80%E6%9C%89member%E4%B8%AD%E6%90%9C%E7%B4%A2%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2.html</link><description>&lt;p&gt;在一个PDS中搜索名字叫做“snailgo”的member，可以在command line上输入命令&lt;code&gt;mem snailgo&lt;/code&gt;即可。但是，如果想搜索整个PDS下所有的成员(Member)中指定字符串，有没有办法呢？答案是肯定的，我们可以用一个比较的utility &lt;code&gt;ISRSUPC&lt;/code&gt;来实现，同样的，只需submit一个JCL。
-&lt;img alt="1" src="./../images/isrsupc-compare.jpg" /&gt;  &lt;br /&gt;
-这里，我们在PDS &lt;strong&gt;&lt;code&gt;“IBMUSER.TEST.LIB.JCL”&lt;/code&gt;&lt;/strong&gt;和&lt;strong&gt;&lt;code&gt;“IBMUSER.TEST.LIB.PROC”&lt;/code&gt;&lt;/strong&gt;下的所有member中搜索字符串”SNAILGO”。参数为：&lt;code&gt;PARM=(SRCHCMP,ANYC)&lt;/code&gt;，其中&lt;code&gt;SRCHCMP&lt;/code&gt;指定要搜索的字符串，&lt;code&gt;ANYC&lt;/code&gt;表示ANY Case，即搜索任何符合的情况，要了解更详细的PARM的用法，可以参考IBM红宝书&lt;strong&gt;IBM manual ISPF/PDF Guide and Reference for MVS (SC34-4258&lt;/strong&gt;，这里我只介绍最基本的用法。 当然，您也可以一次搜索多个不同的字符串： 
-&lt;img alt="1" src="./../images/isrsupc-multi-compare.jpg" /&gt; &lt;br /&gt;
-最后，在JOB的输出Log里面有个OUTDD，里面就是详细的搜索报告了~&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 27 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-27:articles/用ISRSUPC在PDS所有member中搜索指定字符串.html</guid><category>z/OS</category></item><item><title>新建空的GDG generation</title><link>http://mainframer.github.io/articles/%E6%96%B0%E5%BB%BA%E7%A9%BA%E7%9A%84GDG%20generation.html</link><description>&lt;p&gt;有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的&lt;code&gt;IEFBR14&lt;/code&gt;utility来生成一个空的generation。&lt;code&gt;IEFBR14&lt;/code&gt;它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。
-&lt;img alt="1" src="./../images/gdg-new-empty-generation.jpg" /&gt;  &lt;br /&gt;
-submit，查看，空的generation G0001V00 就生成了:
-&lt;img alt="1" src="./../images/gdg-base-generation.jpg" /&gt;  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 26 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-26:articles/新建空的GDG generation.html</guid><category>z/OS</category></item><item><title>更改GDG世代数参数</title><link>http://mainframer.github.io/articles/%E6%9B%B4%E6%94%B9GDG%E4%B8%96%E4%BB%A3%E6%95%B0%E5%8F%82%E6%95%B0.html</link><description>&lt;p&gt;建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base &lt;strong&gt;&lt;code&gt;“IBMUSER.TEST.LIB.GDGBASE”&lt;/code&gt;&lt;/strong&gt; 的世代数更改为5:
-&lt;img alt="1" src="./../images/gdg-update.jpg" /&gt;  &lt;br /&gt;
-submit即可。 最后，你可以在GDG base前面用命令&lt;code&gt;“LISTC GDG ENT(/) ALL”&lt;/code&gt;来检查看看是不是参数已经从10改成5了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 26 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-26:articles/更改GDG世代数参数.html</guid><category>z/OS</category></item><item><title>新建GDG世代数据集</title><link>http://mainframer.github.io/articles/%E6%96%B0%E5%BB%BAGDG%E4%B8%96%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9B%86.html</link><description>&lt;p&gt;如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：
-&lt;img alt="1" src="./../images/create-gdg-base.jpg" /&gt;    &lt;br /&gt;
-其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Thu, 25 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-25:articles/新建GDG世代数据集.html</guid><category>z/OS</category></item><item><title>Google Adsense申请</title><link>http://mainframer.github.io/articles/Google%20Adsense%E7%94%B3%E8%AF%B7.html</link><description>&lt;p&gt;今天打开gmail竟然看到有一封来自adsense-support的信而且开头是“恭喜您！”，着实有点吃惊呐！前段时间百度了一番，都说网站要满6个月才可以申请成功，我这一个月不到就让我通过了，估计看到我博客更新地挺频繁并且大部分都原创的份儿上了。嗯，不错，看来凡事还是得 “尽人事知天命” 啊。
+&lt;img alt="1" src="./../images/ICEMAN-access-tape.jpg" /&gt;      &lt;/p&gt;
+&lt;p&gt;不过，需要注意的是，tape里面的数据量一般都很大，所以更多时候我们再用的时候会指定读取的record的数目，比如这里我们指定读取100条：
+&lt;img alt="1" src="./../images/ICEMAN-access-tape-stopaft1.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;甚至，你还可以用SORT中的语法筛选出你想要的条件。比如&lt;code&gt;(1，4，EQ,'AAAA')&lt;/code&gt;这样子。 &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 27 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-27:articles/mainframe访问磁带(Tape).html</guid><category>z/OS</category></item><item><title>用ISRSUPC在PDS所有member中搜索指定字符串</title><link>http://mainframer.github.io/articles/%E7%94%A8ISRSUPC%E5%9C%A8PDS%E6%89%80%E6%9C%89member%E4%B8%AD%E6%90%9C%E7%B4%A2%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2.html</link><description>&lt;p&gt;在一个PDS中搜索名字叫做“snailgo”的member，可以在command line上输入命令&lt;code&gt;mem snailgo&lt;/code&gt;即可。但是，如果想搜索整个PDS下所有的成员(Member)中指定字符串，有没有办法呢？答案是肯定的，我们可以用一个比较的utility &lt;code&gt;ISRSUPC&lt;/code&gt;来实现，同样的，只需submit一个JCL。
+&lt;img alt="1" src="./../images/isrsupc-compare.jpg" /&gt;      &lt;/p&gt;
+&lt;p&gt;这里，我们在PDS &lt;strong&gt;&lt;code&gt;“IBMUSER.TEST.LIB.JCL”&lt;/code&gt;&lt;/strong&gt;和&lt;strong&gt;&lt;code&gt;“IBMUSER.TEST.LIB.PROC”&lt;/code&gt;&lt;/strong&gt;下的所有member中搜索字符串”SNAILGO”。参数为：&lt;code&gt;PARM=(SRCHCMP,ANYC)&lt;/code&gt;，其中&lt;code&gt;SRCHCMP&lt;/code&gt;指定要搜索的字符串，&lt;code&gt;ANYC&lt;/code&gt;表示ANY Case，即搜索任何符合的情况，要了解更详细的PARM的用法，可以参考IBM红宝书&lt;strong&gt;IBM manual ISPF/PDF Guide and Reference for MVS (SC34-4258&lt;/strong&gt;，这里我只介绍最基本的用法。 当然，您也可以一次搜索多个不同的字符串： 
+&lt;img alt="1" src="./../images/isrsupc-multi-compare.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;最后，在JOB的输出Log里面有个OUTDD，里面就是详细的搜索报告了~&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 27 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-27:articles/用ISRSUPC在PDS所有member中搜索指定字符串.html</guid><category>z/OS</category></item><item><title>新建空的GDG generation</title><link>http://mainframer.github.io/articles/%E6%96%B0%E5%BB%BA%E7%A9%BA%E7%9A%84GDG%20generation.html</link><description>&lt;p&gt;有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的&lt;code&gt;IEFBR14&lt;/code&gt;utility来生成一个空的generation。&lt;code&gt;IEFBR14&lt;/code&gt;它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/gdg-new-empty-generation.jpg" /&gt;    &lt;br /&gt;
+submit，查看，空的generation G0001V00 就生成了:  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/gdg-base-generation.jpg" /&gt;  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 26 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-26:articles/新建空的GDG generation.html</guid><category>z/OS</category></item><item><title>更改GDG世代数参数</title><link>http://mainframer.github.io/articles/%E6%9B%B4%E6%94%B9GDG%E4%B8%96%E4%BB%A3%E6%95%B0%E5%8F%82%E6%95%B0.html</link><description>&lt;p&gt;建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base &lt;strong&gt;&lt;code&gt;“IBMUSER.TEST.LIB.GDGBASE”&lt;/code&gt;&lt;/strong&gt; 的世代数更改为5:&lt;br /&gt;
+&lt;img alt="1" src="./../images/gdg-update.jpg" /&gt;      &lt;/p&gt;
+&lt;p&gt;submit即可。 最后，你可以在GDG base前面用命令&lt;code&gt;“LISTC GDG ENT(/) ALL”&lt;/code&gt;来检查看看是不是参数已经从10改成5了。  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 26 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-26:articles/更改GDG世代数参数.html</guid><category>z/OS</category></item><item><title>新建GDG世代数据集</title><link>http://mainframer.github.io/articles/%E6%96%B0%E5%BB%BAGDG%E4%B8%96%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9B%86.html</link><description>&lt;p&gt;如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：&lt;br /&gt;
+&lt;img alt="1" src="./../images/create-gdg-base.jpg" /&gt;       &lt;/p&gt;
+&lt;p&gt;其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Thu, 25 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-25:articles/新建GDG世代数据集.html</guid><category>z/OS</category></item><item><title>Google Adsense申请</title><link>http://mainframer.github.io/articles/Google%20Adsense%E7%94%B3%E8%AF%B7.html</link><description>&lt;p&gt;今天打开gmail竟然看到有一封来自adsense-support的信而且开头是“恭喜您！”，着实有点吃惊呐！前段时间百度了一番，都说网站要满6个月才可以申请成功，我这一个月不到就让我通过了，估计看到我博客更新地挺频繁并且大部分都原创的份儿上了。嗯，不错，看来凡事还是得 “尽人事知天命” 啊。
 附上邮件内容，都不知道怎么弄，有空在研究了，最近工作也忙啊！  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;恭喜您！&lt;/p&gt;
@@ -2416,27 +2431,27 @@ submit即可。 最后，你可以在GDG base前面用命令&lt;code&gt;“LISTC
 &lt;p&gt;Google AdSense 小组敬上&lt;/p&gt;
 &lt;p&gt;本电子邮件地址只作通知用途，不接收回信，因此请勿回复本邮件。&lt;/p&gt;
 &lt;blockquote&gt;&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 24 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-24:articles/Google Adsense申请.html</guid><category>z/OS</category></item><item><title>IBM主机技术一本通笔记</title><link>http://mainframer.github.io/articles/IBM%E4%B8%BB%E6%9C%BA%E6%8A%80%E6%9C%AF%E4%B8%80%E6%9C%AC%E9%80%9A%E7%AC%94%E8%AE%B0.html</link><description>&lt;p&gt;这一系列文章将会是从《IBM主机技术一本通》里面选取我个人认为对我有用的部分来记录和阐述。&lt;/p&gt;
-&lt;h4&gt;1、LRECL和BLKSIZE&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="1" src="./../images/LRECL-BLKSIZE.jpg" /&gt;         &lt;br /&gt;
+&lt;h5&gt;1、LRECL和BLKSIZE&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/LRECL-BLKSIZE.jpg" /&gt;           &lt;br /&gt;
 &lt;strong&gt;LRECL&lt;/strong&gt;:逻辑记录是程序想要处理的一个数据单元，通常由许多连接在一起的区域构成。  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;BLKSIZE：物理单元(又称块)   描述了在一次输入输出操作中需要传送的数据量，如上图所示，你一定发现了BLKSIZE必须是LRECL的整数倍，显然这是因为BLKSIZE是多个LRECL嘛！ 
 任何时候发生输入输出时传送的是整个块而不是单个逻辑记录，这样做的好处显而易见，有效地使用空间，提高传送率。&lt;br /&gt;
 &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4&gt;2、I——PDS(分区数据集)信息分析&lt;/h4&gt;
+&lt;h5&gt;2、I——PDS(分区数据集)信息分析&lt;/h5&gt;
 &lt;p&gt;一直对这个知识点一知半解的，今天看了一本通之后，算是明白了。照着图说： &lt;br /&gt;
-&lt;img alt="1" src="./../images/PDS-Infor1.jpg" /&gt;         &lt;br /&gt;
-呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks，当前已经分配了1次，已经有6个member，使用了2个目录块(4和2)&lt;/p&gt;
-&lt;h4&gt;3、L member&lt;/h4&gt;
+&lt;img alt="1" src="./../images/PDS-Infor1.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks，当前已经分配了1次，已经有6个member，使用了2个目录块(4和2)&lt;/p&gt;
+&lt;h5&gt;3、L member&lt;/h5&gt;
 &lt;p&gt;将这个命令列在这里不是不会用，恰恰是天天用经常用。只是羞于我一直以为这里L是List的缩写，原来人家吕老师说了，这是Locate的缩写，目的是每次都将PDS下面的你要找的member定位在第一个位置。   &lt;/p&gt;
 &lt;h4&gt;4、查看VTOC信息&lt;/h4&gt;
 &lt;p&gt;VTOC是系统中的一个顺序数据集，存放在磁盘的0柱面0磁道之后，65535磁道之前。用于记录存储设备上所有数据集的属性，每个磁盘均有一个VTOC。 &lt;br /&gt;
 例如，我要查看磁盘卷PRIM02的信息。&lt;br /&gt;
 &lt;code&gt;ruby3.4;V&lt;/code&gt;
 在Volume Serial上填：   &lt;code&gt;PRIM02&lt;/code&gt;
-&lt;img alt="1" src="./../images/MVS-VTOC-Info.jpg" /&gt;             &lt;br /&gt;
-PRIM02卷总共有50085 tracks，已经用了51%,1个cyls等于15个tracks，VTOC数据集本身分配了45个tracks,已用的占26%，还有1677个可用的DSCBS(数据集控制块)，PRIM02卷上一共还有24430tracks(即1590个Cyls)未使用，未使用的空间中最大的一块有3600tracks(即240个Cyls)。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 21 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-21:articles/IBM主机技术一本通笔记.html</guid><category>z/OS</category></item><item><title>IBM主机技术一本通笔记续</title><link>http://mainframer.github.io/articles/IBM%E4%B8%BB%E6%9C%BA%E6%8A%80%E6%9C%AF%E4%B8%80%E6%9C%AC%E9%80%9A%E7%AC%94%E8%AE%B0%E7%BB%AD.html</link><description>&lt;h5&gt;1、JCL每行80列&lt;/h5&gt;
+&lt;img alt="1" src="./../images/MVS-VTOC-Info.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;PRIM02卷总共有50085 tracks，已经用了51%,1个cyls等于15个tracks，VTOC数据集本身分配了45个tracks,已用的占26%，还有1677个可用的DSCBS(数据集控制块)，PRIM02卷上一共还有24430tracks(即1590个Cyls)未使用，未使用的空间中最大的一块有3600tracks(即240个Cyls)。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 21 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-21:articles/IBM主机技术一本通笔记.html</guid><category>z/OS</category></item><item><title>IBM主机技术一本通笔记续</title><link>http://mainframer.github.io/articles/IBM%E4%B8%BB%E6%9C%BA%E6%8A%80%E6%9C%AF%E4%B8%80%E6%9C%AC%E9%80%9A%E7%AC%94%E8%AE%B0%E7%BB%AD.html</link><description>&lt;h5&gt;1、JCL每行80列&lt;/h5&gt;
 &lt;p&gt;原来这是因为在1960年那个年代，程序员使用的是穿孔卡片来将JCL作业控制语句一个一个的输入系统，构成了批量作业，而当时穿孔卡片只有80列。&lt;/p&gt;
 &lt;h5&gt;2、JOB语句的关键字参数&lt;/h5&gt;
 &lt;p&gt;ADDRSPC 
@@ -2483,20 +2498,20 @@ GROUP &lt;br /&gt;
 这是作者的新浪博客：&lt;a href="http://blog.sina.com.cn/newmanworkshop"&gt;http://blog.sina.com.cn/newmanworkshop&lt;/a&gt;,可以多关注下，都是为了学习进步嘛，希望前辈多出书呐！&lt;br /&gt;
 好了，我会有一个详细的学习计划，好好把这本书吃透，从中汲取自己目前还欠缺的知识。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 20 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-20:articles/IBM主机技术一本通.html</guid><category>z/OS</category></item><item><title>Ruby分割文件</title><link>http://mainframer.github.io/articles/Ruby%E5%88%86%E5%89%B2%E6%96%87%E4%BB%B6.html</link><description>&lt;p&gt;自己小试的ruby程序,用于将一个&lt;code&gt;dictionary.txt&lt;/code&gt;分割成多个小一点的子文件，不然每次都操作&lt;code&gt;dictionary.txt&lt;/code&gt;显得很笨重。想把&lt;code&gt;dictionary.txt&lt;/code&gt;按照字母首a~z，每个首字母再按长度分为长度为1~3的比如a_1to3.txt，长度为4的a_4.txt，长度为5的a_5.txt，长度为6的a_6.txt，长度为7的a_7.txt，长度为8的a_8.txt，以及长度大于8的others。这样，dictionary.txt最后被分割成了6x26+1=157个子文件，就不会像处理dictionary.txt那样笨重了，毕竟CPU有限。&lt;br /&gt;
 为啥wordpress里面粘贴代码都只有黑乎乎的一片呢，可爱的语法高亮在哪里？还是喜欢五颜六色的代码段啊，上图吧:&lt;br /&gt;
-&lt;img alt="1" src="./../images/ruby_spilt_file.jpg" /&gt; &lt;br /&gt;
-只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4,z_5,z_6,z_7,z_8,others&lt;br /&gt;
+&lt;img alt="1" src="./../images/ruby_spilt_file.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4,z_5,z_6,z_7,z_8,others&lt;br /&gt;
 这样分开来处理好多了。  &lt;/p&gt;
 &lt;p&gt;为什么要分割dictionary.txt? 哪来做什么用？你问得太多了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 20 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-20:articles/Ruby分割文件.html</guid><category>z/OS</category></item><item><title>常用的linux命令</title><link>http://mainframer.github.io/articles/%E5%B8%B8%E7%94%A8%E7%9A%84linux%E5%91%BD%E4%BB%A4.html</link><description>&lt;h4&gt;Ubuntu启动3D特效:&lt;/h4&gt;
 &lt;p&gt;root@bt:~# sudo apt-get install compizconfig-settings-manager emerald fusion-ico&lt;br /&gt;
 &lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;:&lt;code&gt;compizconfig-settings-manager&lt;/code&gt;是提供3D桌面特效的主程序，安装后出现在屏幕右上角，可以详细设置。emerald是提供窗口装饰的程序，fusion-icon是桌面栏中的图标&lt;/p&gt;
-&lt;h4&gt;linux系统图标路径：&lt;/h4&gt;
+&lt;h5&gt;linux系统图标路径：&lt;/h5&gt;
 &lt;p&gt;root@bt: &lt;code&gt;cd /usr/share/icons&lt;/code&gt;&lt;/p&gt;
-&lt;h4&gt;查看最近使用的命令&lt;/h4&gt;
+&lt;h5&gt;查看最近使用的命令&lt;/h5&gt;
 &lt;p&gt;root@bt:/# &lt;code&gt;history&lt;/code&gt;  &lt;/p&gt;
-&lt;h4&gt;备份更新源文件&lt;/h4&gt;
+&lt;h5&gt;备份更新源文件&lt;/h5&gt;
 &lt;p&gt;root@bt:~# &lt;code&gt;sudo cp /etc/apt/sources.list /etc/atp.sources.list.backup&lt;/code&gt;    &lt;br /&gt;
 root@bt:~# &lt;code&gt;sudo gedit /etc/apt/sources.list&lt;/code&gt;    &lt;/p&gt;
-&lt;h4&gt;软件包管理命令&lt;/h4&gt;
+&lt;h5&gt;软件包管理命令&lt;/h5&gt;
 &lt;p&gt;root@bt:~#  &lt;code&gt;sudo apt-get update&lt;/code&gt;                     #刷新源文件列表  &lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo apt-get upgrade&lt;/code&gt;                    #对所有软件自动升级  &lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo apt-get dist-upgrade&lt;/code&gt;               #对系统升级  &lt;br /&gt;
@@ -2509,42 +2524,42 @@ root@bt:~#  &lt;code&gt;sudo apt-get autoremove&lt;/code&gt;               
 root@bt:~#  &lt;code&gt;sudo apt-get autoclean&lt;/code&gt;                  #自动删除系统中旧版本软件包  &lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo apt-get clean&lt;/code&gt;                      #清除从源服务器上下载的软件包  &lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo apt-get check&lt;/code&gt;                      #更新缓冲区并检查损坏的软件包   &lt;/p&gt;
-&lt;h4&gt;dpkg安装deb包&lt;/h4&gt;
+&lt;h5&gt;dpkg安装deb包&lt;/h5&gt;
 &lt;p&gt;root@bt:~#  &lt;code&gt;sudo dpkg -i package.deb&lt;/code&gt;                #安装deb包  &lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo dpkg -s package&lt;/code&gt;                    #查询包信息  &lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo dpkg-query -s package&lt;/code&gt;              #同上&lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo dpkg -r package&lt;/code&gt;                    #卸载包&lt;br /&gt;
 root@bt:~#  &lt;code&gt;sudo dpkg -P package&lt;/code&gt;                    #卸载同时删除配置文件  &lt;/p&gt;
-&lt;h4&gt;下载资料&lt;/h4&gt;
+&lt;h5&gt;下载资料&lt;/h5&gt;
 &lt;p&gt;root@bt:~#  &lt;code&gt;wget  资源地址...&lt;/code&gt;  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 17 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-17:articles/常用的linux命令.html</guid><category>z/OS</category></item><item><title>介绍几个在线的资源</title><link>http://mainframer.github.io/articles/%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E5%9C%A8%E7%BA%BF%E7%9A%84%E8%B5%84%E6%BA%90.html</link><description>&lt;p&gt;在平常，如果嫌麻烦，不想安装软件的话，可以试试在线的。特别是云计算正在慢慢普及，以后估计可能一个网络账号行遍互联网了。拭目以待吧！这里介绍几个我还比较常用到的在线资源。先声明，是本人用过的发现比较好用的，虽然写在这有些广告的嫌疑。&lt;/p&gt;
-&lt;h4&gt;在线听歌&lt;/h4&gt;
+&lt;h5&gt;在线听歌&lt;/h5&gt;
 &lt;p&gt;亦歌：&lt;a href="http://www.1g1g.com"&gt;http://www.1g1g.com&lt;/a&gt;&lt;br /&gt;
 一听：&lt;a href="http://www.1ting.com"&gt;http://www.1ting.com&lt;/a&gt;&lt;br /&gt;
 就个人来说，我计较倾向于亦歌，因为它的干净，界面简单。  &lt;/p&gt;
-&lt;h4&gt;在线改图&lt;/h4&gt;
+&lt;h5&gt;在线改图&lt;/h5&gt;
 &lt;p&gt;&lt;a href="http://pixlr.com/editor/"&gt;http://pixlr.com/editor/&lt;/a&gt;&lt;br /&gt;
 这个可是号称在线版本的&lt;code&gt;Photoshop&lt;/code&gt;啊。我觉得功能上来说，如果你不是影楼工作追究卓越的，而只是像我一样日常做些照片图片的修改，图片修改尺寸，再上点简单效果什么的，那么&lt;code&gt;pixlr&lt;/code&gt;完全可以胜任你的要求。就我来说，本站所有的图片都是在&lt;code&gt;pixlr&lt;/code&gt;修改的。如果你和我一样，嫌系统自带的画图工具太烂而又不想去安装个庞大的&lt;code&gt;photoshop&lt;/code&gt;或者&lt;code&gt;google picasa&lt;/code&gt;什么的，那么这个在线的&lt;code&gt;pixlr&lt;/code&gt;会是你不错的选择。&lt;/p&gt;
-&lt;h4&gt;在线输入法&lt;/h4&gt;
+&lt;h5&gt;在线输入法&lt;/h5&gt;
 &lt;p&gt;百度在线输入法： &lt;a href="http://www.baidu.com"&gt;http://www.baidu.com&lt;/a&gt;&lt;br /&gt;
 搜狗云输入法:   &lt;a href="http://pinyin.sogou.com/cloud/"&gt;http://pinyin.sogou.com/cloud/&lt;/a&gt; &lt;br /&gt;
 在线输入法呢，一般我们不会去用它，除非有一天它完善到跟桌面输入法有的媲美的时候。可是，有时候当你系统出毛病了输入法突然不能用了，又或者你新安装了一个linux系统还没来得及学习如何安装中文输入法的时候，你估计就用得上在线输入法了。百度的使用比较简答，虽然它貌似只能在百度首页用。用的时候点击百度搜索框右边的下拉框选择输入法就可以了。  &lt;/p&gt;
-&lt;h4&gt;在线QQ&lt;/h4&gt;
+&lt;h5&gt;在线QQ&lt;/h5&gt;
 &lt;p&gt;&lt;a href="http://web.qq.com"&gt;http://web.qq.com&lt;/a&gt;&lt;br /&gt;
 这个不用说了，自从腾讯推出webQQ以来，这个Web平台上面的应用是越来越丰富了。可以看出腾讯在这块花了不少心思。因为是人都会明白未来的机遇在Web，桌面应用软件总会有寿终正寝的一天的。用过webqq的人都会有种感觉就是越来越像一个操作系统了，基本上你能想到的，人家麻花藤都帮你想好了。一句话，用户体验还是不错的。&lt;/p&gt;
-&lt;h4&gt;在线翻译&lt;/h4&gt;
+&lt;h5&gt;在线翻译&lt;/h5&gt;
 &lt;p&gt;&lt;a href="http://translate.google.cn/"&gt;http://translate.google.cn&lt;/a&gt;&lt;br /&gt;
 谷歌翻译，这个也不用介绍了。用的也比较经常。 &lt;/p&gt;
-&lt;h4&gt;在线杀毒&lt;/h4&gt;
+&lt;h5&gt;在线杀毒&lt;/h5&gt;
 &lt;p&gt;呵呵，几乎所有的在线杀毒厂家都鼓吹自己采用了最先进的云查杀技术，但是道高一尺魔高一丈，稍微有点免杀技术的人都知道，免费的查杀终究是免费的，能不能杀得到自己可以去试一下，金山啊瑞星啊都提供在线的杀毒或者查毒什么的。百度一下就可以了。&lt;/p&gt;
-&lt;h4&gt;在线文档&lt;/h4&gt;
+&lt;h5&gt;在线文档&lt;/h5&gt;
 &lt;p&gt;&lt;a href="https://docs.google.com"&gt;https://docs.google.com&lt;/a&gt;&lt;br /&gt;
 多么强大的东西，可惜被墙了。专门为它翻墙貌似不值得。 &lt;/p&gt;
-&lt;h4&gt;在线记事本&lt;/h4&gt;
+&lt;h5&gt;在线记事本&lt;/h5&gt;
 &lt;p&gt;&lt;a href="http://notepad.cc"&gt;http://notepad.cc&lt;/a&gt;&lt;br /&gt;
 &lt;code&gt;notepad.cc&lt;/code&gt;的界面简洁 支持密码保护 讲事情记录在云端 取个你容易记住的名字 加上密码 随时随地都能记录事情。 &lt;br /&gt;
 &lt;a href="http://www.google.com/notebook"&gt;http://www.google.com/notebook&lt;/a&gt;&lt;br /&gt;
 还好这个没有被墙掉，google的在线记事本挺方便的，每次你新建一个记事本都会在网址后面生成一串字符以唯一标示。你可以用它随时随地的记录一些临时的信息。比如你在公司突然想到有什么需要记录的，你就记在上面，等回家一登陆就查看到了。&lt;/p&gt;
-&lt;h4&gt;在线编译器&lt;/h4&gt;
+&lt;h5&gt;在线编译器&lt;/h5&gt;
 &lt;p&gt;&lt;a href="http://codepad.org"&gt;http://codepad.org/&lt;/a&gt;  &lt;br /&gt;
 &lt;a href="http://ideone.com/"&gt;http://ideone.com/&lt;/a&gt; &lt;br /&gt;
 网页界面简洁，支持&lt;code&gt;C,C++,D,PHP,JAVA,PYTHON,Perl,Ruby&lt;/code&gt;等你能想到的编程语言。&lt;br /&gt;
@@ -2604,7 +2619,7 @@ root@bt:/proc#   &lt;code&gt;lspci -xxxx&lt;/code&gt;     #比上面的更详�
 root@bt:/proc#   &lt;code&gt;lspci -vvx&lt;/code&gt;      #可以组合着查看 &lt;br /&gt;
 root@bt:/proc# l &lt;code&gt;lspci -vvxxx&lt;/code&gt;    #组合着查看   &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;:lspci是从pciids数据库读取硬件信息的，如果出现硬件无法识别，可以使用&lt;code&gt;sudo update-pciide&lt;/code&gt;更新pci数据库。上面的命令查询结果在你的pci硬件出现问题的时候将其在网上公布，有热心网友或厂商会帮你解决的。&lt;/p&gt;
-&lt;h4&gt;查看内核信息&lt;/h4&gt;
+&lt;h5&gt;查看内核信息&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#    &lt;code&gt;uname -a&lt;/code&gt;
 Linux bt 2.6.38 #1 SMP Thu Mar 17 20:52:18 EDT 2011 i686 GNU/Linux&lt;br /&gt;
 root@bt:/proc#     &lt;code&gt;uname --help&lt;/code&gt;&lt;/p&gt;
@@ -2625,7 +2640,7 @@ root@bt:/proc#     &lt;code&gt;uname --help&lt;/code&gt;&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;查看Ubuntu发行版本&lt;/h4&gt;
+&lt;h5&gt;查看Ubuntu发行版本&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#   &lt;code&gt;lsb_release -a&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;No&lt;/span&gt; &lt;span class="no"&gt;LSB&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;span class="no"&gt;Distributor&lt;/span&gt; &lt;span class="ss"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;Ubuntu&lt;/span&gt;
@@ -2635,9 +2650,9 @@ root@bt:/proc#     &lt;code&gt;uname --help&lt;/code&gt;&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;查看内核加载模块&lt;/h4&gt;
+&lt;h5&gt;查看内核加载模块&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#  &lt;code&gt;lsmod&lt;/code&gt;&lt;/p&gt;
-&lt;h4&gt;查看usb设备使用情况&lt;/h4&gt;
+&lt;h5&gt;查看usb设备使用情况&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#    &lt;code&gt;lsusb&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
@@ -2646,7 +2661,7 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;:如果usb设备未被占用，ID号会显示:0000:0000
 root@bt:/proc#  &lt;code&gt;lsusb -v&lt;/code&gt;            #输出详细的USB信息&lt;/p&gt;
-&lt;h4&gt;查看网卡状态&lt;/h4&gt;
+&lt;h5&gt;查看网卡状态&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#  &lt;code&gt;ethtool eth0&lt;/code&gt;        #查看第一个网卡(eth0)的状态信息&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Settings for eth0:
 Supported ports: [ TP ]
@@ -2669,7 +2684,7 @@ Link detected: yes
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;查看CPU信息&lt;/h4&gt;
+&lt;h5&gt;查看CPU信息&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#   &lt;code&gt;cat cpuinfo&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt;  #编号&lt;/span&gt;
 &lt;span class="n"&gt;vendor_id&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GenuineIntel&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; #&lt;/span&gt;&lt;span class="n"&gt;intel&lt;/span&gt;&lt;span class="err"&gt;架构&lt;/span&gt;
@@ -2696,12 +2711,12 @@ Link detected: yes
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;查看当前硬件信息&lt;/h4&gt;
+&lt;h5&gt;查看当前硬件信息&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#    &lt;code&gt;lshw&lt;/code&gt;                 #显示完整的系统硬件信息，包括内存，cpu版本...
 root@bt:/proc#    &lt;code&gt;lshw -short&lt;/code&gt;          #短格式显示
 root@bt:/proc#    &lt;code&gt;lshw -class disk&lt;/code&gt;     #显示磁盘信息
 root@bt:/proc#    &lt;code&gt;lshw -class storage&lt;/code&gt;  #显示存储控制设备信息&lt;/p&gt;
-&lt;h4&gt;查看当前内存使用情况&lt;/h4&gt;
+&lt;h5&gt;查看当前内存使用情况&lt;/h5&gt;
 &lt;p&gt;root@bt:/proc#    &lt;code&gt;free&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;total used free shared buffers cached
 Mem: 1025720 373120 652600 0 35052 207464
@@ -2712,13 +2727,13 @@ Swap: 916476 0 916476
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;：内存实际使用量看&lt;code&gt;-/+ buffers/cache&lt;/code&gt;这一行，是130604K,Mem行是名义上的使用情况，是加上了缓存和缓冲区使用量之后的。
 名义上的内存使用373120K=130604K+35052K+207464K&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 13 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-13:articles/Linux下硬件信息查看.html</guid><category>z/OS</category></item><item><title>Linux分区挂载</title><link>http://mainframer.github.io/articles/Linux%E5%88%86%E5%8C%BA%E6%8C%82%E8%BD%BD.html</link><description>&lt;p&gt;硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有&lt;code&gt;Windows&lt;/code&gt;和&lt;code&gt;FressBSD&lt;/code&gt;等操作系统才需要将自己安装在硬盘的主分区里面，而&lt;code&gt;Linux&lt;/code&gt;呢，可以被安装在逻辑分区里面。&lt;/p&gt;
-&lt;h3&gt;分区编号&lt;/h3&gt;
+&lt;h5&gt;分区编号&lt;/h5&gt;
 &lt;p&gt;Linux将所有的存储设备(包括硬盘)都挂载&lt;code&gt;/dev&lt;/code&gt;目录下新建一个子目录来管理，比如下面:&lt;br /&gt;
 &lt;code&gt;/dev/hda1&lt;/code&gt; 第一块IDE硬盘的第一个主分区  &lt;br /&gt;
 &lt;code&gt;/dev/hda2&lt;/code&gt; 第一块IDE硬盘的第二个主分区  &lt;br /&gt;
 &lt;code&gt;/dev/hda5&lt;/code&gt; 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  &lt;br /&gt;
 &lt;code&gt;/dev/sda1&lt;/code&gt; 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   &lt;/p&gt;
-&lt;h3&gt;挂载点&lt;/h3&gt;
+&lt;h5&gt;挂载点&lt;/h5&gt;
 &lt;p&gt;所谓挂载点，就是将分区挂到一个以&lt;code&gt;“/”&lt;/code&gt;开头的目录中。  &lt;br /&gt;
 &lt;code&gt;/&lt;/code&gt;:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   &lt;br /&gt;
 &lt;code&gt;swap&lt;/code&gt;:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来，直接放在独立的分区上。这个分区一般大小为内存大小的2倍即可。  &lt;br /&gt;
@@ -2727,18 +2742,18 @@ Swap: 916476 0 916476
 &lt;code&gt;/var&lt;/code&gt;:   安装的是服务器方面的应用，作为桌面个人用户的话，大可不必划分这个分区。  &lt;br /&gt;
 &lt;code&gt;/boot&lt;/code&gt;:  存放系统启动所需要的内核文件，包括启动管理器，建议用户划分这个分区。当然，由于内核不大，所以划分500M到1个G给这个分区足够了。  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 13 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-13:articles/Linux分区挂载.html</guid><category>z/OS</category></item><item><title>CICS应用编程接口</title><link>http://mainframer.github.io/articles/CICS%E5%BA%94%E7%94%A8%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3.html</link><description>&lt;h3&gt;开发语言&lt;/h3&gt;
 &lt;p&gt;可以用COBOL,C,C++,Assembler,PL/I等来编写CICS应用程序的主要的大部分逻辑处理功能，而只有少数的一部分功能需要用到CICS命令。&lt;/p&gt;
-&lt;h3&gt;CICS命令格式&lt;/h3&gt;
+&lt;h5&gt;CICS命令格式&lt;/h5&gt;
 &lt;p&gt;&lt;code&gt;EXEC CICS SEND FROM (MSG-AREA) LENGTH(5) END-EXEC&lt;/code&gt;                                         ——向终端发送长度为5的MSG-AREA信息       &lt;br /&gt;
 &lt;code&gt;EXEC CICS READ FILE('FILEA') INTO (CUSTOMER-REC) RIDFLD(CUSTOMER-NUM)&lt;/code&gt;                     ——读和修改VSAM文件       &lt;br /&gt;
 &lt;code&gt;EXEC SQL SELECT colum_names INTO program_variables From Table_name WHERE ... END-EXEC&lt;/code&gt;     ——读和修改关系型数据库&lt;br /&gt;
 &lt;code&gt;EXEC CICS READ ... RESP(RESPONSE-FIELD)&lt;/code&gt;  或  &lt;code&gt;EXEC CICS HANDLE CONDITION&lt;/code&gt;                 ——处理异常条件   &lt;/p&gt;
-&lt;h3&gt;CICS API主要服务&lt;/h3&gt;
+&lt;h5&gt;CICS API主要服务&lt;/h5&gt;
 &lt;p&gt;CICS API主要服务：访问和修改文件；访问和修改关系、层次性数据库；终端的输入和输出；用户定义的数据队列；在一个事务中的多程序间的控制操纵；启动另一个事务;&lt;/p&gt;
-&lt;h3&gt;CICS程序控制的3种方式&lt;/h3&gt;
+&lt;h5&gt;CICS程序控制的3种方式&lt;/h5&gt;
 &lt;p&gt;&lt;strong&gt;RETURN&lt;/strong&gt;:  释放控制于上一高层程序。    &lt;br /&gt;
 &lt;strong&gt;LINK&lt;/strong&gt;:    链接出去执行后返回，就像执行一个子程序。  &lt;br /&gt;
 &lt;strong&gt;XCTL&lt;/strong&gt;:    传递控制于制定程序，但不再返回程序，而返回本层。  &lt;/p&gt;
-&lt;h3&gt;CICS程序的安装&lt;/h3&gt;
+&lt;h5&gt;CICS程序的安装&lt;/h5&gt;
 &lt;p&gt;&lt;strong&gt;1、&lt;/strong&gt; 预编译，即翻译，将&lt;code&gt;EXEC CICS&lt;/code&gt;语句翻译成编程语言的源语句。当然，如果源程序中还是用了&lt;code&gt;EXEC SQL&lt;/code&gt;嵌套数据库功能，那么在此之前必须先进行关系数据库的预编译。
 &lt;strong&gt;2、&lt;/strong&gt; 编译源程序，生成二进制代码。
 &lt;strong&gt;3、&lt;/strong&gt; 链接，将链接生成的结果放到装载库(load lib)当中。
@@ -2800,10 +2815,10 @@ search domain  &lt;/p&gt;
 &lt;/strong&gt;*__：任意一至多位字符  &lt;br /&gt;
 下面举两个例子： &lt;br /&gt;
 输入：&lt;code&gt;IBMUSER.TEST.LIB%&lt;/code&gt;&lt;br /&gt;
-&lt;img alt="1" src="./../images/wild_character01.jpg" /&gt;   &lt;br /&gt;
-输入：&lt;code&gt;IBMUSER.*.LIB&lt;/code&gt;  &lt;br /&gt;
-&lt;img alt="1" src="./../images/wild_character02.jpg" /&gt;     &lt;br /&gt;
-当然，两者可以根据你的需要任意组合使用，这个是没问题的。就像：&lt;code&gt;IBMUSER.*.LIB%&lt;/code&gt;这样。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 08 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-08:articles/ISPF中通配符%和*的使用.html</guid><category>z/OS</category></item><item><title>OLTP和CICS</title><link>http://mainframer.github.io/articles/OLTP%E5%92%8CCICS.html</link><description>&lt;h3&gt;OLTP:联机事务处理&lt;/h3&gt;
+&lt;img alt="1" src="./../images/wild_character01.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;输入：&lt;code&gt;IBMUSER.*.LIB&lt;/code&gt;  &lt;br /&gt;
+&lt;img alt="1" src="./../images/wild_character02.jpg" /&gt;       &lt;/p&gt;
+&lt;p&gt;当然，两者可以根据你的需要任意组合使用，这个是没问题的。就像：&lt;code&gt;IBMUSER.*.LIB%&lt;/code&gt;这样。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 08 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-08:articles/ISPF中通配符%和*的使用.html</guid><category>z/OS</category></item><item><title>OLTP和CICS</title><link>http://mainframer.github.io/articles/OLTP%E5%92%8CCICS.html</link><description>&lt;h3&gt;OLTP:联机事务处理&lt;/h3&gt;
 &lt;p&gt;事务的ACID属性：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;原子性(Atomicity) &lt;/li&gt;
@@ -2864,53 +2879,59 @@ search domain  &lt;/p&gt;
 MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，我们公司还在用的是7.0的版本。这款强大的查询工具是由一家名叫Chicago-Soft的公司生产的，主页在:&lt;a href="http://quickref.com"&gt;MVS/QuickRef主页&lt;/a&gt;，可以去看看。&lt;br /&gt;
 在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2, IDMS, ADABAS, JCL, JES, COBOL. It has the answers to MVS abend codes, z/OS error messages plus 1,260 software products from IBM, CA, BMC and 72 other independent software vendors."&lt;/p&gt;
+&lt;p&gt;"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2, IDMS, ADABAS, JCL, JES, COBOL. It has the answers to MVS abend codes, z/OS error messages plus 1,260 software products from IBM, CA, BMC and 72 other independent software vendors."
+&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;好了，我举几个例子说明QW能用来做什么：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4&gt;想知道JOB log里面的输出信息IEF404I是什么意思？&lt;/h4&gt;
+&lt;h5&gt;想知道JOB log里面的输出信息IEF404I是什么意思？&lt;/h5&gt;
 &lt;blockquote&gt;
-&lt;p&gt;QW IEF404I&lt;/p&gt;
-&lt;p&gt;&lt;img alt="1" src="./../images/MVS_QuickRef_01.jpg" /&gt;           &lt;/p&gt;
+&lt;p&gt;QW IEF404I
+&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/MVS_QuickRef_01.jpg" /&gt;           &lt;/p&gt;
 &lt;h4&gt;在编译/Bind DB2程序的时候返回-805不知道什么意思？&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;QW -805&lt;/p&gt;
-&lt;p&gt;&lt;img alt="1" src="./../images/MVS_QuickRef_02.jpg" /&gt;            &lt;/p&gt;
+&lt;p&gt;QW -805
+&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/MVS_QuickRef_02.jpg" /&gt;            &lt;/p&gt;
 &lt;h4&gt;在提交job的时候abend，返回&lt;code&gt;S04C&lt;/code&gt;系统错误码不知道什么原因？&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;QW S04C&lt;/p&gt;
+&lt;p&gt;QW S04C
+&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/MVS_QuickRef_03.jpg" /&gt;           &lt;br /&gt;
-这里只是举几个例子抛砖引玉，实际工作中当然会遇到各种各样的返回码什么的，这时候就是体现QW命令的价值的时候了。&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 05 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-05:articles/QW命令——MVSQuickRef帮助文档.html</guid><category>z/OS</category></item><item><title>如何用键盘按出人民币符号</title><link>http://mainframer.github.io/articles/%E5%A6%82%E4%BD%95%E7%94%A8%E9%94%AE%E7%9B%98%E6%8C%89%E5%87%BA%E4%BA%BA%E6%B0%91%E5%B8%81%E7%AC%A6%E5%8F%B7.html</link><description>&lt;p&gt;偶然发现的，写在这记一下：&lt;br /&gt;
+这里只是举几个例子抛砖引玉，实际工作中当然会遇到各种各样的返回码什么的，这时候就是体现QW命令的价值的时候了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 05 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-05:articles/QW命令——MVSQuickRef帮助文档.html</guid><category>z/OS</category></item><item><title>如何用键盘按出人民币符号</title><link>http://mainframer.github.io/articles/%E5%A6%82%E4%BD%95%E7%94%A8%E9%94%AE%E7%9B%98%E6%8C%89%E5%87%BA%E4%BA%BA%E6%B0%91%E5%B8%81%E7%AC%A6%E5%8F%B7.html</link><description>&lt;p&gt;偶然发现的，写在这记一下：&lt;br /&gt;
 如果你现在按下键盘 Shift+数字键4出来的是美元"$"符号的话，&lt;br /&gt;
 你可以先按一次Shift,再接着按Shift+数字键4,出来的就是人民币"￥"的符号了。&lt;br /&gt;
 要变回美元"$"的符号的话同理，先按一次Shift，再接着按Shift+数字键4,出来的就是人民币"$"的符号了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Thu, 04 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-04:articles/如何用键盘按出人民币符号.html</guid><category>z/OS</category></item><item><title>如何提交网站到Alexa</title><link>http://mainframer.github.io/articles/%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E7%BD%91%E7%AB%99%E5%88%B0Alexa.html</link><description>&lt;p&gt;大家都知道网站的Alexa全球排名是一项权威的数据，那么如何将自己的网站信息提交到Alexa呢？&lt;br /&gt;
 &lt;strong&gt;1、&lt;/strong&gt;登陆Alexa主页&lt;a href="http://www.alexa.com/"&gt;http://www.alexa.com/&lt;/a&gt;点击右上角的&lt;code&gt;Register&lt;/code&gt;注册一个自己的账号。&lt;br /&gt;
 &lt;strong&gt;2、&lt;/strong&gt;注册好之后登陆，点击&lt;code&gt;Your Site&lt;/code&gt;(你的站点)，提示你没有申明过任何站点。这时点击&lt;code&gt;“Add a site now”&lt;/code&gt;来添加你的站点。&lt;br /&gt;
-&lt;img alt="1" src="./../images/alexa_01.jpg" /&gt;&lt;br /&gt;
-&lt;strong&gt;3、&lt;/strong&gt;在输入框中输入你的站点名称，比如我的就输入：&lt;a href="http://flyuphigh.com"&gt;http://flyuphigh.com&lt;/a&gt;然后点击&lt;code&gt;"Claim your site"&lt;/code&gt;来声明你的站点。&lt;br /&gt;
-&lt;img alt="1" src="./../images/alexa_02.jpg" /&gt;&lt;br /&gt;
-&lt;strong&gt;4、&lt;/strong&gt;Alexa需要验证你对输入的站点确实有所有权，不然你随便瞎输网址了都可以了。右击&lt;code&gt;“this file”&lt;/code&gt;,把此验证文件下载到本地，然后通过FTP传到你网站的根目录下。比如我的话上传完之后就是&lt;code&gt;flyuphigh.com/BTcj7U4QWU9rex4HiGWNv5rF7IY.html&lt;/code&gt;S,上传完点击看看有没有，有的话会提示的：
-&lt;img alt="1" src="./../images/alexa_03.jpg" /&gt;  &lt;br /&gt;
-点击&lt;code&gt;“Verify my file”&lt;/code&gt;来验证，一般只要你争取将此文件上传到根目录就能验证成功的，没有成功的话请检查是不是传对了。验证完之后出现如下页面：
-&lt;img alt="1" src="./../images/alexa_04.jpg" /&gt;     &lt;br /&gt;
-&lt;img alt="1" src="./../images/alexa_05.jpg" /&gt;       &lt;br /&gt;
-回到&lt;code&gt;your site&lt;/code&gt;,是不是发现你的站点已经被加进去了?
-&lt;img alt="1" src="./../images/alexa_06.jpg" /&gt;       &lt;br /&gt;
-点击&lt;code&gt;“Edit info”&lt;/code&gt;来编辑你的站点的信息：对应着把你网站的信息录上去就可以了，提交信息，告诉你你的信息将在2个工作日内更新到Alexa数据库。咋就耐心等吧！可以到&lt;a href="http://alexa.chinaz.com"&gt;站长工具&lt;/a&gt;输入你的网站来查询你的网站信息是否被录入Alexa数据库了。
-&lt;img alt="1" src="./../images/alexa_07.jpg" /&gt;         &lt;br /&gt;
-提示提交成功！
-&lt;img alt="1" src="./../images/alexa_08.jpg" /&gt;           &lt;br /&gt;
-好了，希望有帮助！  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 03 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-03:articles/如何提交网站到Alexa.html</guid><category>z/OS</category></item><item><title>非常好的学英语的网站</title><link>http://mainframer.github.io/articles/%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%9A%84%E5%AD%A6%E8%8B%B1%E8%AF%AD%E7%9A%84%E7%BD%91%E7%AB%99.html</link><description>&lt;p&gt;在国内，我认为最好的学英语的方式就是看英语视频，今天来推荐几个我觉得很不错的网站！ &lt;/p&gt;
-&lt;h3&gt;1、爱布谷CCTV-NEWS&lt;/h3&gt;
+&lt;img alt="1" src="./../images/alexa_01.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、&lt;/strong&gt;在输入框中输入你的站点名称，比如我的就输入：&lt;a href="http://flyuphigh.com"&gt;http://flyuphigh.com&lt;/a&gt;然后点击&lt;code&gt;"Claim your site"&lt;/code&gt;来声明你的站点。&lt;br /&gt;
+&lt;img alt="1" src="./../images/alexa_02.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4、&lt;/strong&gt;Alexa需要验证你对输入的站点确实有所有权，不然你随便瞎输网址了都可以了。右击&lt;code&gt;“this file”&lt;/code&gt;,把此验证文件下载到本地，然后通过FTP传到你网站的根目录下。比如我的话上传完之后就是&lt;code&gt;flyuphigh.com/BTcj7U4QWU9rex4HiGWNv5rF7IY.html&lt;/code&gt;S,上传完点击看看有没有，有的话会提示的：
+&lt;img alt="1" src="./../images/alexa_03.jpg" /&gt;      &lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;“Verify my file”&lt;/code&gt;来验证，一般只要你争取将此文件上传到根目录就能验证成功的，没有成功的话请检查是不是传对了。验证完之后出现如下页面：
+&lt;img alt="1" src="./../images/alexa_04.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/alexa_05.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;回到&lt;code&gt;your site&lt;/code&gt;,是不是发现你的站点已经被加进去了?
+&lt;img alt="1" src="./../images/alexa_06.jpg" /&gt;        &lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;“Edit info”&lt;/code&gt;来编辑你的站点的信息：对应着把你网站的信息录上去就可以了，提交信息，告诉你你的信息将在2个工作日内更新到Alexa数据库。咋就耐心等吧！可以到&lt;a href="http://alexa.chinaz.com"&gt;站长工具&lt;/a&gt;输入你的网站来查询你的网站信息是否被录入Alexa数据库了。
+&lt;img alt="1" src="./../images/alexa_07.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;提示提交成功！
+&lt;img alt="1" src="./../images/alexa_08.jpg" /&gt;  &lt;/p&gt;
+&lt;p&gt;好了，希望有帮助！  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 03 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-03:articles/如何提交网站到Alexa.html</guid><category>z/OS</category></item><item><title>非常好的学英语的网站</title><link>http://mainframer.github.io/articles/%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%9A%84%E5%AD%A6%E8%8B%B1%E8%AF%AD%E7%9A%84%E7%BD%91%E7%AB%99.html</link><description>&lt;p&gt;在国内，我认为最好的学英语的方式就是看英语视频，今天来推荐几个我觉得很不错的网站！ &lt;/p&gt;
+&lt;h5&gt;1、爱布谷CCTV-NEWS&lt;/h5&gt;
 &lt;p&gt;这个是中国网络电视CNTV，上面有丰富的节目资源，网址是&lt;a href="http://bugu.cntv.cn"&gt;爱布谷CNTV&lt;/a&gt;。需要学英语的话可以看&lt;a href="http://bugu.cntv.cn/live_channelcctv_news/index.shtml"&gt;CCTV-NEWS&lt;/a&gt;。不得不说这里面有很多不错的节目，比如海客谈(crossover)，China24和Asia Today，Culture Express，Biz Talk,还有很多不错的主持人，比如邹悦,季小军,杨锐,田薇，爱华，James Chau，芮成钢等等。从我去年底开始看到现在，我是感觉到这个网站在不断的提升档次的，感觉得到大家都很用心在做节目，是不错的学习英语的途径之一。&lt;/p&gt;
-&lt;h3&gt;2、网易公开课&lt;/h3&gt;
+&lt;h5&gt;2、网易公开课&lt;/h5&gt;
 &lt;p&gt;不得不说，网易公开课是我今年发现的少数好网站之一，网址是&lt;a href="http://v.163.com/open"&gt;网易公开课&lt;/a&gt;。这个网站几乎手机了现在世界名校的主流课程，有哈佛，牛津，斯坦福，耶鲁等等，课程涵盖范围也是非常的广，包括计算机领域，伦理心理学领域，医学建筑学领域，法律领域，经济金融等等，让你在家就能感受到世界顶级大学教授的授课风采，听原汁原味的英语学习。网易为此专门有一个翻译团队来翻译这些课程，我看了不少，翻译质量确实很不错。网上多数对此评价较高，更有甚者说是开创了全民上大学全民上名校的先锋。不可否认网易确实干了一件值得赞扬的事儿。&lt;/p&gt;
-&lt;h3&gt;3、国外的视频网站&lt;/h3&gt;
+&lt;h5&gt;3、国外的视频网站&lt;/h5&gt;
 &lt;p&gt;到了这个阶段，你可以去看国外的纯正的网站视频了，那才是真正的原汁原味的。不过，有两个尴尬的问题就是国外的视频网站要么是被屏蔽了(如youtube)，要么就是在你兴高采烈地看完广告后提示:  &lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;"You appear to be outside the United States or its territories offer this video to viewers located within the United States and its territories."&lt;/p&gt;
+&lt;p&gt;"You appear to be outside the United States or its territories offer this video to viewers located within the United States and its territories."
+&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;不过这些都可以通过翻墙来解决，去注册一个服务器在美国的SSH账号就可以了。具体怎么翻墙，请参照我的另外两篇博文，一片是讲windows下的翻墙《ssh+myEntunnel+chrome+proxy switchy翻墙》，另一篇是讲linux下的翻墙《Linux+ssh+chrome(chromium)+proxy switchy+gSTM翻墙》，都很简单的。 
 国外几个比较著名的视频网站有：&lt;br /&gt;
 &lt;strong&gt;&lt;em&gt;www.hulu.com&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;
@@ -2922,8 +2943,7 @@ MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，�
 &lt;strong&gt;&lt;em&gt;tv.msn.com&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
 &lt;strong&gt;&lt;em&gt;www.nbc.com&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
 每个都很不错，我个人最经常在&lt;strong&gt;&lt;em&gt;hulu.com&lt;/em&gt;&lt;/strong&gt;上面看美剧，感觉这上面的资源丰富，高清，速度快，而且有英文字幕，看截图：
-&lt;img alt="1" src="./../images/hulu.jpg" /&gt;        &lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 03 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-03:articles/非常好的学英语的网站.html</guid><category>z/OS</category></item><item><title>Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙</title><link>http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy%20switchy%20+%20gSTM%E7%BF%BB%E5%A2%99.html</link><description>&lt;p&gt;上一篇讲到的是windows下的利用&lt;code&gt;ssh+chrome(chromium)+proxy switchy + Myentunnel&lt;/code&gt;翻墙，其实在linux下和windows下没什么区别，都是用ssh代理，只是利用的客户端软件不一样而已。windows下用Myentunnel，linux下我们一般用&lt;code&gt;gSTM&lt;/code&gt;。 &lt;/p&gt;
+&lt;img alt="1" src="./../images/hulu.jpg" /&gt;        &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 03 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-03:articles/非常好的学英语的网站.html</guid><category>z/OS</category></item><item><title>Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙</title><link>http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy%20switchy%20+%20gSTM%E7%BF%BB%E5%A2%99.html</link><description>&lt;p&gt;上一篇讲到的是windows下的利用&lt;code&gt;ssh+chrome(chromium)+proxy switchy + Myentunnel&lt;/code&gt;翻墙，其实在linux下和windows下没什么区别，都是用ssh代理，只是利用的客户端软件不一样而已。windows下用Myentunnel，linux下我们一般用&lt;code&gt;gSTM&lt;/code&gt;。 &lt;/p&gt;
 &lt;p&gt;gSTM (Gnome SSH Tunnel Manager) 是一款图形化的 SSH 隧道端口重定向管理工具 点击&lt;a href="http://sourceforge.net/projects/gstm/files"&gt;这里&lt;/a&gt;下载后安装，设置和之前讲得Myentunnel差不多.也是必填的几个：&lt;code&gt;SSH服务器地址&lt;/code&gt;,&lt;code&gt;SSH用户名&lt;/code&gt;，&lt;code&gt;SSH密码&lt;/code&gt;，&lt;code&gt;SSH端口3022&lt;/code&gt;，&lt;code&gt;本地端口7070&lt;/code&gt;。
 Proxy switchy的设置请参照我的另一篇文章 &amp;lt;&lt;ssh+myEntunnel+chrome+proxy switchy翻墙&gt;&amp;gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 01 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-01:articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html</guid><category>z/OS</category></item><item><title>ssh+myEntunnel+chrome+proxy switchy翻墙</title><link>http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy%20switchy%E7%BF%BB%E5%A2%99.html</link><description>&lt;p&gt;在windows/win7下如何翻墙？告诉你答案：&lt;code&gt;ssh+myEntunnel+chrome+proxy switchy&lt;/code&gt;插件翻墙。&lt;/p&gt;
 &lt;h4&gt;1、注册SSH账号&lt;/h4&gt;
@@ -2931,8 +2951,8 @@ Proxy switchy的设置请参照我的另一篇文章 &amp;lt;&lt;ssh+myEntunnel+
 &lt;h4&gt;2、下载MyEntunnel&lt;/h4&gt;
 &lt;p&gt;MyEntunnel是用来登录SSH服务器并在本机自动架设一个socks5代理的软件，下载并安装Myentunnel运行。
 在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：&lt;br /&gt;
-&lt;img alt="1" src="./../images/myentunnel.jpg" /&gt;    &lt;br /&gt;
-这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。&lt;br /&gt;
+&lt;img alt="1" src="./../images/myentunnel.jpg" /&gt;     &lt;/p&gt;
+&lt;p&gt;这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。&lt;br /&gt;
 另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的，说明已经连接上了。好，下面设置浏览器。 &lt;/p&gt;
 &lt;h4&gt;3、下载谷歌浏览器Chrome&lt;/h4&gt;
 &lt;p&gt;如果你不是使用谷歌浏览器的话。其他的浏览器像Firefox也可以的，只是要使用的插件不一样而已。IE估计不行，我没用过，因为我印象中IE只能全局设置代理的，没有像Chrome和FireFox一样丰富的插件资源。还有，如果你不想用Chrome或Firefox的话，可以试试Chromium，这是Chrome的开发版本，也很好用。也有proxy switchy插件的。 &lt;/p&gt;
@@ -2942,19 +2962,20 @@ Proxy switchy的设置请参照我的另一篇文章 &amp;lt;&lt;ssh+myEntunnel+
 安装完成后重启Chrome，您会发现地址栏邮编多了个地球一样的插件，这个就是proxy switchy插件了。右击——&amp;gt;选项，打开设置：
 在&lt;strong&gt;Proxy Profiles&lt;/strong&gt;标签栏中，新建一个名为SSH的profile,设置如下：
 这里端口是&lt;strong&gt;7070&lt;/strong&gt;，跟上面的一致。代理选&lt;strong&gt;SOCKS v5&lt;/strong&gt;
-&lt;img alt="1" src="./../images/ssh_01.jpg" /&gt;        &lt;br /&gt;
-可以按照下图中添加自己想要的URL规则，这里我只加了google和youtube的两个规则。
+&lt;img alt="1" src="./../images/ssh_01.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;可以按照下图中添加自己想要的URL规则，这里我只加了google和youtube的两个规则。
 在线的RUL规则栏填：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt&lt;/p&gt;
+&lt;p&gt;http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt
+&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;频率选15min，Profile选刚才建的SSH。&lt;br /&gt;
-&lt;img alt="1" src="./../images/ssh_02.jpg" /&gt;     &lt;br /&gt;
-好了，保存一下先。左击地址栏右边的proxy switcyh插件，选择SSH。在地址栏上输入:&lt;span style="color: #ff00ff;"&gt;www.youtube.com&lt;/span&gt;，回车，你看到了什么？对的，你已经翻越了神奇的GFW了。
-&lt;img alt="1" src="./../images/youtube1.jpg" /&gt;     &lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 01 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-01:articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html</guid><category>z/OS</category></item><item><title>继续介绍世代数据集GDG</title><link>http://mainframer.github.io/articles/%E7%BB%A7%E7%BB%AD%E4%BB%8B%E7%BB%8D%E4%B8%96%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9B%86GDG.html</link><description>&lt;p&gt;上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。&lt;/p&gt;
+&lt;img alt="1" src="./../images/ssh_02.jpg" /&gt;         &lt;/p&gt;
+&lt;p&gt;好了，保存一下先。左击地址栏右边的proxy switcyh插件，选择SSH。在地址栏上输入:&lt;span style="color: #ff00ff;"&gt;www.youtube.com&lt;/span&gt;，回车，你看到了什么？对的，你已经翻越了神奇的GFW了。
+&lt;img alt="1" src="./../images/youtube1.jpg" /&gt;   &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 01 Aug 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-08-01:articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html</guid><category>z/OS</category></item><item><title>继续介绍世代数据集GDG</title><link>http://mainframer.github.io/articles/%E7%BB%A7%E7%BB%AD%E4%BB%8B%E7%BB%8D%E4%B8%96%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9B%86GDG.html</link><description>&lt;p&gt;上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。&lt;/p&gt;
 &lt;h4&gt;1、新建GDG base&lt;/h4&gt;
 &lt;p&gt;一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG.BASE并且可以有10个generation的GDG base。只要提交这个job马上就生成了GDG base了。 &lt;br /&gt;
-&lt;img alt="1" src="./../images/GDG01.jpg" /&gt;        &lt;/p&gt;
+&lt;img alt="1" src="./../images/GDG01.jpg" /&gt;      &lt;/p&gt;
 &lt;h4&gt;2、新建GDG generation&lt;/h4&gt;
 &lt;p&gt;那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;EXTRACT&lt;/span&gt; &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="no"&gt;DSN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MYGDG&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BASE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
@@ -2988,42 +3009,49 @@ Proxy switchy的设置请参照我的另一篇文章 &amp;lt;&lt;ssh+myEntunnel+
 
 
 &lt;p&gt;来查询IBMUSER.MYGDG.BASE的属性信息。  &lt;/p&gt;
-&lt;h4&gt;5、删除GDG&lt;/h4&gt;
+&lt;h5&gt;5、删除GDG&lt;/h5&gt;
 &lt;p&gt;对于一般的Dataset，我们在它前面打一个"D"就删掉了。但是GDG比较特殊，你必须至少输DEL才可以删掉。而且一定要记住顺序：先删除所有的generation，才可以允许你删除GDG base，否则会提示错误。&lt;/p&gt;
-&lt;h4&gt;6、修改GDG属性&lt;/h4&gt;
+&lt;h5&gt;6、修改GDG属性&lt;/h5&gt;
 &lt;p&gt;同样，要修改GDG的属性(如generation数目)，你仍然可以使用系统utiliti IDCAMS来修改，下图中，我用IDCAMS将IBMUSER.MYGDG.BASE的generation数量从原来的10个改到20个，只需提交job即可。
-&lt;img alt="1" src="./../images/GDG02.jpg" /&gt;        &lt;/p&gt;
-&lt;h4&gt;7、注意事项&lt;/h4&gt;
+&lt;img alt="1" src="./../images/GDG02.jpg" /&gt;   &lt;/p&gt;
+&lt;h5&gt;7、注意事项&lt;/h5&gt;
 &lt;p&gt;这里，说一点特别需要注意的地方。GDG是在一个JOB执行完毕之后才被CATALOG的。假如你需要在一个JOB当中有两次需要生成新的GDG generation，那么你必须一次用(+1)，一次用(+2)，不能两次都用(+1)，因为在你Job执行完之前，系统不知道你前面已经生成了一个新的generation的。&lt;br /&gt;
 还有，比如在同一个job里面，你前面一个step用(+1)生成了一个新的generation，名字叫IBMUSER.TEST.GDG，后面某个step紧接着要使用这个新生成的generation，你觉得这时候你是使用&lt;span style="color: #ff00ff;"&gt;DSN=IBMUSER.TEST.GDG(0),DISP=SHR&lt;/span&gt;呢还是使用&lt;span style="color: #ff00ff;"&gt;DSN=IBMUSER.TEST.GDG(+1),DISP=SHR&lt;/span&gt;呢？ 告诉你，这种情况下你必须用后者，因为在这个Job执行完之前，系统并不知道你在前面的step已经生成了这个generation。也就是说，gdg的catalog是在job层面上的，不是在step层面上的。好了，关于GDG就介绍到这里。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 15 Jul 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-07-15:articles/继续介绍世代数据集GDG.html</guid><category>z/OS</category></item><item><title>世代数据集—GDG介绍</title><link>http://mainframer.github.io/articles/%E4%B8%96%E4%BB%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E2%80%94GDG%E4%BB%8B%E7%BB%8D.html</link><description>&lt;p&gt;跟大机打交道，一定对大机上面的一种特殊文件gdg不会陌生。gdg又称世代数据集，在大机上面是用来组织彼此相关联的文件。比如你需要一年12个月每个月的报表数据，则可以定义一个有12个generation（世代）的GDG，每个generation存一个月的数据，这样就保证了彼此关联的信息能被更方便地管理和维护。它会保证任何时候都只保留最新的12个月的数据。&lt;br /&gt;
 要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PROD.CLIENT.ACCOUNT.NUMBER&lt;/p&gt;
+&lt;p&gt;PROD.CLIENT.ACCOUNT.NUMBER
+&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;则一般你以此产生的第一个generation的名字就叫做:&lt;/p&gt;
-&lt;p&gt;PROD.CLIENT.ACCOUNT.NUMBER.G0001V00&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PROD.CLIENT.ACCOUNT.NUMBER.G0001V00
+&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;以此类推，第二个就叫做：&lt;/p&gt;
-&lt;p&gt;PROD.CLIENT.ACCOUNT.NUMBER.G0002V00&lt;/p&gt;
-&lt;p&gt;直到&lt;span style="color: #ff00ff;"&gt;G9992V00&lt;/span&gt;为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01，所以，记住V00就可以了。 &lt;br /&gt;
-关于要怎么建立GDG，如何查看GDG属性，如何更改GDG属性，在使用GDG过程中需要注意什么，我在以后的文章中会慢慢讲到，今天先说到这里。&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 25 Jun 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-06-25:articles/世代数据集—GDG介绍.html</guid><category>z/OS</category></item><item><title>介绍几个比较有用的ISPF命令(续一)</title><link>http://mainframer.github.io/articles/%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E6%AF%94%E8%BE%83%E6%9C%89%E7%94%A8%E7%9A%84ISPF%E5%91%BD%E4%BB%A4(%E7%BB%AD%E4%B8%80).html</link><description>&lt;p&gt;接上次讲的，这里继续介绍几个常用的有用的命令。&lt;/p&gt;
-&lt;h3&gt;COMP&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PROD.CLIENT.ACCOUNT.NUMBER.G0002V00
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;直到&lt;code&gt;G9992V00&lt;/code&gt;为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01，所以，记住V00就可以了。 &lt;br /&gt;
+关于要怎么建立GDG，如何查看GDG属性，如何更改GDG属性，在使用GDG过程中需要注意什么，我在以后的文章中会慢慢讲到，今天先说到这里。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sat, 25 Jun 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-06-25:articles/世代数据集—GDG介绍.html</guid><category>z/OS</category></item><item><title>介绍几个比较有用的ISPF命令(续一)</title><link>http://mainframer.github.io/articles/%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E6%AF%94%E8%BE%83%E6%9C%89%E7%94%A8%E7%9A%84ISPF%E5%91%BD%E4%BB%A4(%E7%BB%AD%E4%B8%80).html</link><description>&lt;p&gt;接上次讲的，这里继续介绍几个常用的有用的命令。&lt;/p&gt;
+&lt;h5&gt;COMP&lt;/h5&gt;
 &lt;p&gt;这是比较文件的命令，功能类似于&lt;code&gt;ISPF 3.13&lt;/code&gt;选项。如果你正打开自己PDS下面的&lt;code&gt;DMSID01.TESTLIB.PRGM(MYPGM01)&lt;/code&gt;编辑，你想跟你同事(DMSID02)PDS下面的一个MYPGM02比较看看有什么不同的话，你可以直接在Command栏上输入命令：
 &lt;code&gt;COMP 'DMSID02.TESTLIB.PRGM(MYPGM02)'&lt;/code&gt;&lt;/p&gt;
-&lt;h3&gt;COMP EXC&lt;/h3&gt;
+&lt;h5&gt;COMP EXC&lt;/h5&gt;
 &lt;p&gt;这是&lt;code&gt;COMP&lt;/code&gt;的高级选项，再后面加上EXC让比较结果中只显示不同的行。当然，为了不失关联性和便于理解，它还额外保留了不同处的前后各5行，显得特别人性化。可以简化成&lt;code&gt;'COMP X'&lt;/code&gt;  &lt;/p&gt;
-&lt;h3&gt;F1 twice&lt;/h3&gt;
+&lt;h5&gt;F1 twice&lt;/h5&gt;
 &lt;p&gt;很经常会有你想编辑某个DATASET或者Member的时候提示&lt;code&gt;"Member in use"&lt;/code&gt;,这时候你可以连续按两次F1，就能知道谁当前正在使用这个DATASET或者Member了。&lt;/p&gt;
-&lt;h3&gt;HEX ON/OFF&lt;/h3&gt;
+&lt;h5&gt;HEX ON/OFF&lt;/h5&gt;
 &lt;p&gt;文件中经常有些字符在普通的&lt;code&gt;View/Browse/Edit&lt;/code&gt;下要么不显示要么显示"乱码"，通常是为了节约存储空间和方便计算，数据类型经常定义成Fixed类型的，比如日期啊数值啊什么的，这时候你可以用命令&lt;code&gt;HEX ON&lt;/code&gt;来查看显示16进制内容，不用的时候用HEX OFF取消。当然，想更方便地查看的话用FileManager或File Aid吧。&lt;/p&gt;
-&lt;h3&gt;RES&lt;/h3&gt;
+&lt;h5&gt;RES&lt;/h5&gt;
 &lt;p&gt;这个也经常用到，你新打开一个Dataset，经常默认的会显示些提示信息在文件的顶端，显得很烦，你可以打个&lt;code&gt;RES&lt;/code&gt;去掉这些提示信息。还有就是，在用&lt;code&gt;JEM/JSCAN&lt;/code&gt;检查完JCL语法的时候，也用RES消去所有的展开信息。在你用&lt;code&gt;XX&lt;/code&gt;隐藏无关的代码之后如何恢复显示呢，也是用&lt;code&gt;RES&lt;/code&gt;。  &lt;/p&gt;
-&lt;h3&gt;REC ON——&amp;gt;UNDO&lt;/h3&gt;
+&lt;h5&gt;REC ON——&amp;gt;UNDO&lt;/h5&gt;
 &lt;p&gt;大机上可没有&lt;code&gt;"Cntl+Z"&lt;/code&gt;的，要想撤销最新一步的修改，你必须打上&lt;code&gt;UNDO&lt;/code&gt;的命令，当然前提是&lt;code&gt;REC ON&lt;/code&gt;的情况下才行，默认情况下是&lt;code&gt;REC OFF&lt;/code&gt;的，所以你要先&lt;code&gt;REC ON&lt;/code&gt;,然后才可以正常用&lt;code&gt;UNDO&lt;/code&gt;。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Tue, 14 Jun 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-06-14:articles/介绍几个比较有用的ISPF命令(续一).html</guid><category>z/OS</category></item><item><title>3390 volume,cylinder,track</title><link>http://mainframer.github.io/articles/3390%20volume,cylinder,track.html</link><description>&lt;p&gt;通常我们用的是3390盘卷(Volume)，一个Volume有多大呢？可以这么计算：&lt;br /&gt;
 一个3390盘卷有3339+1=3340个柱面(Cylinder);&lt;br /&gt;
 一个柱面(Cylinder)有15个磁道(track);&lt;br /&gt;
 一个磁道(track)大概可以保存56KB数据;&lt;br /&gt;
 一个G=1024M;&lt;br /&gt;
-综上可以得到：一个3390判卷(Volume)=3340x15x56=2805600KB，约等于&lt;strong&gt;2.6756G&lt;/strong&gt;&lt;br /&gt;
+综上可以得到：一个3390判卷(Volume)=3340x15x56=2805600KB，约等于&lt;strong&gt;2.6756G&lt;/strong&gt;
 因为在大机上处理的数据基本都是文本，所以这样的量还是够用的，以至于我到现在也很少遇到需要跨卷的情况。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Tue, 03 May 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-05-03:articles/3390 volume,cylinder,track.html</guid><category>z/OS</category></item><item><title>介绍几个有用的ISPF命令(续二)</title><link>http://mainframer.github.io/articles/%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84ISPF%E5%91%BD%E4%BB%A4(%E7%BB%AD%E4%BA%8C).html</link><description>&lt;h4&gt;M+F7 和 M+F8&lt;/h4&gt;
 &lt;p&gt;命令行上输&lt;code&gt;M&lt;/code&gt;,接着按&lt;code&gt;F7&lt;/code&gt;, 表示回到文件最顶端&lt;br /&gt;
 命令行上输&lt;code&gt;M&lt;/code&gt;,接着按&lt;code&gt;F8&lt;/code&gt;, 表示回到文件最低端  &lt;/p&gt;
@@ -3043,13 +3071,13 @@ Proxy switchy的设置请参照我的另一篇文章 &amp;lt;&lt;ssh+myEntunnel+
 &lt;code&gt;SORT CREATE A&lt;/code&gt;:  按创建时间升序排列   &lt;/p&gt;
 &lt;h4&gt;PROFILE&lt;/h4&gt;
 &lt;p&gt;在你编辑某个DATASET的时候用命令&lt;code&gt;PROFILE&lt;/code&gt;可以显示出所有当前的设置参数，然后你可以自行根据需要针对性的修改。如下图所示：
-&lt;img alt="1" src="./../images/profile.jpg" /&gt;     &lt;/p&gt;
+&lt;img alt="1" src="./../images/profile.jpg" /&gt;       &lt;/p&gt;
 &lt;h4&gt;CO和S *&lt;/h4&gt;
 &lt;p&gt;用来一次性拷贝PDS下面所有的member。在你要拷贝的PDS面前输入&lt;code&gt;CO&lt;/code&gt;，回车。这里，我们要拷贝&lt;code&gt;IBMUSER.TEST.LIB.COPY&lt;/code&gt;下面所有的member
-&lt;img alt="1" src="./../images/PDS-COPY-ALL.jpg" /&gt;      &lt;br /&gt;
-接着输入&lt;code&gt;S *&lt;/code&gt;回车即可让你拷贝该PDS下面所有的member，当然，你也可以不拷贝所有的，而是有选择的拷贝。 &lt;br /&gt;
-&lt;img alt="1" src="./../images/PDS-COPY-ALL02.jpg" /&gt;            &lt;br /&gt;
-好了，命令就介绍到这里，以后再补充。  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 24 Apr 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-04-24:articles/介绍几个有用的ISPF命令(续二).html</guid><category>z/OS</category></item><item><title>常见的TSO ISPF命令</title><link>http://mainframer.github.io/articles/%E5%B8%B8%E8%A7%81%E7%9A%84TSO%20ISPF%E5%91%BD%E4%BB%A4.html</link><description>&lt;h3&gt;几个概念&lt;/h3&gt;
+&lt;img alt="1" src="./../images/PDS-COPY-ALL.jpg" /&gt;         &lt;/p&gt;
+&lt;p&gt;接着输入&lt;code&gt;S *&lt;/code&gt;回车即可让你拷贝该PDS下面所有的member，当然，你也可以不拷贝所有的，而是有选择的拷贝。 &lt;br /&gt;
+&lt;img alt="1" src="./../images/PDS-COPY-ALL02.jpg" /&gt;      &lt;/p&gt;
+&lt;p&gt;好了，命令就介绍到这里，以后再补充。  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Sun, 24 Apr 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-04-24:articles/介绍几个有用的ISPF命令(续二).html</guid><category>z/OS</category></item><item><title>常见的TSO ISPF命令</title><link>http://mainframer.github.io/articles/%E5%B8%B8%E8%A7%81%E7%9A%84TSO%20ISPF%E5%91%BD%E4%BB%A4.html</link><description>&lt;h3&gt;几个概念&lt;/h3&gt;
 &lt;h4&gt;&lt;code&gt;TSO&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;TSO(Time Sharing Option)，时分操作，可以同时让多个用户登录到大机上。一般我们认为的TSO是命令行模式，像一些LOGON，LOGOFF，之类的命令与大机交互。&lt;/p&gt;
 &lt;h4&gt;&lt;code&gt;ISPF&lt;/code&gt;&lt;/h4&gt;
@@ -3164,19 +3192,19 @@ TF： 多行文本合并成一行  &lt;/p&gt;
 &lt;h4&gt;MEM&lt;/h4&gt;
 &lt;p&gt;是不是经常忘记自己的某个member在哪个PDS里面了？尝试下命令MEM吧，比如在命令行上打上MEM MYMEMBER 就能知道MYMEMBER在哪个PDS了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 02 Mar 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-03-02:articles/介绍几个比较有用的ISPF命令.html</guid><category>z/OS</category></item><item><title>BT5如何安装VMware Tools</title><link>http://mainframer.github.io/articles/BT5%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85VMware%20Tools.html</link><description>&lt;p&gt;虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  &lt;br /&gt;
 首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是&lt;code&gt;D:\DOCUMENT\linux&lt;/code&gt;.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
-&lt;img alt="1" src="./../images/bt5-vmtools-1.jpg" /&gt; &lt;br /&gt;
-还是老规矩：输入用户名&lt;em&gt;root&lt;/em&gt;；密码&lt;em&gt;toor&lt;/em&gt;；启动图形界面:&lt;em&gt;startx&lt;/em&gt;; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:
-&lt;img alt="1" src="./../images/bt5-vmtools-2.jpg" /&gt; &lt;br /&gt;
+&lt;img alt="1" src="./../images/bt5-vmtools-1.jpg" /&gt;   &lt;br /&gt;
+还是老规矩：输入用户名&lt;em&gt;root&lt;/em&gt;；密码&lt;em&gt;toor&lt;/em&gt;；启动图形界面:&lt;em&gt;startx&lt;/em&gt;; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/bt5-vmtools-2.jpg" /&gt;   &lt;br /&gt;
 先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。&lt;br /&gt;
-记得一定要先改变先&lt;code&gt;sudo chmod 755 vmware-install.pl&lt;/code&gt;不然可能会出现 &lt;code&gt;no such file or directory&lt;/code&gt;。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！
-&lt;img alt="1" src="./../images/bt5-vmtools-3.jpg" /&gt;&lt;br /&gt;
+记得一定要先改变先&lt;code&gt;sudo chmod 755 vmware-install.pl&lt;/code&gt;不然可能会出现 &lt;code&gt;no such file or directory&lt;/code&gt;。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/bt5-vmtools-3.jpg" /&gt;  &lt;br /&gt;
 接着按照提示做就可以了。遇到没有权限访问xxx.pl文件，提示permission denied的,就用sudo chmod 755 xxx.pl修改下权限，然后继续。&lt;br /&gt;
 安装完之后输入 sudo /etc/init.d/vmware-tools 会提示vmware-tools的开关重启命令:&lt;br /&gt;
 &lt;code&gt;rubyusage:vmware-tools {start|stop|status|restart|}&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;执行：&lt;code&gt;/usr/bin/vmware-toolbox&lt;/code&gt; 调出vmware-toolbox可以设置的。&lt;br /&gt;
 重新启动系统，记得在CD/DVD(IDE)设置里面将vmware-tools的Iso启动文件去掉哦！&lt;br /&gt;
 后记:安装VMWare-tools的本意是想能够自由地在windows和BT5之间拷数据拷数据，不过装完发现还是没办法拷数据或文件，不过鼠标倒是可以自由出入了，再也不用按Ctrl+Alt这么麻烦了。好吧，这也不错，关于拷数据的那个问题，有空再研究了~ &lt;/p&gt;
-&lt;h3&gt;今天终于完美了&lt;/h3&gt;
+&lt;h4&gt;今天终于完美了&lt;/h4&gt;
 &lt;p&gt;非常重要：研究了下，终于让我发现什么原因不能在windows和BT5直接互相拷贝和移动文件了。原来是我的vmware-tools安装文件linux.iso不是最新的。上面我用的是D:\DOCUMENT\linux.iso，看了下这个是2008年的，不知道我什么时候下载的保存在D盘里面，害人不浅呐！ 
 废话少说，我虚拟机装的是VMware 7.1.4,在它自己的安装目录下面本身就自带一个vmware-tools安装文件，有适合各种系统的，这里我们当然选择linux.iso啦！好了，在BT5虚拟机设置CD/DVD里面把这个路径填好，选择开机连接CD/DVD,BT5启动后桌面上自动出现了VMware-tools安装光盘，然后按照上面说得一步一步做，之后重启，发现可以直接用鼠标在windows和BT5直接拖文件啦。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 25 Feb 2011 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2011-02-25:articles/BT5如何安装VMware Tools.html</guid><category>z/OS</category></item><item><title>Backtrack初探</title><link>http://mainframer.github.io/articles/Backtrack%E5%88%9D%E6%8E%A2.html</link><description>&lt;p&gt;一般你去网上一搜Backtrack，出来一堆都是说用backtrack来破解无线网络密码的，似乎强大的backtrack俨然给我们的第一印像就是一个蹭网的工具而已，扫扫Wifi，破解破解&lt;code&gt;WEP/WPA/WPA2&lt;/code&gt;加密什么的,实属不该~
 Backtrack,中文不知道该翻译成啥，回溯？Backtrack是基于Slackware和SLAX的自启动运行的操作系统，它的初衷是给计算机安全领域用的。包含安全审计和渗透测试。Backtrack(简称BT)，现在最新的是今年5月份发布的Backtrack5,我现在用的就是BT5,Ubuntu gnome桌面的，你可以选KDE桌面，因为之前我用惯了ubuntu，所以选了gnome的。 在BT5之前还有BT2,BT3,BT4,BT4R2什么的，我接触的比较晚，只接触过BT4R2和BT5。就这两个来说，BT5界面上面确实比BT4R2眩多了。上靓图:
@@ -3350,9 +3378,9 @@ Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说�
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bundle&lt;/span&gt;  &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n-Operator"&gt;/&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bundle&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 26 Nov 2010 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2010-11-26:articles/Linux压缩命令.html</guid><category>z/OS</category></item><item><title>大机平台的版本控制工具Changeman</title><link>http://mainframer.github.io/articles/%E5%A4%A7%E6%9C%BA%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7Changeman.html</link><description>&lt;p&gt;在主机上面有好几个比较常见的版本控制工具，比如changeman和Endevor。我介绍下changeman。 &lt;/p&gt;
 &lt;h4&gt;ISPF面板上输入C;1&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="1" src="./../images/changeman-1.jpg" /&gt;    &lt;/p&gt;
-&lt;h4&gt;changeman的界面，这里装的版本是5.6.2c，&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="1" src="./../images/changeman-21.jpg" /&gt;    &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/changeman-1.jpg" /&gt;      &lt;/p&gt;
+&lt;h5&gt;changeman的界面，这里装的版本是5.6.2c，&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/changeman-21.jpg" /&gt;      &lt;/p&gt;
 &lt;h4&gt;我介绍下各个常用选项&lt;/h4&gt;
 &lt;h5&gt;1.&lt;/h5&gt;
 &lt;p&gt;用来新建，更新一个package的，你需要新建一个package来放置你的PL/I，COBOL程序和JCL等等&lt;/p&gt;
@@ -3375,22 +3403,22 @@ Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说�
 &lt;p&gt;所谓Destination 就是大型机的物理IP，你要连接到大型机上，就必须得配置下大型机的IP。装好aviva后，开始——&amp;gt;程序——&amp;gt;Eicon Aviva——&amp;gt;Create New Destination
 这里destination的名字就取：My Destination&lt;br /&gt;
 Connection type:TN3270   &lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-1.jpg" /&gt;    &lt;br /&gt;
-大型机的物理IP:&lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-2.jpg" /&gt;    &lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-3.jpg" /&gt;  &lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-4.jpg" /&gt;  &lt;br /&gt;
+&lt;img alt="1" src="./../images/aviva-1.jpg" /&gt; &lt;/p&gt;
+&lt;p&gt;大型机的物理IP:&lt;br /&gt;
+&lt;img alt="1" src="./../images/aviva-2.jpg" /&gt;      &lt;br /&gt;
+&lt;img alt="1" src="./../images/aviva-3.jpg" /&gt;    &lt;br /&gt;
+&lt;img alt="1" src="./../images/aviva-4.jpg" /&gt;    &lt;br /&gt;
 这样，Destination就配置好了！ 
 下面是Sesstion的配置。Session就是用来连到Destination交互的，你可以建很多个不同名字的Session，都指向同一个Destination 
 因为平常的工作当中，经常需要建好几个session，比如可以一个用来登陆ONLINE CICS的，一个用来BATCH操作的，这个随便你建几个。这里，我建一个session名字就叫:My First Session &lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-5.jpg" /&gt;   &lt;br /&gt;
-这里可以是默认的 &lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-6.jpg" /&gt;    &lt;br /&gt;
-有时候公司会有两台大型机(两个IP)，这时候可以选择一个Destination用做Primary,另一个用作backup的。因为我们前面只建了一个Destination,所以这里就选Single Destination only好了：&lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-7.jpg" /&gt;   &lt;br /&gt;
-选中我们上面建的Destination:My Destination &lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-8.jpg" /&gt;   &lt;br /&gt;
-&lt;img alt="1" src="./../images/aviva-9.jpg" /&gt;   &lt;br /&gt;
+&lt;img alt="1" src="./../images/aviva-5.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;这里可以是默认的 &lt;br /&gt;
+&lt;img alt="1" src="./../images/aviva-6.jpg" /&gt;      &lt;br /&gt;
+有时候公司会有两台大型机(两个IP)，这时候可以选择一个Destination用做Primary,另一个用作backup的。因为我们前面只建了一个Destination,所以这里就选Single Destination only好了：  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/aviva-7.jpg" /&gt;     &lt;br /&gt;
+选中我们上面建的Destination:My Destination    &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/aviva-8.jpg" /&gt;      &lt;br /&gt;
+&lt;img alt="1" src="./../images/aviva-9.jpg" /&gt;    &lt;br /&gt;
 这样，运行这个session，点击连接，你就能看到那大机那熟悉的黑屏画面了！
 (一般公司都会将大机的默认登陆画面改成包含公司logo的画面，所以不截图了)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Thu, 28 Oct 2010 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2010-10-28:articles/登陆大型机——Aviva的介绍.html</guid><category>z/OS</category></item><item><title>Watir收集最快的代理服务器ip列表</title><link>http://mainframer.github.io/articles/Watir%E6%94%B6%E9%9B%86%E6%9C%80%E5%BF%AB%E7%9A%84%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8ip%E5%88%97%E8%A1%A8.html</link><description>&lt;p&gt;这个脚本所做的事情是从www.cnproxy.com网站上取得最新的10页代理服务器的ip，将它们写到proxy_ip_list.txt文本文件中去。包括每一个代理服务器的响应时间。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;#encoding: UTF-8                       #添加这一行才可以处理中文&lt;/span&gt;
@@ -3459,9 +3487,9 @@ Connection type:TN3270   &lt;br /&gt;
 &lt;span class="n"&gt;profile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Selenium&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;WebDriver&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Firefox&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Profile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;
 &lt;span class="n"&gt;profile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Selenium&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;WebDriver&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Proxy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="ss"&gt;:http&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;my.proxy.com:8080&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:ssl&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;my.proxy.com:8080&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;browser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Watir&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Browser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="ss"&gt;:firefox&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:profile&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;profile&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 20 Aug 2010 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2010-08-20:articles/Watir设置代理.html</guid><category>z/OS</category></item><item><title>Hercules搭建z/OS虚拟机遇到的问题及解决办法</title><link>http://mainframer.github.io/articles/Hercules%E6%90%AD%E5%BB%BAzOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html</link><description>&lt;p&gt;初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。&lt;/p&gt;
-&lt;h4&gt;PCOMM每次都提示打印，怎么去掉这个烦人的窗口？&lt;/h4&gt;
-&lt;h4&gt;解决办法：&lt;/h4&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 20 Aug 2010 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2010-08-20:articles/Watir设置代理.html</guid><category>z/OS</category></item><item><title>Hercules搭建z/OS虚拟机遇到的问题及解决办法</title><link>http://mainframer.github.io/articles/Hercules%E6%90%AD%E5%BB%BAzOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html</link><description>&lt;p&gt;初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。  &lt;/p&gt;
+&lt;h5&gt;PCOMM每次都提示打印，怎么去掉这个烦人的窗口？&lt;/h5&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;PCOMM去掉每次连接提示打印的烦人窗口的方法：在&lt;code&gt;D:\SOFTWARE\IBMPCOMM\private\*.ws&lt;/code&gt;文件里面添加：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="no"&gt;LT&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="no"&gt;IgnoreWCCStartPrint&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;
@@ -3470,37 +3498,32 @@ Connection type:TN3270   &lt;br /&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
-&lt;h3&gt;如何为每一个磁盘建立shadow？&lt;/h3&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;如何为每一个磁盘建立shadow？&lt;/h5&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;比如：&lt;code&gt;sf+0A80&lt;/code&gt;:  为设备号为0A80的设备建立shadow (设备号只是个临时的概念)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4&gt;IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM&lt;/h4&gt;
+&lt;h5&gt;IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/zosmoni_1.png" /&gt;      &lt;/p&gt;
-&lt;h4&gt;解决办法：&lt;/h4&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;在zOS1.9.cnf配置文件中删掉下面一行即可：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;            XPNDSIZE  6
+&lt;div class="highlight"&gt;&lt;pre&gt;XPNDSIZE  6
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
-&lt;h3&gt;&lt;code&gt;HHCLC042E Port 00: Read error: Bad file descriptor&lt;/code&gt;&lt;/h3&gt;
+&lt;h5&gt;&lt;code&gt;HHCLC042E Port 00: Read error: Bad file descriptor&lt;/code&gt;&lt;/h5&gt;
 &lt;p&gt;HerculesGUI界面一直提示 &lt;code&gt;HHCLC042E Port 00: Read error: Bad file descriptor&lt;/code&gt; 并且MVS主控台端有几行大红字：&lt;br /&gt;
 &lt;img alt="1" src="./../images/zosmoni_2.png" /&gt;      &lt;/p&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;一直提示是老版本CTCI的bug，不用管。或者下载最新版的CTCI。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;MVS主控台端出现大红字&lt;/h3&gt;
+&lt;h5&gt;MVS主控台端出现大红字&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/zosmoni_3.png" /&gt;      &lt;/p&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;等待，取决你机器速度。
  + 绿色信息代表正常
  + 红色的表示有错误或者警告
  + 白色的信息如果有一个编号&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;错误&lt;code&gt;IRA200E AUXILIARY STORAGE SHORTAGE&lt;/code&gt;&lt;/h3&gt;
+&lt;h5&gt;错误&lt;code&gt;IRA200E AUXILIARY STORAGE SHORTAGE&lt;/code&gt;&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/zosmoni_4.png" /&gt;      &lt;/p&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;&lt;code&gt;OS/390&lt;/code&gt;自动记录硬件 (和某些软件) 的错误数据和一些统计数据于PDS &lt;code&gt;SYS1.LOGREC&lt;/code&gt;中，最终此数据集会被装满数据，系统会在 &lt;em&gt;CONSOLE&lt;/em&gt; 上发一条信息。
 使用下述作业会打印 LOGREC 中的简要信息，同时会清空 &lt;code&gt;SYS1.LOGREC&lt;/code&gt; 数据集：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;...&lt;/span&gt;
@@ -3518,9 +3541,8 @@ Connection type:TN3270   &lt;br /&gt;
 
 
 &lt;p&gt;参照原链接：&lt;a href="http://blog.sina.com.cn/s/blog_6c45bc400100x1uf.html"&gt;http://blog.sina.com.cn/s/blog_6c45bc400100x1uf.html&lt;/a&gt;  &lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;如何规范地正常关闭大机虚拟机？&lt;/h3&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;如何规范地正常关闭大机虚拟机？&lt;/h5&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;完整的停机，在停止VTAM之前, 要先停掉DB2，CICS等作业：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;CICSA&lt;/span&gt; 
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;DB8G&lt;/span&gt; &lt;span class="n"&gt;STOP&lt;/span&gt; &lt;span class="n"&gt;DB2&lt;/span&gt; 
@@ -3555,12 +3577,10 @@ Connection type:TN3270   &lt;br /&gt;
 
 &lt;p&gt;&lt;em&gt;3、&lt;/em&gt; 使用命令&lt;code&gt;IPL A80&lt;/code&gt;来重新启动系统。  &lt;br /&gt;
 你的3270仿真软件(MVS Console)应该不需要重新连接。 &lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;输入命令&lt;code&gt;L CICS&lt;/code&gt;欲登陆CICS出现错误:&lt;code&gt;LCL701 UNABLE TO ESTABLISH SESSION - INIT SELF FAILED WITH SENSE 08570002&lt;/code&gt;&lt;/h3&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;输入命令&lt;code&gt;L CICS&lt;/code&gt;欲登陆CICS出现错误:&lt;code&gt;LCL701 UNABLE TO ESTABLISH SESSION - INIT SELF FAILED WITH SENSE 08570002&lt;/code&gt;&lt;/h5&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;要正常登录，三个软件必须正常运行：&lt;code&gt;JES2&lt;/code&gt;,&lt;code&gt;VTAM&lt;/code&gt;和&lt;code&gt;TSO&lt;/code&gt;,多半原因是因为&lt;code&gt;VTAM&lt;/code&gt;还没正常启动好。只需等待一会儿问题解决。(&lt;code&gt;LCL701&lt;/code&gt;为&lt;code&gt;VTAM&lt;/code&gt;终端编号)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;TSO默认USER/PASS&lt;/h3&gt;
+&lt;h5&gt;TSO默认USER/PASS&lt;/h5&gt;
 &lt;p&gt;（0A82CSM1登陆TSO可以，CICS不行；0A82ACM1反之)&lt;/p&gt;
 &lt;h5&gt;默认用户　　　   密码　　　        权限&lt;/h5&gt;
 &lt;ul&gt;
@@ -3573,12 +3593,11 @@ Connection type:TN3270   &lt;br /&gt;
 &lt;li&gt;OPEN1 - OPEN3 -    SYS1&lt;br /&gt;
 &lt;img alt="1" src="./../images/zosmoni_5.png" /&gt;   &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;&lt;code&gt;Master console&lt;/code&gt; 不显示&lt;/h3&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;&lt;code&gt;Master console&lt;/code&gt; 不显示&lt;/h5&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;Master console 的窗口要在IPL 之前就打开 否则无法显示内容&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3&gt;&lt;code&gt;Master console&lt;/code&gt;显示：&lt;code&gt;*IRA200E AUXILIARY STORAGE SHORTAGE&lt;/code&gt;, 并且登陆‘L TSO’显示：&lt;code&gt;IKT00203I ADDRESS SPACE CREATION FAILED&lt;/code&gt;&lt;/h3&gt;
-&lt;h3&gt;解决办法：&lt;/h3&gt;
+&lt;h5&gt;&lt;code&gt;Master console&lt;/code&gt;显示：&lt;code&gt;*IRA200E AUXILIARY STORAGE SHORTAGE&lt;/code&gt;, 并且登陆‘L TSO’显示：&lt;code&gt;IKT00203I ADDRESS SPACE CREATION FAILED&lt;/code&gt;&lt;/h5&gt;
+&lt;h5&gt;解决办法：&lt;/h5&gt;
 &lt;p&gt;原因是Page Dataset空间不够，可试试增大hercules.cnf中的MAINSIZE&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;D ASM                
 &lt;/pre&gt;&lt;/div&gt;
@@ -3656,7 +3675,7 @@ http://fandezhi.efglobe.com/modules.php?name=Forums&amp;amp;file=viewtopic&amp;a
 &lt;code&gt;BC&lt;/code&gt;         CLPA and cold start of JES2, load WAS libraries, WAS is manually started &lt;br /&gt;
 &lt;code&gt;BW&lt;/code&gt;         Warmstart of JES2. WAS is manually started. &lt;br /&gt;
 &lt;code&gt;99&lt;/code&gt;         Points to IODF99 for IPL on MP3000. Reply 00,SYSP=xx were xx is any of the above options i.e. for cics only xx=cc or cw.   &lt;/p&gt;
-&lt;h4&gt;Device number: &lt;strong&gt;0A80&lt;/strong&gt; 　Load Parm: &lt;strong&gt;0A82CSM1&lt;/strong&gt;&lt;/h4&gt;
+&lt;h5&gt;Device number: &lt;strong&gt;0A80&lt;/strong&gt; 　Load Parm: &lt;strong&gt;0A82CSM1&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/zosmoni_loadparm_1.png" /&gt;     &lt;/p&gt;
-&lt;h4&gt;Device number: &lt;strong&gt;0A80&lt;/strong&gt; 　Load Parm: &lt;strong&gt;0A82DBM1&lt;/strong&gt;&lt;/h4&gt;
+&lt;h5&gt;Device number: &lt;strong&gt;0A80&lt;/strong&gt; 　Load Parm: &lt;strong&gt;0A82DBM1&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="1" src="./../images/zosmoni_loadparm_2.png" /&gt;     &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 04 Jun 2010 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2010-06-04:articles/搭建zOS虚拟机常用的LoadParm.html</guid><category>z/OS</category></item></channel></rss>
