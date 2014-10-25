@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/backtrack.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2011-09-12T00:00:00+08:00</updated><entry><title>Backtrack5最新版chrome</title><link href="http://mainframer.github.io/articles/Backtrack5%E6%9C%80%E6%96%B0%E7%89%88chrome.html" rel="alternate"></link><updated>2011-09-12T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-09-12:articles/Backtrack5最新版chrome.html</id><summary type="html">&lt;p&gt;在windows下用惯了chrome，受不了chrome的诱惑，还是忍不住想把bt5下的firefox给换了。chrome官网下载安装包放置于&lt;code&gt;/root/software/&lt;/code&gt;路径下，然后安装。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;# cd software/&lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="sr"&gt;/software# dpkg -i google-chrome-stable_current_i386.deb&lt;/span&gt;
+&lt;span class="sr"&gt;Selecting previously deselected package google-chrome-stable.&lt;/span&gt;
+&lt;span class="sr"&gt;(Reading database ... 220905 files and directories currently installed.)&lt;/span&gt;
+&lt;span class="sr"&gt;Unpacking google-chrome-stable (from google-chrome-stable_current_i386.deb) ...&lt;/span&gt;
+&lt;span class="sr"&gt;Setting up google-chrome-stable (13.0.782.220-r99552) ...&lt;/span&gt;
+&lt;span class="sr"&gt;update-alternatives: using /us&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;provide&lt;/span&gt; &lt;span class="sr"&gt;/usr/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="ss"&gt;alternatives&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="sr"&gt;/usr/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;provide&lt;/span&gt; &lt;span class="sr"&gt;/usr/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gnome&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gnome&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;Processing&lt;/span&gt; &lt;span class="n"&gt;triggers&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;desktop&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;utils&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="no"&gt;Processing&lt;/span&gt; &lt;span class="n"&gt;triggers&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gmenu&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="no"&gt;Rebuilding&lt;/span&gt; &lt;span class="sr"&gt;/usr/s&lt;/span&gt;&lt;span class="n"&gt;hare&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;applications&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="no"&gt;Processing&lt;/span&gt; &lt;span class="n"&gt;triggers&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;menu&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="no"&gt;Processing&lt;/span&gt; &lt;span class="n"&gt;triggers&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;man&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="no"&gt;Processing&lt;/span&gt; &lt;span class="n"&gt;triggers&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;运行会出现&lt;code&gt;Google Chrome can not be run as root.&lt;/code&gt;错误，解决办法是每次运行的时候手动指定&lt;code&gt;user-data-dir&lt;/code&gt;参数即可，这个是我在网上搜的方法。&lt;br /&gt;
+&lt;img alt="1" src="./../images/backtrack5-google-chrome.jpg" /&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt;&lt;span class="c1"&gt;# /opt/google/chrome/google-chrome %U - -user-data-dir=/root/.config/chromium&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;看看是不是可以用了？chrome比firefox清爽多了感觉。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>backtrack5下注册nessus非商用版</title><link href="http://mainframer.github.io/articles/backtrack5%E4%B8%8B%E6%B3%A8%E5%86%8Cnessus%E9%9D%9E%E5%95%86%E7%94%A8%E7%89%88.html" rel="alternate"></link><updated>2011-09-08T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-09-08:articles/backtrack5下注册nessus非商用版.html</id><summary type="html">&lt;p&gt;打开BT5下菜单&lt;code&gt;Backtrack --&amp;gt; Vulnerability Assessment --&amp;gt; Network Assessment --&amp;gt; Vulnerability Scanner --&amp;gt; Nessus start&lt;/code&gt; 会提示插件缺失需要注册。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;# Missing plugins. Attempting a plugin update...&lt;/span&gt;
+&lt;span class="no"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;installation&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;missing&lt;/span&gt; &lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="no"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;register&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;try&lt;/span&gt; &lt;span class="n"&gt;again&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="no"&gt;To&lt;/span&gt; &lt;span class="n"&gt;register&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;please&lt;/span&gt; &lt;span class="n"&gt;visit&lt;/span&gt; &lt;span class="ss"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nessus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;register&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;到官网&lt;a href="http://www.nessus.org/register/"&gt;http://www.nessus.org/register&lt;/a&gt;注册，好工具只给注册家用版，填好邮箱注册即可，登陆邮箱会收到一封确认邮件。告诉你在不同系统&lt;code&gt;(windows/linux/bsd/mac os/)&lt;/code&gt;下该如何做。我在&lt;code&gt;BT5&lt;/code&gt;下，按照提示运行命令即可：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Linux and Solaris Users :&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To activate your account, simply execute the following command :
+/opt/nessus/bin/nessus-fetch --register 04BB-41FD-A885-94B5-9B50&lt;/p&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
+&lt;p&gt;(这串序列号是每次官网注册随即生成的，这个是我注册的时候提供给我的)
+&lt;img alt="1" src="./../images/backtrack5-nessus-register.jpg" /&gt;        &lt;/p&gt;
+&lt;p&gt;之后就是正常更新插件，更新完毕你就可以正常使用强大的nessus漏洞扫描工具了，可以看到版本号是最新的4.4.1。只不过这是非商用版的，商用版的一般给企业用的。
+&lt;img alt="1" src="./../images/backtrack5-nessus-register-ok.jpg" /&gt;   &lt;/p&gt;
+&lt;p&gt;进入菜单&lt;code&gt;Backtrack --&amp;gt; Vulnerability Assessment --&amp;gt; Network Assessment --&amp;gt; Vulnerability Scanner --&amp;gt; Nessus user add&lt;/code&gt;
+添加&lt;code&gt;username:root&lt;/code&gt;、 &lt;code&gt;password:toor&lt;/code&gt; (可以随便添加用户名密码) 
+更改默认设置: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:gedit&lt;/span&gt; &lt;span class="sr"&gt;/opt/nessus&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nessus&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nessusd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;span class="n"&gt;listen_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;默认为&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;enable_listen_ipv4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt; &lt;span class="err"&gt;（默认没有开启&lt;/span&gt;&lt;span class="n"&gt;ipv4&lt;/span&gt;&lt;span class="err"&gt;侦听）&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;登陆浏览器，输入地址：&lt;code&gt;https://127.0.0.1:8834/&lt;/code&gt;, 其中8834为nessus默认的web端口。一段时间的初始化之后，输入刚才添加的用户名root和密码toor即可使用nessus homefeed版本了。可以看到homefeed版本给了5年的试用时间。
+&lt;img alt="1" src="./../images/backtrack5-nessus-register-web-about.jpg" /&gt;           &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>genlist + nmap</title><link href="http://mainframer.github.io/articles/genlist%20+%20nmap.html" rel="alternate"></link><updated>2011-09-07T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-09-07:articles/genlist + nmap.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Usage: genlist [Input Type] [General Options]
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;Input&lt;/span&gt; &lt;span class="ss"&gt;Type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;scan&lt;/span&gt; &lt;span class="no"&gt;Ping&lt;/span&gt; &lt;span class="no"&gt;Target&lt;/span&gt; &lt;span class="no"&gt;Range&lt;/span&gt; &lt;span class="ss"&gt;ex&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;Scan&lt;/span&gt; &lt;span class="ss"&gt;Options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;nmap&lt;/span&gt; &lt;span class="no"&gt;Path&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="no"&gt;Nmap&lt;/span&gt; &lt;span class="n"&gt;executable&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;inter&lt;/span&gt; &lt;span class="no"&gt;Perform&lt;/span&gt; &lt;span class="no"&gt;Nmap&lt;/span&gt; &lt;span class="no"&gt;Scan&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;non&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;interface&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;General&lt;/span&gt; &lt;span class="ss"&gt;Options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="no"&gt;Display&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="no"&gt;Display&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;Send Comments to Joshua D. Abraham ( jabra@ccs.neu.edu )
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;genlist可以用来生成一个列表，该列表包含一个ip段内所有相应ping的ICMP报文响应的主机ip。生成的ip列表可以给后续的PBNJ或Nmap用。&lt;br /&gt;
+下图中,首先先用&lt;code&gt;genlist ping&lt;/code&gt;探测ip段&lt;code&gt;192.168.1.*&lt;/code&gt;查找存活主机，存到列表iplist中备用，接着用nmap来扫描列表中的主机们。
+&lt;img alt="1" src="./../images/genlist-nmap.jpg" /&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;# `genlist -s 192.168.1.* &amp;gt; iplist`&lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;# `cat iplist`           #显示iplist&lt;/span&gt;
+&lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;168&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;   
+&lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;168&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;    
+&lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;168&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;103&lt;/span&gt;    
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;# `nmap -v -iL iplist`   #从iplist列表输入&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;从图中我们可以看到在nmap的扫描报告中分别列出了这三台存活主机所有开放的端口以及运行在相应端口上的服务。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>BackTrack5 R1发布</title><link href="http://mainframer.github.io/articles/BackTrack5%20R1%E5%8F%91%E5%B8%83.html" rel="alternate"></link><updated>2011-09-04T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-09-04:articles/BackTrack5 R1发布.html</id><summary type="html">&lt;p&gt;偶然间在逛到&lt;a href="www.backtrack-linux.org"&gt;www.backtrack-linux.org&lt;/a&gt;的时候，发现首页赫然写着：&lt;em&gt;“BackTrack 5 R1 Released! Aug 18th, 2011”，&lt;/em&gt;bt有新版本发布了我竟然还不知道。哎~。
+从&lt;a href="http://www.backtrack-linux.org/downloads"&gt;http://www.backtrack-linux.org/downloads&lt;/a&gt;下载了Backtrack5 R1在虚拟机里面试了下，还没有硬盘安装，感觉和BT5几乎没什么区别。   &lt;br /&gt;
+不过据说修复了120个bug, 添加了30个新工具,并且升级了70个工具;用命令&lt;em&gt;uname -a&lt;/em&gt;查看了下发现内核也从原来的2.6.38升级到2.6.39.4。看来没什么特别需要的话暂时还是不升级好了,BT5挺好的。&lt;br /&gt;
+这里附上BackTrack5R1的BT种子，感兴趣的话请自行移步Backtrack官网下载。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>dnsdict6获取ipv6地址</title><link href="http://mainframer.github.io/articles/dnsdict6%E8%8E%B7%E5%8F%96ipv6%E5%9C%B0%E5%9D%80.html" rel="alternate"></link><updated>2011-08-30T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-30:articles/dnsdict6获取ipv6地址.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;[dnsdict6 v1.4 (c) 2010 by van Hauser /   THC www.thc.org]&lt;/strong&gt; &lt;br /&gt;
+&lt;code&gt;dnsdict6&lt;/code&gt;用来查询网站的ipv6地址，如果存在的话就显示，不存在的话就没有显示。可自定义线程数和字典。用法为： &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Syntax: dnsdict6 [-t THREADS] domain [dictionary-file]  &lt;/p&gt;
+&lt;p&gt;root@bt:~# &lt;code&gt;dnsdict6 google.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Starting enumerating google.com. - creating 8 threads for 3001 words...&lt;br /&gt;
+Estimated time to completion: 2 to 5 minutes  &lt;br /&gt;
+ipv6.google.com. =&amp;gt; 2404:6800:8005::6a&lt;br /&gt;
+Found 1 domain name and 1 unique ipv6 address for google.com.  &lt;/p&gt;
+&lt;p&gt;root@bt:~# &lt;code&gt;dnsdict6 baidu.com&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Starting enumerating baidu.com. - creating 8 threads for 3001 words...&lt;br /&gt;
+Estimated time to completion: 2 to 5 minutes &lt;br /&gt;
+Found 0 domain names and 0 unique ipv6 addresses for baidu.com.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="z/OS"></category></entry><entry><title>BT5安装openoffice和星际译王stardict</title><link href="http://mainframer.github.io/articles/BT5%E5%AE%89%E8%A3%85openoffice%E5%92%8C%E6%98%9F%E9%99%85%E8%AF%91%E7%8E%8Bstardict.html" rel="alternate"></link><updated>2011-08-14T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-14:articles/BT5安装openoffice和星际译王stardict.html</id><summary type="html">&lt;h3&gt;BT5下安装openoffice&lt;/h3&gt;
+&lt;p&gt;上次装了Adobe Reader在BT5下面能看PDF了，后来发现不能看word，ppt，excel也是一件很痛快的事情，虽然安装了vmware-tools之后在windows和BT5直接直接来回拖文件也挺方便，但是也不那么方便，所以今天还是老老实实地把openoffice在BT5下面给安装了。
+首先到openoffice官网上下载安装包，因为我选的是deb安装，而不是rpm安装，所以我下载deb包，放在~/software目录下。
+root@bt:~#  &lt;code&gt;cd ~/software&lt;/code&gt; &lt;br /&gt;
+root@bt:~/software#&lt;br /&gt;
+root@bt:~/software#  &lt;code&gt;tar zxvf OOo_3.3.0_Linux_x86_install-deb_zh-CN.tar.gz&lt;/code&gt; &lt;br /&gt;
+root@bt:~/software#  &lt;code&gt;cd OOO330_m20_native_packed-1_zh-CN.9567/&lt;/code&gt; &lt;br /&gt;
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567#  &lt;code&gt;ls&lt;/code&gt; &lt;br /&gt;
+DEBS licenses readmes update  &lt;/p&gt;
+&lt;h5&gt;进入DEBS目录，安装该目录下的所有deb包&lt;/h5&gt;
+&lt;p&gt;root@bt:~#  &lt;code&gt;cd ~/DEBS&lt;/code&gt; &lt;br /&gt;
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567/DEBS#  &lt;code&gt;sudo dpkg -i *.deb&lt;/code&gt;   &lt;/p&gt;
+&lt;h5&gt;完成后，进入desktop-integration目录，安装此目录下面的desktop integration包&lt;/h5&gt;
+&lt;p&gt;root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567/DEBS#  &lt;code&gt;cd desktop-integration/&lt;/code&gt; &lt;br /&gt;
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567/DEBS/desktop-integration#  &lt;code&gt;sudo dpkg -i openoffice.org3.3-debian-menus_3.3-9556_all.deb&lt;/code&gt; &lt;br /&gt;
+OK，安装完成了，然后，你在左上角菜单：_Application——Office_里面会看到，除了上次我们装的Adobe Reader之外，多了一堆openoffice的东西，这样，我们就可以在BT5下面随便看常见的办公文档了。&lt;/p&gt;
+&lt;h3&gt;BT5下安装星际译王stardict&lt;/h3&gt;
+&lt;p&gt;在linux下面找到一款好用的词典可不像在windows下面那么简单，在BT5下面就更不用说了。估计除了stardict就不多了吧。在linux下面软件源里面直接有stardict，所以可以直接用&lt;code&gt;apt-get&lt;/code&gt;命令来安装: &lt;br /&gt;
+root@bt: &lt;code&gt;apt-get install stardict&lt;/code&gt;   &lt;/p&gt;
+&lt;h5&gt;安装完之后星际译王的图标就出现在_application-accessories_里面。&lt;/h5&gt;
+&lt;p&gt;用法：只需将下载词典解压到_/usr/share/stardict/dic_，然后在星际译王软件里面配置添加词典即可。&lt;br /&gt;
+记得以前词典下载地址是：&lt;code&gt;http://stardict.sourceforge.net/&lt;/code&gt; 
+但是最近貌似都没得下了，好像是项目原因，移除了所有的词典。所以我就只能在网上搜些网友以前下载的"个人典藏’版咯！其实有本牛津，朗文，21世纪简明就够了,CSDN上面有得下载。  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Backtrack一些基本配置</title><link href="http://mainframer.github.io/articles/Backtrack%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.html" rel="alternate"></link><updated>2011-08-09T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-09:articles/Backtrack一些基本配置.html</id><summary type="html">&lt;h5&gt;查看网络配置信息&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;ifconfig -a&lt;/code&gt;     &lt;/p&gt;
+&lt;h5&gt;手动激活未使用的网卡eth0&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;ifconfig eth0 up&lt;/code&gt;     &lt;/p&gt;
+&lt;h5&gt;通过DHCP自动为eth0网卡分配ip地址&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;dhclient eth0&lt;/code&gt;    &lt;/p&gt;
+&lt;h5&gt;也可手动为eth0网卡分配ip&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;ifconfig eth0 192.168.1.105 netmask 255.255.255.0&lt;/code&gt;     &lt;/p&gt;
+&lt;h5&gt;添加网关&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;route add default gw 192.168.1.1&lt;/code&gt;     &lt;/p&gt;
+&lt;h5&gt;查看dns配置信息:&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;cat /etc/resolv.conf&lt;/code&gt;    &lt;/p&gt;
+&lt;h5&gt;编辑dns配置信息:&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;sudo geit /etc/resolv.conf&lt;/code&gt;     &lt;/p&gt;
+&lt;h5&gt;编辑你的dns:&lt;/h5&gt;
+&lt;p&gt;nameserver xx.xx.xx.xx&lt;br /&gt;
+nameserver xx.xx.xx.xx&lt;br /&gt;
+domain domain&lt;br /&gt;
+search domain  &lt;/p&gt;
+&lt;h5&gt;升级backtrack工具和软件&lt;/h5&gt;
+&lt;p&gt;root@bt:/#  &lt;code&gt;sudo apt-get upgrade&lt;/code&gt;  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Backtrack5安装Adobe reader看PDF</title><link href="http://mainframer.github.io/articles/Backtrack5%E5%AE%89%E8%A3%85Adobe%20reader%E7%9C%8BPDF.html" rel="alternate"></link><updated>2011-08-06T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-06:articles/Backtrack5安装Adobe reader看PDF.html</id><summary type="html">&lt;p&gt;Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。&lt;/p&gt;
+&lt;h3&gt;1、下载压缩包到/tmp&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:~&lt;/span&gt;&lt;span class="c1"&gt;#  cd /tmp   &lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="c1"&gt;#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、下载好之后解压:&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="c1"&gt;#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  &lt;/span&gt;
+&lt;span class="ss"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;Record&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt;  
+&lt;span class="no"&gt;AdobeReader&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;   
+&lt;span class="no"&gt;AdobeReader&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;INSTALL&lt;/span&gt;   
+&lt;span class="no"&gt;AdobeReader&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;ReadMe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;htm&lt;/span&gt;  
+&lt;span class="no"&gt;AdobeReader&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;COMMON&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt;  
+&lt;span class="no"&gt;AdobeReader&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;ILINXR&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;解压后在/tmp路径下生成了AdobeReader的文件夹  &lt;/p&gt;
+&lt;h3&gt;3、安装&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="c1"&gt;#  cd AdobeReader    &lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;AdobeReader&lt;/span&gt;&lt;span class="c1"&gt;#  ls  &lt;/span&gt;
+&lt;span class="no"&gt;COMMON&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt; &lt;span class="no"&gt;ILINXR&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt; &lt;span class="no"&gt;INSTALL&lt;/span&gt; &lt;span class="no"&gt;ReadMe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;htm&lt;/span&gt;  
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;AdobeReader&lt;/span&gt;&lt;span class="c1"&gt;#  ./INSTALL   &lt;/span&gt;
+&lt;span class="no"&gt;This&lt;/span&gt; &lt;span class="n"&gt;installation&lt;/span&gt; &lt;span class="n"&gt;requires&lt;/span&gt; &lt;span class="mi"&gt;145&lt;/span&gt; &lt;span class="no"&gt;MB&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;free&lt;/span&gt; &lt;span class="n"&gt;disk&lt;/span&gt; &lt;span class="n"&gt;space&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="no"&gt;Enter&lt;/span&gt; &lt;span class="n"&gt;installation&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="no"&gt;Adobe&lt;/span&gt; &lt;span class="no"&gt;Reader&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="sr"&gt;/opt]  #直接回车  &lt;/span&gt;
+&lt;span class="sr"&gt;/o&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt;  
+&lt;span class="no"&gt;Installing&lt;/span&gt; &lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="n"&gt;independent&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="no"&gt;Done&lt;/span&gt;  
+&lt;span class="no"&gt;Installing&lt;/span&gt; &lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="n"&gt;dependent&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="no"&gt;Done&lt;/span&gt;  
+&lt;span class="no"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;libraries&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="no"&gt;Done&lt;/span&gt;  
+&lt;span class="no"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;menu&lt;/span&gt; &lt;span class="n"&gt;icons&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="no"&gt;Done&lt;/span&gt;  
+&lt;span class="no"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;browser&lt;/span&gt; &lt;span class="n"&gt;plugin&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="no"&gt;Done&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;好了，安装到/opt了，这时桌面右上角Applications——Office里面就多了Adobe Reade 9，就可以看pdf了。  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>BT5开机自动启动ibus</title><link href="http://mainframer.github.io/articles/BT5%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8ibus.html" rel="alternate"></link><updated>2011-03-06T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-03-06:articles/BT5开机自动启动ibus.html</id><summary type="html">&lt;p&gt;BT5下安装中文输入法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;scim&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;BT5下安装ibus输入法管理器:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;ibus&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在&lt;code&gt;System——&amp;gt;IBUS Preferences&lt;/code&gt; 选择&lt;code&gt;Chinese——&amp;gt;Pin yin&lt;/code&gt; 输入法 &lt;br /&gt;
+怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:&lt;br /&gt;
+开机自动启动ibus输入法管理器:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;System&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="no"&gt;Preferences&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="no"&gt;Startup&lt;/span&gt; &lt;span class="no"&gt;Applications&lt;/span&gt;
+     &lt;span class="no"&gt;Click&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="ss"&gt;button&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;Add&lt;/span&gt;
+     &lt;span class="ss"&gt;Name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ibus&lt;/span&gt; &lt;span class="n"&gt;daemon&lt;/span&gt;
+     &lt;span class="ss"&gt;Command&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/usr/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ibus&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;daemon&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;好了，重启就可以了。&lt;br /&gt;
+按Ctrl+空格调出输入法。按&lt;code&gt;Shift+Ctrl&lt;/code&gt;切换输入法。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>BT5如何安装VMware Tools</title><link href="http://mainframer.github.io/articles/BT5%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85VMware%20Tools.html" rel="alternate"></link><updated>2011-02-25T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-02-25:articles/BT5如何安装VMware Tools.html</id><summary type="html">&lt;p&gt;虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  &lt;br /&gt;
+首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是&lt;code&gt;D:\DOCUMENT\linux&lt;/code&gt;.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
+&lt;img alt="1" src="./../images/bt5-vmtools-1.jpg" /&gt;   &lt;br /&gt;
+还是老规矩：输入用户名&lt;em&gt;root&lt;/em&gt;；密码&lt;em&gt;toor&lt;/em&gt;；启动图形界面:&lt;em&gt;startx&lt;/em&gt;; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/bt5-vmtools-2.jpg" /&gt;   &lt;br /&gt;
+先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。&lt;br /&gt;
+记得一定要先改变先&lt;code&gt;sudo chmod 755 vmware-install.pl&lt;/code&gt;不然可能会出现 &lt;code&gt;no such file or directory&lt;/code&gt;。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="./../images/bt5-vmtools-3.jpg" /&gt;  &lt;br /&gt;
+接着按照提示做就可以了。遇到没有权限访问xxx.pl文件，提示permission denied的,就用sudo chmod 755 xxx.pl修改下权限，然后继续。&lt;br /&gt;
+安装完之后输入 sudo /etc/init.d/vmware-tools 会提示vmware-tools的开关重启命令:&lt;br /&gt;
+&lt;code&gt;rubyusage:vmware-tools {start|stop|status|restart|}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;执行：&lt;code&gt;/usr/bin/vmware-toolbox&lt;/code&gt; 调出vmware-toolbox可以设置的。&lt;br /&gt;
+重新启动系统，记得在CD/DVD(IDE)设置里面将vmware-tools的Iso启动文件去掉哦！&lt;br /&gt;
+后记:安装VMWare-tools的本意是想能够自由地在windows和BT5之间拷数据拷数据，不过装完发现还是没办法拷数据或文件，不过鼠标倒是可以自由出入了，再也不用按Ctrl+Alt这么麻烦了。好吧，这也不错，关于拷数据的那个问题，有空再研究了~ &lt;/p&gt;
+&lt;h4&gt;今天终于完美了&lt;/h4&gt;
+&lt;p&gt;非常重要：研究了下，终于让我发现什么原因不能在windows和BT5直接互相拷贝和移动文件了。原来是我的vmware-tools安装文件linux.iso不是最新的。上面我用的是D:\DOCUMENT\linux.iso，看了下这个是2008年的，不知道我什么时候下载的保存在D盘里面，害人不浅呐！ 
+废话少说，我虚拟机装的是VMware 7.1.4,在它自己的安装目录下面本身就自带一个vmware-tools安装文件，有适合各种系统的，这里我们当然选择linux.iso啦！好了，在BT5虚拟机设置CD/DVD里面把这个路径填好，选择开机连接CD/DVD,BT5启动后桌面上自动出现了VMware-tools安装光盘，然后按照上面说得一步一步做，之后重启，发现可以直接用鼠标在windows和BT5直接拖文件啦。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Backtrack初探</title><link href="http://mainframer.github.io/articles/Backtrack%E5%88%9D%E6%8E%A2.html" rel="alternate"></link><updated>2011-01-29T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-01-29:articles/Backtrack初探.html</id><summary type="html">&lt;p&gt;一般你去网上一搜Backtrack，出来一堆都是说用backtrack来破解无线网络密码的，似乎强大的backtrack俨然给我们的第一印像就是一个蹭网的工具而已，扫扫Wifi，破解破解&lt;code&gt;WEP/WPA/WPA2&lt;/code&gt;加密什么的,实属不该~
+Backtrack,中文不知道该翻译成啥，回溯？Backtrack是基于Slackware和SLAX的自启动运行的操作系统，它的初衷是给计算机安全领域用的。包含安全审计和渗透测试。Backtrack(简称BT)，现在最新的是今年5月份发布的Backtrack5,我现在用的就是BT5,Ubuntu gnome桌面的，你可以选KDE桌面，因为之前我用惯了ubuntu，所以选了gnome的。 在BT5之前还有BT2,BT3,BT4,BT4R2什么的，我接触的比较晚，只接触过BT4R2和BT5。就这两个来说，BT5界面上面确实比BT4R2眩多了。上靓图:
+&lt;img alt="1" src="./../images/BackTrack51.jpg" /&gt;  &lt;br /&gt;
+其实呢，Backtrack之所以吸引我的原因是因为它上面集成了无数无比强大的黑客工具（渗透工具），其中包含大家非常熟悉的强大的扫描工具nmap，Nessus等等，强大的Sniff工具Wireshark等，可以说是当前渗透测试人员和网络安全专家必备的测试平台。可不仅仅是蹭网的哦。&lt;/p&gt;</summary><category term="z/OS"></category></entry></feed>

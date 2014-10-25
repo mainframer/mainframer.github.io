@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Mainframe</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html"><h3 class="article-title">IBM大型机12月16日起支持Windows系统[转载]</h3></a>
+<h6 class="subheader" title="2011-11-08T00:00:00">2011-11-08
+</h6>
+
+
+<p>本文来源——http://www.sina.com.cn 2011年11月07日 15:58 新浪科技微博
+新浪科技讯 北京时间11月7日下午消息，据美国IT网站ComputerWorld报道，IBM大型机将从今年12月中旬开始支持Windows系统。</p>
+<p>IBM此前就有意在zEnterprise 196大型机中采用Windows系统。根据IBM发布的最新消息，该公司大型机将从今年12月16日起支持Windows管理功能。用户一直希望数据中心有新的功能。当前，有许多基于Windows的应用可支持大型机获取数据，其中就包括IBM制造的许多应用。但此类应用现在必须单独管理。
+IBM表示，支持Windows系统将有助于提高大型机企业环境的安全性和速度，同时让用户可以在私人网络上连接系统，避免其他网络问题，实现一体化管理。IBM System z部门业务主管格雷格·洛特科(Greg Lotko)说：“之所以增加对Windows系统的支持，是因为IBM真正认识到这个世界的复杂性。”</p>
+<p>洛特科补充说，从今往后，<code>IBM System z</code>平台可以支持<code>z /OS</code>、<code>Linux</code>、<code>Unix</code> 和<code>Windows</code>等多套系统 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL编码规则.html"><h3 class="article-title">COBOL编码规则</h3></a>
+<h6 class="subheader" title="2011-10-03T00:00:00">2011-10-03
+</h6>
+
+
+<p>苦逼的COBOL们一定知道和JCL一样，在写COBOL程序的时候对源码的区域也有一定的制约的，具体如下表所示：<br />
+<img alt="1" src="./../images/COBOL-coding-convention.jpg" />      </p>
+<h4>第7列用来说明程序所在行的用途:</h4>
+<p><code>连接符(-)</code>: 表示本行是上一行的续行；<br />
+<code>('D')</code>:    表示查错；
+<code>星号('*')</code>: 表示注解；  </p>
+<h4>下面的COBOL程序元素必须从A区域开始：</h4>
+<p>部(DIVISION)和节(SECTION)的标题 <br />
+段名 
+程序结尾(End Program)标题 <br />
+级别标示符如FD或者SD等，级别号如01级和77级  </p>
+<h4>下面这些COBOL元素必须从B区域开始：</h4>
+<p><code>语句</code>、<code>句子</code>和<code>短语继续行</code>  </p>
+<h5>[注：本文内容源自：《IBM主机技术一本通》]</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL编码规则.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL编码规则.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL程序典型结构.html"><h3 class="article-title">COBOL程序典型结构</h3></a>
+<h6 class="subheader" title="2011-10-02T00:00:00">2011-10-02
+</h6>
+
+
+<p>一个典型的COBOL程序结构是：程序由许多‘部’组成，每个‘部’可以包含多个‘节’  </p>
+<h4>COBOL PROGRAM (程序)</h4>
+<h4>DIVISION(部)</h4>
+<h4>SECTION(节)</h4>
+<h4>PARAGRAPH(段)</h4>
+<h4>SENTENCE(句子)</h4>
+<h4>STATEMENT(语句)</h4>
+<p>整个COBOL程序由4个'部'(DIVISION)组成：</p>
+<blockquote>
+<p>Identification Division  标识部
+Environment Division 环境部 
+Data Division 数据部
+Procedure Division 过程部 </p>
+<p>用一句话介绍这四个部：标志部提供作者和编译器信息；环境部提供程序运行的环境；数据部描述程序处理的绝大部分数据；过程部描述对数据部描述的数据的操作算法:</p>
+</blockquote>
+<h4>Identification Division(标识部)--主要是程序和作者名</h4>
+<div class="highlight"><pre><span class="no">IDENTIFICATION</span> <span class="no">DIVISION</span><span class="o">.</span>
+<span class="no">PROGRAM</span><span class="o">-</span><span class="no">ID ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL程序典型结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序典型结构.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/提交JCL的4种方式.html"><h3 class="article-title">提交JCL的4种方式</h3></a>
+<h6 class="subheader" title="2011-10-01T00:00:00">2011-10-01
+</h6>
+
+
+<p>总结了下在主机上面提交JCL的四种方式：</p>
+<h4>1.用VIEW或者EDIT打开JOB,在命令行上输入<code>SUBMIT</code>或者<code>SUB</code>:</h4>
+<p><img alt="1" src="./../images/JCL-SUBMIT-01.jpg" />          </p>
+<h4>2.直接在JOB前面输入<code>SUBMIT</code>或者<code>SUB</code>，不用打开:</h4>
+<p><img alt="1" src="./../images/JCL-SUBMIT-02.jpg" />          </p>
+<h4>3.命令行模式下输入命令:</h4>
+<p><img alt="1" src="./../images/JCL-SUBMIT-03.jpg" />          </p>
+<h4>4.<code>Q;ST</code>进入SDSF，找到你最近run过的JOB，在它前面输入<code>SJ</code>，回车，输入<code>SUB</code>,提交job。</h4><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/提交JCL的4种方式.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/提交JCL的4种方式.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html"><h3 class="article-title">utility判断dataset是否为空的方法</h3></a>
+<h6 class="subheader" title="2011-09-28T00:00:00">2011-09-28
+</h6>
+
+
+<p>下面介绍四种利用Utility的返回码来判断一个dataset或者member是否为空文件的方法： </p>
+<h4>1.利用<code>IDCAMS</code></h4>
+<p><img alt="1" src="./../images/IDCAMS-CHECK-EMPTY.jpg" />          </p>
+<h4>2.利用SORT(DFSORT/SYNCSORT)</h4>
+<p><img alt="1" src="./../images/SORT-CHECK-EMPTY.jpg" />          </p>
+<h4>3.利用<code>ICETOOL(SYNCTOOL)</code></h4>
+<p><img alt="1" src="./../images/ICETOOL-CHECK-EMPTY.jpg" />          </p>
+<h4>4.利用<code>ISRSUPC</code></h4>
+<p><img alt="1" src="./../images/ISRSUPC-CHECK-EMPTY.jpg" />          <br />
+方法不止以上四种，还有利用<code>REXX</code>脚本也可以判断，只是不属于本文讨论的范围。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html"><h3 class="article-title">IBM Debug Tool使用</h3></a>
+<h6 class="subheader" title="2011-09-05T00:00:00">2011-09-05
+</h6>
+
+
+<p>关于<code>IBM DebugTool</code>的一些介绍，请参照我的另一篇博文：&lt;<Debug Tool for z/OS>&gt;，这里呢，我是想说说一般我们用<code>IBM Debug Tool</code>来调试<code>PL/I</code>或者<code>COBOL</code>程序的时候都有哪些命令或者说按键可以用，比如说设置断点，运行至断点处，监视变量值啊什么的这种一般不管什么程序的调试都会用到的知识。当然，这本身很简单，写在这里只是为了让新人更快的学会使用，基本上10分钟搞定的那种，这样就节省了大家的时间了。
+先上个<code>IBM DebugTool</code>的截图：
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />  <br />
+可以看到，最上面一行显示了当前debug的程序名字PRGM002以及所用的语言<code>PL/I</code>,接着是命令行COMMAND,所有的调试命令都在这一行输入。然后是变量监视区域<code>(MONITOR)</code>，源程序区<code>(SOURCE)</code>以及调试日志<code>(LOG)</code>区域。<code>Debug Tool</code>遵循“七上八下”原则，也就是F7向上翻页，F8向下翻页。</p>
+<h4>执行下一条语句</h4>
+<p>按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM Debug Tool使用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html"><h3 class="article-title">IBM File Manager for z/os 续(一)</h3></a>
+<h6 class="subheader" title="2011-09-04T00:00:00">2011-09-04
+</h6>
+
+
+<p>上一次我简单介绍了下大机平台上的一个强大的文件查看/编辑工具，这里我要介绍几个在用<code>FileManager</code>查看/编辑 QSAM顺序文件的时候的小技巧。
+<img alt="1" src="./../images/ibm-file-manager-qsam.jpg" />  上图显示的是employee的信息文件，比较小，只有几条记录。但是一般在生产环境上，数据都有好几百万条，如果你很傻的直接FIND 关键字来查找，那么抛开CPU耗费不说，你自己也将耗费很长的一段时间来等待搜索结果出来，所以，看看这篇文章，学会几个<code>*File Manager*</code>的使用技巧还是有必要的(如果你没功夫去看IBM红宝书的话)。</p>
+<h3>1、只查找指定字段(Field)</h3>
+<h5>例：只在ACCT字段查找关键字“IT”</h5>
+<p>命令： <code>F IT #6</code>     (可以把#6看成ACCT的别名)</p>
+<h5>例：只在ACCT字段和EP_NAME字段查找关键字"IT"</h5>
+<p>命令： <code>F IT #6 #8</code></p>
+<h3>2、只查找指定几列 (Column)</h3>
+<h5>例：只在第8至20列查找关键字"AN"</h5>
+<p>命令 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Debug Tool for zOS.html"><h3 class="article-title">Debug Tool for z/OS</h3></a>
+<h6 class="subheader" title="2011-09-03T00:00:00">2011-09-03
+</h6>
+
+
+<p>作为一个PL/I、COBOL程序猿，调试程序是必须的一项技能。这里我来说说大机上面的调试工具IBM的DebugTool，它支持的环境包括BATCH, TSO, CICS, DB2, DB2存储过程以及UNIX等等。</p>
+<h4>这篇我来说说如何设置让程序可以被Debug</h4>
+<p>首先，你必须在编译程序的时候需要选择以Debug模式编译，这个在changeman里面直接在编译的时候选个<code>IBM Debug Tool="Y"</code>就可以了。   </p>
+<p>接着，如果是BATCH的，就需要在JCL的PARM中指定TEST运行时的参数，通过VTAM接口来初始化debug模式，VTAM%后面跟着的是userid，就像这样：
+<img alt="1" src="./../images/debugtool.jpg" />    </p>
+<p>是BATCH的话，你还要有一个Debug的session，这个可以参照我的另外一篇博文：&lt;&lt;登陆大型机——Aviva的介绍&gt;&gt;，只需注意在建debug session的时候destination的IP一般和普通大机的物理ip是不一样。填上正确的ip,然后用你的id登陆,这里我的id是IBMUSER，须跟上面设置的一样。<br />
+回到JCL这边，submit，那恭喜你，你就可以看到Debugtool的画面了:
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />     </p>
+<p>但是，如果程序是ONLINE的话，一般我们用CICS上面的DTCN这个工具来debug的。这里我假设你已经在上面“首先”里面正确编译了一个ONLINE的程序PRGM002 (带debug编译选项的)。然后，你登陆CICS ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Debug Tool for zOS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Debug Tool for zOS.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM File Manager for zos.html"><h3 class="article-title">IBM File Manager for z/os</h3></a>
+<h6 class="subheader" title="2011-08-28T00:00:00">2011-08-28
+</h6>
+
+
+<p>IBM的<code>File Manger</code> 在大机平台上是非常强大的文件查看/编辑器，是一个强大的ISPF应用程序。这里先贴上一张IBM2011年最新的关于File Manger的结构图，我认为这张图很好地诠释了File Manager 的强大之处：
+<img alt="1" src="./../images/IBM_File_Manager-for-zOS.jpg" /><br />
+<em>[图片来源于IBM官方网站，仅供学习交流之用]</em>   </p>
+<p>参照上图，我这里要讲的是当中的第二块内容——<code>File Manager for Z/OS</code>，关于其它部分如<code>File Manager for DB2</code>,<code>File Manager for IMS</code>和<code>File Manager for CICS</code>，以后再说。(其实更主要是因为平常工作做我用for z/os用的多，db2和cics的用得少，不敢在这瞎说。)。基本的操作原理就不说了，我就说说我在平常工作当中的几个有用的小技巧好了。 以查看/编辑<code>QSAM</code> (sequential)的dataset为例，选项1是查看(View),选项2是编辑 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM File Manager for zos.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM File Manager for zos.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/mainframe访问磁带(Tape).html"><h3 class="article-title">mainframe访问磁带(Tape)</h3></a>
+<h6 class="subheader" title="2011-08-27T00:00:00">2011-08-27
+</h6>
+
+
+<p>大机上磁带(tape)一般用来存储大容量的数据的，可以降低成本。我们要访问tape中的数据的时候，一般的做法是用JCL将tape中的记录转存到直接存储访问设备(DASD)中再查看。 下图中，我们通过utility <code>ICEMAN</code>将<code>IBMUSER.DNS.TAPE</code>这个tape中的所有记录都转存到<code>IBMUSER.TAPE.TO.DASD</code>中，这样就能查看了。
+<img alt="1" src="./../images/ICEMAN-access-tape.jpg" />      </p>
+<p>不过，需要注意的是，tape里面的数据量一般都很大，所以更多时候我们再用的时候会指定读取的record的数目，比如这里我们指定读取100条：
+<img alt="1" src="./../images/ICEMAN-access-tape-stopaft1.jpg" />    </p>
+<p>甚至，你还可以用SORT中的语法筛选出你想要的条件。比如<code>(1，4，EQ,'AAAA')</code>这样子。 </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/mainframe访问磁带(Tape).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/mainframe访问磁带(Tape).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 6 of 9</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/mainframe5.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/category/mainframe7.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

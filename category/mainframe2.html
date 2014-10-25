@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Mainframe</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html"><h3 class="article-title">IBM DebugTool的Source Identification Panel</h3></a>
+<h6 class="subheader" title="2012-12-26T00:00:00">2012-12-26
+</h6>
+
+
+<p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:</p>
+<blockquote>
+<p>SOURCE
+or 
+LIST
+</p>
+</blockquote>
+<p>这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。</p>
+<div class="highlight"><pre>                 <span class="no">Source</span> <span class="no">Identification</span> <span class="no">Panel</span>                                 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                                  
+
+<span class="no">Compile</span> <span class="no">Unit</span>              <span class="no">Listing</span><span class="o">/</span><span class="no">Source</span> <span class="no">File</span>                          <span class="no">Display</span>
+<span class="o">-------------------------</span> <span class="o">--------------------------------------------</span> <span class="o">-------</span>
+<span class="no">TESTPGM1</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB1</span><span class="p">(</span><span class="no">TETPGM1</span><span class="p">)</span>                <span class="n">Y</span>  
+<span class="no">TESTPGM2</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB2</span><span class="p">(</span><span class="no">TETPGM2</span><span class="p">)</span>                <span class="n">Y</span> 
+<span class="no">TESTPGM3</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB3</span><span class="p">(</span><span class="no">TETPGM3 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html"><h3 class="article-title">PL/I和COBOL如何取得当天的日期</h3></a>
+<h6 class="subheader" title="2012-12-10T00:00:00">2012-12-10
+</h6>
+
+
+<p>在Mainframe上做开发会经常遇到用PL/I或者COBOL取得当天的日期，对于PL/I，一般的公司都采取如下的做法：  </p>
+<div class="highlight"><pre><span class="no">DCL</span> <span class="no">PIC_TODAY</span>            <span class="no">PIC</span><span class="s1">&#39;999999&#39;</span> <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="no">PIC_TODAY</span>  <span class="o">=</span> <span class="no">DATE</span><span class="p">;</span>
+<span class="no">IF</span> <span class="no">SUBSTR</span><span class="p">(</span><span class="no">DATE</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="s1">&#39;50&#39;</span>                
+  <span class="no">THEN</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">19000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
+  <span class="no">ELSE</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">20000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
+</pre></div>
+
+
+<p>我所在的公司也是这种写法来获得<code>YYYYMMDD</code>格式的当日日期，很明显这种写法代码的寿命只有几十年了，相比之下COBOL获得<code>YYYYMMDD</code>格式的当日日期就显得方便得多，一个<code>ACCEPT</code>语句即可:</p>
+<div class="highlight"><pre><span class="no">WORKING</span><span class="o">-</span><span class="no">STORAGE</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="mo">01</span> <span class="no">TODAYS</span><span class="o">-</span><span class="no">DATE</span>                          <span class="no">PIC</span> <span class="mi">9</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span><span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="no">PROCEDURE</span> <span class="no">DIVISION</span><span class="o">.</span>
+<span class="no">ACCEPT</span> <span class="no">TODAYS ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html"><h3 class="article-title">COBOL程序编译报错GYDS1145-S</h3></a>
+<h6 class="subheader" title="2012-11-24T00:00:00">2012-11-24
+</h6>
+
+
+<p>今天编译一个COBOL老程序的时候报错：<code>IGYDS1145-S</code></p>
+<blockquote>
+<p>IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.<br />
+ A "PICTURE" string of "S9(18)" was assumed.           </p>
+</blockquote>
+<p>原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
+<a href="http://ibmmainframes.com/post-9087.html">http://ibmmainframes.com/post-9087.html</a>   </p>
+<blockquote>
+<p>COBOL Compiler restricts me defining a PIC 9() variable not more than of ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html"><h3 class="article-title">Mainframe上随时查看任意库代码Rexx实现</h3></a>
+<h6 class="subheader" title="2012-11-12T00:00:00">2012-11-12
+</h6>
+
+
+<p>Mainframe上面工作经常需要临时查看<em>Production</em>代码库当中的代码，又不希望输入长长的库名称。可以用REXX写一个<em>Retrieve</em>功能的脚本，放在
+<code>USERID.REXX.EXEC</code>这个pds下面。运行的时候<strong><code>TSO RET your_program_name</code></strong> 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：</p>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">RET</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">02</span>                  <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">/*</span> <span class="n">rexx</span> <span class="o">*/</span>                                                              
+<span class="mo">000002</span> <span class="o">/***********</span> <span class="n">ret</span> <span class="o">-</span> <span class="n">retrieve</span> <span class="n">specific</span> <span class="n">member</span> <span class="n">from</span> <span class="n">multiple</span> <span class="n">libs</span><span class="o">*********/</span>
+<span class="mo">000003</span> <span class="n">arg ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL批量注释.html"><h3 class="article-title">JCL批量注释</h3></a>
+<h6 class="subheader" title="2012-10-21T00:00:00">2012-10-21
+</h6>
+
+
+<p>在JCL里面一次如何注释掉一整段连续的Statement? 下面这个替换思想的方法不错，不妨一试！<br />
+命令：<code>C '//' '//*' ALL .X .Y</code></p>
+<div class="highlight"><pre><span class="no">File</span> <span class="no">Edit</span> <span class="no">Edit_Settings</span> <span class="no">Menu</span> <span class="no">Utilities</span> <span class="no">Compilers</span> <span class="no">Test</span> <span class="no">Help</span> 
+<span class="no">VIEW</span> <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SORT</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">99</span>                 <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">C</span> <span class="s1">&#39;//&#39;</span> <span class="s1">&#39;//*&#39;</span> <span class="no">ALL</span> <span class="o">.</span><span class="n">X</span> <span class="o">.</span><span class="n">Y</span>                    <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span> 
+
+<span class="o">********</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">*********************************************************</span> 
+<span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSERS</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span> 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">SYSUID</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span> 
+<span class="mo">000003 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL批量注释.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL批量注释.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html"><h3 class="article-title">Local FTP Trigger JES job</h3></a>
+<h6 class="subheader" title="2012-10-08T00:00:00">2012-10-08
+</h6>
+
+
+<p>随便写了一个搜索ABC字符串的JCL，保存到桌面:  <br />
+<code>C:\Documents and Settings\Foo\Desktop\IBMUSERJ.txt</code>  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSERJ</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>      
+<span class="sr">//</span>     <span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=</span><span class="no">IBMUSER</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                           
+<span class="sr">//</span><span class="no">ONLINE</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ISRSUPC</span><span class="p">,</span>                  
+<span class="sr">//</span>            <span class="no">PARM</span><span class="o">=</span><span class="p">(</span><span class="no">SRCHCMP</span><span class="p">,</span>                 
+<span class="sr">//</span>            <span class="s1">&#39;ANYC&#39;</span><span class="p">)</span>   
+<span class="sr">//</span><span class="no">NEWDD</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">PROCLIB</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>  
+<span class="sr">//</span><span class="no">OUTDD</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>    
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>           
+<span class="no">SRCHFOR</span>  <span class="s1">&#39;ABC&#39;</span>       
+<span class="sr">//</span><span class="o">*</span> 
+</pre></div>
+
+
+<p>用ftp的方式将jcl送入JES系统执行。<code>win+R</code>打开cmd </p>
+<div class="highlight"><pre><span class="ss">C</span><span class="p">:\</span><span class="no">Documents</span> <span class="ow">and</span> <span class="no">Settings ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html"><h3 class="article-title">FTP from windows to Mainframe</h3></a>
+<h6 class="subheader" title="2012-10-03T00:00:00">2012-10-03
+</h6>
+
+
+<p><code>win+R</code>打开cmd:  </p>
+<div class="highlight"><pre><span class="ss">C</span><span class="p">:\</span><span class="no">Documents</span> <span class="ow">and</span> <span class="no">Settings</span><span class="p">\</span><span class="no">Foo</span><span class="p">\</span><span class="no">Desktop</span><span class="o">&gt;</span><span class="n">ftp</span> <span class="n">ftpserver</span>  
+<span class="sr">/*Here please input username/</span><span class="n">password</span><span class="o">*/</span>  
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">ascii</span>
+<span class="mi">200</span> <span class="no">Representation</span> <span class="n">type</span> <span class="n">is</span> <span class="no">Ascii</span> <span class="no">NonPrint</span>
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">quote</span> <span class="n">site</span> <span class="n">lrecl</span><span class="o">=</span><span class="mi">80</span> <span class="n">blksize</span><span class="o">=</span><span class="mi">16000</span> <span class="n">recfm</span><span class="o">=</span><span class="n">fb</span>
+<span class="mi">200</span> <span class="no">SITE</span> <span class="n">command</span> <span class="n">was</span> <span class="n">accepted</span>
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">put</span> <span class="nb">test</span><span class="o">.</span><span class="n">txt</span> <span class="s1">&#39;ibmuser.test.psfile(+1)&#39;</span>
+<span class="mi">200</span> <span class="no">Port</span> <span class="n">request</span> <span class="no">OK ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html"><h3 class="article-title">CICS的TOR,AOR,FOR概念</h3></a>
+<h6 class="subheader" title="2012-09-26T00:00:00">2012-09-26
+</h6>
+
+
+<p>CICS当中<code>TOR，AOR,FOR</code>还有其它*OR什么意思？ </p>
+<ul>
+<li><strong><code>TOR</code></strong> 是TERMINAL OWNING REGION,TOR上只定义TERMINAL，在TOR上定义PCT,REMOTE到AOR。当交易进入TOR后会被路由到对应的AOR去执行。  </li>
+<li><strong><code>AOR</code></strong> 是APPLICATION OWNING REGION，AOR上跑交易和应用程序。  </li>
+<li><strong><code>FOR</code></strong> 是FILE OWNING REGION<br />
+网上搜到老外的解释:    <blockquote>
+<p>Tor is where the terminals are defined, Aor is where the applications are defined and FOR where the files are defined.<br />
+Generally, TORs are the regions ...</p></blockquote></li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/DB2 SQLcode.html"><h3 class="article-title">DB2 SQLcode</h3></a>
+<h6 class="subheader" title="2012-09-19T00:00:00">2012-09-19
+</h6>
+
+
+<h3>DB2 SQLcode</h3>
+<h5>IBM官网:</h5>
+<p>这里是原帖：<a href="http://publib.boulder.ibm.com/infocenter/dzichelp/v2r2/index.jsp?topic=%2Fcom.ibm.db2z10.doc.codes%2Fsrc%2Ftpc%2Fdb2z_sqlcodes.htm">http://publib.boulder.ibm.com/infocenter/dzichelp/v2r2/index.jsp?topic=%2Fcom.ibm.db2z10.doc.codes%2Fsrc%2Ftpc%2Fdb2z_sqlcodes.htm</a>    </p>
+<h5>Wiki:</h5>
+<p><a href="http://en.wikipedia.org/wiki/DB2_SQL_return_codes">http://en.wikipedia.org/wiki/DB2_SQL_return_codes</a></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/DB2 SQLcode.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/DB2 SQLcode.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html"><h3 class="article-title">SuperC SRCHFOR高级选项</h3></a>
+<h6 class="subheader" title="2012-09-11T00:00:00">2012-09-11
+</h6>
+
+
+<p>在<code>ISPF 3.4</code> 选项下面使用<em>SRCHFOR</em>其实可以有高级选项功能的：比如能一次search多个string，比如能选择是否searchn那些已经被<em>MIGRATE</em>的那些dataset等等。
+这里，要在<code>IBMUSER.TEST.GDGRPT</code>的所有世代里面查找:<code>shehui</code>, <code>zhuyi</code>,<code>hao</code>这三个字符串，包括那些已经被migrate的。</p>
+<div class="highlight"><pre><span class="no">DSLIST</span> <span class="o">-</span> <span class="no">Data</span> <span class="no">Sets</span> <span class="no">Matching</span> <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span>                 <span class="no">Row</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">11</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+
+<span class="no">Command</span> <span class="o">-</span> <span class="no">Enter</span> <span class="s2">&quot;/&quot;</span> <span class="n">to</span> <span class="nb">select</span> <span class="n">action</span>                  <span class="no">Message</span>           <span class="no">Volume</span> 
+<span class="o">-------------------------------------------------------------------------------</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span>                       <span class="no">Not</span> <span class="n">searched</span>      <span class="sc">??????</span> 
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 2 of 9</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/mainframe.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/category/mainframe3.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

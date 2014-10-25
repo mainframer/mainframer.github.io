@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Mainframe</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html"><h3 class="article-title">使用UNIT=(SYSDA,20)</h3></a>
+<h6 class="subheader" title="2012-03-10T00:00:00">2012-03-10
+</h6>
+
+
+<p>好几次<em>production abend</em>都是因为JCL中分配的dataset太大，恰好一个volume上面的剩余空间都分配完了。<br />
+这里是DBA给的建议：  </p>
+<blockquote>
+<p>"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
+</p>
+</blockquote>
+<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>                  
+<span class="mo">000002</span> <span class="o">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000003</span> <span class="o">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000004</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html"><h3 class="article-title">ABENDED S000 U4088 REASON CODE=000003EC</h3></a>
+<h6 class="subheader" title="2012-03-05T00:00:00">2012-03-05
+</h6>
+
+
+<p>Sub一个job遇到错误:</p>
+<blockquote>
+<p>ABENDED S000 U4088 REASON CODE=000003EC
+</p>
+</blockquote>
+<h5>Abend原因:</h5>
+<blockquote>
+<p>The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage
+</p>
+</blockquote>
+<h5>解决办法:</h5>
+<p>Change region to <strong>REGION=0M</strong> </p>
+<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span>  <span class="mi">0</span><span class="no">RQ00XXXXX</span>                                <span class="mo">00010</span><span class="no">TEST</span><span class="p">,</span>    
+<span class="mo">000002</span> <span class="o">//</span> <span class="s1">&#39;IBMUSER&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/常用的CICS命令.html"><h3 class="article-title">常用的CICS命令</h3></a>
+<h6 class="subheader" title="2012-03-01T00:00:00">2012-03-01
+</h6>
+
+
+<p>我们可以在<code>COBOL</code>，<code>PL/I</code>，<code>Assembler</code>等应用程序中写<code>CICS</code>命令，在<code>COBOL</code>和<code>PL/I</code>中，格式分别如下所示：</p>
+<h5>COBOL</h5>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="k">END</span><span class="o">-</span><span class="no">EXEC</span>
+</pre></div>
+
+
+<h5>PL/I</h5>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="p">;</span> <span class="p">(</span><span class="err">末尾有分号</span><span class="p">)</span>
+</pre></div>
+
+
+<p>CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
+<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。</p>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ABEND</span> <span class="o">[</span><span class="no">ABCODE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ASKTIME ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/常用的CICS命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常用的CICS命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html"><h3 class="article-title">ISPF下如何去掉程序的第72至80列</h3></a>
+<h6 class="subheader" title="2012-02-07T00:00:00">2012-02-07
+</h6>
+
+
+<p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
+<h4>方法一：直接在ISPF下面用命令去掉</h4>
+<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
+<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
+<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
+</pre></div>
+
+
+<hr />
+<h4>方法二：用第三方脚本实现</h4>
+<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI编译器版本.html"><h3 class="article-title">PL/I编译器版本</h3></a>
+<h6 class="subheader" title="2012-02-02T00:00:00">2012-02-02
+</h6>
+
+
+<p>PL/I编译器的版本，如下所示：</p>
+<div class="highlight"><pre><span class="no">Product</span>        <span class="no">Product</span> <span class="nb">name</span> <span class="err"> </span>                        <span class="no">Compiler</span> <span class="s2">&quot;signature&quot;</span>   <span class="no">Module</span> <span class="n">prefix</span> 
+<span class="mi">360</span><span class="n">S</span><span class="o">-</span><span class="no">NL</span><span class="o">-</span><span class="mi">511</span> <span class="err"> </span> <span class="err"> </span><span class="n">S</span><span class="o">/</span><span class="mi">360</span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="mi">1</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>         <span class="s1">&#39;   &#39;</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="no">IEM</span><span class="p">,</span><span class="no">IHE</span><span class="p">,</span><span class="no">IHL</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">OPTIMIZING</span> <span class="no">COMPILER</span> <span class="no">V1</span> <span class="err"> </span>       <span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>   <span class="err"> </span>  <span class="no">IEL</span><span class="p">,</span><span class="no">IBM</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL2</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">CHECKOUT</span> <span class="no">COMPILER</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL3</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">Opt</span> <span class="no">Comp</span> <span class="no">Lib ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI编译器版本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI编译器版本.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html"><h3 class="article-title">用PIC型中间变量解决Fixed赋值溢出abend</h3></a>
+<h6 class="subheader" title="2012-01-11T00:00:00">2012-01-11
+</h6>
+
+
+<p>我在Debug一个PLI程序<code>PRGM000</code>的时候遇到了一个<code>CEE34A abend</code>，报的错误信息如下：  </p>
+<blockquote>
+<p>You were prompted because the CEE34A condition was raised in your
+program.
+CEE34A is a severity or class 3 condition.
+The operating system has generated the following message:
+CEE3210S The system detected a decimal-overflow exception (System
+Completion Code=0CA).
+The current location is PRGM000 ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/利用SRCHFOR在PDS中搜索字符串.html"><h3 class="article-title">利用SRCHFOR在PDS中搜索字符串</h3></a>
+<h6 class="subheader" title="2011-12-24T00:00:00">2011-12-24
+</h6>
+
+
+<p>之前的文章说到了一个叫<code>Mem xxx</code>  的命令可以用来在一系列PDS中搜索一个名字叫做xxx的member，今天我来说下如何在一个PDS里面所有的member内容当中搜索特定字符串。其实就是利用<code>search-for</code> 的应用程序，比较常规的方法是道<em>ISPF</em>的<em>3.14</em>菜单里面搜索，如下图所示，就是在 <code>"IBMUSER.PROJ.TEST.JCL"</code>这个PDS里面所有的member内容中，搜索一个叫<strong>"STRING"</strong>的字符串：
+<img alt="1" src="./../images/PDS-SRCHFOR_001.jpg" />    <br />
+当然，如果你想直接在当前PDS下调用<code>search-for utility</code>来搜索特定字符串，可以在<code>command line</code>上输入命令：</p>
+<div class="highlight"><pre><span class="no">SRCHFOR</span> <span class="s2">&quot;STRING&quot;</span>
+</pre></div>
+
+
+<p>来在当前PDS下面搜索字符串<strong>”STRING“</strong>,具体如下面2张截图所示：
+<img alt="1" src="./../images/PDS-SRCHFOR_002.jpg" />      <br />
+<img alt="1" src="./../images/PDS-SRCHFOR_003.jpg" />      <br />
+如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用<strong><code>ISRSUPC</code></strong>这个utility了。这个<strong><code>ISRSUPC</code></strong>的功能可强大多了，具体可以参照下我之前的文章: &lt;&lt;用ISRSUPC在PDS所有member中搜索指定字符串&gt;&gt;，这里不重复了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/利用SRCHFOR在PDS中搜索字符串.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/利用SRCHFOR在PDS中搜索字符串.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Job(JCL)返回码.html"><h3 class="article-title">Job(JCL)返回码</h3></a>
+<h6 class="subheader" title="2011-11-28T00:00:00">2011-11-28
+</h6>
+
+
+<h4>提交JCL最常见的返回码就是<code>0、4、8、12、16</code>，当然还有<code>ABEND</code>。</h4>
+<p><em><code>CC=0</code></em>  作业正确执行(Executed Successfully) <br />
+<em><code>CC=4</code></em>  警告 一般不影响作业执行 (Executed Successfully but with warnings) <br />
+<em><code>CC=8</code></em>  作业可以执行，但执行的不完整 (Error)<br />
+<em><code>CC=12</code></em> 作业不能执行 (Serious Error)<br />
+<em><code>CC=16</code></em> 严重错误，中断后续命令的执行(Fatal Error)  <br />
+<em><code>ABEND</code></em> 作业异常终止 </p>
+<h4>下面是一些常见的JCL ABEND CODES</h4>
+<p><code>S0C4</code> Protection Abend.Caused by the subscript ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Job(JCL)返回码.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Job(JCL)返回码.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/利用IBM File Manager查看COPYBOOK.html"><h3 class="article-title">利用IBM File Manager查看COPYBOOK</h3></a>
+<h6 class="subheader" title="2011-11-17T00:00:00">2011-11-17
+</h6>
+
+
+<p>这篇文章就来说下在大机上如何利用<code>IBM File Manager</code>来查看<em>copybook</em>的结构，特别是每个字段的起始位置。  </p>
+<h4>1.在<em>Command</em>栏输入<code>0;5;1</code> 设置自动检测语言</h4>
+<p>这样，不论你的copybook是PLI的还是COBOL的，FileManager都能自动检测出来。
+<img alt="1" src="./../images/IBMfilemanager-copybook-view_001.jpg" /><br />
+<img alt="1" src="./../images/IBMfilemanager-copybook-view_002.jpg" />    </p>
+<h4>2.设置好之后，进入<code>3；13 (Utility-&amp;gt;Copybook)</code></h4>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_003.jpg" />  </p>
+<h6>这里填写copybook的路径和member名，member栏也可以不写:</h6>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_004.jpg" />  </p>
+<h6>接着就能查看copybook内容了，特别是查看某个字段起始位置的时候特别有用。</h6>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_005.jpg" />  </p>
+<h6>上面的<code>MYPLICPY</code>是PLI的copybook，COBOL的这里就不上图了，上图很累的。</h6><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/利用IBM File Manager查看COPYBOOK.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/利用IBM File Manager查看COPYBOOK.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Changeman的Stage和Checkout.html"><h3 class="article-title">Changeman的Stage和Checkout</h3></a>
+<h6 class="subheader" title="2011-11-13T00:00:00">2011-11-13
+</h6>
+
+
+<p>把一个component(比如程序PRGM001)弄到package里面去有两种方法：一是<code>stage</code>，二是<code>checkout</code>。</p>
+<h3>Stage</h3>
+<p>所谓的stage就是当生产环境上面没有的，而你要将一个新的component弄到生产上面去的时候用stage。比如生产环境上面没有PRGM001这个程序，如果你最终想把这个程序通过Changeman安装到生产环境，那你就得现在自己的PDS下面建一个名为PRGM001的程序： </p>
+<div class="highlight"><pre><span class="no">TESTUID</span><span class="o">.</span><span class="n">PRGMLIB</span><span class="p">(</span><span class="no">PRGM001</span><span class="p">)</span>
+</pre></div>
+
+
+<p>然后stage到changeman里面去，具体做法是在ISPF输入:</p>
+<div class="highlight"><pre><span class="n">C</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span>
+</pre></div>
+
+
+<p>输入你的Package ID,回车 
+在Package前面输入命令：</p>
+<div class="highlight"><pre> <span class="no">S1</span>
+</pre></div>
+
+
+<p><img alt="1" src="./../images/changeman-01.jpg" />    </p>
+<h3>Checkout</h3>
+<p>和stage不同，checkout是针对那些已经存在于生产环境里面的components。它们是有版本之分的，比如你要Checkout一个现在已经存在于生产环境的PRGM002,在Package前面输入命令</p>
+<div class="highlight"><pre> <span class="no">C1</span>
+</pre></div>
+
+
+<p><img alt="1" src="./../images/changeman-02.jpg" /> <br />
+这里注意一下<strong>SOURCE LIBRARY. </strong>
+<code>SOURCE LIBRARY=0</code> 说明checkout的是当前生产环境baseline里面的最新版本。
+<code>SOURCE LIBRARY=-1</code>说明checkout的是比当前生产环境baseline旧的一个版本。
+以此类推...<br />
+最后，在Package ID前面输入命令<code>S2</code>，查看package里面所有的components ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Changeman的Stage和Checkout.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Changeman的Stage和Checkout.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 5 of 9</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/mainframe4.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/category/mainframe6.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

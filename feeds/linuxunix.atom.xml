@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/linuxunix.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2011-08-28T00:00:00+08:00</updated><entry><title>Linux硬件信息目录proc</title><link href="http://mainframer.github.io/articles/Linux%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF%E7%9B%AE%E5%BD%95proc.html" rel="alternate"></link><updated>2011-08-28T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-28:articles/Linux硬件信息目录proc.html</id><summary type="html">&lt;p&gt;&lt;code&gt;linux&lt;/code&gt;下面&lt;code&gt;/proc&lt;/code&gt;是一个貌似普通但是功能却非常强大的目录硬件信息目录，包含核心的硬件信息，内存信息，系统运行进程信息，虽然对于用户来说里面的绝大部分内容都是只读的，但是内容还是会随着系统状态的不同而变化的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="c1"&gt;# cd /proc&lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="nb"&gt;proc&lt;/span&gt;&lt;span class="c1"&gt;# ls&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="1" src="./../images/linux-proc.jpg" /&gt;&lt;br /&gt;
+图中每一个数字目录都代表着当前运行的一个相应的进程，每个数字都是一个进程号:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="nb"&gt;proc&lt;/span&gt;&lt;span class="c1"&gt;#  ps -ax #查看当前进程&lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="vi"&gt;@bt&lt;/span&gt;&lt;span class="ss"&gt;:/&lt;/span&gt;&lt;span class="nb"&gt;proc&lt;/span&gt;&lt;span class="c1"&gt;# cd 2778 #进入进程2778的目录&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="1" src="./../images/linux-proc-021.jpg" /&gt;&lt;br /&gt;
+/proc中另外那些非数字的系统信息文件每个都是有意义的，这里列出一些最重要的： &lt;br /&gt;
+&lt;em&gt;1&lt;/em&gt;、/proc/cpuinfo: CPU信息&lt;br /&gt;
+&lt;em&gt;2&lt;/em&gt;、/proc/memiinfo: 物理内存，交换空间等信息&lt;br /&gt;
+&lt;em&gt;3&lt;/em&gt;、/proc/mounts: 已加载的文件系统的列表&lt;br /&gt;
+&lt;em&gt;4&lt;/em&gt;、/proc/devices: 可用的设备列表&lt;br /&gt;
+&lt;em&gt;5&lt;/em&gt;、/proc/filesystems: 被支持的文件系统&lt;br /&gt;
+&lt;em&gt;6&lt;/em&gt;、/proc/modules: 已加载的模块&lt;br /&gt;
+&lt;em&gt;7&lt;/em&gt;、/proc/version: 内核版本&lt;br /&gt;
+&lt;em&gt;8&lt;/em&gt;、/proc/cmdline: 系统启动时输入的内核命令行参数&lt;br /&gt;
+&lt;em&gt;9&lt;/em&gt;、/proc/dma: 显示当前使用的DMA通道&lt;br /&gt;
+&lt;em&gt;10&lt;/em&gt;、/proc/interrupts: 显示使用的中断  &lt;br /&gt;
+&lt;em&gt;11&lt;/em&gt;、/proc/imports: 当前使用的I/O端口&lt;br /&gt;
+&lt;em&gt;12&lt;/em&gt;、/proc/kmsg: 核心输出的消息&lt;br /&gt;
+&lt;em&gt;13&lt;/em&gt;、/proc/version: 内核版本信息&lt;br /&gt;
+&lt;em&gt;14&lt;/em&gt;、/proc/net: 网络协议状态信息  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>常用的linux命令</title><link href="http://mainframer.github.io/articles/%E5%B8%B8%E7%94%A8%E7%9A%84linux%E5%91%BD%E4%BB%A4.html" rel="alternate"></link><updated>2011-08-17T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-17:articles/常用的linux命令.html</id><summary type="html">&lt;h4&gt;Ubuntu启动3D特效:&lt;/h4&gt;
+&lt;p&gt;root@bt:~# sudo apt-get install compizconfig-settings-manager emerald fusion-ico&lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;:&lt;code&gt;compizconfig-settings-manager&lt;/code&gt;是提供3D桌面特效的主程序，安装后出现在屏幕右上角，可以详细设置。emerald是提供窗口装饰的程序，fusion-icon是桌面栏中的图标&lt;/p&gt;
+&lt;h5&gt;linux系统图标路径：&lt;/h5&gt;
+&lt;p&gt;root@bt: &lt;code&gt;cd /usr/share/icons&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;查看最近使用的命令&lt;/h5&gt;
+&lt;p&gt;root@bt:/# &lt;code&gt;history&lt;/code&gt;  &lt;/p&gt;
+&lt;h5&gt;备份更新源文件&lt;/h5&gt;
+&lt;p&gt;root@bt:~# &lt;code&gt;sudo cp /etc/apt/sources.list /etc/atp.sources.list.backup&lt;/code&gt;    &lt;br /&gt;
+root@bt:~# &lt;code&gt;sudo gedit /etc/apt/sources.list&lt;/code&gt;    &lt;/p&gt;
+&lt;h5&gt;软件包管理命令&lt;/h5&gt;
+&lt;p&gt;root@bt:~#  &lt;code&gt;sudo apt-get update&lt;/code&gt;                     #刷新源文件列表  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get upgrade&lt;/code&gt;                    #对所有软件自动升级  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get dist-upgrade&lt;/code&gt;               #对系统升级  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get install package&lt;/code&gt;            #安装软件包   &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get source package&lt;/code&gt;             #获得软件包源代码  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get -f install&lt;/code&gt;                 #修复安装中的错误  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get remove package&lt;/code&gt;             #卸载软件  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get --purge remove package&lt;/code&gt;     #不仅卸载，还删除配置文件  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get autoremove&lt;/code&gt;                 #自动清理系统中不用的软件包  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get autoclean&lt;/code&gt;                  #自动删除系统中旧版本软件包  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get clean&lt;/code&gt;                      #清除从源服务器上下载的软件包  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo apt-get check&lt;/code&gt;                      #更新缓冲区并检查损坏的软件包   &lt;/p&gt;
+&lt;h5&gt;dpkg安装deb包&lt;/h5&gt;
+&lt;p&gt;root@bt:~#  &lt;code&gt;sudo dpkg -i package.deb&lt;/code&gt;                #安装deb包  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo dpkg -s package&lt;/code&gt;                    #查询包信息  &lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo dpkg-query -s package&lt;/code&gt;              #同上&lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo dpkg -r package&lt;/code&gt;                    #卸载包&lt;br /&gt;
+root@bt:~#  &lt;code&gt;sudo dpkg -P package&lt;/code&gt;                    #卸载同时删除配置文件  &lt;/p&gt;
+&lt;h5&gt;下载资料&lt;/h5&gt;
+&lt;p&gt;root@bt:~#  &lt;code&gt;wget  资源地址...&lt;/code&gt;  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Linux目录结构</title><link href="http://mainframer.github.io/articles/Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" rel="alternate"></link><updated>2011-08-14T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-14:articles/Linux目录结构.html</id><summary type="html">&lt;p&gt;linux中以树形目录形式来管理的，并且所有的设备都是目录。linux只有一个根目录&lt;code&gt;‘/'&lt;/code&gt;，其余的目录都是根目录的子目录。
+root@bt:/# ls /dev/sd*
+&lt;code&gt;/dev/sda /dev/sda1 /dev/sda2 /dev/sda5&lt;/code&gt;
+&lt;code&gt;注释:&lt;/code&gt;表示只有一块SATA硬盘，有两个主分区&lt;code&gt;(sda1,sda2)&lt;/code&gt;，一个逻辑分区&lt;code&gt;(sda5)&lt;/code&gt;。  &lt;/p&gt;
+&lt;h5&gt;下面对根目录&lt;code&gt;'/'&lt;/code&gt;下的子目录来个介绍：&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;/usr&lt;/code&gt;:  包含所有命令，类库，系统帮助手册，即包含了系统运行不会修改的内容&lt;br /&gt;
+&lt;code&gt;/var&lt;/code&gt;:  包含系统运行中会修改的内容，如打印队列，邮件列表等，还有系统中软件的日志信息&lt;br /&gt;
+&lt;code&gt;/home&lt;/code&gt;: 用户的主目录，比如/home/user1,/home/user2，每个用户在这个目录下面都有一个自己的子目录&lt;br /&gt;
+&lt;code&gt;/dev&lt;/code&gt;:  设备文件，如硬盘，光驱，USB设备，内存，总线，声卡等&lt;br /&gt;
+&lt;code&gt;/tmp&lt;/code&gt;:  系统临时文件，在每次系统启动的时候都会被删掉&lt;br /&gt;
+&lt;code&gt;/boot&lt;/code&gt;: 系统内核所在地，如果安装了启动管理器的话，也在这个目录下&lt;br /&gt;
+&lt;code&gt;/mnt&lt;/code&gt;:  临时挂载的文件&lt;br /&gt;
+&lt;code&gt;/proc&lt;/code&gt;: 硬件信息和配置文件的地方&lt;br /&gt;
+&lt;code&gt;/etc&lt;/code&gt;:  包含了大部分系统配置文件，比如网络配置文件&lt;br /&gt;
+&lt;code&gt;/bin&lt;/code&gt;:  引导启动所需的命令及用户在使用过程种可能会用到的程序&lt;br /&gt;
+&lt;code&gt;/sbin&lt;/code&gt;: 与/bin类似，但一般是提供给root用户用的&lt;br /&gt;
+&lt;code&gt;/root&lt;/code&gt;: root用户的主目录&lt;br /&gt;
+&lt;code&gt;/lib&lt;/code&gt;:  根文件系统中程序所需的共享库   &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Linux下硬件信息查看</title><link href="http://mainframer.github.io/articles/Linux%E4%B8%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B.html" rel="alternate"></link><updated>2011-08-13T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-13:articles/Linux下硬件信息查看.html</id><summary type="html">&lt;p&gt;以前linux对硬件的支持不怎么好这是大家普遍的印象，然而现在的linux发行版本对硬件的支持度已经算非常好了，普通的硬件像显卡，声卡等更笨不需要安装任何驱动就可以在linux下直接使用。只不过有时候为了更好地发挥硬件的性能，我们最好还是给硬件安装上驱动。安装驱动首先需要获得硬件的信息，特别是核心芯片的提供厂商。一般的我们都知道CPU的提供厂商有Intel和AMD两个，显卡的提供厂商有ATI,NVIDIA,SIS等。声卡呢，最常见的是创新提供的声卡。一般来说，像显卡，声卡，网卡这样的板卡的制造厂商都只是购买了核心芯片，然后在芯片周围做些外围的电路扩展以实现芯片的功能。这样就可以拿来卖给我们钱了。  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Linux对硬件支持的原理&lt;/code&gt;linux只是简单的读取硬件的芯片信息用来和自己库里的驱动程序比较，发现有匹配的程序就用该驱动程序来加载硬件，实现各种功能。
+当然，linux提供我们各种查询硬件信息的命令:&lt;/p&gt;
+&lt;h4&gt;查看PCI设备&lt;/h4&gt;
+&lt;p&gt;系统中大多数设置都是PCI设备(网卡，声卡，1394火线接口，集成显卡等)
+root@bt:/proc#   &lt;code&gt;lspci -v&lt;/code&gt;        #详细pci状态信息 &lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -vv&lt;/code&gt;       #比上面的更详细 &lt;br /&gt;
+root@bt:/proc# l &lt;code&gt;lspci -vvv&lt;/code&gt;      #比上面的更更详细   &lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -n&lt;/code&gt;        #显示设备商和设备代码 &lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -nn&lt;/code&gt;       #比上面的详细，多了名字&lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -nnn&lt;/code&gt;      #比上面的更详细 &lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -x&lt;/code&gt;        #显示硬件基本配置的二进制信息&lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -xxx&lt;/code&gt;      #比上面的详细 &lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -xxxx&lt;/code&gt;     #比上面的更详细 &lt;br /&gt;
+root@bt:/proc#   &lt;code&gt;lspci -vvx&lt;/code&gt;      #可以组合着查看 &lt;br /&gt;
+root@bt:/proc# l &lt;code&gt;lspci -vvxxx&lt;/code&gt;    #组合着查看   &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;:lspci是从pciids数据库读取硬件信息的，如果出现硬件无法识别，可以使用&lt;code&gt;sudo update-pciide&lt;/code&gt;更新pci数据库。上面的命令查询结果在你的pci硬件出现问题的时候将其在网上公布，有热心网友或厂商会帮你解决的。&lt;/p&gt;
+&lt;h5&gt;查看内核信息&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#    &lt;code&gt;uname -a&lt;/code&gt;
+Linux bt 2.6.38 #1 SMP Thu Mar 17 20:52:18 EDT 2011 i686 GNU/Linux&lt;br /&gt;
+root@bt:/proc#     &lt;code&gt;uname --help&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="ss"&gt;Usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;uname&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="no"&gt;OPTION&lt;/span&gt;&lt;span class="o"&gt;]...&lt;/span&gt;  
+&lt;span class="no"&gt;Print&lt;/span&gt; &lt;span class="n"&gt;certain&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="no"&gt;With&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="no"&gt;OPTION&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;same&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;following&lt;/span&gt; &lt;span class="n"&gt;order&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="n"&gt;except&lt;/span&gt; &lt;span class="n"&gt;omit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ss"&gt;unknown&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;name&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="nb"&gt;name&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;nodename&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="n"&gt;hostname&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;release&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;machine&lt;/span&gt; &lt;span class="n"&gt;hardware&lt;/span&gt; &lt;span class="nb"&gt;name&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;unknown&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;hardware&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;hardware&lt;/span&gt; &lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;unknown&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;operating&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;system&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;operating&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="nb"&gt;display&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;查看Ubuntu发行版本&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#   &lt;code&gt;lsb_release -a&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;No&lt;/span&gt; &lt;span class="no"&gt;LSB&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="no"&gt;Distributor&lt;/span&gt; &lt;span class="ss"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;Ubuntu&lt;/span&gt;
+&lt;span class="ss"&gt;Description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;Ubuntu&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mo"&gt;04&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="no"&gt;LTS&lt;/span&gt;
+&lt;span class="ss"&gt;Release&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mo"&gt;04&lt;/span&gt;
+&lt;span class="ss"&gt;Codename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;lucid&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="c1"&gt;#发行版本代号&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;查看内核加载模块&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#  &lt;code&gt;lsmod&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;查看usb设备使用情况&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#    &lt;code&gt;lsusb&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;:如果usb设备未被占用，ID号会显示:0000:0000
+root@bt:/proc#  &lt;code&gt;lsusb -v&lt;/code&gt;            #输出详细的USB信息&lt;/p&gt;
+&lt;h5&gt;查看网卡状态&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#  &lt;code&gt;ethtool eth0&lt;/code&gt;        #查看第一个网卡(eth0)的状态信息&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Settings for eth0:
+Supported ports: [ TP ]
+Supported link modes: 1000baseT/Full  #1000M全双工网卡
+Supports auto-negotiation: No         #不支持自协商
+Advertised link modes: Not reported
+Advertised pause frame use: No
+Advertised auto-negotiation: No
+Link partner advertised link modes: Not reported
+Link partner advertised pause frame use: No
+Link partner advertised auto-negotiation: No
+Speed: 1000Mb/s
+Duplex: Full
+Port: Twisted Pair
+PHYAD: 0
+Transceiver: internal
+Auto-negotiation: off
+MDI-X: Unknown
+Link detected: yes
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;查看CPU信息&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#   &lt;code&gt;cat cpuinfo&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt;  #编号&lt;/span&gt;
+&lt;span class="n"&gt;vendor_id&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GenuineIntel&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; #&lt;/span&gt;&lt;span class="n"&gt;intel&lt;/span&gt;&lt;span class="err"&gt;架构&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;family&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; #体系编号&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; #型号&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Core&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TM&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;Duo&lt;/span&gt; &lt;span class="n"&gt;CPU&lt;/span&gt; &lt;span class="n"&gt;P8700&lt;/span&gt; &lt;span class="err"&gt;@&lt;/span&gt; &lt;span class="mf"&gt;2.53&lt;/span&gt;&lt;span class="n"&gt;GHz&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; #名称，主频&lt;/span&gt;
+&lt;span class="n"&gt;stepping&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt;#倍频&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;MHz&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;2534.000&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; #实际速度&lt;/span&gt;
+&lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3072&lt;/span&gt; &lt;span class="n"&gt;KB&lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; #缓存大小&lt;/span&gt;
+&lt;span class="n"&gt;fdiv_bug&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+&lt;span class="n"&gt;hlt_bug&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+&lt;span class="n"&gt;f00f_bug&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+&lt;span class="n"&gt;coma_bug&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
+&lt;span class="n"&gt;fpu&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;fpu_exception&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;cpuid&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;
+&lt;span class="n"&gt;wp&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;flags&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fpu&lt;/span&gt; &lt;span class="n"&gt;vme&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt; &lt;span class="n"&gt;pse&lt;/span&gt; &lt;span class="n"&gt;tsc&lt;/span&gt; &lt;span class="n"&gt;msr&lt;/span&gt; &lt;span class="n"&gt;pae&lt;/span&gt; &lt;span class="n"&gt;mce&lt;/span&gt; &lt;span class="n"&gt;cx8&lt;/span&gt; &lt;span class="n"&gt;apic&lt;/span&gt; &lt;span class="n"&gt;sep&lt;/span&gt; &lt;span class="n"&gt;mtrr&lt;/span&gt; &lt;span class="n"&gt;pge&lt;/span&gt; &lt;span class="n"&gt;mca&lt;/span&gt; &lt;span class="n"&gt;cmov&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt; &lt;span class="n"&gt;pse36&lt;/span&gt; &lt;span class="n"&gt;clflush&lt;/span&gt; &lt;span class="n"&gt;dts&lt;/span&gt; &lt;span class="n"&gt;acpi&lt;/span&gt; &lt;span class="n"&gt;mmx&lt;/span&gt; &lt;span class="n"&gt;fxsr&lt;/span&gt; &lt;span class="n"&gt;sse&lt;/span&gt; &lt;span class="n"&gt;sse2&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="n"&gt;nx&lt;/span&gt; &lt;span class="n"&gt;lm&lt;/span&gt; &lt;span class="n"&gt;constant_tsc&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;arch_perfmon&lt;/span&gt; &lt;span class="n"&gt;pebs&lt;/span&gt; &lt;span class="n"&gt;bts&lt;/span&gt; &lt;span class="n"&gt;xtopology&lt;/span&gt; &lt;span class="n"&gt;tsc_reliable&lt;/span&gt; &lt;span class="n"&gt;aperfmperf&lt;/span&gt; &lt;span class="n"&gt;pni&lt;/span&gt; &lt;span class="n"&gt;ssse3&lt;/span&gt; &lt;span class="n"&gt;cx16&lt;/span&gt; &lt;span class="n"&gt;sse4_1&lt;/span&gt; &lt;span class="n"&gt;hypervisor&lt;/span&gt; &lt;span class="n"&gt;lahf_lm&lt;/span&gt; &lt;span class="n"&gt;ida&lt;/span&gt; &lt;span class="n"&gt;dts&lt;/span&gt;
+&lt;span class="n"&gt;bogomips&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;5068.00&lt;/span&gt;
+&lt;span class="n"&gt;clflush&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="n"&gt;cache_alignment&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="n"&gt;sizes&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt; &lt;span class="n"&gt;bits&lt;/span&gt; &lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;48&lt;/span&gt; &lt;span class="n"&gt;bits&lt;/span&gt; &lt;span class="n"&gt;virtual&lt;/span&gt;
+&lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="n"&gt;management&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;查看当前硬件信息&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#    &lt;code&gt;lshw&lt;/code&gt;                 #显示完整的系统硬件信息，包括内存，cpu版本...
+root@bt:/proc#    &lt;code&gt;lshw -short&lt;/code&gt;          #短格式显示
+root@bt:/proc#    &lt;code&gt;lshw -class disk&lt;/code&gt;     #显示磁盘信息
+root@bt:/proc#    &lt;code&gt;lshw -class storage&lt;/code&gt;  #显示存储控制设备信息&lt;/p&gt;
+&lt;h5&gt;查看当前内存使用情况&lt;/h5&gt;
+&lt;p&gt;root@bt:/proc#    &lt;code&gt;free&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;total used free shared buffers cached
+Mem: 1025720 373120 652600 0 35052 207464
+-/+ buffers/cache: 130604 895116
+Swap: 916476 0 916476
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;注释&lt;/em&gt;&lt;/strong&gt;：内存实际使用量看&lt;code&gt;-/+ buffers/cache&lt;/code&gt;这一行，是130604K,Mem行是名义上的使用情况，是加上了缓存和缓冲区使用量之后的。
+名义上的内存使用373120K=130604K+35052K+207464K&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Linux分区挂载</title><link href="http://mainframer.github.io/articles/Linux%E5%88%86%E5%8C%BA%E6%8C%82%E8%BD%BD.html" rel="alternate"></link><updated>2011-08-13T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2011-08-13:articles/Linux分区挂载.html</id><summary type="html">&lt;p&gt;硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有&lt;code&gt;Windows&lt;/code&gt;和&lt;code&gt;FressBSD&lt;/code&gt;等操作系统才需要将自己安装在硬盘的主分区里面，而&lt;code&gt;Linux&lt;/code&gt;呢，可以被安装在逻辑分区里面。&lt;/p&gt;
+&lt;h5&gt;分区编号&lt;/h5&gt;
+&lt;p&gt;Linux将所有的存储设备(包括硬盘)都挂载&lt;code&gt;/dev&lt;/code&gt;目录下新建一个子目录来管理，比如下面:&lt;br /&gt;
+&lt;code&gt;/dev/hda1&lt;/code&gt; 第一块IDE硬盘的第一个主分区  &lt;br /&gt;
+&lt;code&gt;/dev/hda2&lt;/code&gt; 第一块IDE硬盘的第二个主分区  &lt;br /&gt;
+&lt;code&gt;/dev/hda5&lt;/code&gt; 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  &lt;br /&gt;
+&lt;code&gt;/dev/sda1&lt;/code&gt; 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   &lt;/p&gt;
+&lt;h5&gt;挂载点&lt;/h5&gt;
+&lt;p&gt;所谓挂载点，就是将分区挂到一个以&lt;code&gt;“/”&lt;/code&gt;开头的目录中。  &lt;br /&gt;
+&lt;code&gt;/&lt;/code&gt;:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   &lt;br /&gt;
+&lt;code&gt;swap&lt;/code&gt;:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来，直接放在独立的分区上。这个分区一般大小为内存大小的2倍即可。  &lt;br /&gt;
+&lt;code&gt;/home&lt;/code&gt;:  用户的主目录 ，是我们存放文件的地方。应当为其独立分配一个分区，这样的话重装系统就不会破坏这个分区里面的文件，并且很多软件的配置信息都存在这里面，重装系统之后就不用再花费精力去重新配置。  &lt;br /&gt;
+&lt;code&gt;/usr&lt;/code&gt;:   应用程序目录 ，大部分软件都安装在这里，普通用户可不再划分这个分区。  &lt;br /&gt;
+&lt;code&gt;/var&lt;/code&gt;:   安装的是服务器方面的应用，作为桌面个人用户的话，大可不必划分这个分区。  &lt;br /&gt;
+&lt;code&gt;/boot&lt;/code&gt;:  存放系统启动所需要的内核文件，包括启动管理器，建议用户划分这个分区。当然，由于内核不大，所以划分500M到1个G给这个分区足够了。  &lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Linux桌面系统KDE和GNOME</title><link href="http://mainframer.github.io/articles/Linux%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9FKDE%E5%92%8CGNOME.html" rel="alternate"></link><updated>2010-12-18T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2010-12-18:articles/Linux桌面系统KDE和GNOME.html</id><summary type="html">&lt;p&gt;Windows的成功告诉我们，用户体验很重要。因为并不是所有人都希望能只能对着一个黑乎乎的shell来进行所有的操作。至少大多数人是不喜欢这样的操作方式的。当前linux上得桌面系统主要可以分为&lt;code&gt;KDE&lt;/code&gt;和&lt;code&gt;GNOME&lt;/code&gt;。&lt;/p&gt;
+&lt;h4&gt;KDE&lt;/h4&gt;
+&lt;p&gt;特点是界面美观，设置和使用相对复杂。KDE在UNIX，许多Linux发行版，FreeBSD上都得到应用。使用KDE作为默认桌面管理系统的linux发行版本大概有：Debian GNU/Linux，Fedora Core，Gentoo Linux，Kubuntu,SUSE Linux，FreeBSD以及纯正的UNIX等。&lt;/p&gt;
+&lt;h4&gt;GNOME&lt;/h4&gt;
+&lt;p&gt;以前说GNOME没有KDE漂亮还可以接受，但现在Ubuntu的强势发展，使得GNOME也不断完善。特别是GNOME的3D桌面动态效果是很吸引新人使用的。可以说，GNOME现在已经是一种非常成熟的桌面系统，具有易用性，稳定性等特点。现在，越来越多的linux发行版本都开始支持GNOME桌面系统了，连BACKTRACK这样的非主流linux系统，在BT5发行里面就有GNOME的桌面，这一点足以证明GNOME的市场成功了。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Linux包管理系统RPM和Deb</title><link href="http://mainframer.github.io/articles/Linux%E5%8C%85%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9FRPM%E5%92%8CDeb.html" rel="alternate"></link><updated>2010-12-12T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2010-12-12:articles/Linux包管理系统RPM和Deb.html</id><summary type="html">&lt;p&gt;本质上来说，包也是linux应用软件的一种。用过一段时间linux的人都知道，一般linux中安装软件都是通过包的形式安装的。目前最流行的两种包的管理系统是Red Hat的RPM包和基于Debian发行版本的Deb包。&lt;/p&gt;
+&lt;h3&gt;RPM包管理系统&lt;/h3&gt;
+&lt;p&gt;Linux家族中有五十多种发行版本是基于Red Hat的RPM包管理系统的。有欧洲最流行的发行版SUSE/OpenSUSE，有著名的Red Hat企业版，我国发行的红旗linux等等。由于Red Hat在linux业界的领导地位，使得RPM包管理方式俨然成了linux业界的工业标准。   &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;rpm -vih file.rpm&lt;/em&gt;            #安装RPM包   &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;rpm -e file.rpm&lt;/em&gt;              #卸载RPM包    &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;rpm -qpR file.rpm&lt;/em&gt;            #查看RPM包依赖关系    &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;rpm -q file.rpm&lt;/em&gt;              #查看系统已经安装的rpm包  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Deb包管理系统&lt;/h3&gt;
+&lt;p&gt;RPM包管理系统应用虽然广泛，但本身具有很难解决包依赖关系的问题，这点上，基于Deb的包管理系统俨然是一种更好地选择。使用Deb包管理系统的linux发行版本有Debian和近几年很火的Ubuntu。现在，Ubuntu可以说在linux个人桌面市场上是一枝独秀，这也是的基于Deb包的管理方式被更多人所熟悉。跟RPM包不同的的是，Deb包里面包含的是二进制文件和一些config文件，也可以直接打开来看。但是Deb包管理系统提供了丰富的安装/管理方法，比较著名的有：&lt;/p&gt;
+&lt;h4&gt;apt(advanced package tool):高级包管理工具，这个很经常在shell下面用到，比如&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;sudo apt-get update&lt;/em&gt;   &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;sudo apt-get install&lt;/em&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;sudo apt-get update&lt;/em&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;dpkg:通过数据库来管理系统中的软件,软件信息保存在目录：&lt;code&gt;/var/lib/dpkg&lt;/code&gt;，常用命令有：&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;dpkg -i package.deb&lt;/em&gt;          #安装包  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;dpkg -r package.deb&lt;/em&gt;          #删除包  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;dpkg -P package.deb&lt;/em&gt;          #删除包和配置文件  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;dpkg -L package.deb&lt;/em&gt;          #列出与该包关联的文件  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;dpkg -l package.deb&lt;/em&gt;          #显示版本  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;dpkg --unpack package.deb&lt;/em&gt;    #解压deb内容  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;dpkg -c package.deb&lt;/em&gt;          #列出deb包内容  &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;dpkg --configure package.deb&lt;/em&gt; #配置包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;synaptic(新立得软件包管理器:运行在_x-windows_环境中，可以简单的搜索软件，安装，删除，升级等等，很方便，用惯了windows的人可以用这个。可以选择在菜单打开，也可以直接在shell输入命令：&lt;code&gt;synaptic&lt;/code&gt; 启动。&lt;/h4&gt;
+&lt;p&gt;另外，还有gdebi，dselect等,不熟。&lt;/p&gt;</summary><category term="z/OS"></category></entry><entry><title>Linux压缩命令</title><link href="http://mainframer.github.io/articles/Linux%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4.html" rel="alternate"></link><updated>2010-11-26T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2010-11-26:articles/Linux压缩命令.html</id><summary type="html">&lt;p&gt;在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
+压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  &lt;br /&gt;
+&lt;code&gt;tar格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;xvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;
+&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;gz格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;gunzip&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;span class="err"&gt;也可用&lt;/span&gt; &lt;span class="n"&gt;gzip&lt;/span&gt;&lt;span class="err"&gt;——&lt;/span&gt;&lt;span class="n"&gt;gzip&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;tar.gz/tgz格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;zxvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt; &lt;span class="err"&gt;解压至当前目录&lt;/span&gt;
+&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;zcvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt; &lt;span class="n"&gt;orderFolder&lt;/span&gt; &lt;span class="err"&gt;压缩&lt;/span&gt;&lt;span class="n"&gt;orderFoler&lt;/span&gt;&lt;span class="err"&gt;里面的文件至&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;bz2格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bzip2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;span class="n"&gt;bzip2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;tar.bz2格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;jxvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;jcvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt; &lt;span class="n"&gt;orderFolder&lt;/span&gt; &lt;span class="err"&gt;压缩&lt;/span&gt;&lt;span class="n"&gt;orderFoler&lt;/span&gt;&lt;span class="err"&gt;里面的文件至&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;bz格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bzip2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;tar.bz格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;jxvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;tar.z格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="no"&gt;Zxvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="n"&gt;tar&lt;/span&gt;
+&lt;span class="no"&gt;Zcvf&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt; &lt;span class="no"&gt;Folder&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;zip格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;unzip&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zip&lt;/span&gt;
+&lt;span class="n"&gt;zip&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zip&lt;/span&gt; &lt;span class="n"&gt;folder&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;rar格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rar&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rar&lt;/span&gt;
+&lt;span class="n"&gt;rar&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rar&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;deb格式&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;arp&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;bundle类型安装&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bundle&lt;/span&gt;  &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n-Operator"&gt;/&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bundle&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="z/OS"></category></entry></feed>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Mainframe</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html"><h3 class="article-title">用ISRSUPC在PDS所有member中搜索指定字符串</h3></a>
+<h6 class="subheader" title="2011-08-27T00:00:00">2011-08-27
+</h6>
+
+
+<p>在一个PDS中搜索名字叫做“snailgo”的member，可以在command line上输入命令<code>mem snailgo</code>即可。但是，如果想搜索整个PDS下所有的成员(Member)中指定字符串，有没有办法呢？答案是肯定的，我们可以用一个比较的utility <code>ISRSUPC</code>来实现，同样的，只需submit一个JCL。
+<img alt="1" src="./../images/isrsupc-compare.jpg" />      </p>
+<p>这里，我们在PDS <strong><code>“IBMUSER.TEST.LIB.JCL”</code></strong>和<strong><code>“IBMUSER.TEST.LIB.PROC”</code></strong>下的所有member中搜索字符串”SNAILGO”。参数为：<code>PARM=(SRCHCMP,ANYC)</code>，其中<code>SRCHCMP</code>指定要搜索的字符串，<code>ANYC</code>表示ANY Case，即搜索任何符合的情况，要了解更详细的PARM的用法，可以参考IBM红宝书<strong>IBM manual ISPF/PDF Guide ...</strong></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/新建空的GDG generation.html"><h3 class="article-title">新建空的GDG generation</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  </p>
+<p><img alt="1" src="./../images/gdg-new-empty-generation.jpg" />    <br />
+submit，查看，空的generation G0001V00 就生成了:  </p>
+<p><img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建空的GDG generation.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建空的GDG generation.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/更改GDG世代数参数.html"><h3 class="article-title">更改GDG世代数参数</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:<br />
+<img alt="1" src="./../images/gdg-update.jpg" />      </p>
+<p>submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/更改GDG世代数参数.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/更改GDG世代数参数.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/新建GDG世代数据集.html"><h3 class="article-title">新建GDG世代数据集</h3></a>
+<h6 class="subheader" title="2011-08-25T00:00:00">2011-08-25
+</h6>
+
+
+<p>如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：<br />
+<img alt="1" src="./../images/create-gdg-base.jpg" />       </p>
+<p>其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建GDG世代数据集.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建GDG世代数据集.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html"><h3 class="article-title">IBM主机技术一本通笔记</h3></a>
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+<p>这一系列文章将会是从《IBM主机技术一本通》里面选取我个人认为对我有用的部分来记录和阐述。</p>
+<h5>1、LRECL和BLKSIZE</h5>
+<p><img alt="1" src="./../images/LRECL-BLKSIZE.jpg" />           <br />
+<strong>LRECL</strong>:逻辑记录是程序想要处理的一个数据单元，通常由许多连接在一起的区域构成。  </p>
+<blockquote>
+<p>BLKSIZE：物理单元(又称块)   描述了在一次输入输出操作中需要传送的数据量，如上图所示，你一定发现了BLKSIZE必须是LRECL的整数倍，显然这是因为BLKSIZE是多个LRECL嘛！ 
+任何时候发生输入输出时传送的是整个块而不是单个逻辑记录，这样做的好处显而易见，有效地使用空间，提高传送率。<br />
+</p>
+</blockquote>
+<h5>2、I——PDS(分区数据集)信息分析</h5>
+<p>一直对这个知识点一知半解的，今天看了一本通之后，算是明白了。照着图说： <br />
+<img alt="1" src="./../images/PDS-Infor1.jpg" />   </p>
+<p>呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html"><h3 class="article-title">IBM主机技术一本通笔记续</h3></a>
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+<h5>1、JCL每行80列</h5>
+<p>原来这是因为在1960年那个年代，程序员使用的是穿孔卡片来将JCL作业控制语句一个一个的输入系统，构成了批量作业，而当时穿孔卡片只有80列。</p>
+<h5>2、JOB语句的关键字参数</h5>
+<p>ADDRSPC 
+<span style="color: #ff00ff;">REGION</span> <br />
+<span style="color: #ff00ff;">MSGCLASS</span> <br />
+SECLABEL <br />
+<span style="color: #ff00ff;">PASSWORD</span><br />
+BYTES   <br />
+<span style="color: #ff00ff;">CLASS</span> <br />
+RD MSGLEVEL <br />
+<span style="color: #ff00ff;">TIME</span> <br />
+PERFORM PAGES <br />
+<span style="color: #ff00ff;">COND</span> <br />
+LINES <br />
+CARDS <br />
+TYPRUN <br />
+PRTY <br />
+SCHENV <br />
+GROUP <br />
+<span style="color: #ff00ff;">RESTART</span> <br />
+<span style="color: #ff00ff;">NOTIFY</span> <br />
+<span style="color: #ff00ff;">USER</span> CCSID<br />
+标有颜色的几个是我自己比较常用到的。<br />
+上张包含了这9个常用JCL关键字参数的图(当然，平常工作当中一般不可能在单个JCL当中都包含了所有的这9个关键字，我这里只是为了更好的说明才把它们罗列在一个JCL里面的，这点要明白)
+<a href="./../images/JCL-keyword1.jpg">!</a>  <br />
+<strong><code>CLASS</code></strong> : 是作业运行队列的优先级，MSGCLASS是作业输出信息的级别，它规定了作业输出信息送往哪里显示。CLASS和MSGCLASS都是公司规定好了的，肯定有文档可以查看具体信息的。</p>
+<p><strong><code>NOTIFY</code></strong>:  是指最终作业运行的结果通知给谁，可以写详细的ID，比如IBMUSER，也可以写通用的参数，比如<code>&amp;SYSUID ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CICS应用编程接口.html"><h3 class="article-title">CICS应用编程接口</h3></a>
+<h6 class="subheader" title="2011-08-12T00:00:00">2011-08-12
+</h6>
+
+
+<h3>开发语言</h3>
+<p>可以用COBOL,C,C++,Assembler,PL/I等来编写CICS应用程序的主要的大部分逻辑处理功能，而只有少数的一部分功能需要用到CICS命令。</p>
+<h5>CICS命令格式</h5>
+<p><code>EXEC CICS SEND FROM (MSG-AREA) LENGTH(5) END-EXEC</code>                                         ——向终端发送长度为5的MSG-AREA信息       <br />
+<code>EXEC CICS READ FILE('FILEA') INTO (CUSTOMER-REC) RIDFLD(CUSTOMER-NUM)</code>                     ——读和修改VSAM文件       <br />
+<code>EXEC SQL SELECT colum_names INTO program_variables From Table_name WHERE ... END-EXEC</code>     ——读和修改关系型数据库<br />
+<code>EXEC CICS READ ... RESP(RESPONSE-FIELD)</code>  或  <code>EXEC CICS HANDLE CONDITION</code>                 ——处理异常条件 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CICS应用编程接口.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS应用编程接口.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html"><h3 class="article-title">ISPF中通配符%和*的使用</h3></a>
+<h6 class="subheader" title="2011-08-08T00:00:00">2011-08-08
+</h6>
+
+
+<p>在日常的操作过程中，发现通配符__%<strong>和_<strong><em>_使用的场合还是很多的，而且重要的是，如果使用好的话，真的是会很大程度上提高工作效率的。
+和其他系统的通配符没什么区别，在大机上也是这么定义的：  <br />
+</em>_%</strong>：任意一位字符  <br />
+</strong>*__：任意一至多位字符  <br />
+下面举两个例子： <br />
+输入：<code>IBMUSER.TEST.LIB%</code><br />
+<img alt="1" src="./../images/wild_character01.jpg" />    </p>
+<p>输入：<code>IBMUSER.*.LIB</code>  <br />
+<img alt="1" src="./../images/wild_character02.jpg" />       </p>
+<p>当然，两者可以根据你的需要任意组合使用，这个是没问题的。就像：<code>IBMUSER.*.LIB%</code>这样。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中通配符%和*的使用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/OLTP和CICS.html"><h3 class="article-title">OLTP和CICS</h3></a>
+<h6 class="subheader" title="2011-08-07T00:00:00">2011-08-07
+</h6>
+
+
+<h3>OLTP:联机事务处理</h3>
+<p>事务的ACID属性：</p>
+<ul>
+<li>原子性(Atomicity) </li>
+<li>一致性(Consistency) </li>
+<li>孤立性(Isolation) </li>
+<li>持久性(Durability)
+关于OLTP的完整性和可恢复机制,这里举两种情况: 
+<strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br />
+<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br />
+此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br />
+<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
+通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
+各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/OLTP和CICS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/OLTP和CICS.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html"><h3 class="article-title">QW命令——MVS/QuickRef帮助文档</h3></a>
+<h6 class="subheader" title="2011-08-05T00:00:00">2011-08-05
+</h6>
+
+
+<p>大机平台上有一个很了不起的帮助文档系统，名字叫做MVS/QuickRef，是一款强大的在线查询系统。用过微软的MSDN的童鞋都知道MSDN的强大。大机上面的MVS/QuickRef几乎可以查到所有你想查的资料，因为这款查询工具号称超过5k万行，以简单易懂著称。最主要的是查询特别方便，使用ISPF直接调用命令QW即可查询内容。<br />
+MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，我们公司还在用的是7.0的版本。这款强大的查询工具是由一家名叫Chicago-Soft的公司生产的，主页在:<a href="http://quickref.com">MVS/QuickRef主页</a>，可以去看看。<br />
+在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：</p>
+<blockquote>
+<p>"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2, IDMS ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 7 of 9</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/mainframe6.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/category/mainframe8.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

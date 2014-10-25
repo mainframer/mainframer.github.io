@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Scripts/Automation</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BAT批处理现学现用.html"><h3 class="article-title">BAT批处理现学现用</h3></a>
+<h6 class="subheader" title="2013-03-29T00:00:00">2013-03-29
+</h6>
+
+
+<p>上篇说的是本人在实现报表自动化过程中用到的VBS知识，这篇我打算用来总结在此过程中用到的批处理知识。</p>
+<h4>批处理里面如何实现延时？</h4>
+<div class="highlight"><pre><span class="n">rem</span> <span class="err">巧妙地利用</span><span class="n">windows</span><span class="err">自带的</span><span class="n">ping</span><span class="err">命令来达到延时的目的</span>
+<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
+</pre></div>
+
+
+<h5>批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]</h5>
+<div class="highlight"><pre><span class="err">@</span><span class="n">echo</span> <span class="nl">off</span>
+<span class="p">:</span><span class="n">input_module</span>
+<span class="n">echo</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">date</span> <span class="nl">here</span><span class="p">:</span>
+<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">yyyymm</span><span class="o">=^&lt;</span><span class="nl">format</span><span class="p">:</span><span class="n">yyyymm</span><span class="o">^&gt;</span> <span class="p">(</span><span class="nl">example</span><span class="p">:</span><span class="mi">201301</span><span class="p">)</span><span class="o">:</span>
+<span class="n">echo</span> <span class="o">%</span><span class="n">yyyymm</span><span class="o">%|</span><span class="n">findstr</span> <span class="o">^</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="err">$</span><span class="o">&gt;</span><span class="n">nul</span>
+<span class="k">if</span> <span class="n">not</span> <span class="o">%</span><span class="n">errorlevel</span><span class="o">%==</span><span class="mi">0</span> <span class="k">goto</span> <span class="n">input_module</span>
+<span class="n">echo</span> <span class="o">^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> 
+<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
+</pre></div>
+
+
+<h5>对以上用户输入做操作:字符串截取、字符串拼接的用法：</h5>
+<div class="highlight"><pre><span class="n">set</span> <span class="n">yyyymm</span> <span class="o">=</span> <span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="o">%</span>
+<span class="k">if</span> <span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="o">%</span> <span class="o">==</span> <span class="mo">01</span> <span class="n">set</span> <span class="n">month_display</span><span class="o">=</span><span class="n">JAN</span><span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="o">%</span>
+</pre></div>
+
+
+<h5>批处理中用户名、密码输入模块</h5>
+<div class="highlight"><pre><span class="n">rem</span>  <span class="err">用户输入</span><span class="n">ftpUserID</span><span class="err">及</span><span class="n">ftpPass</span><span class="err">模块</span>
+<span class="n">echo</span> <span class="o">^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">ID</span> <span class="o">&amp;</span> <span class="n">Password</span>
+<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
+<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">ftpUser</span><span class="o">=^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Enter</span> <span class="n">TSO</span> <span class="nl">ID</span><span class="p">:</span>
+</pre></div>
+
+
+<h5>批处理中著名的实现隐藏用户输入密码的方法</h5>
+<div class="highlight"><pre><span class="n">rem</span>  <span class="err">批处理里面很著名的隐藏输入不显示的方法</span><span class="p">(</span><span class="n">By</span><span class="err">德国人</span><span class="n">HerbertKleebauer</span><span class="p">)</span>
+<span class="n">echo</span> <span class="n">hP1X500P</span><span class="p">[</span><span class="n">PZBBBfh</span><span class="err">#</span><span class="n">b</span><span class="err">##</span><span class="n">fXf</span><span class="o">-</span><span class="n">V</span><span class="err">@`$</span><span class="n">fPf</span><span class="p">]</span><span class="n">f3</span><span class="o">/</span><span class="n">f1</span><span class="o">/</span><span class="mi">5</span><span class="o">++</span><span class="n">u5x</span><span class="o">&gt;</span><span class="n">in</span><span class="p">.</span><span class="n">com</span>
+<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">ftpPass</span><span class="o">=^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Enter</span> <span class="n">your</span> <span class="nl">password</span><span class="p">:</span><span class="o">&lt;</span><span class="n">nul</span>
+<span class="k">for</span> <span class="o">/</span><span class="n">f</span> <span class="s">&quot;tokens=*&quot;</span> <span class="o">%%</span><span class="n">i</span> <span class="n">in</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">in</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="n">set</span> <span class="n">ftpPass</span><span class="o">=%%</span><span class="n">i</span>
+<span class="n">del</span> <span class="n">in</span><span class="p">.</span><span class="n">com</span>
+</pre></div>
+
+
+<h5>批处理中实现执行批量ftp命令的方法</h5>
+<div class="highlight"><pre><span class="n">rem</span> <span class="err">设置远程</span><span class="n">ftp</span><span class="err">的</span><span class="n">ip</span>
+<span class="n">set</span> <span class="n">ftpIP</span><span class="o">=</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span> 
+<span class="n">rem</span> <span class="err">设置本地目录为当前脚本所在目录，用</span><span class="o">%~</span><span class="n">dp0</span><span class="err">表示</span>
+<span class="n">set</span> <span class="n">LocalFolder</span><span class="o">=%~</span><span class="n">dp0</span>
+<span class="n">rem</span> <span class="err">指定临时</span><span class="n">ftp</span><span class="err">指令文件，将</span><span class="n">job</span><span class="err">送往</span><span class="n">mainframe</span> <span class="err">的</span><span class="n">JES2</span><span class="err">队列运行，并且提前删除以下两个</span><span class="n">dataset</span><span class="err">。</span>
+<span class="n">set</span> <span class="n">ftpFile</span><span class="o">=%</span><span class="n">temp</span><span class="o">%</span><span class="err">\</span><span class="n">TempFTP</span><span class="p">.</span><span class="n">txt</span>
+  <span class="o">&gt;</span><span class="s">&quot;%ftpFile%&quot;</span> <span class="p">(</span>
+    <span class="n">echo</span> <span class="n">open</span> <span class="o">%</span><span class="n">ftpIP</span><span class="o">%</span>
+    <span class="n">echo</span> <span class="n">user</span> <span class="o">%</span><span class="n">ftpUser</span><span class="o">%</span>
+    <span class="n">echo</span> <span class="o">%</span><span class="n">ftpPass</span><span class="o">%</span>    
+    <span class="n">echo</span> <span class="n">lcd</span> <span class="s">&quot;%LocalFolder%&quot;</span>
+    <span class="n">echo</span> <span class="n">ascii</span>
+    <span class="n">echo</span> <span class="n">quote</span> <span class="n">site</span> <span class="n">filetype</span><span class="o">=</span><span class="n">jes</span>
+    <span class="n">echo</span> <span class="n">put</span> <span class="n">my_jes2_job</span><span class="p">.</span><span class="n">txt</span>    
+    <span class="n">echo</span> <span class="n">disconnect</span>
+    <span class="n">echo</span> <span class="n">bye</span>
+  <span class="p">)</span>
+<span class="n">rem</span>  <span class="err">调用</span><span class="n">ftp</span><span class="p">.</span><span class="n">exe</span><span class="err">执行上述</span><span class="n">ftp</span><span class="err">命令，来完成将</span><span class="n">my_jes2_job</span><span class="err">送入到</span><span class="n">mainframe</span><span class="err">执行的操作</span>
+<span class="n">start</span> <span class="nl">c</span><span class="p">:</span><span class="err">\</span><span class="n">windows</span><span class="err">\</span><span class="n">system32</span><span class="err">\</span><span class="n">ftp</span><span class="p">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="nl">s</span><span class="p">:</span><span class="s">&quot;%ftpFile%&quot;</span> 
+</pre></div>
+
+
+<h5>批处理中判断文件是否为空的方法，以及goto分支的用法</h5>
+<div class="highlight"><pre><span class="k">for</span> <span class="o">/</span><span class="n">f</span> <span class="s">&quot;delims=&quot;</span> <span class="o">%%</span><span class="n">i</span> <span class="n">in</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">dir</span> <span class="o">/</span><span class="n">b</span> <span class="n">my_test_source</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
+<span class="k">if</span> <span class="o">%%~</span><span class="n">zi</span> <span class="n">equ</span> <span class="mi">0</span>  <span class="p">(</span>   
+  <span class="k">goto</span> <span class="n">empty_source</span>      <span class="n">rem</span> <span class="k">goto</span> <span class="n">process</span> <span class="n">empty</span>
+<span class="p">)</span> <span class="k">else</span> <span class="p">(</span>
+  <span class="k">goto</span> <span class="n">not_empty_source</span>  <span class="n">rem</span> <span class="k">goto</span> <span class="n">process</span> <span class="n">not</span> <span class="n">empty</span>
+  <span class="p">)</span>
+ <span class="p">)</span>
+ <span class="o">:</span><span class="n">empty_source</span> 
+   <span class="k">do</span> <span class="n">something</span> <span class="nl">here</span>
+ <span class="p">:</span><span class="n">not_empty_source</span>
+   <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>
+</pre></div>
+
+
+<h5>批处理中调用msgbox显示消息框的方法</h5>
+<div class="highlight"><pre><span class="n">rem</span> <span class="err">利用</span><span class="n">mshta</span><span class="err">，消息框里面换行用</span><span class="o">^&amp;</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^</span>
+<span class="n">mshta</span> <span class="nl">vbscript</span><span class="p">:</span><span class="n">msgbox</span><span class="p">(</span><span class="s">&quot;Empty !&quot;</span><span class="o">^&amp;</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^&amp;^</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^&amp;</span><span class="s">&quot;Please Check!&quot;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="s">&quot;Error&quot;</span><span class="p">)(</span><span class="n">window</span><span class="p">.</span><span class="n">close</span><span class="p">)</span>
+</pre></div>
+
+
+<h5>批处理中拷贝文件的方法</h5>
+<div class="highlight"><pre><span class="n">copy</span> <span class="n">A</span><span class="p">.</span><span class="n">txt</span> <span class="n">B</span><span class="p">.</span><span class="n">txt</span><span class="o">&gt;</span><span class="n">nul</span>
+</pre></div>
+
+
+<h5>批处理中执行vbs脚本的方法</h5>
+<div class="highlight"><pre><span class="n">rem</span> <span class="n">ftpUser</span><span class="err">和</span><span class="n">yyyymm</span><span class="err">是传递给</span><span class="n">vbs</span><span class="err">的参数</span>
+<span class="n">start</span> <span class="n">wscript</span> <span class="n">process_not_empty</span><span class="p">.</span><span class="n">vbs</span>  <span class="o">%</span><span class="n">ftpUser</span><span class="o">%</span>  <span class="o">%</span><span class="n">yyyymm</span><span class="o">%</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/VB Script现学现用.html"><h3 class="article-title">VB Script现学现用</h3></a>
+<h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
+</h6>
+
+
+<p>这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  <br />
+(<em>注意</em>：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  </p>
+<div class="highlight"><pre><span class="n">dim</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">yyyymm</span><span class="p">,</span> <span class="n">to_dte_</span>       <span class="err">&#39;定义变量</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">user_id</span> <span class="o">=</span> <span class="n">wscript</span><span class="p">.</span><span class="n">arguments</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="err">&#39;接收批处理传过来的第一个参数</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">CAP_user_id</span> <span class="o">=</span> <span class="n">Ucase</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>       <span class="err">&#39;转换成大写</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">Select</span> <span class="n">Case</span> <span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>        <span class="err">&#39;</span><span class="n">Select</span><span class="o">/</span><span class="n">Case</span><span class="err">的用法</span> <span class="err">和</span> <span class="err">字符串截取的方法</span>                                         
+<span class="n">Case</span> <span class="s">&quot;01&quot;</span>   
+    <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>  
+<span class="n">Case</span> <span class="s">&quot;02&quot;</span>                          <span class="err">&#39;</span><span class="n">If</span><span class="o">-</span><span class="n">Then</span><span class="err">的用法，闰年的判断方法，</span><span class="o">=</span><span class="p">,</span><span class="o">&lt;&gt;</span><span class="p">,</span><span class="n">Mod</span><span class="err">的用法 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/VB Script现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/VB Script现学现用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir给Amazon.cn充礼品卡.html"><h3 class="article-title">Watir给Amazon.cn充礼品卡</h3></a>
+<h6 class="subheader" title="2013-03-19T00:00:00">2013-03-19
+</h6>
+
+
+<p>写个脚本去尝试不花钱给自己的Amazon.cn账号充礼品卡，碰碰运气。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="k">def</span> <span class="nf">randCharOfLength</span><span class="p">(</span><span class="n">len</span><span class="p">)</span>                                 <span class="c1">#产生随机任意长度的数</span>
+    <span class="n">chars</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="o">..</span><span class="s2">&quot;z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="o">..</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="o">..</span><span class="s2">&quot;9&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">len</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">chars</span><span class="o">[</span><span class="nb">rand</span><span class="p">(</span><span class="n">chars</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">]</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">str</span>
+<span class="k">end</span>
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir给Amazon.cn充礼品卡.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir给Amazon.cn充礼品卡.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir获得sedo网站上指定后缀域名列表.html"><h3 class="article-title">Watir获得sedo网站上指定后缀域名列表</h3></a>
+<h6 class="subheader" title="2013-03-12T00:00:00">2013-03-12
+</h6>
+
+
+<p>作为一个’米农‘，sedo.com网站上面的信息很有价值。sedo.com是全球最大的域名交易网站。下面我写的这个脚本是用来取得sedo上面指定后缀(_如.asia)的所有域名列表。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="c1">#b=Watir::Browser.new(:firefox, {:profile =&gt; &#39;default&#39;})</span>
+<span class="n">output</span> <span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;sedo_asia.txt&quot;</span><span class="p">,</span><span class="s1">&#39;w:UTF-8&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">pre_work</span><span class="p">()</span>
+  <span class="vg">$b</span><span class="o">=</span><span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span> <span class="ss">:ff</span>
+  <span class="vg">$b</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">manage</span><span class="o">.</span><span class="n">timeouts</span><span class="o">.</span><span class="n">implicit_wait ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir获得sedo网站上指定后缀域名列表.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir获得sedo网站上指定后缀域名列表.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html"><h3 class="article-title">Watir登陆微博发布微博</h3></a>
+<h6 class="subheader" title="2012-04-30T00:00:00">2012-04-30
+</h6>
+
+
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s1">&#39;www.weibo.com&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">focus</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_email_account&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;inp password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:type</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_password&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL提交REXX脚本.html"><h3 class="article-title">JCL提交REXX脚本</h3></a>
+<h6 class="subheader" title="2012-02-25T00:00:00">2012-02-25
+</h6>
+
+
+<h3>来说说如何用JCL提交REXX脚本。</h3>
+<h4>1、写一个最简单的显示有一行提示的REXX脚本叫<code>SAYHELLO</code>：</h4>
+<div class="highlight"><pre><span class="mi">1</span> <span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>           <span class="no">Member</span> <span class="no">SAYHELLO</span> <span class="n">saved</span> 
+<span class="mi">2</span> <span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="mi">3</span> <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mi">4</span> <span class="mo">000001</span> <span class="o">/******************************</span><span class="no">REXX</span><span class="o">*********************************/</span>                
+<span class="mi">5</span> <span class="mo">000002</span> <span class="no">SAY</span> <span class="s2">&quot;I WILL PRINT &#39;HELLO&#39; IN SYSTSPRT BY SUBMITTING JCL&quot;</span> 
+</pre></div>
+
+
+<h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL提交REXX脚本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL提交REXX脚本.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
+<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
+</h6>
+
+
+<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
+<blockquote>
+<p>FIND ',' ALL</p>
+<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
+既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
+编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
+</blockquote>
+<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
+<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
+<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
+<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
+<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
+</pre></div>
+
+
+<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html"><h3 class="article-title">Rexx顺序处理文件所有行</h3></a>
+<h6 class="subheader" title="2012-02-17T00:00:00">2012-02-17
+</h6>
+
+
+<p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：</p>
+<div class="highlight"><pre><span class="no">ADDRESS</span> <span class="no">TSO</span>                                                             
+  <span class="n">indataset</span> <span class="o">=</span> <span class="s1">&#39;IBMUSER.REXX.EXEC(INFILE)&#39;</span>  <span class="sr">/*read in input file */</span>      
+  <span class="s2">&quot;alloc f(fin) ds(&#39;&quot;</span><span class="n">indataset</span><span class="s2">&quot;&#39;) shr reuse&quot;</span>   
+  <span class="s2">&quot;execio * diskr fin (finis stem in.&quot;</span>                                  
+  <span class="s2">&quot;free f(fin)&quot;</span>                                                         
+ <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="k">in</span><span class="o">.</span><span class="mi">0</span>        <span class="o">/*</span><span class="kp">loop</span> <span class="k">in</span> <span class="n">file</span> <span class="k">until</span> <span class="n">the</span> <span class="n">last</span> <span class="n">line</span> <span class="n">reached</span> <span class="o">*/</span>           
+    <span class="n">one_line</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="k">in</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>                                                    
+    <span class="n">call ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX学习笔记.html"><h3 class="article-title">REXX学习笔记</h3></a>
+<h6 class="subheader" title="2012-02-05T00:00:00">2012-02-05
+</h6>
+
+
+<p>最近在学习Rexx脚本，打算做一些自动化。归纳了些点总结下放在这里以备查询。  </p>
+<h3>一些基本概念</h3>
+<ul>
+<li>REXX: <code>REstructured eXtended eXecutor (REXX) language</code> 扩充结构化执行语言  </li>
+<li>REXX中变量无需事前定义  </li>
+<li>Debug REXX:用REXX TRACE或者用interactive debug facility来定位error  </li>
+<li>SAA Procedures Language：REXX的子集，在TSO/E,CICS,IMS等多种环境中应用 </li>
+<li>要运行REXX exec，必须至少有一种可用的<code>Host command environments</code>。默认的是<code>TSO</code>。还有<code>MVS</code>,<code>LINK</code>,<code>LINKMVS</code>,<code>LINKPGM</code>,<code>ATTACH</code>,<code>ATTCHMVS</code>,<code>ATTCHPGM</code>,<code>ISPEXEC</code>,<code>ISREDIT</code>,<code>CONSOLE</code>,<code>CPICOMM</code>,<code>LU62</code>,<code>APPCMVS</code>等等，常用的有 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX学习笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX学习笔记.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir自动为优酷视频刷顶.html"><h3 class="article-title">Watir自动为优酷视频刷顶</h3></a>
+<h6 class="subheader" title="2011-12-02T00:00:00">2011-12-02
+</h6>
+
+
+<p>很喜欢优酷上面的一个节目，想帮帮它早日升到排行榜怎么办？写个脚本好了。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">manage</span><span class="o">.</span><span class="n">timeouts</span><span class="o">.</span><span class="n">implicit_wait</span> <span class="o">=</span><span class="mi">60</span>                  <span class="c1">#默认的等待页面加载30秒若还未加载完成则会跑出timeout异常，这里可以修改成60秒</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s1">&#39;http://v.youku.com/v_show/id_XNTE5MTY3NzI4.html&#39;</span>    <span class="c1">#假设我现在要为这个视频刷“顶”</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">100</span>                                             <span class="c1">#假设我这里要&quot;顶 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir自动为优酷视频刷顶.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir自动为优酷视频刷顶.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 2</h6>
+
+<p>
+
+        <a href="http://mainframer.github.io/category/scriptsautomation2.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

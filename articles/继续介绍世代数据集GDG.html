@@ -97,7 +97,7 @@
 <h5>7、注意事项</h5>
 <p>这里，说一点特别需要注意的地方。GDG是在一个JOB执行完毕之后才被CATALOG的。假如你需要在一个JOB当中有两次需要生成新的GDG generation，那么你必须一次用(+1)，一次用(+2)，不能两次都用(+1)，因为在你Job执行完之前，系统不知道你前面已经生成了一个新的generation的。<br />
 还有，比如在同一个job里面，你前面一个step用(+1)生成了一个新的generation，名字叫IBMUSER.TEST.GDG，后面某个step紧接着要使用这个新生成的generation，你觉得这时候你是使用<span style="color: #ff00ff;">DSN=IBMUSER.TEST.GDG(0),DISP=SHR</span>呢还是使用<span style="color: #ff00ff;">DSN=IBMUSER.TEST.GDG(+1),DISP=SHR</span>呢？ 告诉你，这种情况下你必须用后者，因为在这个Job执行完之前，系统并不知道你在前面的step已经生成了这个generation。也就是说，gdg的catalog是在job层面上的，不是在step层面上的。好了，关于GDG就介绍到这里。</p>
-<p class="subheader">Category: <a href="http://mainframer.github.io/category/articles.html">articles</a>
+<p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
@@ -135,7 +135,11 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/articles.html">articles</a></li>
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
    
         </ul>
 

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Mainframe</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html"><h3 class="article-title">ISPF-只显示含关键字的所有行</h3></a>
+<h6 class="subheader" title="2012-09-07T00:00:00">2012-09-07
+</h6>
+
+
+<p>命令：</p>
+<blockquote>
+<p>X ALL; 
+FIND keyword ALL;
+</p>
+</blockquote>
+<p>比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;</p>
+<div class="highlight"><pre><span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TESTJCL</span><span class="p">(</span><span class="no">TESTJOB</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">9</span>         <span class="mi">4</span> <span class="no">CHARS</span> <span class="s1">&#39;DT0907&#39;</span> 
+ <span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">find</span> <span class="n">dt0907</span> <span class="n">all</span>                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+ <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">524</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000525</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">FILEOUTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html"><h3 class="article-title">ISPF-提高效率少用PF3和START</h3></a>
+<h6 class="subheader" title="2012-09-01T00:00:00">2012-09-01
+</h6>
+
+
+<p>同一个<em>PDS</em>下，记得多用<code>BROWSE</code>, <code>VIEW</code>,<code>EDIT</code>,<code>COMP</code>这些命令。比如<code>BROWSE TEST02</code> 或者<code>EDIT TEST03</code> 或者<code>VIEW TEST04</code> 或者<code>COMP 'IBMUSER.PROJ.TEST.JCL1((TEST01)'</code> 这样，不需要另外<em>PF3</em>或者<em>START</em>开一个窗口。
+比如需要在同一个<em>PDS</em>下的<em>TEST02</em>这个JCL中拷贝一些东西到当前的TEST01的时候，经常用到。</p>
+<div class="highlight"><pre><span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+ <span class="sb">```````````````````````````````````````````````````````````````````````````````</span>
+<span class="sb"> VIEW       IBMUSER.PROJ.TEST.JCL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html"><h3 class="article-title">ICETOOL: 大小写转换</h3></a>
+<h6 class="subheader" title="2012-08-18T00:00:00">2012-08-18
+</h6>
+
+
+<p><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
+<code>TRAN=LTOU</code> ： lowercase to uppercase <br />
+例子：</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                           
+  <span class="no">INREC</span> <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="no">INIT</span><span class="p">,</span><span class="no">OVERLAY</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="no">TRAN</span><span class="o">=</span><span class="no">LTOU</span><span class="p">)),</span>   <span class="err">：对</span><span class="n">input</span><span class="err">的进来处理的每一条数据的前</span><span class="mi">3</span><span class="err">位先转为大写再说</span>
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">)),</span> 
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html"><h3 class="article-title">ICETOOL：数据类型转换</h3></a>
+<h6 class="subheader" title="2012-08-12T00:00:00">2012-08-12
+</h6>
+
+
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>           
+<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">IN</span>                <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
+<span class="sr">//</span><span class="no">OUT</span>           <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">OUTFILE</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                             
+<span class="sr">//</span><span class="no">TOOLIN</span>    <span class="no">DD</span> <span class="o">*</span>                                                
+  <span class="no">COPY</span> <span class="no">FROM</span><span class="p">(</span><span class="no">IN</span><span class="p">)</span> <span class="no">TO</span><span class="p">(</span><span class="no">OUT</span><span class="p">)</span>     <span class="no">USING</span><span class="p">(</span><span class="no">CTL1</span><span class="p">)</span>                       
+<span class="sr">/*                                                            </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OUTFIL</span> <span class="no">FNAMES</span><span class="o">=</span><span class="no">OUT</span><span class="p">,</span>    <span class="err">：</span><span class="no">MYINPUT</span><span class="err">的第 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html"><h3 class="article-title">ICEMAN：字符替换</h3></a>
+<h6 class="subheader" title="2012-08-10T00:00:00">2012-08-10
+</h6>
+
+
+<p>用于替换dataset中出现的字符串:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
+<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
+  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">))</span>   
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="o">*</span>                                                         
+</pre></div>
+
+
+<p>将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成<code>‘BBBB‘</code> 
+当然，可以限定在特定几列替换 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICEMAN-字符替换.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html"><h3 class="article-title">ICETOOL: 多文件输出</h3></a>
+<h6 class="subheader" title="2012-08-02T00:00:00">2012-08-02
+</h6>
+
+
+<p>取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>         
+<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SORTWK01</span> <span class="no">DD</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>            
+<span class="sr">//</span><span class="no">IN</span>      <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> <span class="ss">:LRECL</span><span class="o">=</span><span class="mo">05</span>                 
+<span class="o">//</span><span class="no">OUT1</span>    <span class="no">DD</span> <span class="no">DSN ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html"><h3 class="article-title">SORT: JOINKEY 文件连接</h3></a>
+<h6 class="subheader" title="2012-07-29T00:00:00">2012-07-29
+</h6>
+
+
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP002</span> <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>        
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                       
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SORTJNF1</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE1</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
+<span class="sr">//</span><span class="no">SORTJNF2</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE2</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">JOINOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                 
+  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F1</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                            
+  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F2</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html"><h3 class="article-title">SORT:VB变长转FB定长,输出对齐</h3></a>
+<h6 class="subheader" title="2012-07-25T00:00:00">2012-07-25
+</h6>
+
+
+<p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span>                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">SORTIN</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">SORTOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>                   
+<span class="sr">//</span>            <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>      
+<span class="sr">//</span>            <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                   
+  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">COPY ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html"><h3 class="article-title">PLI 动态数组的例子</h3></a>
+<h6 class="subheader" title="2012-06-14T00:00:00">2012-06-14
+</h6>
+
+
+<p>新写了一个<code>PL/I</code>程序，需要在程序里面用到动态数组来提高效率，所以总结了一下<code>PL/I</code>中动态数组<em>(Dynamic Array)</em>的用法：<br />
+<em>1</em>.申明一个Controlled的数组叫做<code>WT_TMPARRAY_INFO</code>,此时并不知道该数组的长度:</p>
+<div class="highlight"><pre><span class="no">DCL</span>  <span class="no">INPUTFIL</span> <span class="no">FILE</span> <span class="no">RECORD</span> <span class="no">INPUT</span><span class="p">;</span>
+<span class="no">DCL</span>  <span class="no">TMPARRAY_CTR</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                             
+<span class="no">DCL</span>  <span class="no">TMPARRAY_SUB</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  
+<span class="no">DCL</span> <span class="mo">01</span> <span class="no">TMPARRAY_RECORD</span><span class="p">,</span>                                                        
+        <span class="mo">05</span> <span class="no">INPUT_CUR</span>     <span class="no">CHAR</span><span class="p">(</span><span class="mo">03</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span>                          
+        <span class="mo">05</span> <span class="no">INPUT_ACCT</span>    <span class="no">CHAR</span><span class="p">(</span><span class="mo">05</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span> 
+
+<span class="sr">/*******定义未知长度的动态数组WT_TMPARRAY_INFO*************************/</span>
+<span class="no">DCL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI 动态数组的例子.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html"><h3 class="article-title">IBM DebugTool: 主动终止调试</h3></a>
+<h6 class="subheader" title="2012-06-03T00:00:00">2012-06-03
+</h6>
+
+
+<p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：</p>
+<blockquote>
+<p>trigger overflow</p>
+<p>这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 3 of 9</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/mainframe2.html">&laquo; Prev</a>
+
+        <a href="http://mainframer.github.io/category/mainframe4.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

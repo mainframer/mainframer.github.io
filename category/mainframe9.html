@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Mainframe</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html"><h3 class="article-title">登陆大型机——Aviva的介绍</h3></a>
+<h6 class="subheader" title="2010-10-28T00:00:00">2010-10-28
+</h6>
+
+
+<p>一般我们日常用PC机工作拿什么软件来跟大型机(以下简称大机)交互呢? 理论上说几乎所有的终端登陆软件都可以的。而且一般每种终端登陆软件都支持多种协议连接到大机上，比如最常见的<code>TCP/IP，FTP,TELNET,SSL</code>等等。这些软件有很多，外面比较常用的是<code>PCOMM，putty，SecCRT</code>等等，我只用过PCOMM，稍微配置下IP啥的就可以连大机了。这个百度下就出来一堆。 
+我们公司比较另类，用的终端软件叫Aviva，一般我们读作"鹅vi哇"，希伯来词，意为“美丽的春天”, 产自美国美国(Eicon)公司。谷歌能下载到，不过只有试用版的貌似。 
+下面我说下Aviva的一些基本概念和使用。  </p>
+<h3>Destination和Session的配置:</h3>
+<p>所谓Destination 就是大型机的物理IP，你要连接到大型机上，就必须得配置下大型机的IP。装好aviva后，开始——&gt;程序——&gt;Eicon Aviva——&gt;Create New Destination
+这里destination的名字就取：My Destination ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Hercules搭建zOS虚拟机遇到的问题及解决办法.html"><h3 class="article-title">Hercules搭建z/OS虚拟机遇到的问题及解决办法</h3></a>
+<h6 class="subheader" title="2010-08-14T00:00:00">2010-08-14
+</h6>
+
+
+<p>初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。  </p>
+<h5>PCOMM每次都提示打印，怎么去掉这个烦人的窗口？</h5>
+<h5>解决办法：</h5>
+<p>PCOMM去掉每次连接提示打印的烦人窗口的方法：在<code>D:\SOFTWARE\IBMPCOMM\private\*.ws</code>文件里面添加：</p>
+<div class="highlight"><pre><span class="o">[</span><span class="no">LT</span><span class="o">]</span>
+<span class="no">IgnoreWCCStartPrint</span><span class="o">=</span><span class="n">Y</span>
+<span class="no">UndefinedCode</span><span class="o">=</span><span class="n">Y</span>
+<span class="no">UndefinedDBCSChar</span><span class="o">=</span><span class="n">Y</span>
+</pre></div>
+
+
+<h5>如何为每一个磁盘建立shadow？</h5>
+<h5>解决办法：</h5>
+<p>比如：<code>sf+0A80</code>:  为设备号为0A80的设备建立shadow (设备号只是个临时的概念)</p>
+<h5>IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM</h5>
+<p><img alt="1" src="./../images/zosmoni_1.png" />      </p>
+<h5>解决办法：</h5>
+<p>在zOS1.9.cnf配置文件中删掉下面一行即可：</p>
+<div class="highlight"><pre>XPNDSIZE  6
+</pre></div>
+
+
+<h5><code>HHCLC042E Port 00: Read error ...</code></h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Hercules搭建zOS虚拟机遇到的问题及解决办法.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Hercules搭建zOS虚拟机遇到的问题及解决办法.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html"><h3 class="article-title">z/OS虚拟机各Volume的解释</h3></a>
+<h6 class="subheader" title="2010-06-28T00:00:00">2010-06-28
+</h6>
+
+
+<h3>Vomume的内容 (z/OS 1.6)</h3>
+<h5>VOLUME         UCB           Contents</h5>
+<p><code>Z6RES1</code>  - A80 - Res Volume 1 - Required for IPL<br />
+<code>Z6RES2</code>  - A81 - Res Volume 2 - Required for IPL<br />
+<code>Z6SYS1</code>  - A82 - IPLPARM, JES2 Spool, Public Work Volume, Mastercat required for IPL<br />
+<code>Z6USS1</code>  - A83 - USS Root and accompanying HFS files - required for IPL<br />
+<code>Z6USS2</code>  - A84 - Supplemental ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html"><h3 class="article-title">搭建z/OS虚拟机常用的LoadParm</h3></a>
+<h6 class="subheader" title="2010-06-04T00:00:00">2010-06-04
+</h6>
+
+
+<h3>LOADPARM  Description(z/OS 1.6)</h3>
+<p>在启动z/OS虚拟机的时候选择的LoadParm不同，意味着大机将启动不同的服务，说明如下：<br />
+<code>CS</code>         CLPA and cold start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
+<code>00</code>         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
+<code>WS</code>         Warm ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 9 of 9</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/mainframe8.html">&laquo; Prev</a>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/trivial.html">Trivial</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
