@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/index.html</loc>
-<lastmod>2014-10-28T00:02:23-00:00</lastmod>
+<lastmod>2014-10-28T00:09:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/archives.html</loc>
-<lastmod>2014-10-28T00:02:23-00:00</lastmod>
+<lastmod>2014-10-28T00:09:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tags.html</loc>
-<lastmod>2014-10-28T00:02:23-00:00</lastmod>
+<lastmod>2014-10-28T00:09:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/categories.html</loc>
-<lastmod>2014-10-28T00:02:23-00:00</lastmod>
+<lastmod>2014-10-28T00:09:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -984,13 +984,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://mainframer.github.io/category/linuxunix.html</loc>
-<lastmod>2011-08-13T00:00:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
 <loc>http://mainframer.github.io/category/linuxunixuss.html</loc>
 <lastmod>2011-09-12T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -1308,6 +1301,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://mainframer.github.io/tag/ying-yu-suo-xie.html</loc>
 <lastmod>2011-08-11T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://mainframer.github.io/tag/linuxgua-zai.html</loc>
+<lastmod>2011-08-13T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1980,6 +1980,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://mainframer.github.io/tag/quote-site.html</loc>
 <lastmod>2012-10-08T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://mainframer.github.io/tag/linuxfen-qu.html</loc>
+<lastmod>2011-08-13T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

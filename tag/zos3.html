@@ -279,37 +279,6 @@ GROUP <br />
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/Linux分区挂载.html"><h3 class="article-title">Linux分区挂载</h3></a>
-<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
-</h6>
-
-
-<p>硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有<code>Windows</code>和<code>FressBSD</code>等操作系统才需要将自己安装在硬盘的主分区里面，而<code>Linux</code>呢，可以被安装在逻辑分区里面。</p>
-<h5>分区编号</h5>
-<p>Linux将所有的存储设备(包括硬盘)都挂载<code>/dev</code>目录下新建一个子目录来管理，比如下面:<br />
-<code>/dev/hda1</code> 第一块IDE硬盘的第一个主分区  <br />
-<code>/dev/hda2</code> 第一块IDE硬盘的第二个主分区  <br />
-<code>/dev/hda5</code> 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  <br />
-<code>/dev/sda1</code> 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   </p>
-<h5>挂载点</h5>
-<p>所谓挂载点，就是将分区挂到一个以<code>“/”</code>开头的目录中。  <br />
-<code>/</code>:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   <br />
-<code>swap</code>:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Linux分区挂载.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux分区挂载.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/CICS应用编程接口.html"><h3 class="article-title">CICS应用编程接口</h3></a>
 <h6 class="subheader" title="2011-08-12T00:00:00">2011-08-12
 </h6>
@@ -331,6 +300,42 @@ GROUP <br />
 
 
 <p><a href="http://mainframer.github.io/articles/CICS应用编程接口.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS应用编程接口.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/OLTP和CICS.html"><h3 class="article-title">OLTP和CICS</h3></a>
+<h6 class="subheader" title="2011-08-07T00:00:00">2011-08-07
+</h6>
+
+
+<h3>OLTP:联机事务处理</h3>
+<p>事务的ACID属性：</p>
+<ul>
+<li>原子性(Atomicity) </li>
+<li>一致性(Consistency) </li>
+<li>孤立性(Isolation) </li>
+<li>持久性(Durability)
+关于OLTP的完整性和可恢复机制,这里举两种情况: 
+<strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br />
+<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br />
+此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br />
+<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
+通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
+各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/oltp.html">OLTP </a>
+    <a href="http://mainframer.github.io/tag/cics.html">CICS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/OLTP和CICS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/OLTP和CICS.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -359,7 +364,6 @@ GROUP <br />
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>

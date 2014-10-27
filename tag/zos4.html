@@ -47,42 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/OLTP和CICS.html"><h3 class="article-title">OLTP和CICS</h3></a>
-<h6 class="subheader" title="2011-08-07T00:00:00">2011-08-07
-</h6>
-
-
-<h3>OLTP:联机事务处理</h3>
-<p>事务的ACID属性：</p>
-<ul>
-<li>原子性(Atomicity) </li>
-<li>一致性(Consistency) </li>
-<li>孤立性(Isolation) </li>
-<li>持久性(Durability)
-关于OLTP的完整性和可恢复机制,这里举两种情况: 
-<strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br />
-<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br />
-此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br />
-<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
-通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
-各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/oltp.html">OLTP </a>
-    <a href="http://mainframer.github.io/tag/cics.html">CICS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/OLTP和CICS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/OLTP和CICS.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html"><h3 class="article-title">QW命令——MVS/QuickRef帮助文档</h3></a>
 <h6 class="subheader" title="2011-08-05T00:00:00">2011-08-05
 </h6>
@@ -373,6 +337,34 @@ Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说�
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html"><h3 class="article-title">z/OS虚拟机各Volume的解释</h3></a>
+<h6 class="subheader" title="2010-06-28T00:00:00">2010-06-28
+</h6>
+
+
+<h3>Volume的内容 (z/OS 1.6)</h3>
+<h5>VOLUME         UCB           Contents</h5>
+<p><code>Z6RES1</code>  - A80 - Res Volume 1 - Required for IPL<br />
+<code>Z6RES2</code>  - A81 - Res Volume 2 - Required for IPL<br />
+<code>Z6SYS1</code>  - A82 - IPLPARM, JES2 Spool, Public Work Volume, Mastercat required for IPL<br />
+<code>Z6USS1</code>  - A83 - USS Root and accompanying HFS files - required for IPL<br />
+<code>Z6USS2</code>  - A84 - Supplemental ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/volume.html">Volume </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
 <h6 class="subheader">Page 4 of 5</h6>
@@ -398,7 +390,6 @@ Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说�
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>

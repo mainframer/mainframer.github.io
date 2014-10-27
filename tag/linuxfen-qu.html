@@ -4,7 +4,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>Modern Mainframer - windows</title>
+    <title>Modern Mainframer - Linux分区</title>
 
     <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
     <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
@@ -46,29 +46,35 @@
         
 
             <article>
-                <a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html"><h3 class="article-title">IBM大型机12月16日起支持Windows系统[转载]</h3></a>
-<h6 class="subheader" title="2011-11-08T00:00:00">2011-11-08
+                <a href="http://mainframer.github.io/articles/Linux分区挂载.html"><h3 class="article-title">Linux分区挂载</h3></a>
+<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
 </h6>
 
 
-<p>本文来源——http://www.sina.com.cn 2011年11月07日 15:58 新浪科技微博
-新浪科技讯 北京时间11月7日下午消息，据美国IT网站ComputerWorld报道，IBM大型机将从今年12月中旬开始支持Windows系统。</p>
-<p>IBM此前就有意在zEnterprise 196大型机中采用Windows系统。根据IBM发布的最新消息，该公司大型机将从今年12月16日起支持Windows管理功能。用户一直希望数据中心有新的功能。当前，有许多基于Windows的应用可支持大型机获取数据，其中就包括IBM制造的许多应用。但此类应用现在必须单独管理。
-IBM表示，支持Windows系统将有助于提高大型机企业环境的安全性和速度，同时让用户可以在私人网络上连接系统，避免其他网络问题，实现一体化管理。IBM System z部门业务主管格雷格·洛特科(Greg Lotko)说：“之所以增加对Windows系统的支持，是因为IBM真正认识到这个世界的复杂性。”</p>
-<p>洛特科补充说，从今往后，<code>IBM System z</code>平台可以支持<code>z /OS</code>、<code>Linux</code>、<code>Unix</code> 和<code>Windows</code>等多套系统。市场研究机构Clabby Analytics分析师乔·克拉比(Joe Clabby)认为，IBM此举对用户而言是个好消息。</p>
-<p>System z以其处理数据传输和批处理工作负载的能力闻名，而Linux则善于支持Java工作负载。System z还有一项功能，可以将其管理范围扩展至zBX系统，“令其更易于整合和处理相关数据。”</p>
-<p>据克拉比介绍，整合后的管理能力将减少运行多个操作系统的大型机环境所需的工时。他说：“如果你能将其作为单一架构进行管理，这也省钱。”</p>
-<p>市场研究机构IDC分析师让·波兹曼(Jean Bozman)表示，支持Windows系统将使得Windows 应用和大型机之间的连接速度非常快。她说：“如此一来，大型机的运行速度和端到端管理速度将更快。”</p>
-<p>波兹曼最后指出，IBM决定向大型机提供Windows支持，此举证明了IBM所持的一种观点，即分布式和大型机世界距离人们越来越近。(作者：轩辰)</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有<code>Windows</code>和<code>FressBSD</code>等操作系统才需要将自己安装在硬盘的主分区里面，而<code>Linux</code>呢，可以被安装在逻辑分区里面。</p>
+<h5>分区编号</h5>
+<p>Linux将所有的存储设备(包括硬盘)都挂载<code>/dev</code>目录下新建一个子目录来管理，比如下面:<br />
+<code>/dev/hda1</code> 第一块IDE硬盘的第一个主分区  <br />
+<code>/dev/hda2</code> 第一块IDE硬盘的第二个主分区  <br />
+<code>/dev/hda5</code> 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  <br />
+<code>/dev/sda1</code> 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   </p>
+<h5>挂载点</h5>
+<p>所谓挂载点，就是将分区挂到一个以<code>“/”</code>开头的目录中。  <br />
+<code>/</code>:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   <br />
+<code>swap</code>:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来，直接放在独立的分区上。这个分区一般大小为内存大小的2倍即可。  <br />
+<code>/home</code>:  用户的主目录 ，是我们存放文件的地方。应当为其独立分配一个分区，这样的话重装系统就不会破坏这个分区里面的文件，并且很多软件的配置信息都存在这里面，重装系统之后就不用再花费精力去重新配置。  <br />
+<code>/usr</code>:   应用程序目录 ，大部分软件都安装在这里，普通用户可不再划分这个分区。  <br />
+<code>/var</code>:   安装的是服务器方面的应用，作为桌面个人用户的话，大可不必划分这个分区。  <br />
+<code>/boot</code>:  存放系统启动所需要的内核文件，包括启动管理器，建议用户划分这个分区。当然，由于内核不大，所以划分500M到1个G给这个分区足够了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/da-xing-ji.html">大型机 </a>
-    <a href="http://mainframer.github.io/tag/windows.html">windows </a>
+    <a href="http://mainframer.github.io/tag/linuxfen-qu.html">Linux分区 </a>
+    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">Linux挂载 </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html#disqus_thread">comments</a></p>            </article>
+<p><a href="http://mainframer.github.io/articles/Linux分区挂载.html#disqus_thread">comments</a></p>            </article>
 
 <div class="pagination-centered">
 <h6 class="subheader">Page 1 of 1</h6>

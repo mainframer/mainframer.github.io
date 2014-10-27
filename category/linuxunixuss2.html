@@ -47,6 +47,38 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/Linux分区挂载.html"><h3 class="article-title">Linux分区挂载</h3></a>
+<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
+</h6>
+
+
+<p>硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有<code>Windows</code>和<code>FressBSD</code>等操作系统才需要将自己安装在硬盘的主分区里面，而<code>Linux</code>呢，可以被安装在逻辑分区里面。</p>
+<h5>分区编号</h5>
+<p>Linux将所有的存储设备(包括硬盘)都挂载<code>/dev</code>目录下新建一个子目录来管理，比如下面:<br />
+<code>/dev/hda1</code> 第一块IDE硬盘的第一个主分区  <br />
+<code>/dev/hda2</code> 第一块IDE硬盘的第二个主分区  <br />
+<code>/dev/hda5</code> 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  <br />
+<code>/dev/sda1</code> 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   </p>
+<h5>挂载点</h5>
+<p>所谓挂载点，就是将分区挂到一个以<code>“/”</code>开头的目录中。  <br />
+<code>/</code>:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   <br />
+<code>swap</code>:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/linuxfen-qu.html">Linux分区 </a>
+    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">Linux挂载 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux分区挂载.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux分区挂载.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/Backtrack一些基本配置.html"><h3 class="article-title">Backtrack一些基本配置</h3></a>
 <h6 class="subheader" title="2011-08-09T00:00:00">2011-08-09
 </h6>
@@ -328,7 +360,6 @@ Backtrack,中文不知道该翻译成啥，回溯？Backtrack是基于Slackware�
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
