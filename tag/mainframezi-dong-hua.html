@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - mainframe自动化</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html"><h3 class="article-title">mainframe平台报表自动化方案实现</h3></a>
+<h6 class="subheader" title="2013-03-25T00:00:00">2013-03-25
+</h6>
+
+
+<h4>这几天，客户提了一个需求如下：</h4>
+<p><em>&lt;1&gt;</em>每个月初需要在本地(Windows XP)看上一个月的一个报表。<br />
+<em>&lt;2&gt;</em>如果可以随时查看之前任意月份的报表，那更好。<br />
+<em>&lt;3&gt;</em>报表数据来源于Mainframe上的表A和表B,需要join操作。 <br />
+<em>&lt;4&gt;</em>报表结果以excel呈现，有必要的一些格式化和公式以及美化等excel常规操作。    </p>
+<h4>经研究，实现方案如下：</h4>
+<p><em>&lt;1&gt;</em>用bat批处理与mainframe交互，交互方式为ftp。包括将本地job送到JES2运行，包括将表A和表B的数据从mainframe上下载到本地。<br />
+<em>&lt;2&gt;</em>用vbs处理后期的excel，包括数据导入，单元格格式，公式操作，excel美化，用户提示等等常规的office操作。 <br />
+<em>&lt;3&gt;</em>用bat批处理来调用vbs，这样bat批处理就把mainframe和vbs串在了一起。  </p>
+<h4>方案优势：</h4>
+<p>选择这个方案是从用户易用性考虑，客户不需要安装任何软件。批处理和vbs以及excel在xp下面都是自带的。用户只需双击，然后输入查看的报表月份即可。</p>
+<h4>方案设计图</h4>
+<p>我用word简单地画了一个方案图：
+<img alt="report automation on mainframe" src="./../images/mainframe-report-automation.png" />  <br />
+代码就不放上来了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/mainframezi-dong-hua.html">mainframe自动化 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

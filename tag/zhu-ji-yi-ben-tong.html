@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - 主机一本通</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html"><h3 class="article-title">IBM主机技术一本通笔记</h3></a>
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+<p>这一系列文章将会是从《IBM主机技术一本通》里面选取我个人认为对我有用的部分来记录和阐述。</p>
+<h5>1、LRECL和BLKSIZE</h5>
+<p><img alt="1" src="./../images/LRECL-BLKSIZE.jpg" />           <br />
+<strong>LRECL</strong>:逻辑记录是程序想要处理的一个数据单元，通常由许多连接在一起的区域构成。  </p>
+<blockquote>
+<p>BLKSIZE：物理单元(又称块)   描述了在一次输入输出操作中需要传送的数据量，如上图所示，你一定发现了BLKSIZE必须是LRECL的整数倍，显然这是因为BLKSIZE是多个LRECL嘛！ 
+任何时候发生输入输出时传送的是整个块而不是单个逻辑记录，这样做的好处显而易见，有效地使用空间，提高传送率。<br />
+</p>
+</blockquote>
+<h5>2、I——PDS(分区数据集)信息分析</h5>
+<p>一直对这个知识点一知半解的，今天看了一本通之后，算是明白了。照着图说： <br />
+<img alt="1" src="./../images/PDS-Infor1.jpg" />   </p>
+<p>呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks，当前已经分配了1次，已经有6个member，使用了2个目录块(4和2)</p>
+<h5>3、L member</h5>
+<p>将这个命令列在这里不是不会用，恰恰是天天用经常用。只是羞于我一直以为这里L是List的缩写，原来人家吕老师说了，这是Locate的缩写，目的是每次都将PDS下面的你要找的member定位在第一个位置。   </p>
+<h4>4、查看VTOC信息</h4>
+<p>VTOC是系统中的一个顺序数据集，存放在磁盘的0柱面0磁道之后，65535磁道之前。用于记录存储设备上所有数据集的属性，每个磁盘均有一个VTOC。 <br />
+例如，我要查看磁盘卷PRIM02的信息。<br />
+<code>ruby3.4;V</code>
+在Volume Serial上填：   <code>PRIM02</code>
+<img alt="1" src="./../images/MVS-VTOC-Info.jpg" />    </p>
+<p>PRIM02卷总共有50085 tracks，已经用了51%,1个cyls等于15个tracks，VTOC数据集本身分配了45个tracks,已用的占26%，还有1677个可用的DSCBS(数据集控制块)，PRIM02卷上一共还有24430tracks(即1590个Cyls)未使用，未使用的空间中最大的一块有3600tracks(即240个Cyls)。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">主机一本通 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html"><h3 class="article-title">IBM主机技术一本通笔记续</h3></a>
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+<h5>1、JCL每行80列</h5>
+<p>原来这是因为在1960年那个年代，程序员使用的是穿孔卡片来将JCL作业控制语句一个一个的输入系统，构成了批量作业，而当时穿孔卡片只有80列。</p>
+<h5>2、JOB语句的关键字参数</h5>
+<p>ADDRSPC 
+<span style="color: #ff00ff;">REGION</span> <br />
+<span style="color: #ff00ff;">MSGCLASS</span> <br />
+SECLABEL <br />
+<span style="color: #ff00ff;">PASSWORD</span><br />
+BYTES   <br />
+<span style="color: #ff00ff;">CLASS</span> <br />
+RD MSGLEVEL <br />
+<span style="color: #ff00ff;">TIME</span> <br />
+PERFORM PAGES <br />
+<span style="color: #ff00ff;">COND</span> <br />
+LINES <br />
+CARDS <br />
+TYPRUN <br />
+PRTY <br />
+SCHENV <br />
+GROUP <br />
+<span style="color: #ff00ff;">RESTART</span> <br />
+<span style="color: #ff00ff;">NOTIFY</span> <br />
+<span style="color: #ff00ff;">USER</span> CCSID<br />
+标有颜色的几个是我自己比较常用到的。<br />
+上张包含了这9个常用JCL关键字参数的图(当然，平常工作当中一般不可能在单个JCL当中都包含了所有的这9个关键字，我这里只是为了更好的说明才把它们罗列在一个JCL里面的，这点要明白)
+<a href="./../images/JCL-keyword1.jpg">!</a>  <br />
+<strong><code>CLASS</code></strong> : 是作业运行队列的优先级，MSGCLASS是作业输出信息的级别，它规定了作业输出信息送往哪里显示。CLASS和MSGCLASS都是公司规定好了的，肯定有文档可以查看具体信息的。</p>
+<p><strong><code>NOTIFY</code></strong>:  是指最终作业运行的结果通知给谁，可以写详细的ID，比如IBMUSER，也可以写通用的参数，比如<code>&amp;SYSUID ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">主机一本通 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通.html"><h3 class="article-title">IBM主机技术一本通</h3></a>
+<h6 class="subheader" title="2011-08-20T00:00:00">2011-08-20
+</h6>
+
+
+<p>周末去市图书馆走了一圈，竟然让我看到有本《IBM主机技术一本通》。这本书前两个月同事买了，貌似100多，现在京东报价是96元，淘宝上也差不多。当时我就快速翻了一遍，第一感觉是：书很厚，看了目录，贴近当前我所做的内容，还有就是内容丰富，涵盖的主机技术比较全，但貌似感觉有点罗列的成分，比较适合主机新人，给他们一个整体框架的印象。当然，800多页的书也并不是都是罗列，有很多内容是很详细的，我认为是：每个主机人都可以有针对性的看，你会的，快速过，不会的，详细看，最好要在大机上实践验证，这样记得牢。<br />
+刚拿回来，这么重的书我都背回来了，看来不看是对不住了。更何况是不花钱的好书。只不过没花钱买感觉有些对不住作者了。作者吕新民应该算国内主机界的资深前辈了吧。看人家的工作经历可以追溯到我出生之前好几年呢。<br />
+这是作者的新浪博客：<a href="http://blog.sina.com.cn/newmanworkshop">http://blog.sina.com.cn/newmanworkshop</a>,可以多关注下，都是为了学习进步嘛，希望前辈多出书呐！<br />
+好了，我会有一个详细的学习计划，好好把这本书吃透，从中汲取自己目前还欠缺的知识。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">主机一本通 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

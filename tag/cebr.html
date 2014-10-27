@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - CEBR</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html"><h3 class="article-title">CICS中查看TSQ的命令:CEBR</h3></a>
+<h6 class="subheader" title="2012-05-27T00:00:00">2012-05-27
+</h6>
+
+
+<p>可以用CEBR这个transaction来查看和删除TSQ信息。这里:   </p>
+<ul>
+<li><code>CEBR#0VJ</code>是<em>TSQ</em>的名字;  </li>
+<li>
+<p><code>Z300</code> 是当前<em>CICS region</em>的名字。<br />
+```ruby  CEBR  TSQ CEBR#0VJ         SYSID Z300 REC     1 OF     0    COL     1 OF     0
+  ENTER COMMAND ===&gt;                                                          <br />
+<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>  TOP OF QUEUE  </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>*</p>
+<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*  BOTTOM OF QUEUE  </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong></p>
+</li>
+</ul>
+<p>TS QUEUE CEBR#0VJ         DOES NOT EXIST                                     <br />
+ PF1 : HELP                PF2 : SWITCH HEX/CHAR     PF3 : TERMINATE BROWSE   <br />
+ PF4 : VIEW TOP            PF5 : VIEW BOTTOM         PF6 : REPEAT LAST FIND   <br />
+ PF7 : SCROLL BACK HALF    PF8 : SCROLL FORWARD HALF PF9 : UNDEFINED          <br />
+ PF10: SCROLL BACK FULL    PF11: SCROLL FORWARD FULL PF12: UNDEFINED          <br />
+```</p>
+<p>请查看IBM相关链接: <br />
+<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v3r2/index.jsp?topic=%2Fcom.ibm.cics.ts.doc%2Fdfha7%2Ftransactions%2Fcebr%2Fdfha71u.html">http://publib.boulder.ibm.com/infocenter/cicsts/v3r2/index.jsp?topic=%2Fcom.ibm.cics.ts.doc%2Fdfha7%2Ftransactions%2Fcebr%2Fdfha71u.html</a></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/tsq.html">TSQ </a>
+    <a href="http://mainframer.github.io/tag/cebr.html">CEBR </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

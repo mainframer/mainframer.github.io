@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - GDG</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/新建空的GDG generation.html"><h3 class="article-title">新建空的GDG generation</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  </p>
+<p><img alt="1" src="./../images/gdg-new-empty-generation.jpg" />    <br />
+submit，查看，空的generation G0001V00 就生成了:  </p>
+<p><img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建空的GDG generation.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/更改GDG世代数参数.html"><h3 class="article-title">更改GDG世代数参数</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:<br />
+<img alt="1" src="./../images/gdg-update.jpg" />      </p>
+<p>submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/更改GDG世代数参数.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/更改GDG世代数参数.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/新建GDG世代数据集.html"><h3 class="article-title">新建GDG世代数据集</h3></a>
+<h6 class="subheader" title="2011-08-25T00:00:00">2011-08-25
+</h6>
+
+
+<p>如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：<br />
+<img alt="1" src="./../images/create-gdg-base.jpg" />       </p>
+<p>其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建GDG世代数据集.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建GDG世代数据集.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html"><h3 class="article-title">继续介绍世代数据集GDG</h3></a>
+<h6 class="subheader" title="2011-07-15T00:00:00">2011-07-15
+</h6>
+
+
+<p>上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。</p>
+<h4>1、新建GDG base</h4>
+<p>一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG.BASE并且可以有10个generation的GDG base。只要提交这个job马上就生成了GDG base了。 <br />
+<img alt="1" src="./../images/GDG01.jpg" />      </p>
+<h4>2、新建GDG generation</h4>
+<p>那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">EXTRACT</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BASE</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>
+<span class="sr">//</span> <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)),</span>
+<span class="sr">//</span> <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html"><h3 class="article-title">世代数据集—GDG介绍</h3></a>
+<h6 class="subheader" title="2011-06-25T00:00:00">2011-06-25
+</h6>
+
+
+<p>跟大机打交道，一定对大机上面的一种特殊文件gdg不会陌生。gdg又称世代数据集，在大机上面是用来组织彼此相关联的文件。比如你需要一年12个月每个月的报表数据，则可以定义一个有12个generation（世代）的GDG，每个generation存一个月的数据，这样就保证了彼此关联的信息能被更方便地管理和维护。它会保证任何时候都只保留最新的12个月的数据。<br />
+要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER
+</p>
+</blockquote>
+<p>则一般你以此产生的第一个generation的名字就叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0001V00
+</p>
+</blockquote>
+<p>以此类推，第二个就叫做：</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0002V00
+</p>
+</blockquote>
+<p>直到<code>G9992V00</code>为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

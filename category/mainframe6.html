@@ -47,161 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html"><h3 class="article-title">IBM大型机12月16日起支持Windows系统[转载]</h3></a>
-<h6 class="subheader" title="2011-11-08T00:00:00">2011-11-08
-</h6>
-
-
-<p>本文来源——http://www.sina.com.cn 2011年11月07日 15:58 新浪科技微博
-新浪科技讯 北京时间11月7日下午消息，据美国IT网站ComputerWorld报道，IBM大型机将从今年12月中旬开始支持Windows系统。</p>
-<p>IBM此前就有意在zEnterprise 196大型机中采用Windows系统。根据IBM发布的最新消息，该公司大型机将从今年12月16日起支持Windows管理功能。用户一直希望数据中心有新的功能。当前，有许多基于Windows的应用可支持大型机获取数据，其中就包括IBM制造的许多应用。但此类应用现在必须单独管理。
-IBM表示，支持Windows系统将有助于提高大型机企业环境的安全性和速度，同时让用户可以在私人网络上连接系统，避免其他网络问题，实现一体化管理。IBM System z部门业务主管格雷格·洛特科(Greg Lotko)说：“之所以增加对Windows系统的支持，是因为IBM真正认识到这个世界的复杂性。”</p>
-<p>洛特科补充说，从今往后，<code>IBM System z</code>平台可以支持<code>z /OS</code>、<code>Linux</code>、<code>Unix</code> 和<code>Windows</code>等多套系统 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/COBOL编码规则.html"><h3 class="article-title">COBOL编码规则</h3></a>
-<h6 class="subheader" title="2011-10-03T00:00:00">2011-10-03
-</h6>
-
-
-<p>苦逼的COBOL们一定知道和JCL一样，在写COBOL程序的时候对源码的区域也有一定的制约的，具体如下表所示：<br />
-<img alt="1" src="./../images/COBOL-coding-convention.jpg" />      </p>
-<h4>第7列用来说明程序所在行的用途:</h4>
-<p><code>连接符(-)</code>: 表示本行是上一行的续行；<br />
-<code>('D')</code>:    表示查错；
-<code>星号('*')</code>: 表示注解；  </p>
-<h4>下面的COBOL程序元素必须从A区域开始：</h4>
-<p>部(DIVISION)和节(SECTION)的标题 <br />
-段名 
-程序结尾(End Program)标题 <br />
-级别标示符如FD或者SD等，级别号如01级和77级  </p>
-<h4>下面这些COBOL元素必须从B区域开始：</h4>
-<p><code>语句</code>、<code>句子</code>和<code>短语继续行</code>  </p>
-<h5>[注：本文内容源自：《IBM主机技术一本通》]</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/COBOL编码规则.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL编码规则.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/COBOL程序典型结构.html"><h3 class="article-title">COBOL程序典型结构</h3></a>
-<h6 class="subheader" title="2011-10-02T00:00:00">2011-10-02
-</h6>
-
-
-<p>一个典型的COBOL程序结构是：程序由许多‘部’组成，每个‘部’可以包含多个‘节’  </p>
-<h4>COBOL PROGRAM (程序)</h4>
-<h4>DIVISION(部)</h4>
-<h4>SECTION(节)</h4>
-<h4>PARAGRAPH(段)</h4>
-<h4>SENTENCE(句子)</h4>
-<h4>STATEMENT(语句)</h4>
-<p>整个COBOL程序由4个'部'(DIVISION)组成：</p>
-<blockquote>
-<p>Identification Division  标识部
-Environment Division 环境部 
-Data Division 数据部
-Procedure Division 过程部 </p>
-<p>用一句话介绍这四个部：标志部提供作者和编译器信息；环境部提供程序运行的环境；数据部描述程序处理的绝大部分数据；过程部描述对数据部描述的数据的操作算法:</p>
-</blockquote>
-<h4>Identification Division(标识部)--主要是程序和作者名</h4>
-<div class="highlight"><pre><span class="no">IDENTIFICATION</span> <span class="no">DIVISION</span><span class="o">.</span>
-<span class="no">PROGRAM</span><span class="o">-</span><span class="no">ID ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/COBOL程序典型结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序典型结构.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/提交JCL的4种方式.html"><h3 class="article-title">提交JCL的4种方式</h3></a>
-<h6 class="subheader" title="2011-10-01T00:00:00">2011-10-01
-</h6>
-
-
-<p>总结了下在主机上面提交JCL的四种方式：</p>
-<h4>1.用VIEW或者EDIT打开JOB,在命令行上输入<code>SUBMIT</code>或者<code>SUB</code>:</h4>
-<p><img alt="1" src="./../images/JCL-SUBMIT-01.jpg" />          </p>
-<h4>2.直接在JOB前面输入<code>SUBMIT</code>或者<code>SUB</code>，不用打开:</h4>
-<p><img alt="1" src="./../images/JCL-SUBMIT-02.jpg" />          </p>
-<h4>3.命令行模式下输入命令:</h4>
-<p><img alt="1" src="./../images/JCL-SUBMIT-03.jpg" />          </p>
-<h4>4.<code>Q;ST</code>进入SDSF，找到你最近run过的JOB，在它前面输入<code>SJ</code>，回车，输入<code>SUB</code>,提交job。</h4><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/提交JCL的4种方式.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/提交JCL的4种方式.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html"><h3 class="article-title">utility判断dataset是否为空的方法</h3></a>
-<h6 class="subheader" title="2011-09-28T00:00:00">2011-09-28
-</h6>
-
-
-<p>下面介绍四种利用Utility的返回码来判断一个dataset或者member是否为空文件的方法： </p>
-<h4>1.利用<code>IDCAMS</code></h4>
-<p><img alt="1" src="./../images/IDCAMS-CHECK-EMPTY.jpg" />          </p>
-<h4>2.利用SORT(DFSORT/SYNCSORT)</h4>
-<p><img alt="1" src="./../images/SORT-CHECK-EMPTY.jpg" />          </p>
-<h4>3.利用<code>ICETOOL(SYNCTOOL)</code></h4>
-<p><img alt="1" src="./../images/ICETOOL-CHECK-EMPTY.jpg" />          </p>
-<h4>4.利用<code>ISRSUPC</code></h4>
-<p><img alt="1" src="./../images/ISRSUPC-CHECK-EMPTY.jpg" />          <br />
-方法不止以上四种，还有利用<code>REXX</code>脚本也可以判断，只是不属于本文讨论的范围。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html"><h3 class="article-title">IBM Debug Tool使用</h3></a>
 <h6 class="subheader" title="2011-09-05T00:00:00">2011-09-05
 </h6>
@@ -215,7 +60,7 @@ Procedure Division 过程部 </p>
 <p>按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug Tool </a>
 </p>
 
 
@@ -245,7 +90,7 @@ Procedure Division 过程部 </p>
 <p>命令 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/file-manager.html">File Manager </a>
 </p>
 
 
@@ -275,6 +120,7 @@ Procedure Division 过程部 </p>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug Tool </a>
 </p>
 
 
@@ -299,6 +145,7 @@ Procedure Division 过程部 </p>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/file-manager.html">File Manager </a>
 </p>
 
 
@@ -324,6 +171,8 @@ Procedure Division 过程部 </p>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/fang-wen-tape.html">访问tape </a>
+    <a href="http://mainframer.github.io/tag/iceman.html">ICEMAN </a>
 </p>
 
 
@@ -332,9 +181,140 @@ Procedure Division 过程部 </p>
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html"><h3 class="article-title">用ISRSUPC在PDS所有member中搜索指定字符串</h3></a>
+<h6 class="subheader" title="2011-08-27T00:00:00">2011-08-27
+</h6>
+
+
+<p>在一个PDS中搜索名字叫做“snailgo”的member，可以在command line上输入命令<code>mem snailgo</code>即可。但是，如果想搜索整个PDS下所有的成员(Member)中指定字符串，有没有办法呢？答案是肯定的，我们可以用一个比较的utility <code>ISRSUPC</code>来实现，同样的，只需submit一个JCL。
+<img alt="1" src="./../images/isrsupc-compare.jpg" />      </p>
+<p>这里，我们在PDS <strong><code>“IBMUSER.TEST.LIB.JCL”</code></strong>和<strong><code>“IBMUSER.TEST.LIB.PROC”</code></strong>下的所有member中搜索字符串”SNAILGO”。参数为：<code>PARM=(SRCHCMP,ANYC)</code>，其中<code>SRCHCMP</code>指定要搜索的字符串，<code>ANYC</code>表示ANY Case，即搜索任何符合的情况，要了解更详细的PARM的用法，可以参考IBM红宝书<strong>IBM manual ISPF/PDF Guide ...</strong></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/isrsupc.html">ISRSUPC </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/新建空的GDG generation.html"><h3 class="article-title">新建空的GDG generation</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  </p>
+<p><img alt="1" src="./../images/gdg-new-empty-generation.jpg" />    <br />
+submit，查看，空的generation G0001V00 就生成了:  </p>
+<p><img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建空的GDG generation.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建空的GDG generation.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/更改GDG世代数参数.html"><h3 class="article-title">更改GDG世代数参数</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:<br />
+<img alt="1" src="./../images/gdg-update.jpg" />      </p>
+<p>submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/更改GDG世代数参数.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/更改GDG世代数参数.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/新建GDG世代数据集.html"><h3 class="article-title">新建GDG世代数据集</h3></a>
+<h6 class="subheader" title="2011-08-25T00:00:00">2011-08-25
+</h6>
+
+
+<p>如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：<br />
+<img alt="1" src="./../images/create-gdg-base.jpg" />       </p>
+<p>其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建GDG世代数据集.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建GDG世代数据集.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html"><h3 class="article-title">IBM主机技术一本通笔记</h3></a>
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+<p>这一系列文章将会是从《IBM主机技术一本通》里面选取我个人认为对我有用的部分来记录和阐述。</p>
+<h5>1、LRECL和BLKSIZE</h5>
+<p><img alt="1" src="./../images/LRECL-BLKSIZE.jpg" />           <br />
+<strong>LRECL</strong>:逻辑记录是程序想要处理的一个数据单元，通常由许多连接在一起的区域构成。  </p>
+<blockquote>
+<p>BLKSIZE：物理单元(又称块)   描述了在一次输入输出操作中需要传送的数据量，如上图所示，你一定发现了BLKSIZE必须是LRECL的整数倍，显然这是因为BLKSIZE是多个LRECL嘛！ 
+任何时候发生输入输出时传送的是整个块而不是单个逻辑记录，这样做的好处显而易见，有效地使用空间，提高传送率。<br />
+</p>
+</blockquote>
+<h5>2、I——PDS(分区数据集)信息分析</h5>
+<p>一直对这个知识点一知半解的，今天看了一本通之后，算是明白了。照着图说： <br />
+<img alt="1" src="./../images/PDS-Infor1.jpg" />   </p>
+<p>呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">主机一本通 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 6 of 9</h6>
+<h6 class="subheader">Page 6 of 8</h6>
 
 <p>
             <a href="http://mainframer.github.io/category/mainframe5.html">&laquo; Prev</a>
@@ -357,11 +337,12 @@ Procedure Division 过程部 </p>
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

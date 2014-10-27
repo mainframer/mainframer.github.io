@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Changeman</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Changeman的Stage和Checkout.html"><h3 class="article-title">Changeman的Stage和Checkout</h3></a>
+<h6 class="subheader" title="2011-11-13T00:00:00">2011-11-13
+</h6>
+
+
+<p>把一个component(比如程序PRGM001)弄到package里面去有两种方法：一是<code>stage</code>，二是<code>checkout</code>。</p>
+<h3>Stage</h3>
+<p>所谓的stage就是当生产环境上面没有的，而你要将一个新的component弄到生产上面去的时候用stage。比如生产环境上面没有PRGM001这个程序，如果你最终想把这个程序通过Changeman安装到生产环境，那你就得现在自己的PDS下面建一个名为PRGM001的程序： </p>
+<div class="highlight"><pre><span class="no">TESTUID</span><span class="o">.</span><span class="n">PRGMLIB</span><span class="p">(</span><span class="no">PRGM001</span><span class="p">)</span>
+</pre></div>
+
+
+<p>然后stage到changeman里面去，具体做法是在ISPF输入:</p>
+<div class="highlight"><pre><span class="n">C</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span>
+</pre></div>
+
+
+<p>输入你的Package ID,回车 
+在Package前面输入命令：</p>
+<div class="highlight"><pre> <span class="no">S1</span>
+</pre></div>
+
+
+<p><img alt="1" src="./../images/changeman-01.jpg" />    </p>
+<h3>Checkout</h3>
+<p>和stage不同，checkout是针对那些已经存在于生产环境里面的components。它们是有版本之分的，比如你要Checkout一个现在已经存在于生产环境的PRGM002,在Package前面输入命令</p>
+<div class="highlight"><pre> <span class="no">C1</span>
+</pre></div>
+
+
+<p><img alt="1" src="./../images/changeman-02.jpg" /> <br />
+这里注意一下<strong>SOURCE LIBRARY. </strong>
+<code>SOURCE LIBRARY=0</code> 说明checkout的是当前生产环境baseline里面的最新版本。
+<code>SOURCE LIBRARY=-1</code>说明checkout的是比当前生产环境baseline旧的一个版本。
+以此类推...<br />
+最后，在Package ID前面输入命令<code>S2</code>，查看package里面所有的components(PRGM001和PRGM002)</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/changeman.html">Changeman </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Changeman的Stage和Checkout.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html"><h3 class="article-title">大机平台的版本控制工具Changeman</h3></a>
+<h6 class="subheader" title="2010-10-30T00:00:00">2010-10-30
+</h6>
+
+
+<p>在主机上面有好几个比较常见的版本控制工具，比如changeman和Endevor。我介绍下changeman。 </p>
+<h4>ISPF面板上输入C;1</h4>
+<p><img alt="1" src="./../images/changeman-1.jpg" />      </p>
+<h5>changeman的界面，这里装的版本是5.6.2c，</h5>
+<p><img alt="1" src="./../images/changeman-21.jpg" />      </p>
+<h4>我介绍下各个常用选项</h4>
+<h5>1.</h5>
+<p>用来新建，更新一个package的，你需要新建一个package来放置你的PL/I，COBOL程序和JCL等等</p>
+<h5>2.</h5>
+<p>将package freeze或unfreeze，在你觉得package里面的所有东西都测试得差不多了，可以准备上线安装之前，你要先freeze冻结掉这个package，然后等待相关项目管理人的approve，这样这个package才能被合法地安装。当然，如果你冻结了package之后，发现还有程序需要被修改什么的，这时候你可以反冻结(unfreeze)它，最好在package还没被approve之前。</p>
+<h5>3.</h5>
+<p>promote 或 demote。promote就是把你修改的程序版本提升到更高的level去。举个例子，一般PL/I或COBOL等写的程序在进入生产环境之前都会经过开发(Dev)——&gt;系统集成测试(Sys)——&gt;用户接收测试(UAT)——&gt;生产环境(Prod)，promote就是可以把你的程序从较低的level提升到较高的level，慢慢接近prod，而demote反之就可以了。</p>
+<h5>4 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/changeman.html">Changeman </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

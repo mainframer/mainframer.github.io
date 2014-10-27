@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - ISRDDN</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF Dialog 开发知识点.html"><h3 class="article-title">ISPF Dialog 开发知识点</h3></a>
+<h6 class="subheader" title="2013-02-12T00:00:00">2013-02-12
+</h6>
+
+
+<p>需要用ISPF来开发带界面的自动化工具，从0开始。记下些很有用的知识点：   </p>
+<ul>
+<li>执行命令<code>Panelid</code>可以得到当前ISPF panel的名字    </li>
+<li>执行<code>7.2</code>这个命令输入panel名字，可以用来刷新你新写的panel，使改 动动态生效，这样就不需要重启TN3270 terminal达到测试panel改动的目的  </li>
+<li>ISPF中用<code>option 7.3</code>可以查看<code>Z</code>开头ISPF系统预留的变量     </li>
+<li>执行命令<code>3.9</code>查看ISPF所有可用的command    </li>
+<li>知道任意一个panel的名字，如何得到其定义的路径？这里是很好的方法</li>
+<li>To assign a null value or blank value to a dialog variable, use the system variable &amp;Z.<br />
+<code>)SET D = &amp;Z</code>  </li>
+<li><code>NOTIFY=&amp;&amp;SYSUID</code>，which generates the JCL <code>NOTIFY=&amp;SYSUID</code>,Similarly, &amp;&amp; in a DSN becomes <code>&amp;&amp;&amp;&amp;</code> in a skel.</li>
+<li>知道任意一个panel的名字，如何得到其定义的路径？这里是很好的方法：   </li>
+</ul>
+<p><em>1).</em>  turn on PANELID to see the panel names   <br />
+<em>2).</em>  from the ISPF primary option menu,navigate to your target panel,selecting one menu item at a time. Write down the panel names. <br />
+<em>3).</em>  When you get to your target panel,issue TSO ISRDDN  (like <code>TSO ISRDDN CMNLIST0</code>)<br />
+<em>4).</em>  In the <code>ISRDDN</code> panel, type <code>MEMBER</code> my_target where my_target is the name of the panel you are looking for. Press Enter. <br />
+<em>5).</em>  It will display the datasets that include that member.   <br />
+<em>6).</em>  Browse to see what each panel does.   </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf-dialog.html">ISPF Dialog </a>
+    <a href="http://mainframer.github.io/tag/panelid.html">Panelid </a>
+    <a href="http://mainframer.github.io/tag/isrddn.html">ISRDDN </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF Dialog 开发知识点.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

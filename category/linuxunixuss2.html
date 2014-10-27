@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Linux/Unix/USS</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack一些基本配置.html"><h3 class="article-title">Backtrack一些基本配置</h3></a>
+<h6 class="subheader" title="2011-08-09T00:00:00">2011-08-09
+</h6>
+
+
+<h5>查看网络配置信息</h5>
+<p>root@bt:/#  <code>ifconfig -a</code>     </p>
+<h5>手动激活未使用的网卡eth0</h5>
+<p>root@bt:/#  <code>ifconfig eth0 up</code>     </p>
+<h5>通过DHCP自动为eth0网卡分配ip地址</h5>
+<p>root@bt:/#  <code>dhclient eth0</code>    </p>
+<h5>也可手动为eth0网卡分配ip</h5>
+<p>root@bt:/#  <code>ifconfig eth0 192.168.1.105 netmask 255.255.255.0</code>     </p>
+<h5>添加网关</h5>
+<p>root@bt:/#  <code>route add default gw 192.168.1.1</code>     </p>
+<h5>查看dns配置信息:</h5>
+<p>root@bt:/#  <code>cat /etc/resolv.conf</code>    </p>
+<h5>编辑dns配置信息:</h5>
+<p>root ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrackpei-zhi.html">Backtrack配置 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack一些基本配置.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack一些基本配置.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html"><h3 class="article-title">Backtrack5安装Adobe reader看PDF</h3></a>
+<h6 class="subheader" title="2011-08-06T00:00:00">2011-08-06
+</h6>
+
+
+<p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
+<h3>1、下载压缩包到/tmp</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
+</pre></div>
+
+
+<h3>2、下载好之后解压:</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
+<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
+<span class="no">AdobeReader</span><span class="o">/</span>   
+<span class="no">AdobeReader ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/adobe-reader.html">Adobe reader </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html"><h3 class="article-title">BT5开机自动启动ibus</h3></a>
+<h6 class="subheader" title="2011-03-06T00:00:00">2011-03-06
+</h6>
+
+
+<p>BT5下安装中文输入法：</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">scim</span>
+</pre></div>
+
+
+<p>BT5下安装ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ibus</span>
+</pre></div>
+
+
+<p>在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
+怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:<br />
+开机自动启动ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="no">System</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Preferences</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Startup</span> <span class="no">Applications</span>
+     <span class="no">Click</span> <span class="n">the</span> <span class="ss">button</span><span class="p">:</span> <span class="no">Add</span>
+     <span class="ss">Name</span><span class="p">:</span> <span class="n">ibus</span> <span class="n">daemon</span>
+     <span class="ss">Command</span><span class="p">:</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">ibus</span><span class="o">-</span><span class="n">daemon</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+
+
+<p>好了，重启就可以了。<br />
+按Ctrl+空格调出输入法 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/ibus.html">ibus </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html"><h3 class="article-title">BT5如何安装VMware Tools</h3></a>
+<h6 class="subheader" title="2011-02-25T00:00:00">2011-02-25
+</h6>
+
+
+<p>虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  <br />
+首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是<code>D:\DOCUMENT\linux</code>.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
+<img alt="1" src="./../images/bt5-vmtools-1.jpg" />   <br />
+还是老规矩：输入用户名<em>root</em>；密码<em>toor</em>；启动图形界面:<em>startx</em>; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:</p>
+<p><img alt="1" src="./../images/bt5-vmtools-2.jpg" />   <br />
+先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。<br />
+记得一定要先改变先<code>sudo chmod 755 vmware-install.pl</code>不然可能会出现 <code>no such file or directory</code>。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！  </p>
+<p><img alt="1" src="./../images/bt5-vmtools-3.jpg" />  <br />
+接着按照提示做就可以了。遇到没有权限访问xxx ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/shen-tou.html">渗透 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack初探.html"><h3 class="article-title">Backtrack初探</h3></a>
+<h6 class="subheader" title="2011-01-29T00:00:00">2011-01-29
+</h6>
+
+
+<p>一般你去网上一搜Backtrack，出来一堆都是说用backtrack来破解无线网络密码的，似乎强大的backtrack俨然给我们的第一印像就是一个蹭网的工具而已，扫扫Wifi，破解破解<code>WEP/WPA/WPA2</code>加密什么的,实属不该~
+Backtrack,中文不知道该翻译成啥，回溯？Backtrack是基于Slackware和SLAX的自启动运行的操作系统，它的初衷是给计算机安全领域用的。包含安全审计和渗透测试。Backtrack(简称BT)，现在最新的是今年5月份发布的Backtrack5,我现在用的就是BT5,Ubuntu gnome桌面的，你可以选KDE桌面，因为之前我用惯了ubuntu，所以选了gnome的。 在BT5之前还有BT2,BT3,BT4,BT4R2什么的，我接触的比较晚，只接触过BT4R2和BT5。就这两个来说，BT5界面上面确实比BT4R2眩多了。上靓图:
+<img alt="1" src="./../images/BackTrack51.jpg" />  <br />
+其实呢，Backtrack之所以吸引我的原因是因为它上面集成了无数无比强大的黑客工具（渗透工具），其中包含大家非常熟悉的强大的扫描工具nmap，Nessus等等，强大的Sniff工具Wireshark等，可以说是当前渗透测试人员和网络安全专家必备的测试平台。可不仅仅是蹭网的哦。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/shen-tou.html">渗透 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack初探.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack初探.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux桌面系统KDE和GNOME.html"><h3 class="article-title">Linux桌面系统KDE和GNOME</h3></a>
+<h6 class="subheader" title="2010-12-18T00:00:00">2010-12-18
+</h6>
+
+
+<p>Windows的成功告诉我们，用户体验很重要。因为并不是所有人都希望能只能对着一个黑乎乎的shell来进行所有的操作。至少大多数人是不喜欢这样的操作方式的。当前linux上得桌面系统主要可以分为<code>KDE</code>和<code>GNOME</code>。</p>
+<h4>KDE</h4>
+<p>特点是界面美观，设置和使用相对复杂。KDE在UNIX，许多Linux发行版，FreeBSD上都得到应用。使用KDE作为默认桌面管理系统的linux发行版本大概有：Debian GNU/Linux，Fedora Core，Gentoo Linux，Kubuntu,SUSE Linux，FreeBSD以及纯正的UNIX等。</p>
+<h4>GNOME</h4>
+<p>以前说GNOME没有KDE漂亮还可以接受，但现在Ubuntu的强势发展，使得GNOME也不断完善。特别是GNOME的3D桌面动态效果是很吸引新人使用的。可以说，GNOME现在已经是一种非常成熟的桌面系统，具有易用性，稳定性等特点。现在，越来越多的linux发行版本都开始支持GNOME桌面系统了，连BACKTRACK这样的非主流linux系统，在BT5发行里面就有GNOME的桌面，这一点足以证明GNOME的市场成功了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/kde.html">KDE </a>
+    <a href="http://mainframer.github.io/tag/gnome.html">GNOME </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux桌面系统KDE和GNOME.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux桌面系统KDE和GNOME.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html"><h3 class="article-title">Linux包管理系统RPM和Deb</h3></a>
+<h6 class="subheader" title="2010-12-12T00:00:00">2010-12-12
+</h6>
+
+
+<p>本质上来说，包也是linux应用软件的一种。用过一段时间linux的人都知道，一般linux中安装软件都是通过包的形式安装的。目前最流行的两种包的管理系统是Red Hat的RPM包和基于Debian发行版本的Deb包。</p>
+<h3>RPM包管理系统</h3>
+<p>Linux家族中有五十多种发行版本是基于Red Hat的RPM包管理系统的。有欧洲最流行的发行版SUSE/OpenSUSE，有著名的Red Hat企业版，我国发行的红旗linux等等。由于Red Hat在linux业界的领导地位，使得RPM包管理方式俨然成了linux业界的工业标准。   </p>
+<ul>
+<li><em>rpm -vih file.rpm</em>            #安装RPM包   </li>
+<li><em>rpm -e file.rpm</em>              #卸载RPM包    </li>
+<li><em>rpm -qpR file.rpm</em>            #查看RPM包依赖关系    </li>
+<li><em>rpm -q file.rpm</em>              #查看系统已经安装的rpm包  </li>
+</ul>
+<h3>Deb包管理系统</h3>
+<p>RPM包管理系统应用虽然广泛，但本身具有很难解决包依赖关系的问题，这点上，基于Deb的包管理系统俨然是一种更好地选择。使用Deb包管理系统的linux发行版本有Debian和近几年很火的Ubuntu。现在，Ubuntu可以说在linux个人桌面市场上是一枝独秀，这也是的基于Deb包的管理方式被更多人所熟悉。跟RPM包不同的的是，Deb包里面包含的是二进制文件和一些config文件，也可以直接打开来看。但是Deb包管理系统提供了丰富的安装 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/rpm.html">RPM </a>
+    <a href="http://mainframer.github.io/tag/deb.html">Deb </a>
+    <a href="http://mainframer.github.io/tag/bao-guan-li.html">包管理 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux压缩命令.html"><h3 class="article-title">Linux压缩命令</h3></a>
+<h6 class="subheader" title="2010-11-26T00:00:00">2010-11-26
+</h6>
+
+
+<p>在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
+压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  <br />
+<code>tar格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">xvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span>
+<span class="n">tar</span> <span class="n">cv</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span> <span class="n">directory</span>  
+</pre></div>
+
+
+<p><code>gz格式</code></p>
+<div class="highlight"><pre><span class="n">gunzip</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+<span class="err">也可用</span> <span class="n">gzip</span><span class="err">——</span><span class="n">gzip</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+
+
+<p><code>tar.gz/tgz格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="err">解压至当前目录</span>
+<span class="n">tar</span> <span class="n">zcvf ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/linuxya-suo.html">Linux压缩 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux压缩命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux压缩命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 2 of 2</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/linuxunixuss.html">&laquo; Prev</a>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

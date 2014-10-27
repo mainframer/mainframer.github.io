@@ -47,163 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html"><h3 class="article-title">使用UNIT=(SYSDA,20)</h3></a>
-<h6 class="subheader" title="2012-03-10T00:00:00">2012-03-10
-</h6>
-
-
-<p>好几次<em>production abend</em>都是因为JCL中分配的dataset太大，恰好一个volume上面的剩余空间都分配完了。<br />
-这里是DBA给的建议：  </p>
-<blockquote>
-<p>"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
-</p>
-</blockquote>
-<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>                  
-<span class="mo">000002</span> <span class="o">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
-<span class="mo">000003</span> <span class="o">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
-<span class="mo">000004</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html"><h3 class="article-title">ABENDED S000 U4088 REASON CODE=000003EC</h3></a>
-<h6 class="subheader" title="2012-03-05T00:00:00">2012-03-05
-</h6>
-
-
-<p>Sub一个job遇到错误:</p>
-<blockquote>
-<p>ABENDED S000 U4088 REASON CODE=000003EC
-</p>
-</blockquote>
-<h5>Abend原因:</h5>
-<blockquote>
-<p>The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage
-</p>
-</blockquote>
-<h5>解决办法:</h5>
-<p>Change region to <strong>REGION=0M</strong> </p>
-<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span>  <span class="mi">0</span><span class="no">RQ00XXXXX</span>                                <span class="mo">00010</span><span class="no">TEST</span><span class="p">,</span>    
-<span class="mo">000002</span> <span class="o">//</span> <span class="s1">&#39;IBMUSER&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/常用的CICS命令.html"><h3 class="article-title">常用的CICS命令</h3></a>
-<h6 class="subheader" title="2012-03-01T00:00:00">2012-03-01
-</h6>
-
-
-<p>我们可以在<code>COBOL</code>，<code>PL/I</code>，<code>Assembler</code>等应用程序中写<code>CICS</code>命令，在<code>COBOL</code>和<code>PL/I</code>中，格式分别如下所示：</p>
-<h5>COBOL</h5>
-<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="k">END</span><span class="o">-</span><span class="no">EXEC</span>
-</pre></div>
-
-
-<h5>PL/I</h5>
-<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="p">;</span> <span class="p">(</span><span class="err">末尾有分号</span><span class="p">)</span>
-</pre></div>
-
-
-<p>CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
-<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。</p>
-<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ABEND</span> <span class="o">[</span><span class="no">ABCODE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
-<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ASKTIME ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/常用的CICS命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常用的CICS命令.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html"><h3 class="article-title">ISPF下如何去掉程序的第72至80列</h3></a>
-<h6 class="subheader" title="2012-02-07T00:00:00">2012-02-07
-</h6>
-
-
-<p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
-<h4>方法一：直接在ISPF下面用命令去掉</h4>
-<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
-<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
-<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
-</pre></div>
-
-
-<hr />
-<h4>方法二：用第三方脚本实现</h4>
-<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
-这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/PLI编译器版本.html"><h3 class="article-title">PL/I编译器版本</h3></a>
-<h6 class="subheader" title="2012-02-02T00:00:00">2012-02-02
-</h6>
-
-
-<p>PL/I编译器的版本，如下所示：</p>
-<div class="highlight"><pre><span class="no">Product</span>        <span class="no">Product</span> <span class="nb">name</span> <span class="err"> </span>                        <span class="no">Compiler</span> <span class="s2">&quot;signature&quot;</span>   <span class="no">Module</span> <span class="n">prefix</span> 
-<span class="mi">360</span><span class="n">S</span><span class="o">-</span><span class="no">NL</span><span class="o">-</span><span class="mi">511</span> <span class="err"> </span> <span class="err"> </span><span class="n">S</span><span class="o">/</span><span class="mi">360</span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="mi">1</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>         <span class="s1">&#39;   &#39;</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="no">IEM</span><span class="p">,</span><span class="no">IHE</span><span class="p">,</span><span class="no">IHL</span>
-<span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">OPTIMIZING</span> <span class="no">COMPILER</span> <span class="no">V1</span> <span class="err"> </span>       <span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>   <span class="err"> </span>  <span class="no">IEL</span><span class="p">,</span><span class="no">IBM</span>
-<span class="mi">5734</span><span class="o">-</span><span class="no">PL2</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">CHECKOUT</span> <span class="no">COMPILER</span>
-<span class="mi">5734</span><span class="o">-</span><span class="no">PL3</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">Opt</span> <span class="no">Comp</span> <span class="no">Lib ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/PLI编译器版本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI编译器版本.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/用PIC型中间变量解决Fixed赋值溢出abend.html"><h3 class="article-title">用PIC型中间变量解决Fixed赋值溢出abend</h3></a>
 <h6 class="subheader" title="2012-01-11T00:00:00">2012-01-11
 </h6>
@@ -220,7 +63,7 @@ Completion Code=0CA).
 The current location is PRGM000 ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/cee3201s-abend.html">CEE3201S abend </a>
 </p>
 
 
@@ -251,7 +94,7 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
 如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用<strong><code>ISRSUPC</code></strong>这个utility了。这个<strong><code>ISRSUPC</code></strong>的功能可强大多了，具体可以参照下我之前的文章: &lt;&lt;用ISRSUPC在PDS所有member中搜索指定字符串&gt;&gt;，这里不重复了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/srchforsou-suo.html">SRCHFOR搜索 </a>
 </p>
 
 
@@ -280,7 +123,7 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
 <p><code>S0C4</code> Protection Abend.Caused by the subscript ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/jcl-fan-hui-ma.html">JCL 返回码 </a>
 </p>
 
 
@@ -312,7 +155,8 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
 <h6>上面的<code>MYPLICPY</code>是PLI的copybook，COBOL的这里就不上图了，上图很累的。</h6><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/file-manager.html">File Manager </a>
+    <a href="http://mainframer.github.io/tag/copybook.html">Copybook </a>
 </p>
 
 
@@ -364,6 +208,7 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/changeman.html">Changeman </a>
 </p>
 
 
@@ -372,9 +217,166 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html"><h3 class="article-title">IBM大型机12月16日起支持Windows系统[转载]</h3></a>
+<h6 class="subheader" title="2011-11-08T00:00:00">2011-11-08
+</h6>
+
+
+<p>本文来源——http://www.sina.com.cn 2011年11月07日 15:58 新浪科技微博
+新浪科技讯 北京时间11月7日下午消息，据美国IT网站ComputerWorld报道，IBM大型机将从今年12月中旬开始支持Windows系统。</p>
+<p>IBM此前就有意在zEnterprise 196大型机中采用Windows系统。根据IBM发布的最新消息，该公司大型机将从今年12月16日起支持Windows管理功能。用户一直希望数据中心有新的功能。当前，有许多基于Windows的应用可支持大型机获取数据，其中就包括IBM制造的许多应用。但此类应用现在必须单独管理。
+IBM表示，支持Windows系统将有助于提高大型机企业环境的安全性和速度，同时让用户可以在私人网络上连接系统，避免其他网络问题，实现一体化管理。IBM System z部门业务主管格雷格·洛特科(Greg Lotko)说：“之所以增加对Windows系统的支持，是因为IBM真正认识到这个世界的复杂性。”</p>
+<p>洛特科补充说，从今往后，<code>IBM System z</code>平台可以支持<code>z /OS</code>、<code>Linux</code>、<code>Unix</code> 和<code>Windows</code>等多套系统 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/da-xing-ji.html">大型机 </a>
+    <a href="http://mainframer.github.io/tag/windows.html">windows </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL编码规则.html"><h3 class="article-title">COBOL编码规则</h3></a>
+<h6 class="subheader" title="2011-10-03T00:00:00">2011-10-03
+</h6>
+
+
+<p>苦逼的COBOL们一定知道和JCL一样，在写COBOL程序的时候对源码的区域也有一定的制约的，具体如下表所示：<br />
+<img alt="1" src="./../images/COBOL-coding-convention.jpg" />      </p>
+<h4>第7列用来说明程序所在行的用途:</h4>
+<p><code>连接符(-)</code>: 表示本行是上一行的续行；<br />
+<code>('D')</code>:    表示查错；
+<code>星号('*')</code>: 表示注解；  </p>
+<h4>下面的COBOL程序元素必须从A区域开始：</h4>
+<p>部(DIVISION)和节(SECTION)的标题 <br />
+段名 
+程序结尾(End Program)标题 <br />
+级别标示符如FD或者SD等，级别号如01级和77级  </p>
+<h4>下面这些COBOL元素必须从B区域开始：</h4>
+<p><code>语句</code>、<code>句子</code>和<code>短语继续行</code>  </p>
+<h5>[注：本文内容源自：《IBM主机技术一本通》]</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/cobolgui-ze.html">COBOL规则 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL编码规则.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL编码规则.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL程序典型结构.html"><h3 class="article-title">COBOL程序典型结构</h3></a>
+<h6 class="subheader" title="2011-10-02T00:00:00">2011-10-02
+</h6>
+
+
+<p>一个典型的COBOL程序结构是：程序由许多‘部’组成，每个‘部’可以包含多个‘节’  </p>
+<h4>COBOL PROGRAM (程序)</h4>
+<h4>DIVISION(部)</h4>
+<h4>SECTION(节)</h4>
+<h4>PARAGRAPH(段)</h4>
+<h4>SENTENCE(句子)</h4>
+<h4>STATEMENT(语句)</h4>
+<p>整个COBOL程序由4个'部'(DIVISION)组成：</p>
+<blockquote>
+<p>Identification Division  标识部
+Environment Division 环境部 
+Data Division 数据部
+Procedure Division 过程部 </p>
+<p>用一句话介绍这四个部：标志部提供作者和编译器信息；环境部提供程序运行的环境；数据部描述程序处理的绝大部分数据；过程部描述对数据部描述的数据的操作算法:</p>
+</blockquote>
+<h4>Identification Division(标识部)--主要是程序和作者名</h4>
+<div class="highlight"><pre><span class="no">IDENTIFICATION</span> <span class="no">DIVISION</span><span class="o">.</span>
+<span class="no">PROGRAM</span><span class="o">-</span><span class="no">ID ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/coboljie-gou.html">COBOL结构 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL程序典型结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序典型结构.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/提交JCL的4种方式.html"><h3 class="article-title">提交JCL的4种方式</h3></a>
+<h6 class="subheader" title="2011-10-01T00:00:00">2011-10-01
+</h6>
+
+
+<p>总结了下在主机上面提交JCL的四种方式：</p>
+<h4>1.用VIEW或者EDIT打开JOB,在命令行上输入<code>SUBMIT</code>或者<code>SUB</code>:</h4>
+<p><img alt="1" src="./../images/JCL-SUBMIT-01.jpg" />          </p>
+<h4>2.直接在JOB前面输入<code>SUBMIT</code>或者<code>SUB</code>，不用打开:</h4>
+<p><img alt="1" src="./../images/JCL-SUBMIT-02.jpg" />          </p>
+<h4>3.命令行模式下输入命令:</h4>
+<p><img alt="1" src="./../images/JCL-SUBMIT-03.jpg" />          </p>
+<h4>4.<code>Q;ST</code>进入SDSF，找到你最近run过的JOB，在它前面输入<code>SJ</code>，回车，输入<code>SUB</code>,提交job。</h4><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ti-jiao-jcl.html">提交JCL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/提交JCL的4种方式.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/提交JCL的4种方式.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html"><h3 class="article-title">utility判断dataset是否为空的方法</h3></a>
+<h6 class="subheader" title="2011-09-28T00:00:00">2011-09-28
+</h6>
+
+
+<p>下面介绍四种利用Utility的返回码来判断一个dataset或者member是否为空文件的方法： </p>
+<h4>1.利用<code>IDCAMS</code></h4>
+<p><img alt="1" src="./../images/IDCAMS-CHECK-EMPTY.jpg" />          </p>
+<h4>2.利用SORT(DFSORT/SYNCSORT)</h4>
+<p><img alt="1" src="./../images/SORT-CHECK-EMPTY.jpg" />          </p>
+<h4>3.利用<code>ICETOOL(SYNCTOOL)</code></h4>
+<p><img alt="1" src="./../images/ICETOOL-CHECK-EMPTY.jpg" />          </p>
+<h4>4.利用<code>ISRSUPC</code></h4>
+<p><img alt="1" src="./../images/ISRSUPC-CHECK-EMPTY.jpg" />          <br />
+方法不止以上四种，还有利用<code>REXX</code>脚本也可以判断，只是不属于本文讨论的范围。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/dataset.html">dataset </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 5 of 9</h6>
+<h6 class="subheader">Page 5 of 8</h6>
 
 <p>
             <a href="http://mainframer.github.io/category/mainframe4.html">&laquo; Prev</a>
@@ -397,11 +399,12 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

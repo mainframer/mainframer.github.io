@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - trigger job</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html"><h3 class="article-title">用INTRDR在job中submit第二个job</h3></a>
+<h6 class="subheader" title="2013-04-22T00:00:00">2013-04-22
+</h6>
+
+
+<p>今天学到的，如何在当前<code>job</code>当中<code>trigger</code>另外一个<code>job</code>？答案就是利用<code>Internal Reader</code> 
+例如：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="o">*******************************************************************</span>    
+<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">an</span> <span class="no">DUMMY</span> <span class="n">job</span> <span class="no">MYJOB2</span> <span class="n">from</span> <span class="n">current</span> <span class="n">job</span> <span class="n">card</span> 
+<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">to</span> <span class="n">the</span> <span class="no">Internal</span> <span class="no">Reader</span>                                    
+<span class="sr">//</span><span class="o">*******************************************************************</span>
+<span class="sr">//</span><span class="no">STEP04</span>    <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span>                  
+<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span><span class="p">,</span><span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">CNTL</span><span class="p">(</span><span class="no">MYJOB2</span><span class="p">)</span>           
+<span class="sr">//</span><span class="no">SYSUT2</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="no">INTRDR</span><span class="p">)</span>                            
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="no">DUMMY</span>  
+</pre></div>
+
+
+<p>这种技术经常被用来发送<code>notification email</code>，比如： </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="o">****************************************************************</span>      
+<span class="sr">//</span><span class="o">*</span>   <span class="no">THIS</span> <span class="no">STEP</span> <span class="no">WILL</span> <span class="no">SEND</span> <span class="no">AN</span> <span class="no">EMAIL</span> <span class="no">TO</span> <span class="no">THE</span> <span class="no">CLIENT</span> <span class="no">GROUP</span>                    
+<span class="sr">//</span><span class="o">*</span>   <span class="no">INDICATING</span> <span class="no">THAT</span> <span class="no">THE</span> <span class="no">DESIRED</span> <span class="no">FILE</span> <span class="no">WAS</span> <span class="no">NOT</span> <span class="no">RECEIVED</span>                     
+<span class="sr">//</span><span class="o">****************************************************************</span>      
+<span class="sr">//</span><span class="no">STEP08</span>   <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="no">NE</span><span class="p">,</span><span class="no">STEP02</span><span class="p">)</span>                                                                                     
+<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="no">DUMMY</span>                                                    
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                 
+<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">CNTL</span><span class="p">(</span><span class="no">STEMAIL</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                       
+<span class="sr">//</span><span class="no">SYSUT2</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="no">INTRDR</span><span class="p">),</span>                                       
+<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span>  
+</pre></div>
+
+
+<p>上面例子中邮件的内容如下：<code>IBMUSER.TEST.CNTL(STEMAIL)</code>
+```ruby//IBMUSERT JOB 0000000TEST,  <br />
+//   CLASS=3,MSGCLASS=I,REGION=4096K,                               <br />
+//<em>
+//STEP04   EXEC PGM=IEBGENER                      <br />
+//SYSUT2   DD  SYSOUT=A,DEST=(<some name>,SMTP)     <br />
+//SYSPRINT DD SYSOUT=</em>                            <br />
+//SYSIN    DD DUMMY                               <br />
+//SYSUT1   DD  *                                  <br />
+HELO <some name>                            <br />
+MAIL FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>             <br />
+RCPT TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>                <br />
+DATA                                              <br />
+FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>                 <br />
+TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>                     <br />
+SUBJECT: FILE WAS NOT RECEIVED                          </p>
+<p>START OF MESSAGE...                                 </p>
+<p><strong><em> DO NOT  RESPOND TO THIS MESSAGE </em></strong>                          <br />
+     File was not recieved. Please send again.
+//* <br />
+```</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/intrdr.html">INTRDR </a>
+    <a href="http://mainframer.github.io/tag/trigger-job.html">trigger job </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

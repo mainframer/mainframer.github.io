@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Backtrack</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack5最新版chrome.html"><h3 class="article-title">Backtrack5最新版chrome</h3></a>
+<h6 class="subheader" title="2011-09-12T00:00:00">2011-09-12
+</h6>
+
+
+<p>在windows下用惯了chrome，受不了chrome的诱惑，还是忍不住想把bt5下的firefox给换了。chrome官网下载安装包放置于<code>/root/software/</code>路径下，然后安装。</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># cd software/</span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="sr">/software# dpkg -i google-chrome-stable_current_i386.deb</span>
+<span class="sr">Selecting previously deselected package google-chrome-stable.</span>
+<span class="sr">(Reading database ... 220905 files and directories currently installed.)</span>
+<span class="sr">Unpacking google-chrome-stable (from google-chrome-stable_current_i386.deb) ...</span>
+<span class="sr">Setting up google-chrome-stable (13.0.782.220-r99552) ...</span>
+<span class="sr">update-alternatives: using /us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">google</span><span class="o">-</span><span class="n">chrome</span> <span class="n">to</span> <span class="n">provide</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span><span class="p">)</span> <span class="k">in</span> <span class="n">auto</span> <span class="n">mode</span><span class="o">.</span>
+<span class="n">update</span><span class="o">-</span><span class="ss">alternatives</span><span class="p">:</span> <span class="n">using</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">google</span><span class="o">-</span><span class="n">chrome</span> <span class="n">to</span> <span class="n">provide</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">gnome</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span> <span class="p">(</span><span class="n">gnome</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">browser</span><span class="p">)</span> <span class="k">in</span> <span class="n">auto</span> <span class="n">mode</span><span class="o">.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">desktop</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="n">utils</span> <span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">python</span><span class="o">-</span><span class="n">gmenu</span> <span class="o">...</span>
+<span class="no">Rebuilding</span> <span class="sr">/usr/s</span><span class="n">hare</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">desktop</span><span class="o">.</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf8</span><span class="o">.</span><span class="n">cache</span><span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">menu</span> <span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">man</span><span class="o">-</span><span class="n">db</span> <span class="o">...</span>
+<span class="no">Processing</span> <span class="n">triggers</span> <span class="k">for</span> <span class="n">python</span><span class="o">-</span><span class="n">support</span> <span class="o">...</span>
+</pre></div>
+
+
+<p>运行会出现<code>Google Chrome can not be run as root.</code>错误，解决办法是每次运行的时候手动指定<code>user-data-dir</code>参数即可，这个是我在网上搜的方法。<br />
+<img alt="1" src="./../images/backtrack5-google-chrome.jpg" />  </p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">google</span><span class="o">/</span><span class="n">chrome</span><span class="c1"># /opt/google/chrome/google-chrome %U - -user-data-dir=/root/.config/chromium</span>
+</pre></div>
+
+
+<p>看看是不是可以用了？chrome比firefox清爽多了感觉。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/chrome.html">chrome </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack5最新版chrome.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/backtrack5下注册nessus非商用版.html"><h3 class="article-title">backtrack5下注册nessus非商用版</h3></a>
+<h6 class="subheader" title="2011-09-08T00:00:00">2011-09-08
+</h6>
+
+
+<p>打开BT5下菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus start</code> 会提示插件缺失需要注册。</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># Missing plugins. Attempting a plugin update...</span>
+<span class="no">Your</span> <span class="n">installation</span> <span class="n">is</span> <span class="n">missing</span> <span class="n">plugins</span><span class="o">.</span> <span class="no">Please</span> <span class="n">register</span> <span class="ow">and</span> <span class="n">try</span> <span class="n">again</span><span class="o">.</span>
+<span class="no">To</span> <span class="n">register</span><span class="p">,</span> <span class="n">please</span> <span class="n">visit</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">nessus</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">register</span><span class="o">/</span>
+</pre></div>
+
+
+<p>到官网<a href="http://www.nessus.org/register/">http://www.nessus.org/register</a>注册，好工具只给注册家用版，填好邮箱注册即可，登陆邮箱会收到一封确认邮件。告诉你在不同系统<code>(windows ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/nessuszhu-ce.html">nessus注册 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/backtrack5下注册nessus非商用版.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/backtrack5下注册nessus非商用版.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html"><h3 class="article-title">BT5安装openoffice和星际译王stardict</h3></a>
+<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
+</h6>
+
+
+<h3>BT5下安装openoffice</h3>
+<p>上次装了Adobe Reader在BT5下面能看PDF了，后来发现不能看word，ppt，excel也是一件很痛快的事情，虽然安装了vmware-tools之后在windows和BT5直接直接来回拖文件也挺方便，但是也不那么方便，所以今天还是老老实实地把openoffice在BT5下面给安装了。
+首先到openoffice官网上下载安装包，因为我选的是deb安装，而不是rpm安装，所以我下载deb包，放在~/software目录下。
+root@bt:~#  <code>cd ~/software</code> <br />
+root@bt:~/software#<br />
+root@bt:~/software#  <code>tar zxvf OOo_3.3.0_Linux_x86_install-deb_zh-CN.tar.gz</code> <br />
+root@bt:~/software#  <code>cd OOO330_m20_native_packed-1_zh-CN.9567/</code> <br />
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567#  <code>ls</code> <br />
+DEBS licenses readmes update  </p>
+<h5>进入DEBS目录，安装该目录下的所有deb包 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/openoffice.html">openoffice </a>
+    <a href="http://mainframer.github.io/tag/stardict.html">stardict </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html"><h3 class="article-title">Backtrack5安装Adobe reader看PDF</h3></a>
+<h6 class="subheader" title="2011-08-06T00:00:00">2011-08-06
+</h6>
+
+
+<p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
+<h3>1、下载压缩包到/tmp</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
+</pre></div>
+
+
+<h3>2、下载好之后解压:</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
+<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
+<span class="no">AdobeReader</span><span class="o">/</span>   
+<span class="no">AdobeReader ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/adobe-reader.html">Adobe reader </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html"><h3 class="article-title">BT5开机自动启动ibus</h3></a>
+<h6 class="subheader" title="2011-03-06T00:00:00">2011-03-06
+</h6>
+
+
+<p>BT5下安装中文输入法：</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">scim</span>
+</pre></div>
+
+
+<p>BT5下安装ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ibus</span>
+</pre></div>
+
+
+<p>在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
+怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:<br />
+开机自动启动ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="no">System</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Preferences</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Startup</span> <span class="no">Applications</span>
+     <span class="no">Click</span> <span class="n">the</span> <span class="ss">button</span><span class="p">:</span> <span class="no">Add</span>
+     <span class="ss">Name</span><span class="p">:</span> <span class="n">ibus</span> <span class="n">daemon</span>
+     <span class="ss">Command</span><span class="p">:</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">ibus</span><span class="o">-</span><span class="n">daemon</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+
+
+<p>好了，重启就可以了。<br />
+按Ctrl+空格调出输入法 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/ibus.html">ibus </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html"><h3 class="article-title">BT5如何安装VMware Tools</h3></a>
+<h6 class="subheader" title="2011-02-25T00:00:00">2011-02-25
+</h6>
+
+
+<p>虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  <br />
+首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是<code>D:\DOCUMENT\linux</code>.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
+<img alt="1" src="./../images/bt5-vmtools-1.jpg" />   <br />
+还是老规矩：输入用户名<em>root</em>；密码<em>toor</em>；启动图形界面:<em>startx</em>; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:</p>
+<p><img alt="1" src="./../images/bt5-vmtools-2.jpg" />   <br />
+先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。<br />
+记得一定要先改变先<code>sudo chmod 755 vmware-install.pl</code>不然可能会出现 <code>no such file or directory</code>。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！  </p>
+<p><img alt="1" src="./../images/bt5-vmtools-3.jpg" />  <br />
+接着按照提示做就可以了。遇到没有权限访问xxx ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/shen-tou.html">渗透 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack初探.html"><h3 class="article-title">Backtrack初探</h3></a>
+<h6 class="subheader" title="2011-01-29T00:00:00">2011-01-29
+</h6>
+
+
+<p>一般你去网上一搜Backtrack，出来一堆都是说用backtrack来破解无线网络密码的，似乎强大的backtrack俨然给我们的第一印像就是一个蹭网的工具而已，扫扫Wifi，破解破解<code>WEP/WPA/WPA2</code>加密什么的,实属不该~
+Backtrack,中文不知道该翻译成啥，回溯？Backtrack是基于Slackware和SLAX的自启动运行的操作系统，它的初衷是给计算机安全领域用的。包含安全审计和渗透测试。Backtrack(简称BT)，现在最新的是今年5月份发布的Backtrack5,我现在用的就是BT5,Ubuntu gnome桌面的，你可以选KDE桌面，因为之前我用惯了ubuntu，所以选了gnome的。 在BT5之前还有BT2,BT3,BT4,BT4R2什么的，我接触的比较晚，只接触过BT4R2和BT5。就这两个来说，BT5界面上面确实比BT4R2眩多了。上靓图:
+<img alt="1" src="./../images/BackTrack51.jpg" />  <br />
+其实呢，Backtrack之所以吸引我的原因是因为它上面集成了无数无比强大的黑客工具（渗透工具），其中包含大家非常熟悉的强大的扫描工具nmap，Nessus等等，强大的Sniff工具Wireshark等，可以说是当前渗透测试人员和网络安全专家必备的测试平台。可不仅仅是蹭网的哦。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/shen-tou.html">渗透 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack初探.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Backtrack初探.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

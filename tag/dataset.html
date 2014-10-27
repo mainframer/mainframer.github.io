@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Dataset</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html"><h3 class="article-title">utility判断dataset是否为空的方法</h3></a>
+<h6 class="subheader" title="2011-09-28T00:00:00">2011-09-28
+</h6>
+
+
+<p>下面介绍四种利用Utility的返回码来判断一个dataset或者member是否为空文件的方法： </p>
+<h4>1.利用<code>IDCAMS</code></h4>
+<p><img alt="1" src="./../images/IDCAMS-CHECK-EMPTY.jpg" />          </p>
+<h4>2.利用SORT(DFSORT/SYNCSORT)</h4>
+<p><img alt="1" src="./../images/SORT-CHECK-EMPTY.jpg" />          </p>
+<h4>3.利用<code>ICETOOL(SYNCTOOL)</code></h4>
+<p><img alt="1" src="./../images/ICETOOL-CHECK-EMPTY.jpg" />          </p>
+<h4>4.利用<code>ISRSUPC</code></h4>
+<p><img alt="1" src="./../images/ISRSUPC-CHECK-EMPTY.jpg" />          <br />
+方法不止以上四种，还有利用<code>REXX</code>脚本也可以判断，只是不属于本文讨论的范围。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/dataset.html">dataset </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/utility判断dataset是否为空的方法.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html"><h3 class="article-title">Dataset View和Browse的区别</h3></a>
+<h6 class="subheader" title="2011-01-13T00:00:00">2011-01-13
+</h6>
+
+
+<p>在大机上，View和Browse都能查看dataset/member，它们有什么区别呢？下面是我在平常的工作当中找到的三点区别，欢迎补充！ </p>
+<h4>1、Browse默认显示80列，而View默认显示72列，当然两者都可以用PF11向右翻页。</h4>
+<h4>2、Browse不允许修改，尝试修改会马上锁屏，而View可以修改，但不能保存成当前同名的，就是说有"另存为"的功能。</h4>
+<h4>3、Browse下许多命令不能用，比如语法高亮HI ON,比如JCL语法检查JEM，而View下都可以用。</h4>
+<p>你在view一个Member，若尝试做任何更改，会跳出这样的一段提示的话:
+<img alt="1" src="./../images/browse_view_01.jpg" />  <br />
+当你在View一个member的时候，可以在左边列用两个<code>CC</code>选择你要另存为的范围，然后在command栏上输入<code>CREATE</code>，回车即可另存为了:
+<img alt="1" src="./../images/browse_view_02.jpg" /> </p>
+<p>个人认为View最有用的就是可以提交别人的JCL。下图中，假设你的ID是<code>USERID02</code>,而<code>USERID01</code>是你同事的ID，你自然是没有权限去sub他/他的JCL，这时，你要么可以把这个JCL拷到你自己的LIB下面改成你的ID再sub，要么直接View进去，改成你的ID，sub完之后无需保存即可。对于这种别人的JCL又不想麻烦地copy到自己lib时，是不是方便多了呢？
+<img alt="1" src="./../images/browse_view_03.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/dataset.html">Dataset </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

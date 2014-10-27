@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - COBOL结构</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL程序典型结构.html"><h3 class="article-title">COBOL程序典型结构</h3></a>
+<h6 class="subheader" title="2011-10-02T00:00:00">2011-10-02
+</h6>
+
+
+<p>一个典型的COBOL程序结构是：程序由许多‘部’组成，每个‘部’可以包含多个‘节’  </p>
+<h4>COBOL PROGRAM (程序)</h4>
+<h4>DIVISION(部)</h4>
+<h4>SECTION(节)</h4>
+<h4>PARAGRAPH(段)</h4>
+<h4>SENTENCE(句子)</h4>
+<h4>STATEMENT(语句)</h4>
+<p>整个COBOL程序由4个'部'(DIVISION)组成：</p>
+<blockquote>
+<p>Identification Division  标识部
+Environment Division 环境部 
+Data Division 数据部
+Procedure Division 过程部 </p>
+<p>用一句话介绍这四个部：标志部提供作者和编译器信息；环境部提供程序运行的环境；数据部描述程序处理的绝大部分数据；过程部描述对数据部描述的数据的操作算法:</p>
+</blockquote>
+<h4>Identification Division(标识部)--主要是程序和作者名</h4>
+<div class="highlight"><pre><span class="no">IDENTIFICATION</span> <span class="no">DIVISION</span><span class="o">.</span>
+<span class="no">PROGRAM</span><span class="o">-</span><span class="no">ID</span><span class="o">.</span> <span class="n">xxxxxxx</span>
+<span class="no">AUTHOR</span><span class="o">.</span> <span class="n">xxxxxx</span>
+</pre></div>
+
+
+<h4>Environment Division(环境部)--主要是配置节和IO节</h4>
+<div class="highlight"><pre><span class="no">ENVIRONMENT</span> <span class="no">DIVISION</span><span class="o">.</span>
+
+<span class="no">CONFIGURATION</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="no">SOURCE</span><span class="o">-</span><span class="no">COMPUTER</span><span class="o">.</span> <span class="no">IBM</span><span class="o">-</span><span class="mi">390</span><span class="o">.</span>
+<span class="no">OBJECT</span><span class="o">-</span><span class="no">COMPUTER</span><span class="o">.</span> <span class="no">IBM</span><span class="o">-</span><span class="mi">390</span><span class="o">.</span>
+<span class="no">SPECIAL</span><span class="o">--</span><span class="no">NAMES</span><span class="o">.</span>
+
+<span class="no">INPUT</span><span class="o">-</span><span class="no">OUTPUT</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="no">FILE</span><span class="o">-</span><span class="no">CONTROL</span><span class="o">.</span>
+<span class="n">I</span><span class="o">-</span><span class="n">O</span><span class="o">-</span><span class="no">CONTROL</span><span class="o">.</span>
+</pre></div>
+
+
+<h4>Data Division(数据部)--主要是文件节、工作存储节、连接节</h4>
+<div class="highlight"><pre><span class="no">FILE</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="no">WORKING</span><span class="o">-</span><span class="no">STORAGE</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="no">LINKAGE</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="c1">####Procedure Division(过程部)--程序员描述程序算法的地方</span>
+<span class="no">XXXXX</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="no">XXXXX</span> <span class="no">PARAGRAPH</span><span class="o">.</span>
+</pre></div>
+
+
+<p>过程部自上而下节<code>(SECTION)</code>、段<code>(PARAGRAPH)</code>、句子<code>(SENTENCE)</code>和语句<code>(STATEMENT)</code>。只有节<code>(SECTION)</code>不是必须的，在过程部中至少要有一个段，一个句子和一个语句。段名和节名由程序员自定。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/coboljie-gou.html">COBOL结构 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL程序典型结构.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Linux压缩</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux压缩命令.html"><h3 class="article-title">Linux压缩命令</h3></a>
+<h6 class="subheader" title="2010-11-26T00:00:00">2010-11-26
+</h6>
+
+
+<p>在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
+压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  <br />
+<code>tar格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">xvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span>
+<span class="n">tar</span> <span class="n">cv</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span> <span class="n">directory</span>  
+</pre></div>
+
+
+<p><code>gz格式</code></p>
+<div class="highlight"><pre><span class="n">gunzip</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+<span class="err">也可用</span> <span class="n">gzip</span><span class="err">——</span><span class="n">gzip</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+
+
+<p><code>tar.gz/tgz格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="err">解压至当前目录</span>
+<span class="n">tar</span> <span class="n">zcvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="n">orderFolder</span> <span class="err">压缩</span><span class="n">orderFoler</span><span class="err">里面的文件至</span><span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+
+
+<p><code>bz2格式</code></p>
+<div class="highlight"><pre><span class="n">bzip2</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">bz2</span>
+<span class="n">bzip2</span> <span class="o">-</span><span class="n">z</span> <span class="n">A</span><span class="o">.</span><span class="n">bz2</span>
+</pre></div>
+
+
+<p><code>tar.bz2格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
+<span class="n">tar</span> <span class="n">jcvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span> <span class="n">orderFolder</span> <span class="err">压缩</span><span class="n">orderFoler</span><span class="err">里面的文件至</span><span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
+</pre></div>
+
+
+<p><code>bz格式</code></p>
+<div class="highlight"><pre><span class="n">bzip2</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">bz</span>
+</pre></div>
+
+
+<p><code>tar.bz格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz</span>
+</pre></div>
+
+
+<p><code>tar.z格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="no">Zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">z</span> <span class="n">tar</span>
+<span class="no">Zcvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">Z</span> <span class="no">Folder</span>
+</pre></div>
+
+
+<p><code>zip格式</code></p>
+<div class="highlight"><pre><span class="n">unzip</span> <span class="n">file</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">zip</span> <span class="n">A</span><span class="o">.</span><span class="n">zip</span> <span class="n">folder</span>
+</pre></div>
+
+
+<p><code>rar格式</code></p>
+<div class="highlight"><pre><span class="n">rar</span> <span class="n">a</span> <span class="n">A</span><span class="o">.</span><span class="n">rar</span>
+<span class="n">rar</span> <span class="n">e</span> <span class="n">A</span><span class="o">.</span><span class="n">rar</span>
+</pre></div>
+
+
+<p><code>deb格式</code></p>
+<div class="highlight"><pre><span class="n">arp</span> <span class="n">A</span><span class="o">.</span><span class="n">deb</span>  
+</pre></div>
+
+
+<p><code>bundle类型安装</code></p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">A</span><span class="o">.</span><span class="n">bundle</span>  <span class="n">sudo</span> <span class="o">.</span><span class="n-Operator">/</span><span class="n">A</span><span class="o">.</span><span class="n">bundle</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/linuxya-suo.html">Linux压缩 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux压缩命令.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

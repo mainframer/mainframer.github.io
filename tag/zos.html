@@ -46,164 +46,6 @@
         
 
             <article>
-                <a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html"><h3 class="article-title">关于MAC下用SSH翻墙的小结(转)</h3></a>
-<h6 class="subheader" title="2013-06-12T00:00:00">2013-06-12
-</h6>
-
-
-<p>近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  </p>
-<h3>以下内容转自：</h3>
-<p><a href="http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/">http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/</a><br />
-回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  </p>
-<h4>方法一，终端加网络配置</h4>
-<p>这个真的是又简单又粗暴。。。分两步：<br />
-首先，打开你的终端，输入：  </p>
-<blockquote>
-<p>ssh -D port user@hostname</p>
-<p>其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
-然后，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选”SOCKS 代理”-&gt;旁边的”SOCKS 代理服务器”里填127.0.0.1，端口填你刚才写的那个，点个好点个应用，搞定。  </p>
-</blockquote>
-<h5>注意，</h5>
-<p>终端的ssh连接不能关闭。<br />
-注意你的ssh的服务器的访问限制，尤其是像我这样的用学校的ssh服务器的，如果去访问了一些不该访问的，就该有学校的警告mail来了<br />
-这个方法简单粗暴但是也太粗糙，所有的访问都会通过ssh服务器来进行，所以即使我看个sina新闻也要绕到遥远的nagoya去，而且pipe还可能崩坏。<br />
-推荐人群：如果只是为了时不时地上个推上个fb的话，只要你的ssh也允许，可以尝试。   </p>
-<h4>方法二，iSSH加.pac文件</h4>
-<p>这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&gt;&lt;。。。 <br />
-首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。<a href="./../files/iSSH.zip">--&gt;__--&gt;点击下载iSSH.zip</a> <br />
-app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
-其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： </p>
-<div class="highlight"><pre><span class="n">function</span> <span class="no">FindProxyForURL</span><span class="p">(</span> <span class="n">url</span><span class="p">,</span> <span class="n">host</span> <span class="p">)</span>
-<span class="p">{</span>
- <span class="k">if</span> <span class="p">(</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*ip38*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*1-apple.com.tw*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="err">…</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook cdn*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-              <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/amoiist*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/BeiJing1989*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/billzhong*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/nowhere1975*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/shizhao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/VOTChinese*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wenyunchao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wumao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zengjinyan*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zuola*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://www.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://apiwiki.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://dev.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://status.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*hk.youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*tw.youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com/get_video*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*Youtube CDN*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="p">)</span>
-    <span class="k">return</span> <span class="s2">&quot;SOCKS 127.0.0.1:7070&quot;</span><span class="p">;</span>
- <span class="k">else</span> 
-    <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 <a href="./../files/gfwlist.pac">--&gt;__--&gt;点击下载gfwlist.pac</a><br />
-接着，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选“自动代理配置”-&gt;“选取文件”-&gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
-最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  </p>
-<h5>注意，</h5>
-<p>上面的iSSH的SOCKS Proxy -D的端口和.  pac的文件末尾所写的那个端口必须一致，而之所以选择7070,是因为我最开始拿到这个文件的时候它写的就是7070＝＝<br />
-这个方法相对上一个方法更稳定，因为它只有在访问那些需要翻墙的url的时候才会通过ssh服务器，所以限制更少，pipe也不容易崩坏，<br />
-推荐人群：如果你的ssh服务器对国内的网址很不友好的话，用这个会好点。<br />
-以上，<br />
-2012－3－28<br />
-于爵仕官邸某7楼床上  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html#disqus_thread">comments</a></p>            </article>
-
-
-                <hr  class="gradient"/>
-
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/heroku push timeout错误.html"><h3 class="article-title">heroku push timeout错误</h3></a>
-<h6 class="subheader" title="2013-05-08T00:00:00">2013-05-08
-</h6>
-
-
-<p>博客托管在<code>heroku</code>云平台上，这两天突然没法更新了。在执行<code>git push heroku</code>命令的时候总是提示time out 错误：</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span>
-<span class="c1">#ssh: connect to host heroku.com port 22: Operation timed out</span>
-<span class="c1">#fatal: The remote end hung up unexpectedly</span>
-</pre></div>
-
-
-<p>折腾了我两天没搞定，<code>stackoverflow</code>上面给的解决方法也不怎么靠谱，让我反反复复重新设置了好几遍<code>ssh key</code>，浪费了不少时间。刚刚在<code>ruby-china.org</code>上找到了解决办法。原来又是因为神奇的GFW，难怪stackoverflow上面的答案没搞定我的问题，那些外国人根本就不明白咱们这的特殊国情，但也怪不得他们。   <br />
-这里是ruby-china上的原帖：<a href="http://ruby-china.org/topics/10813">http://ruby-china ...</a></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/heroku push timeout错误.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/heroku push timeout错误.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html"><h3 class="article-title">用INTRDR在job中submit第二个job</h3></a>
-<h6 class="subheader" title="2013-04-22T00:00:00">2013-04-22
-</h6>
-
-
-<p>今天学到的，如何在当前<code>job</code>当中<code>trigger</code>另外一个<code>job</code>？答案就是利用<code>Internal Reader</code> 
-例如：  </p>
-<div class="highlight"><pre><span class="sr">//</span><span class="o">*******************************************************************</span>    
-<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">an</span> <span class="no">DUMMY</span> <span class="n">job</span> <span class="no">MYJOB2</span> <span class="n">from</span> <span class="n">current</span> <span class="n">job</span> <span class="n">card</span> 
-<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">to</span> <span class="n">the</span> <span class="no">Internal</span> <span class="no">Reader</span>                                    
-<span class="sr">//</span><span class="o">*******************************************************************</span>
-<span class="sr">//</span><span class="no">STEP04</span>    <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span>                  
-<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span><span class="p">,</span><span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">CNTL</span><span class="p">(</span><span class="no">MYJOB2</span><span class="p">)</span>           
-<span class="sr">//</span><span class="no">SYSUT2</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="no">INTRDR</span><span class="p">)</span>                            
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
-<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="no">DUMMY</span>  
-</pre></div>
-
-
-<p>这种技术经常被用来发送<code>notification ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html"><h3 class="article-title">Mainframer版本的程序猿吐槽</h3></a>
 <h6 class="subheader" title="2013-04-15T00:00:00">2013-04-15
 </h6>
@@ -213,15 +55,204 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 <div class="highlight"><pre><span class="sr">//</span><span class="no">MYWALLET</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SPOUSE</span>
 <span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYWALLET</span><span class="o">.</span><span class="n">ALL</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>
 <span class="sr">//</span><span class="no">SYSOUT</span> <span class="no">DD</span> <span class="no">DUMMY</span> 
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html"><h3 class="article-title">Rexx调用Skeleton JCL提交job的例子</h3></a>
+<h6 class="subheader" title="2013-02-22T00:00:00">2013-02-22
+</h6>
+
+
+<h4>这个例子一共包含3个部分</h4>
+<p><strong>Rexx主程序</strong>：<code>IBMUSER.REXX.EXEC(MYSKELE)</code> <br />
+<strong>带参数的sekleton JCL</strong>：<code>IBMUSER.REXX.SKELL(JCLSKEL)</code><br />
+<strong>最终生成的Dynamic JCL</strong>：<code>IBMUSER.DYNAM.JCL(SUBJCL)</code>  </p>
+<div class="highlight"><pre> <span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+
+<span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">SKELL</span><span class="p">(</span><span class="no">JCLSKEL</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">06</span>             <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">//&amp;</span><span class="no">JOBNAME</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>                                 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">NOTIFY ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+    <a href="http://mainframer.github.io/tag/ispf-dialog.html">ISPF Dialog </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html"><h3 class="article-title">Mainframe上随时查看任意库代码Rexx实现</h3></a>
+<h6 class="subheader" title="2012-11-12T00:00:00">2012-11-12
+</h6>
+
+
+<p>Mainframe上面工作经常需要临时查看<em>Production</em>代码库当中的代码，又不希望输入长长的库名称。可以用REXX写一个<em>Retrieve</em>功能的脚本，放在
+<code>USERID.REXX.EXEC</code>这个pds下面。运行的时候<strong><code>TSO RET your_program_name</code></strong> 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：</p>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">RET</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">02</span>                  <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">/*</span> <span class="n">rexx</span> <span class="o">*/</span>                                                              
+<span class="mo">000002</span> <span class="o">/***********</span> <span class="n">ret</span> <span class="o">-</span> <span class="n">retrieve</span> <span class="n">specific</span> <span class="n">member</span> <span class="n">from</span> <span class="n">multiple</span> <span class="n">libs</span><span class="o">*********/</span>
+<span class="mo">000003</span> <span class="n">arg ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html"><h3 class="article-title">Local FTP Trigger JES job</h3></a>
+<h6 class="subheader" title="2012-10-08T00:00:00">2012-10-08
+</h6>
+
+
+<p>随便写了一个搜索ABC字符串的JCL，保存到桌面:  <br />
+<code>C:\Documents and Settings\Foo\Desktop\IBMUSERJ.txt</code>  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSERJ</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>      
+<span class="sr">//</span>     <span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=</span><span class="no">IBMUSER</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                           
+<span class="sr">//</span><span class="no">ONLINE</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ISRSUPC</span><span class="p">,</span>                  
+<span class="sr">//</span>            <span class="no">PARM</span><span class="o">=</span><span class="p">(</span><span class="no">SRCHCMP</span><span class="p">,</span>                 
+<span class="sr">//</span>            <span class="s1">&#39;ANYC&#39;</span><span class="p">)</span>   
+<span class="sr">//</span><span class="no">NEWDD</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">PROCLIB</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>  
+<span class="sr">//</span><span class="no">OUTDD</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>    
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>           
+<span class="no">SRCHFOR</span>  <span class="s1">&#39;ABC&#39;</span>       
+<span class="sr">//</span><span class="o">*</span> 
+</pre></div>
+
+
+<p>用ftp的方式将jcl送入JES系统执行。<code>win+R</code>打开cmd </p>
+<div class="highlight"><pre><span class="ss">C</span><span class="p">:\</span><span class="no">Documents</span> <span class="ow">and</span> <span class="no">Settings ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/ftp.html">ftp </a>
+    <a href="http://mainframer.github.io/tag/quote-site.html">quote site </a>
+    <a href="http://mainframer.github.io/tag/jes2.html">JES2 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html"><h3 class="article-title">FTP from windows to Mainframe</h3></a>
+<h6 class="subheader" title="2012-10-03T00:00:00">2012-10-03
+</h6>
+
+
+<p><code>win+R</code>打开cmd:  </p>
+<div class="highlight"><pre><span class="ss">C</span><span class="p">:\</span><span class="no">Documents</span> <span class="ow">and</span> <span class="no">Settings</span><span class="p">\</span><span class="no">Foo</span><span class="p">\</span><span class="no">Desktop</span><span class="o">&gt;</span><span class="n">ftp</span> <span class="n">ftpserver</span>  
+<span class="sr">/*Here please input username/</span><span class="n">password</span><span class="o">*/</span>  
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">ascii</span>
+<span class="mi">200</span> <span class="no">Representation</span> <span class="n">type</span> <span class="n">is</span> <span class="no">Ascii</span> <span class="no">NonPrint</span>
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">quote</span> <span class="n">site</span> <span class="n">lrecl</span><span class="o">=</span><span class="mi">80</span> <span class="n">blksize</span><span class="o">=</span><span class="mi">16000</span> <span class="n">recfm</span><span class="o">=</span><span class="n">fb</span>
+<span class="mi">200</span> <span class="no">SITE</span> <span class="n">command</span> <span class="n">was</span> <span class="n">accepted</span>
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">put</span> <span class="nb">test</span><span class="o">.</span><span class="n">txt</span> <span class="s1">&#39;ibmuser.test.psfile(+1)&#39;</span>
+<span class="mi">200</span> <span class="no">Port</span> <span class="n">request</span> <span class="no">OK ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/ftp.html">ftp </a>
+    <a href="http://mainframer.github.io/tag/quote-site.html">quote site </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/FTP from windows to Mainframe.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html"><h3 class="article-title">ISPF-提高效率少用PF3和START</h3></a>
+<h6 class="subheader" title="2012-09-01T00:00:00">2012-09-01
+</h6>
+
+
+<p>同一个<em>PDS</em>下，记得多用<code>BROWSE</code>, <code>VIEW</code>,<code>EDIT</code>,<code>COMP</code>这些命令。比如<code>BROWSE TEST02</code> 或者<code>EDIT TEST03</code> 或者<code>VIEW TEST04</code> 或者<code>COMP 'IBMUSER.PROJ.TEST.JCL1((TEST01)'</code> 这样，不需要另外<em>PF3</em>或者<em>START</em>开一个窗口。
+比如需要在同一个<em>PDS</em>下的<em>TEST02</em>这个JCL中拷贝一些东西到当前的TEST01的时候，经常用到。</p>
+<div class="highlight"><pre><span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+ <span class="sb">```````````````````````````````````````````````````````````````````````````````</span>
+<span class="sb"> VIEW       IBMUSER.PROJ.TEST.JCL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html"><h3 class="article-title">ICETOOL: 大小写转换</h3></a>
+<h6 class="subheader" title="2012-08-18T00:00:00">2012-08-18
+</h6>
+
+
+<p><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
+<code>TRAN=LTOU</code> ： lowercase to uppercase <br />
+例子：</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                           
+  <span class="no">INREC</span> <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="no">INIT</span><span class="p">,</span><span class="no">OVERLAY</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="no">TRAN</span><span class="o">=</span><span class="no">LTOU</span><span class="p">)),</span>   <span class="err">：对</span><span class="n">input</span><span class="err">的进来处理的每一条数据的前</span><span class="mi">3</span><span class="err">位先转为大写再说</span>
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">)),</span> 
+              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
 </pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/icetool.html">ICETOOL </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -229,32 +260,68 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html"><h3 class="article-title">ISPF中使用Ctrl+Z来执行UNDO命令</h3></a>
-<h6 class="subheader" title="2013-04-08T00:00:00">2013-04-08
+                <a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html"><h3 class="article-title">ICETOOL：数据类型转换</h3></a>
+<h6 class="subheader" title="2012-08-12T00:00:00">2012-08-12
 </h6>
 
 
-<p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
-首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
-<h5>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h5>
-<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
-<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
- <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
- <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
- <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
-<span class="nb">exit</span>                                                                  
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>           
+<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">IN</span>                <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
+<span class="sr">//</span><span class="no">OUT</span>           <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">OUTFILE</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                             
+<span class="sr">//</span><span class="no">TOOLIN</span>    <span class="no">DD</span> <span class="o">*</span>                                                
+  <span class="no">COPY</span> <span class="no">FROM</span><span class="p">(</span><span class="no">IN</span><span class="p">)</span> <span class="no">TO</span><span class="p">(</span><span class="no">OUT</span><span class="p">)</span>     <span class="no">USING</span><span class="p">(</span><span class="no">CTL1</span><span class="p">)</span>                       
+<span class="sr">/*                                                            </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OUTFIL</span> <span class="no">FNAMES</span><span class="o">=</span><span class="no">OUT</span><span class="p">,</span>    <span class="err">：</span><span class="no">MYINPUT</span><span class="err">的第 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/icetool.html">ICETOOL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html"><h3 class="article-title">ICEMAN：字符替换</h3></a>
+<h6 class="subheader" title="2012-08-10T00:00:00">2012-08-10
+</h6>
+
+
+<p>用于替换dataset中出现的字符串:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
+<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
+  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">))</span>   
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="o">*</span>                                                         
 </pre></div>
 
 
-<h5>step2: 随便<em>Edit ...</em></h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成<code>‘BBBB‘</code> 
+当然，可以限定在特定几列替换 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/iceman.html">ICEMAN </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICEMAN-字符替换.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -262,177 +329,35 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html"><h3 class="article-title">每天定时从Mainframe下载gdg文件再上传到ftp</h3></a>
-<h6 class="subheader" title="2013-04-01T00:00:00">2013-04-01
+                <a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html"><h3 class="article-title">ICETOOL: 多文件输出</h3></a>
+<h6 class="subheader" title="2012-08-02T00:00:00">2012-08-02
 </h6>
 
 
-<p>今天要完成一个任务：  </p>
-<h4>任务描述</h4>
-<h6>Step1:从大机(mainframe)上下载指定的gdg最新的2个generation到本地C:\gdg目录下。</h6>
-<h6>Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的<code>/topath/users-4/</code>目录下面，每天新建一个目录<code>yyyymmdd</code>用来存放当天的gdg文件。</h6>
-<h6>Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。</h6>
-<p>这里是实现以上任务的批处理脚本<code>ftpscript.bat</code>。放在<code>C:\ftpscript</code>.bat，之后在windows计划任务里面添加每天定时运行即可。   </p>
-<div class="highlight"><pre><span class="vi">@echo</span> <span class="n">off</span>
-<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">的</span><span class="no">IP</span>
-<span class="n">set</span> <span class="n">mfIP</span><span class="o">=</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span>
-<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">用户名</span>
-<span class="n">set</span> <span class="n">mfUser</span><span class="o">=</span><span class="no">IBMUSER</span>
-<span class="n">rem</span> <span class="err">指定 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>         
+<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
+<span class="sr">//</span><span class="no">SORTWK01</span> <span class="no">DD</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>            
+<span class="sr">//</span><span class="no">IN</span>      <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> <span class="ss">:LRECL</span><span class="o">=</span><span class="mo">05</span>                 
+<span class="o">//</span><span class="no">OUT1</span>    <span class="no">DD</span> <span class="no">DSN ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/icetool.html">ICETOOL </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/BAT批处理现学现用.html"><h3 class="article-title">BAT批处理现学现用</h3></a>
-<h6 class="subheader" title="2013-03-29T00:00:00">2013-03-29
-</h6>
-
-
-<p>上篇说的是本人在实现报表自动化过程中用到的VBS知识，这篇我打算用来总结在此过程中用到的批处理知识。</p>
-<h4>批处理里面如何实现延时？</h4>
-<div class="highlight"><pre><span class="n">rem</span> <span class="err">巧妙地利用</span><span class="n">windows</span><span class="err">自带的</span><span class="n">ping</span><span class="err">命令来达到延时的目的</span>
-<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
-</pre></div>
-
-
-<h5>批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]</h5>
-<div class="highlight"><pre><span class="err">@</span><span class="n">echo</span> <span class="nl">off</span>
-<span class="p">:</span><span class="n">input_module</span>
-<span class="n">echo</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">date</span> <span class="nl">here</span><span class="p">:</span>
-<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">yyyymm</span><span class="o">=^&lt;</span><span class="nl">format</span><span class="p">:</span><span class="n">yyyymm</span><span class="o">^&gt;</span> <span class="p">(</span><span class="nl">example</span><span class="p">:</span><span class="mi">201301</span><span class="p">)</span><span class="o">:</span>
-<span class="n">echo</span> <span class="o">%</span><span class="n">yyyymm</span><span class="o">%|</span><span class="n">findstr</span> <span class="o">^</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BAT批处理现学现用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/VB Script现学现用.html"><h3 class="article-title">VB Script现学现用</h3></a>
-<h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
-</h6>
-
-
-<p>这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  <br />
-(<em>注意</em>：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  </p>
-<div class="highlight"><pre><span class="n">dim</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">yyyymm</span><span class="p">,</span> <span class="n">to_dte_</span>       <span class="err">&#39;定义变量</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">user_id</span> <span class="o">=</span> <span class="n">wscript</span><span class="p">.</span><span class="n">arguments</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="err">&#39;接收批处理传过来的第一个参数</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">CAP_user_id</span> <span class="o">=</span> <span class="n">Ucase</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>       <span class="err">&#39;转换成大写</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">Select</span> <span class="n">Case</span> <span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>        <span class="err">&#39;</span><span class="n">Select</span><span class="o">/</span><span class="n">Case</span><span class="err">的用法</span> <span class="err">和</span> <span class="err">字符串截取的方法</span>                                         
-<span class="n">Case</span> <span class="s">&quot;01&quot;</span>   
-    <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>  
-<span class="n">Case</span> <span class="s">&quot;02&quot;</span>                          <span class="err">&#39;</span><span class="n">If</span><span class="o">-</span><span class="n">Then</span><span class="err">的用法，闰年的判断方法，</span><span class="o">=</span><span class="p">,</span><span class="o">&lt;&gt;</span><span class="p">,</span><span class="n">Mod</span><span class="err">的用法 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/VB Script现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/VB Script现学现用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html"><h3 class="article-title">mainframe平台报表自动化方案实现</h3></a>
-<h6 class="subheader" title="2013-03-25T00:00:00">2013-03-25
-</h6>
-
-
-<h4>客户提了一个需求如下：</h4>
-<p><em>&lt;1&gt;</em>每个月初需要在本地(Windows XP)看上一个月的一个报表。<br />
-<em>&lt;2&gt;</em>如果可以随时查看之前任意月份的报表，那更好。<br />
-<em>&lt;3&gt;</em>报表数据来源于Mainframe上的表A和表B,需要join操作。 <br />
-<em>&lt;4&gt;</em>报表结果以excel呈现，有必要的一些格式化和公式以及美化等excel常规操作。    </p>
-<h4>经研究，实现方案如下：</h4>
-<p><em>&lt;1&gt;</em>用bat批处理与mainframe交互，交互方式为ftp。包括将本地job送到JES2运行，包括将表A和表B的数据从mainframe上下载到本地。<br />
-<em>&lt;2&gt;</em>用vbs处理后期的excel，包括数据导入，单元格格式，公式操作，excel美化，用户提示等等常规的office操作。 <br />
-<em>&lt;3&gt;</em>用bat批处理来调用vbs，这样bat批处理就把mainframe和vbs串在了一起。  </p>
-<h4>方案优势：</h4>
-<p>选择这个方案是从用户易用性考虑，客户不需要安装任何软件。批处理和vbs以及excel在xp下面都是自带的。用户只需双击，然后输入查看的报表月份即可。</p>
-<h4>方案设计图</h4>
-<p>我用word简单地画了一个方案图：
-<img alt="report automation on mainframe" src="./../images/mainframe-report-automation.png" />  <br />
-代码就不放上来了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html"><h3 class="article-title">JCL中执行如何SQL</h3></a>
-<h6 class="subheader" title="2013-03-24T00:00:00">2013-03-24
-</h6>
-
-
-<hr />
-<p>平常我们用第三方软件来对DB2操作，比如eclipse,比如DBedit,又或者是mainframe上面的软件，如<code>Filemanager</code>,<code>SPUFI</code>等。
-那怎么在JCL里面运行SQL呢？答案是利用<code>IKJEFT01</code>。</p>
-<div class="highlight"><pre><span class="sr">//</span><span class="o">***************************************************************</span>               
-<span class="sr">//</span><span class="o">*</span><span class="ss">UNLOAD</span><span class="p">:</span>   <span class="n">unload</span> <span class="n">data</span> <span class="n">using</span> <span class="no">IKJEFT01</span> <span class="n">via</span> <span class="n">dynamic</span> <span class="no">SQL</span> <span class="k">in</span> <span class="no">JCL</span>  <span class="o">*</span>               
-<span class="sr">//</span><span class="o">***************************************************************</span>               
-<span class="sr">//</span><span class="no">UNLOAD</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IKJEFT01</span><span class="p">,</span><span class="no">DYNAMNBR</span><span class="o">=</span><span class="mi">20</span>                                        
-<span class="o">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXSRUN</span>                                          
-<span class="sr">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXLOAD</span>                                          
-<span class="sr">//</span><span class="no">SYSTSPRT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
-<span class="sr">//</span><span class="no">SYSUDUMP</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
-<span class="sr">//</span><span class="no">SYSREC00</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SQL</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span>                              
-<span class="sr">//</span>            <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL中执行如何SQL.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 1 of 14</h6>
+<h6 class="subheader">Page 1 of 5</h6>
 
 <p>
 
@@ -454,11 +379,12 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

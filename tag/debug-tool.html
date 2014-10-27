@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Debug Tool</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html"><h3 class="article-title">IBM DebugTool: 主动终止调试</h3></a>
+<h6 class="subheader" title="2012-06-03T00:00:00">2012-06-03
+</h6>
+
+
+<p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：</p>
+<blockquote>
+<p>trigger overflow</p>
+<p>这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug tool </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html"><h3 class="article-title">IBM Debug Tool使用</h3></a>
+<h6 class="subheader" title="2011-09-05T00:00:00">2011-09-05
+</h6>
+
+
+<p>关于<code>IBM DebugTool</code>的一些介绍，请参照我的另一篇博文：&lt;<Debug Tool for z/OS>&gt;，这里呢，我是想说说一般我们用<code>IBM Debug Tool</code>来调试<code>PL/I</code>或者<code>COBOL</code>程序的时候都有哪些命令或者说按键可以用，比如说设置断点，运行至断点处，监视变量值啊什么的这种一般不管什么程序的调试都会用到的知识。当然，这本身很简单，写在这里只是为了让新人更快的学会使用，基本上10分钟搞定的那种，这样就节省了大家的时间了。
+先上个<code>IBM DebugTool</code>的截图：
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />  <br />
+可以看到，最上面一行显示了当前debug的程序名字PRGM002以及所用的语言<code>PL/I</code>,接着是命令行COMMAND,所有的调试命令都在这一行输入。然后是变量监视区域<code>(MONITOR)</code>，源程序区<code>(SOURCE)</code>以及调试日志<code>(LOG)</code>区域。<code>Debug Tool</code>遵循“七上八下”原则，也就是F7向上翻页，F8向下翻页。</p>
+<h4>执行下一条语句</h4>
+<p>按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug Tool </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM Debug Tool使用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Debug Tool for zOS.html"><h3 class="article-title">Debug Tool for z/OS</h3></a>
+<h6 class="subheader" title="2011-09-03T00:00:00">2011-09-03
+</h6>
+
+
+<p>作为一个PL/I、COBOL程序猿，调试程序是必须的一项技能。这里我来说说大机上面的调试工具IBM的DebugTool，它支持的环境包括BATCH, TSO, CICS, DB2, DB2存储过程以及UNIX等等。</p>
+<h4>这篇我来说说如何设置让程序可以被Debug</h4>
+<p>首先，你必须在编译程序的时候需要选择以Debug模式编译，这个在changeman里面直接在编译的时候选个<code>IBM Debug Tool="Y"</code>就可以了。   </p>
+<p>接着，如果是BATCH的，就需要在JCL的PARM中指定TEST运行时的参数，通过VTAM接口来初始化debug模式，VTAM%后面跟着的是userid，就像这样：
+<img alt="1" src="./../images/debugtool.jpg" />    </p>
+<p>是BATCH的话，你还要有一个Debug的session，这个可以参照我的另外一篇博文：&lt;&lt;登陆大型机——Aviva的介绍&gt;&gt;，只需注意在建debug session的时候destination的IP一般和普通大机的物理ip是不一样。填上正确的ip,然后用你的id登陆,这里我的id是IBMUSER，须跟上面设置的一样。<br />
+回到JCL这边，submit，那恭喜你，你就可以看到Debugtool的画面了:
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />     </p>
+<p>但是，如果程序是ONLINE的话，一般我们用CICS上面的DTCN这个工具来debug的。这里我假设你已经在上面“首先”里面正确编译了一个ONLINE的程序PRGM002 (带debug编译选项的)。然后，你登陆CICS ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug Tool </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Debug Tool for zOS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Debug Tool for zOS.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

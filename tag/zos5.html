@@ -47,29 +47,27 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/TSO重新登录命令.html"><h3 class="article-title">TSO重新登录命令</h3></a>
-<h6 class="subheader" title="2012-05-04T00:00:00">2012-05-04
+                <a href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html"><h3 class="article-title">z/OS虚拟机各Volume的解释</h3></a>
+<h6 class="subheader" title="2010-06-28T00:00:00">2010-06-28
 </h6>
 
 
-<p>有时候TSO异常退出，而服务器端进程还没kill掉，于是在你尝试再次登录的时候，返回提示：</p>
-<blockquote>
-<p>“already logged on to system IKJ56400A ENTER LOGON OR LOGOFF-”</p>
-<p>用命令告诉远程主控端你要reconnect。 </p>
-</blockquote>
-<h3>解决办法</h3>
-<blockquote>
-<p>logon yourUID recon
-</p>
-</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<h3>Volume的内容 (z/OS 1.6)</h3>
+<h5>VOLUME         UCB           Contents</h5>
+<p><code>Z6RES1</code>  - A80 - Res Volume 1 - Required for IPL<br />
+<code>Z6RES2</code>  - A81 - Res Volume 2 - Required for IPL<br />
+<code>Z6SYS1</code>  - A82 - IPLPARM, JES2 Spool, Public Work Volume, Mastercat required for IPL<br />
+<code>Z6USS1</code>  - A83 - USS Root and accompanying HFS files - required for IPL<br />
+<code>Z6USS2</code>  - A84 - Supplemental ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/volume.html">Volume </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/TSO重新登录命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/TSO重新登录命令.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/zOS虚拟机各Volume的解释.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -77,274 +75,35 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html"><h3 class="article-title">SOME INPUT DATA IGNORE</h3></a>
-<h6 class="subheader" title="2012-05-03T00:00:00">2012-05-03
+                <a href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html"><h3 class="article-title">搭建z/OS虚拟机常用的LoadParm</h3></a>
+<h6 class="subheader" title="2010-06-04T00:00:00">2010-06-04
 </h6>
 
 
-<p>在编辑dataset的时候如果右上角提示<code>SOME INPUT DATA IGNORE</code>,请记得把每行末尾的行号关闭: </p>
-<blockquote>
-<p>NUM OFF</p>
-<p>否则，后面8位就是行号，将此文件作为程序的input的时候就危险了!</p>
-</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<h3>LOADPARM  Description(z/OS 1.6)</h3>
+<p>在启动z/OS虚拟机的时候选择的LoadParm不同，意味着大机将启动不同的服务，说明如下：<br />
+<code>CS</code>         CLPA and cold start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
+<code>00</code>         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
+<code>WS</code>         Warm ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/loadparm.html">LoadParm </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/S000 U0004 ABEND ERROR.html"><h3 class="article-title">S000 U0004 ABEND ERROR</h3></a>
-<h6 class="subheader" title="2012-04-30T00:00:00">2012-04-30
-</h6>
-
-
-<p>遇到了<code>'S000 U0004 ABEND ERROR'</code>错误。 <br />
-一如既往地分析dump，发现是由于我在JCL里面添加了<code>'PARM='TEST(ALL,,,VTAM%IBMUSER:)'</code>的debug参数，而我要debug的程序的<code>loadmodule</code>不在test环境里面，导致JCL试图去debug生产环境的<em>loadmodule</em>，抛出<code>'S000 U0004‘</code>错误，应该是<em>access vialation</em>之类的错误吧,修改完<em>loadmodule</em>的路径就好了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/S000 U0004 ABEND ERROR.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/S000 U0004 ABEND ERROR.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html"><h3 class="article-title">Watir登陆微博发布微博</h3></a>
-<h6 class="subheader" title="2012-04-30T00:00:00">2012-04-30
-</h6>
-
-
-<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
-<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
-<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
-<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
-
-<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
-<span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s1">&#39;www.weibo.com&#39;</span>
-<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">focus</span>
-<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_email_account&#39;</span>
-<span class="n">b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;inp password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:type</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_password&#39;</span>
-<span class="n">b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/No space in directory.html"><h3 class="article-title">No space in directory</h3></a>
-<h6 class="subheader" title="2012-04-23T00:00:00">2012-04-23
-</h6>
-
-
-<p>在一个pds下面<em>create member</em>的时候右上角出现错误：</p>
-<blockquote>
-<p>No space in directory</p>
-<p>按PF1,提示：  </p>
-<p>PDS directory is full, allocate more directory blocks.<br />
-</p>
-</blockquote>
-<h5>错误原因：当前PDS下面所容纳的member数量已经达到最大值了。用'I' 查看PDS的信息：</h5>
-<div class="highlight"><pre><span class="no">Current</span> <span class="no">Allocation</span>             
-  <span class="no">Allocated</span> <span class="n">cylinders</span> <span class="p">:</span> <span class="mi">1</span>       
-  <span class="no">Allocated</span> <span class="n">extents</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
-  <span class="no">Maximum</span> <span class="n">dir</span><span class="o">.</span> <span class="n">blocks</span> <span class="p">:</span> <span class="mi">10</span>      
-
-
- <span class="no">Current</span> <span class="no">Utilization</span>            
-  <span class="no">Used</span> <span class="n">cylinders</span>  <span class="o">.</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
-  <span class="no">Used</span> <span class="n">extents</span>  <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">:</span> <span class="mi">1</span>       
-  <span class="no">Used</span> <span class="n">dir</span><span class="o">.</span> <span class="n">blocks</span>  <span class="o">.</span> <span class="p">:</span> <span class="mi">10</span>      
-  <span class="no">Number</span> <span class="n">of</span> <span class="n">members ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/No space in directory.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/No space in directory.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/CEE3250C S806  R=00000004.html"><h3 class="article-title">CEE3250C S806  R=00000004</h3></a>
-<h6 class="subheader" title="2012-04-11T00:00:00">2012-04-11
-</h6>
-
-
-<p>新写了个程序，JCL提交完出现错误:</p>
-<blockquote>
-<p>CEE3250C The system or user abend S806  R=00000004 was issued.    </p>
-<p>分析dump，发现原因是:程序不在loadlib里面 <code>"load module is not found in the library"</code>.忘记promote程序到相应环境了!</p>
-</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/CEE3250C S806  R=00000004.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CEE3250C S806  R=00000004.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/PLI打印出PIC类型输出.html"><h3 class="article-title">PLI打印出PIC类型输出</h3></a>
-<h6 class="subheader" title="2012-04-01T00:00:00">2012-04-01
-</h6>
-
-
-<p>使用PLI打印输出信息，最常见的是:</p>
-<div class="highlight"><pre><span class="no">PUT</span> <span class="no">SKIP</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="no">EDIT</span> <span class="p">(</span><span class="s1">&#39;CODE = &#39;</span><span class="p">,</span><span class="no">ERR_CODE</span><span class="p">)(</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-</pre></div>
-
-
-<p>这里是打印PIC类型的输出，不怎么常用。今天用到了，所以记在这:  </p>
-<div class="highlight"><pre><span class="no">PUT</span> <span class="no">EDIT</span><span class="p">(</span><span class="s1">&#39;ACCOUNT PROCESSED : &#39;</span><span class="p">,</span><span class="no">ACCOUNT_CTR</span><span class="p">)</span>      
-                  <span class="p">(</span><span class="no">SKIP</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="no">COL</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="s1">&#39;999999999&#39;</span><span class="p">);</span> 
-
-<span class="no">PUT</span> <span class="no">SKIP</span> <span class="no">FILE</span><span class="p">(</span><span class="no">OUTFILE</span><span class="p">)</span> <span class="no">EDIT</span><span class="p">(</span><span class="s1">&#39;CHENGDU: &#39;</span><span class="p">,</span><span class="no">SOURCE</span><span class="p">)</span> 
-      <span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="s1">&#39;ZZ,ZZZV.ZZ&#39;</span><span class="p">);</span>
-</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/PLI打印出PIC类型输出.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI打印出PIC类型输出.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html"><h3 class="article-title">BLKSIZE=0,DSORG=PS</h3></a>
-<h6 class="subheader" title="2012-03-13T00:00:00">2012-03-13
-</h6>
-
-
-<div class="highlight"><pre><span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">IBNRDAT0</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>            
-<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
-<span class="sr">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="p">(</span><span class="no">SYSDA</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>   
-</pre></div>
-
-
-<p>如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/JCL发送EMAIL.html"><h3 class="article-title">JCL发送EMAIL</h3></a>
-<h6 class="subheader" title="2012-03-13T00:00:00">2012-03-13
-</h6>
-
-
-<div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span> <span class="mi">0</span><span class="n">R</span>                <span class="no">A1011000010TEST</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>        
-<span class="sr">//</span>        <span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0</span><span class="n">M</span>                                   
-<span class="sr">//</span><span class="o">*</span>                                                              
-<span class="sr">//</span><span class="no">STEP01</span>   <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span>  
-<span class="sr">//</span><span class="no">SYSOUT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=</span> <span class="o">*</span>                                                                          
-<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="o">*</span>                                                 
-<span class="no">HELO</span> <span class="no">MVS</span>                                                         
-<span class="no">MAIL</span> <span class="ss">FROM</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                               
-<span class="no">RCPT</span> <span class="ss">TO</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                  
-<span class="no">DATA</span>                                                             
-<span class="ss">FROM</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                       
-<span class="ss">TO</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">54</span><span class="no">XIAOWONIU</span><span class="vi">@SINA</span><span class="o">.</span><span class="n">CN</span><span class="o">&gt;</span>                                         
-<span class="ss">SUBJECT</span><span class="p">:</span> <span class="no">JOB</span> <span class="no">IBMUSERJ</span> <span class="no">HAS ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/JCL发送EMAIL.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL发送EMAIL.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html"><h3 class="article-title">使用UNIT=(SYSDA,20)</h3></a>
-<h6 class="subheader" title="2012-03-10T00:00:00">2012-03-10
-</h6>
-
-
-<p>好几次<em>production abend</em>都是因为JCL中分配的dataset太大，恰好一个volume上面的剩余空间都分配完了。<br />
-这里是DBA给的建议：  </p>
-<blockquote>
-<p>"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
-</p>
-</blockquote>
-<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>                  
-<span class="mo">000002</span> <span class="o">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
-<span class="mo">000003</span> <span class="o">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
-<span class="mo">000004</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 5 of 14</h6>
+<h6 class="subheader">Page 5 of 5</h6>
 
 <p>
             <a href="http://mainframer.github.io/tag/zos4.html">&laquo; Prev</a>
 
-        <a href="http://mainframer.github.io/tag/zos6.html">Next &raquo;</a>
 </p>
 </div>
 
@@ -362,11 +121,12 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - File Manager</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/利用IBM File Manager查看COPYBOOK.html"><h3 class="article-title">利用IBM File Manager查看COPYBOOK</h3></a>
+<h6 class="subheader" title="2011-11-17T00:00:00">2011-11-17
+</h6>
+
+
+<p>这篇文章就来说下在大机上如何利用<code>IBM File Manager</code>来查看<em>copybook</em>的结构，特别是每个字段的起始位置。  </p>
+<h4>1.在<em>Command</em>栏输入<code>0;5;1</code> 设置自动检测语言</h4>
+<p>这样，不论你的copybook是PLI的还是COBOL的，FileManager都能自动检测出来。
+<img alt="1" src="./../images/IBMfilemanager-copybook-view_001.jpg" /><br />
+<img alt="1" src="./../images/IBMfilemanager-copybook-view_002.jpg" />    </p>
+<h4>2.设置好之后，进入<code>3；13 (Utility-&amp;gt;Copybook)</code></h4>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_003.jpg" />  </p>
+<h6>这里填写copybook的路径和member名，member栏也可以不写:</h6>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_004.jpg" />  </p>
+<h6>接着就能查看copybook内容了，特别是查看某个字段起始位置的时候特别有用。</h6>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_005.jpg" />  </p>
+<h6>上面的<code>MYPLICPY</code>是PLI的copybook，COBOL的这里就不上图了，上图很累的。</h6><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/file-manager.html">File Manager </a>
+    <a href="http://mainframer.github.io/tag/copybook.html">Copybook </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/利用IBM File Manager查看COPYBOOK.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html"><h3 class="article-title">IBM File Manager for z/os 续(一)</h3></a>
+<h6 class="subheader" title="2011-09-04T00:00:00">2011-09-04
+</h6>
+
+
+<p>上一次我简单介绍了下大机平台上的一个强大的文件查看/编辑工具，这里我要介绍几个在用<code>FileManager</code>查看/编辑 QSAM顺序文件的时候的小技巧。
+<img alt="1" src="./../images/ibm-file-manager-qsam.jpg" />  上图显示的是employee的信息文件，比较小，只有几条记录。但是一般在生产环境上，数据都有好几百万条，如果你很傻的直接FIND 关键字来查找，那么抛开CPU耗费不说，你自己也将耗费很长的一段时间来等待搜索结果出来，所以，看看这篇文章，学会几个<code>*File Manager*</code>的使用技巧还是有必要的(如果你没功夫去看IBM红宝书的话)。</p>
+<h3>1、只查找指定字段(Field)</h3>
+<h5>例：只在ACCT字段查找关键字“IT”</h5>
+<p>命令： <code>F IT #6</code>     (可以把#6看成ACCT的别名)</p>
+<h5>例：只在ACCT字段和EP_NAME字段查找关键字"IT"</h5>
+<p>命令： <code>F IT #6 #8</code></p>
+<h3>2、只查找指定几列 (Column)</h3>
+<h5>例：只在第8至20列查找关键字"AN"</h5>
+<p>命令 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/file-manager.html">File Manager </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM File Manager for zos.html"><h3 class="article-title">IBM File Manager for z/os</h3></a>
+<h6 class="subheader" title="2011-08-28T00:00:00">2011-08-28
+</h6>
+
+
+<p>IBM的<code>File Manger</code> 在大机平台上是非常强大的文件查看/编辑器，是一个强大的ISPF应用程序。这里先贴上一张IBM2011年最新的关于File Manger的结构图，我认为这张图很好地诠释了File Manager 的强大之处：
+<img alt="1" src="./../images/IBM_File_Manager-for-zOS.jpg" /><br />
+<em>[图片来源于IBM官方网站，仅供学习交流之用]</em>   </p>
+<p>参照上图，我这里要讲的是当中的第二块内容——<code>File Manager for Z/OS</code>，关于其它部分如<code>File Manager for DB2</code>,<code>File Manager for IMS</code>和<code>File Manager for CICS</code>，以后再说。(其实更主要是因为平常工作做我用for z/os用的多，db2和cics的用得少，不敢在这瞎说。)。基本的操作原理就不说了，我就说说我在平常工作当中的几个有用的小技巧好了。 以查看/编辑<code>QSAM</code> (sequential)的dataset为例，选项1是查看(View),选项2是编辑 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/file-manager.html">File Manager </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM File Manager for zos.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM File Manager for zos.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

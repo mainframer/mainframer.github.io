@@ -47,27 +47,35 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html"><h3 class="article-title">ICETOOL: 大小写转换</h3></a>
-<h6 class="subheader" title="2012-08-18T00:00:00">2012-08-18
+                <a href="http://mainframer.github.io/articles/OLTP和CICS.html"><h3 class="article-title">OLTP和CICS</h3></a>
+<h6 class="subheader" title="2011-08-07T00:00:00">2011-08-07
 </h6>
 
 
-<p><code>TRAN=UTOL</code> ： uppercase to lowercase<br />
-<code>TRAN=LTOU</code> ： lowercase to uppercase <br />
-例子：</p>
-<div class="highlight"><pre><span class="sr">//</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                           
-  <span class="no">INREC</span> <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="no">INIT</span><span class="p">,</span><span class="no">OVERLAY</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="no">TRAN</span><span class="o">=</span><span class="no">LTOU</span><span class="p">)),</span>   <span class="err">：对</span><span class="n">input</span><span class="err">的进来处理的每一条数据的前</span><span class="mi">3</span><span class="err">位先转为大写再说</span>
-              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">)),</span> 
-              <span class="no">IFTHEN</span><span class="o">=</span><span class="p">(</span><span class="no">WHEN</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">),</span><span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
-</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<h3>OLTP:联机事务处理</h3>
+<p>事务的ACID属性：</p>
+<ul>
+<li>原子性(Atomicity) </li>
+<li>一致性(Consistency) </li>
+<li>孤立性(Isolation) </li>
+<li>持久性(Durability)
+关于OLTP的完整性和可恢复机制,这里举两种情况: 
+<strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br />
+<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br />
+此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br />
+<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
+通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
+各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/oltp.html">OLTP </a>
+    <a href="http://mainframer.github.io/tag/cics.html">CICS </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-大小写转换.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/OLTP和CICS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/OLTP和CICS.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -75,31 +83,25 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html"><h3 class="article-title">ICETOOL：数据类型转换</h3></a>
-<h6 class="subheader" title="2012-08-12T00:00:00">2012-08-12
+                <a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html"><h3 class="article-title">QW命令——MVS/QuickRef帮助文档</h3></a>
+<h6 class="subheader" title="2011-08-05T00:00:00">2011-08-05
 </h6>
 
 
-<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>           
-<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
-<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
-<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                        
-<span class="sr">//</span><span class="no">IN</span>                <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
-<span class="sr">//</span><span class="no">OUT</span>           <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">OUTFILE</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                             
-<span class="sr">//</span><span class="no">TOOLIN</span>    <span class="no">DD</span> <span class="o">*</span>                                                
-  <span class="no">COPY</span> <span class="no">FROM</span><span class="p">(</span><span class="no">IN</span><span class="p">)</span> <span class="no">TO</span><span class="p">(</span><span class="no">OUT</span><span class="p">)</span>     <span class="no">USING</span><span class="p">(</span><span class="no">CTL1</span><span class="p">)</span>                       
-<span class="sr">/*                                                            </span>
-<span class="sr">/</span><span class="o">/</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="o">*</span>                                               
-  <span class="no">OUTFIL</span> <span class="no">FNAMES</span><span class="o">=</span><span class="no">OUT</span><span class="p">,</span>    <span class="err">：</span><span class="no">MYINPUT</span><span class="err">的第 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>大机平台上有一个很了不起的帮助文档系统，名字叫做MVS/QuickRef，是一款强大的在线查询系统。用过微软的MSDN的童鞋都知道MSDN的强大。大机上面的MVS/QuickRef几乎可以查到所有你想查的资料，因为这款查询工具号称超过5k万行，以简单易懂著称。最主要的是查询特别方便，使用ISPF直接调用命令QW即可查询内容。<br />
+MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，我们公司还在用的是7.0的版本。这款强大的查询工具是由一家名叫Chicago-Soft的公司生产的，主页在:<a href="http://quickref.com">MVS/QuickRef主页</a>，可以去看看。<br />
+在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：</p>
+<blockquote>
+<p>"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2, IDMS ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/qwming-ling.html">QW命令 </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-数据类型转换.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -107,34 +109,162 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html"><h3 class="article-title">ICEMAN：字符替换</h3></a>
-<h6 class="subheader" title="2012-08-10T00:00:00">2012-08-10
+                <a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html"><h3 class="article-title">继续介绍世代数据集GDG</h3></a>
+<h6 class="subheader" title="2011-07-15T00:00:00">2011-07-15
 </h6>
 
 
-<p>用于替换dataset中出现的字符串:</p>
-<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
-<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
-<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
-<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
-  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
-  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">))</span>   
-<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
-<span class="sr">//</span><span class="o">*</span>                                                         
+<p>上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。</p>
+<h4>1、新建GDG base</h4>
+<p>一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG.BASE并且可以有10个generation的GDG base。只要提交这个job马上就生成了GDG base了。 <br />
+<img alt="1" src="./../images/GDG01.jpg" />      </p>
+<h4>2、新建GDG generation</h4>
+<p>那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">EXTRACT</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BASE</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>
+<span class="sr">//</span> <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)),</span>
+<span class="sr">//</span> <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html"><h3 class="article-title">世代数据集—GDG介绍</h3></a>
+<h6 class="subheader" title="2011-06-25T00:00:00">2011-06-25
+</h6>
+
+
+<p>跟大机打交道，一定对大机上面的一种特殊文件gdg不会陌生。gdg又称世代数据集，在大机上面是用来组织彼此相关联的文件。比如你需要一年12个月每个月的报表数据，则可以定义一个有12个generation（世代）的GDG，每个generation存一个月的数据，这样就保证了彼此关联的信息能被更方便地管理和维护。它会保证任何时候都只保留最新的12个月的数据。<br />
+要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER
+</p>
+</blockquote>
+<p>则一般你以此产生的第一个generation的名字就叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0001V00
+</p>
+</blockquote>
+<p>以此类推，第二个就叫做：</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0002V00
+</p>
+</blockquote>
+<p>直到<code>G9992V00</code>为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html"><h3 class="article-title">介绍几个比较有用的ISPF命令</h3></a>
+<h6 class="subheader" title="2011-03-02T00:00:00">2011-03-02
+</h6>
+
+
+<p>上一篇讲的是常见的TSO/ISPF命令，这篇来讲讲我收集到的日常比较有用的ISPF命令。</p>
+<h4>HRECALL</h4>
+<p>大机上的Dataset比较久了没有被访问的话会自动被迁移(migrate)到tape中保存的，根据时间的长短，Dataset会被migrate到不同的level，比如MIGRAT1,MIGRAT2等等。这时，如果你想把这个Dataset 召(Recall)回来的话，平常我们都在这个Dataset前面打个<code>Call</code>命令。这样做有个不好的地方，就是如果这个Dataset需要很长时间才能被RECALL回来的话(比如30分钟)，那这30分钟之内你只能看着屏幕发呆而啥都干不了了。所以这种情况下你可以试试后台Call的命令<code>HRECALL</code>，它在后台操作，结束后会有提示，完全不影响你做其他事情</p>
+<h4>NUM OFF</h4>
+<p>有时你在编辑一个Dataset的行末尾的时候，每次保存都会提示:<code>Some input data</code>ignored。这时因为默认情况下末尾的行号显示是开着占了8位，这8位是不可修改的，这时你可以试试在命令行上打个<code>NUM OFF</code>把行号显示关了。</p>
+<h4>XDC</h4>
+<p>这是一个SDSF(<em>系统显示与查询工具</em> 的命令，如果你想把一个JOB的输出Log保存到某个地方，比如自己的PDS，那么你可以在SDSF里面在这个JOB的Log前面打上XDC，然后写上你要保存的地方即可 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html"><h3 class="article-title">Dataset View和Browse的区别</h3></a>
+<h6 class="subheader" title="2011-01-13T00:00:00">2011-01-13
+</h6>
+
+
+<p>在大机上，View和Browse都能查看dataset/member，它们有什么区别呢？下面是我在平常的工作当中找到的三点区别，欢迎补充！ </p>
+<h4>1、Browse默认显示80列，而View默认显示72列，当然两者都可以用PF11向右翻页。</h4>
+<h4>2、Browse不允许修改，尝试修改会马上锁屏，而View可以修改，但不能保存成当前同名的，就是说有"另存为"的功能。</h4>
+<h4>3、Browse下许多命令不能用，比如语法高亮HI ON,比如JCL语法检查JEM，而View下都可以用。</h4>
+<p>你在view一个Member，若尝试做任何更改，会跳出这样的一段提示的话:
+<img alt="1" src="./../images/browse_view_01.jpg" />  <br />
+当你在View一个member的时候，可以在左边列用两个<code>CC</code>选择你要另存为的范围，然后在command栏上输入<code>CREATE</code>，回车即可另存为了:
+<img alt="1" src="./../images/browse_view_02.jpg" /> </p>
+<p>个人认为View最有用的就是可以提交别人的JCL。下图中，假设你的ID是<code>USERID02</code>,而<code>USERID01</code>是你同事的ID，你自然是没有权限去sub他/他的JCL，这时，你要么可以把这个JCL拷到你自己的LIB下面改成你的ID再sub，要么直接View进去，改成你的ID，sub完之后无需保存即可。对于这种别人的JCL又不想麻烦地copy到自己lib时，是不是方便多了呢？
+<img alt="1" src="./../images/browse_view_03.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/dataset.html">Dataset </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Dataset View和Browse的区别.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html"><h3 class="article-title">DATACOM数据库介绍</h3></a>
+<h6 class="subheader" title="2010-11-29T00:00:00">2010-11-29
+</h6>
+
+
+<p>CA Datacom听过么？它是CA(Computer Associates)公司的企业级数据库。以能承受高负荷和较强的容错性著称，在mainframe平台上有比较广泛地应用，不过最近几年Datacom公司貌似不怎么行了，大家都换上了IBM的DB2数据库了。<br />
+Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说是具备了基本的文件系统特征。通常KEY是某个或某几个字段的组合，一个table可以有多个KEY。在PL/I或COBOL程序中访问Datacom是通过调用接口DBNTRY来实现的(<span style="color: #ff00ff;">XXX</span>是table名字)。 在COBOL中是这样call的(<span style="color: #ff00ff;">XXX</span>是table名字)：</p>
+<div class="highlight"><pre><span class="no">CALL</span> <span class="err">‘</span><span class="no">DBNTRY</span><span class="err">’</span> <span class="no">USING</span> <span class="no">USER</span><span class="o">-</span><span class="no">ID</span>
+      <span class="no">XXX</span><span class="o">-</span><span class="no">REQ</span><span class="o">-</span><span class="no">AREA</span>
+      <span class="no">XXXF0</span>
+      <span class="no">XXX</span><span class="o">-</span><span class="no">ELEMENT</span><span class="o">-</span><span class="no">LIST</span>
 </pre></div>
 
 
-<p>将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成<code>‘BBBB‘</code> 
-当然，可以限定在特定几列替换 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>而在这之前，要先声明：</p>
+<div class="highlight"><pre><span class="mo">01</span> <span class="no">USER</span><span class="o">-</span><span class="no">ID</span><span class="o">.</span>
+<span class="mo">05</span> <span class="no">PROGRAM</span><span class="o">-</span><span class="no">NAME</span> <span class="no">PIC</span> <span class="n">X</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span> <span class="no">VALUE</span> <span class="s1">&#39;MYPGM00 &#39;</span><span class="o">.</span>
+<span class="mo">05</span> <span class="no">FILLER</span> <span class="no">PIC ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/datacom.html">DATACOM </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICEMAN-字符替换.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/DATACOM数据库介绍.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -142,28 +272,33 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html"><h3 class="article-title">ICETOOL: 多文件输出</h3></a>
-<h6 class="subheader" title="2012-08-02T00:00:00">2012-08-02
+                <a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html"><h3 class="article-title">大机平台的版本控制工具Changeman</h3></a>
+<h6 class="subheader" title="2010-10-30T00:00:00">2010-10-30
 </h6>
 
 
-<p>取一个文件<code>MYINPUT</code>中的有用字段，组装成多个不同<code>LRECL</code>的输出文件。这个也是项目中用到的，我再这里简化了好多！</p>
-<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>         
-<span class="sr">//</span><span class="no">TOOLMSG</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
-<span class="sr">//</span><span class="no">DFSMSG</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
-<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                      
-<span class="sr">//</span><span class="no">SORTWK01</span> <span class="no">DD</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>            
-<span class="sr">//</span><span class="no">IN</span>      <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> <span class="ss">:LRECL</span><span class="o">=</span><span class="mo">05</span>                 
-<span class="o">//</span><span class="no">OUT1</span>    <span class="no">DD</span> <span class="no">DSN ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>在主机上面有好几个比较常见的版本控制工具，比如changeman和Endevor。我介绍下changeman。 </p>
+<h4>ISPF面板上输入C;1</h4>
+<p><img alt="1" src="./../images/changeman-1.jpg" />      </p>
+<h5>changeman的界面，这里装的版本是5.6.2c，</h5>
+<p><img alt="1" src="./../images/changeman-21.jpg" />      </p>
+<h4>我介绍下各个常用选项</h4>
+<h5>1.</h5>
+<p>用来新建，更新一个package的，你需要新建一个package来放置你的PL/I，COBOL程序和JCL等等</p>
+<h5>2.</h5>
+<p>将package freeze或unfreeze，在你觉得package里面的所有东西都测试得差不多了，可以准备上线安装之前，你要先freeze冻结掉这个package，然后等待相关项目管理人的approve，这样这个package才能被合法地安装。当然，如果你冻结了package之后，发现还有程序需要被修改什么的，这时候你可以反冻结(unfreeze)它，最好在package还没被approve之前。</p>
+<h5>3.</h5>
+<p>promote 或 demote。promote就是把你修改的程序版本提升到更高的level去。举个例子，一般PL/I或COBOL等写的程序在进入生产环境之前都会经过开发(Dev)——&gt;系统集成测试(Sys)——&gt;用户接收测试(UAT)——&gt;生产环境(Prod)，promote就是可以把你的程序从较低的level提升到较高的level，慢慢接近prod，而demote反之就可以了。</p>
+<h5>4 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/changeman.html">Changeman </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ICETOOL-多文件输出.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -171,28 +306,26 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html"><h3 class="article-title">SORT: JOINKEY 文件连接</h3></a>
-<h6 class="subheader" title="2012-07-29T00:00:00">2012-07-29
+                <a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html"><h3 class="article-title">登陆大型机——Aviva的介绍</h3></a>
+<h6 class="subheader" title="2010-10-28T00:00:00">2010-10-28
 </h6>
 
 
-<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP002</span> <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>        
-<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                       
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                      
-<span class="sr">//</span><span class="no">SORTJNF1</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE1</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
-<span class="sr">//</span><span class="no">SORTJNF2</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">FILE2</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                            
-<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">JOINOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
-<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                 
-  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F1</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                            
-  <span class="no">JOINKEYS</span> <span class="no">FILE</span><span class="o">=</span><span class="no">F2</span><span class="p">,</span><span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">A ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>一般我们日常用PC机工作拿什么软件来跟大型机(以下简称大机)交互呢? 理论上说几乎所有的终端登陆软件都可以的。而且一般每种终端登陆软件都支持多种协议连接到大机上，比如最常见的<code>TCP/IP，FTP,TELNET,SSL</code>等等。这些软件有很多，外面比较常用的是<code>PCOMM，putty，SecCRT</code>等等，我只用过PCOMM，稍微配置下IP啥的就可以连大机了。这个百度下就出来一堆。 
+我们公司比较另类，用的终端软件叫Aviva，一般我们读作"鹅vi哇"，希伯来词，意为“美丽的春天”, 产自美国美国(Eicon)公司。谷歌能下载到，不过只有试用版的貌似。 
+下面我说下Aviva的一些基本概念和使用。  </p>
+<h3>Destination和Session的配置:</h3>
+<p>所谓Destination 就是大型机的物理IP，你要连接到大型机上，就必须得配置下大型机的IP。装好aviva后，开始——&gt;程序——&gt;Eicon Aviva——&gt;Create New Destination
+这里destination的名字就取：My Destination ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/aviva.html">Aviva </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SORT: JOINKEY 文件连接.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -200,146 +333,49 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html"><h3 class="article-title">SORT:VB变长转FB定长,输出对齐</h3></a>
-<h6 class="subheader" title="2012-07-25T00:00:00">2012-07-25
+                <a href="http://mainframer.github.io/articles/Hercules搭建zOS虚拟机遇到的问题及解决办法.html"><h3 class="article-title">Hercules搭建z/OS虚拟机遇到的问题及解决办法</h3></a>
+<h6 class="subheader" title="2010-08-14T00:00:00">2010-08-14
 </h6>
 
 
-<p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:</p>
-<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span>                      
-<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
-<span class="sr">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">SORTIN</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
-<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">SORTOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>                   
-<span class="sr">//</span>            <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>      
-<span class="sr">//</span>            <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
-<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                   
-  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">COPY ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+<p>初学，在windows上搭建z/OS虚拟机，遇到不少问题，找到解决方法，记在这里。  </p>
+<h5>PCOMM每次都提示打印，怎么去掉这个烦人的窗口？</h5>
+<h5>解决办法：</h5>
+<p>PCOMM去掉每次连接提示打印的烦人窗口的方法：在<code>D:\SOFTWARE\IBMPCOMM\private\*.ws</code>文件里面添加：</p>
+<div class="highlight"><pre><span class="o">[</span><span class="no">LT</span><span class="o">]</span>
+<span class="no">IgnoreWCCStartPrint</span><span class="o">=</span><span class="n">Y</span>
+<span class="no">UndefinedCode</span><span class="o">=</span><span class="n">Y</span>
+<span class="no">UndefinedDBCSChar</span><span class="o">=</span><span class="n">Y</span>
+</pre></div>
+
+
+<h5>如何为每一个磁盘建立shadow？</h5>
+<h5>解决办法：</h5>
+<p>比如：<code>sf+0A80</code>:  为设备号为0A80的设备建立shadow (设备号只是个临时的概念)</p>
+<h5>IEE038E AMOUNT OF EXPANDED STORAGE EXCEEDS 0G MAXIMUM</h5>
+<p><img alt="1" src="./../images/zosmoni_1.png" />      </p>
+<h5>解决办法：</h5>
+<p>在zOS1.9.cnf配置文件中删掉下面一行即可：</p>
+<div class="highlight"><pre>XPNDSIZE  6
+</pre></div>
+
+
+<h5><code>HHCLC042E Port 00: Read error ...</code></h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/hercules.html">Hercules </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html"><h3 class="article-title">PLI 动态数组的例子</h3></a>
-<h6 class="subheader" title="2012-06-14T00:00:00">2012-06-14
-</h6>
-
-
-<p>新写了一个<code>PL/I</code>程序，需要在程序里面用到动态数组来提高效率，所以总结了一下<code>PL/I</code>中动态数组<em>(Dynamic Array)</em>的用法：<br />
-<em>1</em>.申明一个Controlled的数组叫做<code>WT_TMPARRAY_INFO</code>,此时并不知道该数组的长度:</p>
-<div class="highlight"><pre><span class="no">DCL</span>  <span class="no">INPUTFIL</span> <span class="no">FILE</span> <span class="no">RECORD</span> <span class="no">INPUT</span><span class="p">;</span>
-<span class="no">DCL</span>  <span class="no">TMPARRAY_CTR</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                             
-<span class="no">DCL</span>  <span class="no">TMPARRAY_SUB</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  
-<span class="no">DCL</span> <span class="mo">01</span> <span class="no">TMPARRAY_RECORD</span><span class="p">,</span>                                                        
-        <span class="mo">05</span> <span class="no">INPUT_CUR</span>     <span class="no">CHAR</span><span class="p">(</span><span class="mo">03</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span>                          
-        <span class="mo">05</span> <span class="no">INPUT_ACCT</span>    <span class="no">CHAR</span><span class="p">(</span><span class="mo">05</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span> 
-
-<span class="sr">/*******定义未知长度的动态数组WT_TMPARRAY_INFO*************************/</span>
-<span class="no">DCL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI 动态数组的例子.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html"><h3 class="article-title">IBM DebugTool: 主动终止调试</h3></a>
-<h6 class="subheader" title="2012-06-03T00:00:00">2012-06-03
-</h6>
-
-
-<p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：</p>
-<blockquote>
-<p>trigger overflow</p>
-<p>这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p>
-</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html"><h3 class="article-title">CICS中查看TSQ的命令:CEBR</h3></a>
-<h6 class="subheader" title="2012-05-27T00:00:00">2012-05-27
-</h6>
-
-
-<p>可以用CEBR这个transaction来查看和删除TSQ信息。这里:   </p>
-<ul>
-<li><code>CEBR#0VJ</code>是<em>TSQ</em>的名字;  </li>
-<li>
-<p><code>Z300</code> 是当前<em>CICS region</em>的名字。<br />
-```ruby  CEBR  TSQ CEBR#0VJ         SYSID Z300 REC     1 OF     0    COL     1 OF     0
-  ENTER COMMAND ===&gt;                                                          <br />
-<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>  TOP OF QUEUE  </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>*</p>
-<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*  BOTTOM OF QUEUE  </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong></p>
-</li>
-</ul>
-<p>TS QUEUE CEBR#0VJ         DOES NOT EXIST                                     <br />
- PF1 : HELP                PF2 : SWITCH HEX/CHAR     PF3 : TERMINATE ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html"><h3 class="article-title">ISPF中Shift+PageUp和UNDO的区别</h3></a>
-<h6 class="subheader" title="2012-05-15T00:00:00">2012-05-15
-</h6>
-
-
-<p>两者都是撤销，相当于windows下的<code>'Ctrl+z'</code>。但分工不同，<code>Shift+PageUp</code>只能撤销未按回车之前的修改动作，对于按了回车就无力回天了。<br />
-而UNDO负责的是撤销回车之后的修改动作，请注意务必要事先用命令<code>'Rec on'</code>打开<em>ISPF</em>的<em>recovery</em>开关。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html">Read More</a>
+<p><a href="http://mainframer.github.io/articles/Hercules搭建zOS虚拟机遇到的问题及解决办法.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Hercules搭建zOS虚拟机遇到的问题及解决办法.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 4 of 14</h6>
+<h6 class="subheader">Page 4 of 5</h6>
 
 <p>
             <a href="http://mainframer.github.io/tag/zos3.html">&laquo; Prev</a>
@@ -362,11 +398,12 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - rexx</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html"><h3 class="article-title">Rexx调用Skeleton JCL提交job的例子</h3></a>
+<h6 class="subheader" title="2013-02-22T00:00:00">2013-02-22
+</h6>
+
+
+<h4>这个例子一共包含3个部分</h4>
+<p><strong>Rexx主程序</strong>：<code>IBMUSER.REXX.EXEC(MYSKELE)</code> <br />
+<strong>带参数的sekleton JCL</strong>：<code>IBMUSER.REXX.SKELL(JCLSKEL)</code><br />
+<strong>最终生成的Dynamic JCL</strong>：<code>IBMUSER.DYNAM.JCL(SUBJCL)</code>  </p>
+<div class="highlight"><pre> <span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+
+<span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">SKELL</span><span class="p">(</span><span class="no">JCLSKEL</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">06</span>             <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">//&amp;</span><span class="no">JOBNAME</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>                                 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">USER</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                      
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span> 
+<span class="mo">000004</span> <span class="p">)</span><span class="no">SEL</span> <span class="o">&amp;</span><span class="no">IND</span> <span class="o">=</span> <span class="n">Y</span>                                                           
+<span class="mo">000005</span> <span class="o">//</span><span class="no">STEP000</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span>                                           
+<span class="mo">000006</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">FILE1</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                                      
+<span class="mo">000007</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">FILE2</span><span class="p">,</span>                                              
+<span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span>             <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>                                 
+<span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>                                              
+<span class="mo">000010</span> <span class="o">//</span>             <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span>                                  
+<span class="mo">000011</span> <span class="o">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span>              
+<span class="mo">000012</span> <span class="o">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                                           
+<span class="mo">000013</span>   <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="no">CH</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                                                
+<span class="mo">000014</span> <span class="o">/*</span>                                                                      
+<span class="mo">000015</span> <span class="p">)</span><span class="no">ENDSEL</span>                                                                 
+<span class="mo">000016</span> <span class="o">//*</span>                                                                     
+<span class="o">******</span> <span class="o">****************************</span> <span class="no">Bottom</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">****************************</span>
+</pre></div>
+
+
+<p>注意上面的<code>)SEL</code>和<code>)ENDSEL</code>表示skeleton的起始, 并且有一个选择判断条件<code>&amp;IND</code>，当且仅当Rexx中传过来的IND的值是Y时，才拼装<code>)SEL</code>和<code>)ENDSEL</code>之间的内容。在上面的例子中，如果IND=N，那么组装出来的JCL为如下所示，显然会报错。 </p>
+<div class="highlight"><pre> <span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+
+<span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">DYNAM</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SUBJCL</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>               <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>                                                   
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSERJ</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>                                 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=</span><span class="no">IBMUSER</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                    
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span> 
+<span class="mo">000004</span> <span class="o">//*</span>                                                                     
+</pre></div>
+
+
+<p>当IND=Y的时候，组装出来的JCL如下：</p>
+<div class="highlight"><pre>  <span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+
+<span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">DYNAM</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SUBJCL</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>               <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSERJ</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>                                 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=</span><span class="no">IBMUSER</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                    
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span> 
+<span class="mo">000004</span> <span class="o">//</span><span class="no">STEP000</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span>                                           
+<span class="mo">000005</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SORTIN</span><span class="o">.</span><span class="n">FILE</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                    
+<span class="mo">000006</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SORTOUT</span><span class="o">.</span><span class="n">FILE</span><span class="p">,</span>                        
+<span class="mo">000007</span> <span class="o">//</span>             <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>                                 
+<span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>                                              
+<span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span>             <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span>                                  
+<span class="mo">000010</span> <span class="o">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span>              
+<span class="mo">000011</span> <span class="o">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                                           
+<span class="mo">000012</span>   <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="no">CH</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>                                                
+<span class="mo">000013</span> <span class="o">/*</span>                                                                      
+<span class="mo">000014</span> <span class="o">//*</span>                                                                     
+<span class="o">******</span> <span class="o">****************************</span> <span class="no">Bottom</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">****************************</span>
+</pre></div>
+
+
+<p>最后，只需执行TSO命令: </p>
+<blockquote>
+<p>TSO MYSKELE</p>
+<p>就可以看到job成功submit,可以去SDSF里面查看job运行状况。</p>
+<p>JOB IBMUSERJ(J0210531) SUBMITTED                 <br />
+</p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+    <a href="http://mainframer.github.io/tag/ispf-dialog.html">ISPF Dialog </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Rexx调用Skeleton JCL提交job的例子.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html"><h3 class="article-title">Mainframe上随时查看任意库代码Rexx实现</h3></a>
+<h6 class="subheader" title="2012-11-12T00:00:00">2012-11-12
+</h6>
+
+
+<p>Mainframe上面工作经常需要临时查看<em>Production</em>代码库当中的代码，又不希望输入长长的库名称。可以用REXX写一个<em>Retrieve</em>功能的脚本，放在
+<code>USERID.REXX.EXEC</code>这个pds下面。运行的时候<strong><code>TSO RET your_program_name</code></strong> 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：</p>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">RET</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">02</span>                  <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">/*</span> <span class="n">rexx</span> <span class="o">*/</span>                                                              
+<span class="mo">000002</span> <span class="o">/***********</span> <span class="n">ret</span> <span class="o">-</span> <span class="n">retrieve</span> <span class="n">specific</span> <span class="n">member</span> <span class="n">from</span> <span class="n">multiple</span> <span class="n">libs</span><span class="o">*********/</span>
+<span class="mo">000003</span> <span class="n">arg ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL提交REXX脚本.html"><h3 class="article-title">JCL提交REXX脚本</h3></a>
+<h6 class="subheader" title="2012-02-25T00:00:00">2012-02-25
+</h6>
+
+
+<h3>来说说如何用JCL提交REXX脚本。</h3>
+<h4>1、写一个最简单的显示有一行提示的REXX脚本叫<code>SAYHELLO</code>：</h4>
+<div class="highlight"><pre><span class="mi">1</span> <span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>           <span class="no">Member</span> <span class="no">SAYHELLO</span> <span class="n">saved</span> 
+<span class="mi">2</span> <span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="mi">3</span> <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mi">4</span> <span class="mo">000001</span> <span class="o">/******************************</span><span class="no">REXX</span><span class="o">*********************************/</span>                
+<span class="mi">5</span> <span class="mo">000002</span> <span class="no">SAY</span> <span class="s2">&quot;I WILL PRINT &#39;HELLO&#39; IN SYSTSPRT BY SUBMITTING JCL&quot;</span> 
+</pre></div>
+
+
+<h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/jcl.html">JCL </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL提交REXX脚本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL提交REXX脚本.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
+<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
+</h6>
+
+
+<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
+<blockquote>
+<p>FIND ',' ALL</p>
+<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
+既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
+编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
+</blockquote>
+<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
+<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
+<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
+<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
+<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
+</pre></div>
+
+
+<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">Find ALL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html"><h3 class="article-title">Rexx顺序处理文件所有行</h3></a>
+<h6 class="subheader" title="2012-02-17T00:00:00">2012-02-17
+</h6>
+
+
+<p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：</p>
+<div class="highlight"><pre><span class="no">ADDRESS</span> <span class="no">TSO</span>                                                             
+  <span class="n">indataset</span> <span class="o">=</span> <span class="s1">&#39;IBMUSER.REXX.EXEC(INFILE)&#39;</span>  <span class="sr">/*read in input file */</span>      
+  <span class="s2">&quot;alloc f(fin) ds(&#39;&quot;</span><span class="n">indataset</span><span class="s2">&quot;&#39;) shr reuse&quot;</span>   
+  <span class="s2">&quot;execio * diskr fin (finis stem in.&quot;</span>                                  
+  <span class="s2">&quot;free f(fin)&quot;</span>                                                         
+ <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="k">in</span><span class="o">.</span><span class="mi">0</span>        <span class="o">/*</span><span class="kp">loop</span> <span class="k">in</span> <span class="n">file</span> <span class="k">until</span> <span class="n">the</span> <span class="n">last</span> <span class="n">line</span> <span class="n">reached</span> <span class="o">*/</span>           
+    <span class="n">one_line</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="k">in</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>                                                    
+    <span class="n">call ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html"><h3 class="article-title">ISPF下如何去掉程序的第72至80列</h3></a>
+<h6 class="subheader" title="2012-02-07T00:00:00">2012-02-07
+</h6>
+
+
+<p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
+<h4>方法一：直接在ISPF下面用命令去掉</h4>
+<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
+<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
+<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
+</pre></div>
+
+
+<hr />
+<h4>方法二：用第三方脚本实现</h4>
+<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/72dao-80lie.html">72到80列 </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX学习笔记.html"><h3 class="article-title">REXX学习笔记</h3></a>
+<h6 class="subheader" title="2012-02-05T00:00:00">2012-02-05
+</h6>
+
+
+<p>最近在学习Rexx脚本，打算做一些自动化。归纳了些点总结下放在这里以备查询。  </p>
+<h3>一些基本概念</h3>
+<ul>
+<li>REXX: <code>REstructured eXtended eXecutor (REXX) language</code> 扩充结构化执行语言  </li>
+<li>REXX中变量无需事前定义  </li>
+<li>Debug REXX:用REXX TRACE或者用interactive debug facility来定位error  </li>
+<li>SAA Procedures Language：REXX的子集，在TSO/E,CICS,IMS等多种环境中应用 </li>
+<li>要运行REXX exec，必须至少有一种可用的<code>Host command environments</code>。默认的是<code>TSO</code>。还有<code>MVS</code>,<code>LINK</code>,<code>LINKMVS</code>,<code>LINKPGM</code>,<code>ATTACH</code>,<code>ATTCHMVS</code>,<code>ATTCHPGM</code>,<code>ISPEXEC</code>,<code>ISREDIT</code>,<code>CONSOLE</code>,<code>CPICOMM</code>,<code>LU62</code>,<code>APPCMVS</code>等等，常用的有 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">REXX </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX学习笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX学习笔记.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

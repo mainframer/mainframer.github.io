@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - 发微博</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html"><h3 class="article-title">Watir登陆微博发布微博</h3></a>
+<h6 class="subheader" title="2012-04-30T00:00:00">2012-04-30
+</h6>
+
+
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s1">&#39;www.weibo.com&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">focus</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;W_input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_email_account&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;inp password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:type</span><span class="p">,</span><span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s1">&#39;your_weibo_password&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;W_btn_g&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>         <span class="c1">#点击登陆按钮，也可以使用url，这个登陆按钮是使用js跳转的</span>
+<span class="nb">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                                <span class="c1">#等待3秒页面加载完毕</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;input_detail&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;我的第一条来自watir的微博！&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;send_btn&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span> 
+<span class="err">或者</span> 
+<span class="n">b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span><span class="s1">&#39;发布微博按钮&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/fa-wei-bo.html">发微博 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir登陆微博发布微博.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

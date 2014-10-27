@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - COBOL</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html"><h3 class="article-title">PL/I和COBOL如何取得当天的日期</h3></a>
+<h6 class="subheader" title="2012-12-10T00:00:00">2012-12-10
+</h6>
+
+
+<p>在Mainframe上做开发会经常遇到用PL/I或者COBOL取得当天的日期，对于PL/I，一般的公司都采取如下的做法：  </p>
+<div class="highlight"><pre><span class="no">DCL</span> <span class="no">PIC_TODAY</span>            <span class="no">PIC</span><span class="s1">&#39;999999&#39;</span> <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="no">PIC_TODAY</span>  <span class="o">=</span> <span class="no">DATE</span><span class="p">;</span>
+<span class="no">IF</span> <span class="no">SUBSTR</span><span class="p">(</span><span class="no">DATE</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="s1">&#39;50&#39;</span>                
+  <span class="no">THEN</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">19000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
+  <span class="no">ELSE</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">20000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
+</pre></div>
+
+
+<p>我所在的公司也是这种写法来获得<code>YYYYMMDD</code>格式的当日日期，很明显这种写法代码的寿命只有几十年了，相比之下COBOL获得<code>YYYYMMDD</code>格式的当日日期就显得方便得多，一个<code>ACCEPT</code>语句即可:</p>
+<div class="highlight"><pre><span class="no">WORKING</span><span class="o">-</span><span class="no">STORAGE</span> <span class="no">SECTION</span><span class="o">.</span>
+<span class="mo">01</span> <span class="no">TODAYS</span><span class="o">-</span><span class="no">DATE</span>                          <span class="no">PIC</span> <span class="mi">9</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span><span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="no">PROCEDURE</span> <span class="no">DIVISION</span><span class="o">.</span>
+<span class="no">ACCEPT</span> <span class="no">TODAYS</span><span class="o">-</span><span class="no">DATE</span> <span class="no">FROM</span> <span class="no">DATE</span> <span class="no">YYYYMMDD</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/pli.html">PLI </a>
+    <a href="http://mainframer.github.io/tag/cobol.html">COBOL </a>
+    <a href="http://mainframer.github.io/tag/dang-tian-ri-qi.html">当天日期 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html"><h3 class="article-title">COBOL程序编译报错GYDS1145-S</h3></a>
+<h6 class="subheader" title="2012-11-24T00:00:00">2012-11-24
+</h6>
+
+
+<p>今天编译一个COBOL老程序的时候报错：<code>IGYDS1145-S</code></p>
+<blockquote>
+<p>IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.<br />
+ A "PICTURE" string of "S9(18)" was assumed.           </p>
+</blockquote>
+<p>原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
+<a href="http://ibmmainframes.com/post-9087.html">http://ibmmainframes.com/post-9087.html</a>   </p>
+<blockquote>
+<p>COBOL Compiler restricts me defining a PIC 9() variable not more than of ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/cobol.html">COBOL </a>
+    <a href="http://mainframer.github.io/tag/gyds1145-s.html">GYDS1145-S </a>
+    <a href="http://mainframer.github.io/tag/arithextend.html">ARITH(EXTEND) </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

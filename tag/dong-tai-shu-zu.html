@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - 动态数组</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html"><h3 class="article-title">PLI 动态数组的例子</h3></a>
+<h6 class="subheader" title="2012-06-14T00:00:00">2012-06-14
+</h6>
+
+
+<p>新写了一个<code>PL/I</code>程序，需要在程序里面用到动态数组来提高效率，所以总结了一下<code>PL/I</code>中动态数组<em>(Dynamic Array)</em>的用法：<br />
+<em>1</em>.申明一个Controlled的数组叫做<code>WT_TMPARRAY_INFO</code>,此时并不知道该数组的长度:</p>
+<div class="highlight"><pre><span class="no">DCL</span>  <span class="no">INPUTFIL</span> <span class="no">FILE</span> <span class="no">RECORD</span> <span class="no">INPUT</span><span class="p">;</span>
+<span class="no">DCL</span>  <span class="no">TMPARRAY_CTR</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                             
+<span class="no">DCL</span>  <span class="no">TMPARRAY_SUB</span>         <span class="no">FIXED</span> <span class="no">BIN</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>   <span class="no">INIT</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  
+<span class="no">DCL</span> <span class="mo">01</span> <span class="no">TMPARRAY_RECORD</span><span class="p">,</span>                                                        
+        <span class="mo">05</span> <span class="no">INPUT_CUR</span>     <span class="no">CHAR</span><span class="p">(</span><span class="mo">03</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span>                          
+        <span class="mo">05</span> <span class="no">INPUT_ACCT</span>    <span class="no">CHAR</span><span class="p">(</span><span class="mo">05</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span> 
+
+<span class="sr">/*******定义未知长度的动态数组WT_TMPARRAY_INFO*************************/</span>
+<span class="no">DCL</span> <span class="mo">01</span> <span class="no">WT_TMPARRAY_INFO</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="no">CONTROLLED</span><span class="p">,</span>                                         
+        <span class="mo">05</span> <span class="no">WT_TMP_CUR</span>  <span class="no">CHAR</span><span class="p">(</span><span class="mo">03</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span>                          
+        <span class="mo">05</span> <span class="no">WT_TMP_ACCT</span> <span class="no">CHAR</span><span class="p">(</span><span class="mo">05</span><span class="p">)</span>             <span class="no">INIT</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>   
+</pre></div>
+
+
+<p><em>2</em>.一旦得知了数组需要的长度，即可为它allocate空间。数组的长度可以是外部文件传进来，也可以是你程序中逻辑计算得到，这个无所谓哪里来的,只要赋给变量<code>TMPARRAY_CTR</code>就好了。</p>
+<blockquote>
+<p>ALLOCATE WT_TMPARRAY_INFO (TMPARRAY_CTR); </p>
+<p><em>3</em>.分配了空间之后即可初始化数组，给其赋值。
+<code>rubyDO TMPARRAY_SUB = 1 TO TMPARRAY_CTR;                                     
+          READ FILE(INPUTFIL) INTO (TMPARRAY_RECORD);                           
+          WT_TMP_CUR(TMPARRAY_SUB)  = INPUT_CUR;                                  
+          WT_TMP_ACCT(TMPARRAY_SUB) = INPUT_ACCT; 
+END;</code></p>
+</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/pli.html">PLI </a>
+    <a href="http://mainframer.github.io/tag/dong-tai-shu-zu.html">动态数组 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

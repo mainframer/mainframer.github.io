@@ -47,132 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html"><h3 class="article-title">用ISRSUPC在PDS所有member中搜索指定字符串</h3></a>
-<h6 class="subheader" title="2011-08-27T00:00:00">2011-08-27
-</h6>
-
-
-<p>在一个PDS中搜索名字叫做“snailgo”的member，可以在command line上输入命令<code>mem snailgo</code>即可。但是，如果想搜索整个PDS下所有的成员(Member)中指定字符串，有没有办法呢？答案是肯定的，我们可以用一个比较的utility <code>ISRSUPC</code>来实现，同样的，只需submit一个JCL。
-<img alt="1" src="./../images/isrsupc-compare.jpg" />      </p>
-<p>这里，我们在PDS <strong><code>“IBMUSER.TEST.LIB.JCL”</code></strong>和<strong><code>“IBMUSER.TEST.LIB.PROC”</code></strong>下的所有member中搜索字符串”SNAILGO”。参数为：<code>PARM=(SRCHCMP,ANYC)</code>，其中<code>SRCHCMP</code>指定要搜索的字符串，<code>ANYC</code>表示ANY Case，即搜索任何符合的情况，要了解更详细的PARM的用法，可以参考IBM红宝书<strong>IBM manual ISPF/PDF Guide ...</strong></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/用ISRSUPC在PDS所有member中搜索指定字符串.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/新建空的GDG generation.html"><h3 class="article-title">新建空的GDG generation</h3></a>
-<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
-</h6>
-
-
-<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  </p>
-<p><img alt="1" src="./../images/gdg-new-empty-generation.jpg" />    <br />
-submit，查看，空的generation G0001V00 就生成了:  </p>
-<p><img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/新建空的GDG generation.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建空的GDG generation.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/更改GDG世代数参数.html"><h3 class="article-title">更改GDG世代数参数</h3></a>
-<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
-</h6>
-
-
-<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:<br />
-<img alt="1" src="./../images/gdg-update.jpg" />      </p>
-<p>submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/更改GDG世代数参数.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/更改GDG世代数参数.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/新建GDG世代数据集.html"><h3 class="article-title">新建GDG世代数据集</h3></a>
-<h6 class="subheader" title="2011-08-25T00:00:00">2011-08-25
-</h6>
-
-
-<p>如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：<br />
-<img alt="1" src="./../images/create-gdg-base.jpg" />       </p>
-<p>其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/新建GDG世代数据集.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建GDG世代数据集.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html"><h3 class="article-title">IBM主机技术一本通笔记</h3></a>
-<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
-</h6>
-
-
-<p>这一系列文章将会是从《IBM主机技术一本通》里面选取我个人认为对我有用的部分来记录和阐述。</p>
-<h5>1、LRECL和BLKSIZE</h5>
-<p><img alt="1" src="./../images/LRECL-BLKSIZE.jpg" />           <br />
-<strong>LRECL</strong>:逻辑记录是程序想要处理的一个数据单元，通常由许多连接在一起的区域构成。  </p>
-<blockquote>
-<p>BLKSIZE：物理单元(又称块)   描述了在一次输入输出操作中需要传送的数据量，如上图所示，你一定发现了BLKSIZE必须是LRECL的整数倍，显然这是因为BLKSIZE是多个LRECL嘛！ 
-任何时候发生输入输出时传送的是整个块而不是单个逻辑记录，这样做的好处显而易见，有效地使用空间，提高传送率。<br />
-</p>
-</blockquote>
-<h5>2、I——PDS(分区数据集)信息分析</h5>
-<p>一直对这个知识点一知半解的，今天看了一本通之后，算是明白了。照着图说： <br />
-<img alt="1" src="./../images/PDS-Infor1.jpg" />   </p>
-<p>呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html"><h3 class="article-title">IBM主机技术一本通笔记续</h3></a>
 <h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
 </h6>
@@ -209,6 +83,7 @@ GROUP <br />
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">主机一本通 </a>
 </p>
 
 
@@ -236,6 +111,7 @@ GROUP <br />
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/cicsjie-kou.html">CICS接口 </a>
 </p>
 
 
@@ -265,7 +141,7 @@ GROUP <br />
 <p>当然，两者可以根据你的需要任意组合使用，这个是没问题的。就像：<code>IBMUSER.*.LIB%</code>这样。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/ispftong-pei-fu.html">ISPF通配符 </a>
 </p>
 
 
@@ -300,6 +176,8 @@ GROUP <br />
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/oltp.html">OLTP </a>
+    <a href="http://mainframer.github.io/tag/cics.html">CICS </a>
 </p>
 
 
@@ -325,6 +203,7 @@ MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，�
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/qwming-ling.html">QW命令 </a>
 </p>
 
 
@@ -333,9 +212,164 @@ MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，�
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html"><h3 class="article-title">继续介绍世代数据集GDG</h3></a>
+<h6 class="subheader" title="2011-07-15T00:00:00">2011-07-15
+</h6>
+
+
+<p>上篇文章我简单介绍了下大机平台上用到的一种叫做世代数据集(GDG)的文件，在这一篇里，我来比较详细地说明下GDG的用法和注意事项。</p>
+<h4>1、新建GDG base</h4>
+<p>一般我们可以用Job来新建一个GDG base，下面，我利用utility IDCAMS来生成一个名为IBMUSER.MYGDG.BASE并且可以有10个generation的GDG base。只要提交这个job马上就生成了GDG base了。 <br />
+<img alt="1" src="./../images/GDG01.jpg" />      </p>
+<h4>2、新建GDG generation</h4>
+<p>那么GDG base生成以后，如何生成一个generation呢，要怎么规定生成的generation的文件属性呢？这些都在你的Job里面做的，比如下面的JCL语句：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">EXTRACT</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">MYGDG</span><span class="o">.</span><span class="n">BASE</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>
+<span class="sr">//</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>
+<span class="sr">//</span> <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)),</span>
+<span class="sr">//</span> <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/继续介绍世代数据集GDG.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html"><h3 class="article-title">世代数据集—GDG介绍</h3></a>
+<h6 class="subheader" title="2011-06-25T00:00:00">2011-06-25
+</h6>
+
+
+<p>跟大机打交道，一定对大机上面的一种特殊文件gdg不会陌生。gdg又称世代数据集，在大机上面是用来组织彼此相关联的文件。比如你需要一年12个月每个月的报表数据，则可以定义一个有12个generation（世代）的GDG，每个generation存一个月的数据，这样就保证了彼此关联的信息能被更方便地管理和维护。它会保证任何时候都只保留最新的12个月的数据。<br />
+要使用GDG，你必须先有一个GDG base，有了GDG base才可以不断地产生generation。GDG文件是用GDG base名字+generation number来唯一区别的。比如你新建了一个GDG base的名字叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER
+</p>
+</blockquote>
+<p>则一般你以此产生的第一个generation的名字就叫做:</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0001V00
+</p>
+</blockquote>
+<p>以此类推，第二个就叫做：</p>
+<blockquote>
+<p>PROD.CLIENT.ACCOUNT.NUMBER.G0002V00
+</p>
+</blockquote>
+<p>直到<code>G9992V00</code>为止。G000,G001等等叫做世代编号，V00叫做版本号，据我所知，平常用到的基本都是V00，可以这么说，除非极特殊的情况，否则你这辈子不会用到V01 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/世代数据集—GDG介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html"><h3 class="article-title">介绍几个比较有用的ISPF命令(续一)</h3></a>
+<h6 class="subheader" title="2011-06-14T00:00:00">2011-06-14
+</h6>
+
+
+<p>接上次讲的，这里继续介绍几个常用的有用的命令。</p>
+<h5>COMP</h5>
+<p>这是比较文件的命令，功能类似于<code>ISPF 3.13</code>选项。如果你正打开自己PDS下面的<code>DMSID01.TESTLIB.PRGM(MYPGM01)</code>编辑，你想跟你同事(DMSID02)PDS下面的一个MYPGM02比较看看有什么不同的话，你可以直接在Command栏上输入命令：
+<code>COMP 'DMSID02.TESTLIB.PRGM(MYPGM02)'</code></p>
+<h5>COMP EXC</h5>
+<p>这是<code>COMP</code>的高级选项，再后面加上EXC让比较结果中只显示不同的行。当然，为了不失关联性和便于理解，它还额外保留了不同处的前后各5行，显得特别人性化。可以简化成<code>'COMP X'</code>  </p>
+<h5>F1 twice</h5>
+<p>很经常会有你想编辑某个DATASET或者Member的时候提示<code>"Member in use"</code>,这时候你可以连续按两次F1，就能知道谁当前正在使用这个DATASET或者Member了。</p>
+<h5>HEX ON/OFF</h5>
+<p>文件中经常有些字符在普通的<code>View ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/3390 volume,cylinder,track.html"><h3 class="article-title">3390 volume,cylinder,track</h3></a>
+<h6 class="subheader" title="2011-05-03T00:00:00">2011-05-03
+</h6>
+
+
+<p>通常我们用的是3390盘卷(Volume)，一个Volume有多大呢？可以这么计算：<br />
+一个3390盘卷有3339+1=3340个柱面(Cylinder);<br />
+一个柱面(Cylinder)有15个磁道(track);<br />
+一个磁道(track)大概可以保存56KB数据;<br />
+一个G=1024M;<br />
+综上可以得到：一个3390判卷(Volume)=3340x15x56=2805600KB，约等于<strong>2.6756G</strong>
+因为在大机上处理的数据基本都是文本，所以这样的量还是够用的，以至于我到现在也很少遇到需要跨卷的情况。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/cylinder.html">cylinder </a>
+    <a href="http://mainframer.github.io/tag/track.html">track </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/3390 volume,cylinder,track.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/3390 volume,cylinder,track.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html"><h3 class="article-title">介绍几个有用的ISPF命令(续二)</h3></a>
+<h6 class="subheader" title="2011-04-24T00:00:00">2011-04-24
+</h6>
+
+
+<h4>M+F7 和 M+F8</h4>
+<p>命令行上输<code>M</code>,接着按<code>F7</code>, 表示回到文件最顶端<br />
+命令行上输<code>M</code>,接着按<code>F8</code>, 表示回到文件最低端  </p>
+<h4>COL</h4>
+<p>显示列号，这个命令特别是在对齐的时候很有用。因为在JCl语法中，很多关键字必须规定从第几列开始写，不然会出错的，比如JCLLIB ORDER一定要从第四列开始写，所以用<code>COL</code>命令显示行号是很有必要的。</p>
+<h4>HI</h4>
+<p>语法高亮用HI，比如可以用<code>HI PLI</code>来高亮PL/I代码，用<code>HI COBOl</code>高亮COBOl代码，用<code>HI JCL</code>来高亮JCL语法，用<code>HI REXX</code>来高亮REXX语法，用HI ASM来高亮汇编代码，一共支持18种语言。可以<code>HI ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 7 of 9</h6>
+<h6 class="subheader">Page 7 of 8</h6>
 
 <p>
             <a href="http://mainframer.github.io/category/mainframe6.html">&laquo; Prev</a>
@@ -358,11 +392,12 @@ MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，�
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

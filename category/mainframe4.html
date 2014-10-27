@@ -47,116 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html"><h3 class="article-title">CICS中查看TSQ的命令:CEBR</h3></a>
-<h6 class="subheader" title="2012-05-27T00:00:00">2012-05-27
-</h6>
-
-
-<p>可以用CEBR这个transaction来查看和删除TSQ信息。这里:   </p>
-<ul>
-<li><code>CEBR#0VJ</code>是<em>TSQ</em>的名字;  </li>
-<li>
-<p><code>Z300</code> 是当前<em>CICS region</em>的名字。<br />
-```ruby  CEBR  TSQ CEBR#0VJ         SYSID Z300 REC     1 OF     0    COL     1 OF     0
-  ENTER COMMAND ===&gt;                                                          <br />
-<strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em>  TOP OF QUEUE  </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>*</p>
-<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*  BOTTOM OF QUEUE  </em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong></p>
-</li>
-</ul>
-<p>TS QUEUE CEBR#0VJ         DOES NOT EXIST                                     <br />
- PF1 : HELP                PF2 : SWITCH HEX/CHAR     PF3 : TERMINATE ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS中查看TSQ的命令:CEBR.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html"><h3 class="article-title">ISPF中Shift+PageUp和UNDO的区别</h3></a>
-<h6 class="subheader" title="2012-05-15T00:00:00">2012-05-15
-</h6>
-
-
-<p>两者都是撤销，相当于windows下的<code>'Ctrl+z'</code>。但分工不同，<code>Shift+PageUp</code>只能撤销未按回车之前的修改动作，对于按了回车就无力回天了。<br />
-而UNDO负责的是撤销回车之后的修改动作，请注意务必要事先用命令<code>'Rec on'</code>打开<em>ISPF</em>的<em>recovery</em>开关。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF中Shift+PageUp和UNDO的区别.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/TSO重新登录命令.html"><h3 class="article-title">TSO重新登录命令</h3></a>
-<h6 class="subheader" title="2012-05-04T00:00:00">2012-05-04
-</h6>
-
-
-<p>有时候TSO异常退出，而服务器端进程还没kill掉，于是在你尝试再次登录的时候，返回提示：</p>
-<blockquote>
-<p>“already logged on to system IKJ56400A ENTER LOGON OR LOGOFF-”</p>
-<p>用命令告诉远程主控端你要reconnect。 </p>
-</blockquote>
-<h3>解决办法</h3>
-<blockquote>
-<p>logon yourUID recon
-</p>
-</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/TSO重新登录命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/TSO重新登录命令.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html"><h3 class="article-title">SOME INPUT DATA IGNORE</h3></a>
-<h6 class="subheader" title="2012-05-03T00:00:00">2012-05-03
-</h6>
-
-
-<p>在编辑dataset的时候如果右上角提示<code>SOME INPUT DATA IGNORE</code>,请记得把每行末尾的行号关闭: </p>
-<blockquote>
-<p>NUM OFF</p>
-<p>否则，后面8位就是行号，将此文件作为程序的input的时候就危险了!</p>
-</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SOME INPUT DATA IGNORE.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/S000 U0004 ABEND ERROR.html"><h3 class="article-title">S000 U0004 ABEND ERROR</h3></a>
 <h6 class="subheader" title="2012-04-30T00:00:00">2012-04-30
 </h6>
@@ -166,7 +56,7 @@
 一如既往地分析dump，发现是由于我在JCL里面添加了<code>'PARM='TEST(ALL,,,VTAM%IBMUSER:)'</code>的debug参数，而我要debug的程序的<code>loadmodule</code>不在test环境里面，导致JCL试图去debug生产环境的<em>loadmodule</em>，抛出<code>'S000 U0004‘</code>错误，应该是<em>access vialation</em>之类的错误吧,修改完<em>loadmodule</em>的路径就好了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/s000-u0004.html">S000 U0004 </a>
 </p>
 
 
@@ -230,7 +120,7 @@
 </blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/cee3250c-s806.html">CEE3250C S806 </a>
 </p>
 
 
@@ -262,7 +152,8 @@
 </pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/pli.html">PLI </a>
+    <a href="http://mainframer.github.io/tag/pic.html">PIC </a>
 </p>
 
 
@@ -289,7 +180,7 @@
 <p>如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/blksize0.html">BLKSIZE=0 </a>
 </p>
 
 
@@ -322,7 +213,7 @@
 <span class="ss">SUBJECT</span><span class="p">:</span> <span class="no">JOB</span> <span class="no">IBMUSERJ</span> <span class="no">HAS ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/jcl-email.html">JCL email </a>
 </p>
 
 
@@ -331,9 +222,135 @@
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html"><h3 class="article-title">使用UNIT=(SYSDA,20)</h3></a>
+<h6 class="subheader" title="2012-03-10T00:00:00">2012-03-10
+</h6>
+
+
+<p>好几次<em>production abend</em>都是因为JCL中分配的dataset太大，恰好一个volume上面的剩余空间都分配完了。<br />
+这里是DBA给的建议：  </p>
+<blockquote>
+<p>"Always code UNIT=(SYSDA,20) for all disk datasets.It will allow the dataset to go to multiple volumes automatically."
+</p>
+</blockquote>
+<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="no">NE</span><span class="p">)</span>                  
+<span class="mo">000002</span> <span class="o">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000003</span> <span class="o">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                
+<span class="mo">000004</span> <span class="o">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/sysda.html">SYSDA </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/使用UNIT=(SYSDA,20).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html"><h3 class="article-title">ABENDED S000 U4088 REASON CODE=000003EC</h3></a>
+<h6 class="subheader" title="2012-03-05T00:00:00">2012-03-05
+</h6>
+
+
+<p>Sub一个job遇到错误:</p>
+<blockquote>
+<p>ABENDED S000 U4088 REASON CODE=000003EC
+</p>
+</blockquote>
+<h5>Abend原因:</h5>
+<blockquote>
+<p>The U4088 RC=3EC abend in CEEPLPKA occurred because C:D 4.8.00 ran out of below the line storage
+</p>
+</blockquote>
+<h5>解决办法:</h5>
+<p>Change region to <strong>REGION=0M</strong> </p>
+<div class="highlight"><pre><span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSER</span> <span class="no">JOB</span>  <span class="mi">0</span><span class="no">RQ00XXXXX</span>                                <span class="mo">00010</span><span class="no">TEST</span><span class="p">,</span>    
+<span class="mo">000002</span> <span class="o">//</span> <span class="s1">&#39;IBMUSER&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/s000-u4088.html">S000 U4088 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ABENDED S000 U4088 REASON CODE=000003EC.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/常用的CICS命令.html"><h3 class="article-title">常用的CICS命令</h3></a>
+<h6 class="subheader" title="2012-03-01T00:00:00">2012-03-01
+</h6>
+
+
+<p>我们可以在<code>COBOL</code>，<code>PL/I</code>，<code>Assembler</code>等应用程序中写<code>CICS</code>命令，在<code>COBOL</code>和<code>PL/I</code>中，格式分别如下所示：</p>
+<h5>COBOL</h5>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="k">END</span><span class="o">-</span><span class="no">EXEC</span>
+</pre></div>
+
+
+<h5>PL/I</h5>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="n">function</span><span class="o">[</span><span class="n">option</span><span class="o">[</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]]...</span> <span class="p">;</span> <span class="p">(</span><span class="err">末尾有分号</span><span class="p">)</span>
+</pre></div>
+
+
+<p>CICS的命令很多，不过最常用的也就是如下几个。所以，只要熟悉这几个的用法就好了，其他的当做了解即可，需要的时候再去查
+<a href="http://publib.boulder.ibm.com/infocenter/cicsts/v4r1/index.jsp?topic=%2Fcom.ibm.cics.ts.applicationprogramming.doc%2Fcommands%2Fdfhp4_abend.html">IBM CICS command summary</a>或者CICS手册。</p>
+<div class="highlight"><pre><span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ABEND</span> <span class="o">[</span><span class="no">ABCODE</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">]</span>
+<span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ASKTIME ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/cicsming-ling.html">CICS命令 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/常用的CICS命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常用的CICS命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/PLI编译器版本.html"><h3 class="article-title">PL/I编译器版本</h3></a>
+<h6 class="subheader" title="2012-02-02T00:00:00">2012-02-02
+</h6>
+
+
+<p>PL/I编译器的版本，如下所示：</p>
+<div class="highlight"><pre><span class="no">Product</span>        <span class="no">Product</span> <span class="nb">name</span> <span class="err"> </span>                        <span class="no">Compiler</span> <span class="s2">&quot;signature&quot;</span>   <span class="no">Module</span> <span class="n">prefix</span> 
+<span class="mi">360</span><span class="n">S</span><span class="o">-</span><span class="no">NL</span><span class="o">-</span><span class="mi">511</span> <span class="err"> </span> <span class="err"> </span><span class="n">S</span><span class="o">/</span><span class="mi">360</span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="mi">1</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>         <span class="s1">&#39;   &#39;</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="no">IEM</span><span class="p">,</span><span class="no">IHE</span><span class="p">,</span><span class="no">IHL</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">OPTIMIZING</span> <span class="no">COMPILER</span> <span class="no">V1</span> <span class="err"> </span>       <span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>   <span class="err"> </span>  <span class="no">IEL</span><span class="p">,</span><span class="no">IBM</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL2</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">CHECKOUT</span> <span class="no">COMPILER</span>
+<span class="mi">5734</span><span class="o">-</span><span class="no">PL3</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">Opt</span> <span class="no">Comp</span> <span class="no">Lib ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/plibian-yi-qi.html">PLi编译器 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/PLI编译器版本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI编译器版本.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 4 of 9</h6>
+<h6 class="subheader">Page 4 of 8</h6>
 
 <p>
             <a href="http://mainframer.github.io/category/mainframe3.html">&laquo; Prev</a>
@@ -356,11 +373,12 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

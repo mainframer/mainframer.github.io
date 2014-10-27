@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - 包管理</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html"><h3 class="article-title">Linux包管理系统RPM和Deb</h3></a>
+<h6 class="subheader" title="2010-12-12T00:00:00">2010-12-12
+</h6>
+
+
+<p>本质上来说，包也是linux应用软件的一种。用过一段时间linux的人都知道，一般linux中安装软件都是通过包的形式安装的。目前最流行的两种包的管理系统是Red Hat的RPM包和基于Debian发行版本的Deb包。</p>
+<h3>RPM包管理系统</h3>
+<p>Linux家族中有五十多种发行版本是基于Red Hat的RPM包管理系统的。有欧洲最流行的发行版SUSE/OpenSUSE，有著名的Red Hat企业版，我国发行的红旗linux等等。由于Red Hat在linux业界的领导地位，使得RPM包管理方式俨然成了linux业界的工业标准。   </p>
+<ul>
+<li><em>rpm -vih file.rpm</em>            #安装RPM包   </li>
+<li><em>rpm -e file.rpm</em>              #卸载RPM包    </li>
+<li><em>rpm -qpR file.rpm</em>            #查看RPM包依赖关系    </li>
+<li><em>rpm -q file.rpm</em>              #查看系统已经安装的rpm包  </li>
+</ul>
+<h3>Deb包管理系统</h3>
+<p>RPM包管理系统应用虽然广泛，但本身具有很难解决包依赖关系的问题，这点上，基于Deb的包管理系统俨然是一种更好地选择。使用Deb包管理系统的linux发行版本有Debian和近几年很火的Ubuntu。现在，Ubuntu可以说在linux个人桌面市场上是一枝独秀，这也是的基于Deb包的管理方式被更多人所熟悉。跟RPM包不同的的是，Deb包里面包含的是二进制文件和一些config文件，也可以直接打开来看。但是Deb包管理系统提供了丰富的安装/管理方法，比较著名的有：</p>
+<h4>apt(advanced package tool):高级包管理工具，这个很经常在shell下面用到，比如</h4>
+<ul>
+<li><em>sudo apt-get update</em>   </li>
+<li><em>sudo apt-get install</em>  </li>
+<li><em>sudo apt-get update</em>  </li>
+</ul>
+<h4>dpkg:通过数据库来管理系统中的软件,软件信息保存在目录：<code>/var/lib/dpkg</code>，常用命令有：</h4>
+<ul>
+<li><em>dpkg -i package.deb</em>          #安装包  </li>
+<li><em>dpkg -r package.deb</em>          #删除包  </li>
+<li><em>dpkg -P package.deb</em>          #删除包和配置文件  </li>
+<li><em>dpkg -L package.deb</em>          #列出与该包关联的文件  </li>
+<li><em>dpkg -l package.deb</em>          #显示版本  </li>
+<li><em>dpkg --unpack package.deb</em>    #解压deb内容  </li>
+<li><em>dpkg -c package.deb</em>          #列出deb包内容  </li>
+<li><em>dpkg --configure package.deb</em> #配置包</li>
+</ul>
+<h4>synaptic(新立得软件包管理器:运行在_x-windows_环境中，可以简单的搜索软件，安装，删除，升级等等，很方便，用惯了windows的人可以用这个。可以选择在菜单打开，也可以直接在shell输入命令：<code>synaptic</code> 启动。</h4>
+<p>另外，还有gdebi，dselect等,不熟。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/rpm.html">RPM </a>
+    <a href="http://mainframer.github.io/tag/deb.html">Deb </a>
+    <a href="http://mainframer.github.io/tag/bao-guan-li.html">包管理 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux包管理系统RPM和Deb.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

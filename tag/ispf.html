@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - ISPF</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html"><h3 class="article-title">ISPF中使用Ctrl+Z来执行UNDO命令</h3></a>
+<h6 class="subheader" title="2013-04-08T00:00:00">2013-04-08
+</h6>
+
+
+<p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
+首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
+<h5>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h5>
+<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+<span class="nb">exit</span>                                                                  
+</pre></div>
+
+
+<h5>step2: 随便<em>Edit</em>一个<em>dataset</em>,在<em>command</em>栏上面执行命令<code>EDITSET</code>打开<code>Edit and View Settings</code>面板，</h5>
+<p>在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。</p>
+<div class="highlight"><pre>                         <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="no">Settings</span>                          
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                              
+                                                               <span class="ss">More</span><span class="p">:</span>     <span class="o">+</span>
+<span class="no">Settings</span> <span class="k">for</span> <span class="n">current</span> <span class="ow">and</span> <span class="n">future</span> <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="ss">sessions</span><span class="p">:</span>                   
+
+  <span class="no">User</span> <span class="n">session</span> <span class="n">initial</span> <span class="n">macro</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="no">EDITMAC</span> 
+</pre></div>
+
+
+<h5>step3:在<em>command</em>栏上执行<code>KEYS</code>命令调出<em>ISPF</em>键位设置面板，随便找一个<em>PF13</em>至<em>PF24</em>当中你认为最不常用的键，将它和<code>UNDO</code>命令绑定。这里我选择<code>PF18</code>.</h5>
+<div class="highlight"><pre> <span class="no">Key</span>       <span class="no">Definition</span>                                 <span class="no">Format</span>  <span class="no">Label</span>
+ <span class="no">F16</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RETURN</span>                                     <span class="no">SHORT</span>   <span class="no">Return</span>  
+ <span class="no">F17</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RFIND</span>                                      <span class="no">SHORT</span>   <span class="no">Rfind</span>   
+ <span class="no">F18</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">UNDO</span>                                       <span class="no">SHORT</span>   <span class="no">Undo</span>      
+ <span class="sb">```</span>
+
+<span class="sb">#####step4: 在你使用的`</span><span class="no">TN3270</span><span class="sb">`终端的键盘设置里面，将`</span><span class="no">PF18</span><span class="sb">`映射成*Cntl+Z*。最常见的*TN3270*终端是*PCOMM*。</span>
+<span class="sb">这样一来，`</span><span class="no">UNDO</span><span class="sb">`就被默认打开，并且你可以用*Cntl+Z*来做最近一步的撤销动作，就像在windows下面一样。这里要注意，对于还没按下确定键的情况，如果要撤销的快捷键是`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`.关于`</span><span class="no">UNDO</span><span class="sb">`和`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`的区别，看我早些时候的文章:《ISPF中Shift+PageUp和UNDO的区别》  </span>
+<span class="sb">最后，还有一点，除了`</span><span class="no">RECOVERY</span> <span class="no">ON</span><span class="sb">`之外，显然其它的*Edit*命令也可以一并添加到`</span><span class="no">EDITMAC</span><span class="sb">`这个宏里面去，只要你希望它执行。比如：</span>
+<span class="sb">```</span><span class="n">ruby</span>
+<span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+ <span class="s2">&quot;ISREDIT RES&quot;</span>
+ <span class="s2">&quot;ISREDIT HI AUTO&quot;</span>
+<span class="nb">exit</span>                                                                  
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/undo.html">UNDO </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html"><h3 class="article-title">ISPF-只显示含关键字的所有行</h3></a>
+<h6 class="subheader" title="2012-09-07T00:00:00">2012-09-07
+</h6>
+
+
+<p>命令：</p>
+<blockquote>
+<p>X ALL; 
+FIND keyword ALL;
+</p>
+</blockquote>
+<p>比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;</p>
+<div class="highlight"><pre><span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TESTJCL</span><span class="p">(</span><span class="no">TESTJOB</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">9</span>         <span class="mi">4</span> <span class="no">CHARS</span> <span class="s1">&#39;DT0907&#39;</span> 
+ <span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">find</span> <span class="n">dt0907</span> <span class="n">all</span>                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+ <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">524</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000525</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">FILEOUTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">FIND ALL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html"><h3 class="article-title">ISPF下如何去掉程序的第72至80列</h3></a>
+<h6 class="subheader" title="2012-02-07T00:00:00">2012-02-07
+</h6>
+
+
+<p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
+<h4>方法一：直接在ISPF下面用命令去掉</h4>
+<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
+<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
+<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
+</pre></div>
+
+
+<hr />
+<h4>方法二：用第三方脚本实现</h4>
+<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/72dao-80lie.html">72到80列 </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html"><h3 class="article-title">介绍几个比较有用的ISPF命令(续一)</h3></a>
+<h6 class="subheader" title="2011-06-14T00:00:00">2011-06-14
+</h6>
+
+
+<p>接上次讲的，这里继续介绍几个常用的有用的命令。</p>
+<h5>COMP</h5>
+<p>这是比较文件的命令，功能类似于<code>ISPF 3.13</code>选项。如果你正打开自己PDS下面的<code>DMSID01.TESTLIB.PRGM(MYPGM01)</code>编辑，你想跟你同事(DMSID02)PDS下面的一个MYPGM02比较看看有什么不同的话，你可以直接在Command栏上输入命令：
+<code>COMP 'DMSID02.TESTLIB.PRGM(MYPGM02)'</code></p>
+<h5>COMP EXC</h5>
+<p>这是<code>COMP</code>的高级选项，再后面加上EXC让比较结果中只显示不同的行。当然，为了不失关联性和便于理解，它还额外保留了不同处的前后各5行，显得特别人性化。可以简化成<code>'COMP X'</code>  </p>
+<h5>F1 twice</h5>
+<p>很经常会有你想编辑某个DATASET或者Member的时候提示<code>"Member in use"</code>,这时候你可以连续按两次F1，就能知道谁当前正在使用这个DATASET或者Member了。</p>
+<h5>HEX ON/OFF</h5>
+<p>文件中经常有些字符在普通的<code>View ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令(续一).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html"><h3 class="article-title">介绍几个有用的ISPF命令(续二)</h3></a>
+<h6 class="subheader" title="2011-04-24T00:00:00">2011-04-24
+</h6>
+
+
+<h4>M+F7 和 M+F8</h4>
+<p>命令行上输<code>M</code>,接着按<code>F7</code>, 表示回到文件最顶端<br />
+命令行上输<code>M</code>,接着按<code>F8</code>, 表示回到文件最低端  </p>
+<h4>COL</h4>
+<p>显示列号，这个命令特别是在对齐的时候很有用。因为在JCl语法中，很多关键字必须规定从第几列开始写，不然会出错的，比如JCLLIB ORDER一定要从第四列开始写，所以用<code>COL</code>命令显示行号是很有必要的。</p>
+<h4>HI</h4>
+<p>语法高亮用HI，比如可以用<code>HI PLI</code>来高亮PL/I代码，用<code>HI COBOl</code>高亮COBOl代码，用<code>HI JCL</code>来高亮JCL语法，用<code>HI REXX</code>来高亮REXX语法，用HI ASM来高亮汇编代码，一共支持18种语言。可以<code>HI ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html"><h3 class="article-title">常见的TSO ISPF命令</h3></a>
+<h6 class="subheader" title="2011-04-21T00:00:00">2011-04-21
+</h6>
+
+
+<h3>几个概念</h3>
+<h4><code>TSO</code></h4>
+<p>TSO(Time Sharing Option)，时分操作，可以同时让多个用户登录到大机上。一般我们认为的TSO是命令行模式，像一些LOGON，LOGOFF，之类的命令与大机交互。</p>
+<h4><code>ISPF</code></h4>
+<p>ISPF(Interactive System Programming Facility)，它提供了一个menu菜单系统来与大机交互，可以说就是一个简单的menu system。<br />
+好了，言归正传。下面是必须知道的ISPF命令:  </p>
+<h5>ISPF功能键</h5>
+<p>PF1： HELP帮助键<br />
+PF2： SPLIT键，改变分屏位置<br />
+PF3： END键，结束并退回上级菜单<br />
+PF4： RETURN键，结束并退回主菜单<br />
+PF5： REFIND键，重复最近一次FIND命令<br />
+PF6： RECHANGE键，重复最近一次CHANGE命令<br />
+PF7： UP键，向上滚屏<br />
+PF8： DOWN键，向下滚屏<br />
+PF9： SWAP键 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/tso.html">TSO </a>
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html"><h3 class="article-title">介绍几个比较有用的ISPF命令</h3></a>
+<h6 class="subheader" title="2011-03-02T00:00:00">2011-03-02
+</h6>
+
+
+<p>上一篇讲的是常见的TSO/ISPF命令，这篇来讲讲我收集到的日常比较有用的ISPF命令。</p>
+<h4>HRECALL</h4>
+<p>大机上的Dataset比较久了没有被访问的话会自动被迁移(migrate)到tape中保存的，根据时间的长短，Dataset会被migrate到不同的level，比如MIGRAT1,MIGRAT2等等。这时，如果你想把这个Dataset 召(Recall)回来的话，平常我们都在这个Dataset前面打个<code>Call</code>命令。这样做有个不好的地方，就是如果这个Dataset需要很长时间才能被RECALL回来的话(比如30分钟)，那这30分钟之内你只能看着屏幕发呆而啥都干不了了。所以这种情况下你可以试试后台Call的命令<code>HRECALL</code>，它在后台操作，结束后会有提示，完全不影响你做其他事情</p>
+<h4>NUM OFF</h4>
+<p>有时你在编辑一个Dataset的行末尾的时候，每次保存都会提示:<code>Some input data</code>ignored。这时因为默认情况下末尾的行号显示是开着占了8位，这8位是不可修改的，这时你可以试试在命令行上打个<code>NUM OFF</code>把行号显示关了。</p>
+<h4>XDC</h4>
+<p>这是一个SDSF(<em>系统显示与查询工具</em> 的命令，如果你想把一个JOB的输出Log保存到某个地方，比如自己的PDS，那么你可以在SDSF里面在这个JOB的Log前面打上XDC，然后写上你要保存的地方即可 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

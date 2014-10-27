@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - ICEMAN</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html"><h3 class="article-title">ICEMAN：字符替换</h3></a>
+<h6 class="subheader" title="2012-08-10T00:00:00">2012-08-10
+</h6>
+
+
+<p>用于替换dataset中出现的字符串:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
+<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
+  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">))</span>   
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="o">*</span>                                                         
+</pre></div>
+
+
+<p>将出现的<code>'0000'</code>替换成<code>'AAAA'</code>,<code>'1111'</code>替换成<code>‘BBBB‘</code> 
+当然，可以限定在特定几列替换：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">ICEMAN</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4000</span><span class="n">K</span>                    
+<span class="sr">//</span><span class="no">SORTIN</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYINPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                          
+<span class="sr">//</span><span class="no">SORTOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">MYOUTPUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                         
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                               
+  <span class="no">OPTION</span> <span class="no">COPY</span>                                               
+  <span class="no">INREC</span> <span class="no">FINDREP</span><span class="o">=</span><span class="p">(</span><span class="no">INOUT</span><span class="o">=</span><span class="p">(</span><span class="n">C</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;AAAA&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;1111&#39;</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;BBBB&#39;</span><span class="p">),</span><span class="no">STARTPOS</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="no">ENDPOS</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>   
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="o">*</span>     
+</pre></div>
+
+
+<p>限定只在前10位出现的<code>'0000'</code>和<code>'1111'</code>才做替换。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/iceman.html">ICEMAN </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ICEMAN-字符替换.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/mainframe访问磁带(Tape).html"><h3 class="article-title">mainframe访问磁带(Tape)</h3></a>
+<h6 class="subheader" title="2011-08-27T00:00:00">2011-08-27
+</h6>
+
+
+<p>大机上磁带(tape)一般用来存储大容量的数据的，可以降低成本。我们要访问tape中的数据的时候，一般的做法是用JCL将tape中的记录转存到直接存储访问设备(DASD)中再查看。 下图中，我们通过utility <code>ICEMAN</code>将<code>IBMUSER.DNS.TAPE</code>这个tape中的所有记录都转存到<code>IBMUSER.TAPE.TO.DASD</code>中，这样就能查看了。
+<img alt="1" src="./../images/ICEMAN-access-tape.jpg" />      </p>
+<p>不过，需要注意的是，tape里面的数据量一般都很大，所以更多时候我们再用的时候会指定读取的record的数目，比如这里我们指定读取100条：
+<img alt="1" src="./../images/ICEMAN-access-tape-stopaft1.jpg" />    </p>
+<p>甚至，你还可以用SORT中的语法筛选出你想要的条件。比如<code>(1，4，EQ,'AAAA')</code>这样子。 </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/fang-wen-tape.html">访问tape </a>
+    <a href="http://mainframer.github.io/tag/iceman.html">ICEMAN </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/mainframe访问磁带(Tape).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/mainframe访问磁带(Tape).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

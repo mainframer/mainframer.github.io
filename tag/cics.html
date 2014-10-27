@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - CICS</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html"><h3 class="article-title">CICS的TOR,AOR,FOR概念</h3></a>
+<h6 class="subheader" title="2012-09-26T00:00:00">2012-09-26
+</h6>
+
+
+<p>CICS当中<code>TOR，AOR,FOR</code>还有其它*OR什么意思？ </p>
+<ul>
+<li><strong><code>TOR</code></strong> 是TERMINAL OWNING REGION,TOR上只定义TERMINAL，在TOR上定义PCT,REMOTE到AOR。当交易进入TOR后会被路由到对应的AOR去执行。  </li>
+<li><strong><code>AOR</code></strong> 是APPLICATION OWNING REGION，AOR上跑交易和应用程序。  </li>
+<li><strong><code>FOR</code></strong> 是FILE OWNING REGION<br />
+网上搜到老外的解释:    <blockquote>
+<p>Tor is where the terminals are defined, Aor is where the applications are defined and FOR where the files are defined.<br />
+Generally, TORs are the regions that have connection to the terminals (or other connections)<br />
+All the termianal related programs (Translator, co-ordinator) will be coded in TOR and API (Application program interface) will be coded in AOR.<br />
+To put in simple words - screen handling , function keys logic, function keys validations will be in programs coded in TOR and all business logic (valid processing, updating the database) in AOR. <br />
+They are just CICS sytems that are used to split out certain functions and applications into discrete CICS system for easier maintance\administration.Note there is no technical difference between the different region types. 
+Any CICS region could act in any/all of the roles. Customers find it simplifies administration and improves reliability to categorize regions and isolate user applications into separate regions from service regions.  </p>
+<p><strong>总结起来：</strong><br />
+它们都属于CICS的一部分，本质上并没有不同。只是为了功能划分，负载均衡以及便于维护等方面考虑而人为区分开来的。分工不同而已！</p>
+</blockquote>
+</li>
+</ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/cics.html">CICS </a>
+    <a href="http://mainframer.github.io/tag/tor.html">TOR </a>
+    <a href="http://mainframer.github.io/tag/aor.html">AOR </a>
+    <a href="http://mainframer.github.io/tag/for.html">FOR </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/CICS的TOR,AOR,FOR概念.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/OLTP和CICS.html"><h3 class="article-title">OLTP和CICS</h3></a>
+<h6 class="subheader" title="2011-08-07T00:00:00">2011-08-07
+</h6>
+
+
+<h3>OLTP:联机事务处理</h3>
+<p>事务的ACID属性：</p>
+<ul>
+<li>原子性(Atomicity) </li>
+<li>一致性(Consistency) </li>
+<li>孤立性(Isolation) </li>
+<li>持久性(Durability)
+关于OLTP的完整性和可恢复机制,这里举两种情况: 
+<strong><em>a)、</em></strong> 某人从ATM取200块钱，ATM向银行的主机递交请求(主机存储着客户的账户信息)，主机批准且从该人账户上扣去200元，此时ATM发生故障不工作了，此人没拿到钱。<br />
+<strong><em>b)、</em></strong> 某人从ATM取200块钱，ATM向主机递交请求，主机批准并且从客户帐上减去200元，ATM付200元给此人，此时主机保存取款记录的磁盘坏了，取款信息丢失。<br />
+此类问题层出不穷，增加了程序员代码逻辑处理的难度。我们需要一个环境，它能自动处理事务处理中所有可能的失败，使应用开发人员可以集中于商务的应用开发，而不必编写失败处理程序，不必关心通信和硬件等引起的问题。再来看一个问题： <br />
+<strong><em>c)、</em></strong> 航班订票，如果有两个客户在先后时间都要预定某一航班的同一座位，如何避免同一座位被售两次？
+通过锁住记录的方法，使得第二个请求必须等待第一个请求完成，而此时，该座位已经变成已预订状态，自然不会被再次预定。
+各大公司相应地采用事务管理器，如IBM公司的CICS和IMS,EBA Systems的TUXEDO，DEC的ACMS，Transara的Encina灯来实现这些功能 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/oltp.html">OLTP </a>
+    <a href="http://mainframer.github.io/tag/cics.html">CICS </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/OLTP和CICS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/OLTP和CICS.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

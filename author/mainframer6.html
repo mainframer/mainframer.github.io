@@ -68,7 +68,7 @@
 <span class="mo">000002</span> <span class="o">//</span> <span class="s1">&#39;IBMUSER&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/s000-u4088.html">S000 U4088 </a>
 </p>
 
 
@@ -103,7 +103,7 @@
 <span class="no">EXEC</span> <span class="no">CICS</span> <span class="no">ASKTIME ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/cicsming-ling.html">CICS命令 </a>
 </p>
 
 
@@ -132,10 +132,11 @@
 
 
 <h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
-<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/jcl.html">JCL </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
 </p>
 
 
@@ -168,10 +169,11 @@
 </pre></div>
 
 
-<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">Find ALL </a>
 </p>
 
 
@@ -197,10 +199,11 @@
   <span class="s2">&quot;free f(fin)&quot;</span>                                                         
  <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="k">in</span><span class="o">.</span><span class="mi">0</span>        <span class="o">/*</span><span class="kp">loop</span> <span class="k">in</span> <span class="n">file</span> <span class="k">until</span> <span class="n">the</span> <span class="n">last</span> <span class="n">line</span> <span class="n">reached</span> <span class="o">*/</span>           
     <span class="n">one_line</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="k">in</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>                                                    
-    <span class="n">call ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+    <span class="n">call ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
 </p>
 
 
@@ -229,10 +232,12 @@
 <hr />
 <h4>方法二：用第三方脚本实现</h4>
 <p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
-这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/72dao-80lie.html">72到80列 </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
 </p>
 
 
@@ -257,10 +262,11 @@
 <li>REXX中变量无需事前定义  </li>
 <li>Debug REXX:用REXX TRACE或者用interactive debug facility来定位error  </li>
 <li>SAA Procedures Language：REXX的子集，在TSO/E,CICS,IMS等多种环境中应用 </li>
-<li>要运行REXX exec，必须至少有一种可用的<code>Host command environments</code>。默认的是<code>TSO</code>。还有<code>MVS</code>,<code>LINK</code>,<code>LINKMVS</code>,<code>LINKPGM</code>,<code>ATTACH</code>,<code>ATTCHMVS</code>,<code>ATTCHPGM</code>,<code>ISPEXEC</code>,<code>ISREDIT</code>,<code>CONSOLE</code>,<code>CPICOMM</code>,<code>LU62</code>,<code>APPCMVS</code>等等，常用的有 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a>
+<li>要运行REXX exec，必须至少有一种可用的<code>Host command environments</code>。默认的是<code>TSO</code>。还有<code>MVS</code>,<code>LINK</code>,<code>LINKMVS</code>,<code>LINKPGM</code>,<code>ATTACH</code>,<code>ATTCHMVS</code>,<code>ATTCHPGM</code>,<code>ISPEXEC</code>,<code>ISREDIT</code>,<code>CONSOLE</code>,<code>CPICOMM</code>,<code>LU62</code>,<code>APPCMVS</code>等等，常用的有 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">REXX </a>
 </p>
 
 
@@ -287,6 +293,7 @@
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/plibian-yi-qi.html">PLi编译器 </a>
 </p>
 
 
@@ -315,7 +322,7 @@ Completion Code=0CA).
 The current location is PRGM000 ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/cee3201s-abend.html">CEE3201S abend </a>
 </p>
 
 
@@ -346,7 +353,7 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
 如果想同时在多个PDS当中搜索一个字符串，或者多个字符串那么该如何做呢？这时你可能就需要用到JCL来调用<strong><code>ISRSUPC</code></strong>这个utility了。这个<strong><code>ISRSUPC</code></strong>的功能可强大多了，具体可以参照下我之前的文章: &lt;&lt;用ISRSUPC在PDS所有member中搜索指定字符串&gt;&gt;，这里不重复了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/srchforsou-suo.html">SRCHFOR搜索 </a>
 </p>
 
 
@@ -380,11 +387,12 @@ The current location is PRGM000 ...</p></blockquote><p class="subheader">Categor
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/backtrack.html">BackTrack</a></li>
             <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
             <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
             <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/scriptsautomation.html">Scripts/Automation</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
    
         </ul>
 

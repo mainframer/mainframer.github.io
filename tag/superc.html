@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - SuperC</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html"><h3 class="article-title">SuperC SRCHFOR高级选项</h3></a>
+<h6 class="subheader" title="2012-09-11T00:00:00">2012-09-11
+</h6>
+
+
+<p>在<code>ISPF 3.4</code> 选项下面使用<em>SRCHFOR</em>其实可以有高级选项功能的：比如能一次search多个string，比如能选择是否searchn那些已经被<em>MIGRATE</em>的那些dataset等等。
+这里，要在<code>IBMUSER.TEST.GDGRPT</code>的所有世代里面查找:<code>shehui</code>, <code>zhuyi</code>,<code>hao</code>这三个字符串，包括那些已经被migrate的。</p>
+<div class="highlight"><pre><span class="no">DSLIST</span> <span class="o">-</span> <span class="no">Data</span> <span class="no">Sets</span> <span class="no">Matching</span> <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span>                 <span class="no">Row</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">11</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+
+<span class="no">Command</span> <span class="o">-</span> <span class="no">Enter</span> <span class="s2">&quot;/&quot;</span> <span class="n">to</span> <span class="nb">select</span> <span class="n">action</span>                  <span class="no">Message</span>           <span class="no">Volume</span> 
+<span class="o">-------------------------------------------------------------------------------</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span>                       <span class="no">Not</span> <span class="n">searched</span>      <span class="sc">??????</span> 
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0002V00</span>                                <span class="no">XZ8W28</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0003V00</span>                                <span class="no">TXT013</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0004V00</span>                                <span class="no">PEX016</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0005V00</span>                                <span class="no">EXG013</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0006V00</span>                                <span class="no">MIGRAT1</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0007V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0008V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0009V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0010V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0011V00</span>                                <span class="no">YTW002</span><span class="o">+</span>
+</pre></div>
+
+
+<p>在Command栏输入<code>srchfor</code>回车即可看到高级选项对话框:</p>
+<div class="highlight"><pre><span class="no">Command</span> <span class="o">===&gt;</span><span class="n">srchfor</span>                                           <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">enu</span>  <span class="no">Options</span>  <span class="no">View</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Help</span>                             
+<span class="sb">``````````````````````````</span> <span class="no">DSLIST</span> <span class="no">Srchfor</span> <span class="no">Options</span> <span class="sb">```````````````````````````</span>
+<span class="sb">                                                                 End of data </span>
+<span class="sb">                                                                 Command ===&gt;                                                                 </span>
+
+<span class="sb">You are about to search multiple data sets.                                  </span>
+<span class="sb">Specify search string(s) and options and press ENTER to run the search.      </span>
+<span class="sb">Enter the END or the CANCEL command to cancel the search.                    </span>
+<span class="sb">                                                                More:   -    </span>
+<span class="sb">  ==&gt;&#39;SHEHUI&#39;                                                                        </span>
+<span class="sb">  ==&gt;&#39;ZHUYI&#39;                                                                        </span>
+<span class="sb">  ==&gt;&#39;HAO&#39;                                                                        </span>
+
+<span class="sb">Listing DSN: &#39;IBMUSER.SRCHDSL.LIST&#39;                                          </span>
+
+<span class="sb">Select Process      Search              Search              Select Display   </span>
+<span class="sb">Options with /      Migrated            Excluded            Options with /   </span>
+<span class="sb">   Mixed Mode       3  1. None          3  1. Excluded         View output   </span>
+<span class="sb">   Any case            2. First level      2. Non-excluded     Exclude not   </span>
+<span class="sb">   Totals only         3. All              3. Both             found         </span>
+<span class="sb">   First found                                                               </span>
+<span class="sb"> F1=Help        F2=Split       F3=Exit        F4=Auto        F7=Backward     </span>
+<span class="sb"> F8=Forward     F9=Swap       F10=Actions    F12=Cancel                      </span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/superc.html">SuperC </a>
+    <a href="http://mainframer.github.io/tag/srchfor.html">SRCHFOR </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

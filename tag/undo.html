@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - UNDO</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html"><h3 class="article-title">ISPF中使用Ctrl+Z来执行UNDO命令</h3></a>
+<h6 class="subheader" title="2013-04-08T00:00:00">2013-04-08
+</h6>
+
+
+<p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
+首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
+<h5>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h5>
+<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+<span class="nb">exit</span>                                                                  
+</pre></div>
+
+
+<h5>step2: 随便<em>Edit</em>一个<em>dataset</em>,在<em>command</em>栏上面执行命令<code>EDITSET</code>打开<code>Edit and View Settings</code>面板，</h5>
+<p>在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。</p>
+<div class="highlight"><pre>                         <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="no">Settings</span>                          
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                              
+                                                               <span class="ss">More</span><span class="p">:</span>     <span class="o">+</span>
+<span class="no">Settings</span> <span class="k">for</span> <span class="n">current</span> <span class="ow">and</span> <span class="n">future</span> <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="ss">sessions</span><span class="p">:</span>                   
+
+  <span class="no">User</span> <span class="n">session</span> <span class="n">initial</span> <span class="n">macro</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="no">EDITMAC</span> 
+</pre></div>
+
+
+<h5>step3:在<em>command</em>栏上执行<code>KEYS</code>命令调出<em>ISPF</em>键位设置面板，随便找一个<em>PF13</em>至<em>PF24</em>当中你认为最不常用的键，将它和<code>UNDO</code>命令绑定。这里我选择<code>PF18</code>.</h5>
+<div class="highlight"><pre> <span class="no">Key</span>       <span class="no">Definition</span>                                 <span class="no">Format</span>  <span class="no">Label</span>
+ <span class="no">F16</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RETURN</span>                                     <span class="no">SHORT</span>   <span class="no">Return</span>  
+ <span class="no">F17</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RFIND</span>                                      <span class="no">SHORT</span>   <span class="no">Rfind</span>   
+ <span class="no">F18</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">UNDO</span>                                       <span class="no">SHORT</span>   <span class="no">Undo</span>      
+ <span class="sb">```</span>
+
+<span class="sb">#####step4: 在你使用的`</span><span class="no">TN3270</span><span class="sb">`终端的键盘设置里面，将`</span><span class="no">PF18</span><span class="sb">`映射成*Cntl+Z*。最常见的*TN3270*终端是*PCOMM*。</span>
+<span class="sb">这样一来，`</span><span class="no">UNDO</span><span class="sb">`就被默认打开，并且你可以用*Cntl+Z*来做最近一步的撤销动作，就像在windows下面一样。这里要注意，对于还没按下确定键的情况，如果要撤销的快捷键是`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`.关于`</span><span class="no">UNDO</span><span class="sb">`和`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`的区别，看我早些时候的文章:《ISPF中Shift+PageUp和UNDO的区别》  </span>
+<span class="sb">最后，还有一点，除了`</span><span class="no">RECOVERY</span> <span class="no">ON</span><span class="sb">`之外，显然其它的*Edit*命令也可以一并添加到`</span><span class="no">EDITMAC</span><span class="sb">`这个宏里面去，只要你希望它执行。比如：</span>
+<span class="sb">```</span><span class="n">ruby</span>
+<span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+ <span class="s2">&quot;ISREDIT RES&quot;</span>
+ <span class="s2">&quot;ISREDIT HI AUTO&quot;</span>
+<span class="nb">exit</span>                                                                  
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/undo.html">UNDO </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

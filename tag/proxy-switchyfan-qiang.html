@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - proxy switchy翻墙</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html"><h3 class="article-title">Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙</h3></a>
+<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
+</h6>
+
+
+<p>上一篇讲到的是windows下的利用<code>ssh+chrome(chromium)+proxy switchy + Myentunnel</code>翻墙，其实在linux下和windows下没什么区别，都是用ssh代理，只是利用的客户端软件不一样而已。windows下用Myentunnel，linux下我们一般用<code>gSTM</code>。 </p>
+<p>gSTM (Gnome SSH Tunnel Manager) 是一款图形化的 SSH 隧道端口重定向管理工具 点击<a href="http://sourceforge.net/projects/gstm/files">这里</a>下载后安装，设置和之前讲得Myentunnel差不多.也是必填的几个：<code>SSH服务器地址</code>,<code>SSH用户名</code>，<code>SSH密码</code>，<code>SSH端口3022</code>，<code>本地端口7070</code>。
+Proxy switchy的设置请参照我的另一篇文章 &lt;<ssh+myEntunnel+chrome+proxy switchy翻墙>&gt;</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/gstmfan-qiang.html">gSTM翻墙 </a>
+    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">ssh翻墙 </a>
+    <a href="http://mainframer.github.io/tag/proxy-switchyfan-qiang.html">proxy switchy翻墙 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html"><h3 class="article-title">ssh+myEntunnel+chrome+proxy switchy翻墙</h3></a>
+<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
+</h6>
+
+
+<p>在windows/win7下如何翻墙？告诉你答案：<code>ssh+myEntunnel+chrome+proxy switchy</code>插件翻墙。</p>
+<h4>1、注册SSH账号</h4>
+<p>SSH是建立在应用层和传输层基础上的提供可靠传输的安全协议。在这里您首先需要去注册一个SSH代理的账号，一般是几块钱一个月的就挺好的了，当然也有免费注册的，不过免费的可能速度不是很快或者连接不稳定。注册SSH的网址我就不发了，不然就有广告的嫌疑了。自己到网上一搜一堆的那种。要是实在找不到的可以通过邮箱<code>54xiaowoniu@sina.cn</code>跟我联系，我告诉你怎么注册。基本上15分钟搞定。 </p>
+<h4>2、下载MyEntunnel</h4>
+<p>MyEntunnel是用来登录SSH服务器并在本机自动架设一个socks5代理的软件，下载并安装Myentunnel运行。
+在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：<br />
+<img alt="1" src="./../images/myentunnel.jpg" />     </p>
+<p>这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。<br />
+另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/proxy-switchyfan-qiang.html">proxy switchy翻墙 </a>
+    <a href="http://mainframer.github.io/tag/myentunnelfan-qiang.html">myEntunnel翻墙 </a>
+    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">ssh翻墙 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

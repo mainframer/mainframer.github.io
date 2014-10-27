@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - 写写脚本</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX学习笔记.html"><h3 class="article-title">REXX学习笔记</h3></a>
+<h6 class="subheader" title="2012-02-05T00:00:00">2012-02-05
+</h6>
+
+
+<p>最近在学习Rexx脚本，打算做一些自动化。归纳了些点总结下放在这里以备查询。  </p>
+<h3>一些基本概念</h3>
+<ul>
+<li>REXX: <code>REstructured eXtended eXecutor (REXX) language</code> 扩充结构化执行语言  </li>
+<li>REXX中变量无需事前定义  </li>
+<li>Debug REXX:用REXX TRACE或者用interactive debug facility来定位error  </li>
+<li>SAA Procedures Language：REXX的子集，在TSO/E,CICS,IMS等多种环境中应用 </li>
+<li>要运行REXX exec，必须至少有一种可用的<code>Host command environments</code>。默认的是<code>TSO</code>。还有<code>MVS</code>,<code>LINK</code>,<code>LINKMVS</code>,<code>LINKPGM</code>,<code>ATTACH</code>,<code>ATTCHMVS</code>,<code>ATTCHPGM</code>,<code>ISPEXEC</code>,<code>ISREDIT</code>,<code>CONSOLE</code>,<code>CPICOMM</code>,<code>LU62</code>,<code>APPCMVS</code>等等，常用的有 ...</li></ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/rexx.html">REXX </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX学习笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX学习笔记.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir自动为优酷视频刷顶.html"><h3 class="article-title">Watir自动为优酷视频刷顶</h3></a>
+<h6 class="subheader" title="2011-12-02T00:00:00">2011-12-02
+</h6>
+
+
+<p>很喜欢优酷上面的一个节目，想帮帮它早日升到排行榜怎么办？写个脚本好了。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">manage</span><span class="o">.</span><span class="n">timeouts</span><span class="o">.</span><span class="n">implicit_wait</span> <span class="o">=</span><span class="mi">60</span>                  <span class="c1">#默认的等待页面加载30秒若还未加载完成则会跑出timeout异常，这里可以修改成60秒</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s1">&#39;http://v.youku.com/v_show/id_XNTE5MTY3NzI4.html&#39;</span>    <span class="c1">#假设我现在要为这个视频刷“顶”</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">100</span>                                             <span class="c1">#假设我这里要&quot;顶 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/shua-shi-pin.html">刷视频 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir自动为优酷视频刷顶.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir自动为优酷视频刷顶.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Ruby分割文件.html"><h3 class="article-title">Ruby分割文件</h3></a>
+<h6 class="subheader" title="2011-08-20T00:00:00">2011-08-20
+</h6>
+
+
+<p>自己小试的ruby程序,用于将一个<code>dictionary.txt</code>分割成多个小一点的子文件，不然每次都操作<code>dictionary.txt</code>显得很笨重。想把<code>dictionary.txt</code>按照字母首a~z，每个首字母再按长度分为长度为1~3的比如a_1to3.txt，长度为4的a_4.txt，长度为5的a_5.txt，长度为6的a_6.txt，长度为7的a_7.txt，长度为8的a_8.txt，以及长度大于8的others。这样，dictionary.txt最后被分割成了6x26+1=157个子文件，就不会像处理dictionary.txt那样笨重了，毕竟CPU有限。<br />
+为啥wordpress里面粘贴代码都只有黑乎乎的一片呢，可爱的语法高亮在哪里？还是喜欢五颜六色的代码段啊，上图吧:<br />
+<img alt="1" src="./../images/ruby_spilt_file.jpg" />     </p>
+<p>只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ruby.html">ruby </a>
+    <a href="http://mainframer.github.io/tag/fen-ge-da-wen-jian.html">分割大文件 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Ruby分割文件.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Ruby分割文件.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir重新连接路由器.html"><h3 class="article-title">Watir重新连接路由器</h3></a>
+<h6 class="subheader" title="2010-12-12T00:00:00">2010-12-12
+</h6>
+
+
+<p>有些网站对IP有所限制，如果你不想用代理IP的话，那么有一个看起来有点傻但却很简单的办法可以起到更换IP的效果——将路由器断线重连。因为家用宽带路由器的IP基本上是由运营商动态分配的，所以你只要登陆路由器，点击断线，等内网发送数据包请求至外网的时候，路由器重新连接上，IP也随之改变了。这方法虽然笨，但也实用。下面是用Watir脚本实现的，仅供参考。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span><span class="o">=</span><span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">start</span> <span class="s1">&#39;http://admin:admin@192.168.1.1&#39;</span>   <span class="c1">#用此方法可以避开用户密码登陆框 用户名密码这里都是admin</span>
+<span class="n">b</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span><span class="s2">&quot;bottomLeftFrame&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s1">&#39;a0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>     <span class="c1">#点击 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/jiao-ben.html">脚本 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir重新连接路由器.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir重新连接路由器.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html"><h3 class="article-title">Watir收集最快的代理服务器ip列表</h3></a>
+<h6 class="subheader" title="2010-09-10T00:00:00">2010-09-10
+</h6>
+
+
+<p>这个脚本所做的事情是从www.cnproxy.com网站上取得最新的10页代理服务器的ip，将它们写到proxy_ip_list.txt文本文件中去。包括每一个代理服务器的响应时间。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">time1</span><span class="o">=</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<span class="n">proxy_ip_lists</span><span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;proxy_ip_lists.txt&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">char2int</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span> <span class="n">str</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span>
+      <span class="k">if</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;z&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;3&#39;</span>
+      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/jiao-ben.html">脚本 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir设置代理.html"><h3 class="article-title">Watir设置代理</h3></a>
+<h6 class="subheader" title="2010-08-20T00:00:00">2010-08-20
+</h6>
+
+
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">profile</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">::</span><span class="no">Firefox</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span>
+<span class="n">profile</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">::</span><span class="no">Proxy</span><span class="o">.</span><span class="n">new</span> <span class="ss">:http</span> <span class="o">=&gt;</span> <span class="s1">&#39;my.proxy.com:8080&#39;</span><span class="p">,</span> <span class="ss">:ssl</span> <span class="o">=&gt;</span> <span class="s1">&#39;my.proxy.com:8080&#39;</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span> <span class="ss">:firefox</span><span class="p">,</span> <span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="n">profile</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/jiao-ben.html">脚本 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir设置代理.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir设置代理.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir登陆谷歌搜索关键字.html"><h3 class="article-title">Watir登陆谷歌搜索关键字</h3></a>
+<h6 class="subheader" title="2010-07-31T00:00:00">2010-07-31
+</h6>
+
+
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8    #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>  <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="k">begin</span>
+ <span class="no">Timeout</span><span class="o">::</span><span class="n">timeout</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="k">do</span> <span class="o">|</span><span class="n">timeout_length</span><span class="o">|</span>  <span class="c1">#在国内，google经常被墙导致连接超时</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s1">&#39;http://www.google.com.hk/webhp?hl=zh-CN&amp;sourceid=cnhp&#39;</span>
+ <span class="k">end</span>
+<span class="k">rescue</span> <span class="no">Timeout</span><span class="o">::</span><span class="no">Error</span> <span class="o">=&gt;</span> <span class="n">e</span>
+   <span class="nb">puts</span> <span class="s2">&quot;page is not completed loaded, program will go on procesing ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/jiao-ben.html">脚本 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir登陆谷歌搜索关键字.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir登陆谷歌搜索关键字.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir登陆163邮箱.html"><h3 class="article-title">Watir登陆163邮箱</h3></a>
+<h6 class="subheader" title="2010-07-29T00:00:00">2010-07-29
+</h6>
+
+
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8    #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>  <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span><span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span>  <span class="s2">&quot;http://mail.163.com/&quot;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">clear</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;your_username&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;your_password&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:type</span><span class="p">,</span> <span class="s2">&quot;submit&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+<span class="nb">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> 
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/jiao-ben.html">脚本 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir登陆163邮箱.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir登陆163邮箱.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 2 of 2</h6>
+
+<p>
+            <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">&laquo; Prev</a>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

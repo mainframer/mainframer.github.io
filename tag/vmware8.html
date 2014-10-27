@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - vmware8</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/vmware8下给windows8安装vmware tools.html"><h3 class="article-title">vmware8下给windows8安装vmware tools</h3></a>
+<h6 class="subheader" title="2011-09-17T00:00:00">2011-09-17
+</h6>
+
+
+<p>昨晚在Vmware8下安装了windows8，今天打开发现没有声音。晕，竟然忘了安装<code>Vmware tool</code>了！这里先说一下安装<code>VMware tool</code>有什么好处：</p>
+<ul>
+<li>解决windows8在vmware8下没有声音的问题；</li>
+<li>解决不能在自身系统和虚拟机vmware8之间拷贝，粘贴，移动数据和文件的问题；</li>
+<li>解决共享文件夹在vmware8的windows8下不能使用的问题；</li>
+<li>其他好处；</li>
+</ul>
+<h5>下面简单的说说如何在Vmware8下为<code>window8-dev-preview(开发者预览版)</code>安装<code>vmware tool</code>。</h5>
+<p><strong>1、</strong> 安装完<code>VMware Workstation 8.0.0.471780</code>之后，在安装目录下自带了适合各个系统的<code>vmware tools</code>，这里我们当然选用<code>windows.iso</code>啦！在<em>windows8</em>虚拟机设置的光盘(CD/DVD)设置里面输入<code>windows.iso</code>的路径，比如我的是：<code>D:\SOFTWARE\VMWARE\windows.iso</code>，勾选：<code>Connected at Power on</code>，启动windows8系统；
+<img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8.jpg" />          </p>
+<p><strong>2、</strong> 进入windows8--&gt;Desktop--&gt;Computer，发现虚拟光驱以正确加载，你要做的就是双击光盘里面的setup，安装vmware tool就可以了。
+<img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-preview.jpg" />     </p>
+<p><strong>3、</strong> 重启系统，发现windows8声音有了，可以自由在虚拟机和电脑之间移动传输数据了，可以自由设置共享文件夹了(<em>如下图所示</em>)，虚拟机和电脑之间的共享文件夹可以点击图上面的"Map Network Drive"来实现。
+<img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-share-folder.jpg" />        </p>
+<p>自此，windows8在vmware虚拟机下面没有声音等系列问题得到解决。<br />
+(如果本文对你有帮助，欢迎收藏转载，谢谢)</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/vmware8.html">vmware8 </a>
+    <a href="http://mainframer.github.io/tag/win8.html">win8 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/vmware8下给windows8安装vmware tools.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/虚拟机vmware8下安装体验win8开发者预览版.html"><h3 class="article-title">虚拟机vmware8下安装体验win8开发者预览版</h3></a>
+<h6 class="subheader" title="2011-09-17T00:00:00">2011-09-17
+</h6>
+
+
+<p>这两天微软发布了windows8的开发者预览版本(dev preview edition)提供下载,首日的下载量就突破50万。虽然这是一个被阉割过的windows8版本，我还是想下载下来安装在虚拟机上试试。
+首先应该去微软官方网站下载win8的镜像ISO文件，这里是官方下载地址，我下载的是WindowsDeveloperPreview-32bit-English.iso。
+<a href="http://msdn.microsoft.com/en-us/windows/apps/br229516">WindowsDeveloperPreview下载地址</a><br />
+原先我的vmware版本是7.1.4，但是在安装win8的时候一开始就碰到了·</p>
+<blockquote>
+<p>"your pc ran into a problem that it couldn't handle,and now it needs to restart"·
+</p>
+</blockquote>
+<p>正所谓出师不利:<br />
+<img alt="1" src="./../images/win8-dev-pre-blue-screen.jpg" />       </p>
+<p>解决办法是到vmware官方网站<a href="http://www.vmware.com">http://www.vmware.com</a>去下载最新的<code>Vmware Workstation 8 .0 build 471780</code>。也是这两天才最新发布的，估计是为了迎接<code>win8-dev-pre ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/vmware8.html">vmware8 </a>
+    <a href="http://mainframer.github.io/tag/win8.html">win8 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/虚拟机vmware8下安装体验win8开发者预览版.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/虚拟机vmware8下安装体验win8开发者预览版.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

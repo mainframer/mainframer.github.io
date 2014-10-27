@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - Adobe reader</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html"><h3 class="article-title">Backtrack5安装Adobe reader看PDF</h3></a>
+<h6 class="subheader" title="2011-08-06T00:00:00">2011-08-06
+</h6>
+
+
+<p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
+<h3>1、下载压缩包到/tmp</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
+</pre></div>
+
+
+<h3>2、下载好之后解压:</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
+<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
+<span class="no">AdobeReader</span><span class="o">/</span>   
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">INSTALL</span>   
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span>  
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span>  
+</pre></div>
+
+
+<p>解压后在/tmp路径下生成了AdobeReader的文件夹  </p>
+<h3>3、安装</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  cd AdobeReader    </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ls  </span>
+<span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span> <span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span> <span class="no">INSTALL</span> <span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ./INSTALL   </span>
+<span class="no">This</span> <span class="n">installation</span> <span class="n">requires</span> <span class="mi">145</span> <span class="no">MB</span> <span class="n">of</span> <span class="n">free</span> <span class="n">disk</span> <span class="n">space</span><span class="o">.</span>  
+<span class="no">Enter</span> <span class="n">installation</span> <span class="n">directory</span> <span class="k">for</span> <span class="no">Adobe</span> <span class="no">Reader</span> <span class="mi">9</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">2</span> <span class="o">[</span><span class="sr">/opt]  #直接回车  </span>
+<span class="sr">/o</span><span class="n">pt</span>  
+<span class="no">Installing</span> <span class="n">platform</span> <span class="n">independent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Installing</span> <span class="n">platform</span> <span class="n">dependent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">libraries</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">desktop</span> <span class="ow">and</span> <span class="n">menu</span> <span class="n">icons</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">the</span> <span class="n">browser</span> <span class="n">plugin</span> <span class="o">...</span> <span class="no">Done</span>  
+</pre></div>
+
+
+<p>好了，安装到/opt了，这时桌面右上角Applications——Office里面就多了Adobe Reade 9，就可以看pdf了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/adobe-reader.html">Adobe reader </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

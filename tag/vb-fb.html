@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - VB FB</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html"><h3 class="article-title">SORT:VB变长转FB定长,输出对齐</h3></a>
+<h6 class="subheader" title="2012-07-25T00:00:00">2012-07-25
+</h6>
+
+
+<p>最近接触的项目，用的SORT的地方较多，准备写几篇sort的:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">STEP001</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4096</span><span class="n">K</span>                      
+<span class="sr">//</span><span class="no">SYSOUT</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                        
+<span class="sr">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">SORTIN</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                           
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">SORTOUT</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>                   
+<span class="sr">//</span>            <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>      
+<span class="sr">//</span>            <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>                
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="o">*</span>                                                   
+  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">COPY</span>                                             
+  <span class="no">INCLUDE</span> <span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="no">CH</span><span class="p">,</span><span class="no">EQ</span><span class="p">,</span><span class="n">C</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>                                
+  <span class="no">OUTFIL</span> <span class="no">VTOF</span><span class="p">,</span>                                                 
+  <span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="no">JFY</span><span class="o">=</span><span class="p">(</span><span class="no">SHIFT</span><span class="o">=</span><span class="no">LEFT</span><span class="p">),</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">36</span><span class="n">C</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  
+<span class="sr">/*                                                             </span>
+</pre></div>
+
+
+<p><code>SORTIN</code>是<code>LRECL=4000</code>的VB格式，<code>SORTOUT</code>是<code>LRECL=80</code>的FB格式。Sort条件是第1位为'B'。输出格式：对于SORTIN中所有符合第1位为'B'的那些record，分别取其第2位开始的15位(左对齐),8开始的4位，37开始的3位，96开始的20位，118开始的2位。再加上36个末尾空格，组装成80长度的输出。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/sort.html">SORT </a>
+    <a href="http://mainframer.github.io/tag/vb-fb.html">VB FB </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/SORT:VB变长转FB定长,输出对齐.html#disqus_thread">comments</a></p>            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

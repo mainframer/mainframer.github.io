@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - FIND ALL</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html"><h3 class="article-title">ISPF-只显示含关键字的所有行</h3></a>
+<h6 class="subheader" title="2012-09-07T00:00:00">2012-09-07
+</h6>
+
+
+<p>命令：</p>
+<blockquote>
+<p>X ALL; 
+FIND keyword ALL;
+</p>
+</blockquote>
+<p>比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;</p>
+<div class="highlight"><pre><span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TESTJCL</span><span class="p">(</span><span class="no">TESTJOB</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">9</span>         <span class="mi">4</span> <span class="no">CHARS</span> <span class="s1">&#39;DT0907&#39;</span> 
+ <span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">find</span> <span class="n">dt0907</span> <span class="n">all</span>                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+ <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">524</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000525</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">FILEOUTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>   
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span> <span class="mi">31</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000557</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">NAMEACTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>   
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">176</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000734</span> <span class="o">//</span><span class="no">OUT</span>     <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">USERACTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>     
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span> <span class="mi">40</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000775</span> <span class="o">//</span><span class="no">NTIOUOUT</span> <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">NTIONOUT</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">),</span>   
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span> <span class="mi">75</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+</pre></div>
+
+
+<h5>2013-05-12补充：</h5>
+<p>另外一种方法： <code>X DT0907 ALL; Flip;</code> </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">FIND ALL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
+<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
+</h6>
+
+
+<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
+<blockquote>
+<p>FIND ',' ALL</p>
+<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
+既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
+编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
+</blockquote>
+<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
+<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
+<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
+<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
+<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
+</pre></div>
+
+
+<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">Find ALL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunix.html">Linux/Unix</a></li>
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
