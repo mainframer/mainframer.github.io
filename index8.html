@@ -47,44 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/COBOL程序典型结构.html"><h3 class="article-title">COBOL程序典型结构</h3></a>
-<h6 class="subheader" title="2011-10-02T00:00:00">2011-10-02
-</h6>
-
-
-<p>一个典型的COBOL程序结构是：程序由许多‘部’组成，每个‘部’可以包含多个‘节’  </p>
-<h4>COBOL PROGRAM (程序)</h4>
-<h4>DIVISION(部)</h4>
-<h4>SECTION(节)</h4>
-<h4>PARAGRAPH(段)</h4>
-<h4>SENTENCE(句子)</h4>
-<h4>STATEMENT(语句)</h4>
-<p>整个COBOL程序由4个'部'(DIVISION)组成：</p>
-<blockquote>
-<p>Identification Division  标识部
-Environment Division 环境部 
-Data Division 数据部
-Procedure Division 过程部 </p>
-<p>用一句话介绍这四个部：标志部提供作者和编译器信息；环境部提供程序运行的环境；数据部描述程序处理的绝大部分数据；过程部描述对数据部描述的数据的操作算法:</p>
-</blockquote>
-<h4>Identification Division(标识部)--主要是程序和作者名</h4>
-<div class="highlight"><pre><span class="no">IDENTIFICATION</span> <span class="no">DIVISION</span><span class="o">.</span>
-<span class="no">PROGRAM</span><span class="o">-</span><span class="no">ID ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/coboljie-gou.html">COBOL结构 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/COBOL程序典型结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序典型结构.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/提交JCL的4种方式.html"><h3 class="article-title">提交JCL的4种方式</h3></a>
 <h6 class="subheader" title="2011-10-01T00:00:00">2011-10-01
 </h6>
@@ -351,6 +313,36 @@ Procedure Division 过程部 </p>
 
 
 <p><a href="http://mainframer.github.io/articles/BackTrack5 R1发布.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BackTrack5 R1发布.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html"><h3 class="article-title">IBM File Manager for z/os 续(一)</h3></a>
+<h6 class="subheader" title="2011-09-04T00:00:00">2011-09-04
+</h6>
+
+
+<p>上一次我简单介绍了下大机平台上的一个强大的文件查看/编辑工具，这里我要介绍几个在用<code>FileManager</code>查看/编辑 QSAM顺序文件的时候的小技巧。
+<img alt="1" src="./../images/ibm-file-manager-qsam.jpg" />  上图显示的是employee的信息文件，比较小，只有几条记录。但是一般在生产环境上，数据都有好几百万条，如果你很傻的直接FIND 关键字来查找，那么抛开CPU耗费不说，你自己也将耗费很长的一段时间来等待搜索结果出来，所以，看看这篇文章，学会几个<code>*File Manager*</code>的使用技巧还是有必要的(如果你没功夫去看IBM红宝书的话)。</p>
+<h3>1、只查找指定字段(Field)</h3>
+<h5>例：只在ACCT字段查找关键字“IT”</h5>
+<p>命令： <code>F IT #6</code>     (可以把#6看成ACCT的别名)</p>
+<h5>例：只在ACCT字段和EP_NAME字段查找关键字"IT"</h5>
+<p>命令： <code>F IT #6 #8</code></p>
+<h3>2、只查找指定几列 (Column)</h3>
+<h5>例：只在第8至20列查找关键字"AN"</h5>
+<p>命令 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/file-manager.html">File Manager </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

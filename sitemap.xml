@@ -5,48 +5,41 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/index.html</loc>
-<lastmod>2014-11-01T20:01:09-00:00</lastmod>
+<lastmod>2014-11-01T20:07:30-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/archives.html</loc>
-<lastmod>2014-11-01T20:01:09-00:00</lastmod>
+<lastmod>2014-11-01T20:07:30-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tags.html</loc>
-<lastmod>2014-11-01T20:01:09-00:00</lastmod>
+<lastmod>2014-11-01T20:07:30-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/categories.html</loc>
-<lastmod>2014-11-01T20:01:09-00:00</lastmod>
+<lastmod>2014-11-01T20:07:30-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>http://mainframer.github.io/articles/Python学习进度记录.html</loc>
-<lastmod>2014-10-30T00:00:00-00:00</lastmod>
+<loc>http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html</loc>
+<lastmod>2014-11-01T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html</loc>
-<lastmod>2014-10-26T00:00:00-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1</priority>
-</url>
-
-<url>
-<loc>http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html</loc>
 <lastmod>2014-10-26T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
@@ -1027,7 +1020,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/category/xie-xie-jiao-ben.html</loc>
-<lastmod>2014-10-30T00:00:00+08:06</lastmod>
+<lastmod>2014-11-01T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1182,13 +1175,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://mainframer.github.io/tag/50ge-zhou.html</loc>
 <lastmod>2011-12-12T00:00:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>http://mainframer.github.io/tag/python.html</loc>
-<lastmod>2014-10-30T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1377,7 +1363,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/tag/beautifulsoup.html</loc>
-<lastmod>2014-10-26T00:00:00+08:06</lastmod>
+<lastmod>2014-11-01T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1559,7 +1545,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/tag/requests.html</loc>
-<lastmod>2014-10-26T00:00:00+08:06</lastmod>
+<lastmod>2014-11-01T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -2035,7 +2021,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/author/mainframer.html</loc>
-<lastmod>2014-10-30T00:00:00+08:06</lastmod>
+<lastmod>2014-11-01T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

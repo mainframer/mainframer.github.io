@@ -47,43 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
-<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
-</h6>
-
-
-<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
-<blockquote>
-<p>FIND ',' ALL</p>
-<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
-既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
-编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
-</blockquote>
-<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
-<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
-<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
-<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
-<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
-</pre></div>
-
-
-<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
-    <a href="http://mainframer.github.io/tag/find-all.html">Find ALL </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html"><h3 class="article-title">Rexx顺序处理文件所有行</h3></a>
 <h6 class="subheader" title="2012-02-17T00:00:00">2012-02-17
 </h6>
@@ -353,14 +316,46 @@
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Watir登陆163邮箱.html"><h3 class="article-title">Watir登陆163邮箱</h3></a>
+<h6 class="subheader" title="2010-07-29T00:00:00">2010-07-29
+</h6>
+
+
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8    #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>  <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="n">b</span><span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span>  <span class="s2">&quot;http://mail.163.com/&quot;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">clear</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;your_username&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;your_password&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:type</span><span class="p">,</span> <span class="s2">&quot;submit&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+<span class="nb">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> 
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
+    <a href="http://mainframer.github.io/tag/jiao-ben.html">脚本 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Watir登陆163邮箱.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir登陆163邮箱.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 2 of 3</h6>
+<h6 class="subheader">Page 2 of 2</h6>
 
 <p>
             <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">&laquo; Prev</a>
 
-        <a href="http://mainframer.github.io/category/xie-xie-jiao-ben3.html">Next &raquo;</a>
 </p>
 </div>
 

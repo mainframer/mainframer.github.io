@@ -47,44 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/VB Script现学现用.html"><h3 class="article-title">VB Script现学现用</h3></a>
-<h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
-</h6>
-
-
-<p>这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  <br />
-(<em>注意</em>：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  </p>
-<div class="highlight"><pre><span class="n">dim</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">yyyymm</span><span class="p">,</span> <span class="n">to_dte_</span>       <span class="err">&#39;定义变量</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">user_id</span> <span class="o">=</span> <span class="n">wscript</span><span class="p">.</span><span class="n">arguments</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="err">&#39;接收批处理传过来的第一个参数</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">CAP_user_id</span> <span class="o">=</span> <span class="n">Ucase</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>       <span class="err">&#39;转换成大写</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">Select</span> <span class="n">Case</span> <span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>        <span class="err">&#39;</span><span class="n">Select</span><span class="o">/</span><span class="n">Case</span><span class="err">的用法</span> <span class="err">和</span> <span class="err">字符串截取的方法</span>                                         
-<span class="n">Case</span> <span class="s">&quot;01&quot;</span>   
-    <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>  
-<span class="n">Case</span> <span class="s">&quot;02&quot;</span>                          <span class="err">&#39;</span><span class="n">If</span><span class="o">-</span><span class="n">Then</span><span class="err">的用法，闰年的判断方法，</span><span class="o">=</span><span class="p">,</span><span class="o">&lt;&gt;</span><span class="p">,</span><span class="n">Mod</span><span class="err">的用法 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/vb-script.html">VB Script </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/VB Script现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/VB Script现学现用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html"><h3 class="article-title">mainframe平台报表自动化方案实现</h3></a>
 <h6 class="subheader" title="2013-03-25T00:00:00">2013-03-25
 </h6>
@@ -392,6 +354,42 @@
 
 
 <p><a href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html"><h3 class="article-title">IBM DebugTool的Source Identification Panel</h3></a>
+<h6 class="subheader" title="2012-12-26T00:00:00">2012-12-26
+</h6>
+
+
+<p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:</p>
+<blockquote>
+<p>SOURCE
+or 
+LIST
+</p>
+</blockquote>
+<p>这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。</p>
+<div class="highlight"><pre>                 <span class="no">Source</span> <span class="no">Identification</span> <span class="no">Panel</span>                                 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                                  
+
+<span class="no">Compile</span> <span class="no">Unit</span>              <span class="no">Listing</span><span class="o">/</span><span class="no">Source</span> <span class="no">File</span>                          <span class="no">Display</span>
+<span class="o">-------------------------</span> <span class="o">--------------------------------------------</span> <span class="o">-------</span>
+<span class="no">TESTPGM1</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB1</span><span class="p">(</span><span class="no">TETPGM1</span><span class="p">)</span>                <span class="n">Y</span>  
+<span class="no">TESTPGM2</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB2</span><span class="p">(</span><span class="no">TETPGM2</span><span class="p">)</span>                <span class="n">Y</span> 
+<span class="no">TESTPGM3</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB3</span><span class="p">(</span><span class="no">TETPGM3 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/debugtool.html">DebugTool </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

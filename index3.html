@@ -47,42 +47,6 @@
 
 
             <article>
-                <a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html"><h3 class="article-title">IBM DebugTool的Source Identification Panel</h3></a>
-<h6 class="subheader" title="2012-12-26T00:00:00">2012-12-26
-</h6>
-
-
-<p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:</p>
-<blockquote>
-<p>SOURCE
-or 
-LIST
-</p>
-</blockquote>
-<p>这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。</p>
-<div class="highlight"><pre>                 <span class="no">Source</span> <span class="no">Identification</span> <span class="no">Panel</span>                                 
-<span class="no">Command</span> <span class="o">===&gt;</span>                                                                  
-
-<span class="no">Compile</span> <span class="no">Unit</span>              <span class="no">Listing</span><span class="o">/</span><span class="no">Source</span> <span class="no">File</span>                          <span class="no">Display</span>
-<span class="o">-------------------------</span> <span class="o">--------------------------------------------</span> <span class="o">-------</span>
-<span class="no">TESTPGM1</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB1</span><span class="p">(</span><span class="no">TETPGM1</span><span class="p">)</span>                <span class="n">Y</span>  
-<span class="no">TESTPGM2</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB2</span><span class="p">(</span><span class="no">TETPGM2</span><span class="p">)</span>                <span class="n">Y</span> 
-<span class="no">TESTPGM3</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB3</span><span class="p">(</span><span class="no">TETPGM3 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/debugtool.html">DebugTool </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html"><h3 class="article-title">PL/I和COBOL如何取得当天的日期</h3></a>
 <h6 class="subheader" title="2012-12-10T00:00:00">2012-12-10
 </h6>
@@ -362,6 +326,39 @@ Generally, TORs are the regions ...</p></blockquote></li></ul><p class="subheade
 
 
 <p><a href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html"><h3 class="article-title">ISPF-只显示含关键字的所有行</h3></a>
+<h6 class="subheader" title="2012-09-07T00:00:00">2012-09-07
+</h6>
+
+
+<p>命令：</p>
+<blockquote>
+<p>X ALL; 
+FIND keyword ALL;
+</p>
+</blockquote>
+<p>比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;</p>
+<div class="highlight"><pre><span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TESTJCL</span><span class="p">(</span><span class="no">TESTJOB</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">9</span>         <span class="mi">4</span> <span class="no">CHARS</span> <span class="s1">&#39;DT0907&#39;</span> 
+ <span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">find</span> <span class="n">dt0907</span> <span class="n">all</span>                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+ <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">524</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000525</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">FILEOUTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">FIND ALL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

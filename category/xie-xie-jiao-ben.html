@@ -46,30 +46,47 @@
         
 
             <article>
-                <a href="http://mainframer.github.io/articles/Python学习进度记录.html"><h3 class="article-title">Python学习进度记录</h3></a>
-<h6 class="subheader" title="2014-10-30T00:00:00">2014-10-30
+                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html"><h3 class="article-title">requests+BeautifulSoup爬取双色球历史数据</h3></a>
+<h6 class="subheader" title="2014-11-01T00:00:00">2014-11-01
 </h6>
 
 
-<p>记录一下，督促自己Python的学习，白天要上班，只能利用晚上和周末的时间学习。</p>
-<ul>
-<li>2014-10-04: 下载安装Pycharm，开始学习Python。</li>
-<li>2014-10-07：Commit学习进度到GitHub主页:
-<a href="http://github.com/mainframer/Mainframer-Learn-Python">Mainframer learn Python</a>, 包括Computing,Database,I/O,Modules,Networking,Performance,Security,Web,Spider等分类</li>
-<li>2014-10--8:  学习完 <a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md">零基础学Python--By 老齐</a></li>
-<li>2014-10-10: 学习完 <a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">廖雪峰的Python教程</a></li>
-<li>2014-10-23: 将原先的博客从Heroku迁徙到GitHub Pages，利用Pelican + Markdown + GitHub Pages来写博客。Pelican是Python写的静态博客生成器。</li>
-<li>2014-10-26: 用requests和BeautifulSoup写了个爬取v2ex.com所有帖子，作者，时间的初级爬虫</li>
-<li>2014-10-29: 开始用Python作为主语言来自动化公司的测试工作。</li>
-</ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习02：2014-11-01</span>
+<span class="c">#http://baidu.lecai.com/lottery/draw/list/50</span>
+<span class="c">#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量</span>
+<span class="c">#通过观察，发现该彩票网站上面包含2003～2014的数据，其url规律是：http://baidu.lecai.com/lottery/draw/list/50?d=2003-01-01</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s">&#39;双色球2003-2014历史数据.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w+&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="mi">2015</span><span class="p">):</span>
+        <span class="n">req_html_doc</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;http://baidu.lecai.com/lottery/draw/list/50?d=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;-01-01&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">my_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">req_html_doc</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">my_soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&#39;tr&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">reg_lottery_date</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;td class=&quot;td1&quot;&gt;(.*)&lt;/td&gt;&#39;</span><span class="p">)</span>  <span class="c"># &lt;td class=&quot;td1&quot;&gt;2013-12-31&lt;/td&gt;</span>
+            <span class="n">lottery_date</span> <span class="o">=</span> <span class="n">reg_lottery_date</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="n">reg_lottery_qihao</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;a href=&quot;(.*)&quot;&gt;(.*)&lt;/a&gt;&#39;</span><span class="p">)</span>   <span class="c">#&lt;a href=&quot;/lottery/draw/view/50?phase=2013154&quot;&gt;2013154&lt;/a&gt;</span>
+            <span class="n">lottery_qihao</span> <span class="o">=</span> <span class="n">reg_lottery_qihao</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="n">reg_lottery_haoma</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;span class=&quot;ball_[12]&quot;&gt;(.*)&lt;/span&gt;&#39;</span><span class="p">)</span> <span class="c"># &lt;span class=&quot;ball_1&quot;&gt;07&lt;/span&gt; 6个ball_1红球，1个ball_2篮球</span>
+            <span class="n">lottery_haoma</span> <span class="o">=</span> <span class="n">reg_lottery_haoma</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="n">reg_lottery_amount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;td class=&quot;td4&quot;&gt;(.*)&lt;/td&gt;&#39;</span><span class="p">)</span> <span class="c">#&lt;td class=&quot;td4&quot;&gt;67,728,980&lt;/td&gt;</span>
+            <span class="n">lottery_amount</span> <span class="o">=</span> <span class="n">reg_lottery_amount</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lottery_qihao</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">out_line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_date</span><span class="p">)</span> <span class="o">+</span> <span class="n">lottery_qihao</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_haoma</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_amount</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out_line</span><span class="p">)</span>
+</pre></div>
+
+
+<p>结果文件保存在 <a href="./../files/双色球2003-2014历史数据.txt">双色球2003-2014历史数据.txt</a></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
-    <a href="http://mainframer.github.io/tag/python.html">Python </a>
+    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
 </p>
 
 
 
-<p><a href="http://mainframer.github.io/articles/Python学习进度记录.html#disqus_thread">comments</a></p>            </article>
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html#disqus_thread">comments</a></p>            </article>
 
 
                 <hr  class="gradient"/>
@@ -102,33 +119,6 @@
 
 
 <p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html"><h3 class="article-title">requests+BeautifulSoup爬取双色球历史数据</h3></a>
-<h6 class="subheader" title="2014-10-26T00:00:00">2014-10-26
-</h6>
-
-
-<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
-<div class="highlight"><pre><span class="c">#练习02：2014-11-01</span>
-<span class="c">#http://baidu.lecai.com/lottery/draw/list/50</span>
-<span class="c">#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量</span>
-<span class="c">#通过观察，发现该彩票网站上面包含2003～2014的数据，其url规律是：http://baidu.lecai.com/lottery/draw/list/50?d=2003-01-01</span>
-<span class="k">if ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
-    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -363,9 +353,46 @@
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
+<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
+</h6>
+
+
+<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
+<blockquote>
+<p>FIND ',' ALL</p>
+<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
+既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
+编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
+</blockquote>
+<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
+<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
+<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
+<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
+<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
+</pre></div>
+
+
+<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">Find ALL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 1 of 3</h6>
+<h6 class="subheader">Page 1 of 2</h6>
 
 <p>
 
