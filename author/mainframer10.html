@@ -47,6 +47,91 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/新建GDG世代数据集.html"><h3 class="article-title">新建GDG世代数据集</h3></a>
+<h6 class="subheader" title="2011-08-25T00:00:00">2011-08-25
+</h6>
+
+
+<p>如何新建一个GDG base? 一种方法是用IDCAMS utility来建,只需提交一个JCL即可。看图：<br />
+<img alt="1" src="./../images/create-gdg-base.jpg" />       </p>
+<p>其中，LIMIT(10)指定了生成GDG 的世代数(generation number)，简单吧！</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建GDG世代数据集.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建GDG世代数据集.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Google Adsense申请.html"><h3 class="article-title">Google Adsense申请</h3></a>
+<h6 class="subheader" title="2011-08-24T00:00:00">2011-08-24
+</h6>
+
+
+<p>今天打开gmail竟然看到有一封来自adsense-support的信而且开头是“恭喜您！”，着实有点吃惊呐！前段时间百度了一番，都说网站要满6个月才可以申请成功，我这一个月不到就让我通过了，估计看到我博客更新地挺频繁并且大部分都原创的份儿上了。嗯，不错，看来凡事还是得 “尽人事知天命” 啊。
+附上邮件内容，都不知道怎么弄，有空在研究了，最近工作也忙啊！  </p>
+<blockquote>
+<p>恭喜您！</p>
+</blockquote>
+<p>您的 Google AdSense 申请已获得批准。要启动帐户并开始使用 AdSense，请按以下步骤操作。或者，如果您希望了解新的 AdSense 发布商需要注意的各项相关事宜，请访问“新手中心”：http://www.google.com/adsense/support/as/bin/static.py?page=guide.cs&amp;guide=1045789&amp;sct=app-fe。</p>
+<p>第 1 步 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/adsenseshen-qing.html">Adsense申请 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Google Adsense申请.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Google Adsense申请.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html"><h3 class="article-title">IBM主机技术一本通笔记</h3></a>
+<h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
+</h6>
+
+
+<p>这一系列文章将会是从《IBM主机技术一本通》里面选取我个人认为对我有用的部分来记录和阐述。</p>
+<h5>1、LRECL和BLKSIZE</h5>
+<p><img alt="1" src="./../images/LRECL-BLKSIZE.jpg" />           <br />
+<strong>LRECL</strong>:逻辑记录是程序想要处理的一个数据单元，通常由许多连接在一起的区域构成。  </p>
+<blockquote>
+<p>BLKSIZE：物理单元(又称块)   描述了在一次输入输出操作中需要传送的数据量，如上图所示，你一定发现了BLKSIZE必须是LRECL的整数倍，显然这是因为BLKSIZE是多个LRECL嘛！ 
+任何时候发生输入输出时传送的是整个块而不是单个逻辑记录，这样做的好处显而易见，有效地使用空间，提高传送率。<br />
+</p>
+</blockquote>
+<h5>2、I——PDS(分区数据集)信息分析</h5>
+<p>一直对这个知识点一知半解的，今天看了一本通之后，算是明白了。照着图说： <br />
+<img alt="1" src="./../images/PDS-Infor1.jpg" />   </p>
+<p>呃... 存储介质：标准磁盘；卷名：PRIM03；设备：3390；组织结构：PO(分区数据集)，固定记录长度，记录长度80字节，块大小27920字节，首次分配1 track，用完后每次可扩展分配195个tracks，当前已经分配了2个track，一共分配了1次，最多可以有10个目录块，即最多可以有10x4=40个member，当前已经使用了2个tracks ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">主机一本通 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html"><h3 class="article-title">IBM主机技术一本通笔记续</h3></a>
 <h6 class="subheader" title="2011-08-21T00:00:00">2011-08-21
 </h6>
@@ -259,94 +344,6 @@ root@bt:/# ls /dev/sd*
 
 
 <p><a href="http://mainframer.github.io/articles/Linux目录结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux目录结构.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Linux下硬件信息查看.html"><h3 class="article-title">Linux下硬件信息查看</h3></a>
-<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
-</h6>
-
-
-<p>以前linux对硬件的支持不怎么好这是大家普遍的印象，然而现在的linux发行版本对硬件的支持度已经算非常好了，普通的硬件像显卡，声卡等更笨不需要安装任何驱动就可以在linux下直接使用。只不过有时候为了更好地发挥硬件的性能，我们最好还是给硬件安装上驱动。安装驱动首先需要获得硬件的信息，特别是核心芯片的提供厂商。一般的我们都知道CPU的提供厂商有Intel和AMD两个，显卡的提供厂商有ATI,NVIDIA,SIS等。声卡呢，最常见的是创新提供的声卡。一般来说，像显卡，声卡，网卡这样的板卡的制造厂商都只是购买了核心芯片，然后在芯片周围做些外围的电路扩展以实现芯片的功能。这样就可以拿来卖给我们钱了。  </p>
-<p><code>Linux对硬件支持的原理</code>linux只是简单的读取硬件的芯片信息用来和自己库里的驱动程序比较，发现有匹配的程序就用该驱动程序来加载硬件，实现各种功能。
-当然，linux提供我们各种查询硬件信息的命令:</p>
-<h4>查看PCI设备</h4>
-<p>系统中大多数设置都是PCI设备(网卡，声卡，1394火线接口，集成显卡等)
-root@bt:/proc#   <code>lspci -v</code>        #详细pci状态信息 <br />
-root@bt:/proc#   <code>lspci -vv</code>       #比上面的更详细 <br />
-root@bt:/proc# l <code>lspci -vvv ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/linuxying-jian.html">Linux硬件 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Linux下硬件信息查看.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux下硬件信息查看.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Linux分区挂载.html"><h3 class="article-title">Linux分区挂载</h3></a>
-<h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
-</h6>
-
-
-<p>硬盘的分区分为主分区和逻辑分区，一块硬盘最多只能有4个主分区。主分区是用来存放操作系统引导信息的，但并不要认为一块硬盘最多只能安装4个操作系统，因为只有<code>Windows</code>和<code>FressBSD</code>等操作系统才需要将自己安装在硬盘的主分区里面，而<code>Linux</code>呢，可以被安装在逻辑分区里面。</p>
-<h5>分区编号</h5>
-<p>Linux将所有的存储设备(包括硬盘)都挂载<code>/dev</code>目录下新建一个子目录来管理，比如下面:<br />
-<code>/dev/hda1</code> 第一块IDE硬盘的第一个主分区  <br />
-<code>/dev/hda2</code> 第一块IDE硬盘的第二个主分区  <br />
-<code>/dev/hda5</code> 第一块IDE硬盘的第一个逻辑分区(逻辑分区从5开始，1~4一定不会是逻辑分区)  <br />
-<code>/dev/sda1</code> 第一块SATA硬盘的第一个主分区(USB设备也用sd表示)   </p>
-<h5>挂载点</h5>
-<p>所谓挂载点，就是将分区挂到一个以<code>“/”</code>开头的目录中。  <br />
-<code>/</code>:      根目录，必须挂载的目录，是所有其他目录的基础。现在安装ubuntu都有桌面系统，所以大概分配10~20G给根目录。   <br />
-<code>swap</code>:   交换分区，相当于windows当中的虚拟内存，在linux中将其单独分离出来 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/linuxfen-qu.html">Linux分区 </a>
-    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">Linux挂载 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Linux分区挂载.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux分区挂载.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/CICS应用编程接口.html"><h3 class="article-title">CICS应用编程接口</h3></a>
-<h6 class="subheader" title="2011-08-12T00:00:00">2011-08-12
-</h6>
-
-
-<h3>开发语言</h3>
-<p>可以用COBOL,C,C++,Assembler,PL/I等来编写CICS应用程序的主要的大部分逻辑处理功能，而只有少数的一部分功能需要用到CICS命令。</p>
-<h5>CICS命令格式</h5>
-<p><code>EXEC CICS SEND FROM (MSG-AREA) LENGTH(5) END-EXEC</code>                                         ——向终端发送长度为5的MSG-AREA信息       <br />
-<code>EXEC CICS READ FILE('FILEA') INTO (CUSTOMER-REC) RIDFLD(CUSTOMER-NUM)</code>                     ——读和修改VSAM文件       <br />
-<code>EXEC SQL SELECT colum_names INTO program_variables From Table_name WHERE ... END-EXEC</code>     ——读和修改关系型数据库<br />
-<code>EXEC CICS READ ... RESP(RESPONSE-FIELD)</code>  或  <code>EXEC CICS HANDLE CONDITION</code>                 ——处理异常条件 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/cicsjie-kou.html">CICS接口 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/CICS应用编程接口.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/CICS应用编程接口.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

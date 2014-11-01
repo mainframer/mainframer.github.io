@@ -46,6 +46,96 @@
         
 
             <article>
+                <a href="http://mainframer.github.io/articles/Python学习进度记录.html"><h3 class="article-title">Python学习进度记录</h3></a>
+<h6 class="subheader" title="2014-10-30T00:00:00">2014-10-30
+</h6>
+
+
+<p>记录一下，督促自己Python的学习，白天要上班，只能利用晚上和周末的时间学习。</p>
+<ul>
+<li>2014-10-04: 下载安装Pycharm，开始学习Python。</li>
+<li>2014-10-07：Commit学习进度到GitHub主页:
+<a href="http://github.com/mainframer/Mainframer-Learn-Python">Mainframer learn Python</a>, 包括Computing,Database,I/O,Modules,Networking,Performance,Security,Web,Spider等分类</li>
+<li>2014-10--8:  学习完 <a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md">零基础学Python--By 老齐</a></li>
+<li>2014-10-10: 学习完 <a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">廖雪峰的Python教程</a></li>
+<li>2014-10-23: 将原先的博客从Heroku迁徙到GitHub Pages，利用Pelican + Markdown + GitHub Pages来写博客。Pelican是Python写的静态博客生成器。</li>
+<li>2014-10-26: 用requests和BeautifulSoup写了个爬取v2ex.com所有帖子，作者，时间的初级爬虫</li>
+<li>2014-10-29: 开始用Python作为主语言来自动化公司的测试工作。</li>
+</ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/python.html">Python </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Python学习进度记录.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html"><h3 class="article-title">requests+BeautifulSoup爬取V2EX.COM网站所有帖子</h3></a>
+<h6 class="subheader" title="2014-10-26T00:00:00">2014-10-26
+</h6>
+
+
+<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习01：2014-10-26</span>
+<span class="c">#http://v2ex.com/t/\d+</span>
+<span class="c">#需求是获取v2ex网站上面所有的帖子标题，作者，时间</span>
+<span class="c">#通过观察，发现v2ex网站上面的帖子的url规律是：http://v2ex.com/t/ + 数字 【截至到写这个程序，v2ex一共有141542个帖子】</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    for x in range(1, 5710):   #一共有5710页</span>
+<span class="s">        req_html_doc = requests.get(&quot;http://v2ex.com/recent?p ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html"><h3 class="article-title">requests+BeautifulSoup爬取双色球历史数据</h3></a>
+<h6 class="subheader" title="2014-10-26T00:00:00">2014-10-26
+</h6>
+
+
+<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习02：2014-11-01</span>
+<span class="c">#http://baidu.lecai.com/lottery/draw/list/50</span>
+<span class="c">#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量</span>
+<span class="c">#通过观察，发现该彩票网站上面包含2003～2014的数据，其url规律是：http://baidu.lecai.com/lottery/draw/list/50?d=2003-01-01</span>
+<span class="k">if ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/BAT批处理现学现用.html"><h3 class="article-title">BAT批处理现学现用</h3></a>
 <h6 class="subheader" title="2013-03-29T00:00:00">2013-03-29
 </h6>
@@ -63,89 +153,7 @@
 <span class="p">:</span><span class="n">input_module</span>
 <span class="n">echo</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">date</span> <span class="nl">here</span><span class="p">:</span>
 <span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">yyyymm</span><span class="o">=^&lt;</span><span class="nl">format</span><span class="p">:</span><span class="n">yyyymm</span><span class="o">^&gt;</span> <span class="p">(</span><span class="nl">example</span><span class="p">:</span><span class="mi">201301</span><span class="p">)</span><span class="o">:</span>
-<span class="n">echo</span> <span class="o">%</span><span class="n">yyyymm</span><span class="o">%|</span><span class="n">findstr</span> <span class="o">^</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="err">$</span><span class="o">&gt;</span><span class="n">nul</span>
-<span class="k">if</span> <span class="n">not</span> <span class="o">%</span><span class="n">errorlevel</span><span class="o">%==</span><span class="mi">0</span> <span class="k">goto</span> <span class="n">input_module</span>
-<span class="n">echo</span> <span class="o">^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
-</pre></div>
-
-
-<h5>对以上用户输入做操作:字符串截取、字符串拼接的用法：</h5>
-<div class="highlight"><pre><span class="n">set</span> <span class="n">yyyymm</span> <span class="o">=</span> <span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="o">%</span>
-<span class="k">if</span> <span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="o">%</span> <span class="o">==</span> <span class="mo">01</span> <span class="n">set</span> <span class="n">month_display</span><span class="o">=</span><span class="n">JAN</span><span class="o">%</span><span class="nl">yyyymm</span><span class="p">:</span><span class="o">~</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="o">%</span>
-</pre></div>
-
-
-<h5>批处理中用户名、密码输入模块</h5>
-<div class="highlight"><pre><span class="n">rem</span>  <span class="err">用户输入</span><span class="n">ftpUserID</span><span class="err">及</span><span class="n">ftpPass</span><span class="err">模块</span>
-<span class="n">echo</span> <span class="o">^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">ID</span> <span class="o">&amp;</span> <span class="n">Password</span>
-<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
-<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">ftpUser</span><span class="o">=^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Enter</span> <span class="n">TSO</span> <span class="nl">ID</span><span class="p">:</span>
-</pre></div>
-
-
-<h5>批处理中著名的实现隐藏用户输入密码的方法</h5>
-<div class="highlight"><pre><span class="n">rem</span>  <span class="err">批处理里面很著名的隐藏输入不显示的方法</span><span class="p">(</span><span class="n">By</span><span class="err">德国人</span><span class="n">HerbertKleebauer</span><span class="p">)</span>
-<span class="n">echo</span> <span class="n">hP1X500P</span><span class="p">[</span><span class="n">PZBBBfh</span><span class="err">#</span><span class="n">b</span><span class="err">##</span><span class="n">fXf</span><span class="o">-</span><span class="n">V</span><span class="err">@`$</span><span class="n">fPf</span><span class="p">]</span><span class="n">f3</span><span class="o">/</span><span class="n">f1</span><span class="o">/</span><span class="mi">5</span><span class="o">++</span><span class="n">u5x</span><span class="o">&gt;</span><span class="n">in</span><span class="p">.</span><span class="n">com</span>
-<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">ftpPass</span><span class="o">=^</span><span class="p">[</span><span class="o">*</span><span class="n">INFO</span><span class="o">*^</span><span class="p">]</span><span class="o">:</span> <span class="n">Enter</span> <span class="n">your</span> <span class="nl">password</span><span class="p">:</span><span class="o">&lt;</span><span class="n">nul</span>
-<span class="k">for</span> <span class="o">/</span><span class="n">f</span> <span class="s">&quot;tokens=*&quot;</span> <span class="o">%%</span><span class="n">i</span> <span class="n">in</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">in</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="n">set</span> <span class="n">ftpPass</span><span class="o">=%%</span><span class="n">i</span>
-<span class="n">del</span> <span class="n">in</span><span class="p">.</span><span class="n">com</span>
-</pre></div>
-
-
-<h5>批处理中实现执行批量ftp命令的方法</h5>
-<div class="highlight"><pre><span class="n">rem</span> <span class="err">设置远程</span><span class="n">ftp</span><span class="err">的</span><span class="n">ip</span>
-<span class="n">set</span> <span class="n">ftpIP</span><span class="o">=</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span> 
-<span class="n">rem</span> <span class="err">设置本地目录为当前脚本所在目录，用</span><span class="o">%~</span><span class="n">dp0</span><span class="err">表示</span>
-<span class="n">set</span> <span class="n">LocalFolder</span><span class="o">=%~</span><span class="n">dp0</span>
-<span class="n">rem</span> <span class="err">指定临时</span><span class="n">ftp</span><span class="err">指令文件，将</span><span class="n">job</span><span class="err">送往</span><span class="n">mainframe</span> <span class="err">的</span><span class="n">JES2</span><span class="err">队列运行，并且提前删除以下两个</span><span class="n">dataset</span><span class="err">。</span>
-<span class="n">set</span> <span class="n">ftpFile</span><span class="o">=%</span><span class="n">temp</span><span class="o">%</span><span class="err">\</span><span class="n">TempFTP</span><span class="p">.</span><span class="n">txt</span>
-  <span class="o">&gt;</span><span class="s">&quot;%ftpFile%&quot;</span> <span class="p">(</span>
-    <span class="n">echo</span> <span class="n">open</span> <span class="o">%</span><span class="n">ftpIP</span><span class="o">%</span>
-    <span class="n">echo</span> <span class="n">user</span> <span class="o">%</span><span class="n">ftpUser</span><span class="o">%</span>
-    <span class="n">echo</span> <span class="o">%</span><span class="n">ftpPass</span><span class="o">%</span>    
-    <span class="n">echo</span> <span class="n">lcd</span> <span class="s">&quot;%LocalFolder%&quot;</span>
-    <span class="n">echo</span> <span class="n">ascii</span>
-    <span class="n">echo</span> <span class="n">quote</span> <span class="n">site</span> <span class="n">filetype</span><span class="o">=</span><span class="n">jes</span>
-    <span class="n">echo</span> <span class="n">put</span> <span class="n">my_jes2_job</span><span class="p">.</span><span class="n">txt</span>    
-    <span class="n">echo</span> <span class="n">disconnect</span>
-    <span class="n">echo</span> <span class="n">bye</span>
-  <span class="p">)</span>
-<span class="n">rem</span>  <span class="err">调用</span><span class="n">ftp</span><span class="p">.</span><span class="n">exe</span><span class="err">执行上述</span><span class="n">ftp</span><span class="err">命令，来完成将</span><span class="n">my_jes2_job</span><span class="err">送入到</span><span class="n">mainframe</span><span class="err">执行的操作</span>
-<span class="n">start</span> <span class="nl">c</span><span class="p">:</span><span class="err">\</span><span class="n">windows</span><span class="err">\</span><span class="n">system32</span><span class="err">\</span><span class="n">ftp</span><span class="p">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="nl">s</span><span class="p">:</span><span class="s">&quot;%ftpFile%&quot;</span> 
-</pre></div>
-
-
-<h5>批处理中判断文件是否为空的方法，以及goto分支的用法</h5>
-<div class="highlight"><pre><span class="k">for</span> <span class="o">/</span><span class="n">f</span> <span class="s">&quot;delims=&quot;</span> <span class="o">%%</span><span class="n">i</span> <span class="n">in</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">dir</span> <span class="o">/</span><span class="n">b</span> <span class="n">my_test_source</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
-<span class="k">if</span> <span class="o">%%~</span><span class="n">zi</span> <span class="n">equ</span> <span class="mi">0</span>  <span class="p">(</span>   
-  <span class="k">goto</span> <span class="n">empty_source</span>      <span class="n">rem</span> <span class="k">goto</span> <span class="n">process</span> <span class="n">empty</span>
-<span class="p">)</span> <span class="k">else</span> <span class="p">(</span>
-  <span class="k">goto</span> <span class="n">not_empty_source</span>  <span class="n">rem</span> <span class="k">goto</span> <span class="n">process</span> <span class="n">not</span> <span class="n">empty</span>
-  <span class="p">)</span>
- <span class="p">)</span>
- <span class="o">:</span><span class="n">empty_source</span> 
-   <span class="k">do</span> <span class="n">something</span> <span class="nl">here</span>
- <span class="p">:</span><span class="n">not_empty_source</span>
-   <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>
-</pre></div>
-
-
-<h5>批处理中调用msgbox显示消息框的方法</h5>
-<div class="highlight"><pre><span class="n">rem</span> <span class="err">利用</span><span class="n">mshta</span><span class="err">，消息框里面换行用</span><span class="o">^&amp;</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^</span>
-<span class="n">mshta</span> <span class="nl">vbscript</span><span class="p">:</span><span class="n">msgbox</span><span class="p">(</span><span class="s">&quot;Empty !&quot;</span><span class="o">^&amp;</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^&amp;^</span><span class="n">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">^&amp;</span><span class="s">&quot;Please Check!&quot;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="s">&quot;Error&quot;</span><span class="p">)(</span><span class="n">window</span><span class="p">.</span><span class="n">close</span><span class="p">)</span>
-</pre></div>
-
-
-<h5>批处理中拷贝文件的方法</h5>
-<div class="highlight"><pre><span class="n">copy</span> <span class="n">A</span><span class="p">.</span><span class="n">txt</span> <span class="n">B</span><span class="p">.</span><span class="n">txt</span><span class="o">&gt;</span><span class="n">nul</span>
-</pre></div>
-
-
-<h5>批处理中执行vbs脚本的方法</h5>
-<div class="highlight"><pre><span class="n">rem</span> <span class="n">ftpUser</span><span class="err">和</span><span class="n">yyyymm</span><span class="err">是传递给</span><span class="n">vbs</span><span class="err">的参数</span>
-<span class="n">start</span> <span class="n">wscript</span> <span class="n">process_not_empty</span><span class="p">.</span><span class="n">vbs</span>  <span class="o">%</span><span class="n">ftpUser</span><span class="o">%</span>  <span class="o">%</span><span class="n">yyyymm</span><span class="o">%</span>
-</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+<span class="n">echo</span> <span class="o">%</span><span class="n">yyyymm</span><span class="o">%|</span><span class="n">findstr</span> <span class="o">^</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/batpi-chu-li.html">BAT批处理 </a>
@@ -153,11 +161,9 @@
 
 
 
-<p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>            </article>
-
-
+<p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BAT批处理现学现用.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -357,110 +363,9 @@
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
-<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
-</h6>
-
-
-<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
-<blockquote>
-<p>FIND ',' ALL</p>
-<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
-既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
-编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
-</blockquote>
-<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
-<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
-<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
-<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
-<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
-</pre></div>
-
-
-<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
-    <a href="http://mainframer.github.io/tag/find-all.html">Find ALL </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html"><h3 class="article-title">Rexx顺序处理文件所有行</h3></a>
-<h6 class="subheader" title="2012-02-17T00:00:00">2012-02-17
-</h6>
-
-
-<p>这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：</p>
-<div class="highlight"><pre><span class="no">ADDRESS</span> <span class="no">TSO</span>                                                             
-  <span class="n">indataset</span> <span class="o">=</span> <span class="s1">&#39;IBMUSER.REXX.EXEC(INFILE)&#39;</span>  <span class="sr">/*read in input file */</span>      
-  <span class="s2">&quot;alloc f(fin) ds(&#39;&quot;</span><span class="n">indataset</span><span class="s2">&quot;&#39;) shr reuse&quot;</span>   
-  <span class="s2">&quot;execio * diskr fin (finis stem in.&quot;</span>                                  
-  <span class="s2">&quot;free f(fin)&quot;</span>                                                         
- <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="k">in</span><span class="o">.</span><span class="mi">0</span>        <span class="o">/*</span><span class="kp">loop</span> <span class="k">in</span> <span class="n">file</span> <span class="k">until</span> <span class="n">the</span> <span class="n">last</span> <span class="n">line</span> <span class="n">reached</span> <span class="o">*/</span>           
-    <span class="n">one_line</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="k">in</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>                                                    
-    <span class="n">call ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Rexx顺序处理文件所有行.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html"><h3 class="article-title">ISPF下如何去掉程序的第72至80列</h3></a>
-<h6 class="subheader" title="2012-02-07T00:00:00">2012-02-07
-</h6>
-
-
-<p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
-<h4>方法一：直接在ISPF下面用命令去掉</h4>
-<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
-<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
-<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
-</pre></div>
-
-
-<hr />
-<h4>方法二：用第三方脚本实现</h4>
-<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
-这里是一段自己的Ruby脚本，作用是将<code>C:\prod ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
-    <a href="http://mainframer.github.io/tag/72dao-80lie.html">72到80列 </a>
-    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 1 of 2</h6>
+<h6 class="subheader">Page 1 of 3</h6>
 
 <p>
 

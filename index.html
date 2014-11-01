@@ -46,6 +46,96 @@
         
 
             <article>
+                <a href="http://mainframer.github.io/articles/Python学习进度记录.html"><h3 class="article-title">Python学习进度记录</h3></a>
+<h6 class="subheader" title="2014-10-30T00:00:00">2014-10-30
+</h6>
+
+
+<p>记录一下，督促自己Python的学习，白天要上班，只能利用晚上和周末的时间学习。</p>
+<ul>
+<li>2014-10-04: 下载安装Pycharm，开始学习Python。</li>
+<li>2014-10-07：Commit学习进度到GitHub主页:
+<a href="http://github.com/mainframer/Mainframer-Learn-Python">Mainframer learn Python</a>, 包括Computing,Database,I/O,Modules,Networking,Performance,Security,Web,Spider等分类</li>
+<li>2014-10--8:  学习完 <a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md">零基础学Python--By 老齐</a></li>
+<li>2014-10-10: 学习完 <a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">廖雪峰的Python教程</a></li>
+<li>2014-10-23: 将原先的博客从Heroku迁徙到GitHub Pages，利用Pelican + Markdown + GitHub Pages来写博客。Pelican是Python写的静态博客生成器。</li>
+<li>2014-10-26: 用requests和BeautifulSoup写了个爬取v2ex.com所有帖子，作者，时间的初级爬虫</li>
+<li>2014-10-29: 开始用Python作为主语言来自动化公司的测试工作。</li>
+</ul><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/python.html">Python </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Python学习进度记录.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html"><h3 class="article-title">requests+BeautifulSoup爬取V2EX.COM网站所有帖子</h3></a>
+<h6 class="subheader" title="2014-10-26T00:00:00">2014-10-26
+</h6>
+
+
+<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习01：2014-10-26</span>
+<span class="c">#http://v2ex.com/t/\d+</span>
+<span class="c">#需求是获取v2ex网站上面所有的帖子标题，作者，时间</span>
+<span class="c">#通过观察，发现v2ex网站上面的帖子的url规律是：http://v2ex.com/t/ + 数字 【截至到写这个程序，v2ex一共有141542个帖子】</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    for x in range(1, 5710):   #一共有5710页</span>
+<span class="s">        req_html_doc = requests.get(&quot;http://v2ex.com/recent?p ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html"><h3 class="article-title">requests+BeautifulSoup爬取双色球历史数据</h3></a>
+<h6 class="subheader" title="2014-10-26T00:00:00">2014-10-26
+</h6>
+
+
+<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习02：2014-11-01</span>
+<span class="c">#http://baidu.lecai.com/lottery/draw/list/50</span>
+<span class="c">#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量</span>
+<span class="c">#通过观察，发现该彩票网站上面包含2003～2014的数据，其url规律是：http://baidu.lecai.com/lottery/draw/list/50?d=2003-01-01</span>
+<span class="k">if ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html"><h3 class="article-title">关于MAC下用SSH翻墙的小结(转)</h3></a>
 <h6 class="subheader" title="2013-06-12T00:00:00">2013-06-12
 </h6>
@@ -61,68 +151,7 @@
 <blockquote>
 <p>ssh -D port user@hostname</p>
 <p>其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
-然后，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选”SOCKS 代理”-&gt;旁边的”SOCKS 代理服务器”里填127.0.0.1，端口填你刚才写的那个，点个好点个应用，搞定。  </p>
-</blockquote>
-<h5>注意，</h5>
-<p>终端的ssh连接不能关闭。<br />
-注意你的ssh的服务器的访问限制，尤其是像我这样的用学校的ssh服务器的，如果去访问了一些不该访问的，就该有学校的警告mail来了<br />
-这个方法简单粗暴但是也太粗糙，所有的访问都会通过ssh服务器来进行，所以即使我看个sina新闻也要绕到遥远的nagoya去，而且pipe还可能崩坏。<br />
-推荐人群：如果只是为了时不时地上个推上个fb的话，只要你的ssh也允许，可以尝试。   </p>
-<h4>方法二，iSSH加.pac文件</h4>
-<p>这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&gt;&lt;。。。 <br />
-首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。<a href="./../files/iSSH.zip">--&gt;__--&gt;点击下载iSSH.zip</a> <br />
-app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
-其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： </p>
-<div class="highlight"><pre><span class="n">function</span> <span class="no">FindProxyForURL</span><span class="p">(</span> <span class="n">url</span><span class="p">,</span> <span class="n">host</span> <span class="p">)</span>
-<span class="p">{</span>
- <span class="k">if</span> <span class="p">(</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*ip38*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*1-apple.com.tw*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="err">…</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook cdn*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-              <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/amoiist*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/BeiJing1989*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/billzhong*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/nowhere1975*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/shizhao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/VOTChinese*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wenyunchao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wumao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zengjinyan*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zuola*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://www.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://apiwiki.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://dev.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://status.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*hk.youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*tw.youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com/get_video*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*Youtube CDN*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="p">)</span>
-    <span class="k">return</span> <span class="s2">&quot;SOCKS 127.0.0.1:7070&quot;</span><span class="p">;</span>
- <span class="k">else</span> 
-    <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 <a href="./../files/gfwlist.pac">--&gt;__--&gt;点击下载gfwlist.pac</a><br />
-接着，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选“自动代理配置”-&gt;“选取文件”-&gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
-最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  </p>
-<h5>注意，</h5>
-<p>上面的iSSH的SOCKS Proxy -D的端口和.  pac的文件末尾所写的那个端口必须一致，而之所以选择7070,是因为我最开始拿到这个文件的时候它写的就是7070＝＝<br />
-这个方法相对上一个方法更稳定，因为它只有在访问那些需要翻墙的url的时候才会通过ssh服务器，所以限制更少，pipe也不容易崩坏，<br />
-推荐人群：如果你的ssh服务器对国内的网址很不友好的话，用这个会好点。<br />
-以上，<br />
-2012－3－28<br />
-于爵仕官邸某7楼床上  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+然后，打开 ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/macfan-qiang.html">Mac翻墙 </a>
@@ -131,11 +160,9 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 
 
 
-<p><a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html#disqus_thread">comments</a></p>            </article>
-
-
+<p><a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -324,114 +351,6 @@ app很好设置，输入服务器地址，然后用户名密码都是你在ssh�
 
 
 <p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BAT批处理现学现用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/VB Script现学现用.html"><h3 class="article-title">VB Script现学现用</h3></a>
-<h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
-</h6>
-
-
-<p>这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  <br />
-(<em>注意</em>：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  </p>
-<div class="highlight"><pre><span class="n">dim</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">yyyymm</span><span class="p">,</span> <span class="n">to_dte_</span>       <span class="err">&#39;定义变量</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">user_id</span> <span class="o">=</span> <span class="n">wscript</span><span class="p">.</span><span class="n">arguments</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="err">&#39;接收批处理传过来的第一个参数</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">CAP_user_id</span> <span class="o">=</span> <span class="n">Ucase</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>       <span class="err">&#39;转换成大写</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">Select</span> <span class="n">Case</span> <span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>        <span class="err">&#39;</span><span class="n">Select</span><span class="o">/</span><span class="n">Case</span><span class="err">的用法</span> <span class="err">和</span> <span class="err">字符串截取的方法</span>                                         
-<span class="n">Case</span> <span class="s">&quot;01&quot;</span>   
-    <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>  
-<span class="n">Case</span> <span class="s">&quot;02&quot;</span>                          <span class="err">&#39;</span><span class="n">If</span><span class="o">-</span><span class="n">Then</span><span class="err">的用法，闰年的判断方法，</span><span class="o">=</span><span class="p">,</span><span class="o">&lt;&gt;</span><span class="p">,</span><span class="n">Mod</span><span class="err">的用法 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/vb-script.html">VB Script </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/VB Script现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/VB Script现学现用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html"><h3 class="article-title">mainframe平台报表自动化方案实现</h3></a>
-<h6 class="subheader" title="2013-03-25T00:00:00">2013-03-25
-</h6>
-
-
-<h4>这几天，客户提了一个需求如下：</h4>
-<p><em>&lt;1&gt;</em>每个月初需要在本地(Windows XP)看上一个月的一个报表。<br />
-<em>&lt;2&gt;</em>如果可以随时查看之前任意月份的报表，那更好。<br />
-<em>&lt;3&gt;</em>报表数据来源于Mainframe上的表A和表B,需要join操作。 <br />
-<em>&lt;4&gt;</em>报表结果以excel呈现，有必要的一些格式化和公式以及美化等excel常规操作。    </p>
-<h4>经研究，实现方案如下：</h4>
-<p><em>&lt;1&gt;</em>用bat批处理与mainframe交互，交互方式为ftp。包括将本地job送到JES2运行，包括将表A和表B的数据从mainframe上下载到本地。<br />
-<em>&lt;2&gt;</em>用vbs处理后期的excel，包括数据导入，单元格格式，公式操作，excel美化，用户提示等等常规的office操作。 <br />
-<em>&lt;3&gt;</em>用bat批处理来调用vbs，这样bat批处理就把mainframe和vbs串在了一起。  </p>
-<h4>方案优势：</h4>
-<p>选择这个方案是从用户易用性考虑，客户不需要安装任何软件。批处理和vbs以及excel在xp下面都是自带的。用户只需双击，然后输入查看的报表月份即可。</p>
-<h4>方案设计图</h4>
-<p>我用word简单地画了一个方案图：
-<img alt="report automation on mainframe" src="./../images/mainframe-report-automation.png" />  <br />
-代码就不放上来了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/mainframezi-dong-hua.html">mainframe自动化 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html"><h3 class="article-title">JCL中执行如何SQL</h3></a>
-<h6 class="subheader" title="2013-03-24T00:00:00">2013-03-24
-</h6>
-
-
-<hr />
-<p>平常我们用第三方软件来对DB2操作，比如eclipse,比如DBedit,又或者是mainframe上面的软件，如<code>Filemanager</code>,<code>SPUFI</code>等。
-那怎么在JCL里面运行SQL呢？答案是利用<code>IKJEFT01</code>。</p>
-<div class="highlight"><pre><span class="sr">//</span><span class="o">***************************************************************</span>               
-<span class="sr">//</span><span class="o">*</span><span class="ss">UNLOAD</span><span class="p">:</span>   <span class="n">unload</span> <span class="n">data</span> <span class="n">using</span> <span class="no">IKJEFT01</span> <span class="n">via</span> <span class="n">dynamic</span> <span class="no">SQL</span> <span class="k">in</span> <span class="no">JCL</span>  <span class="o">*</span>               
-<span class="sr">//</span><span class="o">***************************************************************</span>               
-<span class="sr">//</span><span class="no">UNLOAD</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IKJEFT01</span><span class="p">,</span><span class="no">DYNAMNBR</span><span class="o">=</span><span class="mi">20</span>                                        
-<span class="o">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXSRUN</span>                                          
-<span class="sr">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXLOAD</span>                                          
-<span class="sr">//</span><span class="no">SYSTSPRT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
-<span class="sr">//</span><span class="no">SYSUDUMP</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
-<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
-<span class="sr">//</span><span class="no">SYSREC00</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SQL</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span>                              
-<span class="sr">//</span>            <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/ikjeft01.html">IKJEFT01 </a>
-    <a href="http://mainframer.github.io/tag/sql.html">SQL </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL中执行如何SQL.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Modern Mainframer - BeautifulSoup</title>
+
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
+    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html"><h3 class="article-title">requests+BeautifulSoup爬取V2EX.COM网站所有帖子</h3></a>
+<h6 class="subheader" title="2014-10-26T00:00:00">2014-10-26
+</h6>
+
+
+<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习01：2014-10-26</span>
+<span class="c">#http://v2ex.com/t/\d+</span>
+<span class="c">#需求是获取v2ex网站上面所有的帖子标题，作者，时间</span>
+<span class="c">#通过观察，发现v2ex网站上面的帖子的url规律是：http://v2ex.com/t/ + 数字 【截至到写这个程序，v2ex一共有141542个帖子】</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    for x in range(1, 5710):   #一共有5710页</span>
+<span class="s">        req_html_doc = requests.get(&quot;http://v2ex.com/recent?p=&quot; + str(x)).text</span>
+<span class="s">        my_soup = BeautifulSoup(req_html_doc)</span>
+<span class="s">        #print my_soup.title, my_soup.title.name, my_soup.title.string # 依次返回&lt;title&gt;V2EX&lt;/title&gt;， title， V2EX</span>
+<span class="s">        result = my_soup.findAll(&#39;div&#39;, {&#39;class&#39;: &quot;cell item&quot;})  # result是BeautifulSoup.ResultSet类型</span>
+<span class="s">        for each in result:  # 每一个each都是BeautifulSoup.Tag类型</span>
+<span class="s">            each_table_string = str(each)</span>
+<span class="s">            #从table中匹配出title,有些title有换行符，必须用re.DOTALL使得.也匹配换行符</span>
+<span class="s">            reg_title = re.compile(r&#39;&lt;span class=&quot;item_title&quot;&gt;&lt;a href=&quot;(.*)&quot;&gt;(.*)&lt;/a&gt;&lt;/span&gt;&#39;, re.DOTALL)</span>
+<span class="s">            tie_zi_title = reg_title.findall(each_table_string)[0][1]</span>
+<span class="s">            reg_author = re.compile(r&#39;align=&quot;center&quot;&gt;&lt;a href=&quot;/member/(.*)&quot;&gt;&lt;img src=&#39;)</span>
+<span class="s">            tie_zi_author = reg_author.findall(each_table_string)[0]</span>
+<span class="s">            #有人回复时是 &lt;/strong&gt; &amp;nbsp;•&amp;nbsp; 38 </span><span class="se">\xe5\x88\x86\xe9\x92\x9f\xe5\x89\x8d</span><span class="s"> &amp;nbsp;•&amp;nbsp;;，</span>
+<span class="s">            #没人回复时是&lt;/strong&gt; &amp;nbsp;•&amp;nbsp; 38 </span><span class="se">\xe5\x88\x86\xe9\x92\x9f\xe5\x89\x8d</span><span class="s">&lt;/span&gt; 返回后再正则提取</span>
+<span class="s">            reg_date = re.compile(r&#39;&lt;/a&gt;&lt;/strong&gt; &amp;nbsp;</span><span class="se">\xe2\x80\xa2</span><span class="s">&amp;nbsp;(.*)&#39;)</span>
+<span class="s">            raw_tie_zi_date = reg_date.findall(each_table_string)[0]</span>
+<span class="s">            raw_tie_zi_date = raw_tie_zi_date.rstrip(&#39;&lt;/span&gt;&#39;)</span>
+<span class="s">            print tie_zi_title, tie_zi_author, re.split(&quot;&amp;nbsp;</span><span class="se">\xe2\x80\xa2</span><span class="s">&amp;nbsp;&quot;, raw_tie_zi_date)[0]</span>
+</pre></div>
+
+
+<p>后期的结果保存没做处理，可以视情况保存到文本，CSV, 数据库中。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html"><h3 class="article-title">requests+BeautifulSoup爬取双色球历史数据</h3></a>
+<h6 class="subheader" title="2014-10-26T00:00:00">2014-10-26
+</h6>
+
+
+<p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习02：2014-11-01</span>
+<span class="c">#http://baidu.lecai.com/lottery/draw/list/50</span>
+<span class="c">#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量</span>
+<span class="c">#通过观察，发现该彩票网站上面包含2003～2014的数据，其url规律是：http://baidu.lecai.com/lottery/draw/list/50?d=2003-01-01</span>
+<span class="k">if ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/requests.html">requests </a>
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
+            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
+            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
+            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
+            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
+            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
+            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Modern Mainframer by mainframer</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

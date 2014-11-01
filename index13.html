@@ -47,6 +47,107 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html"><h3 class="article-title">BT5开机自动启动ibus</h3></a>
+<h6 class="subheader" title="2011-03-06T00:00:00">2011-03-06
+</h6>
+
+
+<p>BT5下安装中文输入法：</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">scim</span>
+</pre></div>
+
+
+<p>BT5下安装ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ibus</span>
+</pre></div>
+
+
+<p>在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
+怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:<br />
+开机自动启动ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="no">System</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Preferences</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Startup</span> <span class="no">Applications</span>
+     <span class="no">Click</span> <span class="n">the</span> <span class="ss">button</span><span class="p">:</span> <span class="no">Add</span>
+     <span class="ss">Name</span><span class="p">:</span> <span class="n">ibus</span> <span class="n">daemon</span>
+     <span class="ss">Command</span><span class="p">:</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">ibus</span><span class="o">-</span><span class="n">daemon</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+
+
+<p>好了，重启就可以了。<br />
+按Ctrl+空格调出输入法 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/ibus.html">ibus </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html"><h3 class="article-title">介绍几个比较有用的ISPF命令</h3></a>
+<h6 class="subheader" title="2011-03-02T00:00:00">2011-03-02
+</h6>
+
+
+<p>上一篇讲的是常见的TSO/ISPF命令，这篇来讲讲我收集到的日常比较有用的ISPF命令。</p>
+<h4>HRECALL</h4>
+<p>大机上的Dataset比较久了没有被访问的话会自动被迁移(migrate)到tape中保存的，根据时间的长短，Dataset会被migrate到不同的level，比如MIGRAT1,MIGRAT2等等。这时，如果你想把这个Dataset 召(Recall)回来的话，平常我们都在这个Dataset前面打个<code>Call</code>命令。这样做有个不好的地方，就是如果这个Dataset需要很长时间才能被RECALL回来的话(比如30分钟)，那这30分钟之内你只能看着屏幕发呆而啥都干不了了。所以这种情况下你可以试试后台Call的命令<code>HRECALL</code>，它在后台操作，结束后会有提示，完全不影响你做其他事情</p>
+<h4>NUM OFF</h4>
+<p>有时你在编辑一个Dataset的行末尾的时候，每次保存都会提示:<code>Some input data</code>ignored。这时因为默认情况下末尾的行号显示是开着占了8位，这8位是不可修改的，这时你可以试试在命令行上打个<code>NUM OFF</code>把行号显示关了。</p>
+<h4>XDC</h4>
+<p>这是一个SDSF(<em>系统显示与查询工具</em> 的命令，如果你想把一个JOB的输出Log保存到某个地方，比如自己的PDS，那么你可以在SDSF里面在这个JOB的Log前面打上XDC，然后写上你要保存的地方即可 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html"><h3 class="article-title">BT5如何安装VMware Tools</h3></a>
+<h6 class="subheader" title="2011-02-25T00:00:00">2011-02-25
+</h6>
+
+
+<p>虚拟机安装VMwareTools有什么好处呢？我认为安装了VMwareTools之后最大的好处莫过于可以支持文件拖放拷贝和鼠标可以自由出入了，你可以很方便地将你Windows里面的东西拷到BT5里面，也可以很方便地将BT5里面的东西拷贝到Windows里面来。下面说说如何安装VMwareTools。  <br />
+首先，你在启动虚拟机BT5之前你必须将CD/DVD(IDE) 设置里将包含vmware-tools的Iso启动文件选上。这里，我的是<code>D:\DOCUMENT\linux</code>.iso，大小116M。接着设置开机连接CD/DVD，启动BT5。
+<img alt="1" src="./../images/bt5-vmtools-1.jpg" />   <br />
+还是老规矩：输入用户名<em>root</em>；密码<em>toor</em>；启动图形界面:<em>startx</em>; 这时你会发现桌面上多了个光驱自动加载的VMWare tools文件:</p>
+<p><img alt="1" src="./../images/bt5-vmtools-2.jpg" />   <br />
+先将文件夹里面的文件vmware-tools-distrib 拷贝到目录~/root下，然后照着下面这张图做就可以了。<br />
+记得一定要先改变先<code>sudo chmod 755 vmware-install.pl</code>不然可能会出现 <code>no such file or directory</code>。这会让你很崩溃的，明明有vmware-install.pl竟然提示不存在？！  </p>
+<p><img alt="1" src="./../images/bt5-vmtools-3.jpg" />  <br />
+接着按照提示做就可以了。遇到没有权限访问xxx ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/shen-tou.html">渗透 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5如何安装VMware Tools.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/Backtrack初探.html"><h3 class="article-title">Backtrack初探</h3></a>
 <h6 class="subheader" title="2011-01-29T00:00:00">2011-01-29
 </h6>
@@ -255,100 +356,6 @@ Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说�
 
 
 <p><a href="http://mainframer.github.io/articles/Linux压缩命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux压缩命令.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html"><h3 class="article-title">大机平台的版本控制工具Changeman</h3></a>
-<h6 class="subheader" title="2010-10-30T00:00:00">2010-10-30
-</h6>
-
-
-<p>在主机上面有好几个比较常见的版本控制工具，比如changeman和Endevor。我介绍下changeman。 </p>
-<h4>ISPF面板上输入C;1</h4>
-<p><img alt="1" src="./../images/changeman-1.jpg" />      </p>
-<h5>changeman的界面，这里装的版本是5.6.2c，</h5>
-<p><img alt="1" src="./../images/changeman-21.jpg" />      </p>
-<h4>我介绍下各个常用选项</h4>
-<h5>1.</h5>
-<p>用来新建，更新一个package的，你需要新建一个package来放置你的PL/I，COBOL程序和JCL等等</p>
-<h5>2.</h5>
-<p>将package freeze或unfreeze，在你觉得package里面的所有东西都测试得差不多了，可以准备上线安装之前，你要先freeze冻结掉这个package，然后等待相关项目管理人的approve，这样这个package才能被合法地安装。当然，如果你冻结了package之后，发现还有程序需要被修改什么的，这时候你可以反冻结(unfreeze)它，最好在package还没被approve之前。</p>
-<h5>3.</h5>
-<p>promote 或 demote。promote就是把你修改的程序版本提升到更高的level去。举个例子，一般PL/I或COBOL等写的程序在进入生产环境之前都会经过开发(Dev)——&gt;系统集成测试(Sys)——&gt;用户接收测试(UAT)——&gt;生产环境(Prod)，promote就是可以把你的程序从较低的level提升到较高的level，慢慢接近prod，而demote反之就可以了。</p>
-<h5>4 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/changeman.html">Changeman </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html"><h3 class="article-title">登陆大型机——Aviva的介绍</h3></a>
-<h6 class="subheader" title="2010-10-28T00:00:00">2010-10-28
-</h6>
-
-
-<p>一般我们日常用PC机工作拿什么软件来跟大型机(以下简称大机)交互呢? 理论上说几乎所有的终端登陆软件都可以的。而且一般每种终端登陆软件都支持多种协议连接到大机上，比如最常见的<code>TCP/IP，FTP,TELNET,SSL</code>等等。这些软件有很多，外面比较常用的是<code>PCOMM，putty，SecCRT</code>等等，我只用过PCOMM，稍微配置下IP啥的就可以连大机了。这个百度下就出来一堆。 
-我们公司比较另类，用的终端软件叫Aviva，一般我们读作"鹅vi哇"，希伯来词，意为“美丽的春天”, 产自美国美国(Eicon)公司。谷歌能下载到，不过只有试用版的貌似。 
-下面我说下Aviva的一些基本概念和使用。  </p>
-<h3>Destination和Session的配置:</h3>
-<p>所谓Destination 就是大型机的物理IP，你要连接到大型机上，就必须得配置下大型机的IP。装好aviva后，开始——&gt;程序——&gt;Eicon Aviva——&gt;Create New Destination
-这里destination的名字就取：My Destination ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/aviva.html">Aviva </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/登陆大型机——Aviva的介绍.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html"><h3 class="article-title">Watir收集最快的代理服务器ip列表</h3></a>
-<h6 class="subheader" title="2010-09-10T00:00:00">2010-09-10
-</h6>
-
-
-<p>这个脚本所做的事情是从www.cnproxy.com网站上取得最新的10页代理服务器的ip，将它们写到proxy_ip_list.txt文本文件中去。包括每一个代理服务器的响应时间。</p>
-<div class="highlight"><pre><span class="c1">#encoding: UTF-8                       #添加这一行才可以处理中文</span>
-<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                     <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
-<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
-<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
-
-<span class="n">time1</span><span class="o">=</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span>
-<span class="n">proxy_ip_lists</span><span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;proxy_ip_lists.txt&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">char2int</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span> <span class="n">str</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span>
-      <span class="k">if</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="s1">&#39;z&#39;</span> <span class="k">then</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="s1">&#39;3&#39;</span>
-      <span class="k">elsif</span> <span class="n">str</span><span class="o">[</span><span class="n">i ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/watir.html">Watir </a>
-    <a href="http://mainframer.github.io/tag/jiao-ben.html">脚本 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Watir收集最快的代理服务器ip列表.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

@@ -47,6 +47,114 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/VB Script现学现用.html"><h3 class="article-title">VB Script现学现用</h3></a>
+<h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
+</h6>
+
+
+<p>这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  <br />
+(<em>注意</em>：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  </p>
+<div class="highlight"><pre><span class="n">dim</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">yyyymm</span><span class="p">,</span> <span class="n">to_dte_</span>       <span class="err">&#39;定义变量</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">user_id</span> <span class="o">=</span> <span class="n">wscript</span><span class="p">.</span><span class="n">arguments</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="err">&#39;接收批处理传过来的第一个参数</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">CAP_user_id</span> <span class="o">=</span> <span class="n">Ucase</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>       <span class="err">&#39;转换成大写</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">Select</span> <span class="n">Case</span> <span class="n">Mid</span><span class="p">(</span><span class="n">yyyymm</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>        <span class="err">&#39;</span><span class="n">Select</span><span class="o">/</span><span class="n">Case</span><span class="err">的用法</span> <span class="err">和</span> <span class="err">字符串截取的方法</span>                                         
+<span class="n">Case</span> <span class="s">&quot;01&quot;</span>   
+    <span class="err">&#39;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">here</span>  
+<span class="n">Case</span> <span class="s">&quot;02&quot;</span>                          <span class="err">&#39;</span><span class="n">If</span><span class="o">-</span><span class="n">Then</span><span class="err">的用法，闰年的判断方法，</span><span class="o">=</span><span class="p">,</span><span class="o">&lt;&gt;</span><span class="p">,</span><span class="n">Mod</span><span class="err">的用法 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/vb-script.html">VB Script </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/VB Script现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/VB Script现学现用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html"><h3 class="article-title">mainframe平台报表自动化方案实现</h3></a>
+<h6 class="subheader" title="2013-03-25T00:00:00">2013-03-25
+</h6>
+
+
+<h4>这几天，客户提了一个需求如下：</h4>
+<p><em>&lt;1&gt;</em>每个月初需要在本地(Windows XP)看上一个月的一个报表。<br />
+<em>&lt;2&gt;</em>如果可以随时查看之前任意月份的报表，那更好。<br />
+<em>&lt;3&gt;</em>报表数据来源于Mainframe上的表A和表B,需要join操作。 <br />
+<em>&lt;4&gt;</em>报表结果以excel呈现，有必要的一些格式化和公式以及美化等excel常规操作。    </p>
+<h4>经研究，实现方案如下：</h4>
+<p><em>&lt;1&gt;</em>用bat批处理与mainframe交互，交互方式为ftp。包括将本地job送到JES2运行，包括将表A和表B的数据从mainframe上下载到本地。<br />
+<em>&lt;2&gt;</em>用vbs处理后期的excel，包括数据导入，单元格格式，公式操作，excel美化，用户提示等等常规的office操作。 <br />
+<em>&lt;3&gt;</em>用bat批处理来调用vbs，这样bat批处理就把mainframe和vbs串在了一起。  </p>
+<h4>方案优势：</h4>
+<p>选择这个方案是从用户易用性考虑，客户不需要安装任何软件。批处理和vbs以及excel在xp下面都是自带的。用户只需双击，然后输入查看的报表月份即可。</p>
+<h4>方案设计图</h4>
+<p>我用word简单地画了一个方案图：
+<img alt="report automation on mainframe" src="./../images/mainframe-report-automation.png" />  <br />
+代码就不放上来了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/mainframezi-dong-hua.html">mainframe自动化 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/mainframe平台报表自动化方案实现.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html"><h3 class="article-title">JCL中执行如何SQL</h3></a>
+<h6 class="subheader" title="2013-03-24T00:00:00">2013-03-24
+</h6>
+
+
+<hr />
+<p>平常我们用第三方软件来对DB2操作，比如eclipse,比如DBedit,又或者是mainframe上面的软件，如<code>Filemanager</code>,<code>SPUFI</code>等。
+那怎么在JCL里面运行SQL呢？答案是利用<code>IKJEFT01</code>。</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="o">***************************************************************</span>               
+<span class="sr">//</span><span class="o">*</span><span class="ss">UNLOAD</span><span class="p">:</span>   <span class="n">unload</span> <span class="n">data</span> <span class="n">using</span> <span class="no">IKJEFT01</span> <span class="n">via</span> <span class="n">dynamic</span> <span class="no">SQL</span> <span class="k">in</span> <span class="no">JCL</span>  <span class="o">*</span>               
+<span class="sr">//</span><span class="o">***************************************************************</span>               
+<span class="sr">//</span><span class="no">UNLOAD</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IKJEFT01</span><span class="p">,</span><span class="no">DYNAMNBR</span><span class="o">=</span><span class="mi">20</span>                                        
+<span class="o">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXSRUN</span>                                          
+<span class="sr">//</span>             <span class="no">INCLUDE</span> <span class="no">MEMBER</span><span class="o">=</span><span class="no">XXXXLOAD</span>                                          
+<span class="sr">//</span><span class="no">SYSTSPRT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
+<span class="sr">//</span><span class="no">SYSUDUMP</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                          
+<span class="sr">//</span><span class="no">SYSREC00</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">SQL</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span>                              
+<span class="sr">//</span>            <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ikjeft01.html">IKJEFT01 </a>
+    <a href="http://mainframer.github.io/tag/sql.html">SQL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/JCL中执行如何SQL.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/JCL中执行如何SQL.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/SYNCSORT将PD格式转换成CSF(FS)格式.html"><h3 class="article-title">SYNCSORT将PD格式转换成CSF(FS)格式</h3></a>
 <h6 class="subheader" title="2013-03-20T00:00:00">2013-03-20
 </h6>
@@ -284,112 +392,6 @@
 
 
 <p><a href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html"><h3 class="article-title">IBM DebugTool的Source Identification Panel</h3></a>
-<h6 class="subheader" title="2012-12-26T00:00:00">2012-12-26
-</h6>
-
-
-<p>IBM DebugTool，在debug过程中可以按PF4键，或者输入命令:</p>
-<blockquote>
-<p>SOURCE
-or 
-LIST
-</p>
-</blockquote>
-<p>这时就会显示<code>Source Identification Panel</code>面板，在这里即可得知您当前正在debug的所有程序(Compile Unit)的详细路径。知道了它们都是从哪一个<code>loadlib</code>取到的,这确实对调试很有帮助。</p>
-<div class="highlight"><pre>                 <span class="no">Source</span> <span class="no">Identification</span> <span class="no">Panel</span>                                 
-<span class="no">Command</span> <span class="o">===&gt;</span>                                                                  
-
-<span class="no">Compile</span> <span class="no">Unit</span>              <span class="no">Listing</span><span class="o">/</span><span class="no">Source</span> <span class="no">File</span>                          <span class="no">Display</span>
-<span class="o">-------------------------</span> <span class="o">--------------------------------------------</span> <span class="o">-------</span>
-<span class="no">TESTPGM1</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB1</span><span class="p">(</span><span class="no">TETPGM1</span><span class="p">)</span>                <span class="n">Y</span>  
-<span class="no">TESTPGM2</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB2</span><span class="p">(</span><span class="no">TETPGM2</span><span class="p">)</span>                <span class="n">Y</span> 
-<span class="no">TESTPGM3</span>                   <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">LOAD</span><span class="o">.</span><span class="n">LIB3</span><span class="p">(</span><span class="no">TETPGM3 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/debugtool.html">DebugTool </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool的Source Identification Panel.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html"><h3 class="article-title">PL/I和COBOL如何取得当天的日期</h3></a>
-<h6 class="subheader" title="2012-12-10T00:00:00">2012-12-10
-</h6>
-
-
-<p>在Mainframe上做开发会经常遇到用PL/I或者COBOL取得当天的日期，对于PL/I，一般的公司都采取如下的做法：  </p>
-<div class="highlight"><pre><span class="no">DCL</span> <span class="no">PIC_TODAY</span>            <span class="no">PIC</span><span class="s1">&#39;999999&#39;</span> <span class="no">INIT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="no">PIC_TODAY</span>  <span class="o">=</span> <span class="no">DATE</span><span class="p">;</span>
-<span class="no">IF</span> <span class="no">SUBSTR</span><span class="p">(</span><span class="no">DATE</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="s1">&#39;50&#39;</span>                
-  <span class="no">THEN</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">19000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
-  <span class="no">ELSE</span> <span class="no">TODAYS_DATE</span> <span class="o">=</span> <span class="mi">20000000</span> <span class="o">+</span> <span class="no">PIC_TODAY</span><span class="p">;</span>
-</pre></div>
-
-
-<p>我所在的公司也是这种写法来获得<code>YYYYMMDD</code>格式的当日日期，很明显这种写法代码的寿命只有几十年了，相比之下COBOL获得<code>YYYYMMDD</code>格式的当日日期就显得方便得多，一个<code>ACCEPT</code>语句即可:</p>
-<div class="highlight"><pre><span class="no">WORKING</span><span class="o">-</span><span class="no">STORAGE</span> <span class="no">SECTION</span><span class="o">.</span>
-<span class="mo">01</span> <span class="no">TODAYS</span><span class="o">-</span><span class="no">DATE</span>                          <span class="no">PIC</span> <span class="mi">9</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span><span class="o">.</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="no">PROCEDURE</span> <span class="no">DIVISION</span><span class="o">.</span>
-<span class="no">ACCEPT</span> <span class="no">TODAYS ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/pli.html">PLI </a>
-    <a href="http://mainframer.github.io/tag/cobol.html">COBOL </a>
-    <a href="http://mainframer.github.io/tag/dang-tian-ri-qi.html">当天日期 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI和COBOL如何取得当天的日期.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html"><h3 class="article-title">COBOL程序编译报错GYDS1145-S</h3></a>
-<h6 class="subheader" title="2012-11-24T00:00:00">2012-11-24
-</h6>
-
-
-<p>今天编译一个COBOL老程序的时候报错：<code>IGYDS1145-S</code></p>
-<blockquote>
-<p>IGYDS1145-S More than 18 digit positions were specified in a "PICTURE" string for a numeric or numeric edited item.<br />
- A "PICTURE" string of "S9(18)" was assumed.           </p>
-</blockquote>
-<p>原因是老的编译器不支持超过18位的长度变量，但是新的编译器支持。这个帖子里有讨论得更多。
-<a href="http://ibmmainframes.com/post-9087.html">http://ibmmainframes.com/post-9087.html</a>   </p>
-<blockquote>
-<p>COBOL Compiler restricts me defining a PIC 9() variable not more than of ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/cobol.html">COBOL </a>
-    <a href="http://mainframer.github.io/tag/gyds1145-s.html">GYDS1145-S </a>
-    <a href="http://mainframer.github.io/tag/arithextend.html">ARITH(EXTEND) </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL程序编译报错GYDS1145-S.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
