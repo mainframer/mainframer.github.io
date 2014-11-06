@@ -1,57 +1,127 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="utf-8" />
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
-
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
     <title>Modern Mainframer - ssh翻墙</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="mainframer">
 
-    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/normalize.css" />
-    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/foundation.min.css" />
-    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/style.css" />
-    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/pygments.css" />	
-    <script src="http://mainframer.github.io/theme/js/modernizr.js"></script>
-</head>
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://mainframer.github.io/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://mainframer.github.io/theme/css/font-awesome.css" rel="stylesheet">
 
-<body>
+    <link href="http://mainframer.github.io/theme/css/pygments.css" rel="stylesheet">
 
-<!-- Nav Bar -->
-<nav>
-<div class="top-bar">
-<div class="row">
-    <div class="large-9 large-centered columns">
-	    <h1><a href="http://mainframer.github.io">Modern Mainframer</a></h1>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://mainframer.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://mainframer.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://mainframer.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://mainframer.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://mainframer.github.io/" type="application/atom+xml" rel="alternate" title="Modern Mainframer ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://mainframer.github.io/index.html">Modern Mainframer </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/linuxunixuss.html">
+						<i class="icon-folder-open icon-large"></i>Linux/Unix/USS
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/mainframe.html">
+						<i class="icon-folder-open icon-large"></i>Mainframe
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/others.html">
+						<i class="icon-folder-open icon-large"></i>Others
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">
+						<i class="icon-folder-open icon-large"></i>写写脚本
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">
+						<i class="icon-folder-open icon-large"></i>做做自动化
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://mainframer.github.io/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
-</div>
-</div>
 
-<!-- Show menu items and pages -->
-<div class="row">
-<div class="large-9 columns">
-    <ul class="button-group navigation">
-
-    </ul>
-</div>
-</div>
-</nav>
-<!-- End Nav -->
-
-
-<!-- Main Page Content and Sidebar -->
-<div class="row">
-
-    <!-- Main Blog Content -->
-    <div class="large-9 columns">
-        
-        
-
-            <article>
-                <a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html"><h3 class="article-title">关于MAC下用SSH翻墙的小结(转)</h3></a>
-<h6 class="subheader" title="2013-06-12T00:00:00">2013-06-12
-</h6>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html">关于MAC下用SSH翻墙的小结(转)</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-06-12T00:00:00">
+        <i class="icon-calendar"></i>2013-06-12
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
 
 
-<p>近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  </p>
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/macfan-qiang.html"><i class="icon-tag"></i>Mac翻墙</a>
+	<a href="http://mainframer.github.io/tag/sshfan-qiang.html"><i class="icon-tag"></i>ssh翻墙</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  </p>
 <h3>以下内容转自：</h3>
 <p><a href="http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/">http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/</a><br />
 回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  </p>
@@ -61,117 +131,55 @@
 <blockquote>
 <p>ssh -D port user@hostname</p>
 <p>其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
-然后，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选”SOCKS 代理”-&gt;旁边的”SOCKS 代理服务器”里填127.0.0.1，端口填你刚才写的那个，点个好点个应用，搞定。  </p>
-</blockquote>
-<h5>注意，</h5>
-<p>终端的ssh连接不能关闭。<br />
-注意你的ssh的服务器的访问限制，尤其是像我这样的用学校的ssh服务器的，如果去访问了一些不该访问的，就该有学校的警告mail来了<br />
-这个方法简单粗暴但是也太粗糙，所有的访问都会通过ssh服务器来进行，所以即使我看个sina新闻也要绕到遥远的nagoya去，而且pipe还可能崩坏。<br />
-推荐人群：如果只是为了时不时地上个推上个fb的话，只要你的ssh也允许，可以尝试。   </p>
-<h4>方法二，iSSH加.pac文件</h4>
-<p>这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&gt;&lt;。。。 <br />
-首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。<a href="./../files/iSSH.zip">--&gt;__--&gt;点击下载iSSH.zip</a> <br />
-app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
-其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： </p>
-<div class="highlight"><pre><span class="n">function</span> <span class="no">FindProxyForURL</span><span class="p">(</span> <span class="n">url</span><span class="p">,</span> <span class="n">host</span> <span class="p">)</span>
-<span class="p">{</span>
- <span class="k">if</span> <span class="p">(</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*ip38*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*1-apple.com.tw*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="err">…</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook cdn*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-              <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/amoiist*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/BeiJing1989*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/billzhong*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/nowhere1975*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/shizhao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/VOTChinese*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wenyunchao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wumao*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zengjinyan*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zuola*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://www.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://apiwiki.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://dev.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://status.twitter.com/*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*hk.youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*tw.youtube.com*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com/get_video*&quot;</span><span class="p">)</span>
-     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*Youtube CDN*&quot;</span><span class="p">)</span>
-     <span class="err">…</span>
-     <span class="p">)</span>
-    <span class="k">return</span> <span class="s2">&quot;SOCKS 127.0.0.1:7070&quot;</span><span class="p">;</span>
- <span class="k">else</span> 
-    <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+然后，打开 ...</p></blockquote>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html">Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-08-01T00:00:00">
+        <i class="icon-calendar"></i>2011-08-01
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
 
 
-<p>这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 <a href="./../files/gfwlist.pac">--&gt;__--&gt;点击下载gfwlist.pac</a><br />
-接着，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选“自动代理配置”-&gt;“选取文件”-&gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
-最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  </p>
-<h5>注意，</h5>
-<p>上面的iSSH的SOCKS Proxy -D的端口和.  pac的文件末尾所写的那个端口必须一致，而之所以选择7070,是因为我最开始拿到这个文件的时候它写的就是7070＝＝<br />
-这个方法相对上一个方法更稳定，因为它只有在访问那些需要翻墙的url的时候才会通过ssh服务器，所以限制更少，pipe也不容易崩坏，<br />
-推荐人群：如果你的ssh服务器对国内的网址很不友好的话，用这个会好点。<br />
-以上，<br />
-2012－3－28<br />
-于爵仕官邸某7楼床上  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/macfan-qiang.html">Mac翻墙 </a>
-    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">ssh翻墙 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html#disqus_thread">comments</a></p>            </article>
-
-
-                <hr  class="gradient"/>
-
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html"><h3 class="article-title">Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙</h3></a>
-<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
-</h6>
-
-
-<p>上一篇讲到的是windows下的利用<code>ssh+chrome(chromium)+proxy switchy + Myentunnel</code>翻墙，其实在linux下和windows下没什么区别，都是用ssh代理，只是利用的客户端软件不一样而已。windows下用Myentunnel，linux下我们一般用<code>gSTM</code>。 </p>
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/gstmfan-qiang.html"><i class="icon-tag"></i>gSTM翻墙</a>
+	<a href="http://mainframer.github.io/tag/sshfan-qiang.html"><i class="icon-tag"></i>ssh翻墙</a>
+	<a href="http://mainframer.github.io/tag/proxy-switchyfan-qiang.html"><i class="icon-tag"></i>proxy switchy翻墙</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>上一篇讲到的是windows下的利用<code>ssh+chrome(chromium)+proxy switchy + Myentunnel</code>翻墙，其实在linux下和windows下没什么区别，都是用ssh代理，只是利用的客户端软件不一样而已。windows下用Myentunnel，linux下我们一般用<code>gSTM</code>。 </p>
 <p>gSTM (Gnome SSH Tunnel Manager) 是一款图形化的 SSH 隧道端口重定向管理工具 点击<a href="http://sourceforge.net/projects/gstm/files">这里</a>下载后安装，设置和之前讲得Myentunnel差不多.也是必填的几个：<code>SSH服务器地址</code>,<code>SSH用户名</code>，<code>SSH密码</code>，<code>SSH端口3022</code>，<code>本地端口7070</code>。
-Proxy switchy的设置请参照我的另一篇文章 &lt;<ssh+myEntunnel+chrome+proxy switchy翻墙>&gt;</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/gstmfan-qiang.html">gSTM翻墙 </a>
-    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">ssh翻墙 </a>
-    <a href="http://mainframer.github.io/tag/proxy-switchyfan-qiang.html">proxy switchy翻墙 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html"><h3 class="article-title">ssh+myEntunnel+chrome+proxy switchy翻墙</h3></a>
-<h6 class="subheader" title="2011-08-01T00:00:00">2011-08-01
-</h6>
+Proxy switchy的设置请参照我的另一篇文章 &lt;<ssh+myEntunnel+chrome+proxy switchy翻墙>&gt;</p>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/Linux+ssh+chrome(chromium)+proxy switchy + gSTM翻墙.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html">ssh+myEntunnel+chrome+proxy switchy翻墙</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-08-01T00:00:00">
+        <i class="icon-calendar"></i>2011-08-01
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
 
 
-<p>在windows/win7下如何翻墙？告诉你答案：<code>ssh+myEntunnel+chrome+proxy switchy</code>插件翻墙。</p>
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/proxy-switchyfan-qiang.html"><i class="icon-tag"></i>proxy switchy翻墙</a>
+	<a href="http://mainframer.github.io/tag/myentunnelfan-qiang.html"><i class="icon-tag"></i>myEntunnel翻墙</a>
+	<a href="http://mainframer.github.io/tag/sshfan-qiang.html"><i class="icon-tag"></i>ssh翻墙</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>在windows/win7下如何翻墙？告诉你答案：<code>ssh+myEntunnel+chrome+proxy switchy</code>插件翻墙。</p>
 <h4>1、注册SSH账号</h4>
 <p>SSH是建立在应用层和传输层基础上的提供可靠传输的安全协议。在这里您首先需要去注册一个SSH代理的账号，一般是几块钱一个月的就挺好的了，当然也有免费注册的，不过免费的可能速度不是很快或者连接不稳定。注册SSH的网址我就不发了，不然就有广告的嫌疑了。自己到网上一搜一堆的那种。要是实在找不到的可以通过邮箱<code>54xiaowoniu@sina.cn</code>跟我联系，我告诉你怎么注册。基本上15分钟搞定。 </p>
 <h4>2、下载MyEntunnel</h4>
@@ -179,77 +187,585 @@ Proxy switchy的设置请参照我的另一篇文章 &lt;<ssh+myEntunnel+chrome+
 在桌面右下角任务栏上出现了黄色的锁，说明还没连接上。右击显示，作如下设置：<br />
 <img alt="1" src="./../images/myentunnel.jpg" />     </p>
 <p>这里，SSH服务器栏填你在上一步中注册SSH账号的服务器地址。一般你注册好SSH账号后服务器地址，SSH端口，用户名和密码都是知道了的，相应地填上就可以了。本地端口填7070,这个要和浏览器Chrome，Proxy switchy的一致，这个下面会讲到。<br />
-另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/proxy-switchyfan-qiang.html">proxy switchy翻墙 </a>
-    <a href="http://mainframer.github.io/tag/myentunnelfan-qiang.html">myEntunnel翻墙 </a>
-    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">ssh翻墙 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-            <!-- /#posts-list -->
-<div class="pagination-centered">
-<h6 class="subheader">Page 1 of 1</h6>
-
-<p>
-
-</p>
-</div>
-
-    </div>
-    <!-- End Main Content -->
-
-    <!-- Sidebar -->
-    <aside class="large-3 columns">
-        <h5 class="sidebar-title">Site</h5>
-        <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/archives.html">Archives</a>
-            <li><a href="http://mainframer.github.io/tags.html">Tags</a>
-        </ul>
-
-		
-        <h5 class="sidebar-title">Categories</h5>
-        <ul class="side-nav">
-            <li><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></li>
-            <li><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></li>
-            <li><a href="http://mainframer.github.io/category/others.html">Others</a></li>
-            <li><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></li>
-            <li><a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a></li>
-   
-        </ul>
-
-        <h5 class="sidebar-title">Links</h5>
-        <ul class="side-nav">
-            <li><a href="http://www-01.ibm.com/support/knowledgecenter">IBM知识中心</a></li>
-        </ul>
-		
-        <h5 class="sidebar-title">Social</h5>
-        <ul class="side-nav">
-            <li><a href="https://github.com/mainframer">mainframer@Github</a></li>
-            <li><a href="https://www.linkedin.com/in/mainframer">mainframer@Linkedin</a></li>
-        </ul>
-
-    </aside> <!-- End Sidebar -->
-
-</div> <!-- End Main Content and Sidebar -->
-
-
-<!-- Footer -->
-<footer class="row">
-    <div class="large-12 columns">
+另外，记得勾上图中的那几个选项，比如失败自动重连什么的。设置好后再重新连接，黄色的锁就会变成绿色的 ...</p>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/ssh+myEntunnel+chrome+proxy switchy翻墙.html">more ...</a>
+                </div>
+        </div>
         <hr />
-        <div class="row">
-            <div class="large-6 columns">
-              <!--                  <p>Modern Mainframer by mainframer</p> -->
-            </div>
-            </div>
-    </div>
-</footer>
-</body>
+
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://www-01.ibm.com/support/knowledgecenter"><i class="icon-external-link"></i>IBM知识中心</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="http://mainframer.github.io/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="https://github.com/mainframer"><i class="icon-mainframer@Github-sign icon-large"></i>mainframer@Github</a></li>
+    <li><a href="https://www.linkedin.com/in/mainframer"><i class="icon-mainframer@Linkedin-sign icon-large"></i>mainframer@Linkedin</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="http://mainframer.github.io/category/linuxunixuss.html">
+    <i class="icon-folder-open icon-large"></i>Linux/Unix/USS
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/mainframe.html">
+    <i class="icon-folder-open icon-large"></i>Mainframe
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/others.html">
+    <i class="icon-folder-open icon-large"></i>Others
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">
+    <i class="icon-folder-open icon-large"></i>写写脚本
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">
+    <i class="icon-folder-open icon-large"></i>做做自动化
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/fa-wei-bo.html">
+        <i class="icon-tag icon-large"></i>发微博
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/gstmfan-qiang.html">
+        <i class="icon-tag icon-large"></i>gSTM翻墙
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/for.html">
+        <i class="icon-tag icon-large"></i>FOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/batpi-chu-li.html">
+        <i class="icon-tag icon-large"></i>BAT批处理
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cebr.html">
+        <i class="icon-tag icon-large"></i>CEBR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/debugtool.html">
+        <i class="icon-tag icon-large"></i>DebugTool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/adobe-reader.html">
+        <i class="icon-tag icon-large"></i>Adobe reader
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/debug-tool.html">
+        <i class="icon-tag icon-large"></i>Debug tool
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ispf-dialog.html">
+        <i class="icon-tag icon-large"></i>ISPF Dialog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/50ge-zhou.html">
+        <i class="icon-tag icon-large"></i>50个州
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/datacom.html">
+        <i class="icon-tag icon-large"></i>DATACOM
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/tso.html">
+        <i class="icon-tag icon-large"></i>TSO
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/backtrack.html">
+        <i class="icon-tag icon-large"></i>Backtrack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/goto.html">
+        <i class="icon-tag icon-large"></i>GOTO
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/file-manager.html">
+        <i class="icon-tag icon-large"></i>File Manager
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ti-jiao-alexa.html">
+        <i class="icon-tag icon-large"></i>提交Alexa
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/jiao-ben.html">
+        <i class="icon-tag icon-large"></i>脚本
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/vmware8.html">
+        <i class="icon-tag icon-large"></i>vmware8
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/changeman.html">
+        <i class="icon-tag icon-large"></i>Changeman
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/shua-shi-pin.html">
+        <i class="icon-tag icon-large"></i>刷视频
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/superc.html">
+        <i class="icon-tag icon-large"></i>SuperC
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jcl-fan-hui-ma.html">
+        <i class="icon-tag icon-large"></i>JCL 返回码
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">
+        <i class="icon-tag icon-large"></i>BeautifulSoup
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/icetool.html">
+        <i class="icon-tag icon-large"></i>ICETOOL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/copybook.html">
+        <i class="icon-tag icon-large"></i>Copybook
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/s000-u4088.html">
+        <i class="icon-tag icon-large"></i>S000 U4088
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/fen-ge-da-wen-jian.html">
+        <i class="icon-tag icon-large"></i>分割大文件
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/da-xing-ji.html">
+        <i class="icon-tag icon-large"></i>大型机
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/ispf.html">
+        <i class="icon-tag icon-large"></i>ISPF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/heroku.html">
+        <i class="icon-tag icon-large"></i>heroku
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/undo.html">
+        <i class="icon-tag icon-large"></i>UNDO
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/myentunnelfan-qiang.html">
+        <i class="icon-tag icon-large"></i>myEntunnel翻墙
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/rpm.html">
+        <i class="icon-tag icon-large"></i>RPM
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dnsdict6.html">
+        <i class="icon-tag icon-large"></i>dnsdict6
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/find-all.html">
+        <i class="icon-tag icon-large"></i>FIND ALL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/tor.html">
+        <i class="icon-tag icon-large"></i>TOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sql.html">
+        <i class="icon-tag icon-large"></i>SQL
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://mainframer.github.io/tag/zos.html">
+        <i class="icon-tag icon-large"></i>z/OS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/hercules.html">
+        <i class="icon-tag icon-large"></i>Hercules
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">
+        <i class="icon-tag icon-large"></i>Linux挂载
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/db2-sqlcode.html">
+        <i class="icon-tag icon-large"></i>DB2 SQLcode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dong-tai-shu-zu.html">
+        <i class="icon-tag icon-large"></i>动态数组
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/genlist.html">
+        <i class="icon-tag icon-large"></i>genlist
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>Markdown
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/iceman.html">
+        <i class="icon-tag icon-large"></i>ICEMAN
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/win8.html">
+        <i class="icon-tag icon-large"></i>win8
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/octopress.html">
+        <i class="icon-tag icon-large"></i>Octopress
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/procmu-lu.html">
+        <i class="icon-tag icon-large"></i>proc目录
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/stardict.html">
+        <i class="icon-tag icon-large"></i>stardict
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cobolgui-ze.html">
+        <i class="icon-tag icon-large"></i>COBOL规则
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/zi-dong-hua.html">
+        <i class="icon-tag icon-large"></i>自动化
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jian-pan-ren-min-bi.html">
+        <i class="icon-tag icon-large"></i>键盘人民币
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/gdg.html">
+        <i class="icon-tag icon-large"></i>GDG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/sort.html">
+        <i class="icon-tag icon-large"></i>SORT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/kde.html">
+        <i class="icon-tag icon-large"></i>KDE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/shen-tou.html">
+        <i class="icon-tag icon-large"></i>渗透
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cicsming-ling.html">
+        <i class="icon-tag icon-large"></i>CICS命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/joinkey.html">
+        <i class="icon-tag icon-large"></i>JOINKEY
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pli.html">
+        <i class="icon-tag icon-large"></i>PLI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/loadparm.html">
+        <i class="icon-tag icon-large"></i>LoadParm
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/cobol.html">
+        <i class="icon-tag icon-large"></i>COBOL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/proxy-switchyfan-qiang.html">
+        <i class="icon-tag icon-large"></i>proxy switchy翻墙
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/zai-xian-hao-dong-xi.html">
+        <i class="icon-tag icon-large"></i>在线好东西
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/watir.html">
+        <i class="icon-tag icon-large"></i>Watir
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/requests.html">
+        <i class="icon-tag icon-large"></i>requests
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ikj56400a.html">
+        <i class="icon-tag icon-large"></i>IKJ56400A
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/adsenseshen-qing.html">
+        <i class="icon-tag icon-large"></i>Adsense申请
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/rexx.html">
+        <i class="icon-tag icon-large"></i>rexx
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dang-tian-ri-qi.html">
+        <i class="icon-tag icon-large"></i>当天日期
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jclpi-liang-zhu-shi.html">
+        <i class="icon-tag icon-large"></i>JCL批量注释
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/wai-qi-email.html">
+        <i class="icon-tag icon-large"></i>外企email
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/github-pages.html">
+        <i class="icon-tag icon-large"></i>GitHub Pages
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>Pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/chang-yong-linuxming-ling.html">
+        <i class="icon-tag icon-large"></i>常用linux命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/blksize0.html">
+        <i class="icon-tag icon-large"></i>BLKSIZE=0
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/backtrackpei-zhi.html">
+        <i class="icon-tag icon-large"></i>Backtrack配置
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/arithextend.html">
+        <i class="icon-tag icon-large"></i>ARITH(EXTEND)
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/intrdr.html">
+        <i class="icon-tag icon-large"></i>INTRDR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">
+        <i class="icon-tag icon-large"></i>主机一本通
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/dataset.html">
+        <i class="icon-tag icon-large"></i>dataset
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/qwming-ling.html">
+        <i class="icon-tag icon-large"></i>QW命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/backtrack5-r1.html">
+        <i class="icon-tag icon-large"></i>BackTrack5 R1
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxying-jian.html">
+        <i class="icon-tag icon-large"></i>Linux硬件
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/tsq.html">
+        <i class="icon-tag icon-large"></i>TSQ
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>ftp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">
+        <i class="icon-tag icon-large"></i>ssh翻墙
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/amazon.html">
+        <i class="icon-tag icon-large"></i>Amazon
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/vb-script.html">
+        <i class="icon-tag icon-large"></i>VB Script
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/bao-guan-li.html">
+        <i class="icon-tag icon-large"></i>包管理
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/cics.html">
+        <i class="icon-tag icon-large"></i>CICS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ispftong-pei-fu.html">
+        <i class="icon-tag icon-large"></i>ISPF通配符
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/trigger-job.html">
+        <i class="icon-tag icon-large"></i>trigger job
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/quote-site.html">
+        <i class="icon-tag icon-large"></i>quote site
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxmu-lu-jie-gou.html">
+        <i class="icon-tag icon-large"></i>Linux目录结构
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/coboljie-gou.html">
+        <i class="icon-tag icon-large"></i>COBOL结构
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ti-jiao-jcl.html">
+        <i class="icon-tag icon-large"></i>提交JCL
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'mainframer';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://mainframer.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
 </html>

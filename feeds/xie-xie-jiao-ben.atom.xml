@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/xie-xie-jiao-ben.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-11-05T00:00:00+08:00</updated><entry><title>Python做自动化项目的总结</title><link href="http://mainframer.github.io/articles/Python%E5%81%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%80%BB%E7%BB%93.html" rel="alternate"></link><updated>2014-11-05T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-05:articles/Python做自动化项目的总结.html</id><summary type="html">&lt;p&gt;最近项目上有自动化要求，我选择了用Python，对自己的代码能力提高很有帮助。
-- 第一：学东西最快最有效的方法是“用起来”。&lt;br /&gt;
-- 第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。&lt;br /&gt;
-- 第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。  &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/xie-xie-jiao-ben.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-11-05T00:00:00+08:00</updated><entry><title>Python做自动化项目的总结</title><link href="http://mainframer.github.io/articles/Python%E5%81%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%80%BB%E7%BB%93.html" rel="alternate"></link><updated>2014-11-05T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-05:articles/Python做自动化项目的总结.html</id><summary type="html">&lt;p&gt;最近项目上有自动化要求，我选择了用Python，对自己的代码能力提高很有帮助。&lt;br /&gt;
+- 第一：学东西最快最有效的方法是“用起来”。  &lt;br /&gt;
+- 第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。  &lt;br /&gt;
+- 第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。    &lt;/p&gt;
 &lt;p&gt;心灵鸡汤说完了，这里我记录一下这次项目中用到的Python知识点和重点。&lt;/p&gt;
 &lt;h6&gt;Python如何中途退出一个函数？&lt;/h6&gt;
 &lt;p&gt;&lt;code&gt;sys.exit(0)&lt;/code&gt;   &lt;/p&gt;
