@@ -47,6 +47,70 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html"><h3 class="article-title">介绍几个有用的ISPF命令(续二)</h3></a>
+<h6 class="subheader" title="2011-04-24T00:00:00">2011-04-24
+</h6>
+
+
+<h4>M+F7 和 M+F8</h4>
+<p>命令行上输<code>M</code>,接着按<code>F7</code>, 表示回到文件最顶端<br />
+命令行上输<code>M</code>,接着按<code>F8</code>, 表示回到文件最低端  </p>
+<h4>COL</h4>
+<p>显示列号，这个命令特别是在对齐的时候很有用。因为在JCl语法中，很多关键字必须规定从第几列开始写，不然会出错的，比如JCLLIB ORDER一定要从第四列开始写，所以用<code>COL</code>命令显示行号是很有必要的。</p>
+<h4>HI</h4>
+<p>语法高亮用HI，比如可以用<code>HI PLI</code>来高亮PL/I代码，用<code>HI COBOl</code>高亮COBOl代码，用<code>HI JCL</code>来高亮JCL语法，用<code>HI REXX</code>来高亮REXX语法，用HI ASM来高亮汇编代码，一共支持18种语言。可以<code>HI ...</code></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/介绍几个有用的ISPF命令(续二).html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html"><h3 class="article-title">常见的TSO ISPF命令</h3></a>
+<h6 class="subheader" title="2011-04-21T00:00:00">2011-04-21
+</h6>
+
+
+<h3>几个概念</h3>
+<h4><code>TSO</code></h4>
+<p>TSO(Time Sharing Option)，时分操作，可以同时让多个用户登录到大机上。一般我们认为的TSO是命令行模式，像一些LOGON，LOGOFF，之类的命令与大机交互。</p>
+<h4><code>ISPF</code></h4>
+<p>ISPF(Interactive System Programming Facility)，它提供了一个menu菜单系统来与大机交互，可以说就是一个简单的menu system。<br />
+好了，言归正传。下面是必须知道的ISPF命令:  </p>
+<h5>ISPF功能键</h5>
+<p>PF1： HELP帮助键<br />
+PF2： SPLIT键，改变分屏位置<br />
+PF3： END键，结束并退回上级菜单<br />
+PF4： RETURN键，结束并退回主菜单<br />
+PF5： REFIND键，重复最近一次FIND命令<br />
+PF6： RECHANGE键，重复最近一次CHANGE命令<br />
+PF7： UP键，向上滚屏<br />
+PF8： DOWN键，向下滚屏<br />
+PF9： SWAP键 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/tso.html">TSO </a>
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/常见的TSO ISPF命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html"><h3 class="article-title">BT5开机自动启动ibus</h3></a>
 <h6 class="subheader" title="2011-03-06T00:00:00">2011-03-06
 </h6>
@@ -288,80 +352,9 @@ Backtrack,中文不知道该翻译成啥，回溯？Backtrack是基于Slackware�
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html"><h3 class="article-title">DATACOM数据库介绍</h3></a>
-<h6 class="subheader" title="2010-11-29T00:00:00">2010-11-29
-</h6>
-
-
-<p>CA Datacom听过么？它是CA(Computer Associates)公司的企业级数据库。以能承受高负荷和较强的容错性著称，在mainframe平台上有比较广泛地应用，不过最近几年Datacom公司貌似不怎么行了，大家都换上了IBM的DB2数据库了。<br />
-Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说是具备了基本的文件系统特征。通常KEY是某个或某几个字段的组合，一个table可以有多个KEY。在PL/I或COBOL程序中访问Datacom是通过调用接口DBNTRY来实现的(<span style="color: #ff00ff;">XXX</span>是table名字)。 在COBOL中是这样call的(<span style="color: #ff00ff;">XXX</span>是table名字)：</p>
-<div class="highlight"><pre><span class="no">CALL</span> <span class="err">‘</span><span class="no">DBNTRY</span><span class="err">’</span> <span class="no">USING</span> <span class="no">USER</span><span class="o">-</span><span class="no">ID</span>
-      <span class="no">XXX</span><span class="o">-</span><span class="no">REQ</span><span class="o">-</span><span class="no">AREA</span>
-      <span class="no">XXXF0</span>
-      <span class="no">XXX</span><span class="o">-</span><span class="no">ELEMENT</span><span class="o">-</span><span class="no">LIST</span>
-</pre></div>
-
-
-<p>而在这之前，要先声明：</p>
-<div class="highlight"><pre><span class="mo">01</span> <span class="no">USER</span><span class="o">-</span><span class="no">ID</span><span class="o">.</span>
-<span class="mo">05</span> <span class="no">PROGRAM</span><span class="o">-</span><span class="no">NAME</span> <span class="no">PIC</span> <span class="n">X</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span> <span class="no">VALUE</span> <span class="s1">&#39;MYPGM00 &#39;</span><span class="o">.</span>
-<span class="mo">05</span> <span class="no">FILLER</span> <span class="no">PIC ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/datacom.html">DATACOM </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/DATACOM数据库介绍.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Linux压缩命令.html"><h3 class="article-title">Linux压缩命令</h3></a>
-<h6 class="subheader" title="2010-11-26T00:00:00">2010-11-26
-</h6>
-
-
-<p>在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
-压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  <br />
-<code>tar格式</code></p>
-<div class="highlight"><pre><span class="n">tar</span> <span class="n">xvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span>
-<span class="n">tar</span> <span class="n">cv</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span> <span class="n">directory</span>  
-</pre></div>
-
-
-<p><code>gz格式</code></p>
-<div class="highlight"><pre><span class="n">gunzip</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
-<span class="err">也可用</span> <span class="n">gzip</span><span class="err">——</span><span class="n">gzip</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
-</pre></div>
-
-
-<p><code>tar.gz/tgz格式</code></p>
-<div class="highlight"><pre><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="err">解压至当前目录</span>
-<span class="n">tar</span> <span class="n">zcvf ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/linuxya-suo.html">Linux压缩 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Linux压缩命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux压缩命令.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 13 of 14</h6>
+<h6 class="subheader">Page 13 of 15</h6>
 
 <p>
             <a href="http://mainframer.github.io/author/mainframer12.html">&laquo; Prev</a>

@@ -47,6 +47,55 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/新建空的GDG generation.html"><h3 class="article-title">新建空的GDG generation</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  </p>
+<p><img alt="1" src="./../images/gdg-new-empty-generation.jpg" />    <br />
+submit，查看，空的generation G0001V00 就生成了:  </p>
+<p><img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/新建空的GDG generation.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建空的GDG generation.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/更改GDG世代数参数.html"><h3 class="article-title">更改GDG世代数参数</h3></a>
+<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
+</h6>
+
+
+<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:<br />
+<img alt="1" src="./../images/gdg-update.jpg" />      </p>
+<p>submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/更改GDG世代数参数.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/更改GDG世代数参数.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/新建GDG世代数据集.html"><h3 class="article-title">新建GDG世代数据集</h3></a>
 <h6 class="subheader" title="2011-08-25T00:00:00">2011-08-25
 </h6>
@@ -286,70 +335,9 @@ root@bt:~# <code>sudo gedit /etc/apt/sources.list</code>    </p>
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html"><h3 class="article-title">BT5安装openoffice和星际译王stardict</h3></a>
-<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
-</h6>
-
-
-<h3>BT5下安装openoffice</h3>
-<p>上次装了Adobe Reader在BT5下面能看PDF了，后来发现不能看word，ppt，excel也是一件很痛快的事情，虽然安装了vmware-tools之后在windows和BT5直接直接来回拖文件也挺方便，但是也不那么方便，所以今天还是老老实实地把openoffice在BT5下面给安装了。
-首先到openoffice官网上下载安装包，因为我选的是deb安装，而不是rpm安装，所以我下载deb包，放在~/software目录下。
-root@bt:~#  <code>cd ~/software</code> <br />
-root@bt:~/software#<br />
-root@bt:~/software#  <code>tar zxvf OOo_3.3.0_Linux_x86_install-deb_zh-CN.tar.gz</code> <br />
-root@bt:~/software#  <code>cd OOO330_m20_native_packed-1_zh-CN.9567/</code> <br />
-root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567#  <code>ls</code> <br />
-DEBS licenses readmes update  </p>
-<h5>进入DEBS目录，安装该目录下的所有deb包 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
-    <a href="http://mainframer.github.io/tag/openoffice.html">openoffice </a>
-    <a href="http://mainframer.github.io/tag/stardict.html">stardict </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Linux目录结构.html"><h3 class="article-title">Linux目录结构</h3></a>
-<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
-</h6>
-
-
-<p>linux中以树形目录形式来管理的，并且所有的设备都是目录。linux只有一个根目录<code>‘/'</code>，其余的目录都是根目录的子目录。
-root@bt:/# ls /dev/sd*
-<code>/dev/sda /dev/sda1 /dev/sda2 /dev/sda5</code>
-<code>注释:</code>表示只有一块SATA硬盘，有两个主分区<code>(sda1,sda2)</code>，一个逻辑分区<code>(sda5)</code>。  </p>
-<h5>下面对根目录<code>'/'</code>下的子目录来个介绍：</h5>
-<p><code>/usr</code>:  包含所有命令，类库，系统帮助手册，即包含了系统运行不会修改的内容<br />
-<code>/var</code>:  包含系统运行中会修改的内容，如打印队列，邮件列表等，还有系统中软件的日志信息<br />
-<code>/home</code>: 用户的主目录，比如/home/user1,/home/user2，每个用户在这个目录下面都有一个自己的子目录<br />
-<code>/dev</code>:  设备文件，如硬盘，光驱，USB设备，内存 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/linuxmu-lu-jie-gou.html">Linux目录结构 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Linux目录结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux目录结构.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 10 of 14</h6>
+<h6 class="subheader">Page 10 of 15</h6>
 
 <p>
             <a href="http://mainframer.github.io/author/mainframer9.html">&laquo; Prev</a>

@@ -47,6 +47,72 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html"><h3 class="article-title">每天定时从Mainframe下载gdg文件再上传到ftp</h3></a>
+<h6 class="subheader" title="2013-04-01T00:00:00">2013-04-01
+</h6>
+
+
+<p>今天要完成一个任务：  </p>
+<h4>任务描述</h4>
+<h6>Step1:从大机(mainframe)上下载指定的gdg最新的2个generation到本地C:\gdg目录下。</h6>
+<h6>Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的<code>/topath/users-4/</code>目录下面，每天新建一个目录<code>yyyymmdd</code>用来存放当天的gdg文件。</h6>
+<h6>Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。</h6>
+<p>这里是实现以上任务的批处理脚本<code>ftpscript.bat</code>。放在<code>C:\ftpscript</code>.bat，之后在windows计划任务里面添加每天定时运行即可。   </p>
+<div class="highlight"><pre><span class="vi">@echo</span> <span class="n">off</span>
+<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">的</span><span class="no">IP</span>
+<span class="n">set</span> <span class="n">mfIP</span><span class="o">=</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span>
+<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">用户名</span>
+<span class="n">set</span> <span class="n">mfUser</span><span class="o">=</span><span class="no">IBMUSER</span>
+<span class="n">rem</span> <span class="err">指定 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/mainframe.html">mainframe </a>
+    <a href="http://mainframer.github.io/tag/ftp.html">ftp </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BAT批处理现学现用.html"><h3 class="article-title">BAT批处理现学现用</h3></a>
+<h6 class="subheader" title="2013-03-29T00:00:00">2013-03-29
+</h6>
+
+
+<p>上篇说的是本人在实现报表自动化过程中用到的VBS知识，这篇我打算用来总结在此过程中用到的批处理知识。</p>
+<h4>批处理里面如何实现延时？</h4>
+<div class="highlight"><pre><span class="n">rem</span> <span class="err">巧妙地利用</span><span class="n">windows</span><span class="err">自带的</span><span class="n">ping</span><span class="err">命令来达到延时的目的</span>
+<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
+</pre></div>
+
+
+<h5>批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]</h5>
+<div class="highlight"><pre><span class="err">@</span><span class="n">echo</span> <span class="nl">off</span>
+<span class="p">:</span><span class="n">input_module</span>
+<span class="n">echo</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">date</span> <span class="nl">here</span><span class="p">:</span>
+<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">yyyymm</span><span class="o">=^&lt;</span><span class="nl">format</span><span class="p">:</span><span class="n">yyyymm</span><span class="o">^&gt;</span> <span class="p">(</span><span class="nl">example</span><span class="p">:</span><span class="mi">201301</span><span class="p">)</span><span class="o">:</span>
+<span class="n">echo</span> <span class="o">%</span><span class="n">yyyymm</span><span class="o">%|</span><span class="n">findstr</span> <span class="o">^</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/batpi-chu-li.html">BAT批处理 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BAT批处理现学现用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/VB Script现学现用.html"><h3 class="article-title">VB Script现学现用</h3></a>
 <h6 class="subheader" title="2013-03-27T00:00:00">2013-03-27
 </h6>
@@ -312,92 +378,9 @@
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/Octopress写博客常用语法总结.html"><h3 class="article-title">Octopress写博客常用语法总结</h3></a>
-<h6 class="subheader" title="2013-01-18T00:00:00">2013-01-18
-</h6>
-
-
-<p>自从博客从<code>Wordpress</code>迁徙到<code>Octopress</code>来，也有一段时间了。该是时候总结一下常用的语法了。  </p>
-<h4>插入图片</h4>
-<div class="highlight"><pre>![图片描述](图片地址) 
-</pre></div>
-
-
-<h4>插入链接</h4>
-<div class="highlight"><pre><span class="cp">[</span><span class="err">链接描述</span><span class="cp">]</span><span class="x">(链接地址)  </span>
-</pre></div>
-
-
-<h4>插入代码</h4>
-<h5>方法一</h5>
-<p><img alt="1" src="./../images/octopress_syntax_2.png" />     </p>
-<h5>方法二</h5>
-<p>用3个反引号括起来</p>
-<p><img alt="1" src="./../images/octopress_syntax_3.png" />       </p>
-<h4>引用的用法</h4>
-<p>用<em>blockquote</em>关键字<br />
-<img alt="1" src="./../images/octopress_syntax_1.png" />   </p>
-<p>引用的效果如下： </p>
-<blockquote>
-<p>Heroes come and go,but legends are forever
-</p>
-</blockquote>
-<h4>特殊反白显示</h4>
-<p>用反单引号括起来即可，比如<code>Octopress</code></p>
-<div class="highlight"><pre>`Octopress`
-</pre></div>
-
-
-<h4>显示“点击阅读全文”</h4>
-<p>Step01: 在_config.yml里面设置如下：excerpt_link: "点击阅读全文 &rarr;"<br />
-效果如下：   </p>
-<p><img alt="1" src="./../images/octopress_syntax.png" />   </p>
-<p>就先说这些octopress语法，剩下的基本就是跟Markdown语法相关的了，不写在这里。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/octopress.html">Octopress </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/Octopress写博客常用语法总结.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Octopress写博客常用语法总结.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html"><h3 class="article-title">IBM DebugTool中巧用GOTO调试程序</h3></a>
-<h6 class="subheader" title="2013-01-04T00:00:00">2013-01-04
-</h6>
-
-
-<p>最近接触<code>IBM DebugTool</code>比较多，再说一个在mainframe上面调试COBOL或者PL/I程序的技巧吧。 <br />
-经常在用<code>IBM DebugTool</code>或者DTCN调试程序的时候，造测试数据很不容易。如果调试过程中发现这次数据没有造成功，我们没有必要每次都退出全部程序重新造数据，可以巧妙地利用“GOTO”语句，随心所欲地在程序里面跳转。     <br />
-比如下面这一个程序段，在调试过程中我们可以在Call黑盒子程序<code>BLACKBOX</code>的前后都设置一个断点，即9178行以及9202行都设置一个断点，如果我们发现程序跑到了9202行但是返回码不是我们想要的结果，那么运行<code>“GOTO 9178”</code> 即可重新回到Call黑盒子之前，无限反复尝试，重新造数据，直到成功！  </p>
-<div class="highlight"><pre><span class="ss">SOURCE</span><span class="p">:</span> <span class="no">TESTPGM1</span> <span class="o">--</span><span class="mi">1</span><span class="o">----+----</span><span class="mi">2</span><span class="o">----+----</span><span class="mi">3</span><span class="o">----+----</span><span class="mi">4</span><span class="o">----+----</span><span class="mi">5</span> <span class="ss">LINE</span><span class="p">:</span> <span class="mi">9178</span> <span class="no">OF</span> <span class="mi">15895</span>
-<span class="mo">0020</span>  <span class="mo">01</span> <span class="no">WS</span><span class="o">-</span><span class="no">FIELDS</span><span class="o">.</span>
-<span class="mo">0021</span>  <span class="mo">05</span> <span class="no">WS</span><span class="o">-</span><span class="no">CALLED</span><span class="o">-</span><span class="no">PGM ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/debugtool.html">DebugTool </a>
-    <a href="http://mainframer.github.io/tag/goto.html">GOTO </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 2 of 14</h6>
+<h6 class="subheader">Page 2 of 15</h6>
 
 <p>
             <a href="http://mainframer.github.io/index.html">&laquo; Prev</a>

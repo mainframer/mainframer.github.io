@@ -47,6 +47,56 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html"><h3 class="article-title">IBM Debug Tool使用</h3></a>
+<h6 class="subheader" title="2011-09-05T00:00:00">2011-09-05
+</h6>
+
+
+<p>关于<code>IBM DebugTool</code>的一些介绍，请参照我的另一篇博文：&lt;<Debug Tool for z/OS>&gt;，这里呢，我是想说说一般我们用<code>IBM Debug Tool</code>来调试<code>PL/I</code>或者<code>COBOL</code>程序的时候都有哪些命令或者说按键可以用，比如说设置断点，运行至断点处，监视变量值啊什么的这种一般不管什么程序的调试都会用到的知识。当然，这本身很简单，写在这里只是为了让新人更快的学会使用，基本上10分钟搞定的那种，这样就节省了大家的时间了。
+先上个<code>IBM DebugTool</code>的截图：
+<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />  <br />
+可以看到，最上面一行显示了当前debug的程序名字PRGM002以及所用的语言<code>PL/I</code>,接着是命令行COMMAND,所有的调试命令都在这一行输入。然后是变量监视区域<code>(MONITOR)</code>，源程序区<code>(SOURCE)</code>以及调试日志<code>(LOG)</code>区域。<code>Debug Tool</code>遵循“七上八下”原则，也就是F7向上翻页，F8向下翻页。</p>
+<h4>执行下一条语句</h4>
+<p>按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug Tool </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM Debug Tool使用.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/BackTrack5 R1发布.html"><h3 class="article-title">BackTrack5 R1发布</h3></a>
+<h6 class="subheader" title="2011-09-04T00:00:00">2011-09-04
+</h6>
+
+
+<p>偶然间在逛到<a href="www.backtrack-linux.org">www.backtrack-linux.org</a>的时候，发现首页赫然写着：<em>“BackTrack 5 R1 Released! Aug 18th, 2011”，</em>bt有新版本发布了我竟然还不知道。哎~。
+从<a href="http://www.backtrack-linux.org/downloads">http://www.backtrack-linux.org/downloads</a>下载了Backtrack5 R1在虚拟机里面试了下，还没有硬盘安装，感觉和BT5几乎没什么区别。   <br />
+不过据说修复了120个bug, 添加了30个新工具,并且升级了70个工具;用命令<em>uname -a</em>查看了下发现内核也从原来的2.6.38升级到2.6.39.4。看来没什么特别需要的话暂时还是不升级好了,BT5挺好的。<br />
+这里附上BackTrack5R1的BT种子，感兴趣的话请自行移步Backtrack官网下载。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack5-r1.html">BackTrack5 R1 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BackTrack5 R1发布.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BackTrack5 R1发布.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/IBM File Manager for zos 续(一).html"><h3 class="article-title">IBM File Manager for z/os 续(一)</h3></a>
 <h6 class="subheader" title="2011-09-04T00:00:00">2011-09-04
 </h6>
@@ -279,58 +329,9 @@ ipv6.google.com ...</p></blockquote><p class="subheader">Category: <a href="http
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/新建空的GDG generation.html"><h3 class="article-title">新建空的GDG generation</h3></a>
-<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
-</h6>
-
-
-<p>有时候你不希望GDG的当前generation里面有数据，但GDG又不能没有generation,否则JCL会提示找不到dataset。这时候你可以用IBM的<code>IEFBR14</code>utility来生成一个空的generation。<code>IEFBR14</code>它实际上什么也不做的空程序，常常被我们用来生成空的FILE。不只是gdg，普通的dataset也可以生成。  </p>
-<p><img alt="1" src="./../images/gdg-new-empty-generation.jpg" />    <br />
-submit，查看，空的generation G0001V00 就生成了:  </p>
-<p><img alt="1" src="./../images/gdg-base-generation.jpg" />  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/新建空的GDG generation.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/新建空的GDG generation.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/更改GDG世代数参数.html"><h3 class="article-title">更改GDG世代数参数</h3></a>
-<h6 class="subheader" title="2011-08-26T00:00:00">2011-08-26
-</h6>
-
-
-<p>建完GDG base后更改GDG的generation。用下面的JCL提交即可。这里我将上次建的GDG base <strong><code>“IBMUSER.TEST.LIB.GDGBASE”</code></strong> 的世代数更改为5:<br />
-<img alt="1" src="./../images/gdg-update.jpg" />      </p>
-<p>submit即可。 最后，你可以在GDG base前面用命令<code>“LISTC GDG ENT(/) ALL”</code>来检查看看是不是参数已经从10改成5了。  </p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/gdg.html">GDG </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/更改GDG世代数参数.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/更改GDG世代数参数.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 9 of 14</h6>
+<h6 class="subheader">Page 9 of 15</h6>
 
 <p>
             <a href="http://mainframer.github.io/index8.html">&laquo; Prev</a>

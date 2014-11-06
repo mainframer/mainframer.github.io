@@ -47,6 +47,77 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html"><h3 class="article-title">DATACOM数据库介绍</h3></a>
+<h6 class="subheader" title="2010-11-29T00:00:00">2010-11-29
+</h6>
+
+
+<p>CA Datacom听过么？它是CA(Computer Associates)公司的企业级数据库。以能承受高负荷和较强的容错性著称，在mainframe平台上有比较广泛地应用，不过最近几年Datacom公司貌似不怎么行了，大家都换上了IBM的DB2数据库了。<br />
+Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说是具备了基本的文件系统特征。通常KEY是某个或某几个字段的组合，一个table可以有多个KEY。在PL/I或COBOL程序中访问Datacom是通过调用接口DBNTRY来实现的(<span style="color: #ff00ff;">XXX</span>是table名字)。 在COBOL中是这样call的(<span style="color: #ff00ff;">XXX</span>是table名字)：</p>
+<div class="highlight"><pre><span class="no">CALL</span> <span class="err">‘</span><span class="no">DBNTRY</span><span class="err">’</span> <span class="no">USING</span> <span class="no">USER</span><span class="o">-</span><span class="no">ID</span>
+      <span class="no">XXX</span><span class="o">-</span><span class="no">REQ</span><span class="o">-</span><span class="no">AREA</span>
+      <span class="no">XXXF0</span>
+      <span class="no">XXX</span><span class="o">-</span><span class="no">ELEMENT</span><span class="o">-</span><span class="no">LIST</span>
+</pre></div>
+
+
+<p>而在这之前，要先声明：</p>
+<div class="highlight"><pre><span class="mo">01</span> <span class="no">USER</span><span class="o">-</span><span class="no">ID</span><span class="o">.</span>
+<span class="mo">05</span> <span class="no">PROGRAM</span><span class="o">-</span><span class="no">NAME</span> <span class="no">PIC</span> <span class="n">X</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span> <span class="no">VALUE</span> <span class="s1">&#39;MYPGM00 &#39;</span><span class="o">.</span>
+<span class="mo">05</span> <span class="no">FILLER</span> <span class="no">PIC ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
+    <a href="http://mainframer.github.io/tag/datacom.html">DATACOM </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/DATACOM数据库介绍.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/DATACOM数据库介绍.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux压缩命令.html"><h3 class="article-title">Linux压缩命令</h3></a>
+<h6 class="subheader" title="2010-11-26T00:00:00">2010-11-26
+</h6>
+
+
+<p>在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
+压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  <br />
+<code>tar格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">xvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span>
+<span class="n">tar</span> <span class="n">cv</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span> <span class="n">directory</span>  
+</pre></div>
+
+
+<p><code>gz格式</code></p>
+<div class="highlight"><pre><span class="n">gunzip</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+<span class="err">也可用</span> <span class="n">gzip</span><span class="err">——</span><span class="n">gzip</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+
+
+<p><code>tar.gz/tgz格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="err">解压至当前目录</span>
+<span class="n">tar</span> <span class="n">zcvf ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/linuxya-suo.html">Linux压缩 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux压缩命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux压缩命令.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html"><h3 class="article-title">大机平台的版本控制工具Changeman</h3></a>
 <h6 class="subheader" title="2010-10-30T00:00:00">2010-10-30
 </h6>
@@ -304,39 +375,14 @@
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html"><h3 class="article-title">搭建z/OS虚拟机常用的LoadParm</h3></a>
-<h6 class="subheader" title="2010-06-04T00:00:00">2010-06-04
-</h6>
-
-
-<h3>LOADPARM  Description(z/OS 1.6)</h3>
-<p>在启动z/OS虚拟机的时候选择的LoadParm不同，意味着大机将启动不同的服务，说明如下：<br />
-<code>CS</code>         CLPA and cold start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
-<code>00</code>         Warm start of JES2. Base z/OS system functions i.e. no CICS, DB2, IMS, WAS, etc. <br />
-<code>WS</code>         Warm ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/loadparm.html">LoadParm </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/搭建zOS虚拟机常用的LoadParm.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 14 of 14</h6>
+<h6 class="subheader">Page 14 of 15</h6>
 
 <p>
             <a href="http://mainframer.github.io/author/mainframer13.html">&laquo; Prev</a>
 
+        <a href="http://mainframer.github.io/author/mainframer15.html">Next &raquo;</a>
 </p>
 </div>
 

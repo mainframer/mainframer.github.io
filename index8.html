@@ -47,6 +47,66 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html"><h3 class="article-title">IBM大型机12月16日起支持Windows系统[转载]</h3></a>
+<h6 class="subheader" title="2011-11-08T00:00:00">2011-11-08
+</h6>
+
+
+<p>本文来源——http://www.sina.com.cn 2011年11月07日 15:58 新浪科技微博
+新浪科技讯 北京时间11月7日下午消息，据美国IT网站ComputerWorld报道，IBM大型机将从今年12月中旬开始支持Windows系统。</p>
+<p>IBM此前就有意在zEnterprise 196大型机中采用Windows系统。根据IBM发布的最新消息，该公司大型机将从今年12月16日起支持Windows管理功能。用户一直希望数据中心有新的功能。当前，有许多基于Windows的应用可支持大型机获取数据，其中就包括IBM制造的许多应用。但此类应用现在必须单独管理。
+IBM表示，支持Windows系统将有助于提高大型机企业环境的安全性和速度，同时让用户可以在私人网络上连接系统，避免其他网络问题，实现一体化管理。IBM System z部门业务主管格雷格·洛特科(Greg Lotko)说：“之所以增加对Windows系统的支持，是因为IBM真正认识到这个世界的复杂性。”</p>
+<p>洛特科补充说，从今往后，<code>IBM System z</code>平台可以支持<code>z /OS</code>、<code>Linux</code>、<code>Unix</code> 和<code>Windows</code>等多套系统 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/da-xing-ji.html">大型机 </a>
+    <a href="http://mainframer.github.io/tag/windows.html">windows </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM大型机12月16日起支持Windows系统[转载].html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/COBOL编码规则.html"><h3 class="article-title">COBOL编码规则</h3></a>
+<h6 class="subheader" title="2011-10-03T00:00:00">2011-10-03
+</h6>
+
+
+<p>苦逼的COBOL们一定知道和JCL一样，在写COBOL程序的时候对源码的区域也有一定的制约的，具体如下表所示：<br />
+<img alt="1" src="./../images/COBOL-coding-convention.jpg" />      </p>
+<h4>第7列用来说明程序所在行的用途:</h4>
+<p><code>连接符(-)</code>: 表示本行是上一行的续行；<br />
+<code>('D')</code>:    表示查错；
+<code>星号('*')</code>: 表示注解；  </p>
+<h4>下面的COBOL程序元素必须从A区域开始：</h4>
+<p>部(DIVISION)和节(SECTION)的标题 <br />
+段名 
+程序结尾(End Program)标题 <br />
+级别标示符如FD或者SD等，级别号如01级和77级  </p>
+<h4>下面这些COBOL元素必须从B区域开始：</h4>
+<p><code>语句</code>、<code>句子</code>和<code>短语继续行</code>  </p>
+<h5>[注：本文内容源自：《IBM主机技术一本通》]</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/cobolgui-ze.html">COBOL规则 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/COBOL编码规则.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/COBOL编码规则.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/COBOL程序典型结构.html"><h3 class="article-title">COBOL程序典型结构</h3></a>
 <h6 class="subheader" title="2011-10-02T00:00:00">2011-10-02
 </h6>
@@ -304,59 +364,9 @@ Procedure Division 过程部 </p>
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html"><h3 class="article-title">IBM Debug Tool使用</h3></a>
-<h6 class="subheader" title="2011-09-05T00:00:00">2011-09-05
-</h6>
-
-
-<p>关于<code>IBM DebugTool</code>的一些介绍，请参照我的另一篇博文：&lt;<Debug Tool for z/OS>&gt;，这里呢，我是想说说一般我们用<code>IBM Debug Tool</code>来调试<code>PL/I</code>或者<code>COBOL</code>程序的时候都有哪些命令或者说按键可以用，比如说设置断点，运行至断点处，监视变量值啊什么的这种一般不管什么程序的调试都会用到的知识。当然，这本身很简单，写在这里只是为了让新人更快的学会使用，基本上10分钟搞定的那种，这样就节省了大家的时间了。
-先上个<code>IBM DebugTool</code>的截图：
-<img alt="1" src="./../images/Debug-tool-screenshot1.jpg" />  <br />
-可以看到，最上面一行显示了当前debug的程序名字PRGM002以及所用的语言<code>PL/I</code>,接着是命令行COMMAND,所有的调试命令都在这一行输入。然后是变量监视区域<code>(MONITOR)</code>，源程序区<code>(SOURCE)</code>以及调试日志<code>(LOG)</code>区域。<code>Debug Tool</code>遵循“七上八下”原则，也就是F7向上翻页，F8向下翻页。</p>
-<h4>执行下一条语句</h4>
-<p>按 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug Tool </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM Debug Tool使用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM Debug Tool使用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/BackTrack5 R1发布.html"><h3 class="article-title">BackTrack5 R1发布</h3></a>
-<h6 class="subheader" title="2011-09-04T00:00:00">2011-09-04
-</h6>
-
-
-<p>偶然间在逛到<a href="www.backtrack-linux.org">www.backtrack-linux.org</a>的时候，发现首页赫然写着：<em>“BackTrack 5 R1 Released! Aug 18th, 2011”，</em>bt有新版本发布了我竟然还不知道。哎~。
-从<a href="http://www.backtrack-linux.org/downloads">http://www.backtrack-linux.org/downloads</a>下载了Backtrack5 R1在虚拟机里面试了下，还没有硬盘安装，感觉和BT5几乎没什么区别。   <br />
-不过据说修复了120个bug, 添加了30个新工具,并且升级了70个工具;用命令<em>uname -a</em>查看了下发现内核也从原来的2.6.38升级到2.6.39.4。看来没什么特别需要的话暂时还是不升级好了,BT5挺好的。<br />
-这里附上BackTrack5R1的BT种子，感兴趣的话请自行移步Backtrack官网下载。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/backtrack5-r1.html">BackTrack5 R1 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/BackTrack5 R1发布.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BackTrack5 R1发布.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 8 of 14</h6>
+<h6 class="subheader">Page 8 of 15</h6>
 
 <p>
             <a href="http://mainframer.github.io/index7.html">&laquo; Prev</a>

@@ -47,6 +47,67 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html"><h3 class="article-title">BT5安装openoffice和星际译王stardict</h3></a>
+<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
+</h6>
+
+
+<h3>BT5下安装openoffice</h3>
+<p>上次装了Adobe Reader在BT5下面能看PDF了，后来发现不能看word，ppt，excel也是一件很痛快的事情，虽然安装了vmware-tools之后在windows和BT5直接直接来回拖文件也挺方便，但是也不那么方便，所以今天还是老老实实地把openoffice在BT5下面给安装了。
+首先到openoffice官网上下载安装包，因为我选的是deb安装，而不是rpm安装，所以我下载deb包，放在~/software目录下。
+root@bt:~#  <code>cd ~/software</code> <br />
+root@bt:~/software#<br />
+root@bt:~/software#  <code>tar zxvf OOo_3.3.0_Linux_x86_install-deb_zh-CN.tar.gz</code> <br />
+root@bt:~/software#  <code>cd OOO330_m20_native_packed-1_zh-CN.9567/</code> <br />
+root@bt:~/software/OOO330_m20_native_packed-1_zh-CN.9567#  <code>ls</code> <br />
+DEBS licenses readmes update  </p>
+<h5>进入DEBS目录，安装该目录下的所有deb包 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/openoffice.html">openoffice </a>
+    <a href="http://mainframer.github.io/tag/stardict.html">stardict </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5安装openoffice和星际译王stardict.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/Linux目录结构.html"><h3 class="article-title">Linux目录结构</h3></a>
+<h6 class="subheader" title="2011-08-14T00:00:00">2011-08-14
+</h6>
+
+
+<p>linux中以树形目录形式来管理的，并且所有的设备都是目录。linux只有一个根目录<code>‘/'</code>，其余的目录都是根目录的子目录。
+root@bt:/# ls /dev/sd*
+<code>/dev/sda /dev/sda1 /dev/sda2 /dev/sda5</code>
+<code>注释:</code>表示只有一块SATA硬盘，有两个主分区<code>(sda1,sda2)</code>，一个逻辑分区<code>(sda5)</code>。  </p>
+<h5>下面对根目录<code>'/'</code>下的子目录来个介绍：</h5>
+<p><code>/usr</code>:  包含所有命令，类库，系统帮助手册，即包含了系统运行不会修改的内容<br />
+<code>/var</code>:  包含系统运行中会修改的内容，如打印队列，邮件列表等，还有系统中软件的日志信息<br />
+<code>/home</code>: 用户的主目录，比如/home/user1,/home/user2，每个用户在这个目录下面都有一个自己的子目录<br />
+<code>/dev</code>:  设备文件，如硬盘，光驱，USB设备，内存 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/linuxmu-lu-jie-gou.html">Linux目录结构 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Linux目录结构.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux目录结构.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/Linux下硬件信息查看.html"><h3 class="article-title">Linux下硬件信息查看</h3></a>
 <h6 class="subheader" title="2011-08-13T00:00:00">2011-08-13
 </h6>
@@ -300,59 +361,9 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p><p class="subheader">Category: <
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html"><h3 class="article-title">QW命令——MVS/QuickRef帮助文档</h3></a>
-<h6 class="subheader" title="2011-08-05T00:00:00">2011-08-05
-</h6>
-
-
-<p>大机平台上有一个很了不起的帮助文档系统，名字叫做MVS/QuickRef，是一款强大的在线查询系统。用过微软的MSDN的童鞋都知道MSDN的强大。大机上面的MVS/QuickRef几乎可以查到所有你想查的资料，因为这款查询工具号称超过5k万行，以简单易懂著称。最主要的是查询特别方便，使用ISPF直接调用命令QW即可查询内容。<br />
-MVS/QuickRef现在最新的版本是2011年4月份新出的MVS/QuickRef 7.4 ，我们公司还在用的是7.0的版本。这款强大的查询工具是由一家名叫Chicago-Soft的公司生产的，主页在:<a href="http://quickref.com">MVS/QuickRef主页</a>，可以去看看。<br />
-在大机上，MVS/QuickRef能查询许多方面的。这是官网上关于MVS/QuickRef强大的一段文字描述：</p>
-<blockquote>
-<p>"MVS/QuickRef's simple, easy to understand information helps you resolve 97% of the problems affecting z/OS, CICS, DB/2, IDMS ...</p></blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/qwming-ling.html">QW命令 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/QW命令——MVSQuickRef帮助文档.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/如何用键盘按出人民币符号.html"><h3 class="article-title">如何用键盘按出人民币符号</h3></a>
-<h6 class="subheader" title="2011-08-04T00:00:00">2011-08-04
-</h6>
-
-
-<p>偶然发现的，写在这记一下：<br />
-如果你现在按下键盘 Shift+数字键4出来的是美元"$"符号的话，<br />
-你可以先按一次Shift,再接着按Shift+数字键4,出来的就是人民币"￥"的符号了。<br />
-要变回美元"$"的符号的话同理，先按一次Shift，再接着按Shift+数字键4,出来的就是人民币"$"的符号了。</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/jian-pan-ren-min-bi.html">键盘人民币 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/如何用键盘按出人民币符号.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/如何用键盘按出人民币符号.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 11 of 14</h6>
+<h6 class="subheader">Page 11 of 15</h6>
 
 <p>
             <a href="http://mainframer.github.io/author/mainframer10.html">&laquo; Prev</a>

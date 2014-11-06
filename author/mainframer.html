@@ -52,9 +52,9 @@
 
 
 <p>最近项目上有自动化要求，我选择了用Python，对自己的代码能力提高很有帮助。
-- 第一：学东西最快最有效的方法是“用起来”。
-- 第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。
-- 第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。</p>
+- 第一：学东西最快最有效的方法是“用起来”。<br />
+- 第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。<br />
+- 第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。  </p>
 <p>心灵鸡汤说完了，这里我记录一下这次项目中用到的Python知识点和重点。</p>
 <h6>Python如何中途退出一个函数？</h6>
 <p><code>sys.exit(0)</code>   </p>
@@ -173,6 +173,79 @@
 
 
 <p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取V2EX.COM网站所有帖子.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/使用Pelican + Markdown + GitHub Pages写博客.html"><h3 class="article-title">使用Pelican + Markdown + GitHub Pages写博客</h3></a>
+<h6 class="subheader" title="2014-10-25T00:00:00">2014-10-25
+</h6>
+
+
+<p>Pelican是Python写的静态网页生成器，GitHub Pages是Github提供的免费空间，支持自定义域名，支持Markdown语法。</p>
+<h5>安装Pelican</h5>
+<p><code>sudo easy_install pelican</code></p>
+<h5>创建目录</h5>
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">~</span>
+<span class="n">mkdir</span> <span class="n">pelican</span>
+</pre></div>
+
+
+<h5>配置Pelican</h5>
+<div class="highlight"><pre>Welcome to pelican-quickstart v3.4.0.
+
+This script will help you create a new Pelican-based website.
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+&gt; Where do you want to ...</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/pelican.html">Pelican </a>
+    <a href="http://mainframer.github.io/tag/markdown.html">Markdown </a>
+    <a href="http://mainframer.github.io/tag/github-pages.html">GitHub Pages </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/使用Pelican + Markdown + GitHub Pages写博客.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/使用Pelican + Markdown + GitHub Pages写博客.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="http://mainframer.github.io/articles/博客迁徙到GitHub Pages.html"><h3 class="article-title">博客迁徙到GitHub Pages</h3></a>
+<h6 class="subheader" title="2014-10-24T00:00:00">2014-10-24
+</h6>
+
+
+<p>将博客从Heroku迁徙到GitHub Pages，还是喜欢Markdown，网上搜了一下，发现有一个基于Python的静态网页生成器Pelican，很强大的样子，我原先的博客是基于octopress的，估计格式稍微修改一下就可直接上Pelican了。鉴于本人之前的博客有不少，一篇一篇修改不现实，直接用Python修改吧：</p>
+<h6>2014.10.24将博客从heroku的octopress迁徙到github pages:这段代码实现将目录下面所有的.markdown结尾的文件都替换为.md结尾</h6>
+<div class="highlight"><pre><span class="n">dirpath</span> <span class="o">=</span> <span class="s">&quot;/Users/Heros/dev/git/pelican/content/articles/&quot;</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dirpath</span><span class="p">):</span>
+    <span class="n">oldfpath</span> <span class="o">=</span> <span class="n">dirpath</span> <span class="o">+</span> <span class="n">f</span>
+    <span class="k">print</span> <span class="n">oldfpath</span>
+    <span class="n">newfpath</span> <span class="o">=</span> <span class="n">dirpath</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;.markdown&quot;</span><span class="p">,</span> <span class="s">&quot;.md&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">newfpath</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">oldfpath</span><span class="p">,</span> <span class="n">newfpath</span><span class="p">)</span>
+</pre></div>
+
+
+<h6>2014 ...</h6><p class="subheader">Category: <a href="http://mainframer.github.io/category/others.html">Others</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/pelican.html">Pelican </a>
+    <a href="http://mainframer.github.io/tag/github-pages.html">GitHub Pages </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/博客迁徙到GitHub Pages.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/博客迁徙到GitHub Pages.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -332,75 +405,9 @@
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html"><h3 class="article-title">每天定时从Mainframe下载gdg文件再上传到ftp</h3></a>
-<h6 class="subheader" title="2013-04-01T00:00:00">2013-04-01
-</h6>
-
-
-<p>今天要完成一个任务：  </p>
-<h4>任务描述</h4>
-<h6>Step1:从大机(mainframe)上下载指定的gdg最新的2个generation到本地C:\gdg目录下。</h6>
-<h6>Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的<code>/topath/users-4/</code>目录下面，每天新建一个目录<code>yyyymmdd</code>用来存放当天的gdg文件。</h6>
-<h6>Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。</h6>
-<p>这里是实现以上任务的批处理脚本<code>ftpscript.bat</code>。放在<code>C:\ftpscript</code>.bat，之后在windows计划任务里面添加每天定时运行即可。   </p>
-<div class="highlight"><pre><span class="vi">@echo</span> <span class="n">off</span>
-<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">的</span><span class="no">IP</span>
-<span class="n">set</span> <span class="n">mfIP</span><span class="o">=</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span>
-<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">用户名</span>
-<span class="n">set</span> <span class="n">mfUser</span><span class="o">=</span><span class="no">IBMUSER</span>
-<span class="n">rem</span> <span class="err">指定 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/zuo-zuo-zi-dong-hua.html">做做自动化</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/mainframe.html">mainframe </a>
-    <a href="http://mainframer.github.io/tag/ftp.html">ftp </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/BAT批处理现学现用.html"><h3 class="article-title">BAT批处理现学现用</h3></a>
-<h6 class="subheader" title="2013-03-29T00:00:00">2013-03-29
-</h6>
-
-
-<p>上篇说的是本人在实现报表自动化过程中用到的VBS知识，这篇我打算用来总结在此过程中用到的批处理知识。</p>
-<h4>批处理里面如何实现延时？</h4>
-<div class="highlight"><pre><span class="n">rem</span> <span class="err">巧妙地利用</span><span class="n">windows</span><span class="err">自带的</span><span class="n">ping</span><span class="err">命令来达到延时的目的</span>
-<span class="n">ping</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">n</span> <span class="mi">1</span> <span class="mf">127.1</span><span class="o">&gt;</span><span class="n">nul</span>
-</pre></div>
-
-
-<h5>批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]</h5>
-<div class="highlight"><pre><span class="err">@</span><span class="n">echo</span> <span class="nl">off</span>
-<span class="p">:</span><span class="n">input_module</span>
-<span class="n">echo</span> <span class="n">Please</span> <span class="n">enter</span> <span class="n">date</span> <span class="nl">here</span><span class="p">:</span>
-<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">yyyymm</span><span class="o">=^&lt;</span><span class="nl">format</span><span class="p">:</span><span class="n">yyyymm</span><span class="o">^&gt;</span> <span class="p">(</span><span class="nl">example</span><span class="p">:</span><span class="mi">201301</span><span class="p">)</span><span class="o">:</span>
-<span class="n">echo</span> <span class="o">%</span><span class="n">yyyymm</span><span class="o">%|</span><span class="n">findstr</span> <span class="o">^</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="o">-</span><span class="mi">9 ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/batpi-chu-li.html">BAT批处理 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/BAT批处理现学现用.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BAT批处理现学现用.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 1 of 14</h6>
+<h6 class="subheader">Page 1 of 15</h6>
 
 <p>
 
