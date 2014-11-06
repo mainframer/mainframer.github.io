@@ -47,6 +47,39 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html"><h3 class="article-title">ISPF-只显示含关键字的所有行</h3></a>
+<h6 class="subheader" title="2012-09-07T00:00:00">2012-09-07
+</h6>
+
+
+<p>命令：</p>
+<blockquote>
+<p>X ALL; 
+FIND keyword ALL;
+</p>
+</blockquote>
+<p>比如，只显示所有含<code>DT0907</code>的行，可以这么做，先<code>X ALL</code>;再<code>FIND DT0907 ALL</code>;</p>
+<div class="highlight"><pre><span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TESTJCL</span><span class="p">(</span><span class="no">TESTJOB</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">9</span>         <span class="mi">4</span> <span class="no">CHARS</span> <span class="s1">&#39;DT0907&#39;</span> 
+ <span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">find</span> <span class="n">dt0907</span> <span class="n">all</span>                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+ <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+ <span class="o">-</span> <span class="o">-</span> <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>  <span class="o">-</span>   <span class="mi">524</span> <span class="no">Line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">not</span> <span class="no">Displayed</span> 
+ <span class="mo">000525</span> <span class="o">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">CREATERT</span><span class="o">.</span><span class="n">FILEOUTS</span><span class="o">.</span><span class="n">DT0907</span><span class="p">,</span><span class="no">DISP ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/ispf.html">ISPF </a>
+    <a href="http://mainframer.github.io/tag/find-all.html">FIND ALL </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/ISPF-只显示含关键字的所有行.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/ISPF-提高效率少用PF3和START.html"><h3 class="article-title">ISPF-提高效率少用PF3和START</h3></a>
 <h6 class="subheader" title="2012-09-01T00:00:00">2012-09-01
 </h6>
@@ -309,31 +342,6 @@
 
 
 <p><a href="http://mainframer.github.io/articles/PLI 动态数组的例子.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI 动态数组的例子.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html"><h3 class="article-title">IBM DebugTool: 主动终止调试</h3></a>
-<h6 class="subheader" title="2012-06-03T00:00:00">2012-06-03
-</h6>
-
-
-<p>在debug程序的过程中，如果已经知道了出错的原因不想再继续debug下去，但是又不希望按PF9使程序继续正常执行完(因为这样程序会把你辛辛苦苦造好的测试数据给消耗掉)。这时候，你可以在<code>COMMAND</code>栏输入：</p>
-<blockquote>
-<p>trigger overflow</p>
-<p>这样程序就会被当成正常溢出抛异常处理，你的测试数据就不会被消耗掉。除了<code>overflow</code>，其他异常终止的event也可以，比如数据转换异常这样的event。</p>
-</blockquote><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/debug-tool.html">Debug tool </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/IBM DebugTool: 主动终止调试.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

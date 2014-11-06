@@ -47,6 +47,33 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html"><h3 class="article-title">BLKSIZE=0,DSORG=PS</h3></a>
+<h6 class="subheader" title="2012-03-13T00:00:00">2012-03-13
+</h6>
+
+
+<div class="highlight"><pre><span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=&amp;&amp;</span><span class="no">IBNRDAT0</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">PASS</span><span class="p">),</span>            
+<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="sr">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="p">(</span><span class="no">SYSDA</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span>   
+</pre></div>
+
+
+<p>如上，始终用<code>BLKSIZE=0</code>，让系统为JOB分配最优的BLKSIZE。这是一个好习惯!</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/blksize0.html">BLKSIZE=0 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BLKSIZE=0,DSORG=PS.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/JCL发送EMAIL.html"><h3 class="article-title">JCL发送EMAIL</h3></a>
 <h6 class="subheader" title="2012-03-13T00:00:00">2012-03-13
 </h6>
@@ -335,33 +362,6 @@
 
 
 <p><a href="http://mainframer.github.io/articles/REXX学习笔记.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX学习笔记.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/PLI编译器版本.html"><h3 class="article-title">PL/I编译器版本</h3></a>
-<h6 class="subheader" title="2012-02-02T00:00:00">2012-02-02
-</h6>
-
-
-<p>PL/I编译器的版本，如下所示：</p>
-<div class="highlight"><pre><span class="no">Product</span>        <span class="no">Product</span> <span class="nb">name</span> <span class="err"> </span>                        <span class="no">Compiler</span> <span class="s2">&quot;signature&quot;</span>   <span class="no">Module</span> <span class="n">prefix</span> 
-<span class="mi">360</span><span class="n">S</span><span class="o">-</span><span class="no">NL</span><span class="o">-</span><span class="mi">511</span> <span class="err"> </span> <span class="err"> </span><span class="n">S</span><span class="o">/</span><span class="mi">360</span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="mi">1</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>         <span class="s1">&#39;   &#39;</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="no">IEM</span><span class="p">,</span><span class="no">IHE</span><span class="p">,</span><span class="no">IHL</span>
-<span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">OPTIMIZING</span> <span class="no">COMPILER</span> <span class="no">V1</span> <span class="err"> </span>       <span class="mi">5734</span><span class="o">-</span><span class="no">PL1</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span>   <span class="err"> </span>  <span class="no">IEL</span><span class="p">,</span><span class="no">IBM</span>
-<span class="mi">5734</span><span class="o">-</span><span class="no">PL2</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">CHECKOUT</span> <span class="no">COMPILER</span>
-<span class="mi">5734</span><span class="o">-</span><span class="no">PL3</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="no">OS</span> <span class="no">PL</span><span class="o">/</span><span class="n">I</span> <span class="no">Opt</span> <span class="no">Comp</span> <span class="no">Lib ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/plibian-yi-qi.html">PLi编译器 </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/PLI编译器版本.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/PLI编译器版本.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

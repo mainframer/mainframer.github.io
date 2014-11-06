@@ -46,6 +46,83 @@
         
 
             <article>
+                <a href="http://mainframer.github.io/articles/Python做自动化项目的总结.html"><h3 class="article-title">Python做自动化项目的总结</h3></a>
+<h6 class="subheader" title="2014-11-05T00:00:00">2014-11-05
+</h6>
+
+
+<p>最近项目上有自动化要求，我选择了用Python，对自己的代码能力提高很有帮助。
+- 第一：学东西最快最有效的方法是“用起来”。
+- 第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。
+- 第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。</p>
+<p>心灵鸡汤说完了，这里我记录一下这次项目中用到的Python知识点和重点。</p>
+<h6>Python如何中途退出一个函数？</h6>
+<p><code>sys.exit(0)</code>   </p>
+<h6>Python如何判断文件(夹)存在?</h6>
+<p><code>os.path.exists(root_dir)</code>  </p>
+<h6>Python如何改变目录?</h6>
+<p><code>os.chdir(new_path)</code></p>
+<h6>Python如何延时？</h6>
+<p><code>time.sleep(30)</code></p>
+<h6>Python如何执行系统命令？</h6>
+<p><code>os.system('mycommand.bat')</code></p>
+<h6>Python如何判断文件扩展名？</h6>
+<p><code>file.endswith(".html")</code></p>
+<h5>Python如何清空一个文件夹？</h5>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">clean_dir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function: Clean up an directory</span>
+<span class="sd">    @root_dir: the directory you want to clean up.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;directory not exists, please check&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">clean_dir</span><span class="p">(</span><span class="s">&quot;/Users/Heros/sample1&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h5>Python如何得到一个文件夹下最新的那个文件夹？</h5>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_latest_result_folder</span><span class="p">(</span><span class="n">root_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function:Used to get the most recent generated folder name</span>
+<span class="sd">    @root_path: where the reports stored.</span>
+<span class="sd">    @return: return the most latest folder name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_dir</span> <span class="o">=</span> <span class="n">root_path</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">l</span><span class="p">:</span>   <span class="c"># if folder is not empty</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">fn</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">base_dir</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">base_dir</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;root folder is empty,please check.&quot;</span>
+</pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/python.html">Python </a>
+    <a href="http://mainframer.github.io/tag/zi-dong-hua.html">自动化 </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/Python做自动化项目的总结.html#disqus_thread">comments</a></p>            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html"><h3 class="article-title">requests+BeautifulSoup爬取双色球历史数据</h3></a>
 <h6 class="subheader" title="2014-11-01T00:00:00">2014-11-01
 </h6>
@@ -56,28 +133,7 @@
 <span class="c">#http://baidu.lecai.com/lottery/draw/list/50</span>
 <span class="c">#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量</span>
 <span class="c">#通过观察，发现该彩票网站上面包含2003～2014的数据，其url规律是：http://baidu.lecai.com/lottery/draw/list/50?d=2003-01-01</span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s">&#39;双色球2003-2014历史数据.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w+&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="mi">2015</span><span class="p">):</span>
-        <span class="n">req_html_doc</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;http://baidu.lecai.com/lottery/draw/list/50?d=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;-01-01&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-        <span class="n">my_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">req_html_doc</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">my_soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&#39;tr&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-            <span class="n">reg_lottery_date</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;td class=&quot;td1&quot;&gt;(.*)&lt;/td&gt;&#39;</span><span class="p">)</span>  <span class="c"># &lt;td class=&quot;td1&quot;&gt;2013-12-31&lt;/td&gt;</span>
-            <span class="n">lottery_date</span> <span class="o">=</span> <span class="n">reg_lottery_date</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
-            <span class="n">reg_lottery_qihao</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;a href=&quot;(.*)&quot;&gt;(.*)&lt;/a&gt;&#39;</span><span class="p">)</span>   <span class="c">#&lt;a href=&quot;/lottery/draw/view/50?phase=2013154&quot;&gt;2013154&lt;/a&gt;</span>
-            <span class="n">lottery_qihao</span> <span class="o">=</span> <span class="n">reg_lottery_qihao</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
-            <span class="n">reg_lottery_haoma</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;span class=&quot;ball_[12]&quot;&gt;(.*)&lt;/span&gt;&#39;</span><span class="p">)</span> <span class="c"># &lt;span class=&quot;ball_1&quot;&gt;07&lt;/span&gt; 6个ball_1红球，1个ball_2篮球</span>
-            <span class="n">lottery_haoma</span> <span class="o">=</span> <span class="n">reg_lottery_haoma</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
-            <span class="n">reg_lottery_amount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;td class=&quot;td4&quot;&gt;(.*)&lt;/td&gt;&#39;</span><span class="p">)</span> <span class="c">#&lt;td class=&quot;td4&quot;&gt;67,728,980&lt;/td&gt;</span>
-            <span class="n">lottery_amount</span> <span class="o">=</span> <span class="n">reg_lottery_amount</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lottery_qihao</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">out_line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_date</span><span class="p">)</span> <span class="o">+</span> <span class="n">lottery_qihao</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_haoma</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_amount</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
-                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out_line</span><span class="p">)</span>
-</pre></div>
-
-
-<p>结果文件保存在 <a href="./../files/双色球2003-2014历史数据.txt">双色球2003-2014历史数据.txt</a></p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
+<span class="k">if ...</span></pre></div><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
 
     Tagged: 
     <a href="http://mainframer.github.io/tag/requests.html">requests </a>
@@ -86,11 +142,9 @@
 
 
 
-<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html#disqus_thread">comments</a></p>            </article>
-
-
+<p><a href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -353,46 +407,9 @@
                 <hr  class="gradient"/>
             </article>
 
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html"><h3 class="article-title">REXX怎么保存"Find ALL"的结果</h3></a>
-<h6 class="subheader" title="2012-02-20T00:00:00">2012-02-20
-</h6>
-
-
-<p>最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个<code>"FIND ALL"</code>的ISPF命令。</p>
-<blockquote>
-<p>FIND ',' ALL</p>
-<p>这样，逗号的个数就不用数了，直接显示在屏幕右上角。<br />
-既然这样，利用REXX应该可以保存这个<code>“FIND ',' ALL'</code>的结果。 研究了一下，可以这样:  <br />
-编辑 <code>IBMUSER.REXX.EXEC(CHECK)</code>这个member,输入如下的macro：  </p>
-</blockquote>
-<div class="highlight"><pre><span class="mi">1</span>  <span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span>                       
-<span class="mi">2</span>  <span class="s2">&quot;ISREDIT SEEK ALL &#39;,&#39;&quot;</span>                 
-<span class="mi">3</span>  <span class="s2">&quot;ISREDIT (COUNT) = SEEK_COUNTS&quot;</span>        
-<span class="mi">4</span>  <span class="no">SAY</span> <span class="s2">&quot;Comma number: &quot;</span><span class="o">!!</span> <span class="no">COUNT</span> <span class="o">!!</span> <span class="s2">&quot;&#39;!&#39;&quot;</span>  
-<span class="mi">5</span> <span class="no">EXIT</span> <span class="mi">0</span> 
-</pre></div>
-
-
-<p>打开MQ的DATASET，比如 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/rexx.html">rexx </a>
-    <a href="http://mainframer.github.io/tag/find-all.html">Find ALL </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/REXX怎么保存"Find ALL"的结果.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 1 of 2</h6>
+<h6 class="subheader">Page 1 of 3</h6>
 
 <p>
 

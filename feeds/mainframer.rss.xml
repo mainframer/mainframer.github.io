@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Modern Mainframer</title><link>http://mainframer.github.io/</link><description></description><atom:link href="http://mainframer.github.io/feeds/mainframer.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 01 Nov 2014 00:00:00 +0800</lastBuildDate><item><title>requests+BeautifulSoup爬取双色球历史数据</title><link>http://mainframer.github.io/articles/requests+BeautifulSoup%E7%88%AC%E5%8F%96%E5%8F%8C%E8%89%B2%E7%90%83%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE.html</link><description>&lt;p&gt;练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&amp;gt;_&amp;lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Modern Mainframer</title><link>http://mainframer.github.io/</link><description></description><atom:link href="http://mainframer.github.io/feeds/mainframer.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 05 Nov 2014 00:00:00 +0800</lastBuildDate><item><title>Python做自动化项目的总结</title><link>http://mainframer.github.io/articles/Python%E5%81%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%80%BB%E7%BB%93.html</link><description>&lt;p&gt;最近项目上有自动化要求，我选择了用Python，对自己的代码能力提高很有帮助。
+- 第一：学东西最快最有效的方法是“用起来”。
+- 第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。
+- 第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。&lt;/p&gt;
+&lt;p&gt;心灵鸡汤说完了，这里我记录一下这次项目中用到的Python知识点和重点。&lt;/p&gt;
+&lt;h6&gt;Python如何中途退出一个函数？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;sys.exit(0)&lt;/code&gt;   &lt;/p&gt;
+&lt;h6&gt;Python如何判断文件(夹)存在?&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;os.path.exists(root_dir)&lt;/code&gt;  &lt;/p&gt;
+&lt;h6&gt;Python如何改变目录?&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;os.chdir(new_path)&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何延时？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;time.sleep(30)&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何执行系统命令？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;os.system('mycommand.bat')&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何判断文件扩展名？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;file.endswith(".html")&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;Python如何清空一个文件夹？&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;clean_dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Function: Clean up an directory&lt;/span&gt;
+&lt;span class="sd"&gt;    @root_dir: the directory you want to clean up.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;directory not exists, please check&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;file_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;file_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;clean_dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/Users/Heros/sample1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Python如何得到一个文件夹下最新的那个文件夹？&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_latest_result_folder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Function:Used to get the most recent generated folder name&lt;/span&gt;
+&lt;span class="sd"&gt;    @root_path: where the reports stored.&lt;/span&gt;
+&lt;span class="sd"&gt;    @return: return the most latest folder name&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;base_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;root_path&lt;/span&gt;
+    &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_dir&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;   &lt;span class="c"&gt;# if folder is not empty&lt;/span&gt;
+        &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_dir&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_dir&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;root folder is empty,please check.&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Wed, 05 Nov 2014 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2014-11-05:articles/Python做自动化项目的总结.html</guid><category>Python</category><category>自动化</category></item><item><title>requests+BeautifulSoup爬取双色球历史数据</title><link>http://mainframer.github.io/articles/requests+BeautifulSoup%E7%88%AC%E5%8F%96%E5%8F%8C%E8%89%B2%E7%90%83%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE.html</link><description>&lt;p&gt;练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&amp;gt;_&amp;lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#练习02：2014-11-01&lt;/span&gt;
 &lt;span class="c"&gt;#http://baidu.lecai.com/lottery/draw/list/50&lt;/span&gt;
 &lt;span class="c"&gt;#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量&lt;/span&gt;

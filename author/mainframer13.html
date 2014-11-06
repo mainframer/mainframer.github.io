@@ -47,6 +47,49 @@
 
 
             <article>
+                <a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html"><h3 class="article-title">BT5开机自动启动ibus</h3></a>
+<h6 class="subheader" title="2011-03-06T00:00:00">2011-03-06
+</h6>
+
+
+<p>BT5下安装中文输入法：</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">scim</span>
+</pre></div>
+
+
+<p>BT5下安装ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ibus</span>
+</pre></div>
+
+
+<p>在<code>System——&gt;IBUS Preferences</code> 选择<code>Chinese——&gt;Pin yin</code> 输入法 <br />
+怎么让BT5 开机自动启动IBUS呢，不然每次开机手动启动确实很麻烦的。这里是方法:<br />
+开机自动启动ibus输入法管理器:</p>
+<div class="highlight"><pre><span class="no">System</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Preferences</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Startup</span> <span class="no">Applications</span>
+     <span class="no">Click</span> <span class="n">the</span> <span class="ss">button</span><span class="p">:</span> <span class="no">Add</span>
+     <span class="ss">Name</span><span class="p">:</span> <span class="n">ibus</span> <span class="n">daemon</span>
+     <span class="ss">Command</span><span class="p">:</span> <span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">ibus</span><span class="o">-</span><span class="n">daemon</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+
+
+<p>好了，重启就可以了。<br />
+按Ctrl+空格调出输入法 ...</p><p class="subheader">Category: <a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a>
+
+    Tagged: 
+    <a href="http://mainframer.github.io/tag/backtrack.html">Backtrack </a>
+    <a href="http://mainframer.github.io/tag/ibus.html">ibus </a>
+</p>
+
+
+
+<p><a href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/BT5开机自动启动ibus.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="http://mainframer.github.io/articles/介绍几个比较有用的ISPF命令.html"><h3 class="article-title">介绍几个比较有用的ISPF命令</h3></a>
 <h6 class="subheader" title="2011-03-02T00:00:00">2011-03-02
 </h6>
@@ -313,40 +356,6 @@ Datacom不是关系型数据库，它是通过KEY来访问记录的，可以说�
 
 
 <p><a href="http://mainframer.github.io/articles/Linux压缩命令.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/Linux压缩命令.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html"><h3 class="article-title">大机平台的版本控制工具Changeman</h3></a>
-<h6 class="subheader" title="2010-10-30T00:00:00">2010-10-30
-</h6>
-
-
-<p>在主机上面有好几个比较常见的版本控制工具，比如changeman和Endevor。我介绍下changeman。 </p>
-<h4>ISPF面板上输入C;1</h4>
-<p><img alt="1" src="./../images/changeman-1.jpg" />      </p>
-<h5>changeman的界面，这里装的版本是5.6.2c，</h5>
-<p><img alt="1" src="./../images/changeman-21.jpg" />      </p>
-<h4>我介绍下各个常用选项</h4>
-<h5>1.</h5>
-<p>用来新建，更新一个package的，你需要新建一个package来放置你的PL/I，COBOL程序和JCL等等</p>
-<h5>2.</h5>
-<p>将package freeze或unfreeze，在你觉得package里面的所有东西都测试得差不多了，可以准备上线安装之前，你要先freeze冻结掉这个package，然后等待相关项目管理人的approve，这样这个package才能被合法地安装。当然，如果你冻结了package之后，发现还有程序需要被修改什么的，这时候你可以反冻结(unfreeze)它，最好在package还没被approve之前。</p>
-<h5>3.</h5>
-<p>promote 或 demote。promote就是把你修改的程序版本提升到更高的level去。举个例子，一般PL/I或COBOL等写的程序在进入生产环境之前都会经过开发(Dev)——&gt;系统集成测试(Sys)——&gt;用户接收测试(UAT)——&gt;生产环境(Prod)，promote就是可以把你的程序从较低的level提升到较高的level，慢慢接近prod，而demote反之就可以了。</p>
-<h5>4 ...</h5><p class="subheader">Category: <a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a>
-
-    Tagged: 
-    <a href="http://mainframer.github.io/tag/zos.html">z/OS </a>
-    <a href="http://mainframer.github.io/tag/changeman.html">Changeman </a>
-</p>
-
-
-
-<p><a href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html#disqus_thread">comments</a></p>                <a class="button radius secondary small right" href="http://mainframer.github.io/articles/大机平台的版本控制工具Changeman.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
