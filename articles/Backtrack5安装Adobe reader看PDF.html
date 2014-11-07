@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backtrack5安装Adobe reader看PDF - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Backtrack5安装Adobe reader看PDF.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Backtrack5安装Adobe reader看PDF</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
+<h3>1、下载压缩包到/tmp</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
+</pre></div>
+
+
+<h3>2、下载好之后解压:</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
+<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
+<span class="no">AdobeReader</span><span class="o">/</span>   
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">INSTALL</span>   
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span>  
+<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span>  
+</pre></div>
+
+
+<p>解压后在/tmp路径下生成了AdobeReader的文件夹  </p>
+<h3>3、安装</h3>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  cd AdobeReader    </span>
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ls  </span>
+<span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span> <span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span> <span class="no">INSTALL</span> <span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
+<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ./INSTALL   </span>
+<span class="no">This</span> <span class="n">installation</span> <span class="n">requires</span> <span class="mi">145</span> <span class="no">MB</span> <span class="n">of</span> <span class="n">free</span> <span class="n">disk</span> <span class="n">space</span><span class="o">.</span>  
+<span class="no">Enter</span> <span class="n">installation</span> <span class="n">directory</span> <span class="k">for</span> <span class="no">Adobe</span> <span class="no">Reader</span> <span class="mi">9</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">2</span> <span class="o">[</span><span class="sr">/opt]  #直接回车  </span>
+<span class="sr">/o</span><span class="n">pt</span>  
+<span class="no">Installing</span> <span class="n">platform</span> <span class="n">independent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Installing</span> <span class="n">platform</span> <span class="n">dependent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">libraries</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">desktop</span> <span class="ow">and</span> <span class="n">menu</span> <span class="n">icons</span> <span class="o">...</span> <span class="no">Done</span>  
+<span class="no">Setting</span> <span class="n">up</span> <span class="n">the</span> <span class="n">browser</span> <span class="n">plugin</span> <span class="o">...</span> <span class="no">Done</span>  
+</pre></div>
+
+
+<p>好了，安装到/opt了，这时桌面右上角Applications——Office里面就多了Adobe Reade 9，就可以看pdf了。  </p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2011-08-06 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/backtrack.html">Backtrack</a><sup>7</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/adobe-reader.html">Adobe reader</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Backtrack5安装Adobe reader看PDF</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

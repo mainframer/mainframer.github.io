@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM DebugTool中巧用GOTO调试程序 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/IBM DebugTool中巧用GOTO调试程序.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">IBM DebugTool中巧用GOTO调试程序</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>最近接触<code>IBM DebugTool</code>比较多，再说一个在mainframe上面调试COBOL或者PL/I程序的技巧吧。 <br />
+经常在用<code>IBM DebugTool</code>或者DTCN调试程序的时候，造测试数据很不容易。如果调试过程中发现这次数据没有造成功，我们没有必要每次都退出全部程序重新造数据，可以巧妙地利用“GOTO”语句，随心所欲地在程序里面跳转。     <br />
+比如下面这一个程序段，在调试过程中我们可以在Call黑盒子程序<code>BLACKBOX</code>的前后都设置一个断点，即9178行以及9202行都设置一个断点，如果我们发现程序跑到了9202行但是返回码不是我们想要的结果，那么运行<code>“GOTO 9178”</code> 即可重新回到Call黑盒子之前，无限反复尝试，重新造数据，直到成功！  </p>
+<div class="highlight"><pre><span class="ss">SOURCE</span><span class="p">:</span> <span class="no">TESTPGM1</span> <span class="o">--</span><span class="mi">1</span><span class="o">----+----</span><span class="mi">2</span><span class="o">----+----</span><span class="mi">3</span><span class="o">----+----</span><span class="mi">4</span><span class="o">----+----</span><span class="mi">5</span> <span class="ss">LINE</span><span class="p">:</span> <span class="mi">9178</span> <span class="no">OF</span> <span class="mi">15895</span>
+<span class="mo">0020</span>  <span class="mo">01</span> <span class="no">WS</span><span class="o">-</span><span class="no">FIELDS</span><span class="o">.</span>
+<span class="mo">0021</span>  <span class="mo">05</span> <span class="no">WS</span><span class="o">-</span><span class="no">CALLED</span><span class="o">-</span><span class="no">PGM</span>            <span class="no">PIC</span> <span class="n">X</span><span class="p">(</span><span class="mi">08</span><span class="p">)</span> <span class="no">VALUE</span> <span class="s1">&#39;BLACKBOX&#39;</span><span class="o">.</span>
+<span class="mo">0022</span>  <span class="mo">05</span> <span class="no">WS</span><span class="o">-</span><span class="no">RETURN</span><span class="o">-</span><span class="no">CD</span>             <span class="no">PIC</span> <span class="n">X</span><span class="p">(</span><span class="mo">04</span><span class="p">)</span> <span class="no">VALUE</span> <span class="no">SPACES</span><span class="o">.</span>
+<span class="mo">0023</span>  <span class="mo">05</span> <span class="no">WS</span><span class="o">-</span><span class="no">RETURN</span><span class="o">-</span><span class="no">MSG</span>            <span class="no">PIC</span> <span class="n">X</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="no">VALUE</span> <span class="no">SPACES</span><span class="o">.</span>
+  <span class="o">...</span>
+<span class="mi">9178</span> <span class="no">INITIALIZE</span> <span class="no">COMMAREA1</span>                        
+<span class="mi">9179</span> <span class="no">MOVE</span> <span class="mi">4500</span><span class="o">.</span><span class="mo">00</span>     <span class="no">TO</span> <span class="no">WAGE</span> <span class="no">OF</span> <span class="no">COMMAREA1</span>
+<span class="mi">9180</span> <span class="no">MOVE</span> <span class="no">TODAYS</span><span class="o">-</span><span class="no">DATE</span> <span class="no">TO</span> <span class="no">ENROLL</span><span class="o">-</span><span class="no">DATE</span> <span class="no">OF</span> <span class="no">COMMAREA1</span>
+<span class="mi">9181</span> <span class="no">SET</span>  <span class="no">WS</span><span class="o">-</span><span class="no">CALLED</span><span class="o">-</span><span class="no">PGM</span><span class="o">-</span><span class="no">PTR</span>    <span class="no">TO</span> <span class="no">ADDRESS</span>  <span class="no">OF</span> <span class="no">COMMAREA1</span>
+<span class="mi">9182</span> <span class="no">CALL</span> <span class="no">WS</span><span class="o">-</span><span class="no">CALLED</span><span class="o">-</span><span class="no">PGM</span>        <span class="no">USING</span> <span class="no">WS</span><span class="o">-</span><span class="no">CALLED</span><span class="o">-</span><span class="no">PGM</span><span class="o">-</span><span class="no">PTR</span>  
+<span class="mi">9183</span> <span class="no">ON</span> <span class="no">EXCEPTION</span>                                         
+<span class="mi">9184</span>   <span class="no">SET</span>  <span class="no">CALLED</span><span class="o">-</span><span class="no">UNSUCCESSFUL</span>   <span class="no">TO</span> <span class="no">TRUE</span>            
+<span class="mi">9185</span>   <span class="no">MOVE</span> <span class="s1">&#39;ERR1&#39;</span>                <span class="no">TO</span> <span class="no">RETURN</span><span class="o">-</span><span class="no">CD</span> 
+<span class="mi">9186</span>   <span class="no">MOVE</span> <span class="s1">&#39;CALL FAILED - EXCEPTION OCCURED&#39;</span>   
+<span class="mi">9187</span>                              <span class="no">TO</span> <span class="no">WS</span><span class="o">-</span><span class="no">RETURN</span><span class="o">-</span><span class="no">MSG</span>
+<span class="mi">9188</span> <span class="no">PERFORM</span> <span class="no">A9999</span><span class="o">-</span><span class="no">TERMINATION</span>                           
+<span class="mi">9189</span>         <span class="no">THRU</span> <span class="no">A9999</span><span class="o">-</span><span class="no">EXIT</span>   
+<span class="mi">9200</span> <span class="k">END</span><span class="o">-</span><span class="no">CALL</span>                   
+<span class="mi">9201</span> 
+<span class="mi">9202</span> <span class="no">IF</span> <span class="no">RTN</span><span class="o">-</span><span class="no">CODE</span> <span class="no">OF</span> <span class="no">COMMAREA1</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+</pre></div>
+
+
+<p>用这种<code>“GOTO”</code>的方法，同样也可以用来解决F2单步执行不小心按多了错过了代码但是还想退回去的情况，可以试试~</p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2013-01-04 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/debugtool.html">DebugTool</a><sup>2</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/goto.html">GOTO</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">IBM DebugTool中巧用GOTO调试程序</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

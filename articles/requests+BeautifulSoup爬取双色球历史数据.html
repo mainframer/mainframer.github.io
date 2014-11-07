@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>requests+BeautifulSoup爬取双色球历史数据 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/requests+BeautifulSoup爬取双色球历史数据.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">requests+BeautifulSoup爬取双色球历史数据</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>练手入门级爬虫，利用requests+BeautifulSoup(美丽汤&gt;_&lt;)来爬取http://v2ex.com 网站上面的所有帖子，包括帖子标题，作者，时间，主要是正则表达式的学习：</p>
+<div class="highlight"><pre><span class="c">#练习02：2014-11-01</span>
+<span class="c">#http://baidu.lecai.com/lottery/draw/list/50</span>
+<span class="c">#需求是获取http://baidu.lecai.com/lottery/draw/list/50 彩票网站上面开设双色球以来每一期的开奖日期，开奖期号，开奖号码，当期销量</span>
+<span class="c">#通过观察，发现该彩票网站上面包含2003～2014的数据，其url规律是：http://baidu.lecai.com/lottery/draw/list/50?d=2003-01-01</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s">&#39;双色球2003-2014历史数据.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w+&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="mi">2015</span><span class="p">):</span>
+        <span class="n">req_html_doc</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;http://baidu.lecai.com/lottery/draw/list/50?d=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;-01-01&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">my_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">req_html_doc</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">my_soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&#39;tr&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">reg_lottery_date</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;td class=&quot;td1&quot;&gt;(.*)&lt;/td&gt;&#39;</span><span class="p">)</span>  <span class="c"># &lt;td class=&quot;td1&quot;&gt;2013-12-31&lt;/td&gt;</span>
+            <span class="n">lottery_date</span> <span class="o">=</span> <span class="n">reg_lottery_date</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="n">reg_lottery_qihao</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;a href=&quot;(.*)&quot;&gt;(.*)&lt;/a&gt;&#39;</span><span class="p">)</span>   <span class="c">#&lt;a href=&quot;/lottery/draw/view/50?phase=2013154&quot;&gt;2013154&lt;/a&gt;</span>
+            <span class="n">lottery_qihao</span> <span class="o">=</span> <span class="n">reg_lottery_qihao</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="n">reg_lottery_haoma</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;span class=&quot;ball_[12]&quot;&gt;(.*)&lt;/span&gt;&#39;</span><span class="p">)</span> <span class="c"># &lt;span class=&quot;ball_1&quot;&gt;07&lt;/span&gt; 6个ball_1红球，1个ball_2篮球</span>
+            <span class="n">lottery_haoma</span> <span class="o">=</span> <span class="n">reg_lottery_haoma</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="n">reg_lottery_amount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;&lt;td class=&quot;td4&quot;&gt;(.*)&lt;/td&gt;&#39;</span><span class="p">)</span> <span class="c">#&lt;td class=&quot;td4&quot;&gt;67,728,980&lt;/td&gt;</span>
+            <span class="n">lottery_amount</span> <span class="o">=</span> <span class="n">reg_lottery_amount</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">each</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lottery_qihao</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">out_line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_date</span><span class="p">)</span> <span class="o">+</span> <span class="n">lottery_qihao</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_haoma</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lottery_amount</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out_line</span><span class="p">)</span>
+</pre></div>
+
+
+<p>结果文件保存在 <a href="./../files/双色球2003-2014历史数据.txt">双色球2003-2014历史数据.txt</a></p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2014-11-01 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/requests.html">requests</a><sup>2</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/beautifulsoup.html">BeautifulSoup</a><sup>2</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">requests+BeautifulSoup爬取双色球历史数据</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

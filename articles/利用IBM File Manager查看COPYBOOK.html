@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用IBM File Manager查看COPYBOOK - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/利用IBM File Manager查看COPYBOOK.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">利用IBM File Manager查看COPYBOOK</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>这篇文章就来说下在大机上如何利用<code>IBM File Manager</code>来查看<em>copybook</em>的结构，特别是每个字段的起始位置。  </p>
+<h4>1.在<em>Command</em>栏输入<code>0;5;1</code> 设置自动检测语言</h4>
+<p>这样，不论你的copybook是PLI的还是COBOL的，FileManager都能自动检测出来。
+<img alt="1" src="./../images/IBMfilemanager-copybook-view_001.jpg" /><br />
+<img alt="1" src="./../images/IBMfilemanager-copybook-view_002.jpg" />    </p>
+<h4>2.设置好之后，进入<code>3；13 (Utility-&amp;gt;Copybook)</code></h4>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_003.jpg" />  </p>
+<h6>这里填写copybook的路径和member名，member栏也可以不写:</h6>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_004.jpg" />  </p>
+<h6>接着就能查看copybook内容了，特别是查看某个字段起始位置的时候特别有用。</h6>
+<p><img alt="1" src="./../images/IBMfilemanager-copybook-view_005.jpg" />  </p>
+<h6>上面的<code>MYPLICPY</code>是PLI的copybook，COBOL的这里就不上图了，上图很累的。</h6>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2011-11-17 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/file-manager.html">File Manager</a><sup>3</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/copybook.html">Copybook</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">利用IBM File Manager查看COPYBOOK</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python做自动化项目的总结 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Python做自动化项目的总结.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Python做自动化项目的总结</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>最近项目上有自动化要求，我选择了用Python，对自己的代码能力提高很有帮助。<br />
+- 第一：学东西最快最有效的方法是“用起来”。  <br />
+- 第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。  <br />
+- 第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。    </p>
+<p>心灵鸡汤说完了，这里我记录一下这次项目中用到的Python知识点和重点。</p>
+<h6>Python如何中途退出一个函数？</h6>
+<p><code>sys.exit(0)</code>   </p>
+<h6>Python如何判断文件(夹)存在?</h6>
+<p><code>os.path.exists(root_dir)</code>  </p>
+<h6>Python如何改变目录?</h6>
+<p><code>os.chdir(new_path)</code></p>
+<h6>Python如何延时？</h6>
+<p><code>time.sleep(30)</code></p>
+<h6>Python如何执行系统命令？</h6>
+<p><code>os.system('mycommand.bat')</code></p>
+<h6>Python如何判断文件扩展名？</h6>
+<p><code>file.endswith(".html")</code></p>
+<h5>Python如何清空一个文件夹？</h5>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">clean_dir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function: Clean up an directory</span>
+<span class="sd">    @root_dir: the directory you want to clean up.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;directory not exists, please check&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">clean_dir</span><span class="p">(</span><span class="s">&quot;/Users/Heros/sample1&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h5>Python如何得到一个文件夹下最新的那个文件夹？</h5>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_latest_result_folder</span><span class="p">(</span><span class="n">root_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function:Used to get the most recent generated folder name</span>
+<span class="sd">    @root_path: where the reports stored.</span>
+<span class="sd">    @return: return the most latest folder name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_dir</span> <span class="o">=</span> <span class="n">root_path</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">l</span><span class="p">:</span>   <span class="c"># if folder is not empty</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">fn</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">base_dir</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">base_dir</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;root folder is empty,please check.&quot;</span>
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2014-11-05 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/python.html">Python</a><sup>1</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/zi-dong-hua.html">自动化</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Python做自动化项目的总结</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

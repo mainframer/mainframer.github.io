@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperC SRCHFOR高级选项 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/SuperC SRCHFOR高级选项.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">SuperC SRCHFOR高级选项</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>在<code>ISPF 3.4</code> 选项下面使用<em>SRCHFOR</em>其实可以有高级选项功能的：比如能一次search多个string，比如能选择是否searchn那些已经被<em>MIGRATE</em>的那些dataset等等。
+这里，要在<code>IBMUSER.TEST.GDGRPT</code>的所有世代里面查找:<code>shehui</code>, <code>zhuyi</code>,<code>hao</code>这三个字符串，包括那些已经被migrate的。</p>
+<div class="highlight"><pre><span class="no">DSLIST</span> <span class="o">-</span> <span class="no">Data</span> <span class="no">Sets</span> <span class="no">Matching</span> <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span>                 <span class="no">Row</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">11</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+
+<span class="no">Command</span> <span class="o">-</span> <span class="no">Enter</span> <span class="s2">&quot;/&quot;</span> <span class="n">to</span> <span class="nb">select</span> <span class="n">action</span>                  <span class="no">Message</span>           <span class="no">Volume</span> 
+<span class="o">-------------------------------------------------------------------------------</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span>                       <span class="no">Not</span> <span class="n">searched</span>      <span class="sc">??????</span> 
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0002V00</span>                                <span class="no">XZ8W28</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0003V00</span>                                <span class="no">TXT013</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0004V00</span>                                <span class="no">PEX016</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0005V00</span>                                <span class="no">EXG013</span><span class="o">+</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0006V00</span>                                <span class="no">MIGRAT1</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0007V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0008V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0009V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0010V00</span>                                <span class="no">MIGRAT2</span>
+         <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">GDGRPT</span><span class="o">.</span><span class="n">G0011V00</span>                                <span class="no">YTW002</span><span class="o">+</span>
+</pre></div>
+
+
+<p>在Command栏输入<code>srchfor</code>回车即可看到高级选项对话框:</p>
+<div class="highlight"><pre><span class="no">Command</span> <span class="o">===&gt;</span><span class="n">srchfor</span>                                           <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+</pre></div>
+
+
+<div class="highlight"><pre><span class="n">enu</span>  <span class="no">Options</span>  <span class="no">View</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Help</span>                             
+<span class="sb">``````````````````````````</span> <span class="no">DSLIST</span> <span class="no">Srchfor</span> <span class="no">Options</span> <span class="sb">```````````````````````````</span>
+<span class="sb">                                                                 End of data </span>
+<span class="sb">                                                                 Command ===&gt;                                                                 </span>
+
+<span class="sb">You are about to search multiple data sets.                                  </span>
+<span class="sb">Specify search string(s) and options and press ENTER to run the search.      </span>
+<span class="sb">Enter the END or the CANCEL command to cancel the search.                    </span>
+<span class="sb">                                                                More:   -    </span>
+<span class="sb">  ==&gt;&#39;SHEHUI&#39;                                                                        </span>
+<span class="sb">  ==&gt;&#39;ZHUYI&#39;                                                                        </span>
+<span class="sb">  ==&gt;&#39;HAO&#39;                                                                        </span>
+
+<span class="sb">Listing DSN: &#39;IBMUSER.SRCHDSL.LIST&#39;                                          </span>
+
+<span class="sb">Select Process      Search              Search              Select Display   </span>
+<span class="sb">Options with /      Migrated            Excluded            Options with /   </span>
+<span class="sb">   Mixed Mode       3  1. None          3  1. Excluded         View output   </span>
+<span class="sb">   Any case            2. First level      2. Non-excluded     Exclude not   </span>
+<span class="sb">   Totals only         3. All              3. Both             found         </span>
+<span class="sb">   First found                                                               </span>
+<span class="sb"> F1=Help        F2=Split       F3=Exit        F4=Auto        F7=Backward     </span>
+<span class="sb"> F8=Forward     F9=Swap       F10=Actions    F12=Cancel                      </span>
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2012-09-11 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/superc.html">SuperC</a><sup>1</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/srchfor.html">SRCHFOR</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">SuperC SRCHFOR高级选项</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>backtrack5下注册nessus非商用版 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/backtrack5下注册nessus非商用版.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">backtrack5下注册nessus非商用版</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>打开BT5下菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus start</code> 会提示插件缺失需要注册。</p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1"># Missing plugins. Attempting a plugin update...</span>
+<span class="no">Your</span> <span class="n">installation</span> <span class="n">is</span> <span class="n">missing</span> <span class="n">plugins</span><span class="o">.</span> <span class="no">Please</span> <span class="n">register</span> <span class="ow">and</span> <span class="n">try</span> <span class="n">again</span><span class="o">.</span>
+<span class="no">To</span> <span class="n">register</span><span class="p">,</span> <span class="n">please</span> <span class="n">visit</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">nessus</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">register</span><span class="o">/</span>
+</pre></div>
+
+
+<p>到官网<a href="http://www.nessus.org/register/">http://www.nessus.org/register</a>注册，好工具只给注册家用版，填好邮箱注册即可，登陆邮箱会收到一封确认邮件。告诉你在不同系统<code>(windows/linux/bsd/mac os/)</code>下该如何做。我在<code>BT5</code>下，按照提示运行命令即可：</p>
+<blockquote>
+<p>Linux and Solaris Users :</p>
+</blockquote>
+<p>To activate your account, simply execute the following command :
+/opt/nessus/bin/nessus-fetch --register 04BB-41FD-A885-94B5-9B50</p>
+<blockquote></blockquote>
+<p>(这串序列号是每次官网注册随即生成的，这个是我注册的时候提供给我的)
+<img alt="1" src="./../images/backtrack5-nessus-register.jpg" />        </p>
+<p>之后就是正常更新插件，更新完毕你就可以正常使用强大的nessus漏洞扫描工具了，可以看到版本号是最新的4.4.1。只不过这是非商用版的，商用版的一般给企业用的。
+<img alt="1" src="./../images/backtrack5-nessus-register-ok.jpg" />   </p>
+<p>进入菜单<code>Backtrack --&gt; Vulnerability Assessment --&gt; Network Assessment --&gt; Vulnerability Scanner --&gt; Nessus user add</code>
+添加<code>username:root</code>、 <code>password:toor</code> (可以随便添加用户名密码) 
+更改默认设置: </p>
+<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:gedit</span> <span class="sr">/opt/nessus</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nessus</span><span class="o">/</span><span class="n">nessusd</span><span class="o">.</span><span class="n">conf</span>
+<span class="n">listen_address</span> <span class="o">=</span> <span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span> <span class="p">(</span><span class="err">默认为</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">enable_listen_ipv4</span> <span class="o">=</span> <span class="n">yes</span> <span class="err">（默认没有开启</span><span class="n">ipv4</span><span class="err">侦听）</span>
+</pre></div>
+
+
+<p>登陆浏览器，输入地址：<code>https://127.0.0.1:8834/</code>, 其中8834为nessus默认的web端口。一段时间的初始化之后，输入刚才添加的用户名root和密码toor即可使用nessus homefeed版本了。可以看到homefeed版本给了5年的试用时间。
+<img alt="1" src="./../images/backtrack5-nessus-register-web-about.jpg" />           </p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2011-09-08 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/backtrack.html">Backtrack</a><sup>7</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/nessuszhu-ce.html">nessus注册</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">backtrack5下注册nessus非商用版</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watir给Amazon.cn充礼品卡 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Watir给Amazon.cn充礼品卡.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Watir给Amazon.cn充礼品卡</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>写个脚本去尝试不花钱给自己的Amazon.cn账号充礼品卡，碰碰运气。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="k">def</span> <span class="nf">randCharOfLength</span><span class="p">(</span><span class="n">len</span><span class="p">)</span>                                 <span class="c1">#产生随机任意长度的数</span>
+    <span class="n">chars</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="o">..</span><span class="s2">&quot;z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="o">..</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="o">..</span><span class="s2">&quot;9&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">len</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">chars</span><span class="o">[</span><span class="nb">rand</span><span class="p">(</span><span class="n">chars</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">]</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">str</span>
+<span class="k">end</span>
+<span class="n">b</span> <span class="o">=</span> <span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:firefox</span><span class="p">,</span> <span class="p">{</span><span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">})</span>
+<span class="n">b</span><span class="o">.</span><span class="n">goto</span> <span class="s2">&quot;https://www.amazon.cn/ap/signin/477-4175358-2686144?_encoding=UTF8&amp;openid.assoc_handle=cnflex&amp;openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.mode=checkid_setup&amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&amp;openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&amp;openid.pape.max_auth_age=900&amp;openid.return_to=https%3A%2F%2Fwww.amazon.cn%2Fgp%2Fcss%2Fgc%2Fpayment%2Fredeem-gc-balance%2F477-4175358-2686144%3Fie%3DUTF8%26*Version*%3D1%26*entries*%3D0&amp;showRmrMe=1&quot;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s2">&quot;ap_email&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s2">&quot;your_amazon.cn_account&quot;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s2">&quot;ap_password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s2">&quot;your_amazon.cn_password&quot;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s2">&quot;ap_signin1a_signin_button_row&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;ap_col2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="s2">&quot;signInSubmit&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+<span class="n">gift_code</span> <span class="o">=</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;gcTextInput&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="n">gift_code</span>            <span class="c1">#礼品卡号的格式为：XXX-XXXXXX-XXXX</span>
+<span class="n">b</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span><span class="s2">&quot;applytoaccount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span> 
+
+<span class="n">b</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;gcMMIcon gcMMErrorIcon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>
+ <span class="k">while</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;gcMMIcon gcMMErrorIcon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists?</span><span class="p">)</span> <span class="k">do</span>
+     <span class="n">gift_code</span> <span class="o">=</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span>
+     <span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;gcTextInput&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="n">gift_code</span>       <span class="c1">#礼品卡号的格式为：XXX-XXXXXX-XXXX</span>
+     <span class="n">b</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span><span class="s2">&quot;applytoaccount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+     <span class="nb">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">checkbox</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="s1">&#39;rememberMe&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">exists?</span> <span class="k">then</span> 
+        <span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s2">&quot;ap_password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="s2">&quot;your_amazon.cn_password&quot;</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">checkbox</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="s1">&#39;rememberMe&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s2">&quot;ap_signin1a_signin_button_row&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;ap_col2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="s2">&quot;signInSubmit&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+        <span class="n">gift_code</span> <span class="o">=</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">randCharOfLength</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">upcase</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">text_field</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s2">&quot;gcTextInput&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span> <span class="n">gift_code</span>    <span class="c1">#礼品卡号的格式为：XXX-XXXXXX-XXXX</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span><span class="s2">&quot;applytoaccount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span> 
+        <span class="n">b</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s2">&quot;gcMMIcon gcMMErrorIcon&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>
+      <span class="k">end</span> 
+ <span class="k">end</span>
+</pre></div>
+
+
+<h5>代码仅供娱乐参考，切勿用于不当用途。经本人测试，有被封号风险，也有可能摊上法律责任，劝君不要冲动贪小便宜。</h5>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2013-03-19 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/watir.html">Watir</a><sup>9</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/amazon.html">Amazon</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Watir给Amazon.cn充礼品卡</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

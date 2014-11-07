@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCL提交REXX脚本 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/JCL提交REXX脚本.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">JCL提交REXX脚本</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <h3>来说说如何用JCL提交REXX脚本。</h3>
+<h4>1、写一个最简单的显示有一行提示的REXX脚本叫<code>SAYHELLO</code>：</h4>
+<div class="highlight"><pre><span class="mi">1</span> <span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">00</span>           <span class="no">Member</span> <span class="no">SAYHELLO</span> <span class="n">saved</span> 
+<span class="mi">2</span> <span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="mi">3</span> <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mi">4</span> <span class="mo">000001</span> <span class="o">/******************************</span><span class="no">REXX</span><span class="o">*********************************/</span>                
+<span class="mi">5</span> <span class="mo">000002</span> <span class="no">SAY</span> <span class="s2">&quot;I WILL PRINT &#39;HELLO&#39; IN SYSTSPRT BY SUBMITTING JCL&quot;</span> 
+</pre></div>
+
+
+<h4>2、写一个JCL如下<code>IBMUSER.TEST.JCL(SAYHELLO)</code>:</h4>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SAYHELLO</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">10</span>             <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">0007</span>
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">****************************</span>
+<span class="sr">//</span><span class="no">IBMUSERS</span> <span class="no">JOB</span>  <span class="mo">000000000003</span><span class="mi">92100</span><span class="no">A01011000010TEST</span><span class="p">,</span>                    
+<span class="sr">//</span>  <span class="no">CLASS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">SYSUID</span>                                 
+<span class="sr">//</span><span class="no">STEP01</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IKJEFT01</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">4</span><span class="n">M</span>                                  
+<span class="sr">//</span><span class="no">SYSEXEC</span>  <span class="no">DD</span> <span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span><span class="p">,</span><span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span> <span class="sr">/*REXX LIB*/</span>                         
+<span class="sr">//</span><span class="no">SYSTSIN</span>  <span class="no">DD</span> <span class="o">*</span>                              <span class="sr">/*REXX MEM*/</span>                         
+  <span class="no">SAYHELLO</span>                                                            
+<span class="sr">/*                                                                    </span>
+<span class="sr">/</span><span class="o">/</span><span class="no">SYSTSPRT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>    
+</pre></div>
+
+
+<h4>3、Sub JCL,输入<code>Q;ST</code>到SDSF中的<em>SYSTSPRT</em>查看输出信息如下：</h4>
+<div class="highlight"><pre><span class="no">SDSF</span> <span class="no">OUTPUT</span> <span class="no">DISPLAY</span> <span class="no">IBMUSERS</span> <span class="no">J0300135</span>  <span class="no">DSID</span>   <span class="mi">102</span> <span class="no">LINE</span> <span class="mi">0</span>       <span class="no">COLUMNS</span> <span class="mo">02</span><span class="o">-</span> <span class="mi">81</span> 
+ <span class="no">COMMAND</span> <span class="no">INPUT</span> <span class="o">===&gt;</span>                                            <span class="no">SCROLL</span> <span class="o">===&gt;</span> <span class="no">CSR</span> 
+<span class="o">*********************************</span> <span class="no">TOP</span> <span class="no">OF</span> <span class="no">DATA</span> <span class="o">*********************************</span>
+<span class="no">READY</span>                                                                          
+  <span class="no">SAYHELLO</span>                                                                     
+<span class="n">I</span> <span class="no">WILL</span> <span class="no">PRINT</span> <span class="s1">&#39;HELLO&#39;</span> <span class="no">IN</span> <span class="no">SYSTSPRT</span> <span class="no">BY</span> <span class="no">SUBMITTING</span> <span class="no">JCL</span>                             
+<span class="no">READY</span>                                                                          
+<span class="k">END</span>                                                                            
+<span class="o">********************************</span> <span class="no">BOTTOM</span> <span class="no">OF</span> <span class="no">DATA</span> <span class="o">*******************************</span>
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2012-02-25 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/jcl.html">JCL</a><sup>1</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/rexx.html">rexx</a><sup>7</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">JCL提交REXX脚本</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

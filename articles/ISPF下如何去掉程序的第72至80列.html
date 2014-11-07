@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISPF下如何去掉程序的第72至80列 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/ISPF下如何去掉程序的第72至80列.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">ISPF下如何去掉程序的第72至80列</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>个人不是很喜欢<code>ISPF 3.13</code>提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  </p>
+<h4>方法一：直接在ISPF下面用命令去掉</h4>
+<p>这是最直接最快的办法。去掉第72列至80列的命令有下面两个：</p>
+<div class="highlight"><pre><span class="no">NUM</span> <span class="no">ON</span><span class="p">;</span> <span class="no">UNNUMB</span>
+<span class="n">C</span> <span class="n">P</span><span class="s1">&#39;^&#39;</span> <span class="err">’</span> <span class="err">’</span> <span class="mi">73</span> <span class="mi">80</span> <span class="no">ALL</span>    <span class="sr">/* Changes all non-space characters to spaces in col 73 to 80*/</span>
+</pre></div>
+
+
+<hr />
+<h4>方法二：用第三方脚本实现</h4>
+<p>上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。<br />
+这里是一段自己的Ruby脚本，作用是将<code>C:\prod</code>文件夹下面的所有程序的第72列至80列内容置空，然后输出到文件夹<code>C:\prod72col</code>下面。可以看到，用第三方脚本实现批量的任务是很方便的。<br />
+```ruby01 def cutto72col(file_in,file_out)
+02    file_in=File.new(file_in,‘r’)
+03    file_out=File.new(file_out,‘w’)
+04    oneline=file_in.gets
+05    while(oneline != nil)
+06      oneline=oneline.chomp
+07      oneline=oneline[0..71]
+08      file_out.puts oneline
+09      oneline=file_in.gets
+10    end
+11 end
+12
+13 path_in=‘C:\prod\’
+14 path_out=‘C:prod72col\’
+15
+16 Dir.foreach(path_in){ |file|
+17 if file != ‘.’ &amp;&amp; file != ‘..’
+18 then
+19    file_in = path_in + file
+20    cutto72col(file_in,path_out + file)
+21 end                }</p>
+<div class="highlight"><pre><span class="err">当然，你还可以直接在大机上面用</span>REXX<span class="err">脚本直接对整个</span>PDS<span class="err">操作，移去该</span>PDS<span class="err">下所有</span>member<span class="err">的第</span><span class="m">72</span><span class="err">列至</span><span class="m">80</span><span class="err">列内容。这里也附上我的</span>REXX<span class="err">脚本</span><span class="o">,</span><span class="err">作用是将</span><span class="o">**</span><span class="err">`</span>IBMUSER<span class="o">.</span>TEST<span class="o">.</span>PRGM<span class="err">`</span><span class="o">**</span><span class="err">这个</span>PDS<span class="err">下面所有的</span>member<span class="err">的第</span><span class="m">72</span><span class="err">列至第</span><span class="m">80</span><span class="err">列的行号都去掉：</span><span class="w">  </span>
+<span class="err">```</span>ruby<span class="w"></span>
+<span class="cm">/***********************REXX******************************************/</span><span class="w"></span>
+<span class="cm">/*Loop PDS to remove whatever between col72 to col80 for each member */</span><span class="w"></span>
+<span class="cm">/**********************************************************************/</span><span class="w"></span>
+<span class="cm">/* Trace i  */</span><span class="w">                                                          </span>
+pdsname<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;TEST.PRGM&#39;</span><span class="w">          </span><span class="cm">/*Check if pds is exsited */</span><span class="w">       </span>
+<span class="kr">if</span><span class="w"> </span>sysdsn<span class="o">(</span>pdsname<span class="o">)&lt;&gt;</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="w"> </span><span class="kr">then</span><span class="w">                                          </span>
+<span class="w">    </span><span class="kr">do</span><span class="w">                                                                  </span>
+<span class="w">       </span><span class="kr">say</span><span class="w"> </span><span class="s">&quot;Error: Specified PDS not found:&quot;</span><span class="w"> </span>pdsname<span class="w">                    </span>
+<span class="w">       </span><span class="kr">say</span><span class="w"> </span><span class="s">&quot;Error: &quot;</span><span class="w"> </span>pdsname<span class="w"> </span><span class="s">&quot; &gt; &quot;</span><span class="w"> </span>sysdsn<span class="o">(</span>pdsname<span class="o">)</span><span class="w">                      </span>
+<span class="w">       </span><span class="kr">say</span><span class="w"> </span><span class="s">&quot;Press Enter to continue&quot;</span><span class="w">                                    </span>
+<span class="w">       </span><span class="kr">pull</span><span class="w"> </span>uresp<span class="w">                                                       </span>
+<span class="w">       </span><span class="kr">exit</span><span class="w"> </span><span class="m">8</span><span class="w">                                                           </span>
+<span class="w">    </span><span class="kr">end</span><span class="w">                                                                 </span>
+
+<span class="kr">call</span><span class="w"> </span>outtrap<span class="w"> </span><span class="s">&quot;mbrs.&quot;</span><span class="w">       </span><span class="cm">/*call outtrap to capture LISTD output */</span><span class="w"></span>
+<span class="s">&quot;LISTD&quot;</span><span class="w"> </span>pdsname<span class="w"> </span><span class="s">&quot;MEMBERS&quot;</span><span class="w">  </span><span class="cm">/*List member list*/</span><span class="w">                     </span>
+<span class="kr">call</span><span class="w"> </span>outtrap<span class="w"> </span><span class="s">&quot;off&quot;</span><span class="w">         </span><span class="cm">/*Turn off outtrap*/</span><span class="w">                     </span>
+
+<span class="kr">do</span><span class="w"> </span>i<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>mbrs<span class="o">.</span><span class="m">0</span><span class="w">                                                    </span>
+<span class="w"> </span><span class="cm">/*SAY &quot;mbrs.&quot; !! i !! &quot;: &quot; !!   mbrs.i */</span><span class="w">                          </span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span>mbrs<span class="o">.</span>i<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;--MEMBERS--&quot;</span><span class="w"> </span><span class="kr">then</span><span class="w">                                    </span>
+<span class="w">   </span><span class="kr">do</span><span class="w">                                                               </span>
+<span class="w">     </span><span class="kr">leave</span><span class="w">                                                          </span>
+<span class="w">   </span><span class="kr">end</span><span class="w">                                                              </span>
+<span class="kr">end</span><span class="w">                                                                 </span>
+
+<span class="cm">/*start to loop on each member*/</span><span class="w">                                    </span>
+i<span class="w"> </span><span class="o">=</span><span class="w"> </span>i<span class="o">+</span><span class="m">1</span><span class="w">                                                             </span>
+<span class="kr">do</span><span class="w"> </span>j<span class="o">=</span>i<span class="w"> </span><span class="kr">to</span><span class="w"> </span>mbrs<span class="o">.</span><span class="m">0</span><span class="w">   </span><span class="cm">/*mbrs.0 is the total line num of LISTD */</span><span class="w">       </span>
+<span class="w"> </span><span class="cm">/*SAY &quot;mbrs.&quot; !! j !! &quot;: &quot; !!   mbrs.j */</span><span class="w">                             </span>
+<span class="w">   </span><span class="kr">parse</span><span class="w"> </span>value<span class="w"> </span>mbrs<span class="o">.</span>j<span class="w"> </span>with<span class="w"> </span>mem<span class="w"> </span><span class="cm">/*split mbrs.j*/</span><span class="w">                        </span>
+<span class="w">   </span>mem<span class="w"> </span><span class="o">=</span><span class="nb">strip</span><span class="o">(</span>mem<span class="o">)</span><span class="w">            </span><span class="cm">/*remove leading and trailing character*/</span><span class="w"></span>
+<span class="w">   </span>pds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;IBMUSER.TEST.PRGM&#39;</span><span class="w">                                     </span>
+<span class="w">   </span>mpds<span class="w"> </span><span class="o">=</span><span class="w"> </span>pds<span class="w"> </span><span class="err">!!</span><span class="s">&#39;(&#39;</span><span class="w"> </span><span class="err">!!</span><span class="w"> </span>mem<span class="w"> </span><span class="err">!!</span><span class="w"> </span><span class="s">&#39;)&#39;</span><span class="w">                                      </span>
+<span class="w">   </span><span class="s">&quot;ISPEXEC EDIT DATASET(&#39;&quot;</span>mpds<span class="s">&quot;&#39;) MACRO(MACRO01)&quot;</span><span class="w">                     </span>
+<span class="w"> </span><span class="kr">end</span><span class="w">                                       </span>
+</pre></div>
+
+
+<p>这是上面主Rexx程序调用的<em>MACRO01</em>:  </p>
+<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
+<span class="no">ADDRESS</span>  <span class="no">ISPEXEC</span> 
+<span class="s2">&quot;ISREDIT MACRO&quot;</span>  
+<span class="s2">&quot;ISREDIT RES&quot;</span>    
+<span class="s2">&quot;ISREDIT NUM ON&quot;</span> 
+<span class="s2">&quot;ISREDIT UNNUM&quot;</span>  
+<span class="s2">&quot;ISREDIT SAVE&quot;</span>   
+<span class="s2">&quot;ISREDIT END&quot;</span> 
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2012-02-07 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/ispf.html">ISPF</a><sup>7</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/72dao-80lie.html">72到80列</a><sup>1</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/rexx.html">rexx</a><sup>7</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">ISPF下如何去掉程序的第72至80列</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

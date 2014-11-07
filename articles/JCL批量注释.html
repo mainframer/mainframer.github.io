@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCL批量注释 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/JCL批量注释.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">JCL批量注释</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>在JCL里面一次如何注释掉一整段连续的Statement? 下面这个替换思想的方法不错，不妨一试！<br />
+命令：<code>C '//' '//*' ALL .X .Y</code></p>
+<div class="highlight"><pre><span class="no">File</span> <span class="no">Edit</span> <span class="no">Edit_Settings</span> <span class="no">Menu</span> <span class="no">Utilities</span> <span class="no">Compilers</span> <span class="no">Test</span> <span class="no">Help</span> 
+<span class="no">VIEW</span> <span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">JCL</span><span class="p">(</span><span class="no">SORT</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mi">99</span>                 <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span> <span class="n">C</span> <span class="s1">&#39;//&#39;</span> <span class="s1">&#39;//*&#39;</span> <span class="no">ALL</span> <span class="o">.</span><span class="n">X</span> <span class="o">.</span><span class="n">Y</span>                    <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span> 
+
+<span class="o">********</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">*********************************************************</span> 
+<span class="mo">000001</span> <span class="o">//</span><span class="no">IBMUSERS</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span> 
+<span class="mo">000002</span> <span class="o">//</span> <span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">SYSUID</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span> 
+<span class="mo">000003</span> <span class="o">//*********************************************************************</span>
+<span class="o">.</span><span class="n">X</span>     <span class="sr">//</span><span class="no">STEP001</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ICETOOL</span><span class="p">,</span><span class="no">REGION</span><span class="o">=</span><span class="mi">0</span><span class="n">M</span> 
+<span class="mo">000005</span> <span class="o">//</span><span class="no">INPUT1</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">HLQ1</span><span class="o">..</span><span class="no">AEN</span><span class="o">.</span><span class="n">INPUT1</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="mo">000006</span> <span class="o">//</span><span class="no">INPUT2</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">HLQ1</span><span class="o">..</span><span class="no">AEN</span><span class="o">.</span><span class="n">INPUT2</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="mo">000007</span> <span class="o">//</span><span class="no">INPUT3</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">HLQ1</span><span class="o">..</span><span class="no">AEN</span><span class="o">.</span><span class="n">INPUT3</span><span class="o">.</span><span class="n">EXT</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>
+<span class="mo">00000</span><span class="mi">8</span> <span class="o">//</span><span class="no">OUTPUT</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span> 
+<span class="mo">00000</span><span class="mi">9</span> <span class="o">//</span> <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">MOD</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,),</span><span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span> 
+<span class="mo">000010</span> <span class="o">//</span> <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">SYS1</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span> 
+<span class="mo">000011</span> <span class="o">//</span><span class="no">SORTWK01</span> <span class="no">DD</span> <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span><span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="no">RLSE</span><span class="p">)</span> 
+<span class="mo">000012</span> <span class="o">//</span><span class="no">TOOLMSG</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=</span> 
+<span class="mo">000013</span> <span class="o">//</span><span class="no">DFSMSG</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span> 
+<span class="mo">000014</span> <span class="o">//</span><span class="no">TOOLIN</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">CONTROL</span><span class="p">(</span><span class="no">MYCNTL01</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="o">.</span><span class="n">Y</span>     <span class="sr">//</span><span class="no">CTL1CNTL</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=&amp;</span><span class="no">CONTROL</span><span class="p">(</span><span class="no">MYCNTL02</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span> 
+<span class="mo">000016</span> <span class="o">//*</span> 
+
+<span class="no">F1</span><span class="o">=</span><span class="no">Help</span> <span class="no">F2</span><span class="o">=</span><span class="no">Split</span> <span class="no">F3</span><span class="o">=</span><span class="no">Exit</span> <span class="no">F5</span><span class="o">=</span><span class="no">Rfind</span> <span class="no">F6</span><span class="o">=</span><span class="no">Rchange</span> <span class="no">F7</span><span class="o">=</span><span class="no">Up</span> 
+<span class="no">F8</span><span class="o">=</span><span class="no">Down</span> <span class="no">F9</span><span class="o">=</span><span class="no">Swap</span> <span class="no">F10</span><span class="o">=</span><span class="no">Left</span> <span class="no">F11</span><span class="o">=</span><span class="no">Right</span> <span class="no">F12</span><span class="o">=</span><span class="no">Cancel</span> 
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2012-10-21 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/jclpi-liang-zhu-shi.html">JCL批量注释</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">JCL批量注释</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

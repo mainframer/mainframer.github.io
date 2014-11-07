@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watir获得sedo网站上指定后缀域名列表 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Watir获得sedo网站上指定后缀域名列表.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Watir获得sedo网站上指定后缀域名列表</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>作为一个’米农‘，sedo.com网站上面的信息很有价值。sedo.com是全球最大的域名交易网站。下面我写的这个脚本是用来取得sedo上面指定后缀(_如.asia)的所有域名列表。</p>
+<div class="highlight"><pre><span class="c1">#encoding: UTF-8                                          #添加这一行才可以处理中文</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>                                        <span class="c1">#gem install xxx --no-ri --no-rdoc</span>
+<span class="nb">require</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;watir-webdriver&#39;</span>
+
+<span class="c1">#b=Watir::Browser.new(:firefox, {:profile =&gt; &#39;default&#39;})</span>
+<span class="n">output</span> <span class="o">=</span><span class="no">File</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;sedo_asia.txt&quot;</span><span class="p">,</span><span class="s1">&#39;w:UTF-8&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">pre_work</span><span class="p">()</span>
+  <span class="vg">$b</span><span class="o">=</span><span class="no">Watir</span><span class="o">::</span><span class="no">Browser</span><span class="o">.</span><span class="n">new</span> <span class="ss">:ff</span>
+  <span class="vg">$b</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">manage</span><span class="o">.</span><span class="n">timeouts</span><span class="o">.</span><span class="n">implicit_wait</span> <span class="o">=</span><span class="mi">100</span>                          <span class="c1">#默认的等待页面加载30秒若还未加载完成则会跑出timeout异常，这里可以修改成60秒</span>
+  <span class="k">begin</span>
+  <span class="no">Timeout</span><span class="o">::</span><span class="n">timeout</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>  <span class="k">do</span> <span class="o">|</span><span class="n">timeout_length</span><span class="o">|</span>
+   <span class="vg">$b</span><span class="o">.</span><span class="n">goto</span> <span class="s2">&quot;http://sedo.com/search/searchresult.php4?tracked=&amp;partnerid=&amp;language=cn&quot;</span>
+   <span class="c1">#$b.ul(:class,&quot;login&quot;).link(:class,&quot;open&quot;).click   #$b.div(:class,&quot;row&quot;).text_field(:class,&quot;input&quot;).set &quot;your_sedo_username&quot;</span>
+   <span class="c1">#$b.div(:class,&quot;row&quot;).text_field(:type,&quot;password&quot;).set &quot;your_sedo_password&quot;</span>
+   <span class="c1">#$b.div(:class,&quot;col2 right&quot;).button(:name,&quot;submit&quot;).click</span>
+   <span class="c1">#if  $b.span(:id =&gt; &#39;jqs_searchbar_advancedFilter_toggle&#39;).wait_until_present then</span>
+   <span class="vg">$b</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="s1">&#39;jqs_searchbar_advancedFilter_toggle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>  
+   <span class="vg">$b</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="s1">&#39;jqs_searchbar_advancedFilter_toggle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>            <span class="c1">#点击展开 ”Advanced search&quot;</span>
+   <span class="vg">$b</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;filterStatus closed left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>    
+   <span class="vg">$b</span><span class="o">.</span><span class="n">span</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;filterStatus closed left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>                    <span class="c1">#点击展开Extensions</span>
+   <span class="vg">$b</span><span class="o">.</span><span class="n">checkbox</span><span class="p">(</span><span class="ss">:value</span><span class="p">,</span> <span class="s2">&quot;cn&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span>                                        <span class="c1">#勾选.asia选项 </span>
+   <span class="vg">$b</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;btnGnS left jqs_advancedFilter_apply jqs_advancedFilter_apply_button&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>
+   <span class="vg">$b</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;btnGnS left jqs_advancedFilter_apply jqs_advancedFilter_apply_button&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span> <span class="c1">#点击&#39;Apply&#39;按钮</span>
+   <span class="c1">#table = $b.table(:id,&quot;resultListTable&quot;)</span>
+  <span class="k">end</span>
+  <span class="k">rescue</span> <span class="no">Timeout</span><span class="o">::</span><span class="no">Error</span>
+    <span class="nb">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
+    <span class="k">retry</span>
+  <span class="k">end</span>
+ <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+ <span class="vg">$b</span><span class="o">.</span><span class="n">select_list</span><span class="p">(</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">&quot;pageLimitSelection&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;200&quot;</span><span class="p">)</span>                <span class="c1">#下拉框选择值  每页200个</span>
+ <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+ <span class="vg">$b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;MaxPage&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>                           <span class="c1">#等到此控件出现再接着执行下面代码</span>
+ <span class="vg">$maxpage</span><span class="o">=</span> <span class="vg">$b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;MaxPage&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>                               <span class="c1">#取得一共有多少页</span>
+<span class="k">end</span>
+
+<span class="n">pre_work</span>
+
+<span class="nb">p</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">while</span> <span class="p">(</span><span class="nb">p</span> <span class="o">&lt;</span> <span class="vg">$maxpage</span><span class="o">.</span><span class="n">to_i</span><span class="p">)</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">&quot;==========Processing Page&quot;</span><span class="o">+</span> <span class="nb">p</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot;===============&quot;</span> 
+  <span class="vg">$b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s1">&#39;resultList&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="s1">&#39;resultListTable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>  
+  <span class="nb">system</span><span class="p">(</span><span class="s1">&#39;purge&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">p</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span>  <span class="c1">#exec(&#39;purge&#39;) if p%60==0                #每200页执行一次Purge释放不活动内存 exec命令会运行完后当前的ruby进程也被迫结束了，用system替代</span>
+  <span class="vg">$b</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span><span class="s1">&#39;resultList&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tds</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span><span class="s1">&#39;domainField jqs_tbl_domain&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>  <span class="c1">#遍历当前页面找到所有的td，可以用这个方法遍历任意的tr,link什么的，记得用复数trs,links</span>
+   <span class="k">begin</span>    
+   <span class="no">Timeout</span><span class="o">::</span><span class="n">timeout</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>  <span class="k">do</span> <span class="o">|</span><span class="n">timeout_length</span><span class="o">|</span>
+      <span class="n">output</span><span class="o">.</span><span class="n">puts</span> <span class="n">i</span><span class="o">.</span><span class="n">text</span>
+   <span class="k">end</span>  
+  <span class="k">rescue</span> <span class="no">Timeout</span><span class="o">::</span><span class="no">Error</span>
+    <span class="nb">puts</span> <span class="s2">&quot;Got stucked in Processing page element &quot;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">text</span>
+    <span class="nb">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
+    <span class="k">retry</span>
+  <span class="k">end</span>    <span class="c1">#begin</span>
+ <span class="k">end</span> <span class="c1">#$b.tds.each do |i|    </span>
+ <span class="vg">$b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;arrowNextPage&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_until_present</span>                     
+ <span class="c1">#$b.text_field(:name, &quot;page&quot;).set(p+1)</span>
+ <span class="vg">$b</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;arrowNextPage&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>                                   <span class="c1">#点击下一页</span>
+ <span class="nb">p</span><span class="o">=</span><span class="nb">p</span><span class="o">+</span><span class="mi">1</span>
+ <span class="c1">#$b.wait_until {$b.input(:class, &#39;pageIndex&#39;).value ==p.to_s}</span>
+ <span class="vg">$b</span><span class="o">.</span><span class="n">wait_until</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">message</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span> <span class="p">{</span><span class="vg">$b</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="s1">&#39;pageIndex&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span><span class="nb">p</span><span class="o">.</span><span class="n">to_s</span><span class="p">}</span>  <span class="c1">#直到下一页变成p+1 默认30秒超时报错，用timeout参数修改</span>
+ <span class="c1">#$b.table(:class, &#39;searchResultNavi&#39;).when_present(60)</span>
+<span class="k">end</span>
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2013-03-12 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/watir.html">Watir</a><sup>9</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/yu-ming.html">域名</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Watir获得sedo网站上指定后缀域名列表</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

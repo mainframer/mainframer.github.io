@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local FTP Trigger JES job - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Local FTP Trigger JES job.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Local FTP Trigger JES job</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>随便写了一个搜索ABC字符串的JCL，保存到桌面:  <br />
+<code>C:\Documents and Settings\Foo\Desktop\IBMUSERJ.txt</code>  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSERJ</span> <span class="no">JOB</span> <span class="s1">&#39;000000000000000000CMP&#39;</span><span class="p">,</span>      
+<span class="sr">//</span>     <span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=</span><span class="no">IBMUSER</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span><span class="p">,</span><span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span>                                           
+<span class="sr">//</span><span class="no">ONLINE</span>  <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">ISRSUPC</span><span class="p">,</span>                  
+<span class="sr">//</span>            <span class="no">PARM</span><span class="o">=</span><span class="p">(</span><span class="no">SRCHCMP</span><span class="p">,</span>                 
+<span class="sr">//</span>            <span class="s1">&#39;ANYC&#39;</span><span class="p">)</span>   
+<span class="sr">//</span><span class="no">NEWDD</span>  <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">PROCLIB</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>  
+<span class="sr">//</span><span class="no">OUTDD</span>  <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>    
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>           
+<span class="no">SRCHFOR</span>  <span class="s1">&#39;ABC&#39;</span>       
+<span class="sr">//</span><span class="o">*</span> 
+</pre></div>
+
+
+<p>用ftp的方式将jcl送入JES系统执行。<code>win+R</code>打开cmd </p>
+<div class="highlight"><pre><span class="ss">C</span><span class="p">:\</span><span class="no">Documents</span> <span class="ow">and</span> <span class="no">Settings</span><span class="p">\</span><span class="no">Foo</span><span class="p">\</span><span class="no">Desktop</span><span class="o">&gt;</span><span class="n">ftp</span> <span class="n">ftpserver</span>  
+<span class="sr">/*input username/</span><span class="n">password</span><span class="o">*/</span>  
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">ascii</span>  
+<span class="mi">200</span> <span class="no">Representation</span> <span class="n">type</span> <span class="n">is</span> <span class="no">Ascii</span> <span class="no">NonPrint</span>  
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">quote</span> <span class="n">site</span> <span class="n">filetype</span><span class="o">=</span><span class="n">jes</span>  
+<span class="mi">200</span> <span class="no">SITE</span> <span class="n">command</span> <span class="n">was</span> <span class="n">accepted</span>  
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">put</span> <span class="no">IBMUSERJ</span><span class="o">.</span><span class="n">txt</span>  
+<span class="mi">200</span> <span class="no">Port</span> <span class="n">request</span> <span class="no">OK</span><span class="o">.</span>  
+<span class="mi">125</span> <span class="no">Sending</span> <span class="no">Job</span> <span class="n">to</span> <span class="no">JES</span> <span class="n">internal</span> <span class="n">reader</span> <span class="no">FIXrecfm</span> <span class="mi">80</span>  
+<span class="mi">250</span><span class="o">-</span><span class="no">It</span> <span class="n">is</span> <span class="n">known</span> <span class="n">to</span> <span class="no">JES</span> <span class="n">as</span> <span class="no">J0693574</span>  
+<span class="mi">250</span> <span class="no">Transfer</span> <span class="n">completed</span> <span class="n">successfully</span><span class="o">.</span>  
+<span class="mi">419</span> <span class="n">bytes</span> <span class="n">sent</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="mo">002</span> <span class="n">seconds</span> <span class="p">(</span><span class="mi">209499</span> <span class="n">bytes</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>  
+<span class="n">ftp</span><span class="o">&gt;</span> <span class="n">quit</span>  
+<span class="mi">221</span> <span class="no">Quit</span> <span class="n">command</span> <span class="n">received</span><span class="o">.</span> <span class="no">Goodbye</span><span class="o">.</span>  
+</pre></div>
+
+
+<p>可以看到送入JES系统的<code>job number</code>是J0693574，登录TSO,在SDSF里面可以看到job在执行。  </p>
+<div class="highlight"><pre><span class="no">Display</span>  <span class="no">Filter</span>  <span class="no">View</span>  <span class="no">Print</span>  <span class="no">Options</span>  <span class="no">Search</span>  <span class="no">Help</span>                              
+ <span class="o">-------------------------------------------------------------------------------</span>  
+ <span class="no">SDSF</span> <span class="no">STATUS</span> <span class="no">DISPLAY</span> <span class="no">ALL</span> <span class="no">CLASSES</span>                        <span class="no">LINE</span> <span class="mi">14</span><span class="o">-</span><span class="mi">14</span> <span class="p">(</span><span class="mi">14</span><span class="p">)</span>           
+ <span class="no">COMMAND</span> <span class="no">INPUT</span> <span class="o">===&gt;</span>                                            <span class="no">SCROLL</span> <span class="o">===&gt;</span> <span class="no">CSR</span>    
+ <span class="no">PREFIX</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">*</span>  <span class="no">DEST</span><span class="o">=</span><span class="p">(</span><span class="no">ALL</span><span class="p">)</span>  <span class="no">OWNER</span><span class="o">=*</span>  <span class="no">SYSNAME</span><span class="o">=</span>                                   
+ <span class="no">NP</span>   <span class="no">JOBNAME</span>  <span class="no">TYPE</span> <span class="no">JNUM</span>   <span class="no">PRTY</span> <span class="no">QUEUE</span>      <span class="no">ASYS</span> <span class="n">C</span> <span class="no">MC</span> <span class="no">PRT</span><span class="o">-</span><span class="no">DEST</span> <span class="no">STAT</span> <span class="no">TOT</span><span class="o">-</span><span class="no">LINES</span>  <span class="no">RM</span>  
+      <span class="no">IBMUSERJ</span> <span class="no">JOB</span>  <span class="mi">693574</span>    <span class="mi">1</span> <span class="no">PRINT</span>           <span class="mi">0</span> <span class="n">R</span>  <span class="no">LOCAL</span>                <span class="mi">173</span>  
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2012-10-08 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/zos.html">z/OS</a><sup>41</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/ftp.html">ftp</a><sup>3</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/quote-site.html">quote site</a><sup>2</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/jes2.html">JES2</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Local FTP Trigger JES job</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux压缩命令 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Linux压缩命令.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Linux压缩命令</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
+压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  <br />
+<code>tar格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">xvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span>
+<span class="n">tar</span> <span class="n">cv</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span> <span class="n">directory</span>  
+</pre></div>
+
+
+<p><code>gz格式</code></p>
+<div class="highlight"><pre><span class="n">gunzip</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+<span class="err">也可用</span> <span class="n">gzip</span><span class="err">——</span><span class="n">gzip</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+
+
+<p><code>tar.gz/tgz格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="err">解压至当前目录</span>
+<span class="n">tar</span> <span class="n">zcvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="n">orderFolder</span> <span class="err">压缩</span><span class="n">orderFoler</span><span class="err">里面的文件至</span><span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+
+
+<p><code>bz2格式</code></p>
+<div class="highlight"><pre><span class="n">bzip2</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">bz2</span>
+<span class="n">bzip2</span> <span class="o">-</span><span class="n">z</span> <span class="n">A</span><span class="o">.</span><span class="n">bz2</span>
+</pre></div>
+
+
+<p><code>tar.bz2格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
+<span class="n">tar</span> <span class="n">jcvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span> <span class="n">orderFolder</span> <span class="err">压缩</span><span class="n">orderFoler</span><span class="err">里面的文件至</span><span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span>
+</pre></div>
+
+
+<p><code>bz格式</code></p>
+<div class="highlight"><pre><span class="n">bzip2</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">bz</span>
+</pre></div>
+
+
+<p><code>tar.bz格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz</span>
+</pre></div>
+
+
+<p><code>tar.z格式</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="no">Zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">z</span> <span class="n">tar</span>
+<span class="no">Zcvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">Z</span> <span class="no">Folder</span>
+</pre></div>
+
+
+<p><code>zip格式</code></p>
+<div class="highlight"><pre><span class="n">unzip</span> <span class="n">file</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">zip</span> <span class="n">A</span><span class="o">.</span><span class="n">zip</span> <span class="n">folder</span>
+</pre></div>
+
+
+<p><code>rar格式</code></p>
+<div class="highlight"><pre><span class="n">rar</span> <span class="n">a</span> <span class="n">A</span><span class="o">.</span><span class="n">rar</span>
+<span class="n">rar</span> <span class="n">e</span> <span class="n">A</span><span class="o">.</span><span class="n">rar</span>
+</pre></div>
+
+
+<p><code>deb格式</code></p>
+<div class="highlight"><pre><span class="n">arp</span> <span class="n">A</span><span class="o">.</span><span class="n">deb</span>  
+</pre></div>
+
+
+<p><code>bundle类型安装</code></p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">A</span><span class="o">.</span><span class="n">bundle</span>  <span class="n">sudo</span> <span class="o">.</span><span class="n-Operator">/</span><span class="n">A</span><span class="o">.</span><span class="n">bundle</span>
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2010-11-26 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/linuxya-suo.html">Linux压缩</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Linux压缩命令</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

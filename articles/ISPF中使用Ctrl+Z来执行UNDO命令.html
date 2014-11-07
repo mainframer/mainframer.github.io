@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISPF中使用Ctrl+Z来执行UNDO命令 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">ISPF中使用Ctrl+Z来执行UNDO命令</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
+首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
+<h5>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h5>
+<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+<span class="nb">exit</span>                                                                  
+</pre></div>
+
+
+<h5>step2: 随便<em>Edit</em>一个<em>dataset</em>,在<em>command</em>栏上面执行命令<code>EDITSET</code>打开<code>Edit and View Settings</code>面板，</h5>
+<p>在User session initial macro那里填上step1的宏EDITMAC，按PF3保存退出。</p>
+<div class="highlight"><pre>                         <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="no">Settings</span>                          
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                              
+                                                               <span class="ss">More</span><span class="p">:</span>     <span class="o">+</span>
+<span class="no">Settings</span> <span class="k">for</span> <span class="n">current</span> <span class="ow">and</span> <span class="n">future</span> <span class="no">Edit</span> <span class="ow">and</span> <span class="no">View</span> <span class="ss">sessions</span><span class="p">:</span>                   
+
+  <span class="no">User</span> <span class="n">session</span> <span class="n">initial</span> <span class="n">macro</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="no">EDITMAC</span> 
+</pre></div>
+
+
+<h5>step3:在<em>command</em>栏上执行<code>KEYS</code>命令调出<em>ISPF</em>键位设置面板，随便找一个<em>PF13</em>至<em>PF24</em>当中你认为最不常用的键，将它和<code>UNDO</code>命令绑定。这里我选择<code>PF18</code>.</h5>
+<div class="highlight"><pre> <span class="no">Key</span>       <span class="no">Definition</span>                                 <span class="no">Format</span>  <span class="no">Label</span>
+ <span class="no">F16</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RETURN</span>                                     <span class="no">SHORT</span>   <span class="no">Return</span>  
+ <span class="no">F17</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">RFIND</span>                                      <span class="no">SHORT</span>   <span class="no">Rfind</span>   
+ <span class="no">F18</span>  <span class="o">.</span> <span class="o">.</span>  <span class="no">UNDO</span>                                       <span class="no">SHORT</span>   <span class="no">Undo</span>      
+ <span class="sb">```</span>
+
+<span class="sb">#####step4: 在你使用的`</span><span class="no">TN3270</span><span class="sb">`终端的键盘设置里面，将`</span><span class="no">PF18</span><span class="sb">`映射成*Cntl+Z*。最常见的*TN3270*终端是*PCOMM*。</span>
+<span class="sb">这样一来，`</span><span class="no">UNDO</span><span class="sb">`就被默认打开，并且你可以用*Cntl+Z*来做最近一步的撤销动作，就像在windows下面一样。这里要注意，对于还没按下确定键的情况，如果要撤销的快捷键是`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`.关于`</span><span class="no">UNDO</span><span class="sb">`和`</span><span class="no">Shift</span><span class="o">+</span><span class="no">PageUp</span><span class="sb">`的区别，看我早些时候的文章:《ISPF中Shift+PageUp和UNDO的区别》  </span>
+<span class="sb">最后，还有一点，除了`</span><span class="no">RECOVERY</span> <span class="no">ON</span><span class="sb">`之外，显然其它的*Edit*命令也可以一并添加到`</span><span class="no">EDITMAC</span><span class="sb">`这个宏里面去，只要你希望它执行。比如：</span>
+<span class="sb">```</span><span class="n">ruby</span>
+<span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+ <span class="s2">&quot;ISREDIT RES&quot;</span>
+ <span class="s2">&quot;ISREDIT HI AUTO&quot;</span>
+<span class="nb">exit</span>                                                                  
+</pre></div>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2013-04-08 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/ispf.html">ISPF</a><sup>7</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/undo.html">UNDO</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">ISPF中使用Ctrl+Z来执行UNDO命令</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

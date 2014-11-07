@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job(JCL)返回码 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Job(JCL)返回码.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Job(JCL)返回码</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <h4>提交JCL最常见的返回码就是<code>0、4、8、12、16</code>，当然还有<code>ABEND</code>。</h4>
+<p><em><code>CC=0</code></em>  作业正确执行(Executed Successfully) <br />
+<em><code>CC=4</code></em>  警告 一般不影响作业执行 (Executed Successfully but with warnings) <br />
+<em><code>CC=8</code></em>  作业可以执行，但执行的不完整 (Error)<br />
+<em><code>CC=12</code></em> 作业不能执行 (Serious Error)<br />
+<em><code>CC=16</code></em> 严重错误，中断后续命令的执行(Fatal Error)  <br />
+<em><code>ABEND</code></em> 作业异常终止 </p>
+<h4>下面是一些常见的JCL ABEND CODES</h4>
+<p><code>S0C4</code> Protection Abend.Caused by the subscript being out of range<br />
+<code>S0C5</code> Addressing Abend.Caused by invalid address specification. i.e. The address points<br />
+to an instruction, control word or data outside the available real storage<br />
+<code>S0C7</code> Caused by a bad data. i.e. Data exception. When we are moving an alphanumeric field to a numeric computational field this Abend occurs. The result is an Abend failure  <br />
+<code>S222</code> Caused by a job being cancelled by the operator, due to a request by the program for an unavailable resource.<br />
+<code>S237</code> Caused by end of volume being encountered.<br />
+<code>S322</code> Caused when CPU time assigned to the job, job step, or procedure has been exceeded. i.e. Time out error.<br />
+<code>S413</code> This abend occurs if the DD statement referenced by UNIT=AFF statement is not closed before the DD statement that comes before it.<br />
+<code>S522</code> Caused when a wait state exceeds an installation-defined time limit.  <br />
+<code>SB37</code> Caused by lack of sufficient Secondary space<br />
+<code>SD37</code> Caused by lack of sufficient Primary space<br />
+<code>SE37</code> Caused by lack of space for PDS (Partitioned data set)<br />
+<code>S722</code> Too many lines of print.<br />
+<code>S804</code> Region too small for the program.<br />
+<code>S806</code> Program not on the library. May need a JOBLIB or STEPLIB.<br />
+<code>S80A</code> Region too small for the program.<br />
+<code>S913</code> Security violation.<br />
+<code>SB14</code> No space in a library directory for this member's name.<br />
+<code>SB37</code> Insufficient disk space.<br />
+<code>S0C1</code> Executing a program with an unresolved external reference.<br />
+<code>S042</code> Privileged Operation Abend.Read/write to unopened file<br />
+<code>S0C6</code> Specification Abend<br />
+<code>S0CB</code> Attempting to divide by 0 and not using ON SIZE ERROR<br />
+<code>U1002</code> Conflicting file attributes. See S013.<br />
+<code>U1005</code> Executing with modules compiled both with RES and NORES<br />
+<code>U1006</code> Subscript out of range<br />
+<code>U1017</code> Missing DD statement in JCL for DISPLAY or ACCEPT verb<br />
+<code>U1020</code> Problem opening or processing a file.Check the file status.<br />
+<code>U1035</code> Conflicting DCB parameters. Same as S013.<br />
+<code>U1056</code> Program didn't close a file before ending<br />
+<code>U4038</code> COBOL LE intercepted the Abend. Messages in CEEDUMP.  </p>
+<p>Job异常终止(Abend)的原因很多，返回码也是列不完的。上述仅仅是列举了稍微比较常见的abend返回码而已。在遇到具体返回码的时候，还是需要查manual,看job log。当然，如果你所在的公司恰好也安装了类似于MVS/QuickRef的帮助文档，那就再好不过了，只需一个命令：<code>QW xxx</code>即可随时查看返回码。具体可以参看我之前写的一篇文章：<br />
+<a href="http://flyuphigh.com/mvs-zos-mainframe/batch-jcl-ispf-tso/qw-mvsquickref.html">QW命令——MVS/QuickRef帮助文档</a>  。当然，如果没有安装这类的帮助文档，那也没关系，因为任何时候，Google和baidu都是你最好的帮手。</p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2011-11-28 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/jcl-fan-hui-ma.html">JCL 返回码</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Job(JCL)返回码</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

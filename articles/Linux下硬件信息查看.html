@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux下硬件信息查看 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Linux下硬件信息查看.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Linux下硬件信息查看</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>以前linux对硬件的支持不怎么好这是大家普遍的印象，然而现在的linux发行版本对硬件的支持度已经算非常好了，普通的硬件像显卡，声卡等更笨不需要安装任何驱动就可以在linux下直接使用。只不过有时候为了更好地发挥硬件的性能，我们最好还是给硬件安装上驱动。安装驱动首先需要获得硬件的信息，特别是核心芯片的提供厂商。一般的我们都知道CPU的提供厂商有Intel和AMD两个，显卡的提供厂商有ATI,NVIDIA,SIS等。声卡呢，最常见的是创新提供的声卡。一般来说，像显卡，声卡，网卡这样的板卡的制造厂商都只是购买了核心芯片，然后在芯片周围做些外围的电路扩展以实现芯片的功能。这样就可以拿来卖给我们钱了。  </p>
+<p><code>Linux对硬件支持的原理</code>linux只是简单的读取硬件的芯片信息用来和自己库里的驱动程序比较，发现有匹配的程序就用该驱动程序来加载硬件，实现各种功能。
+当然，linux提供我们各种查询硬件信息的命令:</p>
+<h4>查看PCI设备</h4>
+<p>系统中大多数设置都是PCI设备(网卡，声卡，1394火线接口，集成显卡等)
+root@bt:/proc#   <code>lspci -v</code>        #详细pci状态信息 <br />
+root@bt:/proc#   <code>lspci -vv</code>       #比上面的更详细 <br />
+root@bt:/proc# l <code>lspci -vvv</code>      #比上面的更更详细   <br />
+root@bt:/proc#   <code>lspci -n</code>        #显示设备商和设备代码 <br />
+root@bt:/proc#   <code>lspci -nn</code>       #比上面的详细，多了名字<br />
+root@bt:/proc#   <code>lspci -nnn</code>      #比上面的更详细 <br />
+root@bt:/proc#   <code>lspci -x</code>        #显示硬件基本配置的二进制信息<br />
+root@bt:/proc#   <code>lspci -xxx</code>      #比上面的详细 <br />
+root@bt:/proc#   <code>lspci -xxxx</code>     #比上面的更详细 <br />
+root@bt:/proc#   <code>lspci -vvx</code>      #可以组合着查看 <br />
+root@bt:/proc# l <code>lspci -vvxxx</code>    #组合着查看   </p>
+<p><strong><em>注释</em></strong>:lspci是从pciids数据库读取硬件信息的，如果出现硬件无法识别，可以使用<code>sudo update-pciide</code>更新pci数据库。上面的命令查询结果在你的pci硬件出现问题的时候将其在网上公布，有热心网友或厂商会帮你解决的。</p>
+<h5>查看内核信息</h5>
+<p>root@bt:/proc#    <code>uname -a</code>
+Linux bt 2.6.38 #1 SMP Thu Mar 17 20:52:18 EDT 2011 i686 GNU/Linux<br />
+root@bt:/proc#     <code>uname --help</code></p>
+<div class="highlight"><pre><span class="ss">Usage</span><span class="p">:</span> <span class="n">uname</span> <span class="o">[</span><span class="no">OPTION</span><span class="o">]...</span>  
+<span class="no">Print</span> <span class="n">certain</span> <span class="nb">system</span> <span class="n">information</span><span class="o">.</span> <span class="no">With</span> <span class="n">no</span> <span class="no">OPTION</span><span class="p">,</span> <span class="n">same</span> <span class="n">as</span> <span class="o">-</span><span class="n">s</span><span class="o">.</span>
+<span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="o">--</span><span class="n">all</span> <span class="nb">print</span> <span class="n">all</span> <span class="n">information</span><span class="p">,</span> <span class="k">in</span> <span class="n">the</span> <span class="n">following</span> <span class="n">order</span><span class="p">,</span>
+<span class="n">except</span> <span class="n">omit</span> <span class="o">-</span><span class="nb">p</span> <span class="ow">and</span> <span class="o">-</span><span class="n">i</span> <span class="k">if</span> <span class="ss">unknown</span><span class="p">:</span>
+<span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="o">--</span><span class="n">kernel</span><span class="o">-</span><span class="nb">name</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">kernel</span> <span class="nb">name</span>
+<span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="o">--</span><span class="n">nodename</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">network</span> <span class="n">node</span> <span class="n">hostname</span>
+<span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="o">--</span><span class="n">kernel</span><span class="o">-</span><span class="n">release</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">release</span>
+<span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">kernel</span><span class="o">-</span><span class="n">version</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">version</span>
+<span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="o">--</span><span class="n">machine</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">machine</span> <span class="n">hardware</span> <span class="nb">name</span>
+<span class="o">-</span><span class="nb">p</span><span class="p">,</span> <span class="o">--</span><span class="n">processor</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">processor</span> <span class="n">type</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="o">-</span><span class="n">i</span><span class="p">,</span> <span class="o">--</span><span class="n">hardware</span><span class="o">-</span><span class="n">platform</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">hardware</span> <span class="n">platform</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="o">-</span><span class="n">o</span><span class="p">,</span> <span class="o">--</span><span class="n">operating</span><span class="o">-</span><span class="nb">system</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">operating</span> <span class="nb">system</span>
+<span class="o">--</span><span class="n">help</span> <span class="nb">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="nb">exit</span>
+<span class="o">--</span><span class="n">version</span> <span class="n">output</span> <span class="n">version</span> <span class="n">information</span> <span class="ow">and</span> <span class="nb">exit</span>
+</pre></div>
+
+
+<h5>查看Ubuntu发行版本</h5>
+<p>root@bt:/proc#   <code>lsb_release -a</code></p>
+<div class="highlight"><pre><span class="no">No</span> <span class="no">LSB</span> <span class="n">modules</span> <span class="n">are</span> <span class="n">available</span><span class="o">.</span>
+<span class="no">Distributor</span> <span class="ss">ID</span><span class="p">:</span> <span class="no">Ubuntu</span>
+<span class="ss">Description</span><span class="p">:</span> <span class="no">Ubuntu</span> <span class="mi">10</span><span class="o">.</span><span class="mo">04</span><span class="o">.</span><span class="mi">2</span> <span class="no">LTS</span>
+<span class="ss">Release</span><span class="p">:</span> <span class="mi">10</span><span class="o">.</span><span class="mo">04</span>
+<span class="ss">Codename</span><span class="p">:</span> <span class="n">lucid</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">#发行版本代号</span>
+</pre></div>
+
+
+<h5>查看内核加载模块</h5>
+<p>root@bt:/proc#  <code>lsmod</code></p>
+<h5>查看usb设备使用情况</h5>
+<p>root@bt:/proc#    <code>lsusb</code></p>
+<div class="highlight"><pre>Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+</pre></div>
+
+
+<p><strong><em>注释</em></strong>:如果usb设备未被占用，ID号会显示:0000:0000
+root@bt:/proc#  <code>lsusb -v</code>            #输出详细的USB信息</p>
+<h5>查看网卡状态</h5>
+<p>root@bt:/proc#  <code>ethtool eth0</code>        #查看第一个网卡(eth0)的状态信息</p>
+<div class="highlight"><pre>Settings for eth0:
+Supported ports: [ TP ]
+Supported link modes: 1000baseT/Full  #1000M全双工网卡
+Supports auto-negotiation: No         #不支持自协商
+Advertised link modes: Not reported
+Advertised pause frame use: No
+Advertised auto-negotiation: No
+Link partner advertised link modes: Not reported
+Link partner advertised pause frame use: No
+Link partner advertised auto-negotiation: No
+Speed: 1000Mb/s
+Duplex: Full
+Port: Twisted Pair
+PHYAD: 0
+Transceiver: internal
+Auto-negotiation: off
+MDI-X: Unknown
+Link detected: yes
+</pre></div>
+
+
+<h5>查看CPU信息</h5>
+<p>root@bt:/proc#   <code>cat cpuinfo</code></p>
+<div class="highlight"><pre><span class="n">processor</span> <span class="o">:</span> <span class="mi">0</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err">  #编号</span>
+<span class="n">vendor_id</span> <span class="o">:</span> <span class="n">GenuineIntel</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> #</span><span class="n">intel</span><span class="err">架构</span>
+<span class="n">cpu</span> <span class="n">family</span> <span class="o">:</span> <span class="mi">6</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> #体系编号</span>
+<span class="n">model</span> <span class="o">:</span> <span class="mi">23</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> #型号</span>
+<span class="n">model</span> <span class="n">name</span> <span class="o">:</span> <span class="n">Intel</span><span class="o">(</span><span class="n">R</span><span class="o">)</span> <span class="n">Core</span><span class="o">(</span><span class="n">TM</span><span class="o">)</span><span class="mi">2</span> <span class="n">Duo</span> <span class="n">CPU</span> <span class="n">P8700</span> <span class="err">@</span> <span class="mf">2.53</span><span class="n">GHz</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> #名称，主频</span>
+<span class="n">stepping</span> <span class="o">:</span> <span class="mi">10</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err">#倍频</span>
+<span class="n">cpu</span> <span class="n">MHz</span> <span class="o">:</span> <span class="mf">2534.000</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> #实际速度</span>
+<span class="n">cache</span> <span class="n">size</span> <span class="o">:</span> <span class="mi">3072</span> <span class="n">KB</span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> #缓存大小</span>
+<span class="n">fdiv_bug</span> <span class="o">:</span> <span class="n">no</span>
+<span class="n">hlt_bug</span> <span class="o">:</span> <span class="n">no</span>
+<span class="n">f00f_bug</span> <span class="o">:</span> <span class="n">no</span>
+<span class="n">coma_bug</span> <span class="o">:</span> <span class="n">no</span>
+<span class="n">fpu</span> <span class="o">:</span> <span class="n">yes</span>
+<span class="n">fpu_exception</span> <span class="o">:</span> <span class="n">yes</span>
+<span class="n">cpuid</span> <span class="n">level</span> <span class="o">:</span> <span class="mi">13</span>
+<span class="n">wp</span> <span class="o">:</span> <span class="n">yes</span>
+<span class="n">flags</span> <span class="o">:</span> <span class="n">fpu</span> <span class="n">vme</span> <span class="n">de</span> <span class="n">pse</span> <span class="n">tsc</span> <span class="n">msr</span> <span class="n">pae</span> <span class="n">mce</span> <span class="n">cx8</span> <span class="n">apic</span> <span class="n">sep</span> <span class="n">mtrr</span> <span class="n">pge</span> <span class="n">mca</span> <span class="n">cmov</span> <span class="n">pat</span> <span class="n">pse36</span> <span class="n">clflush</span> <span class="n">dts</span> <span class="n">acpi</span> <span class="n">mmx</span> <span class="n">fxsr</span> <span class="n">sse</span> <span class="n">sse2</span> <span class="n">ss</span> <span class="n">nx</span> <span class="n">lm</span> <span class="n">constant_tsc</span> <span class="n">up</span> <span class="n">arch_perfmon</span> <span class="n">pebs</span> <span class="n">bts</span> <span class="n">xtopology</span> <span class="n">tsc_reliable</span> <span class="n">aperfmperf</span> <span class="n">pni</span> <span class="n">ssse3</span> <span class="n">cx16</span> <span class="n">sse4_1</span> <span class="n">hypervisor</span> <span class="n">lahf_lm</span> <span class="n">ida</span> <span class="n">dts</span>
+<span class="n">bogomips</span> <span class="o">:</span> <span class="mf">5068.00</span>
+<span class="n">clflush</span> <span class="n">size</span> <span class="o">:</span> <span class="mi">64</span>
+<span class="n">cache_alignment</span> <span class="o">:</span> <span class="mi">64</span>
+<span class="n">address</span> <span class="n">sizes</span> <span class="o">:</span> <span class="mi">40</span> <span class="n">bits</span> <span class="n">physical</span><span class="o">,</span> <span class="mi">48</span> <span class="n">bits</span> <span class="n">virtual</span>
+<span class="n">power</span> <span class="n">management</span><span class="o">:</span>
+</pre></div>
+
+
+<h5>查看当前硬件信息</h5>
+<p>root@bt:/proc#    <code>lshw</code>                 #显示完整的系统硬件信息，包括内存，cpu版本...
+root@bt:/proc#    <code>lshw -short</code>          #短格式显示
+root@bt:/proc#    <code>lshw -class disk</code>     #显示磁盘信息
+root@bt:/proc#    <code>lshw -class storage</code>  #显示存储控制设备信息</p>
+<h5>查看当前内存使用情况</h5>
+<p>root@bt:/proc#    <code>free</code></p>
+<div class="highlight"><pre>total used free shared buffers cached
+Mem: 1025720 373120 652600 0 35052 207464
+-/+ buffers/cache: 130604 895116
+Swap: 916476 0 916476
+</pre></div>
+
+
+<p><strong><em>注释</em></strong>：内存实际使用量看<code>-/+ buffers/cache</code>这一行，是130604K,Mem行是名义上的使用情况，是加上了缓存和缓冲区使用量之后的。
+名义上的内存使用373120K=130604K+35052K+207464K</p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2011-08-13 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/linuxying-jian.html">Linux硬件</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Linux下硬件信息查看</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

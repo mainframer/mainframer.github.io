@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于MAC下用SSH翻墙的小结(转) - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">关于MAC下用SSH翻墙的小结(转)</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  </p>
+<h3>以下内容转自：</h3>
+<p><a href="http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/">http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/</a><br />
+回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  </p>
+<h4>方法一，终端加网络配置</h4>
+<p>这个真的是又简单又粗暴。。。分两步：<br />
+首先，打开你的终端，输入：  </p>
+<blockquote>
+<p>ssh -D port user@hostname</p>
+<p>其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
+然后，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选”SOCKS 代理”-&gt;旁边的”SOCKS 代理服务器”里填127.0.0.1，端口填你刚才写的那个，点个好点个应用，搞定。  </p>
+</blockquote>
+<h5>注意，</h5>
+<p>终端的ssh连接不能关闭。<br />
+注意你的ssh的服务器的访问限制，尤其是像我这样的用学校的ssh服务器的，如果去访问了一些不该访问的，就该有学校的警告mail来了<br />
+这个方法简单粗暴但是也太粗糙，所有的访问都会通过ssh服务器来进行，所以即使我看个sina新闻也要绕到遥远的nagoya去，而且pipe还可能崩坏。<br />
+推荐人群：如果只是为了时不时地上个推上个fb的话，只要你的ssh也允许，可以尝试。   </p>
+<h4>方法二，iSSH加.pac文件</h4>
+<p>这个方法相对稳定，但是我所在的这个网络环境实在是太坑爹了&gt;&lt;。。。 <br />
+首先，你需要下载一个app叫iSSH，如果你找不到，我会在稍后放出下载。<a href="./../files/iSSH.zip">--&gt;__--&gt;点击下载iSSH.zip</a> <br />
+app很好设置，输入服务器地址，然后用户名密码都是你在ssh服务器上的，接着下面会有一个2选一的东东，选择SOCKS Proxy(-D)，端口选择7070（稍后解释）。 
+其次，你需要准备一个.pac文件，如果你会写就请忽略这段，如果你不会，那就看下面一段代码： </p>
+<div class="highlight"><pre><span class="n">function</span> <span class="no">FindProxyForURL</span><span class="p">(</span> <span class="n">url</span><span class="p">,</span> <span class="n">host</span> <span class="p">)</span>
+<span class="p">{</span>
+ <span class="k">if</span> <span class="p">(</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*ip38*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*1-apple.com.tw*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+     <span class="err">…</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*facebook cdn*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+              <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/amoiist*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/BeiJing1989*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/billzhong*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/nowhere1975*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/shizhao*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/VOTChinese*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wenyunchao*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/wumao*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zengjinyan*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*twitter.com/zuola*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*https://www.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://apiwiki.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://dev.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;http://status.twitter.com/*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*hk.youtube.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*tw.youtube.com*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*youtube.com/get_video*&quot;</span><span class="p">)</span>
+     <span class="o">||</span> <span class="n">shExpMatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;*Youtube CDN*&quot;</span><span class="p">)</span>
+     <span class="err">…</span>
+     <span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;SOCKS 127.0.0.1:7070&quot;</span><span class="p">;</span>
+ <span class="k">else</span> 
+    <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>这段就是.pac文件的内容，基本上，添加了这些就可以上推上fb看U2B了。 <a href="./../files/gfwlist.pac">--&gt;__--&gt;点击下载gfwlist.pac</a><br />
+接着，打开“系统偏好设置”－&gt;“网络”-&gt;”高级”-&gt;”代理”－&gt;点选“自动代理配置”-&gt;“选取文件”-&gt;找你刚刚搞到的那个.pac文件，然后点个好点个应用。 
+最后，回到iSSH那个app上，可以点Connect了，然后打开Safari去爽去吧。  </p>
+<h5>注意，</h5>
+<p>上面的iSSH的SOCKS Proxy -D的端口和.  pac的文件末尾所写的那个端口必须一致，而之所以选择7070,是因为我最开始拿到这个文件的时候它写的就是7070＝＝<br />
+这个方法相对上一个方法更稳定，因为它只有在访问那些需要翻墙的url的时候才会通过ssh服务器，所以限制更少，pipe也不容易崩坏，<br />
+推荐人群：如果你的ssh服务器对国内的网址很不友好的话，用这个会好点。<br />
+以上，<br />
+2012－3－28<br />
+于爵仕官邸某7楼床上  </p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2013-06-12 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/others.html">Others</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/macfan-qiang.html">Mac翻墙</a><sup>1</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/sshfan-qiang.html">ssh翻墙</a><sup>3</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">关于MAC下用SSH翻墙的小结(转)</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

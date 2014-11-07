@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用INTRDR在job中submit第二个job - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">用INTRDR在job中submit第二个job</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>今天学到的，如何在当前<code>job</code>当中<code>trigger</code>另外一个<code>job</code>？答案就是利用<code>Internal Reader</code> 
+例如：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="o">*******************************************************************</span>    
+<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">an</span> <span class="no">DUMMY</span> <span class="n">job</span> <span class="no">MYJOB2</span> <span class="n">from</span> <span class="n">current</span> <span class="n">job</span> <span class="n">card</span> 
+<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">to</span> <span class="n">the</span> <span class="no">Internal</span> <span class="no">Reader</span>                                    
+<span class="sr">//</span><span class="o">*******************************************************************</span>
+<span class="sr">//</span><span class="no">STEP04</span>    <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span>                  
+<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span><span class="p">,</span><span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">CNTL</span><span class="p">(</span><span class="no">MYJOB2</span><span class="p">)</span>           
+<span class="sr">//</span><span class="no">SYSUT2</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="no">INTRDR</span><span class="p">)</span>                            
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="no">DUMMY</span>  
+</pre></div>
+
+
+<p>这种技术经常被用来发送<code>notification email</code>，比如： </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="o">****************************************************************</span>      
+<span class="sr">//</span><span class="o">*</span>   <span class="no">THIS</span> <span class="no">STEP</span> <span class="no">WILL</span> <span class="no">SEND</span> <span class="no">AN</span> <span class="no">EMAIL</span> <span class="no">TO</span> <span class="no">THE</span> <span class="no">CLIENT</span> <span class="no">GROUP</span>                    
+<span class="sr">//</span><span class="o">*</span>   <span class="no">INDICATING</span> <span class="no">THAT</span> <span class="no">THE</span> <span class="no">DESIRED</span> <span class="no">FILE</span> <span class="no">WAS</span> <span class="no">NOT</span> <span class="no">RECEIVED</span>                     
+<span class="sr">//</span><span class="o">****************************************************************</span>      
+<span class="sr">//</span><span class="no">STEP08</span>   <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span><span class="p">,</span><span class="no">COND</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="no">NE</span><span class="p">,</span><span class="no">STEP02</span><span class="p">)</span>                                                                                     
+<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="no">DUMMY</span>                                                    
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                                 
+<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">CNTL</span><span class="p">(</span><span class="no">STEMAIL</span><span class="p">),</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                       
+<span class="sr">//</span><span class="no">SYSUT2</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="no">INTRDR</span><span class="p">),</span>                                       
+<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">LRECL</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">DSORG</span><span class="o">=</span><span class="no">PS</span><span class="p">)</span>  
+</pre></div>
+
+
+<p>上面例子中邮件的内容如下：<code>IBMUSER.TEST.CNTL(STEMAIL)</code>
+```ruby//IBMUSERT JOB 0000000TEST,  <br />
+//   CLASS=3,MSGCLASS=I,REGION=4096K,                               <br />
+//<em>
+//STEP04   EXEC PGM=IEBGENER                      <br />
+//SYSUT2   DD  SYSOUT=A,DEST=(<some name>,SMTP)     <br />
+//SYSPRINT DD SYSOUT=</em>                            <br />
+//SYSIN    DD DUMMY                               <br />
+//SYSUT1   DD  *                                  <br />
+HELO <some name>                            <br />
+MAIL FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>             <br />
+RCPT TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>                <br />
+DATA                                              <br />
+FROM:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#49;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>                 <br />
+TO:<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#73;&#66;&#77;&#85;&#83;&#69;&#82;&#50;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>                     <br />
+SUBJECT: FILE WAS NOT RECEIVED                          </p>
+<p>START OF MESSAGE...                                 </p>
+<p><strong><em> DO NOT  RESPOND TO THIS MESSAGE </em></strong>                          <br />
+     File was not recieved. Please send again.
+//* <br />
+```</p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2013-04-22 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/intrdr.html">INTRDR</a><sup>1</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/trigger-job.html">trigger job</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">用INTRDR在job中submit第二个job</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

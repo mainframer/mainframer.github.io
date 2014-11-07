@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用的linux命令 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/常用的linux命令.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">常用的linux命令</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <h4>Ubuntu启动3D特效:</h4>
+<p>root@bt:~# sudo apt-get install compizconfig-settings-manager emerald fusion-ico<br />
+<strong><em>注释</em></strong>:<code>compizconfig-settings-manager</code>是提供3D桌面特效的主程序，安装后出现在屏幕右上角，可以详细设置。emerald是提供窗口装饰的程序，fusion-icon是桌面栏中的图标</p>
+<h5>linux系统图标路径：</h5>
+<p>root@bt: <code>cd /usr/share/icons</code></p>
+<h5>查看最近使用的命令</h5>
+<p>root@bt:/# <code>history</code>  </p>
+<h5>备份更新源文件</h5>
+<p>root@bt:~# <code>sudo cp /etc/apt/sources.list /etc/atp.sources.list.backup</code>    <br />
+root@bt:~# <code>sudo gedit /etc/apt/sources.list</code>    </p>
+<h5>软件包管理命令</h5>
+<p>root@bt:~#  <code>sudo apt-get update</code>                     #刷新源文件列表  <br />
+root@bt:~#  <code>sudo apt-get upgrade</code>                    #对所有软件自动升级  <br />
+root@bt:~#  <code>sudo apt-get dist-upgrade</code>               #对系统升级  <br />
+root@bt:~#  <code>sudo apt-get install package</code>            #安装软件包   <br />
+root@bt:~#  <code>sudo apt-get source package</code>             #获得软件包源代码  <br />
+root@bt:~#  <code>sudo apt-get -f install</code>                 #修复安装中的错误  <br />
+root@bt:~#  <code>sudo apt-get remove package</code>             #卸载软件  <br />
+root@bt:~#  <code>sudo apt-get --purge remove package</code>     #不仅卸载，还删除配置文件  <br />
+root@bt:~#  <code>sudo apt-get autoremove</code>                 #自动清理系统中不用的软件包  <br />
+root@bt:~#  <code>sudo apt-get autoclean</code>                  #自动删除系统中旧版本软件包  <br />
+root@bt:~#  <code>sudo apt-get clean</code>                      #清除从源服务器上下载的软件包  <br />
+root@bt:~#  <code>sudo apt-get check</code>                      #更新缓冲区并检查损坏的软件包   </p>
+<h5>dpkg安装deb包</h5>
+<p>root@bt:~#  <code>sudo dpkg -i package.deb</code>                #安装deb包  <br />
+root@bt:~#  <code>sudo dpkg -s package</code>                    #查询包信息  <br />
+root@bt:~#  <code>sudo dpkg-query -s package</code>              #同上<br />
+root@bt:~#  <code>sudo dpkg -r package</code>                    #卸载包<br />
+root@bt:~#  <code>sudo dpkg -P package</code>                    #卸载同时删除配置文件  </p>
+<h5>下载资料</h5>
+<p>root@bt:~#  <code>wget  资源地址...</code>  </p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2011-08-17 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/linuxunixuss.html">Linux/Unix/USS</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/chang-yong-linuxming-ling.html">常用linux命令</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">常用的linux命令</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

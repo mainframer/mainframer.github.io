@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNCSORT将PD格式转换成CSF(FS)格式 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/SYNCSORT将PD格式转换成CSF(FS)格式.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">SYNCSORT将PD格式转换成CSF(FS)格式</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>客户要求看实时报表，可是从数据库导出来的数据却包含如下所示的显示不怎么友好的数据，这时可以用SORT来转换成客户想要的格式。<br />
+转换之前的文件用<code>HEX ON</code>命令显示如下。可以看出后面三个字段都是PD类型的，并且都占据8位长度。</p>
+<div class="highlight"><pre><span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">DFSORT</span><span class="o">.</span><span class="n">PDTOCSF</span><span class="o">.</span><span class="n">SORTIN</span>                   <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00045</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span> <span class="no">HEX</span> <span class="no">ON</span>                                            <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">=</span><span class="no">COLS</span><span class="o">&gt;</span> <span class="o">----+----</span><span class="mi">1</span><span class="o">----+----</span><span class="mi">2</span><span class="o">----+----</span><span class="mi">3</span><span class="o">----+----</span><span class="mi">4</span><span class="o">----+</span>                           
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="no">AAAA</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>     <span class="err">à</span><span class="p">?</span> <span class="p">,</span>  <span class="err">é</span>     <span class="p">,</span>  <span class="p">?</span> <span class="o">&amp;</span> <span class="n">i</span> 
+       <span class="no">CCCC6FFFFFFFF6F6DC600001670600512110600705380</span>
+       <span class="mi">1111</span><span class="no">B20130102B1B44B0000440CB0013100CB0003049C</span>
+<span class="o">----------------------------------------------------</span>
+<span class="mo">000002</span> <span class="no">BBBB</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>        <span class="p">,</span>  <span class="err">è</span><span class="p">?</span><span class="err">í</span><span class="n">a</span><span class="err">à</span> <span class="p">,</span> <span class="sc">?-</span><span class="p">?</span> <span class="n">d</span>  
+       <span class="no">CCCC6FFFFFFFF6F6DC600000000600745440604670800</span>
+       <span class="mi">2222</span><span class="no">B20130102B2B44B0000000CB0147524CB0303743C</span>
+<span class="o">----------------------------------------------------</span>
+<span class="mo">000003</span> <span class="no">CCCC</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>      <span class="o">&amp;</span> <span class="p">,</span>  <span class="o">&amp;</span> <span class="o">-</span><span class="n">b?</span> <span class="p">,</span>  <span class="o">&amp;</span> <span class="o">-</span><span class="n">b?</span> 
+       <span class="no">CCCC6FFFFFFFF6F6DC600031150600516860600516860</span>
+       <span class="mi">3333</span><span class="no">B20130102B3B44B0011270CB0008026CB0008026C</span>
+<span class="o">----------------------------------------------------</span>
+<span class="mo">000004</span> <span class="no">DDDD</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>  <span class="err">é</span><span class="p">?</span><span class="n">ae?</span> <span class="p">,</span>    <span class="n">de</span>  <span class="p">,</span>      <span class="o">&amp;</span> 
+       <span class="no">CCCC6FFFFFFFF6F6DC600544870600008840600000250</span>
+       <span class="mi">4444</span><span class="no">B20130102B4B44B0016250DB0000450CB0000700D</span>
+</pre></div>
+
+
+<h3>转换要求：</h3>
+<ul>
+<li>每条record的前面19位格式不变。后面三个PD字段中第一个PD字段保留6位小数，第二、三个PD字段保留3位小数；     </li>
+<li>如果是负数，则保留符号'-'，若是正数，省略'+'；     </li>
+<li>如果值是0，也要准确显示；         </li>
+</ul>
+<p>转换之后的文件如下，可以看出，转换结果完全满足客户对报表的需求。</p>
+<div class="highlight"><pre> <span class="no">VIEW</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">DFSORT</span><span class="o">.</span><span class="n">PDTOCSF</span><span class="o">.</span><span class="n">SORTOUT</span>                  <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+ <span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+ <span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+ <span class="mo">000001</span> <span class="no">AAAA</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>           <span class="mi">1</span><span class="o">.</span><span class="mi">464700</span><span class="p">,</span>       <span class="mi">51132110</span><span class="o">.</span><span class="mi">100</span><span class="p">,</span>       <span class="mi">70035034</span><span class="o">.</span><span class="mi">890</span>
+ <span class="mo">000002</span> <span class="no">BBBB</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>           <span class="mi">0</span><span class="o">.</span><span class="mo">000000</span><span class="p">,</span>      <span class="mi">174475542</span><span class="o">.</span><span class="mi">440</span><span class="p">,</span>     <span class="mi">4360730784</span><span class="o">.</span><span class="mo">030</span>
+ <span class="mo">000003</span> <span class="no">CCCC</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>        <span class="mi">1311</span><span class="o">.</span><span class="mi">217500</span><span class="p">,</span>       <span class="mi">50186082</span><span class="o">.</span><span class="mi">660</span><span class="p">,</span>       <span class="mi">50186082</span><span class="o">.</span><span class="mi">660</span>
+ <span class="mo">000004</span> <span class="no">DDDD</span><span class="p">,</span><span class="mi">20130102</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="no">MD</span><span class="p">,</span>      <span class="o">-</span><span class="mi">51464</span><span class="o">.</span><span class="mi">285700</span><span class="p">,</span>           <span class="mi">8485</span><span class="o">.</span><span class="mi">400</span><span class="p">,</span>           <span class="o">-</span><span class="mi">720</span><span class="o">.</span><span class="mi">500</span> 
+</pre></div>
+
+
+<p>要实现上面的数据转换，下面是我用到的<em>SORT</em>:</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">IBMUSERS</span> <span class="no">JOB</span> <span class="s1">&#39;00000000&#39;</span><span class="p">,</span><span class="no">CLASS</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="no">NOTIFY</span><span class="o">=&amp;</span><span class="no">SYSUID</span><span class="p">,</span>       
+<span class="sr">//</span>     <span class="no">MSGCLASS</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="no">TIME</span><span class="o">=</span><span class="no">NOLIMIT</span>                                       
+<span class="sr">//</span><span class="no">SORT</span>  <span class="no">EXEC</span>  <span class="no">PGM</span><span class="o">=</span><span class="no">SYNCSORT</span>                                             
+<span class="sr">//</span><span class="no">SORTIN</span>   <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">DFSORT</span><span class="o">.</span><span class="n">PDTOCSF</span><span class="o">.</span><span class="n">SORTIN</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>                
+<span class="sr">//</span><span class="no">SORTOUT</span>  <span class="no">DD</span>  <span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">DFSORT</span><span class="o">.</span><span class="n">PDTOCSF</span><span class="o">.</span><span class="n">SORTOUT</span><span class="p">,</span>                   
+<span class="sr">//</span>             <span class="no">DISP</span><span class="o">=</span><span class="p">(</span><span class="no">NEW</span><span class="p">,</span><span class="no">CATLG</span><span class="p">,</span><span class="no">DELETE</span><span class="p">),</span>                              
+<span class="sr">//</span>             <span class="no">UNIT</span><span class="o">=</span><span class="no">SYSDA</span><span class="p">,</span>                                           
+<span class="sr">//</span>             <span class="no">SPACE</span><span class="o">=</span><span class="p">(</span><span class="no">CYL</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="no">RLSE</span><span class="p">),</span>                               
+<span class="sr">//</span>             <span class="no">DCB</span><span class="o">=</span><span class="p">(</span><span class="no">RECFM</span><span class="o">=</span><span class="no">FB</span><span class="p">,</span><span class="no">BLKSIZE</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>                              
+<span class="sr">//</span><span class="no">SYSOUT</span> <span class="no">DD</span> <span class="no">SYSOUT</span><span class="o">=*</span>                                                              
+<span class="sr">//</span><span class="no">SYSIN</span>  <span class="no">DD</span> <span class="o">*</span>                                                        
+  <span class="no">SORT</span> <span class="no">FIELDS</span><span class="o">=</span><span class="no">COPY</span>                                                   
+  <span class="no">INREC</span> <span class="no">BUILD</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="no">PD</span><span class="p">,</span><span class="no">EDIT</span><span class="o">=</span><span class="p">(</span><span class="no">SIIIIIIIIIIT</span><span class="o">.</span><span class="n">IIIIII</span><span class="p">),</span><span class="no">SIGNS</span><span class="o">=</span><span class="p">(,</span><span class="o">-</span><span class="p">,,),</span> 
+   <span class="n">C</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="no">PD</span><span class="p">,</span><span class="no">EDIT</span><span class="o">=</span><span class="p">(</span><span class="no">SIIIIIIIIIIIIIT</span><span class="o">.</span><span class="n">III</span><span class="p">),</span><span class="no">SIGNS</span><span class="o">=</span><span class="p">(,</span><span class="o">-</span><span class="p">,,),</span>             
+   <span class="n">C</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="no">PD</span><span class="p">,</span><span class="no">EDIT</span><span class="o">=</span><span class="p">(</span><span class="no">SIIIIIIIIIIIIIT</span><span class="o">.</span><span class="n">III</span><span class="p">),</span><span class="no">SIGNS</span><span class="o">=</span><span class="p">(,</span><span class="o">-</span><span class="p">,,))</span> 
+</pre></div>
+
+
+<p>这里面有3点要说明：   <br />
+<strong>第1</strong>，在SORTOUT里面，<code>DCB=(RECFM=FB,BLKSIZE=0)</code>不必加LRECL参数，SORT会自动帮你算出来。 <br />
+<strong>第2</strong>，SIGNS=(,-,,)的解释:  <code>blank for lp, '-' for ln, blank for tp, blank for tn</code>.   </p>
+<div class="highlight"><pre><span class="n">leading</span> <span class="n">positive</span>  <span class="n">sign</span> <span class="p">(</span><span class="n">lp</span><span class="p">)</span>
+<span class="n">leading</span> <span class="n">negative</span>  <span class="n">sign</span> <span class="p">(</span><span class="n">ln</span><span class="p">)</span>
+<span class="n">trailing</span> <span class="n">positive</span> <span class="n">sign</span> <span class="p">(</span><span class="n">tp</span><span class="p">)</span> 
+<span class="n">trailing</span> <span class="n">negative</span> <span class="n">sign</span> <span class="p">(</span><span class="n">tn</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>第3</strong>，原则上EDIT语句可以实现任意格式的输出要求。这里小数点前面的那个"T"是用来保证数据为0.000这种值的时候能正常输出，而不会输出blank。</p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2013-03-20 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/mainframe.html">Mainframe</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/syncsort.html">SYNCSORT</a><sup>1</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">SYNCSORT将PD格式转换成CSF(FS)格式</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>

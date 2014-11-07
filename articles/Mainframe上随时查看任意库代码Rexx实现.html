@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mainframe上随时查看任意库代码Rexx实现 - Modern Mainframer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/niu2.min.css" type="text/css" />
+
+    <link rel="canonical" href="http://mainframer.github.io/articles/Mainframe上随时查看任意库代码Rexx实现.html" />
+    
+    <script type="text/javascript">window.onload=function(){};</script>
+    <!--[if lt IE 9]>
+        <script src="http://mainframer.github.io/theme/js/html5shiv.js"></script>
+        <script src="http://mainframer.github.io/theme/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <div id="body-header">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="col-md-12">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://mainframer.github.io">
+            <i class="fa fa-home"></i>Modern Mainframer
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        <li><a href="http://mainframer.github.io/tags.html">
+                <i class="fa fa-tag"></i>Tag</a>
+        </li>
+        <li><a href="http://mainframer.github.io/archives.html">
+                <i class="fa fa-archive"></i>Archive
+            </a>
+        </li>
+        <!-- category dropdown list -->
+        <!--  self defined dropdown list -->
+        </ul>
+        
+        <!-- right nav bar -->
+        <ul class="nav navbar-nav navbar-right">
+        <!-- google custom search -->
+       </ul>
+    </nav>
+</div>
+</div>    </div>
+    
+    <div id="body-content">
+<div class="col-md-8 col-md-offset-2">
+    <h1 id="content-heading">Mainframe上随时查看任意库代码Rexx实现</h1>
+</div>
+<div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+    <div id="niu2-main-content">
+        <p>Mainframe上面工作经常需要临时查看<em>Production</em>代码库当中的代码，又不希望输入长长的库名称。可以用REXX写一个<em>Retrieve</em>功能的脚本，放在
+<code>USERID.REXX.EXEC</code>这个pds下面。运行的时候<strong><code>TSO RET your_program_name</code></strong> 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：</p>
+<div class="highlight"><pre><span class="no">EDIT</span>       <span class="no">IBMUSER</span><span class="o">.</span><span class="n">REXX</span><span class="o">.</span><span class="n">EXEC</span><span class="p">(</span><span class="no">RET</span><span class="p">)</span> <span class="o">-</span> <span class="mo">01</span><span class="o">.</span><span class="mo">02</span>                  <span class="no">Columns</span> <span class="mo">00001</span> <span class="mo">00072</span> 
+<span class="no">Command</span> <span class="o">===&gt;</span>                                                  <span class="no">Scroll</span> <span class="o">===&gt;</span> <span class="no">CSR</span>  
+<span class="o">******</span> <span class="o">*****************************</span> <span class="no">Top</span> <span class="n">of</span> <span class="no">Data</span> <span class="o">******************************</span>
+<span class="mo">000001</span> <span class="o">/*</span> <span class="n">rexx</span> <span class="o">*/</span>                                                              
+<span class="mo">000002</span> <span class="o">/***********</span> <span class="n">ret</span> <span class="o">-</span> <span class="n">retrieve</span> <span class="n">specific</span> <span class="n">member</span> <span class="n">from</span> <span class="n">multiple</span> <span class="n">libs</span><span class="o">*********/</span>
+<span class="mo">000003</span> <span class="n">arg</span> <span class="n">member</span>                                                              
+<span class="mo">000004</span>   <span class="n">dummy</span> <span class="o">=</span> <span class="n">outtrap</span><span class="p">(</span><span class="s2">&quot;dummy2&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>      <span class="sr">/*suppress tso messages from screen *</span>
+<span class="sr">000005   holdrc = 1;found_num=0;mem_arr.=&quot;&quot;;  /</span><span class="o">*</span> <span class="n">init</span> <span class="n">vars</span><span class="o">*/</span>                   
+<span class="mo">000006</span>   <span class="n">call</span> <span class="n">readlibs</span>                                                         
+<span class="mo">000007</span>   <span class="k">if</span> <span class="n">found_num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">then</span>                                                 
+<span class="mo">00000</span><span class="mi">8</span>    <span class="k">do</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="n">found_num</span>                                                  
+<span class="mo">00000</span><span class="mi">9</span>       <span class="n">address</span> <span class="n">ispexec</span> <span class="s2">&quot;VIEW DATASET(&#39;&quot;</span><span class="n">mem_arr</span><span class="o">.</span><span class="n">i</span><span class="s2">&quot;&#39;)&quot;</span>                     
+<span class="mo">000010</span>    <span class="k">end</span>                                                                  
+<span class="mo">000011</span>   <span class="k">else</span> <span class="n">say</span> <span class="s2">&quot;Can&#39;t find requested module --&gt;  &quot;</span><span class="n">member</span>                    
+<span class="mo">000012</span> <span class="nb">exit</span>    
+
+<span class="mo">000013</span> <span class="o">/**</span><span class="ss">readlibs</span><span class="p">:</span> <span class="no">Here</span> <span class="n">you</span> <span class="n">can</span> <span class="n">add</span> <span class="n">any</span> <span class="n">libs</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">search</span><span class="o">**************/</span>   
+<span class="mo">000014</span> <span class="ss">readlibs</span><span class="p">:</span>                                                               
+<span class="mo">000015</span>   <span class="n">call</span> <span class="n">search_one_lib</span> <span class="s2">&quot;IBMUSER.SOURCE.LIB1&quot;</span>  
+       <span class="sr">/*if holdrc = 1 then call your_added_lib1  add your extra lib here*/</span>
+       <span class="sr">/*if holdrc = 1 then call your_added_lib2  want to add another one?*/</span> 
+         <span class="o">...</span>         
+<span class="mo">000016</span> <span class="k">return</span>  
+
+<span class="mo">000017</span> <span class="o">/**</span><span class="ss">search_one_lib</span><span class="p">:</span> <span class="no">Browse</span> <span class="ow">and</span> <span class="no">Find</span> <span class="n">member</span> <span class="n">from</span> <span class="n">a</span> <span class="n">designated</span> <span class="n">lib</span><span class="o">**********/</span>   
+<span class="mo">00001</span><span class="mi">8</span> <span class="ss">search_one_lib</span><span class="p">:</span>                                                           
+<span class="mo">00001</span><span class="mi">9</span>  <span class="n">parse</span> <span class="n">upper</span> <span class="n">arg</span> <span class="n">dsname</span>                                                 
+<span class="mo">000020</span>   <span class="n">dspds</span> <span class="o">=</span><span class="s2">&quot;&#39;&quot;</span><span class="o">!!</span><span class="n">dsname!</span><span class="o">!</span><span class="s2">&quot;&#39;&quot;</span>                                               
+<span class="mo">000021</span>   <span class="s2">&quot;ispexec lminit  dataid(handle)&quot;</span><span class="p">,</span>                                     
+<span class="mo">000022</span>                  <span class="s2">&quot; dataset(&quot;</span> <span class="n">dspds</span> <span class="s2">&quot;)&quot;</span>                                  
+<span class="mo">000023</span>   <span class="s2">&quot;ispexec lmopen  dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;) option(input)&quot;</span>                    
+<span class="mo">000024</span>   <span class="s2">&quot;ispexec lmmfind dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;) member(&quot;</span> <span class="o">!!</span> <span class="n">member</span> <span class="o">!!</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span>        
+<span class="mo">000025</span>                   <span class="s2">&quot;stats(yes)&quot;</span><span class="p">;</span>                                         
+<span class="mo">000026</span>   <span class="k">if</span> <span class="n">rc</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">then</span> <span class="k">do</span>                                                     
+<span class="mo">000027</span>      <span class="n">dspds</span> <span class="o">=</span> <span class="n">dsname</span> <span class="o">!!</span> <span class="s2">&quot;(&quot;</span> <span class="o">!!</span> <span class="n">member</span> <span class="o">!!</span> <span class="s2">&quot;)&quot;</span>                             
+<span class="mo">00002</span><span class="mi">8</span>      <span class="n">found_num</span> <span class="o">=</span> <span class="n">found_num</span> <span class="o">+</span> <span class="mi">1</span>                                          
+<span class="mo">00002</span><span class="mi">9</span>      <span class="n">mem_arr</span><span class="o">.</span><span class="n">found_num</span> <span class="o">=</span> <span class="n">dspds</span>                                          
+<span class="mo">000030</span>   <span class="k">end</span>                                                                   
+<span class="mo">000031</span>    <span class="s2">&quot;ispexec  lmclose dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;)&quot;</span>                                
+<span class="mo">000032</span>    <span class="s2">&quot;ispexec  lmfree  dataid(&quot;</span> <span class="n">handle</span> <span class="s2">&quot;)&quot;</span>                                
+<span class="mo">000033</span> <span class="k">return</span>                                                                  
+</pre></div>
+
+
+<p>例如，你突然想看程序<em>PRODPGM1</em>,只需执行： </p>
+<blockquote>
+<p>TSO RET PRODPGM1 
+</p>
+</blockquote>
+<p>REXX程序就会去函数readlibs里面您事先指定好的libs里面查找<em>PRODPGM1</em>,然后以VIEW的方式逐个打开<em>PRODPGM1</em>供您查看。</p>
+<div class="highlight"><pre><span class="no">File</span>  <span class="no">Edit</span>  <span class="no">Edit_Settings</span>  <span class="no">Menu</span>  <span class="no">Utilities</span>  <span class="no">Compilers</span>  <span class="no">Test</span>  <span class="no">Help</span>            
+<span class="sb">```````````````````````````````````````````````````````````````````````````````</span>
+<span class="sb">VIEW       IBMUSER.SOURCE.LIB1(PRODPGM1) - 03. Columns 00001 00072 </span>
+<span class="sb">Command ===&gt;                                                  Scroll ===&gt; CSR  </span>
+<span class="sb">****** ***************************** Top of Data ******************************</span>
+<span class="sb">000001   PRODPGM1: PROC(PARMS) OPTIONS(MAIN);                          </span>
+<span class="sb">000002  /*********************************************************************/</span>
+<span class="sb">000003  /* PROGRAM-ID:  PRODPGM1                                             */</span>
+<span class="sb">000004  /* DESCRIPTION: PRODUCE DAILY SUMMARY RPT                            */</span>
+<span class="sb">000005  /* AUTHOR:      IBMUSER JOHN                                         */</span>
+<span class="sb">000006  /* DATE:        JUNE 2009                                            */</span>
+<span class="sb">000007  /*********************************************************************/</span>
+</pre></div>
+
+
+<p>如果<em>PRODPGM1</em>还存在于除了<code>IBMUSER.SOURCE.LIB1</code>之外的lib中，那么按PF3即可接着查看下一个结果。</p>
+    </div>
+    <div id="content-comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">var disqus_shortname="mainframer";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+<div class="niu2-right-container col-md-2">
+    <div id="niu2-sidebar-meta" class="niu2-sidebar">
+        <div class="niu2-sidebar-label"><i class="fa fa-calendar"></i>Published:</div>
+        <div class="niu2-sidebar-value">2012-11-12 00:00</div>
+        <div class="niu2-sidebar-label"><i class="fa fa-open-folder"></i>Category:</div>
+        <div class="niu2-sidebar-value"><a href="http://mainframer.github.io/category/xie-xie-jiao-ben.html">写写脚本</a></div>
+        <div class="niu2-sidebar-label"><i class="fa fa-tag"></i>Tag:</div>
+ 
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/zos.html">z/OS</a><sup>41</sup></div>
+            <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://mainframer.github.io/tag/rexx.html">rexx</a><sup>7</sup></div>
+    </div>
+</div>
+
+<div class="niu2-right-container col-md-3">
+    <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+        <div class="niu2-sidebar-label">
+            <i id="niu2-sidebar-toc-ctrl" class="fa fa-plus"></i>TOC
+        </div>
+        <ol id="niu2-sidebar-toc-list">
+            <li><a href="#content-heading">Mainframe上随时查看任意库代码Rexx实现</a></li>
+            
+            <li><a href="#content-comments">Comments</a></li>
+        </ol>
+    </div>
+</div>
+    </div>
+
+    <div id="body-footer" class="col-md-6 col-md-offset-2">
+<div class="niu2-footer">
+    <hr/>
+	<p>
+		Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+        <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+		by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+		<a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+	</p>
+	<p>
+		©
+				2010-2014
+		<a class="niu2-footer-link" href="http://mainframer.github.io">mainframer</a>
+    </p>
+    <p class="niu2-icons">
+	</p>
+</div>    </div>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-56516196-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();</script>    
+    <div id="niu2-pygments" data-theme="github"></div>
+
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/niu2.min.js"></script>
+    <script type="text/javascript" src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+    <script type="text/javascript">onContentLoaded();</script>
+  </body>
+</html>
