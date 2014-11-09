@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/rexx.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2012-11-12T00:00:00+08:00</updated><entry><title>Mainframe上随时查看任意库代码Rexx实现</title><link href="http://mainframer.github.io/articles/Mainframe%E4%B8%8A%E9%9A%8F%E6%97%B6%E6%9F%A5%E7%9C%8B%E4%BB%BB%E6%84%8F%E5%BA%93%E4%BB%A3%E7%A0%81Rexx%E5%AE%9E%E7%8E%B0.html" rel="alternate"></link><updated>2012-11-12T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-11-12:articles/Mainframe上随时查看任意库代码Rexx实现.html</id><summary type="html">&lt;p&gt;Mainframe上面工作经常需要临时查看&lt;em&gt;Production&lt;/em&gt;代码库当中的代码，又不希望输入长长的库名称。可以用REXX写一个&lt;em&gt;Retrieve&lt;/em&gt;功能的脚本，放在
+&lt;code&gt;USERID.REXX.EXEC&lt;/code&gt;这个pds下面。运行的时候&lt;strong&gt;&lt;code&gt;TSO RET your_program_name&lt;/code&gt;&lt;/strong&gt; 即可随时查看。这里是这个RET程序的实现方法，原本是公司内部用的，由前辈们积累下来的财产，我见它有通用性和扩展性，故稍作修改简化后贴这里：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;EDIT&lt;/span&gt;       &lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;REXX&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EXEC&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;RET&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mo"&gt;01&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt;                  &lt;span class="no"&gt;Columns&lt;/span&gt; &lt;span class="mo"&gt;00001&lt;/span&gt; &lt;span class="mo"&gt;00072&lt;/span&gt; 
+&lt;span class="no"&gt;Command&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt;                                                  &lt;span class="no"&gt;Scroll&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt; &lt;span class="no"&gt;CSR&lt;/span&gt;  
+&lt;span class="o"&gt;******&lt;/span&gt; &lt;span class="o"&gt;*****************************&lt;/span&gt; &lt;span class="no"&gt;Top&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="no"&gt;Data&lt;/span&gt; &lt;span class="o"&gt;******************************&lt;/span&gt;
+&lt;span class="mo"&gt;000001&lt;/span&gt; &lt;span class="o"&gt;/*&lt;/span&gt; &lt;span class="n"&gt;rexx&lt;/span&gt; &lt;span class="o"&gt;*/&lt;/span&gt;                                                              
+&lt;span class="mo"&gt;000002&lt;/span&gt; &lt;span class="o"&gt;/***********&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;retrieve&lt;/span&gt; &lt;span class="n"&gt;specific&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;multiple&lt;/span&gt; &lt;span class="n"&gt;libs&lt;/span&gt;&lt;span class="o"&gt;*********/&lt;/span&gt;
+&lt;span class="mo"&gt;000003&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt;                                                              
+&lt;span class="mo"&gt;000004&lt;/span&gt;   &lt;span class="n"&gt;dummy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;outtrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dummy2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;      &lt;span class="sr"&gt;/*suppress tso messages from screen *&lt;/span&gt;
+&lt;span class="sr"&gt;000005   holdrc = 1;found_num=0;mem_arr.=&amp;quot;&amp;quot;;  /&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt; &lt;span class="n"&gt;vars&lt;/span&gt;&lt;span class="o"&gt;*/&lt;/span&gt;                   
+&lt;span class="mo"&gt;000006&lt;/span&gt;   &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;readlibs&lt;/span&gt;                                                         
+&lt;span class="mo"&gt;000007&lt;/span&gt;   &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;found_num&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;                                                 
+&lt;span class="mo"&gt;00000&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;    &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;found_num&lt;/span&gt;                                                  
+&lt;span class="mo"&gt;00000&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;       &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="n"&gt;ispexec&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;VIEW DATASET(&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;mem_arr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;#39;)&amp;quot;&lt;/span&gt;                     
+&lt;span class="mo"&gt;000010&lt;/span&gt;    &lt;span class="k"&gt;end&lt;/span&gt;                                                                  
+&lt;span class="mo"&gt;000011&lt;/span&gt;   &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="n"&gt;say&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Can&amp;#39;t find requested module --&amp;gt;  &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;                    
+&lt;span class="mo"&gt;000012&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;    
+
+&lt;span class="mo"&gt;000013&lt;/span&gt; &lt;span class="o"&gt;/**&lt;/span&gt;&lt;span class="ss"&gt;readlibs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;Here&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="n"&gt;any&lt;/span&gt; &lt;span class="n"&gt;libs&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="o"&gt;**************/&lt;/span&gt;   
+&lt;span class="mo"&gt;000014&lt;/span&gt; &lt;span class="ss"&gt;readlibs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                                                               
+&lt;span class="mo"&gt;000015&lt;/span&gt;   &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;search_one_lib&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;IBMUSER.SOURCE.LIB1&amp;quot;&lt;/span&gt;  
+       &lt;span class="sr"&gt;/*if holdrc = 1 then call your_added_lib1  add your extra lib here*/&lt;/span&gt;
+       &lt;span class="sr"&gt;/*if holdrc = 1 then call your_added_lib2  want to add another one?*/&lt;/span&gt; 
+         &lt;span class="o"&gt;...&lt;/span&gt;         
+&lt;span class="mo"&gt;000016&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt;  
+
+&lt;span class="mo"&gt;000017&lt;/span&gt; &lt;span class="o"&gt;/**&lt;/span&gt;&lt;span class="ss"&gt;search_one_lib&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;Browse&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="no"&gt;Find&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;designated&lt;/span&gt; &lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;**********/&lt;/span&gt;   
+&lt;span class="mo"&gt;00001&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="ss"&gt;search_one_lib&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                                                           
+&lt;span class="mo"&gt;00001&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;  &lt;span class="n"&gt;parse&lt;/span&gt; &lt;span class="n"&gt;upper&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt; &lt;span class="n"&gt;dsname&lt;/span&gt;                                                 
+&lt;span class="mo"&gt;000020&lt;/span&gt;   &lt;span class="n"&gt;dspds&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;!!&lt;/span&gt;&lt;span class="n"&gt;dsname!&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;#39;&amp;quot;&lt;/span&gt;                                               
+&lt;span class="mo"&gt;000021&lt;/span&gt;   &lt;span class="s2"&gt;&amp;quot;ispexec lminit  dataid(handle)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                                     
+&lt;span class="mo"&gt;000022&lt;/span&gt;                  &lt;span class="s2"&gt;&amp;quot; dataset(&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;dspds&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;                                  
+&lt;span class="mo"&gt;000023&lt;/span&gt;   &lt;span class="s2"&gt;&amp;quot;ispexec lmopen  dataid(&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;handle&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;) option(input)&amp;quot;&lt;/span&gt;                    
+&lt;span class="mo"&gt;000024&lt;/span&gt;   &lt;span class="s2"&gt;&amp;quot;ispexec lmmfind dataid(&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;handle&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;) member(&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;        
+&lt;span class="mo"&gt;000025&lt;/span&gt;                   &lt;span class="s2"&gt;&amp;quot;stats(yes)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                         
+&lt;span class="mo"&gt;000026&lt;/span&gt;   &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;rc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;                                                     
+&lt;span class="mo"&gt;000027&lt;/span&gt;      &lt;span class="n"&gt;dspds&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dsname&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;(&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;                             
+&lt;span class="mo"&gt;00002&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;      &lt;span class="n"&gt;found_num&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;found_num&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;                                          
+&lt;span class="mo"&gt;00002&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;      &lt;span class="n"&gt;mem_arr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;found_num&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dspds&lt;/span&gt;                                          
+&lt;span class="mo"&gt;000030&lt;/span&gt;   &lt;span class="k"&gt;end&lt;/span&gt;                                                                   
+&lt;span class="mo"&gt;000031&lt;/span&gt;    &lt;span class="s2"&gt;&amp;quot;ispexec  lmclose dataid(&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;handle&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;                                
+&lt;span class="mo"&gt;000032&lt;/span&gt;    &lt;span class="s2"&gt;&amp;quot;ispexec  lmfree  dataid(&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;handle&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;                                
+&lt;span class="mo"&gt;000033&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt;                                                                  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;例如，你突然想看程序&lt;em&gt;PRODPGM1&lt;/em&gt;,只需执行： &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TSO RET PRODPGM1 
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;REXX程序就会去函数readlibs里面您事先指定好的libs里面查找&lt;em&gt;PRODPGM1&lt;/em&gt;,然后以VIEW的方式逐个打开&lt;em&gt;PRODPGM1&lt;/em&gt;供您查看。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;File&lt;/span&gt;  &lt;span class="no"&gt;Edit&lt;/span&gt;  &lt;span class="no"&gt;Edit_Settings&lt;/span&gt;  &lt;span class="no"&gt;Menu&lt;/span&gt;  &lt;span class="no"&gt;Utilities&lt;/span&gt;  &lt;span class="no"&gt;Compilers&lt;/span&gt;  &lt;span class="no"&gt;Test&lt;/span&gt;  &lt;span class="no"&gt;Help&lt;/span&gt;            
+&lt;span class="sb"&gt;```````````````````````````````````````````````````````````````````````````````&lt;/span&gt;
+&lt;span class="sb"&gt;VIEW       IBMUSER.SOURCE.LIB1(PRODPGM1) - 03. Columns 00001 00072 &lt;/span&gt;
+&lt;span class="sb"&gt;Command ===&amp;gt;                                                  Scroll ===&amp;gt; CSR  &lt;/span&gt;
+&lt;span class="sb"&gt;****** ***************************** Top of Data ******************************&lt;/span&gt;
+&lt;span class="sb"&gt;000001   PRODPGM1: PROC(PARMS) OPTIONS(MAIN);                          &lt;/span&gt;
+&lt;span class="sb"&gt;000002  /*********************************************************************/&lt;/span&gt;
+&lt;span class="sb"&gt;000003  /* PROGRAM-ID:  PRODPGM1                                             */&lt;/span&gt;
+&lt;span class="sb"&gt;000004  /* DESCRIPTION: PRODUCE DAILY SUMMARY RPT                            */&lt;/span&gt;
+&lt;span class="sb"&gt;000005  /* AUTHOR:      IBMUSER JOHN                                         */&lt;/span&gt;
+&lt;span class="sb"&gt;000006  /* DATE:        JUNE 2009                                            */&lt;/span&gt;
+&lt;span class="sb"&gt;000007  /*********************************************************************/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果&lt;em&gt;PRODPGM1&lt;/em&gt;还存在于除了&lt;code&gt;IBMUSER.SOURCE.LIB1&lt;/code&gt;之外的lib中，那么按PF3即可接着查看下一个结果。&lt;/p&gt;</summary><category term="z/OS"></category><category term="rexx"></category></entry><entry><title>JCL提交REXX脚本</title><link href="http://mainframer.github.io/articles/JCL%E6%8F%90%E4%BA%A4REXX%E8%84%9A%E6%9C%AC.html" rel="alternate"></link><updated>2012-02-25T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-02-25:articles/JCL提交REXX脚本.html</id><summary type="html">&lt;h3&gt;来说说如何用JCL提交REXX脚本。&lt;/h3&gt;
+&lt;h4&gt;1、写一个最简单的显示有一行提示的REXX脚本叫&lt;code&gt;SAYHELLO&lt;/code&gt;：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="no"&gt;EDIT&lt;/span&gt;       &lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;REXX&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EXEC&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;SAYHELLO&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mo"&gt;01&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;           &lt;span class="no"&gt;Member&lt;/span&gt; &lt;span class="no"&gt;SAYHELLO&lt;/span&gt; &lt;span class="n"&gt;saved&lt;/span&gt; 
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="no"&gt;Command&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt;                                                  &lt;span class="no"&gt;Scroll&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt; &lt;span class="no"&gt;CSR&lt;/span&gt;  
+&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;******&lt;/span&gt; &lt;span class="o"&gt;*****************************&lt;/span&gt; &lt;span class="no"&gt;Top&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="no"&gt;Data&lt;/span&gt; &lt;span class="o"&gt;******************************&lt;/span&gt;
+&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="mo"&gt;000001&lt;/span&gt; &lt;span class="o"&gt;/******************************&lt;/span&gt;&lt;span class="no"&gt;REXX&lt;/span&gt;&lt;span class="o"&gt;*********************************/&lt;/span&gt;                
+&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="mo"&gt;000002&lt;/span&gt; &lt;span class="no"&gt;SAY&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;I WILL PRINT &amp;#39;HELLO&amp;#39; IN SYSTSPRT BY SUBMITTING JCL&amp;quot;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;2、写一个JCL如下&lt;code&gt;IBMUSER.TEST.JCL(SAYHELLO)&lt;/code&gt;:&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;EDIT&lt;/span&gt;       &lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;JCL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;SAYHELLO&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mo"&gt;01&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;             &lt;span class="no"&gt;Columns&lt;/span&gt; &lt;span class="mo"&gt;00001&lt;/span&gt; &lt;span class="mo"&gt;0007&lt;/span&gt;
+&lt;span class="no"&gt;Command&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt;                                                  &lt;span class="no"&gt;Scroll&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt; &lt;span class="no"&gt;CSR&lt;/span&gt;
+&lt;span class="o"&gt;******&lt;/span&gt; &lt;span class="o"&gt;*****************************&lt;/span&gt; &lt;span class="no"&gt;Top&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="no"&gt;Data&lt;/span&gt; &lt;span class="o"&gt;****************************&lt;/span&gt;
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;IBMUSERS&lt;/span&gt; &lt;span class="no"&gt;JOB&lt;/span&gt;  &lt;span class="mo"&gt;000000000003&lt;/span&gt;&lt;span class="mi"&gt;92100&lt;/span&gt;&lt;span class="no"&gt;A01011000010TEST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                    
+&lt;span class="sr"&gt;//&lt;/span&gt;  &lt;span class="no"&gt;CLASS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;MSGCLASS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;NOTIFY&lt;/span&gt;&lt;span class="o"&gt;=&amp;amp;&lt;/span&gt;&lt;span class="no"&gt;SYSUID&lt;/span&gt;                                 
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;STEP01&lt;/span&gt; &lt;span class="no"&gt;EXEC&lt;/span&gt; &lt;span class="no"&gt;PGM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IKJEFT01&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;REGION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;                                  
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSEXEC&lt;/span&gt;  &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="no"&gt;DISP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;SHR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;DSN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IBMUSER&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;REXX&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EXEC&lt;/span&gt; &lt;span class="sr"&gt;/*REXX LIB*/&lt;/span&gt;                         
+&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="no"&gt;SYSTSIN&lt;/span&gt;  &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;                              &lt;span class="sr"&gt;/*REXX MEM*/&lt;/span&gt;                         
+  &lt;span class="no"&gt;SAYHELLO&lt;/span&gt;                                                            
+&lt;span class="sr"&gt;/*                                                                    &lt;/span&gt;
+&lt;span class="sr"&gt;/&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;SYSTSPRT&lt;/span&gt; &lt;span class="no"&gt;DD&lt;/span&gt; &lt;span class="no"&gt;SYSOUT&lt;/span&gt;&lt;span class="o"&gt;=*&lt;/span&gt;    
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;3、Sub JCL,输入&lt;code&gt;Q;ST&lt;/code&gt;到SDSF中的&lt;em&gt;SYSTSPRT&lt;/em&gt;查看输出信息如下：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;SDSF&lt;/span&gt; &lt;span class="no"&gt;OUTPUT&lt;/span&gt; &lt;span class="no"&gt;DISPLAY&lt;/span&gt; &lt;span class="no"&gt;IBMUSERS&lt;/span&gt; &lt;span class="no"&gt;J0300135&lt;/span&gt;  &lt;span class="no"&gt;DSID&lt;/span&gt;   &lt;span class="mi"&gt;102&lt;/span&gt; &lt;span class="no"&gt;LINE&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;       &lt;span class="no"&gt;COLUMNS&lt;/span&gt; &lt;span class="mo"&gt;02&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;81&lt;/span&gt; 
+ &lt;span class="no"&gt;COMMAND&lt;/span&gt; &lt;span class="no"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt;                                            &lt;span class="no"&gt;SCROLL&lt;/span&gt; &lt;span class="o"&gt;===&amp;gt;&lt;/span&gt; &lt;span class="no"&gt;CSR&lt;/span&gt; 
+&lt;span class="o"&gt;*********************************&lt;/span&gt; &lt;span class="no"&gt;TOP&lt;/span&gt; &lt;span class="no"&gt;OF&lt;/span&gt; &lt;span class="no"&gt;DATA&lt;/span&gt; &lt;span class="o"&gt;*********************************&lt;/span&gt;
+&lt;span class="no"&gt;READY&lt;/span&gt;                                                                          
+  &lt;span class="no"&gt;SAYHELLO&lt;/span&gt;                                                                     
+&lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="no"&gt;WILL&lt;/span&gt; &lt;span class="no"&gt;PRINT&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;HELLO&amp;#39;&lt;/span&gt; &lt;span class="no"&gt;IN&lt;/span&gt; &lt;span class="no"&gt;SYSTSPRT&lt;/span&gt; &lt;span class="no"&gt;BY&lt;/span&gt; &lt;span class="no"&gt;SUBMITTING&lt;/span&gt; &lt;span class="no"&gt;JCL&lt;/span&gt;                             
+&lt;span class="no"&gt;READY&lt;/span&gt;                                                                          
+&lt;span class="k"&gt;END&lt;/span&gt;                                                                            
+&lt;span class="o"&gt;********************************&lt;/span&gt; &lt;span class="no"&gt;BOTTOM&lt;/span&gt; &lt;span class="no"&gt;OF&lt;/span&gt; &lt;span class="no"&gt;DATA&lt;/span&gt; &lt;span class="o"&gt;*******************************&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="JCL"></category><category term="rexx"></category></entry><entry><title>REXX怎么保存"Find ALL"的结果</title><link href="http://mainframer.github.io/articles/REXX%E6%80%8E%E4%B9%88%E4%BF%9D%E5%AD%98%22Find%20ALL%22%E7%9A%84%E7%BB%93%E6%9E%9C.html" rel="alternate"></link><updated>2012-02-20T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-02-20:articles/REXX怎么保存"Find ALL"的结果.html</id><summary type="html">&lt;p&gt;最近的项目经常跟MQ打交道,将输入数据填在一个dataset里面提交给MQ解析，字段之间用逗号隔开。所以在测试MQ接口的时候会经常一边对着FSD文档，一边数dataset里面的逗号个数的情况。数多了就烦了。其实到今天才想起来可以用一个&lt;code&gt;"FIND ALL"&lt;/code&gt;的ISPF命令。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;FIND ',' ALL&lt;/p&gt;
+&lt;p&gt;这样，逗号的个数就不用数了，直接显示在屏幕右上角。&lt;br /&gt;
+既然这样，利用REXX应该可以保存这个&lt;code&gt;“FIND ',' ALL'&lt;/code&gt;的结果。 研究了一下，可以这样:  &lt;br /&gt;
+编辑 &lt;code&gt;IBMUSER.REXX.EXEC(CHECK)&lt;/code&gt;这个member,输入如下的macro：  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="no"&gt;ADDRESS&lt;/span&gt;  &lt;span class="no"&gt;ISPEXEC&lt;/span&gt;                       
+&lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;ISREDIT SEEK ALL &amp;#39;,&amp;#39;&amp;quot;&lt;/span&gt;                 
+&lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;ISREDIT (COUNT) = SEEK_COUNTS&amp;quot;&lt;/span&gt;        
+&lt;span class="mi"&gt;4&lt;/span&gt;  &lt;span class="no"&gt;SAY&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Comma number: &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="no"&gt;COUNT&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;#39;!&amp;#39;&amp;quot;&lt;/span&gt;  
+&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="no"&gt;EXIT&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;打开MQ的DATASET，比如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IBMUSER.PROJ.MQ.INPUT.SAMPLE&lt;/p&gt;
+&lt;p&gt;在command栏上面输入CHECK即可运行，不过也就比输入&lt;code&gt;“FIND ',' ALL"&lt;/code&gt;来得方便一点点。&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="rexx"></category><category term="Find ALL"></category></entry><entry><title>Rexx顺序处理文件所有行</title><link href="http://mainframer.github.io/articles/Rexx%E9%A1%BA%E5%BA%8F%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6%E6%89%80%E6%9C%89%E8%A1%8C.html" rel="alternate"></link><updated>2012-02-17T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-02-17:articles/Rexx顺序处理文件所有行.html</id><summary type="html">&lt;p&gt;这是典型的自上而下扫描一个dataset中每一行,而做相应处理的Rexx脚本,几乎所有的处理文件I/O的Rexx脚本都会涉及到：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;ADDRESS&lt;/span&gt; &lt;span class="no"&gt;TSO&lt;/span&gt;                                                             
+  &lt;span class="n"&gt;indataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;IBMUSER.REXX.EXEC(INFILE)&amp;#39;&lt;/span&gt;  &lt;span class="sr"&gt;/*read in input file */&lt;/span&gt;      
+  &lt;span class="s2"&gt;&amp;quot;alloc f(fin) ds(&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;indataset&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;#39;) shr reuse&amp;quot;&lt;/span&gt;   
+  &lt;span class="s2"&gt;&amp;quot;execio * diskr fin (finis stem in.&amp;quot;&lt;/span&gt;                                  
+  &lt;span class="s2"&gt;&amp;quot;free f(fin)&amp;quot;&lt;/span&gt;                                                         
+ &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;        &lt;span class="o"&gt;/*&lt;/span&gt;&lt;span class="kp"&gt;loop&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="k"&gt;until&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="n"&gt;reached&lt;/span&gt; &lt;span class="o"&gt;*/&lt;/span&gt;           
+    &lt;span class="n"&gt;one_line&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                    
+    &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="no"&gt;Do_Something&lt;/span&gt;                                          
+ &lt;span class="k"&gt;end&lt;/span&gt;                                                                    
+&lt;span class="no"&gt;EXIT&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;   
+
+&lt;span class="no"&gt;Do_Something&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt;          
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="z/OS"></category><category term="rexx"></category></entry><entry><title>ISPF下如何去掉程序的第72至80列</title><link href="http://mainframer.github.io/articles/ISPF%E4%B8%8B%E5%A6%82%E4%BD%95%E5%8E%BB%E6%8E%89%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%AC%AC72%E8%87%B380%E5%88%97.html" rel="alternate"></link><updated>2012-02-07T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-02-07:articles/ISPF下如何去掉程序的第72至80列.html</id><summary type="html">&lt;p&gt;个人不是很喜欢&lt;code&gt;ISPF 3.13&lt;/code&gt;提供的两个Dataset比较的功能，总觉得看得不是很直观。平时还是比较习惯用windows下面的winmerge这个软件来比较。但是有个问题，就是比较的两个程序经常在第72列至80列的行号不一致，导致没法比较。所以这里就来总结一下如何去掉DATASET的中烦人的第72列至80列内容。  &lt;/p&gt;
+&lt;h4&gt;方法一：直接在ISPF下面用命令去掉&lt;/h4&gt;
+&lt;p&gt;这是最直接最快的办法。去掉第72列至80列的命令有下面两个：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;NUM&lt;/span&gt; &lt;span class="no"&gt;ON&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="no"&gt;UNNUMB&lt;/span&gt;
+&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;^&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="mi"&gt;73&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="no"&gt;ALL&lt;/span&gt;    &lt;span class="sr"&gt;/* Changes all non-space characters to spaces in col 73 to 80*/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h4&gt;方法二：用第三方脚本实现&lt;/h4&gt;
+&lt;p&gt;上面的方法如果是只有少数几个程序，那么手动命令去掉第72列至80列没什么。但是如果你一下子需要对几百个dataset或者同一个PDS下面的所有member去掉第72列至80列，则最好最快的办法是将所有代码通过FTP下载到本地，然后用第三方脚本语言(如VB,Phthon,Ruby,JS等)来解决。&lt;br /&gt;
+这里是一段自己的Ruby脚本，作用是将&lt;code&gt;C:\prod&lt;/code&gt;文件夹下面的所有程序的第72列至80列内容置空，然后输出到文件夹&lt;code&gt;C:\prod72col&lt;/code&gt;下面。可以看到，用第三方脚本实现批量的任务是很方便的。&lt;br /&gt;
+```ruby01 def cutto72col(file_in,file_out)
+02    file_in=File.new(file_in,‘r’)
+03    file_out=File.new(file_out,‘w’)
+04    oneline=file_in.gets
+05    while(oneline != nil)
+06      oneline=oneline.chomp
+07      oneline=oneline[0..71]
+08      file_out.puts oneline
+09      oneline=file_in.gets
+10    end
+11 end
+12
+13 path_in=‘C:\prod\’
+14 path_out=‘C:prod72col\’
+15
+16 Dir.foreach(path_in){ |file|
+17 if file != ‘.’ &amp;amp;&amp;amp; file != ‘..’
+18 then
+19    file_in = path_in + file
+20    cutto72col(file_in,path_out + file)
+21 end                }&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;当然，你还可以直接在大机上面用&lt;/span&gt;REXX&lt;span class="err"&gt;脚本直接对整个&lt;/span&gt;PDS&lt;span class="err"&gt;操作，移去该&lt;/span&gt;PDS&lt;span class="err"&gt;下所有&lt;/span&gt;member&lt;span class="err"&gt;的第&lt;/span&gt;&lt;span class="m"&gt;72&lt;/span&gt;&lt;span class="err"&gt;列至&lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;&lt;span class="err"&gt;列内容。这里也附上我的&lt;/span&gt;REXX&lt;span class="err"&gt;脚本&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="err"&gt;作用是将&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;IBMUSER&lt;span class="o"&gt;.&lt;/span&gt;TEST&lt;span class="o"&gt;.&lt;/span&gt;PRGM&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="err"&gt;这个&lt;/span&gt;PDS&lt;span class="err"&gt;下面所有的&lt;/span&gt;member&lt;span class="err"&gt;的第&lt;/span&gt;&lt;span class="m"&gt;72&lt;/span&gt;&lt;span class="err"&gt;列至第&lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;&lt;span class="err"&gt;列的行号都去掉：&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="err"&gt;```&lt;/span&gt;ruby&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="cm"&gt;/***********************REXX******************************************/&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="cm"&gt;/*Loop PDS to remove whatever between col72 to col80 for each member */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="cm"&gt;/**********************************************************************/&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="cm"&gt;/* Trace i  */&lt;/span&gt;&lt;span class="w"&gt;                                                          &lt;/span&gt;
+pdsname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;TEST.PRGM&amp;#39;&lt;/span&gt;&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="cm"&gt;/*Check if pds is exsited */&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;
+&lt;span class="kr"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sysdsn&lt;span class="o"&gt;(&lt;/span&gt;pdsname&lt;span class="o"&gt;)&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;then&lt;/span&gt;&lt;span class="w"&gt;                                          &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kr"&gt;do&lt;/span&gt;&lt;span class="w"&gt;                                                                  &lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="kr"&gt;say&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Error: Specified PDS not found:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;pdsname&lt;span class="w"&gt;                    &lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="kr"&gt;say&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Error: &amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;pdsname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;gt; &amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sysdsn&lt;span class="o"&gt;(&lt;/span&gt;pdsname&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt;                      &lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="kr"&gt;say&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Press Enter to continue&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;                                    &lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="kr"&gt;pull&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uresp&lt;span class="w"&gt;                                                       &lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="kr"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8&lt;/span&gt;&lt;span class="w"&gt;                                                           &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kr"&gt;end&lt;/span&gt;&lt;span class="w"&gt;                                                                 &lt;/span&gt;
+
+&lt;span class="kr"&gt;call&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;outtrap&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mbrs.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="cm"&gt;/*call outtrap to capture LISTD output */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;LISTD&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;pdsname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;MEMBERS&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="cm"&gt;/*List member list*/&lt;/span&gt;&lt;span class="w"&gt;                     &lt;/span&gt;
+&lt;span class="kr"&gt;call&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;outtrap&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;off&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="cm"&gt;/*Turn off outtrap*/&lt;/span&gt;&lt;span class="w"&gt;                     &lt;/span&gt;
+
+&lt;span class="kr"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;i&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mbrs&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="w"&gt;                                                    &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cm"&gt;/*SAY &amp;quot;mbrs.&amp;quot; !! i !! &amp;quot;: &amp;quot; !!   mbrs.i */&lt;/span&gt;&lt;span class="w"&gt;                          &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kr"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mbrs&lt;span class="o"&gt;.&lt;/span&gt;i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;--MEMBERS--&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;then&lt;/span&gt;&lt;span class="w"&gt;                                    &lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="kr"&gt;do&lt;/span&gt;&lt;span class="w"&gt;                                                               &lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="kr"&gt;leave&lt;/span&gt;&lt;span class="w"&gt;                                                          &lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="kr"&gt;end&lt;/span&gt;&lt;span class="w"&gt;                                                              &lt;/span&gt;
+&lt;span class="kr"&gt;end&lt;/span&gt;&lt;span class="w"&gt;                                                                 &lt;/span&gt;
+
+&lt;span class="cm"&gt;/*start to loop on each member*/&lt;/span&gt;&lt;span class="w"&gt;                                    &lt;/span&gt;
+i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;i&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt;                                                             &lt;/span&gt;
+&lt;span class="kr"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;j&lt;span class="o"&gt;=&lt;/span&gt;i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mbrs&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="cm"&gt;/*mbrs.0 is the total line num of LISTD */&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cm"&gt;/*SAY &amp;quot;mbrs.&amp;quot; !! j !! &amp;quot;: &amp;quot; !!   mbrs.j */&lt;/span&gt;&lt;span class="w"&gt;                             &lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="kr"&gt;parse&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;value&lt;span class="w"&gt; &lt;/span&gt;mbrs&lt;span class="o"&gt;.&lt;/span&gt;j&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;mem&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cm"&gt;/*split mbrs.j*/&lt;/span&gt;&lt;span class="w"&gt;                        &lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;mem&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;mem&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="cm"&gt;/*remove leading and trailing character*/&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;pds&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;IBMUSER.TEST.PRGM&amp;#39;&lt;/span&gt;&lt;span class="w"&gt;                                     &lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;mpds&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;pds&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;!!&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;(&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;!!&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mem&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;!!&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;)&amp;#39;&lt;/span&gt;&lt;span class="w"&gt;                                      &lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ISPEXEC EDIT DATASET(&amp;#39;&amp;quot;&lt;/span&gt;mpds&lt;span class="s"&gt;&amp;quot;&amp;#39;) MACRO(MACRO01)&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;                     &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;end&lt;/span&gt;&lt;span class="w"&gt;                                       &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这是上面主Rexx程序调用的&lt;em&gt;MACRO01&lt;/em&gt;:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/*****************************REXX***********************************/&lt;/span&gt;
+&lt;span class="no"&gt;ADDRESS&lt;/span&gt;  &lt;span class="no"&gt;ISPEXEC&lt;/span&gt; 
+&lt;span class="s2"&gt;&amp;quot;ISREDIT MACRO&amp;quot;&lt;/span&gt;  
+&lt;span class="s2"&gt;&amp;quot;ISREDIT RES&amp;quot;&lt;/span&gt;    
+&lt;span class="s2"&gt;&amp;quot;ISREDIT NUM ON&amp;quot;&lt;/span&gt; 
+&lt;span class="s2"&gt;&amp;quot;ISREDIT UNNUM&amp;quot;&lt;/span&gt;  
+&lt;span class="s2"&gt;&amp;quot;ISREDIT SAVE&amp;quot;&lt;/span&gt;   
+&lt;span class="s2"&gt;&amp;quot;ISREDIT END&amp;quot;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="ISPF"></category><category term="rexx"></category></entry><entry><title>REXX学习笔记</title><link href="http://mainframer.github.io/articles/REXX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" rel="alternate"></link><updated>2012-02-05T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2012-02-05:articles/REXX学习笔记.html</id><summary type="html">&lt;p&gt;最近在学习Rexx脚本，打算做一些自动化。归纳了些点总结下放在这里以备查询。  &lt;/p&gt;
+&lt;h3&gt;一些基本概念&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;REXX: &lt;code&gt;REstructured eXtended eXecutor (REXX) language&lt;/code&gt; 扩充结构化执行语言  &lt;/li&gt;
+&lt;li&gt;REXX中变量无需事前定义  &lt;/li&gt;
+&lt;li&gt;Debug REXX:用REXX TRACE或者用interactive debug facility来定位error  &lt;/li&gt;
+&lt;li&gt;SAA Procedures Language：REXX的子集，在TSO/E,CICS,IMS等多种环境中应用 &lt;/li&gt;
+&lt;li&gt;要运行REXX exec，必须至少有一种可用的&lt;code&gt;Host command environments&lt;/code&gt;。默认的是&lt;code&gt;TSO&lt;/code&gt;。还有&lt;code&gt;MVS&lt;/code&gt;,&lt;code&gt;LINK&lt;/code&gt;,&lt;code&gt;LINKMVS&lt;/code&gt;,&lt;code&gt;LINKPGM&lt;/code&gt;,&lt;code&gt;ATTACH&lt;/code&gt;,&lt;code&gt;ATTCHMVS&lt;/code&gt;,&lt;code&gt;ATTCHPGM&lt;/code&gt;,&lt;code&gt;ISPEXEC&lt;/code&gt;,&lt;code&gt;ISREDIT&lt;/code&gt;,&lt;code&gt;CONSOLE&lt;/code&gt;,&lt;code&gt;CPICOMM&lt;/code&gt;,&lt;code&gt;LU62&lt;/code&gt;,&lt;code&gt;APPCMVS&lt;/code&gt;等等，常用的有&lt;code&gt;TSO&lt;/code&gt;,&lt;code&gt;ISPEXEC&lt;/code&gt;和&lt;code&gt;ISREDIT&lt;/code&gt;在ISFP下面，基本都提供。用&lt;code&gt;ADDRESS&lt;/code&gt;关键字来改变&lt;code&gt;Host command environment&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;要想用TSO命令调用REXX，必须先构建包含exec的PDS.推荐的PDS格式为: &lt;em&gt;youruid.REXX.EXEC&lt;/em&gt; (Userid+any name+exec) ,不然用TSO调用PDS中的REXX程序会报错:&lt;br /&gt;
+PHASE 1 PROCESSING OF CLIST OR REXX EXEC ENDED ABNORMALLY +
+ABEND CODE: S213    REASON CODE: 0004     &lt;/li&gt;
+&lt;li&gt;可以在非TSO/E编址的环境中调用&lt;code&gt;IKJTSOEV&lt;/code&gt;来创建TSO/E环境   &lt;/li&gt;
+&lt;li&gt;REXX的exec里面可以包含TSO/E命令(用引号括起来)，即使是只包含TSO/E命令，不仅如此，RExx exec能调用的命令包括TSO/E命令，APPC/MVS calls,MVS module invocations,ISPF commands, ISPF/PDF EDIT commands                                                  &lt;/li&gt;
+&lt;li&gt;为了防止和CLISTs不兼容，IBM建议所有的REXX程序都在__第一行__有个注释的REXX字眼  &lt;/li&gt;
+&lt;li&gt;如果想让REXX支持双字节编码，那么必须在exec的第一行写上：OPTIONS ETMODE  &lt;/li&gt;
+&lt;li&gt;REXX大小写不敏感   &lt;/li&gt;
+&lt;li&gt;为了解决PULL进来的是小写而&lt;code&gt;SAY&lt;/code&gt;显示出来的是大写的问题，可以吧PULL改成PARSE PULL。因为language  processor在处理之前都会先将所有的character装成大写再处理，用PARSE PULL可以解决这个问题。(ARG也是同理)  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;SAY &amp;quot;Please type in the name of an animal.&amp;quot;
+PARSE PULL animal /-  输入小写的- /
+SAY animal  /- 返回的即是小写的- /
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;一般一行一句instruction,除非遇到逗号和分号。 逗号是用来续行的，分号用来表示一个instruction结束，一般用在一行有多个instruction的时候
+如果不希望续行的时候有空格，则需要用 &lt;code&gt;‘||，’&lt;/code&gt; 不然只用逗号续行的话会默认添加一个空格:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;SAY &amp;#39;This is&amp;#39; ||,
+&amp;#39;a string.&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;虽然是脚本语言，但编译过的REXX比没有编译过的REXX执行效率更高，因为只需编译一次,系统加载和相应时间减少了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;如何执行REXX&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;1.&lt;/em&gt; 在READY的界面上执行     &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;READY&lt;/span&gt;                           
+&lt;span class="no"&gt;EXEC&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;YUORUID.REXX.EXEC(TEST01)&amp;#39;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;_2._在任何时候调用&lt;code&gt;TSO TEST01&lt;/code&gt;执行   &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;REXX关键字&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SAY&lt;/code&gt;：   向SYSPRINT的output DD发消息    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PULL&lt;/code&gt;:   从SYSPRINT(终端)的input DD接受消息，实际上是从DATA STACK中取的，用PUSH往DATA STACK中压入一个数据    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TRACE&lt;/code&gt;:  向SYSTSPRT的output DD发送消息    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PARSE EXTERNAL&lt;/code&gt;:   从SYSTSIN的input DD接受消息    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LEAVE&lt;/code&gt;:   跳出循环不做了    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ITERATE&lt;/code&gt;:  放在DO循环里面，跳过余下指令返回DO，接着往下做   &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;EXIT&lt;/code&gt;:   告诉language processor结束exec，不强制用但按惯例推荐用，因为language processor在没有instruction的时候自动结束。EXIT后面可以跟返回参数      &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Label:&lt;/code&gt;:   以冒号结束，常在subroutine和function的时候配合SIGNAL用    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARG&lt;/code&gt;:      定义exec的参数 E513472.REXX.EXEC(ADD)  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PARSE&lt;/code&gt;:    与PULL和ARG等配合使用，为了能显示大小写区分   &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PARSE VAR&lt;/code&gt;：   将一个字符串分割成多个字符串(空格区分) 类似于&lt;code&gt;PARSE VALUE ... WITH&lt;/code&gt;   &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TRACE I&lt;/code&gt; (TRACE Intermediates):   用来debug用的，能显示出具体的每一步执行结果    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NULL&lt;/code&gt;:    language processor会忽略它，单纯只是为了增强可读性    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ELSE&lt;/code&gt;:    即使ELSE没有东西，也要用NOP。编程规范     &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PROCEDURE&lt;/code&gt;:   用在subroutine定义的时候，保护subroutine里面定义的变量的对外可见性     &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADDRESS&lt;/code&gt;:    用来改变Host command environment      &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;流程控制&lt;/h3&gt;
+&lt;h6&gt;条件指令&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;IF&lt;/span&gt; &lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;THEN&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;ELSE&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;二选&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;span class="no"&gt;SELECT&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;WHEN&lt;/span&gt; &lt;span class="n"&gt;expression&lt;/span&gt; &lt;span class="no"&gt;THEN&lt;/span&gt; &lt;span class="n"&gt;instruction&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="no"&gt;OTHERWISE&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;END&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;（多选&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h6&gt;循环指令&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;DO&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;TO&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;BY&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;END&lt;/span&gt;  
+&lt;span class="n"&gt;DO&lt;/span&gt; &lt;span class="n"&gt;FOREVER&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;span class="n"&gt;DO&lt;/span&gt; &lt;span class="n"&gt;WHILE&lt;/span&gt; &lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;span class="n"&gt;DO&lt;/span&gt; &lt;span class="n"&gt;UNTIL&lt;/span&gt; &lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;span class="n"&gt;DO&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;TO&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;WHILE&lt;/span&gt; &lt;span class="n"&gt;quantity&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="o"&gt;/-&lt;/span&gt; &lt;span class="err"&gt;复合循环指令例子&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h6&gt;中断指令&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;EXIT&lt;/span&gt;
+&lt;span class="n"&gt;SIGNAL&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;  &lt;span class="o"&gt;/-&lt;/span&gt; &lt;span class="err"&gt;执行完之后不会像&lt;/span&gt;&lt;span class="n"&gt;CALL&lt;/span&gt;&lt;span class="err"&gt;一样会返回控制权&lt;/span&gt;
+&lt;span class="n"&gt;CALL&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;RETURN&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h3&gt;运算符&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;/ = \=(不相等) &amp;gt;&amp;lt;(不相等) //(余数) - - (幂) %(商) ==(严格相等) \==(不严格相等) &amp;gt; &amp;lt; &amp;gt;=(大等于) \&amp;lt;(不小于) &amp;amp;(逻辑与) (逻辑非) |(逻辑或)  per_cent'%'(百分号表示法,per_cent是数值参数)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;50个built-in函数(不全)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Arithmetic functions&lt;/em&gt;&lt;/strong&gt;: ABS DIGITS FORM FUZZ MAX MIN RANDOM SIGN TRUNC     &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Comparison functions&lt;/em&gt;&lt;/strong&gt;: COMPARE DATATYPE SYMBOL      &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Conversion functions&lt;/em&gt;&lt;/strong&gt;: B2X C2D C2X D2C D2X X2B X2C X2D /- Binary hex Character Decimal)    &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Formatting functions&lt;/em&gt;&lt;/strong&gt;: CENTER/COPIES/FORMAT/JUSTIFY/LEFT/RIGHT/SPACE    &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;String functions&lt;/em&gt;&lt;/strong&gt;:  ABBREV/DELSTR/DELWORD/FIND/INDEX/INSERT/LASTPOS/LENGTH/OVERLAY/  POS/REVERSE/STRIP/SUBSTR/SUBWORD/TRANSLATE/VERIFY/WORD/WORDINDEX     &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Miscellaneous functions&lt;/em&gt;&lt;/strong&gt;: ADDRESS/ARG/BITAND/BITOR/BITXOR/CONDITION/DATE/ERRORTEXT/  EXTERNALS/LINESIZE/QUEUED/SOURCELINE/TIME/TRACE/USERID/VALUE/XRANGE   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Function和Subroutine区别&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;CALL&lt;/span&gt; &lt;span class="n"&gt;subroutine_name&lt;/span&gt; &lt;span class="n"&gt;argument1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argument2&lt;/span&gt;&lt;span class="p"&gt;,...&lt;/span&gt; &lt;span class="o"&gt;/-&lt;/span&gt; &lt;span class="n"&gt;Subroutine&lt;/span&gt;&lt;span class="err"&gt;不必要返回值，如果返回的话就是&lt;/span&gt;&lt;span class="n"&gt;RESULT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;  
+&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argument1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argument2&lt;/span&gt;&lt;span class="p"&gt;,...)&lt;/span&gt;        &lt;span class="o"&gt;/-&lt;/span&gt; &lt;span class="n"&gt;Function&lt;/span&gt; &lt;span class="err"&gt;必须返回值&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h3&gt;TSO/E external functions&lt;/h3&gt;
+&lt;p&gt;GETMSG LISTDSI MSG MVSVAR OUTTRAP PROMPT SETLANG STORAGE SYSCPUS SYSDSN SYSVAR  &lt;/p&gt;</summary><category term="z/OS"></category><category term="REXX"></category></entry></feed>
