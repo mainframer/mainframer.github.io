@@ -603,7 +603,23 @@ git push -u origin master
 &lt;div class="highlight"&gt;&lt;pre&gt;defaults write com.apple.finder AppleShowAllFiles -bool true 开启  
 或者  
 defaults write com.apple.finder AppleShowAllFiles -bool false 关闭
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Thu, 08 Aug 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-08-08:articles/Mac下显示隐藏文件.html</guid><category>Shutil</category></item><item><title>IBM PCOMM初始设置最佳实践</title><link>http://mainframer.github.io/articles/IBM%20PCOMM%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.html</link><description>&lt;p&gt;做z/OS或者AS/400工作的应该对IBM的&lt;code&gt;Personal Communications&lt;/code&gt;(简称PCOMM)终端仿真软件不陌生。&lt;br /&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Thu, 08 Aug 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-08-08:articles/Mac下显示隐藏文件.html</guid><category>Shutil</category></item><item><title>IBM PCOMM初始设置的最佳实践(z/OS和IBM i)</title><link>http://mainframer.github.io/articles/IBM%20PCOMM%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-z/OS%E5%92%8CIBM%20i.html</link><description>&lt;h5&gt;显示标尺Cross-rule&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Edit--&amp;gt;Preferences--&amp;gt;Appearance--&amp;gt;Display Setup...--&amp;gt;Rule Line&lt;/code&gt;
+  在&lt;code&gt;Setting&lt;/code&gt;里面把&lt;code&gt;Rule Line&lt;/code&gt;选上 
+  &lt;img alt="rule_line" src="./../images/rule_line.jpg" /&gt; &lt;/p&gt;
+&lt;h5&gt;修改复制粘贴为Windows格式&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;PCOMM&lt;/code&gt;默认的复制粘贴操作丑得很，改成&lt;code&gt;Windows Style&lt;/code&gt;好多了。&lt;br /&gt;
+  方法：&lt;code&gt;Preferences -&amp;gt;Edit-&amp;gt;Trim-&amp;gt;Windows Style&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;使用自定义键盘来支持Ctrl+C/Ctrl+V复制粘贴&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Preferences -&amp;gt; Keyboard -&amp;gt;&lt;/code&gt;选&lt;code&gt;User-Defined&lt;/code&gt;
+ &lt;code&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/code&gt;&lt;br /&gt;
+ 关于mykeyboard.kmp的设置，参考&lt;a href="./IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴.html"&gt;IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;登录主机之后，设置Command line on top&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Opthon 0 --&amp;gt;Settings&lt;/code&gt;--&amp;gt;不勾选&lt;code&gt;Command line at bottom&lt;/code&gt;
+    &lt;img alt="commandlineontop" src="./../images/commandlineontop.jpg" /&gt;&lt;/p&gt;
+&lt;h5&gt;保存ws profile文件&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;File --&amp;gt; Save as --&amp;gt;&lt;/code&gt; 保存我们的&lt;code&gt;PCOMM&lt;/code&gt;配置文件(&lt;code&gt;.ws&lt;/code&gt;格式)，以后在其它机器安装使用&lt;code&gt;PCOMM&lt;/code&gt;的时候记得把这个&lt;code&gt;ws&lt;/code&gt;配置文件盒上面的键盘文件拷贝过去，就可以省去再配置一遍的时间了。为防止丢失，可以把这&lt;code&gt;ws&lt;/code&gt;配置文件保存到&lt;code&gt;Dropbox&lt;/code&gt;等云盘上面。
+上面的配置方式只要是适用&lt;code&gt;PCOMM&lt;/code&gt;的都适用，包括&lt;code&gt;z/OS(TN3270)&lt;/code&gt;以及&lt;code&gt;IBM i(TN5250)&lt;/code&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Fri, 26 Jul 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-07-26:articles/IBM PCOMM初始设置的最佳实践-z/OS和IBM i.html</guid><category>PCOMM</category></item><item><title>IBM PCOMM初始设置最佳实践</title><link>http://mainframer.github.io/articles/IBM%20PCOMM%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.html</link><description>&lt;p&gt;做z/OS或者AS/400工作的应该对IBM的&lt;code&gt;Personal Communications&lt;/code&gt;(简称PCOMM)终端仿真软件不陌生。&lt;br /&gt;
 PCOMM是一个与IBM主机和AS/400进行通讯的软件，分别利用的通讯协议是TN3270和TN5250。本文介绍一下那些新建一个连接之后必须做的事情，俗称最佳实践。  &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;show cross-rule&lt;/li&gt;
@@ -612,7 +628,66 @@ PCOMM是一个与IBM主机和AS/400进行通讯的软件，分别利用的通讯
  &lt;code&gt;C:\Users\IBM_ADMIN\AppData\Roaming\IBM\Personal Communications\chensb.kmp&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Preferences -&amp;gt;Edit-&amp;gt;Trim-&amp;gt;Windows Style&lt;/li&gt;
 &lt;li&gt;Command line on top  &lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Tue, 23 Jul 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-07-23:articles/IBM PCOMM初始设置最佳实践.html</guid><category>Pcomm</category></item><item><title>关于MAC下用SSH翻墙的小结(转)</title><link>http://mainframer.github.io/articles/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E7%BB%93(%E8%BD%AC).html</link><description>&lt;p&gt;近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  &lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Tue, 23 Jul 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-07-23:articles/IBM PCOMM初始设置最佳实践.html</guid><category>Pcomm</category></item><item><title>IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴</title><link>http://mainframer.github.io/articles/IBM%20PCOMM%E5%AE%9E%E7%8E%B0Ctrl+C,%20Ctrl+V%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4.html</link><description>&lt;p&gt;PCOMM默认不支持Ctrl+C, Ctrl+V复制粘贴，这个可以通过自定义键盘和宏脚本(Macro)来完美实现。  &lt;/p&gt;
+&lt;h4&gt;Ctrl+C实现复制&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Edit –-&amp;gt; Preferences –-&amp;gt; Keyboard…--&amp;gt;Customize…&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点击界面上的&lt;code&gt;'C'&lt;/code&gt;键,然后在左下区域的&lt;code&gt;Function&lt;/code&gt;下拉列表中，选中&lt;code&gt;Edit Copy&lt;/code&gt;，之后再点击右边区域中&lt;code&gt;Ctrl&lt;/code&gt;那一行的箭头，
+这时候会发现&lt;code&gt;Ctrl&lt;/code&gt;行的值变为&lt;code&gt;Edit-Copy&lt;/code&gt;。
+  &lt;img alt="ctrl_c" src="./../images/ctrl_c.jpg" /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;点击&lt;code&gt;File-–&amp;gt;Save&lt;/code&gt;保存配置。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;同样的方法，点击界面上的&lt;code&gt;'V'&lt;/code&gt;键，然后在左下区域的&lt;code&gt;Function&lt;/code&gt;下拉列表中，选中&lt;code&gt;Edit Paste&lt;/code&gt;，之后再点击右边区域中&lt;code&gt;Ctrl&lt;/code&gt;
+那一行的箭头，点击&lt;code&gt;File--&amp;gt;Save&lt;/code&gt;保存配置。&lt;blockquote&gt;
+&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;p&gt;上面配置完之后，复制粘贴算是可以工作了，但是还有一个小问题，就是&lt;code&gt;Ctrl+V&lt;/code&gt;粘贴完光标还停留在前面，不会自动移到
+后面去。
+  &lt;img alt="cursor_ahead" src="./../images/cursor_ahead.jpg" /&gt;
+也就是说，自定义键盘的方式只能满足&lt;code&gt;Ctrl+C&lt;/code&gt;的需求，满足不了&lt;code&gt;Ctrl+V&lt;/code&gt;的需求，这时候需要用到&lt;code&gt;Macro&lt;/code&gt;宏来实现了。
+首先，动手写一个&lt;code&gt;Macro&lt;/code&gt;，内容如下，保存成:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\paste_cursor_end.mac&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[PCOMM SCRIPT HEADER]&lt;/span&gt;
+&lt;span class="na"&gt;LANGUAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;VBSCRIPT&lt;/span&gt;
+&lt;span class="na"&gt;DESCRIPTION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="k"&gt;[PCOMM SCRIPT SOURCE]&lt;/span&gt;
+&lt;span class="err"&gt;OPTION&lt;/span&gt; &lt;span class="err"&gt;EXPLICIT&lt;/span&gt;
+&lt;span class="err"&gt;autECLSession.SetConnectionByName(ThisSessionName)&lt;/span&gt;
+
+&lt;span class="err"&gt;REM&lt;/span&gt; &lt;span class="err"&gt;This&lt;/span&gt; &lt;span class="err"&gt;line&lt;/span&gt; &lt;span class="err"&gt;calls&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;macro&lt;/span&gt; &lt;span class="err"&gt;subroutine&lt;/span&gt;
+&lt;span class="err"&gt;subSub1_&lt;/span&gt;
+
+&lt;span class="err"&gt;sub&lt;/span&gt; &lt;span class="err"&gt;subSub1_()&lt;/span&gt;
+   &lt;span class="err"&gt;autECLSession.autECLOIA.WaitForAppAvailable&lt;/span&gt;
+
+   &lt;span class="err"&gt;autECLMacro&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;[edit-paste]&amp;quot;&lt;/span&gt;
+   &lt;span class="err"&gt;autECLMacro&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;[end&lt;/span&gt; &lt;span class="err"&gt;field]&amp;quot;&lt;/span&gt;
+
+&lt;span class="err"&gt;end&lt;/span&gt; &lt;span class="err"&gt;sub&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后，再重新设置键盘映射：  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Edit –-&amp;gt; Preferences –-&amp;gt; Keyboard…--&amp;gt;Customize…&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点击界面上的&lt;code&gt;'V'&lt;/code&gt;键，然后在左下区域的&lt;code&gt;Macro/Script&lt;/code&gt;下拉列表中，选中&lt;code&gt;paste_cursor_end&lt;/code&gt;，之后再点击右边区域中&lt;code&gt;Ctrl&lt;/code&gt;
+那一行的箭头，点击&lt;code&gt;File--&amp;gt;Save&lt;/code&gt;保存配置。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="ctrl_v_macro" src="./../images/ctrl_v_macro.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;再试试，粘贴之后光标已经可以自动移到末尾了：
+  &lt;img alt="cursor_append" src="./../images/cursor_append.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mainframer</dc:creator><pubDate>Mon, 22 Jul 2013 00:00:00 +0800</pubDate><guid>tag:mainframer.github.io,2013-07-22:articles/IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴.html</guid><category>PCOMM</category></item><item><title>关于MAC下用SSH翻墙的小结(转)</title><link>http://mainframer.github.io/articles/%E5%85%B3%E4%BA%8EMAC%E4%B8%8B%E7%94%A8SSH%E7%BF%BB%E5%A2%99%E7%9A%84%E5%B0%8F%E7%BB%93(%E8%BD%AC).html</link><description>&lt;p&gt;近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  &lt;/p&gt;
 &lt;h3&gt;以下内容转自：&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/"&gt;http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/&lt;/a&gt;&lt;br /&gt;
 回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  &lt;/p&gt;

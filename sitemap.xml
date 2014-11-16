@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/index.html</loc>
-<lastmod>2014-11-14T21:13:53-00:00</lastmod>
+<lastmod>2014-11-16T19:32:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/archives.html</loc>
-<lastmod>2014-11-14T21:13:53-00:00</lastmod>
+<lastmod>2014-11-16T19:32:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tags.html</loc>
-<lastmod>2014-11-14T21:13:53-00:00</lastmod>
+<lastmod>2014-11-16T19:32:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/categories.html</loc>
-<lastmod>2014-11-14T21:13:53-00:00</lastmod>
+<lastmod>2014-11-16T19:32:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -116,8 +116,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://mainframer.github.io/articles/IBM PCOMM初始设置的最佳实践-z/OS和IBM i.html</loc>
+<lastmod>2013-07-26T00:00:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
+</url>
+
+<url>
 <loc>http://mainframer.github.io/articles/IBM PCOMM初始设置最佳实践.html</loc>
 <lastmod>2013-07-23T00:00:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
+</url>
+
+<url>
+<loc>http://mainframer.github.io/articles/IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴.html</loc>
+<lastmod>2013-07-22T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -1090,7 +1104,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/category/mainframe.html</loc>
-<lastmod>2013-07-23T00:00:00+08:06</lastmod>
+<lastmod>2013-07-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1412,7 +1426,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/tag/pcomm.html</loc>
-<lastmod>2013-07-23T00:00:00+08:06</lastmod>
+<lastmod>2013-07-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
