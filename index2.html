@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Modern Mainframer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="mainframer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://mainframer.github.io/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://mainframer.github.io/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://mainframer.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://mainframer.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://mainframer.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://mainframer.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://mainframer.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://mainframer.github.io/" type="application/atom+xml" rel="alternate" title="Modern Mainframer ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://mainframer.github.io/index.html">Modern Mainframer </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/automation.html">
+						<i class="icon-folder-open icon-large"></i>Automation
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/linuxunixuss.html">
+						<i class="icon-folder-open icon-large"></i>Linux/Unix/USS
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/mainframe.html">
+						<i class="icon-folder-open icon-large"></i>Mainframe
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/others.html">
+						<i class="icon-folder-open icon-large"></i>Others
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/pa-chong.html">
+						<i class="icon-folder-open icon-large"></i>爬虫
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/python.html">
+						<i class="icon-folder-open icon-large"></i>Python
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/rexx.html">
+						<i class="icon-folder-open icon-large"></i>Rexx
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/ruby.html">
+						<i class="icon-folder-open icon-large"></i>Ruby
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://mainframer.github.io/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/博客迁徙到GitHub Pages.html">博客迁徙到GitHub Pages</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-10-24T00:00:00">
+        <i class="icon-calendar"></i>2014-10-24
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/pelican.html"><i class="icon-tag"></i>Pelican</a>
+	<a href="http://mainframer.github.io/tag/github-pages.html"><i class="icon-tag"></i>GitHub Pages</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>将博客从Heroku迁徙到GitHub Pages，还是喜欢Markdown，网上搜了一下，发现有一个基于Python的静态网页生成器Pelican，很强大的样子，我原先的博客是基于octopress的，估计格式稍微修改一下就可直接上Pelican了。鉴于本人之前的博客有不少，一篇一篇修改不现实，直接用Python修改吧：</p>
+<h6><code>2014.10.24</code>: 将博客从heroku的octopress迁徙到github pages:这段代码实现将目录下面所有的.markdown结尾的文件都替换为.md结尾</h6>
+<div class="highlight"><pre><span class="n">dirpath</span> <span class="o">=</span> <span class="s">&quot;/Users/Heros/dev/git/pelican/content/articles/&quot;</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dirpath</span><span class="p">):</span>
+    <span class="n">oldfpath</span> <span class="o">=</span> <span class="n">dirpath</span> <span class="o">+</span> <span class="n">f</span>
+    <span class="k">print</span> <span class="n">oldfpath</span>
+    <span class="n">newfpath</span> <span class="o">=</span> <span class="n">dirpath</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;.markdown&quot;</span><span class="p">,</span> <span class="s">&quot;.md&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">newfpath</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">oldfpath</span><span class="p">,</span> <span class="n">newfpath ...</span></pre></div>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/博客迁徙到GitHub Pages.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/Mac下显示隐藏文件.html">Mac下显示隐藏文件</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-08-08T00:00:00">
+        <i class="icon-calendar"></i>2013-08-08
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/shutil.html"><i class="icon-tag"></i>Shutil</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>Mac下默认是不显示隐藏文件的，有时候我们又想看一下隐藏文件内容，比如你用命令<code>git init</code>新初始化了一个git的存储库，这时候就会生成一个<code>.git</code>的隐藏文件夹，如果你想看<code>.git</code>文件夹的内容，一般的做法可以去终端下面用命令:</p>
+<blockquote>
+<p>ls -a</p>
+</blockquote>
+<p>假如你想让你的整个Mac系统在finder下都显示隐藏文件，那么可以在终端下执行全局命令：</p>
+<div class="highlight"><pre>defaults write com.apple.finder AppleShowAllFiles -bool true 开启  
+或者  
+defaults write com.apple.finder AppleShowAllFiles -bool false 关闭
+</pre></div>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/Mac下显示隐藏文件.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/IBM PCOMM初始设置的最佳实践 for zOS and IBM i.html">IBM PCOMM初始设置的最佳实践 for zOS and IBM i</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-07-26T00:00:00">
+        <i class="icon-calendar"></i>2013-07-26
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/mainframe.html"><i class="icon-folder-open"></i>Mainframe</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/pcomm.html"><i class="icon-tag"></i>PCOMM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h5>显示标尺Cross-rule</h5>
+<p><code>Edit--&gt;Preferences--&gt;Appearance--&gt;Display Setup...--&gt;Rule Line</code>
+  在<code>Setting</code>里面把<code>Rule Line</code>选上 
+<img alt="rule_line" src="./../images/rule_line.jpg" title="= 800x" /> </p>
+<h5>修改复制粘贴为Windows格式</h5>
+<p><code>PCOMM</code>默认的复制粘贴操作丑得很，改成<code>Windows Style</code>好多了。<br />
+  方法：<code>Preferences -&gt;Edit-&gt;Trim-&gt;Windows Style</code></p>
+<h5>使用自定义键盘来支持Ctrl+C/Ctrl+V复制粘贴</h5>
+<p><code>Preferences -&gt; Keyboard -&gt;</code>选<code>User-Defined</code>
+ <code>C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp</code><br />
+ 关于mykeyboard.kmp的设置，参考<a href="http://mainframer.github.io/articles/IBM%20PCOMM%E5%AE%9E%E7%8E%B0Ctrl+C,%20Ctrl+V%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4.html">IBM PCOMM实现Ctrl ...</a></p>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/IBM PCOMM初始设置的最佳实践 for zOS and IBM i.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴.html">IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-07-22T00:00:00">
+        <i class="icon-calendar"></i>2013-07-22
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/mainframe.html"><i class="icon-folder-open"></i>Mainframe</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/pcomm.html"><i class="icon-tag"></i>PCOMM</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>PCOMM默认不支持Ctrl+C, Ctrl+V复制粘贴，这个可以通过自定义键盘和宏脚本(Macro)来完美实现。  </p>
+<h4>Ctrl+C实现复制</h4>
+<ol>
+<li><code>Edit –-&gt; Preferences –-&gt; Keyboard…--&gt;Customize…</code></li>
+<li>点击界面上的<code>'C'</code>键,然后在左下区域的<code>Function</code>下拉列表中，选中<code>Edit Copy</code>，之后再点击右边区域中<code>Ctrl</code>那一行的箭头，
+这时候会发现<code>Ctrl</code>行的值变为<code>Edit-Copy</code>。
+  <img alt="ctrl_c" src="./../images/ctrl_c.jpg" title="＝800x" /></li>
+</ol>
+<p>点击<code>File-–&gt;Save</code>保存配置。</p>
+<blockquote>
+<p>C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp</p>
+</blockquote>
+<ol>
+<li>同样的方法，点击界面上的<code>'V'</code>键，然后在左下区域的<code>Function</code>下拉列表中 ...</li></ol>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html">关于MAC下用SSH翻墙的小结(转)</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-06-12T00:00:00">
+        <i class="icon-calendar"></i>2013-06-12
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/macfan-qiang.html"><i class="icon-tag"></i>Mac翻墙</a>
+	<a href="http://mainframer.github.io/tag/sshfan-qiang.html"><i class="icon-tag"></i>ssh翻墙</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>近来换工作了，先前在原公司上班，用的是美国的网络，可以轻松地翻越GFW，现在没有这个福利了。查一些资料到 www.google.com，slideshare.net, 4shared.com这些以前很经常逛的网站现在突然间不能用了还真不习惯。懒得去折腾了，在网上搜了一篇别人写的Mac下面怎么用SSH翻墙的文章，转载到这里，花10分钟配置了下方法二，确实可以用的，很不错。  </p>
+<h3>以下内容转自：</h3>
+<p><a href="http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/">http://www.k-nows.net/2012/03/28/mac-safari-ssh-cross-gfw/</a><br />
+回国这几天都是在用Mac＋Safari上学校的ssh翻墙，简单，粗暴，高效。  </p>
+<h4>方法一，终端加网络配置</h4>
+<p>这个真的是又简单又粗暴。。。分两步：<br />
+首先，打开你的终端，输入：  </p>
+<blockquote>
+<p>ssh -D port user@hostname</p>
+<p>其中port是你的端口号，挑一个你自己的机器上能用的，这个命令就是将访问forward到了你指定的端口上。<br />
+然后，打开 ...</p></blockquote>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/关于MAC下用SSH翻墙的小结(转).html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/heroku push timeout错误.html">heroku push timeout错误</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-05-08T00:00:00">
+        <i class="icon-calendar"></i>2013-05-08
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/heroku.html"><i class="icon-tag"></i>Heroku</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>博客托管在<code>heroku</code>云平台上，这两天突然没法更新了。在执行<code>git push heroku</code>命令的时候总是提示time out 错误：</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span>
+<span class="c1">#ssh: connect to host heroku.com port 22: Operation timed out</span>
+<span class="c1">#fatal: The remote end hung up unexpectedly</span>
+</pre></div>
+
+
+<p>折腾了我两天没搞定，<code>stackoverflow</code>上面给的解决方法也不怎么靠谱，让我反反复复重新设置了好几遍<code>ssh key</code>，浪费了不少时间。刚刚在<code>ruby-china.org</code>上找到了解决办法。原来又是因为神奇的GFW，难怪stackoverflow上面的答案没搞定我的问题，那些外国人根本就不明白咱们这的特殊国情，但也怪不得他们。   <br />
+这里是ruby-china上的原帖：<a href="http://ruby-china.org/topics/10813">http://ruby-china ...</a></p>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/heroku push timeout错误.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html">用INTRDR在job中submit第二个job</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-04-22T00:00:00">
+        <i class="icon-calendar"></i>2013-04-22
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/mainframe.html"><i class="icon-folder-open"></i>Mainframe</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/intrdr.html"><i class="icon-tag"></i>INTRDR</a>
+	<a href="http://mainframer.github.io/tag/trigger-job.html"><i class="icon-tag"></i>trigger job</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>今天学到的，如何在当前<code>job</code>当中<code>trigger</code>另外一个<code>job</code>？答案就是利用<code>Internal Reader</code> 
+例如：  </p>
+<div class="highlight"><pre><span class="sr">//</span><span class="o">*******************************************************************</span>    
+<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">an</span> <span class="no">DUMMY</span> <span class="n">job</span> <span class="no">MYJOB2</span> <span class="n">from</span> <span class="n">current</span> <span class="n">job</span> <span class="n">card</span> 
+<span class="sr">//</span><span class="o">*</span> <span class="no">Submit</span> <span class="n">to</span> <span class="n">the</span> <span class="no">Internal</span> <span class="no">Reader</span>                                    
+<span class="sr">//</span><span class="o">*******************************************************************</span>
+<span class="sr">//</span><span class="no">STEP04</span>    <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">IEBGENER</span>                  
+<span class="sr">//</span><span class="no">SYSUT1</span>   <span class="no">DD</span>  <span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span><span class="p">,</span><span class="no">DSN</span><span class="o">=</span><span class="no">IBMUSER</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">CNTL</span><span class="p">(</span><span class="no">MYJOB2</span><span class="p">)</span>           
+<span class="sr">//</span><span class="no">SYSUT2</span>   <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="no">INTRDR</span><span class="p">)</span>                            
+<span class="sr">//</span><span class="no">SYSPRINT</span> <span class="no">DD</span>  <span class="no">SYSOUT</span><span class="o">=*</span>                                     
+<span class="sr">//</span><span class="no">SYSIN</span>    <span class="no">DD</span>  <span class="no">DUMMY</span>  
+</pre></div>
+
+
+<p>这种技术经常被用来发送<code>notification ...</code></p>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/用INTRDR在job中submit第二个job.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html">Mainframer版本的程序猿吐槽</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-04-15T00:00:00">
+        <i class="icon-calendar"></i>2013-04-15
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/mainframe.html"><i class="icon-folder-open"></i>Mainframe</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/zos.html"><i class="icon-tag"></i>z/OS</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>下面这段JCL挺有意思的，之前见过其它版本的，今天在一个国外网站看到的<code>mainframe</code>版本的，记下，纯属娱乐。</p>
+<div class="highlight"><pre><span class="sr">//</span><span class="no">MYWALLET</span> <span class="no">EXEC</span> <span class="no">PGM</span><span class="o">=</span><span class="no">SPOUSE</span>
+<span class="sr">//</span><span class="no">SYSIN</span> <span class="no">DD</span> <span class="no">DSN</span><span class="o">=</span><span class="no">MYWALLET</span><span class="o">.</span><span class="n">ALL</span><span class="p">,</span><span class="no">DISP</span><span class="o">=</span><span class="no">SHR</span>
+<span class="sr">//</span><span class="no">SYSOUT</span> <span class="no">DD</span> <span class="no">DUMMY</span> 
+</pre></div>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/Mainframer版本的程序猿吐槽.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html">ISPF中使用Ctrl+Z来执行UNDO命令</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-04-08T00:00:00">
+        <i class="icon-calendar"></i>2013-04-08
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/mainframe.html"><i class="icon-folder-open"></i>Mainframe</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/ispf.html"><i class="icon-tag"></i>ISPF</a>
+	<a href="http://mainframer.github.io/tag/undo.html"><i class="icon-tag"></i>UNDO</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>今天研究的成果，教你们如何在大机上用Windows下用惯了的<em>Ctrl+Z</em>来执行<code>UNDO</code>命令。<br />
+首先，<em>ISPF</em>里面<code>UNDO</code>命令默认是没有开启的。我们需要自己写一个<code>Edit Initial Macro</code>来默认开启。方法如下：</p>
+<h5>step1:在<code>usrid.REXX.EXEC</code>下面新建一个宏<code>EDITMAC</code>，内容如下,保存退出。</h5>
+<div class="highlight"><pre><span class="sr">/*****************************REXX***********************************/</span>
+<span class="sr">/* This macro load automaticly when you open a dataset for edit.    */</span>      
+ <span class="no">Address</span>  <span class="n">ispexec</span>                                                     
+ <span class="s2">&quot;ISREDIT MACRO&quot;</span>                                                      
+ <span class="s2">&quot;ISREDIT RECOVERY ON&quot;</span>                                                                                                  
+<span class="nb">exit</span>                                                                  
+</pre></div>
+
+
+<h5>step2: 随便<em>Edit ...</em></h5>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/ISPF中使用Ctrl+Z来执行UNDO命令.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html">每天定时从Mainframe下载gdg文件再上传到ftp</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2013-04-01T00:00:00">
+        <i class="icon-calendar"></i>2013-04-01
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/automation.html"><i class="icon-folder-open"></i>Automation</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/mainframe.html"><i class="icon-tag"></i>mainframe</a>
+	<a href="http://mainframer.github.io/tag/ftp.html"><i class="icon-tag"></i>ftp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>今天要完成一个任务：  </p>
+<h4>任务描述</h4>
+<h6>Step1:从大机(mainframe)上下载指定的gdg最新的2个generation到本地C:\gdg目录下。</h6>
+<h6>Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的<code>/topath/users-4/</code>目录下面，每天新建一个目录<code>yyyymmdd</code>用来存放当天的gdg文件。</h6>
+<h6>Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。</h6>
+<p>这里是实现以上任务的批处理脚本<code>ftpscript.bat</code>。放在<code>C:\ftpscript</code>.bat，之后在windows计划任务里面添加每天定时运行即可。   </p>
+<div class="highlight"><pre><span class="vi">@echo</span> <span class="n">off</span>
+<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">的</span><span class="no">IP</span>
+<span class="n">set</span> <span class="n">mfIP</span><span class="o">=</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span><span class="o">.</span><span class="n">xxx</span>
+<span class="n">rem</span> <span class="err">指定</span><span class="n">mainframe</span><span class="err">用户名</span>
+<span class="n">set</span> <span class="n">mfUser</span><span class="o">=</span><span class="no">IBMUSER</span>
+<span class="n">rem</span> <span class="err">指定 ...</span></pre></div>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/每天定时从Mainframe下载gdg文件再上传到ftp.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
+        <div class="pagination">
+        <ul>
+                        <li class="prev"><a href="http://mainframer.github.io/index.html">&larr; Previous</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index.html">1</a></li>
+                        <li class="active"><a href="http://mainframer.github.io/index2.html">2</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index3.html">3</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index4.html">4</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index5.html">5</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index6.html">6</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index7.html">7</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index8.html">8</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index9.html">9</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index10.html">10</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index11.html">11</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index12.html">12</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index13.html">13</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index14.html">14</a></li>
+                        <li class=""><a href="http://mainframer.github.io/index15.html">15</a></li>
+                        <li class="next"><a href="http://mainframer.github.io/index3.html">Next &rarr;</a></li>
+        </ul>
+        </div>
+
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://www-01.ibm.com/support/knowledgecenter"><i class="icon-external-link"></i>IBM知识中心</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="http://mainframer.github.io/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="https://github.com/mainframer"><i class="icon-mainframer@Github-sign icon-large"></i>mainframer@Github</a></li>
+    <li><a href="https://www.linkedin.com/in/mainframer"><i class="icon-mainframer@Linkedin-sign icon-large"></i>mainframer@Linkedin</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="http://mainframer.github.io/category/automation.html">
+    <i class="icon-folder-open icon-large"></i>Automation
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/linuxunixuss.html">
+    <i class="icon-folder-open icon-large"></i>Linux/Unix/USS
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/mainframe.html">
+    <i class="icon-folder-open icon-large"></i>Mainframe
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/others.html">
+    <i class="icon-folder-open icon-large"></i>Others
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/pa-chong.html">
+    <i class="icon-folder-open icon-large"></i>爬虫
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/python.html">
+    <i class="icon-folder-open icon-large"></i>Python
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/rexx.html">
+    <i class="icon-folder-open icon-large"></i>Rexx
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/ruby.html">
+    <i class="icon-folder-open icon-large"></i>Ruby
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/tor.html">
+        <i class="icon-tag icon-large"></i>TOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/intrdr.html">
+        <i class="icon-tag icon-large"></i>INTRDR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/kde.html">
+        <i class="icon-tag icon-large"></i>KDE
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sql.html">
+        <i class="icon-tag icon-large"></i>SQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jclpi-liang-zhu-shi.html">
+        <i class="icon-tag icon-large"></i>JCL批量注释
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>ftp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/loadparm.html">
+        <i class="icon-tag icon-large"></i>LoadParm
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/debug-tool.html">
+        <i class="icon-tag icon-large"></i>Debug Tool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ikj56400a.html">
+        <i class="icon-tag icon-large"></i>IKJ56400A
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/dataset.html">
+        <i class="icon-tag icon-large"></i>dataset
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/myentunnel.html">
+        <i class="icon-tag icon-large"></i>myEntunnel
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/for.html">
+        <i class="icon-tag icon-large"></i>FOR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/cics.html">
+        <i class="icon-tag icon-large"></i>CICS
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/quote-site.html">
+        <i class="icon-tag icon-large"></i>quote site
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>ssh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">
+        <i class="icon-tag icon-large"></i>Linux挂载
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/mainframezi-dong-hua.html">
+        <i class="icon-tag icon-large"></i>mainframe自动化
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dnsdict6.html">
+        <i class="icon-tag icon-large"></i>dnsdict6
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jcl-fan-hui-ma.html">
+        <i class="icon-tag icon-large"></i>JCL 返回码
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/backtrack.html">
+        <i class="icon-tag icon-large"></i>Backtrack
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">
+        <i class="icon-tag icon-large"></i>主机一本通
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/ispf.html">
+        <i class="icon-tag icon-large"></i>ISPF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/datacom.html">
+        <i class="icon-tag icon-large"></i>DATACOM
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dong-tai-shu-zu.html">
+        <i class="icon-tag icon-large"></i>动态数组
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cebr.html">
+        <i class="icon-tag icon-large"></i>CEBR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/proxy-switchy.html">
+        <i class="icon-tag icon-large"></i>proxy switchy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/backtrack5-r1.html">
+        <i class="icon-tag icon-large"></i>BackTrack5 R1
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ti-jiao-alexa.html">
+        <i class="icon-tag icon-large"></i>提交Alexa
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/rpm.html">
+        <i class="icon-tag icon-large"></i>RPM
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/adsenseshen-qing.html">
+        <i class="icon-tag icon-large"></i>Adsense申请
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxmu-lu-jie-gou.html">
+        <i class="icon-tag icon-large"></i>Linux目录结构
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/hercules.html">
+        <i class="icon-tag icon-large"></i>Hercules
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/gyds1145-s.html">
+        <i class="icon-tag icon-large"></i>GYDS1145-S
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/sort.html">
+        <i class="icon-tag icon-large"></i>SORT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/duo-xing-zi-fu-chuan.html">
+        <i class="icon-tag icon-large"></i>多行字符串
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ti-jiao-jcl.html">
+        <i class="icon-tag icon-large"></i>提交JCL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>Pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/copybook.html">
+        <i class="icon-tag icon-large"></i>Copybook
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sysda.html">
+        <i class="icon-tag icon-large"></i>SYSDA
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/batpi-chu-li.html">
+        <i class="icon-tag icon-large"></i>BAT批处理
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/arithextend.html">
+        <i class="icon-tag icon-large"></i>ARITH(EXTEND)
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/superc.html">
+        <i class="icon-tag icon-large"></i>SuperC
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/vb-script.html">
+        <i class="icon-tag icon-large"></i>VB Script
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/fan-qiang.html">
+        <i class="icon-tag icon-large"></i>翻墙
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/shutil.html">
+        <i class="icon-tag icon-large"></i>Shutil
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/vmware8.html">
+        <i class="icon-tag icon-large"></i>vmware8
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/srchfor.html">
+        <i class="icon-tag icon-large"></i>SRCHFOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/joinkey.html">
+        <i class="icon-tag icon-large"></i>JOINKEY
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/cobol.html">
+        <i class="icon-tag icon-large"></i>COBOL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/shen-tou-ce-shi.html">
+        <i class="icon-tag icon-large"></i>渗透测试
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/fen-ge-da-wen-jian.html">
+        <i class="icon-tag icon-large"></i>分割大文件
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/icetool.html">
+        <i class="icon-tag icon-large"></i>ICETOOL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/genlist.html">
+        <i class="icon-tag icon-large"></i>genlist
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">
+        <i class="icon-tag icon-large"></i>ssh翻墙
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/rexx.html">
+        <i class="icon-tag icon-large"></i>rexx
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ipv6.html">
+        <i class="icon-tag icon-large"></i>ipv6
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/zai-xian-hao-dong-xi.html">
+        <i class="icon-tag icon-large"></i>在线好东西
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/tsq.html">
+        <i class="icon-tag icon-large"></i>TSQ
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/procmu-lu.html">
+        <i class="icon-tag icon-large"></i>proc目录
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pcomm.html">
+        <i class="icon-tag icon-large"></i>PCOMM
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/watir.html">
+        <i class="icon-tag icon-large"></i>Watir
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>Markdown
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/octopress.html">
+        <i class="icon-tag icon-large"></i>Octopress
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/github-pages.html">
+        <i class="icon-tag icon-large"></i>GitHub Pages
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/chang-yong-linuxming-ling.html">
+        <i class="icon-tag icon-large"></i>常用linux命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/wai-qi-email.html">
+        <i class="icon-tag icon-large"></i>外企email
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/gdg.html">
+        <i class="icon-tag icon-large"></i>GDG
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pli.html">
+        <i class="icon-tag icon-large"></i>PLI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/stardict.html">
+        <i class="icon-tag icon-large"></i>stardict
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/qwming-ling.html">
+        <i class="icon-tag icon-large"></i>QW命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxying-jian.html">
+        <i class="icon-tag icon-large"></i>Linux硬件
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/coboljie-gou.html">
+        <i class="icon-tag icon-large"></i>COBOL结构
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ispftong-pei-fu.html">
+        <i class="icon-tag icon-large"></i>ISPF通配符
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/undo.html">
+        <i class="icon-tag icon-large"></i>UNDO
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/logging.html">
+        <i class="icon-tag icon-large"></i>Logging
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/trigger-job.html">
+        <i class="icon-tag icon-large"></i>trigger job
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/changeman.html">
+        <i class="icon-tag icon-large"></i>Changeman
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/nessuszhu-ce.html">
+        <i class="icon-tag icon-large"></i>nessus注册
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/zi-dong-hua.html">
+        <i class="icon-tag icon-large"></i>自动化
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://mainframer.github.io/tag/zos.html">
+        <i class="icon-tag icon-large"></i>z/OS
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/iceman.html">
+        <i class="icon-tag icon-large"></i>ICEMAN
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/requests.html">
+        <i class="icon-tag icon-large"></i>requests
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/s000-u4088.html">
+        <i class="icon-tag icon-large"></i>S000 U4088
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/file-manager.html">
+        <i class="icon-tag icon-large"></i>File Manager
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">
+        <i class="icon-tag icon-large"></i>BeautifulSoup
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ispf-dialog.html">
+        <i class="icon-tag icon-large"></i>ISPF Dialog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/heroku.html">
+        <i class="icon-tag icon-large"></i>Heroku
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/db2-sqlcode.html">
+        <i class="icon-tag icon-large"></i>DB2 SQLcode
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/win8.html">
+        <i class="icon-tag icon-large"></i>win8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cobolgui-ze.html">
+        <i class="icon-tag icon-large"></i>COBOL规则
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cicsming-ling.html">
+        <i class="icon-tag icon-large"></i>CICS命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/da-xing-ji.html">
+        <i class="icon-tag icon-large"></i>大型机
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/blksize0.html">
+        <i class="icon-tag icon-large"></i>BLKSIZE=0
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/find-all.html">
+        <i class="icon-tag icon-large"></i>FIND ALL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/goto.html">
+        <i class="icon-tag icon-large"></i>GOTO
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>nmap
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/tso.html">
+        <i class="icon-tag icon-large"></i>TSO
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+	var pageTracker = _gat._getTracker("UA-56516196-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+    var disqus_shortname = 'mainframer';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://mainframer.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
