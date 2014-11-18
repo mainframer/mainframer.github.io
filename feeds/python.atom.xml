@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/python.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-11-12T00:00:00+08:00</updated><entry><title>Python中range和xrange区别</title><link href="http://mainframer.github.io/articles/Python%E4%B8%ADrange%E5%92%8Cxrange%E5%8C%BA%E5%88%AB.html" rel="alternate"></link><updated>2014-11-12T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-12:articles/Python中range和xrange区别.html</id><summary type="html">&lt;p&gt;所有Python的学习者都会遇到这个问题，range和xrange都可以是列表生成器，它们有什么区别？&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/python.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-11-16T00:00:00+08:00</updated><entry><title>Python删除文件夹下所有特定类型文件</title><link href="http://mainframer.github.io/articles/Python%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B%E6%96%87%E4%BB%B6.html" rel="alternate"></link><updated>2014-11-16T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-16:articles/Python删除文件夹下所有特定类型文件.html</id><summary type="html">&lt;p&gt;写了个递归删除一个或多个文件夹下所有bmp图片的脚本：
+```python
+import os&lt;/p&gt;
+&lt;p&gt;def del_bmp(root_dir="C:\temp"):
+    """
+    @Function: Delete all bmp image file in root_dir and its subdirectory 
+    @root_dir: The target directory 
+    """
+    file_list = os.listdir(root_dir)
+    for f in file_list:
+        file_path = os.path.join(root_dir, f)
+        if os.path.isfile(file_path):
+            if f.endswith(".BMP") or f.endswith(".bmp"):
+                os.remove(file_path)
+                print " File removed! " + file_path
+        elif os.path.isdir(file_path):
+            del_bmp(file_path)&lt;/p&gt;
+&lt;p&gt;if &lt;strong&gt;name&lt;/strong&gt; == "&lt;strong&gt;main&lt;/strong&gt;":
+    root_dir = ["C:\temp1\", "C:\temp2\"]
+    for target_dir in root_dir:
+        del_bmp(target_dir)
+        print "All BMP files deleted."&lt;/p&gt;</summary></entry><entry><title>Python中range和xrange区别</title><link href="http://mainframer.github.io/articles/Python%E4%B8%ADrange%E5%92%8Cxrange%E5%8C%BA%E5%88%AB.html" rel="alternate"></link><updated>2014-11-12T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-12:articles/Python中range和xrange区别.html</id><summary type="html">&lt;p&gt;所有Python的学习者都会遇到这个问题，range和xrange都可以是列表生成器，它们有什么区别？&lt;/p&gt;
 &lt;h4&gt;range&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;函数说明：range([start,] stop[, step])，根据start与stop指定的范围以及step设定的步长，生成一个序列。range一上来就直接开辟一大块内存，返回一个完整list对象。&lt;/p&gt;
@@ -9,8 +30,8 @@
 &lt;p&gt;函数说明：用法与range完全相同，所不同的是生成的不是一个list对象，而是一个生成器，在每次调用时返回其中的一个值。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;所以显而易见，除非你真的是想一次性返回整个列表，否则，在循环中，xrange的性能要大大优于range，特别是列表很大或者内存吃紧的时候，所以，循环中请尽量用xrange.&lt;/p&gt;</summary><category term="Python"></category><category term="xrange"></category></entry><entry><title>解决Python往文件中插入多行字符串时的一个小问题</title><link href="http://mainframer.github.io/articles/%E8%A7%A3%E5%86%B3Python%E5%BE%80%E6%96%87%E4%BB%B6%E4%B8%AD%E6%8F%92%E5%85%A5%E5%A4%9A%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%97%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98.html" rel="alternate"></link><updated>2014-11-11T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-11:articles/解决Python往文件中插入多行字符串时的一个小问题.html</id><summary type="html">&lt;p&gt;用Apache搭了一个最简单的Http服务器，每一次自动化脚本跑完之后要往http服务器的首页insert一条记录。&lt;br /&gt;
-截图：&lt;br /&gt;
-&lt;img alt="" src="./../images/ee-auto-report.png" title="=800x" /&gt;
+截图：  &lt;br /&gt;
+&lt;img src="./../images/ee-auto-report.png" alt="ee-auto-report"  width="800" /&gt;
 往Html源文件插入一行的代码如下所示：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;modify_index_html&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;apache_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;log_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;

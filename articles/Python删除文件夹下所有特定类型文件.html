@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Modern Mainframer - Linux压缩</title>
+    <title>Python删除文件夹下所有特定类型文件</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="mainframer">
@@ -89,7 +89,7 @@
 						<i class="icon-folder-open icon-large"></i>爬虫
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="http://mainframer.github.io/category/python.html">
 						<i class="icon-folder-open icon-large"></i>Python
 					</a>
@@ -119,44 +119,70 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="http://mainframer.github.io/articles/Linux压缩命令.html">Linux压缩命令</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Python删除文件夹下所有特定类型文件">
+                                        Python删除文件夹下所有特定类型文件
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2010-11-26T00:00:00">
-        <i class="icon-calendar"></i>2010-11-26
+<abbr class="published" title="2014-11-16T00:00:00">
+        <i class="icon-calendar"></i>2014-11-16
 </abbr>
 <span class="label">By</span>
 <a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
 <span class="label">Category</span>
-<a href="http://mainframer.github.io/category/linuxunixuss.html"><i class="icon-folder-open"></i>Linux/Unix/USS</a>.
+<a href="http://mainframer.github.io/category/python.html"><i class="icon-folder-open"></i>Python</a>.
 
 
-<span class="label">Tags</span>
-	<a href="http://mainframer.github.io/tag/linuxya-suo.html"><i class="icon-tag"></i>Linux压缩</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>在平常的Linux接触过程中，各种压缩文件经常遇到。使用压缩文件的好处显而易见，可以节省空间并且节约网络流量传输的开销，所以学会各种压缩文件的使用是不可避免的一项技能。自己平常使用的再加上一些网上搜集的，估计够全了，简单地写在这记下，方便查阅： 
-压缩文件 (解释: x——解压 c——压缩 v——显示过程 f——压缩包名字)  <br />
-<code>tar格式</code></p>
-<div class="highlight"><pre><span class="n">tar</span> <span class="n">xvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span>
-<span class="n">tar</span> <span class="n">cv</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span> <span class="n">directory</span>  
-</pre></div>
-
-
-<p><code>gz格式</code></p>
-<div class="highlight"><pre><span class="n">gunzip</span> <span class="o">-</span><span class="n">d</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
-<span class="err">也可用</span> <span class="n">gzip</span><span class="err">——</span><span class="n">gzip</span> <span class="n">A</span><span class="o">.</span><span class="n">gz</span>
-</pre></div>
-
-
-<p><code>tar.gz/tgz格式</code></p>
-<div class="highlight"><pre><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">A</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="err">解压至当前目录</span>
-<span class="n">tar</span> <span class="n">zcvf ...</span></pre></div>
-                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/Linux压缩命令.html">more ...</a>
+</footer><!-- /.post-info -->                </div>
+                <p>写了个递归删除一个或多个文件夹下所有bmp图片的脚本：
+```python
+import os</p>
+<p>def del_bmp(root_dir="C:\temp"):
+    """
+    @Function: Delete all bmp image file in root_dir and its subdirectory 
+    @root_dir: The target directory 
+    """
+    file_list = os.listdir(root_dir)
+    for f in file_list:
+        file_path = os.path.join(root_dir, f)
+        if os.path.isfile(file_path):
+            if f.endswith(".BMP") or f.endswith(".bmp"):
+                os.remove(file_path)
+                print " File removed! " + file_path
+        elif os.path.isdir(file_path):
+            del_bmp(file_path)</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    root_dir = ["C:\temp1\", "C:\temp2\"]
+    for target_dir in root_dir:
+        del_bmp(target_dir)
+        print "All BMP files deleted."</p>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "articles/Python删除文件夹下所有特定类型文件.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://mainframer.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
                 </div>
-        </div>
-        <hr />
-
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
