@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/mainframe.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2013-07-26T00:00:00+08:00</updated><entry><title>IBM PCOMM初始设置的最佳实践 for zOS and IBM i</title><link href="http://mainframer.github.io/articles/IBM%20PCOMM%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%20for%20zOS%20and%20IBM%20i.html" rel="alternate"></link><updated>2013-07-26T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-07-26:articles/IBM PCOMM初始设置的最佳实践 for zOS and IBM i.html</id><summary type="html">&lt;h5&gt;显示标尺Cross-rule&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/mainframe.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2013-07-26T00:00:00+08:00</updated><entry><title>IBM PCOMM初始设置的最佳实践 for zOS and IBM i</title><link href="http://mainframer.github.io/articles/IBM%20PCOMM%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%20for%20zOS%20and%20IBM%20i.html" rel="alternate"></link><updated>2013-07-26T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-07-26:articles/IBM PCOMM初始设置的最佳实践 for zOS and IBM i.html</id><summary type="html">&lt;h4&gt;1.显示标尺Cross-rule&lt;/h4&gt;
 &lt;p&gt;&lt;code&gt;Edit--&amp;gt;Preferences--&amp;gt;Appearance--&amp;gt;Display Setup...--&amp;gt;Rule Line&lt;/code&gt;
-  在&lt;code&gt;Setting&lt;/code&gt;里面把&lt;code&gt;Rule Line&lt;/code&gt;选上 :    &lt;br /&gt;
-&lt;img src="./../images/rule_line.jpg" alt="rule_line"  width="800" /&gt;    &lt;/p&gt;
-&lt;h5&gt;修改复制粘贴为Windows格式&lt;/h5&gt;
-&lt;p&gt;&lt;code&gt;PCOMM&lt;/code&gt;默认的复制粘贴操作丑得很，改成&lt;code&gt;Windows Style&lt;/code&gt;好多了。&lt;br /&gt;
+  在Setting里面把Rule Line选上 :     &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/rule_line.jpg" alt="rule_line"  width="800" /&gt;      &lt;/p&gt;
+&lt;h4&gt;2.修改复制粘贴为Windows格式&lt;/h4&gt;
+&lt;p&gt;PCOMM默认的复制粘贴操作丑得很，改成Windows Style好多了。  &lt;br /&gt;
   方法：&lt;code&gt;Preferences -&amp;gt;Edit-&amp;gt;Trim-&amp;gt;Windows Style&lt;/code&gt;&lt;/p&gt;
-&lt;h5&gt;使用自定义键盘来支持Ctrl+C/Ctrl+V复制粘贴&lt;/h5&gt;
+&lt;h4&gt;3.使用自定义键盘来支持Ctrl+C/Ctrl+V复制粘贴&lt;/h4&gt;
 &lt;p&gt;&lt;code&gt;Preferences -&amp;gt; Keyboard -&amp;gt;&lt;/code&gt;选&lt;code&gt;User-Defined&lt;/code&gt;
  &lt;code&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/code&gt;&lt;br /&gt;
- 关于mykeyboard.kmp的设置，参考&lt;a href="http://mainframer.github.io/articles/IBM%20PCOMM%E5%AE%9E%E7%8E%B0Ctrl+C,%20Ctrl+V%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4.html"&gt;IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴&lt;/a&gt;&lt;/p&gt;
-&lt;h5&gt;登录主机之后，设置Command line on top&lt;/h5&gt;
-&lt;p&gt;&lt;code&gt;Opthon 0 --&amp;gt;Settings&lt;/code&gt;--&amp;gt;不勾选&lt;code&gt;Command line at bottom&lt;/code&gt;  &lt;br /&gt;
-&lt;img src="./../images/commandlineontop.jpg" alt="commandlineontop"  width="800" /&gt;      &lt;/p&gt;
-&lt;h5&gt;保存ws profile文件&lt;/h5&gt;
-&lt;p&gt;&lt;code&gt;File --&amp;gt; Save as --&amp;gt;&lt;/code&gt; 保存我们的&lt;code&gt;PCOMM&lt;/code&gt;配置文件(&lt;code&gt;.ws&lt;/code&gt;格式)，以后在其它机器安装使用&lt;code&gt;PCOMM&lt;/code&gt;的时候记得把这个&lt;code&gt;ws&lt;/code&gt;配置文件盒上面的键盘文件拷贝过去，就可以省去再配置一遍的时间了。为防止丢失，可以把这&lt;code&gt;ws&lt;/code&gt;配置文件保存到&lt;code&gt;Dropbox&lt;/code&gt;等云盘上面。
+ 关于mykeyboard.kmp的设置，参考我的上一篇文章： &lt;a href="http://mainframer.github.io/articles/IBM%20PCOMM%E5%AE%9E%E7%8E%B0Ctrl+C,%20Ctrl+V%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4.html"&gt;IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;4.登录主机之后，设置Command line on top&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Opthon 0 --&amp;gt;Settings&lt;/code&gt;--&amp;gt;不勾选&lt;code&gt;Command line at bottom&lt;/code&gt;      &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/commandlineontop.jpg" alt="commandlineontop"  width="800" /&gt;      &lt;/p&gt;
+&lt;h4&gt;5.保存ws profile文件&lt;/h4&gt;
+&lt;p&gt;File --&amp;gt; Save as --&amp;gt;保存我们的PCOMM配置文件(&lt;code&gt;.ws&lt;/code&gt;格式)，以后在其它机器安装使用PCOMM的时候记得把这个ws配置文件盒上面的键盘文件拷贝过去，就可以省去再配置一遍的时间了。为防止丢失，可以把这ws配置文件保存到Dropbox等云盘上面。
 上面的配置方式只要是适用&lt;code&gt;PCOMM&lt;/code&gt;的都适用，包括&lt;code&gt;z/OS(TN3270)&lt;/code&gt;以及&lt;code&gt;IBM i(TN5250)&lt;/code&gt;.&lt;/p&gt;</summary><category term="PCOMM"></category></entry><entry><title>IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴</title><link href="http://mainframer.github.io/articles/IBM%20PCOMM%E5%AE%9E%E7%8E%B0Ctrl+C,%20Ctrl+V%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4.html" rel="alternate"></link><updated>2013-07-22T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-07-22:articles/IBM PCOMM实现Ctrl+C, Ctrl+V复制粘贴.html</id><summary type="html">&lt;p&gt;PCOMM默认不支持Ctrl+C, Ctrl+V复制粘贴，这个可以通过自定义键盘和宏脚本(Macro)来完美实现。  &lt;/p&gt;
 &lt;h4&gt;Ctrl+C实现复制&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;Edit –-&amp;gt; Preferences –-&amp;gt; Keyboard…--&amp;gt;Customize…&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;点击界面上的&lt;code&gt;'C'&lt;/code&gt;键,然后在左下区域的&lt;code&gt;Function&lt;/code&gt;下拉列表中，选中&lt;code&gt;Edit Copy&lt;/code&gt;，之后再点击右边区域中&lt;code&gt;Ctrl&lt;/code&gt;那一行的箭头，
-这时候会发现&lt;code&gt;Ctrl&lt;/code&gt;行的值变为&lt;code&gt;Edit-Copy&lt;/code&gt;。  &lt;br /&gt;
-  &lt;img src="./../images/ctrl_c.jpg" alt="ctrl_c"  width="800" /&gt;  &lt;br /&gt;
-点击&lt;code&gt;File-–&amp;gt;Save&lt;/code&gt;保存配置。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;同样的方法，点击界面上的&lt;code&gt;'V'&lt;/code&gt;键，然后在左下区域的&lt;code&gt;Function&lt;/code&gt;下拉列表中，选中&lt;code&gt;Edit Paste&lt;/code&gt;，之后再点击右边区域中&lt;code&gt;Ctrl&lt;/code&gt;
-那一行的箭头，点击&lt;code&gt;File--&amp;gt;Save&lt;/code&gt;保存配置。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
+&lt;li&gt;点击界面上的C`键,然后在左下区域的Function下拉列表中，选中Edit Copy，之后再点击右边区域中Ctrl那一行的箭头，
+这时候会发现Ctrl行的值变为Edit-Copy。  &lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;img src="./../images/ctrl_c.jpg" alt="ctrl_c"  width="800" /&gt;      &lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;File-–&amp;gt;Save&lt;/code&gt;保存配置。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;同样的方法，点击界面上的V键，然后在左下区域的Function下拉列表中，选中Edit Paste，之后再点击右边区域中Ctrl
+那一行的箭头，点击&lt;code&gt;File--&amp;gt;Save&lt;/code&gt;保存配置。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;p&gt;上面配置完之后，复制粘贴算是可以工作了，但是还有一个小问题，就是&lt;code&gt;Ctrl+V&lt;/code&gt;粘贴完光标还停留在前面，不会自动移到
-后面去。 &lt;br /&gt;
-&lt;img src="./../images/cursor_ahead.jpg" alt="cursor_ahead"  width="800" /&gt;  &lt;br /&gt;
-也就是说，自定义键盘的方式只能满足&lt;code&gt;Ctrl+C&lt;/code&gt;的需求，满足不了&lt;code&gt;Ctrl+V&lt;/code&gt;的需求，这时候需要用到&lt;code&gt;Macro&lt;/code&gt;宏来实现了。
+后面去。     &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/cursor_ahead.jpg" alt="cursor_ahead"  width="800" /&gt;      &lt;/p&gt;
+&lt;p&gt;也就是说，自定义键盘的方式只能满足&lt;code&gt;Ctrl+C&lt;/code&gt;的需求，满足不了&lt;code&gt;Ctrl+V&lt;/code&gt;的需求，这时候需要用到&lt;code&gt;Macro&lt;/code&gt;宏来实现了。
 首先，动手写一个&lt;code&gt;Macro&lt;/code&gt;，内容如下，保存成:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\paste_cursor_end.mac&lt;/p&gt;
@@ -68,15 +64,15 @@
 &lt;p&gt;然后，再重新设置键盘映射：  &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;Edit –-&amp;gt; Preferences –-&amp;gt; Keyboard…--&amp;gt;Customize…&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;点击界面上的&lt;code&gt;'V'&lt;/code&gt;键，然后在左下区域的&lt;code&gt;Macro/Script&lt;/code&gt;下拉列表中，选中&lt;code&gt;paste_cursor_end&lt;/code&gt;，之后再点击右边区域中&lt;code&gt;Ctrl&lt;/code&gt;
+&lt;li&gt;点击界面上的V键，然后在左下区域的Macro/Script下拉列表中，选中&lt;code&gt;paste_cursor_end&lt;/code&gt;，之后再点击右边区域中&lt;code&gt;Ctrl&lt;/code&gt;
 那一行的箭头，点击&lt;code&gt;File--&amp;gt;Save&lt;/code&gt;保存配置。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp  &lt;br /&gt;
-  &lt;img src="./../images/ctrl_v_macro.jpg" alt="ctrl_v_macro"  width="800" /&gt;&lt;br /&gt;
-再试试，粘贴之后光标已经可以自动移到末尾了：&lt;br /&gt;
-&lt;img src="./../images/cursor_append.jpg" alt="cursor_append"  width="800" /&gt;  &lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="PCOMM"></category></entry><entry><title>用INTRDR在job中submit第二个job</title><link href="http://mainframer.github.io/articles/%E7%94%A8INTRDR%E5%9C%A8job%E4%B8%ADsubmit%E7%AC%AC%E4%BA%8C%E4%B8%AAjob.html" rel="alternate"></link><updated>2013-04-22T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-04-22:articles/用INTRDR在job中submit第二个job.html</id><summary type="html">&lt;p&gt;今天学到的，如何在当前&lt;code&gt;job&lt;/code&gt;当中&lt;code&gt;trigger&lt;/code&gt;另外一个&lt;code&gt;job&lt;/code&gt;？答案就是利用&lt;code&gt;Internal Reader&lt;/code&gt; 
+&lt;p&gt;C:\Users\Mainframer\AppData\Roaming\IBM\Personal Communications\mykeyboard.kmp     &lt;br /&gt;
+  &lt;img src="./../images/ctrl_v_macro.jpg" alt="ctrl_v_macro"  width="800" /&gt;    &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;再试试，粘贴之后光标已经可以自动移到末尾了：    &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/cursor_append.jpg" alt="cursor_append"  width="800" /&gt;  &lt;/p&gt;</summary><category term="PCOMM"></category></entry><entry><title>用INTRDR在job中submit第二个job</title><link href="http://mainframer.github.io/articles/%E7%94%A8INTRDR%E5%9C%A8job%E4%B8%ADsubmit%E7%AC%AC%E4%BA%8C%E4%B8%AAjob.html" rel="alternate"></link><updated>2013-04-22T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-04-22:articles/用INTRDR在job中submit第二个job.html</id><summary type="html">&lt;p&gt;今天学到的，如何在当前&lt;code&gt;job&lt;/code&gt;当中&lt;code&gt;trigger&lt;/code&gt;另外一个&lt;code&gt;job&lt;/code&gt;？答案就是利用&lt;code&gt;Internal Reader&lt;/code&gt; 
 例如：  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="o"&gt;*******************************************************************&lt;/span&gt;    
 &lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="no"&gt;Submit&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="no"&gt;DUMMY&lt;/span&gt; &lt;span class="n"&gt;job&lt;/span&gt; &lt;span class="no"&gt;MYJOB2&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;current&lt;/span&gt; &lt;span class="n"&gt;job&lt;/span&gt; &lt;span class="n"&gt;card&lt;/span&gt; 
