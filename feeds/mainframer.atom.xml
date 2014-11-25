@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/mainframer.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-11-17T00:00:00+08:00</updated><entry><title>Chrome的Github插件Octotree</title><link href="http://mainframer.github.io/articles/Chrome%E7%9A%84Github%E6%8F%92%E4%BB%B6Octotree.html" rel="alternate"></link><updated>2014-11-17T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-17:articles/Chrome的Github插件Octotree.html</id><summary type="html">&lt;p&gt;Chrome在线安装地址：&lt;a href="https://chrome.google.com/webstore/search/Octotree?hl=zh-CN"&gt;Octotree&lt;/a&gt;   &lt;/p&gt;
-&lt;p&gt;安装上之后，Github的效果如下，更像IDE了，真的非常棒的一个插件，推荐给需要的人。    &lt;br /&gt;
-&lt;img src="./../images/Octotree.png" alt="Octotree"  width="800" /&gt;  &lt;br /&gt;
-欢迎到我的Github来逛逛：&lt;a href="https://github.com/mainframer"&gt;https://github.com/mainframer&lt;/a&gt;&lt;/p&gt;</summary><category term="Octotree"></category></entry><entry><title>Python删除文件夹下所有特定类型文件</title><link href="http://mainframer.github.io/articles/Python%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B%E6%96%87%E4%BB%B6.html" rel="alternate"></link><updated>2014-11-16T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-16:articles/Python删除文件夹下所有特定类型文件.html</id><summary type="html">&lt;p&gt;写了个递归删除一个或多个文件夹下所有bmp图片的脚本：  &lt;/p&gt;
+&lt;p&gt;安装上之后，Github的效果如下，更像IDE了，真的非常棒的一个插件，推荐给需要的人。   &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/Octotree.png" alt="Octotree"  width="800" /&gt;      &lt;/p&gt;
+&lt;p&gt;我的Github：&lt;a href="https://github.com/mainframer"&gt;https://github.com/mainframer&lt;/a&gt;&lt;/p&gt;</summary><category term="Octotree"></category></entry><entry><title>Python删除文件夹下所有特定类型文件</title><link href="http://mainframer.github.io/articles/Python%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B%E6%96%87%E4%BB%B6.html" rel="alternate"></link><updated>2014-11-16T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-16:articles/Python删除文件夹下所有特定类型文件.html</id><summary type="html">&lt;p&gt;写了个递归删除一个或多个文件夹下所有bmp图片的脚本：  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;del_bmp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;C:&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s"&gt;emp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -674,10 +674,10 @@ license.assignment.page\:license.RationalTeamConcert=com.ibm.rtc.developer-iep
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img src="./../images/repotool1.png" alt="repotool1"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool1.jpg" alt="repotool1"  width="800" /&gt;  &lt;/p&gt;
 &lt;p&gt;耐心等待配置完成，完成之后，可以用上面的用户名密码jazz/passw0rd登录 &lt;a href="https://127.0.0.1/ccm"&gt;https://127.0.0.1/ccm&lt;/a&gt; 页面来验证配置结果对不对。&lt;/p&gt;
-&lt;p&gt;&lt;img src="./../images/repotool2.png" alt="repotool2"  width="800" /&gt;  &lt;/p&gt;
-&lt;p&gt;&lt;img src="./../images/repotool3.png" alt="repotool3"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool2.jpg" alt="repotool2"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool3.jpg" alt="repotool3"  width="800" /&gt;  &lt;/p&gt;
 &lt;p&gt;在持续测试中，往往需要能在命令行处理所有的事情，通过这篇文章，我们看到了与Jazz Team Server配置相关的持续集成的例子。&lt;br /&gt;
 这里，附上Jazz Team Server的官方下载地址：&lt;br /&gt;
 &lt;a href="https://jazz.net/downloads/rational-team-concert/releases/4.0.6/JTS-CCM-keys-Win64_4.0.6.zip"&gt;Jazz Team Server 4.06下载&lt;/a&gt;&lt;/p&gt;</summary><category term="jts"></category><category term="repotools"></category></entry><entry><title>Mac下显示隐藏文件</title><link href="http://mainframer.github.io/articles/Mac%E4%B8%8B%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6.html" rel="alternate"></link><updated>2013-08-08T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-08-08:articles/Mac下显示隐藏文件.html</id><summary type="html">&lt;p&gt;Mac下默认是不显示隐藏文件的，有时候我们又想看一下隐藏文件内容，比如你用命令&lt;code&gt;git init&lt;/code&gt;新初始化了一个git的存储库，这时候就会生成一个&lt;code&gt;.git&lt;/code&gt;的隐藏文件夹，如果你想看&lt;code&gt;.git&lt;/code&gt;文件夹的内容，一般的做法可以去终端下面用命令:&lt;/p&gt;

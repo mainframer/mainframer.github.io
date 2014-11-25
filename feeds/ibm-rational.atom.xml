@@ -49,10 +49,10 @@ license.assignment.page\:license.RationalTeamConcert=com.ibm.rtc.developer-iep
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img src="./../images/repotool1.png" alt="repotool1"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool1.jpg" alt="repotool1"  width="800" /&gt;  &lt;/p&gt;
 &lt;p&gt;耐心等待配置完成，完成之后，可以用上面的用户名密码jazz/passw0rd登录 &lt;a href="https://127.0.0.1/ccm"&gt;https://127.0.0.1/ccm&lt;/a&gt; 页面来验证配置结果对不对。&lt;/p&gt;
-&lt;p&gt;&lt;img src="./../images/repotool2.png" alt="repotool2"  width="800" /&gt;  &lt;/p&gt;
-&lt;p&gt;&lt;img src="./../images/repotool3.png" alt="repotool3"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool2.jpg" alt="repotool2"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool3.jpg" alt="repotool3"  width="800" /&gt;  &lt;/p&gt;
 &lt;p&gt;在持续测试中，往往需要能在命令行处理所有的事情，通过这篇文章，我们看到了与Jazz Team Server配置相关的持续集成的例子。&lt;br /&gt;
 这里，附上Jazz Team Server的官方下载地址：&lt;br /&gt;
 &lt;a href="https://jazz.net/downloads/rational-team-concert/releases/4.0.6/JTS-CCM-keys-Win64_4.0.6.zip"&gt;Jazz Team Server 4.06下载&lt;/a&gt;&lt;/p&gt;</summary><category term="jts"></category><category term="repotools"></category></entry></feed>
