@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/ibm-rational.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-03-04T00:00:00+08:00</updated><entry><title>从命令行一键配置Jazz Team Server</title><link href="http://mainframer.github.io/articles/%E4%BB%8E%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%80%E9%94%AE%E9%85%8D%E7%BD%AEJazz%20Team%20Server.html" rel="alternate"></link><updated>2014-03-04T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-03-04:articles/从命令行一键配置Jazz Team Server.html</id><summary type="html">&lt;p&gt;Jazz Team Server不仅可以从页面 &lt;a href="https://127.0.0.1/jts/setup"&gt;https://127.0.0.1/jts/setup&lt;/a&gt;通过Web方式配置，它还提供了一个很有用的&lt;code&gt;repotools-jts&lt;/code&gt;工具从命令行一键配置，这为自动化甚至是持续集成测试提供了支持。&lt;/p&gt;
+&lt;p&gt;本文将介绍如何通过&lt;code&gt;repotools-jts.bat&lt;/code&gt;工具从命令行一键配置Jazz Team Server。这里我们以配置默认的Derby数据库和Tomcat服务器为例，更复杂的场景(如WAS和DB2)的配置原理类似，但不在本文的讨论范围内。&lt;/p&gt;
+&lt;h4&gt;第一步&lt;/h4&gt;
+&lt;p&gt;进入Jazz Team Server的安装目录，如C:\temp\jts\server，双击server.startup.bat启动服务器。&lt;/p&gt;
+&lt;h4&gt;第二步&lt;/h4&gt;
+&lt;p&gt;还在当前目录下，新建一个配置文件response-jts.properties，在文件里面指定了配置这个Jazz Team Server所需要的所有参数,
+比如创建新的admin的id为'jazz'，密码为'passw0rd'，服务器的url为 'https://127.0.0.1:9443/jts'
+&lt;strong&gt;response-jts.properties配置文件：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;#Thu Mar 3rd 10:18:06 EDT 2014
+ccm\:configure.database.page\:db.type=JDBC
+create.user.page\:emailAddress=jazz@example.com
+register.applications.page\:ccm.application.title=/ccm
+license.assignment.page\:license.RationalQualityManager=None
+register.applications.page\:jts.nonlocal.application.number=0
+data.warehouse.page\:db.vendor=DERBY
+user.registry.page\:user.registry.type=DETECT
+configure.database.page\:db.type=JDBC
+ccm\:data.warehouse.page\:db.type=JDBC
+ccm\:configure.database.page\:db.vendor=DERBY
+create.user.page\:name=jazz
+license.assignment.page\:license.RationalRequirementsComposer=None
+configure.email.page\:notification.mail.enabled=false
+ccm\:data.warehouse.page\:db.vendor=derby_net
+ccm\:configure.database.page\:db.jdbc.location=conf/ccm/derby/repositoryDB
+configure.database.page\:db.jdbc.location=conf/jts/derby/repositoryDB
+create.user.page\:password=passw0rd
+register.applications.page\:ccm.discovery.url=https\://127.0.0.1\:9443/ccm/scr
+create.user.page\:userId=jazz
+admin.access\:ws.allow.admin.access=false
+register.applications.page\:jts.register.ccm=true
+data.warehouse.page\:db.net.port=1527
+configure.public.uri.page\:server.webapp.url=https\://127.0.0.1\:9443/jts
+configure.database.page\:db.vendor=DERBY
+ccm\:data.warehouse.page\:db.jdbc.location=//127.0.0.1\:1527/conf/jts/derby/warehouseDB
+license.assignment.page\:com.ibm.rtc.developer-iep.agreement=true
+data.warehouse.page\:db.type=JDBC
+configure.public.uri.page\:server.webapp.url.confirm=true
+ccm\:data.warehouse.page\:db.jdbc.password=
+data.warehouse.page\:db.jdbc.location=conf/jts/derby/warehouseDB
+license.assignment.page\:com.ibm.rtc.developer-iep.activate.trial=true
+license.assignment.page\:license.RationalTeamConcert=com.ibm.rtc.developer-iep
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;第三步&lt;/h4&gt;
+&lt;p&gt;打开CMD命令窗口，进入当前目录，执行如下设置命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;repotools-jts.bat -setup parametersFile=response-jts.properties
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src="./../images/repotool1.png" alt="repotool1"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;耐心等待配置完成，完成之后，可以用上面的用户名密码jazz/passw0rd登录 &lt;a href="https://127.0.0.1/ccm"&gt;https://127.0.0.1/ccm&lt;/a&gt; 页面来验证配置结果对不对。&lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool2.png" alt="repotool2"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src="./../images/repotool3.png" alt="repotool3"  width="800" /&gt;  &lt;/p&gt;
+&lt;p&gt;在持续测试中，往往需要能在命令行处理所有的事情，通过这篇文章，我们看到了与Jazz Team Server配置相关的持续集成的例子。&lt;br /&gt;
+这里，附上Jazz Team Server的官方下载地址：&lt;br /&gt;
+&lt;a href="https://jazz.net/downloads/rational-team-concert/releases/4.0.6/JTS-CCM-keys-Win64_4.0.6.zip"&gt;Jazz Team Server 4.06下载&lt;/a&gt;&lt;/p&gt;</summary><category term="jts"></category><category term="repotools"></category></entry></feed>

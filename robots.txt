@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://mainframer.github.io/sitemap.xml

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Modern Mainframer</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/automation.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-11-05T00:00:00+08:00</updated><entry><title>Python做自动化项目的总结</title><link href="http://mainframer.github.io/articles/Python%E5%81%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%80%BB%E7%BB%93.html" rel="alternate"></link><updated>2014-11-05T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-05:articles/Python做自动化项目的总结.html</id><summary type="html">&lt;p&gt;最近项目上有自动化要求，我选择了用Python，对自己的代码能力提高很有帮助。    &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一：学东西最快最有效的方法是“用起来”。    &lt;/li&gt;
+&lt;li&gt;第二：通过将实际问题细分力度，用Python逐一解决，这样学到的知识掌握的深。    &lt;/li&gt;
+&lt;li&gt;第三：不要忘了归纳总结，网上信息泛滥，有个地方能记录你的学习进度和学习心得，对IT从业人员是必要的技能。    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;心灵鸡汤说完了，这里我记录一下这次项目中用到的Python知识点和重点。&lt;/p&gt;
+&lt;h6&gt;Python如何中途退出一个函数？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;sys.exit(0)&lt;/code&gt;   &lt;/p&gt;
+&lt;h6&gt;Python如何判断文件(夹)存在?&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;os.path.exists(root_dir)&lt;/code&gt;  &lt;/p&gt;
+&lt;h6&gt;Python如何改变目录?&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;os.chdir(new_path)&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何延时？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;time.sleep(30)&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何执行系统命令？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;os.system('mycommand.bat')&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何判断文件扩展名？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;file.endswith(".html")&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何删除一个文件夹?&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;shutil.rmtree(file_path, True)&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Python如何得到当前目录？&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;print os.getcwd()&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;Python如何清空一个文件夹？&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;clean_dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Function: Clean up an directory&lt;/span&gt;
+&lt;span class="sd"&gt;    @root_dir: the directory you want to clean up.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;directory not exists, please check&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;file_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;file_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;clean_dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/Users/Heros/sample1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Python如何得到一个文件夹下最新的那个文件夹？&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_latest_result_folder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Function:Used to get the most recent generated folder name&lt;/span&gt;
+&lt;span class="sd"&gt;    @root_path: where the reports stored.&lt;/span&gt;
+&lt;span class="sd"&gt;    @return: return the most latest folder name&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;base_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;root_path&lt;/span&gt;
+    &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_dir&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;   &lt;span class="c"&gt;# if folder is not empty&lt;/span&gt;
+        &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getmtime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_dir&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_dir&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;fn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;root folder is empty,please check.&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Python"></category><category term="自动化"></category></entry><entry><title>每天定时从Mainframe下载gdg文件再上传到ftp</title><link href="http://mainframer.github.io/articles/%E6%AF%8F%E5%A4%A9%E5%AE%9A%E6%97%B6%E4%BB%8EMainframe%E4%B8%8B%E8%BD%BDgdg%E6%96%87%E4%BB%B6%E5%86%8D%E4%B8%8A%E4%BC%A0%E5%88%B0ftp.html" rel="alternate"></link><updated>2013-04-01T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-04-01:articles/每天定时从Mainframe下载gdg文件再上传到ftp.html</id><summary type="html">&lt;p&gt;今天要完成一个任务：  &lt;/p&gt;
+&lt;h4&gt;任务描述&lt;/h4&gt;
+&lt;h6&gt;Step1:从大机(mainframe)上下载指定的gdg最新的2个generation到本地C:\gdg目录下。&lt;/h6&gt;
+&lt;h6&gt;Step2:将这些下载下来的gdg文件发送到指定的ftp服务器的&lt;code&gt;/topath/users-4/&lt;/code&gt;目录下面，每天新建一个目录&lt;code&gt;yyyymmdd&lt;/code&gt;用来存放当天的gdg文件。&lt;/h6&gt;
+&lt;h6&gt;Step3:不用OPC等大机上面的scheduling工具，用windows的“计划任务”功能即可。&lt;/h6&gt;
+&lt;p&gt;这里是实现以上任务的批处理脚本&lt;code&gt;ftpscript.bat&lt;/code&gt;。放在&lt;code&gt;C:\ftpscript&lt;/code&gt;.bat，之后在windows计划任务里面添加每天定时运行即可。   &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="vi"&gt;@echo&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;指定&lt;/span&gt;&lt;span class="n"&gt;mainframe&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="no"&gt;IP&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;mfIP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;指定&lt;/span&gt;&lt;span class="n"&gt;mainframe&lt;/span&gt;&lt;span class="err"&gt;用户名&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;mfUser&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;IBMUSER&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;指定&lt;/span&gt;&lt;span class="n"&gt;mainframe&lt;/span&gt;&lt;span class="err"&gt;密码&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;mfPass&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;MFPASSWD&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;指定从&lt;/span&gt;&lt;span class="no"&gt;FTP&lt;/span&gt;&lt;span class="err"&gt;下载下来的&lt;/span&gt;&lt;span class="n"&gt;gdg&lt;/span&gt;&lt;span class="err"&gt;存放到本地目录&lt;/span&gt;&lt;span class="ss"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:\&lt;/span&gt;&lt;span class="n"&gt;gdg&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="no"&gt;LocalFolder&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:\&lt;/span&gt;&lt;span class="n"&gt;gdg&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;指定将下载下来的文件发送到哪一个目标&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="err"&gt;上面去&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;toftpServer&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;toftpuser&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;FTPUSER&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;toftppass&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="no"&gt;TOFTPPASS&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;事先清空本地目录&lt;/span&gt;&lt;span class="ss"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:\&lt;/span&gt;&lt;span class="n"&gt;gdg&lt;/span&gt;&lt;span class="err"&gt;，然后从大机上面下载最新的&lt;/span&gt;&lt;span class="n"&gt;gdg&lt;/span&gt;&lt;span class="err"&gt;放到这里&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="no"&gt;LocalFolder&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+&lt;span class="n"&gt;del&lt;/span&gt; &lt;span class="sr"&gt;/s /&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="sr"&gt;/f *.* &lt;/span&gt;
+
+&lt;span class="sr"&gt;rem 拼装ftp命令到C:\TempFTP.txt里面，最后用ftp.exe -n -s:&amp;quot;%ftpFile%&amp;quot; 执行里面的命令&lt;/span&gt;
+&lt;span class="sr"&gt;set ftpFile=%temp%\TempFTP.txt&lt;/span&gt;
+&lt;span class="sr"&gt;  &amp;gt;&amp;quot;%ftpFile%&amp;quot; (&lt;/span&gt;
+&lt;span class="sr"&gt;rem 第一步：从大机上面下载文件放到C:\gdg目录 (前面已做清空) &lt;/span&gt;
+&lt;span class="sr"&gt;    echo open %mfIP%&lt;/span&gt;
+&lt;span class="sr"&gt;    echo user %mfUser%&lt;/span&gt;
+&lt;span class="sr"&gt;    echo %mfPass%    &lt;/span&gt;
+&lt;span class="sr"&gt;    echo lcd &amp;quot;%LocalFolder%&amp;quot;&lt;/span&gt;
+&lt;span class="sr"&gt;    echo ascii&lt;/span&gt;
+&lt;span class="sr"&gt;    echo disconnect&lt;/span&gt;
+&lt;span class="sr"&gt;rem echo site RECFM=VB LRECL=2548 BLKSIZE=27998&lt;/span&gt;
+&lt;span class="sr"&gt;    echo get &amp;quot;&amp;#39;IBMUSER.TESTGDG.ASPA.EXTRACT(0)&amp;#39;&amp;quot;    &lt;/span&gt;
+&lt;span class="sr"&gt;    echo get &amp;quot;&amp;#39;IBMUSER.TESTGDG.ASPA.EXTRACT(-1)&amp;#39;&amp;quot;   &lt;/span&gt;
+&lt;span class="sr"&gt;rem 第二步：在目标ftp上新建一个yyyymmdd目录，将C:\gdg目录下所有的文件传到该目录下&lt;/span&gt;
+&lt;span class="sr"&gt;    echo open %toftpServer%&lt;/span&gt;
+&lt;span class="sr"&gt;    echo user %toftpuser%&lt;/span&gt;
+&lt;span class="sr"&gt;    echo %toftppass%&lt;/span&gt;
+&lt;span class="sr"&gt;    echo cd /&lt;/span&gt;&lt;span class="n"&gt;topath&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="ss"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="sx"&gt;%%Date:~4,2%&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="ss"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="ss"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="sx"&gt;%%Date:~4,2%&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="ss"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;put&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;#39;IBMUSER.TESTGDG.ASPA.EXTRACT(0)&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;IBMUSER.TESTGDG.ASPA.EXTRACT(0)&amp;quot;&lt;/span&gt;  
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;put&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;#39;IBMUSER.TESTGDG.ASPA.EXTRACT(-1)&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;IBMUSER.TESTGDG.ASPA.EXTRACT(-1)&amp;quot;&lt;/span&gt;                                               
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;pwd&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;bye&lt;/span&gt;
+  &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;..&lt;/span&gt;  
+&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="ss"&gt;c&lt;/span&gt;&lt;span class="p"&gt;:\&lt;/span&gt;&lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;system32&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="ss"&gt;s&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%ftpFile%&amp;quot;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="mainframe"></category><category term="ftp"></category></entry><entry><title>BAT批处理现学现用</title><link href="http://mainframer.github.io/articles/BAT%E6%89%B9%E5%A4%84%E7%90%86%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html" rel="alternate"></link><updated>2013-03-29T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-03-29:articles/BAT批处理现学现用.html</id><summary type="html">&lt;p&gt;上篇说的是本人在实现报表自动化过程中用到的VBS知识，这篇我打算用来总结在此过程中用到的批处理知识。&lt;/p&gt;
+&lt;h4&gt;批处理里面如何实现延时？&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;巧妙地利用&lt;/span&gt;&lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="err"&gt;自带的&lt;/span&gt;&lt;span class="n"&gt;ping&lt;/span&gt;&lt;span class="err"&gt;命令来达到延时的目的&lt;/span&gt;
+&lt;span class="n"&gt;ping&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mf"&gt;127.1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理的用户输入校验模块  [这里是校验日期，格式:yyyymm]&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="nl"&gt;off&lt;/span&gt;
+&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;input_module&lt;/span&gt;
+&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;enter&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="nl"&gt;here&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="o"&gt;=^&amp;lt;&lt;/span&gt;&lt;span class="nl"&gt;format&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="o"&gt;^&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nl"&gt;example&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;201301&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="o"&gt;%|&lt;/span&gt;&lt;span class="n"&gt;findstr&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;errorlevel&lt;/span&gt;&lt;span class="o"&gt;%==&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;input_module&lt;/span&gt;
+&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;*^&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; 
+&lt;span class="n"&gt;ping&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mf"&gt;127.1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;对以上用户输入做操作:字符串截取、字符串拼接的用法：&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;yyyymm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nl"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nl"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mo"&gt;01&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;month_display&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;JAN&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nl"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理中用户名、密码输入模块&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt;  &lt;span class="err"&gt;用户输入&lt;/span&gt;&lt;span class="n"&gt;ftpUserID&lt;/span&gt;&lt;span class="err"&gt;及&lt;/span&gt;&lt;span class="n"&gt;ftpPass&lt;/span&gt;&lt;span class="err"&gt;模块&lt;/span&gt;
+&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;*^&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;enter&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Password&lt;/span&gt;
+&lt;span class="n"&gt;ping&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mf"&gt;127.1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;ftpUser&lt;/span&gt;&lt;span class="o"&gt;=^&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;*^&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Enter&lt;/span&gt; &lt;span class="n"&gt;TSO&lt;/span&gt; &lt;span class="nl"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理中著名的实现隐藏用户输入密码的方法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt;  &lt;span class="err"&gt;批处理里面很著名的隐藏输入不显示的方法&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;By&lt;/span&gt;&lt;span class="err"&gt;德国人&lt;/span&gt;&lt;span class="n"&gt;HerbertKleebauer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;hP1X500P&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;PZBBBfh&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="err"&gt;##&lt;/span&gt;&lt;span class="n"&gt;fXf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="err"&gt;@`$&lt;/span&gt;&lt;span class="n"&gt;fPf&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="n"&gt;f3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;f1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;u5x&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;ftpPass&lt;/span&gt;&lt;span class="o"&gt;=^&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;*^&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Enter&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="nl"&gt;password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;tokens=*&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;ftpPass&lt;/span&gt;&lt;span class="o"&gt;=%%&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;
+&lt;span class="n"&gt;del&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理中实现执行批量ftp命令的方法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;设置远程&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;ftpIP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt; 
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;设置本地目录为当前脚本所在目录，用&lt;/span&gt;&lt;span class="o"&gt;%~&lt;/span&gt;&lt;span class="n"&gt;dp0&lt;/span&gt;&lt;span class="err"&gt;表示&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;LocalFolder&lt;/span&gt;&lt;span class="o"&gt;=%~&lt;/span&gt;&lt;span class="n"&gt;dp0&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;指定临时&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="err"&gt;指令文件，将&lt;/span&gt;&lt;span class="n"&gt;job&lt;/span&gt;&lt;span class="err"&gt;送往&lt;/span&gt;&lt;span class="n"&gt;mainframe&lt;/span&gt; &lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;JES2&lt;/span&gt;&lt;span class="err"&gt;队列运行，并且提前删除以下两个&lt;/span&gt;&lt;span class="n"&gt;dataset&lt;/span&gt;&lt;span class="err"&gt;。&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;ftpFile&lt;/span&gt;&lt;span class="o"&gt;=%&lt;/span&gt;&lt;span class="n"&gt;temp&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;TempFTP&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;
+  &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%ftpFile%&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ftpIP&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ftpUser&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ftpPass&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;    
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;lcd&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;%LocalFolder%&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;ascii&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;quote&lt;/span&gt; &lt;span class="n"&gt;site&lt;/span&gt; &lt;span class="n"&gt;filetype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;jes&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;put&lt;/span&gt; &lt;span class="n"&gt;my_jes2_job&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;    
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;disconnect&lt;/span&gt;
+    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;bye&lt;/span&gt;
+  &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;rem&lt;/span&gt;  &lt;span class="err"&gt;调用&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;&lt;span class="err"&gt;执行上述&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="err"&gt;命令，来完成将&lt;/span&gt;&lt;span class="n"&gt;my_jes2_job&lt;/span&gt;&lt;span class="err"&gt;送入到&lt;/span&gt;&lt;span class="n"&gt;mainframe&lt;/span&gt;&lt;span class="err"&gt;执行的操作&lt;/span&gt;
+&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="nl"&gt;c&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;system32&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nl"&gt;s&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%ftpFile%&amp;quot;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理中判断文件是否为空的方法，以及goto分支的用法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;delims=&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="n"&gt;my_test_source&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;%%~&lt;/span&gt;&lt;span class="n"&gt;zi&lt;/span&gt; &lt;span class="n"&gt;equ&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;   
+  &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;empty_source&lt;/span&gt;      &lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;not_empty_source&lt;/span&gt;  &lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;
+  &lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;empty_source&lt;/span&gt; 
+   &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="nl"&gt;here&lt;/span&gt;
+ &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;not_empty_source&lt;/span&gt;
+   &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理中调用msgbox显示消息框的方法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="err"&gt;利用&lt;/span&gt;&lt;span class="n"&gt;mshta&lt;/span&gt;&lt;span class="err"&gt;，消息框里面换行用&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;
+&lt;span class="n"&gt;mshta&lt;/span&gt; &lt;span class="nl"&gt;vbscript&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;msgbox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Empty !&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;^&lt;/span&gt;&lt;span class="n"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&amp;amp;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Please Check!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理中拷贝文件的方法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;copy&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nul&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;批处理中执行vbs脚本的方法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rem&lt;/span&gt; &lt;span class="n"&gt;ftpUser&lt;/span&gt;&lt;span class="err"&gt;和&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="err"&gt;是传递给&lt;/span&gt;&lt;span class="n"&gt;vbs&lt;/span&gt;&lt;span class="err"&gt;的参数&lt;/span&gt;
+&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;wscript&lt;/span&gt; &lt;span class="n"&gt;process_not_empty&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vbs&lt;/span&gt;  &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;ftpUser&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;  &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="BAT批处理"></category></entry><entry><title>VB Script现学现用</title><link href="http://mainframer.github.io/articles/VB%20Script%E7%8E%B0%E5%AD%A6%E7%8E%B0%E7%94%A8.html" rel="alternate"></link><updated>2013-03-27T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-03-27:articles/VB Script现学现用.html</id><summary type="html">&lt;p&gt;这几天需要实现一个报表自动化的功能，用到批处理BAT和VBS的知识，属于现学现用。各种谷歌百度。都说好记性不如烂笔头，我打算花一篇的篇幅来记录用到的VB Script知识，另外用一篇的篇幅来记录用到的BAT批处理知识。希望可以积少成多。  &lt;br /&gt;
+(&lt;em&gt;注意&lt;/em&gt;：VBS跟VBA不是一个概念，VBA只有在开启Excel的时候才能运行。)  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dim&lt;/span&gt; &lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;to_dte_&lt;/span&gt;       &lt;span class="err"&gt;&amp;#39;定义变量&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wscript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;     &lt;span class="err"&gt;&amp;#39;接收批处理传过来的第一个参数&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;CAP_user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Ucase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;       &lt;span class="err"&gt;&amp;#39;转换成大写&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Select&lt;/span&gt; &lt;span class="n"&gt;Case&lt;/span&gt; &lt;span class="n"&gt;Mid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;        &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Case&lt;/span&gt;&lt;span class="err"&gt;的用法&lt;/span&gt; &lt;span class="err"&gt;和&lt;/span&gt; &lt;span class="err"&gt;字符串截取的方法&lt;/span&gt;                                         
+&lt;span class="n"&gt;Case&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;01&amp;quot;&lt;/span&gt;   
+    &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;  
+&lt;span class="n"&gt;Case&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;02&amp;quot;&lt;/span&gt;                          &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;If&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Then&lt;/span&gt;&lt;span class="err"&gt;的用法，闰年的判断方法，&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Mod&lt;/span&gt;&lt;span class="err"&gt;的用法&lt;/span&gt;
+  &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Mid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Mod&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;And&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Mid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Mod&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Or&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Mid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;yyyymm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Mod&lt;/span&gt; &lt;span class="mi"&gt;400&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Then&lt;/span&gt;
+   &lt;span class="n"&gt;to_dte&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yyyymm&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;29&amp;quot;&lt;/span&gt;           &lt;span class="err"&gt;&amp;#39;字符串拼接的用法&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt;
+   &lt;span class="n"&gt;to_dte&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yyyymm&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;28&amp;quot;&lt;/span&gt;                 
+  &lt;span class="n"&gt;End&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt;
+&lt;span class="n"&gt;Case&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;03&amp;quot;&lt;/span&gt; 
+  &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;
+&lt;span class="n"&gt;Case&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;04&amp;quot;&lt;/span&gt; 
+&lt;span class="n"&gt;End&lt;/span&gt; &lt;span class="n"&gt;Select&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;Weekday&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;to_dte&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;7&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;Then&lt;/span&gt;        &lt;span class="err"&gt;&amp;#39;判断任意一天是星期几的用法&lt;/span&gt;                             
+  &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt;
+  &lt;span class="n"&gt;End&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;VBS替换text.txt文本中所有"AAAA"字符串为“BBBB"的方法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;fso&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Wscript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CreateObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Scripting.FileSystemObject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fso&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;opentextfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readall&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;AAAA&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;BBBB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fso&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;opentextfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;newtext.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;VBS中提示框的用法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MsgBox&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Error&amp;quot;&lt;/span&gt;    &lt;span class="err"&gt;或者&lt;/span&gt;
+&lt;span class="n"&gt;WScript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Echo&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;VBS下取得当前运行脚本所在的当前目录的办法&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;ws&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;createobject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wscript.shell&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;WScript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Echo&lt;/span&gt; &lt;span class="n"&gt;ws&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;currentdirectory&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;VBS中判断文件是否存在以及VBS移动、删除文件的用法&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Wscript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CreateObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Scripting.FileSystemObject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Const&lt;/span&gt; &lt;span class="n"&gt;OverwriteExisting&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;my_file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ws&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;currentdirectory&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\my_file.txt&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;my_file_fullpath&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ws&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;currentdirectory&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;\my_file.txt&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FileExists&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Then&lt;/span&gt;               &lt;span class="err"&gt;&amp;#39;判断文件存在&lt;/span&gt; 
+  &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FileExists&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_file_fullpath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Then&lt;/span&gt;   
+    &lt;span class="n"&gt;objFSO&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DeleteFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_file_fullpath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;           &lt;span class="err"&gt;&amp;#39;删除文件&lt;/span&gt;
+   &lt;span class="n"&gt;End&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; 
+  &lt;span class="n"&gt;objFSO&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MoveFile&lt;/span&gt; &lt;span class="n"&gt;my_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;my_file_fullpath&lt;/span&gt;       &lt;span class="err"&gt;&amp;#39;移动文件&lt;/span&gt;
+&lt;span class="n"&gt;End&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;h4&gt;下面是VBS操作excel的笔记&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objExcel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Excel.Application&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="err"&gt;&amp;#39;创建&lt;/span&gt; &lt;span class="n"&gt;excel&lt;/span&gt; &lt;span class="err"&gt;对象&lt;/span&gt;                               
+&lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Number&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Then&lt;/span&gt;
+    &lt;span class="n"&gt;Wscript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Excel application not found.&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;Wscript&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Quit&lt;/span&gt;
+&lt;span class="n"&gt;End&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Visible&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;True&lt;/span&gt;                            &lt;span class="err"&gt;&amp;#39;设置&lt;/span&gt;&lt;span class="n"&gt;excel&lt;/span&gt;&lt;span class="err"&gt;可见&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objBook&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Workbooks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Add&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;             &lt;span class="err"&gt;&amp;#39;添加&lt;/span&gt;&lt;span class="n"&gt;excel&lt;/span&gt; &lt;span class="err"&gt;工作簿&lt;/span&gt;
+&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objSheet1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;objBook&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Sheets&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Sheet1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objSheet1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;NEW_SHEET1&amp;quot;&lt;/span&gt;                        &lt;span class="err"&gt;&amp;#39;重命名&lt;/span&gt;&lt;span class="n"&gt;sheet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;字符串拼接&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;用&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;&amp;amp;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;objSheet2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;NEW_SHEET2&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;objSheet3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;NEW_SHEET3&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objSheet3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Activate&lt;/span&gt;                                 &lt;span class="err"&gt;&amp;#39;设置&lt;/span&gt;&lt;span class="n"&gt;Sheet3&lt;/span&gt;&lt;span class="err"&gt;为当前编辑的活动&lt;/span&gt;&lt;span class="n"&gt;sheet&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A3:E20&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;                    &lt;span class="err"&gt;&amp;#39;将&lt;/span&gt;&lt;span class="nl"&gt;A3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;E20&lt;/span&gt;&lt;span class="err"&gt;之间的数字类型当成文本类型显示&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Selection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NumberFormat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;@&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A1:E2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Interior&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Color&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RGB&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;220&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;230&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;241&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="err"&gt;&amp;#39;设置区域内单元格底色&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RGB&lt;/span&gt;&lt;span class="err"&gt;值&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;With&lt;/span&gt; &lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ActiveWindow&lt;/span&gt;                         &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Freeze&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;固定首行和首列&lt;/span&gt;            
+        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SplitColumn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SplitRow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;End&lt;/span&gt; &lt;span class="n"&gt;With&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;                        &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Freeze&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;固定前面两行&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ActiveWindow&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FreezePanes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;True&lt;/span&gt;       
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A1:B1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;                     &lt;span class="err"&gt;&amp;#39;单元格&lt;/span&gt;&lt;span class="nl"&gt;A1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;B1&lt;/span&gt;&lt;span class="err"&gt;合并&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Selection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MergeCells&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;True&lt;/span&gt;            
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A1:B1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;                     &lt;span class="err"&gt;&amp;#39;字体加粗&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Selection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Bold&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;True&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Cells&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;NEW_VALUE&amp;quot;&lt;/span&gt;           &lt;span class="err"&gt;&amp;#39;单元格赋值&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A:A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ColumnWidth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;13.57&lt;/span&gt;        &lt;span class="err"&gt;&amp;#39;设置整列宽&lt;/span&gt;  
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;B:B&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ColumnWidth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;15.71&lt;/span&gt;      
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;G:G&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;                     &lt;span class="err"&gt;&amp;#39;设置&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="err"&gt;列显示值的精度&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Selection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NumberFormat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;0.000000000&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Rows&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1:1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;                        &lt;span class="err"&gt;&amp;#39;首行显示筛选条件&lt;/span&gt;              
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Selection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AutoFilter&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ActiveWindow&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ScrollColumn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;             &lt;span class="err"&gt;&amp;#39;让鼠标回到最左边&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;VBS实现对Excel的列自动填充&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Const&lt;/span&gt; &lt;span class="n"&gt;xlFillDefault&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;                        
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;H2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ActiveCell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FormulaR1C1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;=VLOOKUP(RC[-1],Dict!R3C4:R227C5,2,FALSE)&amp;quot;&lt;/span&gt;        &lt;span class="err"&gt;&amp;#39;这里以&lt;/span&gt;&lt;span class="n"&gt;VLOOKUP&lt;/span&gt;&lt;span class="err"&gt;公式举例，可以是任意公式&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;H2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;AutoFill&lt;/span&gt; &lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;H2:H&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;itotalline&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;xlFillDefault&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;VBS实现从外部text文件导入数据到当前sheet&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Dim&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;objFile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;irow&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;icol&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;source_text&lt;/span&gt;    
+&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Scripting.FileSystemObject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;source_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Source_feed_file.txt&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;Set&lt;/span&gt; &lt;span class="n"&gt;objFile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;objFSO&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OpenTextFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source_text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ForReading&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;irow&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;While&lt;/span&gt; &lt;span class="n"&gt;Not&lt;/span&gt; &lt;span class="n"&gt;objFile&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AtEndOfStream&lt;/span&gt;
+        &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;objFile&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ReadLine&lt;/span&gt; 
+        &lt;span class="n"&gt;icol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;     
+        &lt;span class="n"&gt;aline&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                         &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="err"&gt;文件是以”&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;分隔的 &lt;/span&gt;
+        &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;Until&lt;/span&gt; &lt;span class="n"&gt;icol&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Ubound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aline&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;     
+          &lt;span class="n"&gt;objSheet&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Cells&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;irow&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;icol&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;aline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;icol&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;      
+          &lt;span class="n"&gt;icol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;icol&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;         
+         &lt;span class="n"&gt;Loop&lt;/span&gt;  
+  &lt;span class="n"&gt;irow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;irow&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;Wend&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;保存excel到当前目录，关闭并退出excel&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;objBook&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SaveAs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ws&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;currentdirectory&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\NEW_EXCEL.xlsx&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;objBook&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt;
+&lt;span class="n"&gt;objExcel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Quit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="VB Script"></category></entry><entry><title>mainframe平台报表自动化方案实现</title><link href="http://mainframer.github.io/articles/mainframe%E5%B9%B3%E5%8F%B0%E6%8A%A5%E8%A1%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0.html" rel="alternate"></link><updated>2013-03-25T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2013-03-25:articles/mainframe平台报表自动化方案实现.html</id><summary type="html">&lt;h4&gt;这几天，客户提了一个需求如下：&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;&amp;lt;1&amp;gt;&lt;/em&gt;每个月初需要在本地(Windows XP)看上一个月的一个报表。&lt;br /&gt;
+&lt;em&gt;&amp;lt;2&amp;gt;&lt;/em&gt;如果可以随时查看之前任意月份的报表，那更好。&lt;br /&gt;
+&lt;em&gt;&amp;lt;3&amp;gt;&lt;/em&gt;报表数据来源于Mainframe上的表A和表B,需要join操作。 &lt;br /&gt;
+&lt;em&gt;&amp;lt;4&amp;gt;&lt;/em&gt;报表结果以excel呈现，有必要的一些格式化和公式以及美化等excel常规操作。    &lt;/p&gt;
+&lt;h4&gt;经研究，实现方案如下：&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;&amp;lt;1&amp;gt;&lt;/em&gt;用bat批处理与mainframe交互，交互方式为ftp。包括将本地job送到JES2运行，包括将表A和表B的数据从mainframe上下载到本地。&lt;br /&gt;
+&lt;em&gt;&amp;lt;2&amp;gt;&lt;/em&gt;用vbs处理后期的excel，包括数据导入，单元格格式，公式操作，excel美化，用户提示等等常规的office操作。 &lt;br /&gt;
+&lt;em&gt;&amp;lt;3&amp;gt;&lt;/em&gt;用bat批处理来调用vbs，这样bat批处理就把mainframe和vbs串在了一起。  &lt;/p&gt;
+&lt;h4&gt;方案优势：&lt;/h4&gt;
+&lt;p&gt;选择这个方案是从用户易用性考虑，客户不需要安装任何软件。批处理和vbs以及excel在xp下面都是自带的。用户只需双击，然后输入查看的报表月份即可。&lt;/p&gt;
+&lt;h4&gt;方案设计图&lt;/h4&gt;
+&lt;p&gt;我用word简单地画了一个方案图：
+&lt;img alt="report automation on mainframe" src="./../images/mainframe-report-automation.png" /&gt;  &lt;br /&gt;
+代码就不放上来了。&lt;/p&gt;</summary><category term="mainframe自动化"></category></entry></feed>
