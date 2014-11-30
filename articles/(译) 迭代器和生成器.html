@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>(译) 迭代器和生成器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="mainframer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://mainframer.github.io/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://mainframer.github.io/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://mainframer.github.io/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://mainframer.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://mainframer.github.io/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://mainframer.github.io/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://mainframer.github.io/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://mainframer.github.io/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://mainframer.github.io/" type="application/atom+xml" rel="alternate" title="不只是Mainframer ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://mainframer.github.io/index.html">不只是Mainframer </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/automation.html">
+						<i class="icon-folder-open icon-large"></i>Automation
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/ibm-rational.html">
+						<i class="icon-folder-open icon-large"></i>IBM Rational
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/linuxunixuss.html">
+						<i class="icon-folder-open icon-large"></i>Linux/Unix/USS
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/mainframe.html">
+						<i class="icon-folder-open icon-large"></i>Mainframe
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/others.html">
+						<i class="icon-folder-open icon-large"></i>Others
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/pa-chong.html">
+						<i class="icon-folder-open icon-large"></i>爬虫
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="http://mainframer.github.io/category/python.html">
+						<i class="icon-folder-open icon-large"></i>Python
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/rexx.html">
+						<i class="icon-folder-open icon-large"></i>Rexx
+					</a>
+                  </li>
+                  <li >
+                    <a href="http://mainframer.github.io/category/ruby.html">
+						<i class="icon-folder-open icon-large"></i>Ruby
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://mainframer.github.io/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to (译) 迭代器和生成器">
+                                        (译) 迭代器和生成器
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-11-19T00:00:00">
+        <i class="icon-calendar"></i>2014-11-19
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/python.html"><i class="icon-folder-open"></i>Python</a>.
+
+
+</footer><!-- /.post-info -->                </div>
+                <h2>迭代器和生成器</h2>
+<h2>迭代器和生成器</h2>
+<blockquote>
+<p>翻译自:<code>5.Iterators &amp; Generators</code>  <a href="http://anandology.com/python-practice-book/iterators.html">5.Iterators &amp; Generators</a>  </p>
+</blockquote>
+<h3>5.1. 迭代器(Iterators)</h3>
+<p>首先，我们用<code>for</code>循环来循环遍历一个列表(list)。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]:</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="n">i</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+</pre></div>
+
+
+<p>假如我们将<code>for</code>循环用在一个字符串中，它将会遍历字符串的每一个字符。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s">&quot;python&quot;</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="n">c</span>
+<span class="o">...</span>
+<span class="n">p</span>
+<span class="n">y</span>
+<span class="n">t</span>
+<span class="n">h</span>
+<span class="n">o</span>
+<span class="n">n</span>
+</pre></div>
+
+
+<p>假如我们将<code>for</code>循环用在一个字典中，它将遍历字典的每一个<code>key</code>值。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">{</span><span class="s">&quot;x&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}:</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="n">k</span>
+<span class="o">...</span>
+<span class="n">y</span>
+<span class="n">x</span>
+</pre></div>
+
+
+<p>假如我们将<code>for</code>循环用在一个文件中，它将遍历该文件的每一行内容。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;a.txt&quot;</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="n">first</span> <span class="n">line</span>
+<span class="n">second</span> <span class="n">line</span>
+</pre></div>
+
+
+<p>所以说，有很多类型的对象都能被<code>for</code>用来循环遍历。这样的对象也叫做<strong>可迭代对象</strong>( <code>iterable objects</code>)。</p>
+<p>有很多函数可以用来消费这些<strong>可迭代者</strong>(<code>iterable</code>)。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">])</span>
+<span class="s">&#39;a,b,c&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">({</span><span class="s">&quot;x&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="s">&#39;y,x&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="s">&quot;python&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="s">&#39;n&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">({</span><span class="s">&quot;x&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<h4>5.1.1. 迭代协议 (The Iteraton Protocol)</h4>
+<p>Python内置的函数<code>iter</code>接收一个可迭代对象为参数，返回一个迭代器。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span>
+<span class="o">&lt;</span><span class="n">listiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1004ca850</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">StopIteration</span>
+</pre></div>
+
+
+<p>每一次当我们访问一个迭代器的<code>next</code>方法，迭代器都为我们生成下一个元素。如果没有更多的元素可生成，它就会抛出一个<code>StopIteration</code>异常。</p>
+<p>迭代器以类的方式实现。这里是一个迭代器的实现例子，它的功能类似于Python的内置函数<code>xrange</code>。</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">yrange</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">i</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
+</pre></div>
+
+
+<p>这里，<code>__iter__</code>方法就是能使一个对象变成可迭代者<code>iterable</code>的原因。在幕后，<code>iter</code>函数对给定的对象调用<code>__iter__</code>方法。</p>
+<p><code>__iter__</code>返回的值就是一个迭代器(<code>iterator</code>)。它应该具有一个<code>next</code>方法，并且当没有更多元素的时候会抛出<code>StopIteration</code>异常。</p>
+<p>让我们来试验一下：</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">14</span><span class="p">,</span> <span class="ow">in</span> <span class="nb">next</span>
+<span class="ne">StopIteration</span>
+</pre></div>
+
+
+<p>许多内置的函数都接受迭代器作为参数。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">yrange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="n">yrange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="mi">10</span>
+</pre></div>
+
+
+<p>上面这个例子中，<code>iterable</code>和<code>iterator</code>是同一个对象。注意到<code>__iter__</code>方法返回了它本身，其实并不需要总是这样做。</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">zrange</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">zrange_iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">zrange_iter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Iterators are iterables too.</span>
+        <span class="c"># Adding this functions to make them so.</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">i</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
+</pre></div>
+
+
+<p>如果<code>iteratable</code>和<code>iterator</code>是相同的对象，那么它们在一次迭代中就会消耗掉。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="n">zrange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+
+<p><strong>问题 1</strong>: 写一个迭代器类<code>reverse_iter</code>, 接收一个list参数并反向迭代。 ::</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">reverse_iter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">StopIteration</span>
+</pre></div>
+
+
+<h3>5.2. 生成器(Generators）</h3>
+<p>生成器简化了创建迭代器的过程。一个生成器说白了就是一个函数，一个函数能产生一些列的结果而不是只产生一个单一结果的函数。</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">yrange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>每一次<code>yield</code>语句被执行，该函数就生成一个新的值。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">yrange</span> <span class="n">at</span> <span class="mh">0x401f30</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">StopIteration</span>
+</pre></div>
+
+
+<p>所以说，生成器本质上是一个迭代器。这里，你不需要操心迭代协议。</p>
+<p>"生成器"这个词很含糊，它既用来表示生成东西的函数也表示这个函数所生成的东西。在这章里，我将用"生成器"这个词来表示由函数生成的对象，同时使用另外一个词"生成器函数"来表示生成生成对象的函数。</p>
+<p>你能思考一下它内部是怎么工作的吗？</p>
+<p>当一个生成器函数被调用的时候，它就返回一个生成器对象，甚至这个函数都还没有开始执行的时候就返回了。当<code>next</code>方法第一次被调用的时候，生成器函数就开始执行，直到它遇到<code>yield</code>语句。由<code>yield</code>生成的值将在下一个<code>next</code>调用的时候被返回。</p>
+<p>下面这个例子展示了在一个生成器对象中<code>yield</code>语句和<code>next</code>方法调用之间的相互作用关系。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="s">&quot;begin&quot;</span>
+<span class="o">...</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">print</span> <span class="s">&quot;before yield&quot;</span><span class="p">,</span> <span class="n">i</span>
+<span class="o">...</span>         <span class="k">yield</span> <span class="n">i</span>
+<span class="o">...</span>         <span class="k">print</span> <span class="s">&quot;after yield&quot;</span><span class="p">,</span> <span class="n">i</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="s">&quot;end&quot;</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">foo</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">begin</span>
+<span class="n">before</span> <span class="k">yield</span> <span class="mi">0</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">after</span> <span class="k">yield</span> <span class="mi">0</span>
+<span class="n">before</span> <span class="k">yield</span> <span class="mi">1</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">after</span> <span class="k">yield</span> <span class="mi">1</span>
+<span class="n">before</span> <span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">after</span> <span class="k">yield</span> <span class="mi">2</span>
+<span class="n">end</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">StopIteration</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+
+
+<p>让我们看一个例子：</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">integers</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Infinite sequence of integers.&quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">squares</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">integers</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns first n values from the given sequence.&quot;&quot;&quot;</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">result</span>
+<span class="k">print</span> <span class="n">take</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">squares</span><span class="p">())</span> <span class="c"># prints [1, 4, 9, 16, 25]</span>
+</pre></div>
+
+
+<h3>5.3. 生成器表达式 (Generator Expressions)</h3>
+<p>生成器表达式是生成器版本的链表推导式。它们看起来像链表推导式，但是不同的是，它返回一个生成器而不是一个链表。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="n">genexpr</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x401f08</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mi">285</span>
+<span class="n">We</span> <span class="n">can</span> <span class="n">use</span> <span class="n">the</span> <span class="n">generator</span> <span class="n">expressions</span> <span class="k">as</span> <span class="n">arguments</span> <span class="n">to</span> <span class="n">various</span> <span class="n">functions</span> <span class="n">that</span> <span class="n">consume</span> <span class="n">iterators</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">(((</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+<span class="mi">285</span>
+</pre></div>
+
+
+<p>当调用程序只有唯一一个参数时，生成器表达式外面的括号可以被省略。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="mi">285</span>
+</pre></div>
+
+
+<p>另外一个有意思的例子：</p>
+<p>比如我们想寻找前面10个(或者前面n个)毕氏三元数(<code>pythogorian triplets</code>)。当满足<code>x*x + y*y == z*z</code>时，我们将<code>(x, y, z)</code>叫做毕氏三元数或勾股数。</p>
+<p>如果我们知道我们z的最大需要测试的值的话，那么解决这个问题是比较容易的。但是这里我们想找的是前面n个毕氏三元数。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">pyt</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">integers</span><span class="p">()</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">==</span> <span class="n">z</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">pyt</span><span class="p">)</span>
+<span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">29</span><span class="p">)]</span>
+</pre></div>
+
+
+<h4>5.3.1. 例子：读取多个文件 (Example: Reading multiple files)</h4>
+<p>比如我们想写一个程序，它接收一些文件名作为参数，然后打印出所有这些文件的内容，就像<em>Unix</em>中的<code>cat</code>命令那样。</p>
+<p>传统的实现方式是这样子的：</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">cat</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+</pre></div>
+
+
+<p>现在，假设我们希望只打印那些含有特定子字符串的行，就像 <em>Unix</em>中的<code>grep</code>命令一样。</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">filenames</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+</pre></div>
+
+
+<p>这两个程序的代码有很多共同点。将这个共同点移到一个函数中有点难。但是有了生成器，事情就变得简单得多了。</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">readfiles</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">line</span>
+
+<span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">lines</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">printlines</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">filenames</span><span class="p">):</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">readfiles</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">grep</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
+    <span class="n">printlines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+
+
+<p>这段代码现在简单多了，它的每一个函数都只负责一件小事情。我们可以将这些所有的小函数都移到一个单独的模块中并在之后的其他程序中重用它们。</p>
+<p><strong>问题 2</strong>：写一个程序，它接收1个或多个文件名为参数，并打印出所有长度大于40个字符的行。</p>
+<p><strong>问题 3</strong>：写一个函数<code>findfiles</code>逐层递归一个给定目录的目录树并为这个目录树中的所有文件生成它们的文件路径。</p>
+<p><strong>问题 4</strong>：写一个函数用来递归地计算一个给定目录下Python文件（.py扩展名)的个数。</p>
+<p><strong>问题 5</strong>：写一个函数用来递归地计算一个给定目录下所有Python文件的代码行数的总和。</p>
+<p><strong>问题 6</strong>：写一个函数用来递归地计算一个给定目录下所有Python文件的代码行数的总和，忽略那些空行和注释行。</p>
+<p><strong>问题 7</strong>：写一个程序<code>split.py</code>，它以命令行参数的形式接收一个整形参数<code>n</code>和一个文件名参数，然后将这个文件分割成若干个小文件，每个小文件有<code>n</code>行。</p>
+<h3>5.4. Itertools 模块</h3>
+<p><code>itertools</code>模块包含在Python标准库中，它提供了很多有趣的工具可以用来配合迭代器工作。</p>
+<p>让我们看几个有意思的函数。</p>
+<p><code>chain</code> - 用来将多个迭代器连在一起。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">it1</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">it2</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">it1</span><span class="p">,</span> <span class="n">it2</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">izip</span> <span class="err">–</span> <span class="n">iterable</span> <span class="n">version</span> <span class="n">of</span> <span class="nb">zip</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">izip</span><span class="p">([</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]):</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="o">...</span>
+<span class="n">a</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="mi">3</span>
+</pre></div>
+
+
+<p><strong>问题 8</strong>： 写一个函数<code>peep</code>，它接收一个整形数为变量并返回一个迭代器及该迭代器的第一个元素。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">it1</span> <span class="o">=</span> <span class="n">peep</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">it1</span><span class="p">)</span>
+<span class="mi">0</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+
+<p><strong>问题 9</strong>： Python内置函数<code>enumerate</code>接收一个<code>iteratable</code>为参数，并返回一个迭代器，迭代器的每一个元素是由该<code>iteratable</code>的每一个值生成的<em>键-值对</em> (index,value)。</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">([</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">])</span>
+<span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;a&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">]):</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span>
+<span class="o">...</span>
+<span class="mi">0</span> <span class="n">a</span>
+<span class="mi">1</span> <span class="n">b</span>
+<span class="mi">2</span> <span class="n">c</span>
+</pre></div>
+
+
+<p>写一个函数<code>my_enumerate</code>让它能像<code>enumerate</code>一样工作。</p>
+<p><strong>问题 10</strong>：实现一个函数<code>izip</code>让它能像<code>itertools.izip</code>一样工作。</p>
+<h3>延伸阅读</h3>
+<p><a href="http://dabeaz.com/">David Beazly</a> 写的 <a href="http://www.dabeaz.com/generators-uk/">Generator Tricks For System Programers</a> 是进一步详尽介绍生成器和生成器表达式的极好材料。</p>
+<h3>译者注</h3>
+<ul>
+<li>更新时间：<code>2014-11-19</code></li>
+<li>本人翻译的初衷是为了自身学习和记录，翻译不好的地方，还望读者见谅.</li>
+<li>更多最新原创的译文，请关注本人的Github <a href="https://github.com/mainframer/Python-Doc-zh-CN">https://github.com/mainframer/Python-Doc-zh-CN</a>，只翻译经典，只翻译精华。</li>
+</ul>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "articles/(译) 迭代器和生成器.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://mainframer.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://www-01.ibm.com/support/knowledgecenter"><i class="icon-external-link"></i>IBM知识中心</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="http://mainframer.github.io/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="https://github.com/mainframer"><i class="icon-mainframer@Github-sign icon-large"></i>mainframer@Github</a></li>
+    <li><a href="https://www.linkedin.com/in/mainframer"><i class="icon-mainframer@Linkedin-sign icon-large"></i>mainframer@Linkedin</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="http://mainframer.github.io/category/automation.html">
+    <i class="icon-folder-open icon-large"></i>Automation
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/ibm-rational.html">
+    <i class="icon-folder-open icon-large"></i>IBM Rational
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/linuxunixuss.html">
+    <i class="icon-folder-open icon-large"></i>Linux/Unix/USS
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/mainframe.html">
+    <i class="icon-folder-open icon-large"></i>Mainframe
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/others.html">
+    <i class="icon-folder-open icon-large"></i>Others
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/pa-chong.html">
+    <i class="icon-folder-open icon-large"></i>爬虫
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/python.html">
+    <i class="icon-folder-open icon-large"></i>Python
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/rexx.html">
+    <i class="icon-folder-open icon-large"></i>Rexx
+</a>
+</li>
+<li>
+<a href="http://mainframer.github.io/category/ruby.html">
+    <i class="icon-folder-open icon-large"></i>Ruby
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cebr.html">
+        <i class="icon-tag icon-large"></i>CEBR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/backtrack5-r1.html">
+        <i class="icon-tag icon-large"></i>BackTrack5 R1
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/genlist.html">
+        <i class="icon-tag icon-large"></i>genlist
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/ispf.html">
+        <i class="icon-tag icon-large"></i>ISPF
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/superc.html">
+        <i class="icon-tag icon-large"></i>SuperC
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ispftong-pei-fu.html">
+        <i class="icon-tag icon-large"></i>ISPF通配符
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dnsdict6.html">
+        <i class="icon-tag icon-large"></i>dnsdict6
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/quote-site.html">
+        <i class="icon-tag icon-large"></i>quote site
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxying-jian.html">
+        <i class="icon-tag icon-large"></i>Linux硬件
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">
+        <i class="icon-tag icon-large"></i>主机一本通
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">
+        <i class="icon-tag icon-large"></i>Linux挂载
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/sort.html">
+        <i class="icon-tag icon-large"></i>SORT
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jcl-fan-hui-ma.html">
+        <i class="icon-tag icon-large"></i>JCL 返回码
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/logging.html">
+        <i class="icon-tag icon-large"></i>Logging
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/qwming-ling.html">
+        <i class="icon-tag icon-large"></i>QW命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/da-xing-ji.html">
+        <i class="icon-tag icon-large"></i>大型机
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/icetool.html">
+        <i class="icon-tag icon-large"></i>ICETOOL
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/beautifulsoup.html">
+        <i class="icon-tag icon-large"></i>BeautifulSoup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/tor.html">
+        <i class="icon-tag icon-large"></i>TOR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/github-pages.html">
+        <i class="icon-tag icon-large"></i>GitHub Pages
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/dataset.html">
+        <i class="icon-tag icon-large"></i>dataset
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/copybook.html">
+        <i class="icon-tag icon-large"></i>Copybook
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/stardict.html">
+        <i class="icon-tag icon-large"></i>stardict
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/shutil.html">
+        <i class="icon-tag icon-large"></i>Shutil
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxmu-lu-jie-gou.html">
+        <i class="icon-tag icon-large"></i>Linux目录结构
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/shen-tou-ce-shi.html">
+        <i class="icon-tag icon-large"></i>渗透测试
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/fen-ge-da-wen-jian.html">
+        <i class="icon-tag icon-large"></i>分割大文件
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/octotree.html">
+        <i class="icon-tag icon-large"></i>Octotree
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/file-manager.html">
+        <i class="icon-tag icon-large"></i>File Manager
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/gdg.html">
+        <i class="icon-tag icon-large"></i>GDG
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/trigger-job.html">
+        <i class="icon-tag icon-large"></i>trigger job
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ikj56400a.html">
+        <i class="icon-tag icon-large"></i>IKJ56400A
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>ssh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">
+        <i class="icon-tag icon-large"></i>ssh翻墙
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ti-jiao-alexa.html">
+        <i class="icon-tag icon-large"></i>提交Alexa
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/duo-xing-zi-fu-chuan.html">
+        <i class="icon-tag icon-large"></i>多行字符串
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pcomm.html">
+        <i class="icon-tag icon-large"></i>PCOMM
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/fan-qiang.html">
+        <i class="icon-tag icon-large"></i>翻墙
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/cobol.html">
+        <i class="icon-tag icon-large"></i>COBOL
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/rexx.html">
+        <i class="icon-tag icon-large"></i>rexx
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/debug-tool.html">
+        <i class="icon-tag icon-large"></i>Debug Tool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/undo.html">
+        <i class="icon-tag icon-large"></i>UNDO
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/requests.html">
+        <i class="icon-tag icon-large"></i>requests
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/changeman.html">
+        <i class="icon-tag icon-large"></i>Changeman
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/wsgi.html">
+        <i class="icon-tag icon-large"></i>WSGI
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://mainframer.github.io/tag/zos.html">
+        <i class="icon-tag icon-large"></i>z/OS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cicsming-ling.html">
+        <i class="icon-tag icon-large"></i>CICS命令
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pli.html">
+        <i class="icon-tag icon-large"></i>PLI
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jts.html">
+        <i class="icon-tag icon-large"></i>jts
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/joinkey.html">
+        <i class="icon-tag icon-large"></i>JOINKEY
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/myentunnel.html">
+        <i class="icon-tag icon-large"></i>myEntunnel
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/kde.html">
+        <i class="icon-tag icon-large"></i>KDE
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/cics.html">
+        <i class="icon-tag icon-large"></i>CICS
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/srchfor.html">
+        <i class="icon-tag icon-large"></i>SRCHFOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>chrome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cobolgui-ze.html">
+        <i class="icon-tag icon-large"></i>COBOL规则
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/for.html">
+        <i class="icon-tag icon-large"></i>FOR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/iceman.html">
+        <i class="icon-tag icon-large"></i>ICEMAN
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/zi-dong-hua.html">
+        <i class="icon-tag icon-large"></i>自动化
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>Pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/batpi-chu-li.html">
+        <i class="icon-tag icon-large"></i>BAT批处理
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/arithextend.html">
+        <i class="icon-tag icon-large"></i>ARITH(EXTEND)
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jclpi-liang-zhu-shi.html">
+        <i class="icon-tag icon-large"></i>JCL批量注释
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/tsq.html">
+        <i class="icon-tag icon-large"></i>TSQ
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>nmap
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/repotools.html">
+        <i class="icon-tag icon-large"></i>repotools
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/loadparm.html">
+        <i class="icon-tag icon-large"></i>LoadParm
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ti-jiao-jcl.html">
+        <i class="icon-tag icon-large"></i>提交JCL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/wai-qi-email.html">
+        <i class="icon-tag icon-large"></i>外企email
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/proxy-switchy.html">
+        <i class="icon-tag icon-large"></i>proxy switchy
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/s000-u4088.html">
+        <i class="icon-tag icon-large"></i>S000 U4088
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sql.html">
+        <i class="icon-tag icon-large"></i>SQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/goto.html">
+        <i class="icon-tag icon-large"></i>GOTO
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/coboljie-gou.html">
+        <i class="icon-tag icon-large"></i>COBOL结构
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/vb-script.html">
+        <i class="icon-tag icon-large"></i>VB Script
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dong-tai-shu-zu.html">
+        <i class="icon-tag icon-large"></i>动态数组
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/win8.html">
+        <i class="icon-tag icon-large"></i>win8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ispf-dialog.html">
+        <i class="icon-tag icon-large"></i>ISPF Dialog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/db2-sqlcode.html">
+        <i class="icon-tag icon-large"></i>DB2 SQLcode
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/tso.html">
+        <i class="icon-tag icon-large"></i>TSO
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/blksize0.html">
+        <i class="icon-tag icon-large"></i>BLKSIZE=0
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/find-all.html">
+        <i class="icon-tag icon-large"></i>FIND ALL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/adsenseshen-qing.html">
+        <i class="icon-tag icon-large"></i>Adsense申请
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/chang-yong-linuxming-ling.html">
+        <i class="icon-tag icon-large"></i>常用linux命令
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>ftp
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>Markdown
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/vmware8.html">
+        <i class="icon-tag icon-large"></i>vmware8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/intrdr.html">
+        <i class="icon-tag icon-large"></i>INTRDR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/zai-xian-hao-dong-xi.html">
+        <i class="icon-tag icon-large"></i>在线好东西
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/hercules.html">
+        <i class="icon-tag icon-large"></i>Hercules
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/watir.html">
+        <i class="icon-tag icon-large"></i>Watir
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/heroku.html">
+        <i class="icon-tag icon-large"></i>Heroku
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/octopress.html">
+        <i class="icon-tag icon-large"></i>Octopress
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/backtrack.html">
+        <i class="icon-tag icon-large"></i>Backtrack
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/rpm.html">
+        <i class="icon-tag icon-large"></i>RPM
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/procmu-lu.html">
+        <i class="icon-tag icon-large"></i>proc目录
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/datacom.html">
+        <i class="icon-tag icon-large"></i>DATACOM
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sysda.html">
+        <i class="icon-tag icon-large"></i>SYSDA
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+	var pageTracker = _gat._getTracker("UA-56516196-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+    var disqus_shortname = 'mainframer';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://mainframer.github.io/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://mainframer.github.io/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
