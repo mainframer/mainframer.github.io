@@ -5,30 +5,37 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/index.html</loc>
-<lastmod>2014-11-25T20:51:37-00:00</lastmod>
+<lastmod>2014-11-30T19:42:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/archives.html</loc>
-<lastmod>2014-11-25T20:51:37-00:00</lastmod>
+<lastmod>2014-11-30T19:42:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tags.html</loc>
-<lastmod>2014-11-25T20:51:37-00:00</lastmod>
+<lastmod>2014-11-30T19:42:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/categories.html</loc>
-<lastmod>2014-11-25T20:51:37-00:00</lastmod>
+<lastmod>2014-11-30T19:42:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://mainframer.github.io/articles/(译) WSGI基础知识.html</loc>
+<lastmod>2014-11-18T00:00:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -1146,7 +1153,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/category/python.html</loc>
-<lastmod>2014-11-16T00:00:00+08:06</lastmod>
+<lastmod>2014-11-18T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1173,8 +1180,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://mainframer.github.io/tag/loadparm.html</loc>
-<lastmod>2010-06-04T00:00:00+08:06</lastmod>
+<loc>http://mainframer.github.io/tag/wsgi.html</loc>
+<lastmod>2014-11-18T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1182,6 +1189,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://mainframer.github.io/tag/myentunnel.html</loc>
 <lastmod>2011-08-01T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://mainframer.github.io/tag/loadparm.html</loc>
+<lastmod>2010-06-04T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1803,8 +1817,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://mainframer.github.io/tag/jcl-email.html</loc>
-<lastmod>2012-03-13T00:00:00+08:06</lastmod>
+<loc>http://mainframer.github.io/tag/ibus.html</loc>
+<lastmod>2011-03-06T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -1908,8 +1922,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://mainframer.github.io/tag/ibus.html</loc>
-<lastmod>2011-03-06T00:00:00+08:06</lastmod>
+<loc>http://mainframer.github.io/tag/jcl-email.html</loc>
+<lastmod>2012-03-13T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -2161,7 +2175,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/author/mainframer.html</loc>
-<lastmod>2014-11-17T00:00:00+08:06</lastmod>
+<lastmod>2014-11-18T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

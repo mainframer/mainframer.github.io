@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>vmware8下给windows8安装vmware tools</title>
+    <title>不只是Mainframer - WSGI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="mainframer">
@@ -84,7 +84,7 @@
 						<i class="icon-folder-open icon-large"></i>Mainframe
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="http://mainframer.github.io/category/others.html">
 						<i class="icon-folder-open icon-large"></i>Others
 					</a>
@@ -124,67 +124,45 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-<section id="content">
-        <article>
-                <header>
-                        <h1>
-                                <a href=""
-                                        rel="bookmark"
-                                        title="Permalink to vmware8下给windows8安装vmware tools">
-                                        vmware8下给windows8安装vmware tools
-                                </a>
-                        </h1>
-                </header>
-                <div class="entry-content">
-                <div class="well">
-<footer class="post-info">
+        <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/(译) WSGI基础知识.html">(译) WSGI基础知识</a></h1>
+                <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2011-09-17T00:00:00">
-        <i class="icon-calendar"></i>2011-09-17
+<abbr class="published" title="2014-11-18T00:00:00">
+        <i class="icon-calendar"></i>2014-11-18
 </abbr>
 <span class="label">By</span>
 <a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
 <span class="label">Category</span>
-<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
+<a href="http://mainframer.github.io/category/python.html"><i class="icon-folder-open"></i>Python</a>.
 
 
 <span class="label">Tags</span>
-	<a href="http://mainframer.github.io/tag/vmware8.html"><i class="icon-tag"></i>vmware8</a>
-	<a href="http://mainframer.github.io/tag/win8.html"><i class="icon-tag"></i>win8</a>
-</footer><!-- /.post-info -->                </div>
-                <p>昨晚在Vmware8下安装了windows8，今天打开发现没有声音。晕，竟然忘了安装<code>Vmware tool</code>了！这里先说一下安装<code>VMware tool</code>有什么好处：</p>
+	<a href="http://mainframer.github.io/tag/wsgi.html"><i class="icon-tag"></i>WSGI</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>WSGI 基础知识</h2>
+<blockquote>
+<p>翻译自<code>Basics of WSGI</code> <a href="http://agiliq.com/blog/2013/07/basics-wsgi/">http://agiliq.com/blog/2013/07/basics-wsgi/</a></p>
+</blockquote>
+<p>在这篇文章里，我们将会写一个web app，这个app它会服务一些url。我们将不会使用任何Python框架来写它。我们只是去说明一下这些机制的背后原理。</p>
+<p>在开始写这个web app之前，我们先来澄清几个下文将要用到的术语。</p>
 <ul>
-<li>解决windows8在vmware8下没有声音的问题；</li>
-<li>解决不能在自身系统和虚拟机vmware8之间拷贝，粘贴，移动数据和文件的问题；</li>
-<li>解决共享文件夹在vmware8的windows8下不能使用的问题；</li>
-<li>其他好处；</li>
+<li>
+<p><strong>Web服务器(Web Server)</strong>: 当我们说Web 服务器时，我们指的是软件，而不是那些存储你代码的硬件机器。这个服务器会接收从客户端(Web浏览器)发送过来的请求并返回一个响应(response)。Web服务器本身并不创建响应，它只负责返回响应。所以，Web服务器就需要同Web应用程序交流，因为Web应用程序它能产生响应。</p>
+</li>
+<li>
+<p><strong>Web应用程序(Web Application)</strong>:Web服务器从它这里拿到响应。Web Application的职责就是根据url来创建响应并将响应传回给Web服务器。然后Web服务器就只是返回这个响应到客户端而已。</p>
+</li>
+<li>
+<p><strong>WSGI</strong>: WSGI是一个接口，它只是一份规范或者说是一系列的规则。WSIG不是一个软件。</p>
+</li>
 </ul>
-<h5>下面简单的说说如何在Vmware8下为<code>window8-dev-preview(开发者预览版)</code>安装<code>vmware tool</code>。</h5>
-<p><strong>1、</strong> 安装完<code>VMware Workstation 8.0.0.471780</code>之后，在安装目录下自带了适合各个系统的<code>vmware tools</code>，这里我们当然选用<code>windows.iso</code>啦！在<em>windows8</em>虚拟机设置的光盘(CD/DVD)设置里面输入<code>windows.iso</code>的路径，比如我的是：<code>D:\SOFTWARE\VMWARE\windows.iso</code>，勾选：<code>Connected at Power on</code>，启动windows8系统；
-<img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8.jpg" />          </p>
-<p><strong>2、</strong> 进入windows8--&gt;Desktop--&gt;Computer，发现虚拟光驱以正确加载，你要做的就是双击光盘里面的setup，安装vmware tool就可以了。
-<img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-preview.jpg" />     </p>
-<p><strong>3、</strong> 重启系统，发现windows8声音有了，可以自由在虚拟机和电脑之间移动传输数据了，可以自由设置共享文件夹了(<em>如下图所示</em>)，虚拟机和电脑之间的共享文件夹可以点击图上面的"Map Network Drive"来实现。
-<img alt="1" src="./../images/vmware8-install-vmware-tool-for-windows8-share-folder.jpg" />        </p>
-<p>自此，windows8在vmware虚拟机下面没有声音等系列问题得到解决。<br />
-(如果本文对你有帮助，欢迎收藏转载，谢谢)</p>
-                </div><!-- /.entry-content -->
-                <div class="comments">
-                <h2>Comments !</h2>
-                        <div id="disqus_thread"></div>
-                        <script type="text/javascript">
-                           var disqus_identifier = "articles/vmware8下给windows8安装vmware tools.html";
-                           (function() {
-                                var dsq = document.createElement('script');
-                                dsq.type = 'text/javascript'; dsq.async = true;
-                                dsq.src = 'http://mainframer.disqus.com/embed.js';
-                                (document.getElementsByTagName('head')[0] ||
-                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
-                          })();
-                        </script>
+<p>WSGI会引起人们的注意是因为Web服务器需要跟Web应用程序通信 ...</p>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/(译) WSGI基础知识.html">more ...</a>
                 </div>
-        </article>
-</section>
+        </div>
+        <hr />
+
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
