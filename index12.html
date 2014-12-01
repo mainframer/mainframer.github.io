@@ -125,6 +125,55 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html">IBM主机技术一本通笔记续</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-08-21T00:00:00">
+        <i class="icon-calendar"></i>2011-08-21
+</abbr>
+<span class="label">By</span>
+<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
+<span class="label">Category</span>
+<a href="http://mainframer.github.io/category/mainframe.html"><i class="icon-folder-open"></i>Mainframe</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://mainframer.github.io/tag/zos.html"><i class="icon-tag"></i>z/OS</a>
+	<a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html"><i class="icon-tag"></i>主机一本通</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h5>1、JCL每行80列</h5>
+<p>原来这是因为在1960年那个年代，程序员使用的是穿孔卡片来将JCL作业控制语句一个一个的输入系统，构成了批量作业，而当时穿孔卡片只有80列。</p>
+<h5>2、JOB语句的关键字参数</h5>
+<p>ADDRSPC 
+<span style="color: #ff00ff;">REGION</span> <br />
+<span style="color: #ff00ff;">MSGCLASS</span> <br />
+SECLABEL <br />
+<span style="color: #ff00ff;">PASSWORD</span><br />
+BYTES   <br />
+<span style="color: #ff00ff;">CLASS</span> <br />
+RD MSGLEVEL <br />
+<span style="color: #ff00ff;">TIME</span> <br />
+PERFORM PAGES <br />
+<span style="color: #ff00ff;">COND</span> <br />
+LINES <br />
+CARDS <br />
+TYPRUN <br />
+PRTY <br />
+SCHENV <br />
+GROUP <br />
+<span style="color: #ff00ff;">RESTART</span> <br />
+<span style="color: #ff00ff;">NOTIFY</span> <br />
+<span style="color: #ff00ff;">USER</span> CCSID<br />
+标有颜色的几个是我自己比较常用到的。<br />
+上张包含了这9个常用JCL关键字参数的图(当然，平常工作当中一般不可能在单个JCL当中都包含了所有的这9个关键字，我这里只是为了更好的说明才把它们罗列在一个JCL里面的，这点要明白)
+<a href="./../images/JCL-keyword1.jpg">!</a>  <br />
+<strong><code>CLASS</code></strong> : 是作业运行队列的优先级，MSGCLASS是作业输出信息的级别，它规定了作业输出信息送往哪里显示。CLASS和MSGCLASS都是公司规定好了的，肯定有文档可以查看具体信息的。</p>
+<p><strong><code>NOTIFY</code></strong>:  是指最终作业运行的结果通知给谁，可以写详细的ID，比如IBMUSER，也可以写通用的参数，比如<code>&amp;SYSUID ...</code></p>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/IBM主机技术一本通笔记续.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="http://mainframer.github.io/articles/IBM主机技术一本通.html">IBM主机技术一本通</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -382,41 +431,6 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="http://mainframer.github.io/articles/外企email常见英语缩写.html">外企email常见英语缩写</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2011-08-11T00:00:00">
-        <i class="icon-calendar"></i>2011-08-11
-</abbr>
-<span class="label">By</span>
-<a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
-<span class="label">Category</span>
-<a href="http://mainframer.github.io/category/others.html"><i class="icon-folder-open"></i>Others</a>.
-
-
-<span class="label">Tags</span>
-	<a href="http://mainframer.github.io/tag/wai-qi-email.html"><i class="icon-tag"></i>外企email</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>说几个在外企工作跟老外email或者聊天工具中常用的英语缩写： 
-<code>AFAIK</code>：as far as I know<br />
-<code>APP</code>： application    <br />
-<code>ASAP</code>： As soon as possible    <br />
-<code>ATB</code>：all the best <br />
-<code>BTW</code>： by the way    <br />
-<code>Biz</code>： business    <br />
-<code>B4</code>：before  <br />
-<code>CC</code>：carbon copy(抄送)    <br />
-<code>CUZ</code>： because    <br />
-<code>FAQ</code>：frequently asked questions    <br />
-<code>FE</code>： for example  <br />
-<code>FTF</code>： face to face    <br />
-<code>FYI</code>： for your information     <br />
-<code>F2T</code>：free to ...</p>
-                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/外企email常见英语缩写.html">more ...</a>
-                </div>
-        </div>
-        <hr />
 
         <div class="pagination">
         <ul>
@@ -501,183 +515,28 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/fen-ge-da-wen-jian.html">
-        <i class="icon-tag icon-large"></i>分割大文件
+    <a href="http://mainframer.github.io/tag/jcl-fan-hui-ma.html">
+        <i class="icon-tag icon-large"></i>JCL 返回码
     </a>
 </li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/vmware8.html">
-        <i class="icon-tag icon-large"></i>vmware8
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/rpm.html">
-        <i class="icon-tag icon-large"></i>RPM
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/gdg.html">
+        <i class="icon-tag icon-large"></i>GDG
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/tor.html">
-        <i class="icon-tag icon-large"></i>TOR
+    <a href="http://mainframer.github.io/tag/wai-qi-email.html">
+        <i class="icon-tag icon-large"></i>外企email
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/blksize0.html">
-        <i class="icon-tag icon-large"></i>BLKSIZE=0
+    <a href="http://mainframer.github.io/tag/chrome.html">
+        <i class="icon-tag icon-large"></i>chrome
     </a>
 </li>
 <li class="tag-4">
     <a href="http://mainframer.github.io/tag/kde.html">
         <i class="icon-tag icon-large"></i>KDE
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/pcomm.html">
-        <i class="icon-tag icon-large"></i>PCOMM
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://mainframer.github.io/tag/watir.html">
-        <i class="icon-tag icon-large"></i>Watir
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/arithextend.html">
-        <i class="icon-tag icon-large"></i>ARITH(EXTEND)
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/copybook.html">
-        <i class="icon-tag icon-large"></i>Copybook
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/proxy-switchy.html">
-        <i class="icon-tag icon-large"></i>proxy switchy
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/zai-xian-hao-dong-xi.html">
-        <i class="icon-tag icon-large"></i>在线好东西
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/genlist.html">
-        <i class="icon-tag icon-large"></i>genlist
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://mainframer.github.io/tag/backtrack.html">
-        <i class="icon-tag icon-large"></i>Backtrack
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/cics.html">
-        <i class="icon-tag icon-large"></i>CICS
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/srchfor.html">
-        <i class="icon-tag icon-large"></i>SRCHFOR
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/shen-tou-ce-shi.html">
-        <i class="icon-tag icon-large"></i>渗透测试
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/linuxying-jian.html">
-        <i class="icon-tag icon-large"></i>Linux硬件
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/dnsdict6.html">
-        <i class="icon-tag icon-large"></i>dnsdict6
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/find-all.html">
-        <i class="icon-tag icon-large"></i>FIND ALL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/cebr.html">
-        <i class="icon-tag icon-large"></i>CEBR
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/tsq.html">
-        <i class="icon-tag icon-large"></i>TSQ
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/jclpi-liang-zhu-shi.html">
-        <i class="icon-tag icon-large"></i>JCL批量注释
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/markdown.html">
-        <i class="icon-tag icon-large"></i>Markdown
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/hercules.html">
-        <i class="icon-tag icon-large"></i>Hercules
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/pli.html">
-        <i class="icon-tag icon-large"></i>PLI
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/ispftong-pei-fu.html">
-        <i class="icon-tag icon-large"></i>ISPF通配符
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://mainframer.github.io/tag/rexx.html">
-        <i class="icon-tag icon-large"></i>rexx
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/backtrack5-r1.html">
-        <i class="icon-tag icon-large"></i>BackTrack5 R1
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/cobol.html">
-        <i class="icon-tag icon-large"></i>COBOL
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/ssh.html">
-        <i class="icon-tag icon-large"></i>ssh
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/goto.html">
-        <i class="icon-tag icon-large"></i>GOTO
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/datacom.html">
-        <i class="icon-tag icon-large"></i>DATACOM
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/wsgi.html">
-        <i class="icon-tag icon-large"></i>WSGI
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/changeman.html">
-        <i class="icon-tag icon-large"></i>Changeman
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">
-        <i class="icon-tag icon-large"></i>ssh翻墙
     </a>
 </li>
 <li class="tag-4">
@@ -686,28 +545,48 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/ikj56400a.html">
-        <i class="icon-tag icon-large"></i>IKJ56400A
+    <a href="http://mainframer.github.io/tag/ispftong-pei-fu.html">
+        <i class="icon-tag icon-large"></i>ISPF通配符
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/ti-jiao-alexa.html">
-        <i class="icon-tag icon-large"></i>提交Alexa
+    <a href="http://mainframer.github.io/tag/stardict.html">
+        <i class="icon-tag icon-large"></i>stardict
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sql.html">
+        <i class="icon-tag icon-large"></i>SQL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sshfan-qiang.html">
+        <i class="icon-tag icon-large"></i>ssh翻墙
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://mainframer.github.io/tag/python.html">
-        <i class="icon-tag icon-large"></i>Python
+    <a href="http://mainframer.github.io/tag/file-manager.html">
+        <i class="icon-tag icon-large"></i>File Manager
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/copybook.html">
+        <i class="icon-tag icon-large"></i>Copybook
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/arithextend.html">
+        <i class="icon-tag icon-large"></i>ARITH(EXTEND)
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/backtrack.html">
+        <i class="icon-tag icon-large"></i>Backtrack
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://mainframer.github.io/tag/win8.html">
-        <i class="icon-tag icon-large"></i>win8
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/requests.html">
-        <i class="icon-tag icon-large"></i>requests
+    <a href="http://mainframer.github.io/tag/octopress.html">
+        <i class="icon-tag icon-large"></i>Octopress
     </a>
 </li>
 <li class="tag-3">
@@ -716,18 +595,48 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://mainframer.github.io/tag/github-pages.html">
-        <i class="icon-tag icon-large"></i>GitHub Pages
+    <a href="http://mainframer.github.io/tag/pli.html">
+        <i class="icon-tag icon-large"></i>PLI
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/duo-xing-zi-fu-chuan.html">
-        <i class="icon-tag icon-large"></i>多行字符串
+    <a href="http://mainframer.github.io/tag/procmu-lu.html">
+        <i class="icon-tag icon-large"></i>proc目录
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://mainframer.github.io/tag/tso.html">
-        <i class="icon-tag icon-large"></i>TSO
+    <a href="http://mainframer.github.io/tag/ispf-dialog.html">
+        <i class="icon-tag icon-large"></i>ISPF Dialog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/wsgi.html">
+        <i class="icon-tag icon-large"></i>WSGI
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>Markdown
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/tor.html">
+        <i class="icon-tag icon-large"></i>TOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cicsming-ling.html">
+        <i class="icon-tag icon-large"></i>CICS命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jts.html">
+        <i class="icon-tag icon-large"></i>jts
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/db2-sqlcode.html">
+        <i class="icon-tag icon-large"></i>DB2 SQLcode
     </a>
 </li>
 <li class="tag-4">
@@ -735,14 +644,269 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
         <i class="icon-tag icon-large"></i>S000 U4088
     </a>
 </li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/changeman.html">
+        <i class="icon-tag icon-large"></i>Changeman
+    </a>
+</li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/for.html">
-        <i class="icon-tag icon-large"></i>FOR
+    <a href="http://mainframer.github.io/tag/logging.html">
+        <i class="icon-tag icon-large"></i>Logging
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/octotree.html">
+        <i class="icon-tag icon-large"></i>Octotree
+    </a>
+</li>
+<li class="tag-1">
+    <a href="http://mainframer.github.io/tag/zos.html">
+        <i class="icon-tag icon-large"></i>z/OS
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/watir.html">
+        <i class="icon-tag icon-large"></i>Watir
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">
-        <i class="icon-tag icon-large"></i>主机一本通
+    <a href="http://mainframer.github.io/tag/cobol.html">
+        <i class="icon-tag icon-large"></i>COBOL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/jclpi-liang-zhu-shi.html">
+        <i class="icon-tag icon-large"></i>JCL批量注释
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/heroku.html">
+        <i class="icon-tag icon-large"></i>Heroku
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/zai-xian-hao-dong-xi.html">
+        <i class="icon-tag icon-large"></i>在线好东西
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cebr.html">
+        <i class="icon-tag icon-large"></i>CEBR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/sysda.html">
+        <i class="icon-tag icon-large"></i>SYSDA
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/nmap.html">
+        <i class="icon-tag icon-large"></i>nmap
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/quote-site.html">
+        <i class="icon-tag icon-large"></i>quote site
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">
+        <i class="icon-tag icon-large"></i>Linux挂载
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/backtrack5-r1.html">
+        <i class="icon-tag icon-large"></i>BackTrack5 R1
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/coboljie-gou.html">
+        <i class="icon-tag icon-large"></i>COBOL结构
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/find-all.html">
+        <i class="icon-tag icon-large"></i>FIND ALL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/qwming-ling.html">
+        <i class="icon-tag icon-large"></i>QW命令
+    </a>
+</li>
+<li class="tag-2">
+    <a href="http://mainframer.github.io/tag/debug-tool.html">
+        <i class="icon-tag icon-large"></i>Debug Tool
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/loadparm.html">
+        <i class="icon-tag icon-large"></i>LoadParm
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/requests.html">
+        <i class="icon-tag icon-large"></i>requests
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/intrdr.html">
+        <i class="icon-tag icon-large"></i>INTRDR
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/win8.html">
+        <i class="icon-tag icon-large"></i>win8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/dong-tai-shu-zu.html">
+        <i class="icon-tag icon-large"></i>动态数组
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxying-jian.html">
+        <i class="icon-tag icon-large"></i>Linux硬件
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linuxmu-lu-jie-gou.html">
+        <i class="icon-tag icon-large"></i>Linux目录结构
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/cobolgui-ze.html">
+        <i class="icon-tag icon-large"></i>COBOL规则
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/cics.html">
+        <i class="icon-tag icon-large"></i>CICS
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ti-jiao-alexa.html">
+        <i class="icon-tag icon-large"></i>提交Alexa
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/goto.html">
+        <i class="icon-tag icon-large"></i>GOTO
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/vmware8.html">
+        <i class="icon-tag icon-large"></i>vmware8
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/fen-ge-da-wen-jian.html">
+        <i class="icon-tag icon-large"></i>分割大文件
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/blksize0.html">
+        <i class="icon-tag icon-large"></i>BLKSIZE=0
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/tso.html">
+        <i class="icon-tag icon-large"></i>TSO
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/github-pages.html">
+        <i class="icon-tag icon-large"></i>GitHub Pages
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/proxy-switchy.html">
+        <i class="icon-tag icon-large"></i>proxy switchy
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/icetool.html">
+        <i class="icon-tag icon-large"></i>ICETOOL
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/hercules.html">
+        <i class="icon-tag icon-large"></i>Hercules
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ssh.html">
+        <i class="icon-tag icon-large"></i>ssh
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/trigger-job.html">
+        <i class="icon-tag icon-large"></i>trigger job
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/dataset.html">
+        <i class="icon-tag icon-large"></i>dataset
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/ikj56400a.html">
+        <i class="icon-tag icon-large"></i>IKJ56400A
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/adsenseshen-qing.html">
+        <i class="icon-tag icon-large"></i>Adsense申请
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/chang-yong-linuxming-ling.html">
+        <i class="icon-tag icon-large"></i>常用linux命令
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/vb-script.html">
+        <i class="icon-tag icon-large"></i>VB Script
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/rpm.html">
+        <i class="icon-tag icon-large"></i>RPM
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/iceman.html">
+        <i class="icon-tag icon-large"></i>ICEMAN
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/ftp.html">
+        <i class="icon-tag icon-large"></i>ftp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/genlist.html">
+        <i class="icon-tag icon-large"></i>genlist
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/undo.html">
+        <i class="icon-tag icon-large"></i>UNDO
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/srchfor.html">
+        <i class="icon-tag icon-large"></i>SRCHFOR
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/da-xing-ji.html">
+        <i class="icon-tag icon-large"></i>大型机
     </a>
 </li>
 <li class="tag-4">
@@ -756,73 +920,18 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/zi-dong-hua.html">
-        <i class="icon-tag icon-large"></i>自动化
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/linuxgua-zai.html">
-        <i class="icon-tag icon-large"></i>Linux挂载
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/octotree.html">
-        <i class="icon-tag icon-large"></i>Octotree
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/icetool.html">
-        <i class="icon-tag icon-large"></i>ICETOOL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/intrdr.html">
-        <i class="icon-tag icon-large"></i>INTRDR
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/stardict.html">
-        <i class="icon-tag icon-large"></i>stardict
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/sysda.html">
-        <i class="icon-tag icon-large"></i>SYSDA
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/heroku.html">
-        <i class="icon-tag icon-large"></i>Heroku
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/ispf-dialog.html">
-        <i class="icon-tag icon-large"></i>ISPF Dialog
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/db2-sqlcode.html">
-        <i class="icon-tag icon-large"></i>DB2 SQLcode
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/ftp.html">
-        <i class="icon-tag icon-large"></i>ftp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/vb-script.html">
-        <i class="icon-tag icon-large"></i>VB Script
+    <a href="http://mainframer.github.io/tag/dnsdict6.html">
+        <i class="icon-tag icon-large"></i>dnsdict6
     </a>
 </li>
 <li class="tag-2">
-    <a href="http://mainframer.github.io/tag/debug-tool.html">
-        <i class="icon-tag icon-large"></i>Debug Tool
+    <a href="http://mainframer.github.io/tag/rexx.html">
+        <i class="icon-tag icon-large"></i>rexx
     </a>
 </li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/adsenseshen-qing.html">
-        <i class="icon-tag icon-large"></i>Adsense申请
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
     </a>
 </li>
 <li class="tag-3">
@@ -831,48 +940,8 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/dong-tai-shu-zu.html">
-        <i class="icon-tag icon-large"></i>动态数组
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/procmu-lu.html">
-        <i class="icon-tag icon-large"></i>proc目录
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/jcl-fan-hui-ma.html">
-        <i class="icon-tag icon-large"></i>JCL 返回码
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/superc.html">
-        <i class="icon-tag icon-large"></i>SuperC
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/dataset.html">
-        <i class="icon-tag icon-large"></i>dataset
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/sql.html">
-        <i class="icon-tag icon-large"></i>SQL
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/chrome.html">
-        <i class="icon-tag icon-large"></i>chrome
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/quote-site.html">
-        <i class="icon-tag icon-large"></i>quote site
-    </a>
-</li>
-<li class="tag-2">
-    <a href="http://mainframer.github.io/tag/gdg.html">
-        <i class="icon-tag icon-large"></i>GDG
+    <a href="http://mainframer.github.io/tag/datacom.html">
+        <i class="icon-tag icon-large"></i>DATACOM
     </a>
 </li>
 <li class="tag-2">
@@ -880,99 +949,34 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
         <i class="icon-tag icon-large"></i>ISPF
     </a>
 </li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/myentunnel.html">
-        <i class="icon-tag icon-large"></i>myEntunnel
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/shen-tou-ce-shi.html">
+        <i class="icon-tag icon-large"></i>渗透测试
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/logging.html">
-        <i class="icon-tag icon-large"></i>Logging
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/da-xing-ji.html">
-        <i class="icon-tag icon-large"></i>大型机
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/chang-yong-linuxming-ling.html">
-        <i class="icon-tag icon-large"></i>常用linux命令
+    <a href="http://mainframer.github.io/tag/tsq.html">
+        <i class="icon-tag icon-large"></i>TSQ
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://mainframer.github.io/tag/shutil.html">
-        <i class="icon-tag icon-large"></i>Shutil
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/jts.html">
-        <i class="icon-tag icon-large"></i>jts
+    <a href="http://mainframer.github.io/tag/zhu-ji-yi-ben-tong.html">
+        <i class="icon-tag icon-large"></i>主机一本通
     </a>
 </li>
 <li class="tag-3">
-    <a href="http://mainframer.github.io/tag/octopress.html">
-        <i class="icon-tag icon-large"></i>Octopress
+    <a href="http://mainframer.github.io/tag/pcomm.html">
+        <i class="icon-tag icon-large"></i>PCOMM
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/loadparm.html">
-        <i class="icon-tag icon-large"></i>LoadParm
+    <a href="http://mainframer.github.io/tag/for.html">
+        <i class="icon-tag icon-large"></i>FOR
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/trigger-job.html">
-        <i class="icon-tag icon-large"></i>trigger job
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/linuxmu-lu-jie-gou.html">
-        <i class="icon-tag icon-large"></i>Linux目录结构
-    </a>
-</li>
-<li class="tag-1">
-    <a href="http://mainframer.github.io/tag/zos.html">
-        <i class="icon-tag icon-large"></i>z/OS
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/coboljie-gou.html">
-        <i class="icon-tag icon-large"></i>COBOL结构
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/undo.html">
-        <i class="icon-tag icon-large"></i>UNDO
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/wai-qi-email.html">
-        <i class="icon-tag icon-large"></i>外企email
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/file-manager.html">
-        <i class="icon-tag icon-large"></i>File Manager
-    </a>
-</li>
-<li class="tag-3">
-    <a href="http://mainframer.github.io/tag/iceman.html">
-        <i class="icon-tag icon-large"></i>ICEMAN
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/batpi-chu-li.html">
-        <i class="icon-tag icon-large"></i>BAT批处理
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/qwming-ling.html">
-        <i class="icon-tag icon-large"></i>QW命令
-    </a>
-</li>
-<li class="tag-4">
-    <a href="http://mainframer.github.io/tag/linux.html">
-        <i class="icon-tag icon-large"></i>Linux
+    <a href="http://mainframer.github.io/tag/zi-dong-hua.html">
+        <i class="icon-tag icon-large"></i>自动化
     </a>
 </li>
 <li class="tag-4">
@@ -981,8 +985,8 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/nmap.html">
-        <i class="icon-tag icon-large"></i>nmap
+    <a href="http://mainframer.github.io/tag/superc.html">
+        <i class="icon-tag icon-large"></i>SuperC
     </a>
 </li>
 <li class="tag-3">
@@ -991,13 +995,23 @@ root@bt:/proc# l <code>lspci -vvv ...</code></p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/cobolgui-ze.html">
-        <i class="icon-tag icon-large"></i>COBOL规则
+    <a href="http://mainframer.github.io/tag/myentunnel.html">
+        <i class="icon-tag icon-large"></i>myEntunnel
+    </a>
+</li>
+<li class="tag-3">
+    <a href="http://mainframer.github.io/tag/shutil.html">
+        <i class="icon-tag icon-large"></i>Shutil
     </a>
 </li>
 <li class="tag-4">
-    <a href="http://mainframer.github.io/tag/cicsming-ling.html">
-        <i class="icon-tag icon-large"></i>CICS命令
+    <a href="http://mainframer.github.io/tag/batpi-chu-li.html">
+        <i class="icon-tag icon-large"></i>BAT批处理
+    </a>
+</li>
+<li class="tag-4">
+    <a href="http://mainframer.github.io/tag/duo-xing-zi-fu-chuan.html">
+        <i class="icon-tag icon-large"></i>多行字符串
     </a>
 </li>
 

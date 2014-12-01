@@ -1,5 +1,618 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PGM=ICET00L</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/mainframer.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-11-19T00:00:00+08:00</updated><entry><title>(译) 迭代器和生成器</title><link href="http://mainframer.github.io/articles/(%E8%AF%91)%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8.html" rel="alternate"></link><updated>2014-11-19T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-19:articles/(译) 迭代器和生成器.html</id><summary type="html">&lt;h2&gt;迭代器和生成器&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PGM=ICET00L</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/mainframer.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2014-12-01T00:00:00+08:00</updated><entry><title>(译) 几分钟学习一门编程语言之Python篇 (最新版)</title><link href="http://mainframer.github.io/articles/(%E8%AF%91)%20%E5%87%A0%E5%88%86%E9%92%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B9%8BPython%E7%AF%87%20(%E6%9C%80%E6%96%B0%E7%89%88).html" rel="alternate"></link><updated>2014-12-01T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-12-01:articles/(译) 几分钟学习一门编程语言之Python篇 (最新版).html</id><summary type="html">&lt;h2&gt;几分钟学习一门编程语言之Python篇 (最新版)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;翻译自 &lt;code&gt;Learn X in Y Minutes: Where X = Python&lt;/code&gt; &lt;a href="https://github.com/adambard/learnxinyminutes-docs/blob/master/python.html.markdown"&gt;Learn X in Y Minutes: Where X = Python&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Python由&lt;code&gt;Guido Van Rossum&lt;/code&gt;发明于90年代初期，是当今最流行的编程语言之一，我深深被它清晰简洁的语法所折服并从此爱上了它。Python的代码之简洁，几乎就是可执行的伪代码。&lt;/p&gt;
+&lt;p&gt;若能提供给我们反馈，将非常欢迎！你可以通过推特@louiedinh或邮箱louiedinh AT gmail来联系我。&lt;/p&gt;
+&lt;p&gt;请注意：本文是专门针对Python 2.7的，但应该同样也适用于Python 2.x的。至于 Python 3.x，请阅读我们最新的指南 &lt;a href="https://github.com/adambard/learnxinyminutes-docs/blob/master/python3.html.markdown"&gt;Learn X in Y Minutes: Where X = Python 3&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# 单行注释以&amp;quot;#&amp;quot;字符开头&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; 我们可以使用三个双引号（&amp;quot;）或单引号（&amp;#39;）来表示多行字符串，这种方法常用来来写多行注释。&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+&lt;span class="c"&gt;## 1. 基本数据类型和操作符&lt;/span&gt;
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+
+&lt;span class="c"&gt;# 数字&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 3&lt;/span&gt;
+
+&lt;span class="c"&gt;# 数学运算跟你想象中的并没有啥不同&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 2&lt;/span&gt;
+&lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 7&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 20&lt;/span&gt;
+&lt;span class="mi"&gt;35&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 7&lt;/span&gt;
+
+&lt;span class="c"&gt;# 除法跟想象中略有不同，它的结果会自动向下取整&lt;/span&gt;
+&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 2&lt;/span&gt;
+
+&lt;span class="c"&gt;# 要想得到我们期望的除法，我们首先需要学习浮点数`floats`&lt;/span&gt;
+&lt;span class="mf"&gt;2.0&lt;/span&gt;     &lt;span class="c"&gt;# This is a float&lt;/span&gt;
+&lt;span class="mf"&gt;11.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;4.0&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 2.75 啊哈...貌似结果好很多了&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用双斜杠&amp;quot;//&amp;quot;做整型数除法，正负数都适用，结果会向下取整&lt;/span&gt;
+&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;     &lt;span class="c"&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class="mf"&gt;5.0&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mf"&gt;3.0&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; 1.0 # 对浮点数同样适用&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; -2&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;5.0&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mf"&gt;3.0&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; -2.0&lt;/span&gt;
+
+&lt;span class="c"&gt;# 取模运算&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; 1&lt;/span&gt;
+
+&lt;span class="c"&gt;# 指数(x的y次方)&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; 16&lt;/span&gt;
+
+&lt;span class="c"&gt;# 使用括号来增强计算的优先顺序&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 8&lt;/span&gt;
+
+&lt;span class="c"&gt;# 布尔运算 &lt;/span&gt;
+&lt;span class="c"&gt;# 注意 &amp;quot;and&amp;quot; 和 &amp;quot;or&amp;quot;大小写敏感&lt;/span&gt;
+&lt;span class="bp"&gt;True&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt; &lt;span class="c"&gt;#=&amp;gt; False&lt;/span&gt;
+&lt;span class="bp"&gt;False&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt; &lt;span class="c"&gt;#=&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 注意ints型跟布尔型的混用&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="c"&gt;#=&amp;gt; 0&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="c"&gt;#=&amp;gt; -5&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt; &lt;span class="c"&gt;#=&amp;gt; True&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt; &lt;span class="c"&gt;#=&amp;gt; False&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt; &lt;span class="c"&gt;#=&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用not来否定&lt;/span&gt;
+&lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+&lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 表示相等用&amp;quot;==&amp;quot;&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+
+&lt;span class="c"&gt;# 表示不等用&amp;quot;!=&amp;quot;&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 更多比较操作&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 比较可以是级联的!&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+
+&lt;span class="c"&gt;# 创建字符串用双引号“或者单引号&amp;#39;都行&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;This is a string.&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;#39;This is also a string.&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 字符串也可以相加！&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;Hello &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;world!&amp;quot;&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; &amp;quot;Hello world!&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# ... 又或者相乘&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; &amp;quot;HelloHelloHello&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 字符串可以被认为是一系列字符组成的列表(list)&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;This is a string&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; &amp;#39;T&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 百分号 % 用来格式化输出字符串&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; can be &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;strings&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;interpolated&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# 还有一种新的方式来格式化输出字符串&lt;/span&gt;
+&lt;span class="c"&gt;# 我们推荐用这种方式&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;{0} can be {1}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;strings&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;formatted&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# 如果你不喜欢用数字，也可以使用关键字参数&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;{name} wants to eat {food}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;lasagna&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# None也是一个对象&lt;/span&gt;
+&lt;span class="bp"&gt;None&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; None&lt;/span&gt;
+
+&lt;span class="c"&gt;# 千万不要使用&amp;quot;==&amp;quot;来对一个对象和None作比较&lt;/span&gt;
+&lt;span class="c"&gt;# 正确的方法是用 &amp;quot;is&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;etc&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+&lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# &amp;#39;is&amp;#39; 操作符用来比较俩对象的标识符(译者注:即内存地址)&lt;/span&gt;
+&lt;span class="c"&gt;# 它对于普通的数值比较不管用&lt;/span&gt;
+&lt;span class="c"&gt;# 但在处理对象比较时则很有用&lt;/span&gt;
+
+&lt;span class="c"&gt;# None, 0, 还有空字符串/列表在布尔运算中值都为False &lt;/span&gt;
+&lt;span class="c"&gt;# 除此之外的其他值的布尔运算结果都是True&lt;/span&gt;
+&lt;span class="nb"&gt;bool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+&lt;span class="nb"&gt;bool&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+
+
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+&lt;span class="c"&gt;## 2. 变量和集合&lt;/span&gt;
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+
+&lt;span class="c"&gt;# 在所有2.x版本中，Python有一个print语句，但在Python 3里面被移除了&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;I&amp;#39;m Python. Nice to meet you!&amp;quot;&lt;/span&gt;
+&lt;span class="c"&gt;# Python还有一个print函数，只在python 2.7和python 3中有 &lt;/span&gt;
+&lt;span class="c"&gt;# 但是对于Python 2.7，你需要添加import(去掉前面的注释):&lt;/span&gt;
+&lt;span class="c"&gt;# from __future__ import print_function&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;I&amp;#39;m also Python! &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# 给变量赋值前，无需事先声明&lt;/span&gt;
+&lt;span class="n"&gt;some_var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;    &lt;span class="c"&gt;# 变量的命名规范是用小写字母加下划线( lower_case_with_underscores)&lt;/span&gt;
+&lt;span class="n"&gt;some_var&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 5&lt;/span&gt;
+
+&lt;span class="c"&gt;# 试图访问没有赋值的变量会抛出异常&lt;/span&gt;
+&lt;span class="c"&gt;# 参考”流程控制“部分来学习更多关于异常处理&lt;/span&gt;
+&lt;span class="n"&gt;some_other_var&lt;/span&gt;  &lt;span class="c"&gt;# 会抛出一个NameError异常&lt;/span&gt;
+
+&lt;span class="c"&gt;# if可以作为表达式使用&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;yahoo!&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; &amp;quot;yahoo!&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 列表(Lists)用于存储一个序列(sequences）&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="c"&gt;# 你可以从一个预先填充好的列表开始&lt;/span&gt;
+&lt;span class="n"&gt;other_li&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用append方法往列表末尾添加元素&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c"&gt;# li is now [1]&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c"&gt;# li is now [1, 2]&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c"&gt;# li is now [1, 2, 4]&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c"&gt;# li is now [1, 2, 4, 3]&lt;/span&gt;
+&lt;span class="c"&gt;# 用pop方法将元素从列表末尾删除&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;        &lt;span class="c"&gt;# =&amp;gt; 返回3，li现在为[1, 2, 4]&lt;/span&gt;
+&lt;span class="c"&gt;# 让我们加回去&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c"&gt;# li现在又变回了[1, 2, 4, 3]&lt;/span&gt;
+
+&lt;span class="c"&gt;# 像访问任何数组一样访问列表的元素&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class="c"&gt;# 用等号&amp;quot;=&amp;quot;给已经初始化过的列表元素赋新值&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 42&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# 注意：将li[0]的值赋值为原先的值&lt;/span&gt;
+&lt;span class="c"&gt;# 访问列表的最后一个元素的方法&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 3&lt;/span&gt;
+
+&lt;span class="c"&gt;# 访问列表界外的元素会抛出一个IndexError异常&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# 抛出 IndexError&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以使用切片语法来查看列表的一个区间&lt;/span&gt;
+&lt;span class="c"&gt;# （这个范围相当于数学中的左闭右开区间）&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; [2, 4]&lt;/span&gt;
+&lt;span class="c"&gt;# 省略开头&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; [4, 3]&lt;/span&gt;
+&lt;span class="c"&gt;# 省略结尾&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; [1, 2, 4]&lt;/span&gt;
+&lt;span class="c"&gt;# 隔个选择&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[::&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt;[1, 4]&lt;/span&gt;
+&lt;span class="c"&gt;# 将列表反转&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[::&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; [3, 4, 2, 1]&lt;/span&gt;
+&lt;span class="c"&gt;# 用下面的任意组合来完成高级的切片&lt;/span&gt;
+&lt;span class="c"&gt;# li[start:end:step]&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用&amp;quot;del&amp;quot;从列表中删除任意元素&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# li现在是[1, 2, 3]&lt;/span&gt;
+
+&lt;span class="c"&gt;# 列表可以相加&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;other_li&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; [1, 2, 3, 4, 5, 6]&lt;/span&gt;
+&lt;span class="c"&gt;# 注意: li和other_li的元素值并没有被改变&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用&amp;quot;extend()&amp;quot;方法扩展(级联)列表&lt;/span&gt;
+&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;other_li&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# 现在li是[1, 2, 3, 4, 5, 6]&lt;/span&gt;
+
+&lt;span class="c"&gt;# 查看列表中是否存在元素用&amp;quot;in&amp;quot;&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;li&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用&amp;quot;len()&amp;quot;检查列表长度&lt;/span&gt;
+&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;li&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 6&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# 元祖(Tuples)和列表(lists)类似，只是它们&amp;quot;不可变&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;tup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;tup&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class="n"&gt;tup&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="c"&gt;# 抛TypeError异常&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以对元祖操作那些你操作列表的方法&lt;/span&gt;
+&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tup&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 3&lt;/span&gt;
+&lt;span class="n"&gt;tup&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; (1, 2, 3, 4, 5, 6)&lt;/span&gt;
+&lt;span class="n"&gt;tup&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; (1, 2)&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tup&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以将元祖(或者列表)元素分解后赋给几个变量&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;     &lt;span class="c"&gt;# a现在是1, b现在是2， c现在是3&lt;/span&gt;
+&lt;span class="c"&gt;# 如果你省略了括号，则元祖会被自动创建&lt;/span&gt;
+&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="c"&gt;# 现在来瞧瞧交换两个值是多么容易N&lt;/span&gt;
+&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;     &lt;span class="c"&gt;# d现在是5，e现在是 4&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# 字典存储映射表&lt;/span&gt;
+&lt;span class="n"&gt;empty_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="c"&gt;# 这里是一个预先填充的字典&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;one&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;three&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用[]符号查找字典值&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;one&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 1&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用&amp;quot;keys()&amp;quot;方法得到所有的key值&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; [&amp;quot;three&amp;quot;, &amp;quot;two&amp;quot;, &amp;quot;one&amp;quot;]&lt;/span&gt;
+&lt;span class="c"&gt;# 注意 - 字典key的顺序不保证&lt;/span&gt;
+&lt;span class="c"&gt;# 你的结果可能跟这里显示的不完全一致&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用&amp;quot;values()&amp;quot;方法获取列表的所有值&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; [3, 2, 1]&lt;/span&gt;
+&lt;span class="c"&gt;# 注意 - 这里也有上面说的顺序的问题&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用“in”来查找字典里是否含有某个key值&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;one&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filled_dict&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filled_dict&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+
+&lt;span class="c"&gt;# 试图查找不存在的key会抛出一个KeyError异常&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;four&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# KeyError异常&lt;/span&gt;
+
+&lt;span class="c"&gt;# 使用&amp;quot;get()&amp;quot;方法来避免KeyError异常&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;one&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;four&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; None&lt;/span&gt;
+&lt;span class="c"&gt;# 如果值不存在，get还方法支持传入一个默认参数&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;one&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;four&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 4&lt;/span&gt;
+&lt;span class="c"&gt;# 注意filled_dict.get(&amp;quot;four&amp;quot;)还是 =&amp;gt; 4&lt;/span&gt;
+&lt;span class="c"&gt;# (get并没有为字典设置新值)&lt;/span&gt;
+
+&lt;span class="c"&gt;# 为字典的key设置值得语法跟列表类似&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;four&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;  &lt;span class="c"&gt;# now, filled_dict[&amp;quot;four&amp;quot;] =&amp;gt; 4&lt;/span&gt;
+
+&lt;span class="c"&gt;# &amp;quot;setdefault()&amp;quot; 只在给定的key不存在时才往字典里插入值&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setdefault&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;five&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# filled_dict[&amp;quot;five&amp;quot;]的值现在被置为5&lt;/span&gt;
+&lt;span class="n"&gt;filled_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setdefault&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;five&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# filled_dict[&amp;quot;five&amp;quot;]的值仍然是5&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# 集合(Sets)存储的是...呃，集合！(类似列表但是不能包含重复的元素)&lt;/span&gt;
+&lt;span class="n"&gt;empty_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c"&gt;# 用一堆值来初始化一个&amp;quot;set()&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;some_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;   &lt;span class="c"&gt;# some_set现在是set([1, 2, 3, 4])&lt;/span&gt;
+
+&lt;span class="c"&gt;# 即使有时候看起来像是被排序过的，集合并不保证它元素的顺序&lt;/span&gt;
+&lt;span class="n"&gt;another_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  &lt;span class="c"&gt;# another_set现在是set([1, 2, 3, 4])&lt;/span&gt;
+
+&lt;span class="c"&gt;# 从Python 2.7开始, 可以用{}来声明一个集合&lt;/span&gt;
+&lt;span class="n"&gt;filled_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; {1, 2, 3, 4}&lt;/span&gt;
+
+&lt;span class="c"&gt;# 向集合中添加更多元素&lt;/span&gt;
+&lt;span class="n"&gt;filled_set&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# filled_set现在是{1, 2, 3, 4, 5}&lt;/span&gt;
+
+&lt;span class="c"&gt;# 交集运算用：&amp;amp;&lt;/span&gt;
+&lt;span class="n"&gt;other_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;filled_set&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;other_set&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; {3, 4, 5}&lt;/span&gt;
+
+&lt;span class="c"&gt;# 并集运算用：|&lt;/span&gt;
+&lt;span class="n"&gt;filled_set&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;other_set&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; {1, 2, 3, 4, 5, 6}&lt;/span&gt;
+
+&lt;span class="c"&gt;# 差集运算用：-&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; {1, 4}&lt;/span&gt;
+
+&lt;span class="c"&gt;# 检查元素在集合中存在与否用：in&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filled_set&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;filled_set&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; False&lt;/span&gt;
+
+
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+&lt;span class="c"&gt;## 3. 流程控制&lt;/span&gt;
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+
+&lt;span class="c"&gt;# 我们先生成一个变量&lt;/span&gt;
+&lt;span class="n"&gt;some_var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+
+&lt;span class="c"&gt;# 这是一个if语句，python中对齐是非常重要的！&lt;/span&gt;
+&lt;span class="c"&gt;# 输出 &amp;quot;some_var is smaller than 10&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;some_var&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;some_var is totally bigger than 10.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;some_var&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;    &lt;span class="c"&gt;# 这里的elif从句是可选的&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;some_var is smaller than 10.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;           &lt;span class="c"&gt;# 这也是可选的&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;some_var is indeed 10.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;For语句用来对列表进行循环迭代 &lt;/span&gt;
+&lt;span class="sd"&gt;输出:&lt;/span&gt;
+&lt;span class="sd"&gt;    dog is a mammal&lt;/span&gt;
+&lt;span class="sd"&gt;    cat is a mammal&lt;/span&gt;
+&lt;span class="sd"&gt;    mouse is a mammal&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;animal&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;dog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;cat&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;mouse&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="c"&gt;# You can use % to interpolate formatted strings&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; is a mammal&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;animal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;range(number)&amp;quot; 返回一从0到number(不包含)的一列数&lt;/span&gt;
+&lt;span class="sd"&gt;输出:&lt;/span&gt;
+&lt;span class="sd"&gt;    0&lt;/span&gt;
+&lt;span class="sd"&gt;    1&lt;/span&gt;
+&lt;span class="sd"&gt;    2&lt;/span&gt;
+&lt;span class="sd"&gt;    3&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;While循环会一直执行，直到条件不再满足 &lt;/span&gt;
+&lt;span class="sd"&gt;输出:&lt;/span&gt;
+&lt;span class="sd"&gt;    0&lt;/span&gt;
+&lt;span class="sd"&gt;    1&lt;/span&gt;
+&lt;span class="sd"&gt;    2&lt;/span&gt;
+&lt;span class="sd"&gt;    3&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="c"&gt;# Shorthand for x = x + 1&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用try/except语块来处理异常&lt;/span&gt;
+
+&lt;span class="c"&gt;# 适用于Python 2.6或更高版本:&lt;/span&gt;
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c"&gt;# 用&amp;quot;raise&amp;quot;抛出一个异常&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;IndexError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;This is an index error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IndexError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;    &lt;span class="c"&gt;# Pass只是一个啥也不干的空操作，通常你会在这里写些恢复操作的代码 &lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;TypeError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ne"&gt;NameError&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;    &lt;span class="c"&gt;# 如果需要，可以同时处理多个异常&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;   &lt;span class="c"&gt;# 对于try/except语块是可选的，必须跟在所有except语块后面&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;All good!&amp;quot;&lt;/span&gt;   &lt;span class="c"&gt;# 只在try当中的代码没有抛出任何异常时执行&lt;/span&gt;
+
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+&lt;span class="c"&gt;## 4. 函数&lt;/span&gt;
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+
+&lt;span class="c"&gt;# 用&amp;quot;def&amp;quot;创建新的函数&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x is &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; and y is &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;    &lt;span class="c"&gt;# 用return语句返回值&lt;/span&gt;
+
+&lt;span class="c"&gt;# 调用带参数的函数&lt;/span&gt;
+&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt;输出&amp;quot;x is 5 and y is 6&amp;quot; 并返回结果11&lt;/span&gt;
+
+&lt;span class="c"&gt;# 调用函数的另一种方式：利用关键字&lt;/span&gt;
+&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# 关键字参数的顺序是任意的&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以定义位置参数(positional args)个数可变的函数&lt;/span&gt;
+&lt;span class="c"&gt;# 这些位置参数将会被解释成一个元组，如果你不适用*号的话&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;varargs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;
+
+&lt;span class="n"&gt;varargs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; (1, 2, 3)&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# 你可以定义关键字参数(keyword args)可变的函数&lt;/span&gt;
+&lt;span class="c"&gt;# 同样，这些关键字参数将会被解释成一个map,如果你不使用**号的话&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;keyword_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;
+
+&lt;span class="c"&gt;# 让我们调用下，看看发生了什么&lt;/span&gt;
+&lt;span class="n"&gt;keyword_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;foot&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loch&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ness&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; {&amp;quot;big&amp;quot;: &amp;quot;foot&amp;quot;, &amp;quot;loch&amp;quot;: &amp;quot;ness&amp;quot;}&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# 如果愿意，你可以同时使用可变位置参数和可变关键字参数&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;all_the_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;all_the_args(1, 2, a=3, b=4) 会输出:&lt;/span&gt;
+&lt;span class="sd"&gt;    (1, 2)&lt;/span&gt;
+&lt;span class="sd"&gt;    {&amp;quot;a&amp;quot;: 3, &amp;quot;b&amp;quot;: 4}&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 当调用函数时，你可以做跟args/kwargs相反的事情！&lt;/span&gt;
+&lt;span class="c"&gt;# 用*号来扩展位置参数，用**来扩展关键字参数&lt;/span&gt;
+&lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;kwargs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;all_the_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# 等同于foo(1, 2, 3, 4)&lt;/span&gt;
+&lt;span class="n"&gt;all_the_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# 等同于foo(a=3, b=4)&lt;/span&gt;
+&lt;span class="n"&gt;all_the_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# 等同于foo(1, 2, 3, 4, a=3, b=4)&lt;/span&gt;
+
+&lt;span class="c"&gt;# 通过相应地设置符号*和符号** &lt;/span&gt;
+&lt;span class="c"&gt;# 你可以向其接收args/kwargs的函数传递args和kwargs&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;pass_all_the_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;all_the_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;varargs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;keyword_args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# 函数作用域                                                            &lt;/span&gt;
+&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setX&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c"&gt;# 局部变量x跟全局变量x不是同一个&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; 43&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; 43&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setGlobalX&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; 5&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="c"&gt;# 全局变量x现在被设置成6&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="c"&gt;# =&amp;gt; 6&lt;/span&gt;
+
+&lt;span class="n"&gt;setX&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;setGlobalX&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Python有first class函数&lt;/span&gt;
+&lt;span class="c"&gt;# [译者注:关于first class function，请参照函数式编程相关书籍&lt;/span&gt;
+&lt;span class="c"&gt;# first class function:它可以让你的函数就像变量一样来使用。也就是说，你的函数可以像变量一样被创建，修改，并当成变量一样传递，返回或是在函数中嵌套函数。]&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;adder&lt;/span&gt;
+
+&lt;span class="n"&gt;add_10&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;add_10&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 13&lt;/span&gt;
+
+&lt;span class="c"&gt;# 还有匿名函数&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# 还有一些内建的高阶函数&lt;/span&gt;
+&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;add_10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; [11, 12, 13]&lt;/span&gt;
+&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; [6, 7]&lt;/span&gt;
+
+&lt;span class="c"&gt;# 我们可以使用列表推导式来同样达到map 和 filter的效果&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;add_10&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; [11, 12, 13]&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; [6, 7]&lt;/span&gt;
+
+
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+&lt;span class="c"&gt;## 5. 类&lt;/span&gt;
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+
+&lt;span class="c"&gt;# 我们从object父类继承得到子类&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Human&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="c"&gt;# 类的属性。由这个类的所有实例共享。&lt;/span&gt;
+    &lt;span class="n"&gt;species&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;H. sapiens&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;# 基本的初始化函数__init__，当这个类被实例化时被调用&lt;/span&gt;
+    &lt;span class="c"&gt;# 注意前后两个下划线用来表示存在于用户控制的命名空间中的被python保留&lt;/span&gt;
+    &lt;span class="c"&gt;# 的对象或属性，你自己不能发明使用这类的名字&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# 赋值一个参数给对象实例的name属性&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+
+    &lt;span class="c"&gt;# 一个实例方法。所有的方法均要以&amp;quot;self&amp;quot;作为第一个参数&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;say&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# 一个类的方法被它的所有实例所共享&lt;/span&gt;
+    &lt;span class="c"&gt;# 类方法在调用时，会将类本身作为第一个函数传入。&lt;/span&gt;
+    &lt;span class="nd"&gt;@classmethod&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_species&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;cls&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt;
+
+    &lt;span class="c"&gt;# 调用类的静态方法，不需要传入类或者实例的引用&lt;/span&gt;
+    &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;*grunt*&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# 实例化一个类&lt;/span&gt;
+&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Human&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Ian&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hi&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;     &lt;span class="c"&gt;# 输出 &amp;quot;Ian: hi&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Human&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Joel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c"&gt;# 输出 &amp;quot;Joel: hello&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 调用我们的类方法&lt;/span&gt;
+&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_species&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; &amp;quot;H. sapiens&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 修改共享的属性&lt;/span&gt;
+&lt;span class="n"&gt;Human&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;H. neanderthalensis&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_species&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; &amp;quot;H. neanderthalensis&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_species&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; &amp;quot;H. neanderthalensis&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 调用静态方法&lt;/span&gt;
+&lt;span class="n"&gt;Human&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; &amp;quot;*grunt*&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+&lt;span class="c"&gt;## 6. 模块&lt;/span&gt;
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以导入模块&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 4&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以从模块中导入指定函数&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ceil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;floor&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ceil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;3.7&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; 4.0&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;3.7&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; 3.0&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你也可以一次性从模块中导入所有函数&lt;/span&gt;
+&lt;span class="c"&gt;# 警告: 这不是推荐的方法&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以让模块的名字变得短一些&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;m&lt;/span&gt;
+&lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+&lt;span class="c"&gt;# 你可以测试下这两个函数其实是同一个&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;
+&lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;  &lt;span class="c"&gt;# =&amp;gt; True&lt;/span&gt;
+
+&lt;span class="c"&gt;# Python中的模块只是普通的python文件。你可以有自己的模块。 &lt;/span&gt;
+&lt;span class="c"&gt;# 你可以导入它们。模块的名字就是该文件的的名字&lt;/span&gt;
+
+&lt;span class="c"&gt;# 你可以找出都是由哪些函数和属性构成了一个模块&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="nb"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+&lt;span class="c"&gt;## 7. 高级功能&lt;/span&gt;
+&lt;span class="c"&gt;####################################################&lt;/span&gt;
+
+&lt;span class="c"&gt;# 生成器帮助你让代码变得&amp;quot;懒惰&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;double_numbers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterable&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;iterable&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;
+
+&lt;span class="c"&gt;# 生成器在运行的时候创建值&lt;/span&gt;
+&lt;span class="c"&gt;# 它是在每一次的迭代中创建一个值，而不是一次性创建并返回所有的值&lt;/span&gt;
+&lt;span class="c"&gt;# 这意味着，在我们这个例子中，大于15的数将不会在double_numbers函数中处理.&lt;/span&gt;
+&lt;span class="c"&gt;# 注意xrange是一个生成器，不过它做的事情跟range是一样的&lt;/span&gt;
+&lt;span class="c"&gt;# 创建一个1-900000000的列表会花费很多时间和存储空间&lt;/span&gt;
+&lt;span class="c"&gt;# xrange创建一个xrange生成器，而不是像range那样一次性创建整个列表&lt;/span&gt;
+&lt;span class="c"&gt;# 如果希望使用跟python关键字冲突的变量名，我们可以在变量末尾添加一个下划线&lt;/span&gt;
+&lt;span class="n"&gt;xrange_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;900000000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# 将会把所有的数翻倍，直到result大等于30&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;double_numbers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xrange_&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;break&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# 装饰器&lt;/span&gt;
+&lt;span class="c"&gt;# 在这个例子里beg包装了say&lt;/span&gt;
+&lt;span class="c"&gt;# Beg将会调用say。如果say_please为True，那么它会修改返回的消息&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;wraps&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;beg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target_function&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nd"&gt;@wraps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target_function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrapper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;say_please&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;target_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;say_please&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;{} {}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Please! I am poor :(&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wrapper&lt;/span&gt;
+
+
+&lt;span class="nd"&gt;@beg&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;say&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;say_please&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Can you buy me a beer?&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;say_please&lt;/span&gt;
+
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;  &lt;span class="c"&gt;# Can you buy me a beer?&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;say_please&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c"&gt;# Can you buy me a beer? Please! I am poor :(&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;没读过瘾，想要阅读更多内容？&lt;/h3&gt;
+&lt;h4&gt;免费在线阅读 (Free Online)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://learnpythonthehardway.org/book/"&gt;Learn Python The Hard Way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.diveintopython.net/"&gt;Dive Into Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://docs.python.org/2.6/"&gt;The Official Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://docs.python-guide.org/en/latest/"&gt;Hitchhiker's Guide to Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pymotw.com/2/"&gt;Python Module of the Week&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://nbviewer.ipython.org/5920182"&gt;A Crash Course in Python for Scientists&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;实体书 (Dead Tree)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/0596158106/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0596158106&amp;amp;linkCode=as2&amp;amp;tag=homebits04-20"&gt;Programming Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/1441413022/ref=as_li_tf_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=1441413022&amp;amp;linkCode=as2&amp;amp;tag=homebits04-20"&gt;Dive Into Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/0672329786/ref=as_li_tf_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0672329786&amp;amp;linkCode=as2&amp;amp;tag=homebits04-20"&gt;Python Essential Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;译者注&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;更新时间：&lt;code&gt;2014-12-01&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;本人翻译的初衷是为了自身学习和记录，翻译不好的地方，还望读者见谅。&lt;/li&gt;
+&lt;li&gt;这篇翻译是目前网上最新的，包括了所有新的改动，原文在 &lt;a href="https://github.com/adambard/learnxinyminutes-docs/blob/master/python.html.markdown"&gt;Learn X in Y Minutes: Where X = Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;本人会持续关注原文的更新，并保证这里的一直是最新版。&lt;/li&gt;
+&lt;li&gt;更多最新原创的译文，请关注本人的Github &lt;a href="https://github.com/mainframer/Python-Doc-zh-CN"&gt;https://github.com/mainframer/Python-Doc-zh-CN&lt;/a&gt;，只翻译经典，只翻译精华。&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>(译) 迭代器和生成器</title><link href="http://mainframer.github.io/articles/(%E8%AF%91)%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8.html" rel="alternate"></link><updated>2014-11-19T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2014-11-19:articles/(译) 迭代器和生成器.html</id><summary type="html">&lt;h2&gt;迭代器和生成器&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;翻译自:&lt;code&gt;5.Iterators &amp;amp; Generators&lt;/code&gt;  &lt;a href="http://anandology.com/python-practice-book/iterators.html"&gt;5.Iterators &amp;amp; Generators&lt;/a&gt;  &lt;/p&gt;
 &lt;/blockquote&gt;

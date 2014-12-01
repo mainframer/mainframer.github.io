@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PGM=ICET00L - ruby</title>
+    <title>PGM=ICET00L - Python</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="mainframer">
@@ -94,7 +94,7 @@
 						<i class="icon-folder-open icon-large"></i>爬虫
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="http://mainframer.github.io/category/python.html">
 						<i class="icon-folder-open icon-large"></i>Python
 					</a>
@@ -125,30 +125,54 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="http://mainframer.github.io/articles/Ruby分割文件.html">Ruby分割文件</a></h1>
+                <h1><a href="http://mainframer.github.io/articles/使用Pelican + Markdown + GitHub Pages写博客.html">使用Pelican + Markdown + GitHub Pages写博客</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2011-08-20T00:00:00">
-        <i class="icon-calendar"></i>2011-08-20
+<abbr class="published" title="2014-10-25T00:00:00">
+        <i class="icon-calendar"></i>2014-10-25
 </abbr>
 <span class="label">By</span>
 <a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
 <span class="label">Category</span>
-<a href="http://mainframer.github.io/category/ruby.html"><i class="icon-folder-open"></i>Ruby</a>.
+<a href="http://mainframer.github.io/category/python.html"><i class="icon-folder-open"></i>Python</a>.
 
 
 <span class="label">Tags</span>
-	<a href="http://mainframer.github.io/tag/ruby.html"><i class="icon-tag"></i>ruby</a>
-	<a href="http://mainframer.github.io/tag/fen-ge-da-wen-jian.html"><i class="icon-tag"></i>分割大文件</a>
+	<a href="http://mainframer.github.io/tag/pelican.html"><i class="icon-tag"></i>Pelican</a>
+	<a href="http://mainframer.github.io/tag/markdown.html"><i class="icon-tag"></i>Markdown</a>
+	<a href="http://mainframer.github.io/tag/github-pages.html"><i class="icon-tag"></i>GitHub Pages</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>自己小试的ruby程序,用于将一个<code>dictionary.txt</code>分割成多个小一点的子文件，不然每次都操作<code>dictionary.txt</code>显得很笨重。想把<code>dictionary.txt</code>按照字母首a~z，每个首字母再按长度分为长度为1~3的比如a_1to3.txt，长度为4的a_4.txt，长度为5的a_5.txt，长度为6的a_6.txt，长度为7的a_7.txt，长度为8的a_8.txt，以及长度大于8的others。这样，dictionary.txt最后被分割成了6x26+1=157个子文件，就不会像处理dictionary.txt那样笨重了，毕竟CPU有限。<br />
-为啥wordpress里面粘贴代码都只有黑乎乎的一片呢，可爱的语法高亮在哪里？还是喜欢五颜六色的代码段啊，上图吧:<br />
-<img alt="1" src="./../images/ruby_spilt_file.jpg" />     </p>
-<p>只需10秒左右，就生产了157个文件，a_1to3,a_4,a_5...b_1to3,b_4,b_5...z_1to3,z_4 ...</p>
-                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/Ruby分割文件.html">more ...</a>
+                <div class="summary"><p>Pelican是Python写的静态网页生成器，GitHub Pages是Github提供的免费空间，支持自定义域名，支持Markdown语法。</p>
+<h5>安装Pelican</h5>
+<p><code>sudo easy_install pelican markdown</code></p>
+<h5>创建目录</h5>
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">~</span>
+<span class="n">mkdir</span> <span class="n">pelican</span>
+<span class="n">pelican</span><span class="o">-</span><span class="n">quickstart</span>
+</pre></div>
+
+
+<h5>配置Pelican</h5>
+<div class="highlight"><pre>Welcome to pelican-quickstart v3.4.0.
+
+This script will help you create a new Pelican-based website.
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+&gt; Where do ...</pre></div>
+                        <a class="btn primary xsmall" href="http://mainframer.github.io/articles/使用Pelican + Markdown + GitHub Pages写博客.html">more ...</a>
                 </div>
         </div>
         <hr />
+
+        <div class="pagination">
+        <ul>
+                        <li class="prev"><a href="http://mainframer.github.io/category/python.html">&larr; Previous</a></li>
+                        <li class=""><a href="http://mainframer.github.io/category/python.html">1</a></li>
+                        <li class="active"><a href="http://mainframer.github.io/category/python2.html">2</a></li>
+                        <li class="next disabled"><a href="#">&rarr; Next</a></li>
+        </ul>
+        </div>
 
         </div><!--/span-->
 
