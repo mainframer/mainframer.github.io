@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PGM=ICET00L</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/all.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2015-01-05T00:00:00+08:00</updated><entry><title>(译) PEP 333 - Python Web Server Gateway Interface v1.0 中文版</title><link href="http://mainframer.github.io/articles/(%E8%AF%91)%20PEP%20333%20-%20Python%20Web%20Server%20Gateway%20Interface%20v1.0%20%E4%B8%AD%E6%96%87%E7%89%88.html" rel="alternate"></link><updated>2015-01-05T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2015-01-05:articles/(译) PEP 333 - Python Web Server Gateway Interface v1.0 中文版.html</id><summary type="html">&lt;h2&gt;PEP 333 - Python Web Server Gateway Interface v1.0 中文版&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PGM=ICET00L</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/all.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2015-06-21T00:00:00+08:00</updated><entry><title>程序员,请用好你手中的武器</title><link href="http://mainframer.github.io/articles/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%AF%B7%E7%94%A8%E5%A5%BD%E4%BD%A0%E6%89%8B%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8.html" rel="alternate"></link><updated>2015-06-21T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2015-06-21:articles/程序员请用好你手中的武器.html</id><summary type="html">&lt;p&gt;作为程序员的我们，平常工作中，最经常使用的软件(工具)可以说是非终端&lt;code&gt;Terminal&lt;/code&gt;莫属了。甚至可以毫不夸张地说：要是在战争年代，那么终端就是程序员手中的武器。&lt;/p&gt;
+&lt;p&gt;可是，你们看看周围，平心而论，大家真得都把手中的武器用得娴熟了吗？这些天通过对周围同事日常终端操作习惯的观察，我发现，事实情况并不是那么乐观。首先，先来看几个真实的案例——  &lt;/p&gt;
+&lt;p&gt;案例一：
+&lt;img alt="" src="http://i1.tietuku.com/8a187c29d1b2f133.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;案例二：
+&lt;img alt="" src="http://i1.tietuku.com/8d3e663bf8a0d2a7.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;案例三：
+&lt;img alt="" src="http://i1.tietuku.com/c86b100841cddeaf.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;看了上述图片，你一定很气愤，怎么可以使用这么低效的方式使用终端！我们可是天天跟电脑打交道的程序员啊不是吗！然而遗憾的是，这种情况并非少见。&lt;/p&gt;
+&lt;p&gt;此刻屏幕前的你，如果从这3个活生生的例子中隐约看到了自己的影子，那么也不要太自责。相信我，只需花上几分钟时间接着把这篇文章看完，然后打开自己的终端，稍微跟着下文的指南练习一下，一定会有不少收获的。在本文的末尾，我们还会一起返回来看看上面这3个例子中，到底应该如何更有效率的光标移动？&lt;/p&gt;
+&lt;p&gt;那么，就趁现在，就打开你的终端，对照着下面的命令，熟悉一遍操作吧：&lt;/p&gt;
+&lt;h3&gt;光标移动&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + a&lt;/code&gt;   # 将光标移至行首&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + e&lt;/code&gt;   # 将光标移至行末&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alt + f&lt;/code&gt;   # 将光标向前(右)移动一个单词&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alt + b&lt;/code&gt;   # 将光标向后(左)移动一个单词&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + f&lt;/code&gt;   # 将光标向前(右)移动一个字符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + b&lt;/code&gt;   # 将光标向后(左)移动一个字符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + xx&lt;/code&gt;  # 在光标当前位置和行首之间切换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;命令编辑&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + d&lt;/code&gt;   # 删除光标所在位置的一个字符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + h&lt;/code&gt;   # 删除光标前面的一个字符，效果同后退键&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + w&lt;/code&gt;   # 删除光标所在位置的单词(向前)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alt + d&lt;/code&gt;    # 删除光标所在位置的单词(向后)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + l&lt;/code&gt;   # 清空当前屏幕&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + k&lt;/code&gt;   # 剪切光标位置到行末的内容至剪切板&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + u&lt;/code&gt;   # 剪切光标位置到行首的内容至剪切板&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;命令历史&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + r&lt;/code&gt;   #搜索最近输入的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + p&lt;/code&gt;  #上一个命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + n&lt;/code&gt;  #下一个命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!!&lt;/code&gt;        #重复执行上一个命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Bash中的&lt;code&gt;emacs&lt;/code&gt;模式和&lt;code&gt;vi&lt;/code&gt;模式&lt;/h3&gt;
+&lt;p&gt;这里有一点需要提醒读者的是，上文提到的所有命令，都是&lt;code&gt;emacs&lt;/code&gt;模式的。由于历史原因，Bash中默认的设置是&lt;code&gt;emacs&lt;/code&gt;模式，如果读者当中有&lt;code&gt;vim&lt;/code&gt;高手的话，或许你可以尝试下用&lt;code&gt;vim&lt;/code&gt;模式来操作Bash终端，那将会是不一样的一种酷炫技能！&lt;/p&gt;
+&lt;p&gt;将终端的操作模式改成&lt;code&gt;vim&lt;/code&gt;的方式也很简单，直接在终端中执行&lt;code&gt;set -o vi&lt;/code&gt;就可以了。如此一来，你就可以使用&lt;code&gt;vim&lt;/code&gt;中全宇宙最强大的光标移动命令来操作终端命令了，什么&lt;code&gt;^&lt;/code&gt;移动到行首，&lt;code&gt;$&lt;/code&gt;移动到行尾之类的命令都可以随便用了，简直来去自如，相信平时用惯了&lt;code&gt;vim&lt;/code&gt;的高手一定会喜欢的。当然，如果不喜欢，你还可以用&lt;code&gt;set -o emacs&lt;/code&gt;切换回来的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -o vi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;重看3个案例&lt;/h3&gt;
+&lt;p&gt;如果屏幕前的你认真看到了这里，相信你自己一定也知道文章一开始的三个真实例子应该怎样纠正了，现在，我们就分别再来看一下这三个案例：&lt;/p&gt;
+&lt;p&gt;案例一：
+&lt;code&gt;ctrl+a&lt;/code&gt;返回行首，添加&lt;code&gt;./&lt;/code&gt;即可
+&lt;img alt="" src="http://i1.tietuku.com/c864722bd98204e2.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;案例二：
+&lt;code&gt;ctrl+a&lt;/code&gt;返回行首，按3次&lt;code&gt;ctrl+d&lt;/code&gt;删除字符&lt;code&gt;vim&lt;/code&gt;即可,或者&lt;code&gt;alt+d&lt;/code&gt;直接一次性删除&lt;code&gt;vim&lt;/code&gt;这个单词
+&lt;img alt="" src="http://i1.tietuku.com/60cc4c66c664040c.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;案例三：
+&lt;code&gt;ctrl+a&lt;/code&gt;返回行首，按4次&lt;code&gt;alt+f&lt;/code&gt;跳到&lt;code&gt;OnlineIssueLogs&lt;/code&gt;末尾，删除&lt;code&gt;s&lt;/code&gt;
+&lt;img alt="" src="http://i1.tietuku.com/262e3ef1b4d33666.gif" /&gt;&lt;/p&gt;
+&lt;h3&gt;后记&lt;/h3&gt;
+&lt;p&gt;其它的话不啰嗦，笔者最后就说一句：既然我们免不了每天花那么多时间跟终端(Terminal)打交道，那为何不"咬咬牙"练习30分钟，而后受益30年呢？难道你真的愿意在帮别人在终端上调试命令的时候按狂按&lt;code&gt;BACKSPACEE&lt;/code&gt;和&lt;code&gt;&amp;lt;--&lt;/code&gt;键么？更何况我还没有告诉你本文提到的这些高效的光标移动技能不单单在终端里有使用，它们在浏览器地址栏，搜索栏，文本框，甚至是本地编辑文件名，前端Console调试什么的这些地方都有用武之地你知道么？&lt;/p&gt;
+&lt;h3&gt;参考资料&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://ss64.com/bash/syntax-keyboard.html"&gt;Bash Keyboard Shortcuts&lt;/a&gt;&lt;/p&gt;</summary><category term=""></category></entry><entry><title>(译) PEP 333 - Python Web Server Gateway Interface v1.0 中文版</title><link href="http://mainframer.github.io/articles/(%E8%AF%91)%20PEP%20333%20-%20Python%20Web%20Server%20Gateway%20Interface%20v1.0%20%E4%B8%AD%E6%96%87%E7%89%88.html" rel="alternate"></link><updated>2015-01-05T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2015-01-05:articles/(译) PEP 333 - Python Web Server Gateway Interface v1.0 中文版.html</id><summary type="html">&lt;h2&gt;PEP 333 - Python Web Server Gateway Interface v1.0 中文版&lt;/h2&gt;
 &lt;p&gt;============&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;翻译自 &lt;code&gt;Python Web Server Gateway Interface v1.0&lt;/code&gt;  &lt;a href="https://www.python.org/dev/peps/pep-0333/"&gt;PEP 333 - Python Web Server Gateway Interface v1.0&lt;/a&gt;&lt;/p&gt;

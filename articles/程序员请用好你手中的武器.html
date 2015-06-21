@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Backtrack5安装Adobe reader看PDF</title>
+    <title>程序员,请用好你手中的武器</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="mainframer">
@@ -130,8 +130,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to Backtrack5安装Adobe reader看PDF">
-                                        Backtrack5安装Adobe reader看PDF
+                                        title="Permalink to 程序员,请用好你手中的武器">
+                                        程序员,请用好你手中的武器
                                 </a>
                         </h1>
                 </header>
@@ -139,8 +139,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2011-08-06T00:00:00">
-        <i class="icon-calendar"></i>2011-08-06
+<abbr class="published" title="2015-06-21T00:00:00">
+        <i class="icon-calendar"></i>2015-06-21
 </abbr>
 <span class="label">By</span>
 <a href="http://mainframer.github.io/author/mainframer.html"><i class="icon-user"></i>mainframer</a>
@@ -149,50 +149,74 @@
 
 
 <span class="label">Tags</span>
-	<a href="http://mainframer.github.io/tag/backtrack.html"><i class="icon-tag"></i>Backtrack</a>
+	<a href="http://mainframer.github.io/tag/.html"><i class="icon-tag"></i></a>
 </footer><!-- /.post-info -->                </div>
-                <p>Linux下的办公软件Openoffice和Libreoffice都很不错，小巧的foxit reader也很好，不过我还是习惯用adobe reader，所以还是决定在bt5下安装adobe reader。</p>
-<h3>1、下载压缩包到/tmp</h3>
-<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:~</span><span class="c1">#  cd /tmp   </span>
-<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  wget -c http://221.1.222.15:82/down/AdbeRdr9.4.2-1_i486linux_enu.tar.bz2 </span>
+                <p>作为程序员的我们，平常工作中，最经常使用的软件(工具)可以说是非终端<code>Terminal</code>莫属了。甚至可以毫不夸张地说：要是在战争年代，那么终端就是程序员手中的武器。</p>
+<p>可是，你们看看周围，平心而论，大家真得都把手中的武器用得娴熟了吗？这些天通过对周围同事日常终端操作习惯的观察，我发现，事实情况并不是那么乐观。首先，先来看几个真实的案例——  </p>
+<p>案例一：
+<img alt="" src="http://i1.tietuku.com/8a187c29d1b2f133.gif" /></p>
+<p>案例二：
+<img alt="" src="http://i1.tietuku.com/8d3e663bf8a0d2a7.gif" /></p>
+<p>案例三：
+<img alt="" src="http://i1.tietuku.com/c86b100841cddeaf.gif" /></p>
+<p>看了上述图片，你一定很气愤，怎么可以使用这么低效的方式使用终端！我们可是天天跟电脑打交道的程序员啊不是吗！然而遗憾的是，这种情况并非少见。</p>
+<p>此刻屏幕前的你，如果从这3个活生生的例子中隐约看到了自己的影子，那么也不要太自责。相信我，只需花上几分钟时间接着把这篇文章看完，然后打开自己的终端，稍微跟着下文的指南练习一下，一定会有不少收获的。在本文的末尾，我们还会一起返回来看看上面这3个例子中，到底应该如何更有效率的光标移动？</p>
+<p>那么，就趁现在，就打开你的终端，对照着下面的命令，熟悉一遍操作吧：</p>
+<h3>光标移动</h3>
+<ul>
+<li><code>Ctrl + a</code>   # 将光标移至行首</li>
+<li><code>Ctrl + e</code>   # 将光标移至行末</li>
+<li><code>Alt + f</code>   # 将光标向前(右)移动一个单词</li>
+<li><code>Alt + b</code>   # 将光标向后(左)移动一个单词</li>
+<li><code>Ctrl + f</code>   # 将光标向前(右)移动一个字符</li>
+<li><code>Ctrl + b</code>   # 将光标向后(左)移动一个字符</li>
+<li><code>Ctrl + xx</code>  # 在光标当前位置和行首之间切换</li>
+</ul>
+<h3>命令编辑</h3>
+<ul>
+<li><code>Ctrl + d</code>   # 删除光标所在位置的一个字符</li>
+<li><code>Ctrl + h</code>   # 删除光标前面的一个字符，效果同后退键</li>
+<li><code>Ctrl + w</code>   # 删除光标所在位置的单词(向前)</li>
+<li><code>Alt + d</code>    # 删除光标所在位置的单词(向后)</li>
+<li><code>Ctrl + l</code>   # 清空当前屏幕</li>
+<li><code>Ctrl + k</code>   # 剪切光标位置到行末的内容至剪切板</li>
+<li><code>Ctrl + u</code>   # 剪切光标位置到行首的内容至剪切板</li>
+</ul>
+<h3>命令历史</h3>
+<ul>
+<li><code>Ctrl + r</code>   #搜索最近输入的命令</li>
+<li><code>Ctrl + p</code>  #上一个命令</li>
+<li><code>Ctrl + n</code>  #下一个命令</li>
+<li><code>!!</code>        #重复执行上一个命令</li>
+</ul>
+<h3>Bash中的<code>emacs</code>模式和<code>vi</code>模式</h3>
+<p>这里有一点需要提醒读者的是，上文提到的所有命令，都是<code>emacs</code>模式的。由于历史原因，Bash中默认的设置是<code>emacs</code>模式，如果读者当中有<code>vim</code>高手的话，或许你可以尝试下用<code>vim</code>模式来操作Bash终端，那将会是不一样的一种酷炫技能！</p>
+<p>将终端的操作模式改成<code>vim</code>的方式也很简单，直接在终端中执行<code>set -o vi</code>就可以了。如此一来，你就可以使用<code>vim</code>中全宇宙最强大的光标移动命令来操作终端命令了，什么<code>^</code>移动到行首，<code>$</code>移动到行尾之类的命令都可以随便用了，简直来去自如，相信平时用惯了<code>vim</code>的高手一定会喜欢的。当然，如果不喜欢，你还可以用<code>set -o emacs</code>切换回来的。</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">set</span> -o vi
 </pre></div>
 
 
-<h3>2、下载好之后解压:</h3>
-<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  tar jxvf AdbeRdr9.4.2-1_i486linux_enu.tar.bz2  </span>
-<span class="ss">tar</span><span class="p">:</span> <span class="no">Record</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span> <span class="n">blocks</span>  
-<span class="no">AdobeReader</span><span class="o">/</span>   
-<span class="no">AdobeReader</span><span class="o">/</span><span class="no">INSTALL</span>   
-<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
-<span class="no">AdobeReader</span><span class="o">/</span><span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span>  
-<span class="no">AdobeReader</span><span class="o">/</span><span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span>  
-</pre></div>
-
-
-<p>解压后在/tmp路径下生成了AdobeReader的文件夹  </p>
-<h3>3、安装</h3>
-<div class="highlight"><pre><span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="c1">#  cd AdobeReader    </span>
-<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ls  </span>
-<span class="no">COMMON</span><span class="o">.</span><span class="n">TAR</span> <span class="no">ILINXR</span><span class="o">.</span><span class="n">TAR</span> <span class="no">INSTALL</span> <span class="no">ReadMe</span><span class="o">.</span><span class="n">htm</span>  
-<span class="n">root</span><span class="vi">@bt</span><span class="ss">:/</span><span class="n">tmp</span><span class="o">/</span><span class="no">AdobeReader</span><span class="c1">#  ./INSTALL   </span>
-<span class="no">This</span> <span class="n">installation</span> <span class="n">requires</span> <span class="mi">145</span> <span class="no">MB</span> <span class="n">of</span> <span class="n">free</span> <span class="n">disk</span> <span class="n">space</span><span class="o">.</span>  
-<span class="no">Enter</span> <span class="n">installation</span> <span class="n">directory</span> <span class="k">for</span> <span class="no">Adobe</span> <span class="no">Reader</span> <span class="mi">9</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">2</span> <span class="o">[</span><span class="sr">/opt]  #直接回车  </span>
-<span class="sr">/o</span><span class="n">pt</span>  
-<span class="no">Installing</span> <span class="n">platform</span> <span class="n">independent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
-<span class="no">Installing</span> <span class="n">platform</span> <span class="n">dependent</span> <span class="n">files</span> <span class="o">...</span> <span class="no">Done</span>  
-<span class="no">Setting</span> <span class="n">up</span> <span class="n">libraries</span> <span class="o">...</span> <span class="no">Done</span>  
-<span class="no">Setting</span> <span class="n">up</span> <span class="n">desktop</span> <span class="ow">and</span> <span class="n">menu</span> <span class="n">icons</span> <span class="o">...</span> <span class="no">Done</span>  
-<span class="no">Setting</span> <span class="n">up</span> <span class="n">the</span> <span class="n">browser</span> <span class="n">plugin</span> <span class="o">...</span> <span class="no">Done</span>  
-</pre></div>
-
-
-<p>好了，安装到/opt了，这时桌面右上角Applications——Office里面就多了Adobe Reade 9，就可以看pdf了。  </p>
+<h3>重看3个案例</h3>
+<p>如果屏幕前的你认真看到了这里，相信你自己一定也知道文章一开始的三个真实例子应该怎样纠正了，现在，我们就分别再来看一下这三个案例：</p>
+<p>案例一：
+<code>ctrl+a</code>返回行首，添加<code>./</code>即可
+<img alt="" src="http://i1.tietuku.com/c864722bd98204e2.gif" /></p>
+<p>案例二：
+<code>ctrl+a</code>返回行首，按3次<code>ctrl+d</code>删除字符<code>vim</code>即可,或者<code>alt+d</code>直接一次性删除<code>vim</code>这个单词
+<img alt="" src="http://i1.tietuku.com/60cc4c66c664040c.gif" /></p>
+<p>案例三：
+<code>ctrl+a</code>返回行首，按4次<code>alt+f</code>跳到<code>OnlineIssueLogs</code>末尾，删除<code>s</code>
+<img alt="" src="http://i1.tietuku.com/262e3ef1b4d33666.gif" /></p>
+<h3>后记</h3>
+<p>其它的话不啰嗦，笔者最后就说一句：既然我们免不了每天花那么多时间跟终端(Terminal)打交道，那为何不"咬咬牙"练习30分钟，而后受益30年呢？难道你真的愿意在帮别人在终端上调试命令的时候按狂按<code>BACKSPACEE</code>和<code>&lt;--</code>键么？更何况我还没有告诉你本文提到的这些高效的光标移动技能不单单在终端里有使用，它们在浏览器地址栏，搜索栏，文本框，甚至是本地编辑文件名，前端Console调试什么的这些地方都有用武之地你知道么？</p>
+<h3>参考资料</h3>
+<p><a href="http://ss64.com/bash/syntax-keyboard.html">Bash Keyboard Shortcuts</a></p>
                 </div><!-- /.entry-content -->
                 <div class="comments">
                 <h2>Comments !</h2>
                         <div id="disqus_thread"></div>
                         <script type="text/javascript">
-                           var disqus_identifier = "articles/Backtrack5安装Adobe reader看PDF.html";
+                           var disqus_identifier = "articles/程序员请用好你手中的武器.html";
                            (function() {
                                 var dsq = document.createElement('script');
                                 dsq.type = 'text/javascript'; dsq.async = true;
