@@ -1,5 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PGM=ICET00L</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/mainframer.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2015-06-21T00:00:00+08:00</updated><entry><title>程序员,请用好你手中的武器</title><link href="http://mainframer.github.io/articles/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%AF%B7%E7%94%A8%E5%A5%BD%E4%BD%A0%E6%89%8B%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8.html" rel="alternate"></link><updated>2015-06-21T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2015-06-21:articles/程序员请用好你手中的武器.html</id><summary type="html">&lt;p&gt;作为程序员的我们，平常工作中，最经常使用的软件(工具)可以说是非终端&lt;code&gt;Terminal&lt;/code&gt;莫属了。甚至可以毫不夸张地说：要是在战争年代，那么终端就是程序员手中的武器。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PGM=ICET00L</title><link href="http://mainframer.github.io/" rel="alternate"></link><link href="http://mainframer.github.io/feeds/mainframer.atom.xml" rel="self"></link><id>http://mainframer.github.io/</id><updated>2015-06-23T00:00:00+08:00</updated><entry><title>Python在Jenkins上的持续集成--nose单元测试，代码覆盖率以及pylint代码质量审查</title><link href="http://mainframer.github.io/articles/Python%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90.html" rel="alternate"></link><updated>2015-06-23T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2015-06-23:articles/Python持续集成.html</id><summary type="html">&lt;p&gt;一说起持续集成，大家的固有印象就是Java。诚然，Java占了持续集成的半壁江山。可是，这是否意味着Python、Ruby、Node这样的脚本语言就跟持续集成扯不上关系呢？答案显然是否定的！其实不论什么语言，单元测试，代码覆盖率，以及静态代码检查这些软件工程的实践都是通用的。本文，我们将从一个实际的Pyghon项目，系统地学习一下在Python项目中该如何开展持续集成，包括使用nose框架做单元测试和覆盖率，以及使用pylint工具来检查代码质量。&lt;/p&gt;
+&lt;p&gt;文章分为上下两篇两部分，上篇讲述了如何在本地环境对一个Python项目做单元测试、覆盖率测试以及代码质量审查；下篇我们将把注意力从本地转移到Jenkins上来，系统地讲述一下如何将这些步骤跟Jenkins持续集成结合起来。&lt;/p&gt;
+&lt;h2&gt;上篇——本地小试牛刀&lt;/h2&gt;
+&lt;h4&gt;创建目录结构&lt;/h4&gt;
+&lt;p&gt;现在，我们从零开始，先在本地创建一个本文将要使用的Python项目。这里，我们的工作目录是&lt;strong&gt;~/dev/project1&lt;/strong&gt;,在该工作目录下，我们创建了project1文件夹用来放置我们的Python源代码；接着，我们又创建了tests文件夹用来放置单元测试的测试用例文件。最后，我们还分别为这两个文件夹添加&lt;strong&gt;&lt;strong&gt;init&lt;/strong&gt;.py&lt;/strong&gt;文件，这样，这两个文件夹就能被Python识别为package包了。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p ~/dev/project1
+cd project1
+git init
+mkdir project1
+touch project1/__init__.py
+mkdir tests
+touch tests/__init__.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;养成经常&lt;strong&gt;commit&lt;/strong&gt;的好习惯，到这里，我们先运行&lt;strong&gt;git commit&lt;/strong&gt;提交当前的工作。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git add .
+git commit -m &amp;quot;添加2个空的Python包: project1 and tests&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/620dd50e-b750-4117-86ae-4c8bc8187e5a" /&gt;&lt;/p&gt;
+&lt;h4&gt;编写项目代码&lt;/h4&gt;
+&lt;p&gt;下一步，我们来编写Python项目代码，为了方便，我们的项目就只有一个&lt;strong&gt;authentication.py&lt;/strong&gt;文件，并且该文件只有一个&lt;strong&gt;login(username,password)&lt;/strong&gt;的登陆方法和一个&lt;strong&gt;logout()&lt;/strong&gt;登出方法。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;vim project1/authentication.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/4e00ba33-2900-4174-bb25-84c1ee9b3beb" /&gt;&lt;/p&gt;
+&lt;h4&gt;编写测试用例&lt;/h4&gt;
+&lt;p&gt;紧接着，我们来编写&lt;strong&gt;tests/authentication_tests.py&lt;/strong&gt;测试用例文件，为项目代码中的&lt;strong&gt;login()&lt;/strong&gt;方法添加如下3个测试用例——1个登陆成功的用例，1个登陆失败的用例，以及1个I/O异常的用例。这里，我们故意不为&lt;strong&gt;logout()&lt;/strong&gt;方法设计测试用例，以便后面能较明显地从覆盖率报表中看出我们的测试覆盖率不够的问题。我们在测试文件中使用了Python的&lt;strong&gt;mock&lt;/strong&gt;模块来构造测试数据，这在Python开发中也是比较常见的一种测试方法，关于Python的mock模块详细用法，读者可以看文末的参考资料，这里不作展开。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;vim tests/authentication_tests.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/03734184-86fb-4026-b187-4de105dfcf18" /&gt;&lt;/p&gt;
+&lt;h4&gt;本地自测&lt;/h4&gt;
+&lt;p&gt;其实，截止到现在，我们已经足够在本地进行自测了。我们来执行下&lt;strong&gt;nosetests&lt;/strong&gt;命令，可以看到，&lt;strong&gt;nosetests&lt;/strong&gt;为我们执行了3个测试用例，并且我们项目的代码覆盖率为87%。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;nosetests --with-coverage --cover-package=project1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/950fdafd-bb84-4758-99ac-4c785db04b21" /&gt;
+那我们项目的代码质量写得如何呢？我们来执行一下&lt;strong&gt;pylint&lt;/strong&gt;命令，审查一下我们的代码质量:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pylint -r n project1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/1c100b27-f7a2-4252-92c8-2b8286edcb95" /&gt;
+可以看出，&lt;strong&gt;pylint&lt;/strong&gt;工具为我们检查出了4处代码不规范的地方，其中两处C是&lt;strong&gt;Convertion&lt;/strong&gt;相关的，表示违反了Python的编码风格；还有两处W是指违反了Python语言相关而给出的警告。[&lt;strong&gt;我会告诉你这是我故意留的么？&lt;/strong&gt;]
+当然，你如果希望看到更多更详细的输出，那也是可以的，执行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pylint -r y project1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/368a9468-fb74-477a-8e58-59bd8b436dd2" /&gt;
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/5e59b22c-fb1c-48ba-8a24-e341442f1dbf" /&gt;
+[图太多，就不多截啦！]&lt;/p&gt;
+&lt;h4&gt;推送到远程仓库&lt;/h4&gt;
+&lt;p&gt;到目前为止，本地的Python项目和测试用例都已经写完了。老规矩，我们先提交工作内容，并且推送至远程的Git仓库。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git add .
+git commit -m &amp;quot;添加项目文件以及测试文件&amp;quot;
+git config user.name &amp;quot;hzchenshibin&amp;quot;
+git config user.email &amp;quot;hzchenshibin@corp.netease.com&amp;quot;
+git remote add origin git remote add origin https://git.hz.netease.com/git/hzchenshibin/python-jenkins.git
+git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/207dc07e-2f1a-4709-bf2d-adec8fa2a21a" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;下篇——傍上Jenkins的大腿&lt;/h2&gt;
+&lt;p&gt;在上篇中，我们已经在本地把Python项目的单元测试，代码覆盖率，代码静态审查等这些准备工作都完成了。那在这篇中，我们来具体看一下，应该怎么跟高大上的Jenkins集成起来，傍上持续集成的大腿。读者先不要着急，下面我们就一步一步来揭开谜底。&lt;/p&gt;
+&lt;h3&gt;第一步：节点机环境准备&lt;/h3&gt;
+&lt;p&gt;显而易见，在上篇中，我们用到了python中的&lt;strong&gt;python-mock&lt;/strong&gt;，&lt;strong&gt;python-nose&lt;/strong&gt;，&lt;strong&gt;python-coverage&lt;/strong&gt;以及&lt;strong&gt;pylint&lt;/strong&gt;这些包，所以，在配置Jenkins的Job之前，请确保你的节点机上面已经正确安装了这些Python包：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;python-mock: 用来生成测试数据。&lt;/li&gt;
+&lt;li&gt;python-nose: Python单元测试包。&lt;/li&gt;
+&lt;li&gt;python-coverage: Python代码覆盖率包。&lt;/li&gt;
+&lt;li&gt;pylint: Python静态代码审查包。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些包都可以在它们的官网或者通过包管理工具来安装。以Ubuntu系统为例，可以通过&lt;strong&gt;sudo apt-get&lt;/strong&gt;来安装；如果是Mac或者其他Linux系统，也可以通过Python自己的包管理工具&lt;strong&gt;easy-install&lt;/strong&gt;或者&lt;strong&gt;pip&lt;/strong&gt;来安装，这里不做详细展开，读者可以从文章末尾的参考材料获取更多的知识。&lt;/p&gt;
+&lt;p&gt;Ubuntu系统上安装所需要的Python包的实例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-mock python-nose python-coverage pylint
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;第二步：用到的Jenkins插件&lt;/h3&gt;
+&lt;p&gt;Jenkins拥有丰富的第三方插件，可以用来帮助我们完成各种个样的雪球。下列是本文中用到的几个插件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Git Plugin：用来从Gitbucket源代码库拉取代码&lt;/li&gt;
+&lt;li&gt;Junit Plugin: 用来展示nose框架生成的单元测试报表&lt;/li&gt;
+&lt;li&gt;Cobertura Plugin：用来展示Python代码测试覆盖率报表&lt;/li&gt;
+&lt;li&gt;Violations：用来展示Python静态代码审查报表，支持pylint、jslint等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;第三步：Jenkins的Job配置&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;SCM代码仓库配置&lt;/strong&gt;
+将我们在上篇中推送的远程仓库的URL配置在这里，这样，Jenkins就可以从该远程仓库拉取我们之前推送的项目代码:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/37d26711-23ad-434d-a9df-d9527f3cb01c" /&gt;
+&lt;strong&gt;节点机选择&lt;/strong&gt;
+选择我们上文配置好的节点机
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/ec6ad917-acf4-43db-b919-15fe0def2940" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;添加构建步骤&lt;/strong&gt;
+Add Buid Step--&amp;gt;Execute Shell
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/184cc833-99a6-483a-9fc7-77137887b22f" /&gt;
+&lt;strong&gt;--with-xunit --all-modules --traverse-namespace --with-coverage&lt;/strong&gt;这些都是nose框架自带的参数，详细用法可以自行参考其官方文档[参考材料1]。
+&lt;strong&gt;python -m coverage xml&lt;/strong&gt;命令用来将nose框架生成的.coverage文件转换成Jenkins能够理解的xml格式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设置单元测试报表展示&lt;/strong&gt;
+Add post-build action--&amp;gt;Public Junit test result report，在&lt;strong&gt;Test report XMLs&lt;/strong&gt;这一栏填写上一步构建生成的单元测试xml文件：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/7f86afc7-3e3c-48a5-8176-1f4bae67d1ed" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设置代码覆盖率报表展示&lt;/strong&gt;
+Add post-build action--&amp;gt;Public Cobertura Coverage Report，在&lt;strong&gt;Cobertura xml report pattern&lt;/strong&gt;这一栏填写上一步构建生成的覆盖率xml文件：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/5405e03d-33b0-4975-9954-714675c4aae8" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设置静态代码审查报表展示&lt;/strong&gt;
+Add post-build action--&amp;gt;Reports Violations，在&lt;strong&gt;pylint&lt;/strong&gt;这一栏，填写上一步生成的代码质量审查输出文件：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/8ed324db-14db-433e-a1fb-9caecc0ab235" /&gt;
+&lt;strong&gt;提交构建&lt;/strong&gt;
+点击左侧的”Build Now“，等待构建完成，打开&lt;strong&gt;Console Output&lt;/strong&gt;查看构建日志：
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/8b87a2cb-8315-4274-b6ee-5912819c0a69" /&gt;
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/1fb8f38d-b519-4b99-bf33-4e127aa8b0ee" /&gt;&lt;/p&gt;
+&lt;p&gt;当然，我们做了这么多工作，想看的可不是这些字符的文本报表。上文中我们已经配置了的各种报表插件，那么现在已经到了展现威力的时候了。我们分别来看一下Jenkins给我们生成的单元测试报表，代码覆盖率报表，以及&lt;strong&gt;Pylint&lt;/strong&gt;生成的代码质量报表都长啥样：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;单元测试报表&lt;/strong&gt;
+  &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/c19c3b0c-ec33-4725-b267-651233471cf2" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码覆盖率报表&lt;/strong&gt;
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/75db7040-ec8a-4dd6-9ddb-1442be3d3919" /&gt;
+ 点进源码，可以看到详细的覆盖率情况，绿色表示已经覆盖到了，红色表示未被测试用例覆盖到的代码 ：
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/4e9702c7-e26b-41df-8730-a263bf06d3f5" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码质量审查报表&lt;/strong&gt;
+ &lt;img alt="Alt pic" src="http://nos.netease.com/knowledge/b2fbc817-6aad-470b-b24f-a6cb00565687" /&gt;&lt;/p&gt;
+&lt;h4&gt;参考材料&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;nosetests官方文档 [http://nose.readthedocs.org/en/latest/]&lt;/li&gt;
+&lt;li&gt;pylint官方文档 [http://www.pylint.org/]&lt;/li&gt;
+&lt;li&gt;pymock官方文档 [http://theblobshop.com/pymock/]&lt;/li&gt;
+&lt;li&gt;Jenkins的Violation插件文档 [https://wiki.jenkins-ci.org/display/JENKINS/Violations]&lt;/li&gt;
+&lt;li&gt;Automated python unit testing, code coverage and code quality analysis with Jenkins [http://bhfsteve.blogspot.hk/2012/04/automated-python-unit-testing-code.html]&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="持续集成"></category></entry><entry><title>程序员,请用好你手中的武器</title><link href="http://mainframer.github.io/articles/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%AF%B7%E7%94%A8%E5%A5%BD%E4%BD%A0%E6%89%8B%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8.html" rel="alternate"></link><updated>2015-06-21T00:00:00+08:00</updated><author><name>mainframer</name></author><id>tag:mainframer.github.io,2015-06-21:articles/程序员请用好你手中的武器.html</id><summary type="html">&lt;p&gt;作为程序员的我们，平常工作中，最经常使用的软件(工具)可以说是非终端&lt;code&gt;Terminal&lt;/code&gt;莫属了。甚至可以毫不夸张地说：要是在战争年代，那么终端就是程序员手中的武器。&lt;/p&gt;
 &lt;p&gt;可是，你们看看周围，平心而论，大家真得都把手中的武器用得娴熟了吗？这些天通过对周围同事日常终端操作习惯的观察，我发现，事实情况并不是那么乐观。首先，先来看几个真实的案例——  &lt;/p&gt;
 &lt;p&gt;案例一：
 &lt;img alt="" src="http://i1.tietuku.com/8a187c29d1b2f133.gif" /&gt;&lt;/p&gt;

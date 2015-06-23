@@ -5,30 +5,37 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/index.html</loc>
-<lastmod>2015-06-21T09:21:06-00:00</lastmod>
+<lastmod>2015-06-23T21:03:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/archives.html</loc>
-<lastmod>2015-06-21T09:21:06-00:00</lastmod>
+<lastmod>2015-06-23T21:03:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/tags.html</loc>
-<lastmod>2015-06-21T09:21:06-00:00</lastmod>
+<lastmod>2015-06-23T21:03:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://mainframer.github.io/categories.html</loc>
-<lastmod>2015-06-21T09:21:06-00:00</lastmod>
+<lastmod>2015-06-23T21:03:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://mainframer.github.io/articles/Python持续集成.html</loc>
+<lastmod>2015-06-23T00:00:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -1145,6 +1152,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://mainframer.github.io/category/chi-xu-ji-cheng.html</loc>
+<lastmod>2015-06-23T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://mainframer.github.io/category/ibm-rational.html</loc>
 <lastmod>2014-03-04T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -2132,6 +2146,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://mainframer.github.io/tag/chi-xu-ji-cheng.html</loc>
+<lastmod>2015-06-23T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://mainframer.github.io/tag/bai-du-tong-ji.html</loc>
 <lastmod>2011-08-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -2210,7 +2231,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://mainframer.github.io/author/mainframer.html</loc>
-<lastmod>2015-06-21T00:00:00+08:06</lastmod>
+<lastmod>2015-06-23T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
